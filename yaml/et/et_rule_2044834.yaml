@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '13'
+        value: '"/install.bak/"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_30, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_03_30
+      msg: '"ET TROJAN Suspected APT37 Related Activity (GET)"'
+      pcre: '"/\/[0-9]{2}\.html$/U"'
+      reference: url,twitter.com/suyog41/status/1640662025247289345
+      rev: '1'
+      sid: '2044834'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

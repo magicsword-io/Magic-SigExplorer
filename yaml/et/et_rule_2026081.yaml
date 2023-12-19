@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '6'
+        value: '"/pser?"'
+      - value: '"Accept-Encoding|3a 20|gzip, deflate|0d|"'
+      - value: '"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2018_09_05, deployment Perimeter, former_category
+        MALWARE, malware_family OilRig, malware_family OopsIE, performance_impact
+        Low, signature_severity Major, tag APT, updated_at 2020_09_16
+      msg: '"ET TROJAN OilRig OopsIE CnC Checkin M2"'
+      pcre: '"/^\/pser\?[A-F0-9]{10,}(?:BBZ|BBY)[A-F0-9]{,1000}$/Ui"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/09/unit42-oilrig-targets-middle-eastern-government-adds-evasion-techniques-oopsie/
+      rev: '2'
+      sid: '2026081'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

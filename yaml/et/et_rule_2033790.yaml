@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/licenseserverproto.cgi"'
+      - value: '"serverid="'
+      - value: '"csJ1TA45JzB0WJrjA5X8dpVbXcrDMVfa"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_08_25, deployment SSLDecrypt, former_category WEB_SERVER,
+        updated_at 2021_08_25
+      msg: '"ET WEB_SERVER SLIGHTPULSE WebShell Access Inbound M3"'
+      rev: '2'
+      sid: '2033790'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '35'
+    protocol: tcp
+    source:
+      network: any
+      port: any

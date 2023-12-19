@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"logged,true"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS NewsPro administration authentication attempt"'
+      reference: cve,2002-1734
+      rev: '12'
+      service: http
+      sid: '1756'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

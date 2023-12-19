@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|lifeboxtransfer|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_10_09, deployment Perimeter,
+        signature_severity Informational, tag FileSharing, updated_at 2023_10_09,
+        reviewed_at 2023_10_09
+      msg: '"ET INFO Filesharing Domain  in DNS Lookip (lifeboxtransfer .com)"'
+      rev: '1'
+      sid: '2048499'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

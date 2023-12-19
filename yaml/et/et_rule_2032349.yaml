@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?pub=mix"'
+      - value: '!"Mozilla/"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"-"'
+      - value: '"-"'
+      - value: '"-"'
+      - value: '"|0d 0a|"'
+      distance: '4'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_30, deployment Perimeter,
+        former_category MALWARE, malware_family GCleaner, performance_impact Low,
+        signature_severity Major, tag Downloader, updated_at 2021_03_30
+      msg: '"ET TROJAN GCleaner Downloader Activity M1"'
+      reference: url,medium.com/csis-techblog/gcleaner-garbage-provider-since-2019-2708e7c87a8a
+      rev: '2'
+      sid: '2032349'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

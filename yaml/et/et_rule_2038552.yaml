@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var|20|ndsx|20 3d 20|true|3b|"'
+      - value: '"|28|function|28 29 7b|"'
+      - value: '!"var|20|date|3d|new|20|Date|28|new|20|Date|28 29 2e|getTime|28 29|"'
+      - value: '!"document|2e|cookie|3d 22 5f 5f 5f|utma|3d|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_08_17, deployment Perimeter,
+        deployment SSLDecrypt, former_category EXPLOIT_KIT, performance_impact Low,
+        signature_severity Major, tag TDS, updated_at 2022_08_17
+      msg: '"ET CURRENT_EVENTS Parrot TDS Malicious Response"'
+      reference: url,decoded.avast.io/janrubin/parrot-tds-takes-over-web-servers-and-threatens-millions
+      rev: '2'
+      sid: '2038552'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

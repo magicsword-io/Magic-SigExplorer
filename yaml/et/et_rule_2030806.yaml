@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"name|3d 22|caption|22 0d 0a 0d 0a|New PW Recovered!|0d 0a 0d 0a|User
+          Name|3a 20|"'
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendDocument"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_27, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family AgentTesla, performance_impact Low,
+        signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN Win32/AgentTesla Variant Exfil via Telegram"'
+      reference: md5,0c22e92073fc56a574a6c860ddef1c2d
+      rev: '2'
+      sid: '2030806'
+      special_options:
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

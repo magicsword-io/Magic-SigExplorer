@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <75
+      classtype: trojan-activity
+      contents:
+      - value: '"/in.php"'
+      - value: '"&q=",distance 0'
+      - value: '"==",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Sweet Orange exploit kit landing page in.php base64 uri"'
+      reference: cve,2013-2423
+      rev: '5'
+      service: http
+      sid: '26834'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images.php?t="'
+      - value: '"|29 20|Java/"'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_04_17, former_category EXPLOIT_KIT, updated_at 2020_04_21
+      msg: '"ET CURRENT_EVENTS Incognito Exploit Kit Java request to images.php?t="'
+      pcre: '"/^\/images\.php\?t=\d+$/Ui"'
+      rev: '1'
+      sid: '2014609'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| xmsSofts_1.0.0_",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Js.Trojan.Agent variant outbound connection"'
+      rev: '2'
+      service: http
+      sid: '48818'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

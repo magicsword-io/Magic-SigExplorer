@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|22|c|22|+|22|r|22 3A|2+|22|e|22|+|22|a|22|+|22|t|22|+|22|e|22|+|22|E|22|+|22|l|22|+|22|e|22|+|22|m|22|+((f)?|22|e|22|+|22|n|22|+|22|t|22
+          3A 22 22|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION Javascript obfuscation - createElement - seen in
+        IFRAMEr Tool attack"'
+      reference: url,attack.mitre.org/techniques/T1140
+      rev: '3'
+      service: http
+      sid: '28420'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

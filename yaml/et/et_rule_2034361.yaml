@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|0d 0a|SOAPAction|3a 20 22|http://tempuri.org/"'
+      - value: '"|3c 73 3a|Body|3e 3c|GetArguments|20|xmlns=|22|http|3a 2f 2f|tempuri|2e|org|2f
+          22 2f|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_14, deployment Perimeter, former_category
+        MALWARE, malware_family Redline, signature_severity Major, updated_at 2021_04_14
+      msg: '"ET TROJAN RedLine - GetArguments Request"'
+      reference: md5,9a3ac9f18c1222e7a77a47db01b1f597
+      rev: '2'
+      sid: '2034361'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

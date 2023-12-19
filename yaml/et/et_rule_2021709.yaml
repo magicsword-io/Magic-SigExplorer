@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<style"'
+      - value: '"x-ua-compatible"'
+      - value: '"<button"'
+      - value: '"<label"'
+      - value: '"<form"'
+      - value: '"<meter"'
+      - value: '"<optgroup"'
+      - value: '"<meter"'
+      - value: '"-ms-behavior"'
+      distance: '0'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2015_08_24, cve CVE_2015_2444, deployment
+        Perimeter, former_category WEB_CLIENT, confidence Medium, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Internet Explorer Memory Corruption Vulnerability (CVE-2015-2444)"'
+      pcre: '"/^[\x22\x27]\s*content\s*=\s*[\x22\x27]\s*IE\s*=\s*10/Rsi"'
+      reference: cve,2015-2444
+      rev: '2'
+      sid: '2021709'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

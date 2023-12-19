@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"autoidcnt.asp?mer_seq="'
+      - value: '"&realid="'
+      - value: '"&mac="'
+      - value: '"winsoft"'
+      flow: established,to_server
+      metadata: created_at 2011_01_24, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Winsoft.E Checkin 3"'
+      reference: url,xml.ssdsandbox.net/index.php/935021734dd64921defd1eb266c3fb39
+      rev: '2'
+      sid: '2012224'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

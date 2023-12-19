@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '513'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"-froot|00|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2019_10_08
+      msg: '"GPL EXPLOIT rsh froot"'
+      reference: arachnids,387
+      rev: '7'
+      sid: '2100604'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/objects.inc.php4"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP BLNews objects.inc.php4 access"'
+      reference: nessus,11647
+      rev: '11'
+      service: http
+      sid: '2148'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

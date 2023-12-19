@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cgi-bin/filemanager/wfm2Login.cgi",fast_pattern,nocase'
+      - value: '"X-Forwarded-For",nocase'
+      flow: to_server,established
+      isdataat: 90,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP QTS X-Forwarded-For buffer overflow"'
+      pcre: '"/X-Forwarded-For:[^\n\r]{90}/ims"'
+      reference: url,www.qnap.com/en/security-advisory/nas-201712-15
+      rev: '2'
+      service: http
+      sid: '46301'
+      special_options:
+      - http_uri
+      - http_raw_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

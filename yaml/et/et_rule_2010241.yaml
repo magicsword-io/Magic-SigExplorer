@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/Reports/install-report.php"'
+      - value: '"abbr="'
+      - value: '"TALWinInetHTTPClient"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_27
+      msg: '"ET TROJAN WindowsEnterpriseSuite FakeAV check-in GET"'
+      reference: md5,d9bcb4e4d650a6ed4402fab8f9ef1387
+      rev: '6'
+      sid: '2010241'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

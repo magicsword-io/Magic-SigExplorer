@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"|00 00 00 11 c8 00 00 00 00 00 00 00 00 00 00 00|"'
+      dsize: '16'
+      flow: established, to_server
+      flowbits: noalert
+      metadata: attack_target Client_Endpoint, created_at 2013_03_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2013_03_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN [CrowdStrike] ANCHOR PANDA Torn RAT Beacon Message Header Local"'
+      reference: url,blog.crowdstrike.com/whois-anchor-panda/index.html
+      rev: '2'
+      sid: '2016659'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

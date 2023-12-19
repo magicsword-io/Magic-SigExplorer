@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|bigboss|05|x24hr|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_23, deployment Perimeter, former_category
+        TROJAN, malware_family BISKVIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN MSIL/BISKVIT DNS Lookup (bigboss .x24hr .com)"'
+      reference: url,www.fortinet.com/blog/threat-research/russian-army-exhibition-decoy-leads-to-new-biskvit-malware.html
+      rev: '2'
+      sid: '2026021'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

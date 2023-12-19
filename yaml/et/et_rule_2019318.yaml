@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ClientInfo"'
+      - value: '"isWifi"'
+      - value: '"cpuInfo"'
+      - value: '"firstOnlineIp"'
+      - value: '"firstOnlineTime"'
+      - value: '"imei"'
+      - value: '"ipAddr"'
+      - value: '"phoneBrand"'
+      - value: '"phoneNumber"'
+      - value: '"simOperator"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_09_30, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2016_07_01, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/Code4hk.A Checkin"'
+      reference: url,malware.lu/articles/2014/09/29/analysis-of-code4hk.html
+      rev: '2'
+      sid: '2019318'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

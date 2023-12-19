@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/full_release/community.php?"'
+      - value: '"action="'
+      - value: '"comm_id="'
+      - value: '"topic_title="'
+      flow: established,to_server
+      metadata: created_at 2012_07_27, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS phpProfiles topic_title parameter Cross-Site Scripting
+        Attempt"'
+      pcre: '"/topic\_title\x3d.+(s(cript|tyle\x3D)|on(mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: url,packetstormsecurity.org/files/114971/phpProfiles-4.5.4-Beta-XSS-RFI-SQL-Injection.html
+      rev: '1'
+      sid: '2015544'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

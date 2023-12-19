@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"obj"'
+      - value: '"<<"'
+      - value: '"/EmbeddedFile"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2010_09_28, updated_at 2010_09_28
+      msg: '"ET POLICY PDF With Embedded File"'
+      pcre: '"/\x3C\x3C[^>]*\x2FEmbeddedFile/sm"'
+      reference: url,blog.didierstevens.com/2009/07/01/embedding-and-hiding-files-in-pdf-documents/
+      rev: '7'
+      sid: '2011507'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

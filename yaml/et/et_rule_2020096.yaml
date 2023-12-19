@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"cPanel Cracker"'
+      flow: established,to_client
+      metadata: created_at 2015_01_06, updated_at 2015_01_06
+      msg: '"ET WEB_SERVER ATTACKER WebShell - 1337w0rm - Landing Page"'
+      rev: '1'
+      sid: '2020096'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

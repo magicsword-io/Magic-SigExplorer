@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,7,relative,little
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00|",depth 1'
+      - value: '"|FF|SMBu",within 5,distance 3'
+      - value: '"ADMIN|24 00|",distance 2,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"NETBIOS SMB-DS ADMIN$ share access"'
+      pcre: '"/^.{27}/R"'
+      rev: '10'
+      service: netbios-ssn
+      sid: '2474'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST /index.php HTTP/1.1|0D 0A|Content-Type: multipart/form-data|3B|
+          boundary=",depth 70'
+      - value: '"|0D 0A|Connection: close|0D 0A|Cache-Control: no-cache|0D 0A|Content-Length:
+          "'
+      - value: '"|3B| name=|22|data|22 3B| filename=|22|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Cbeplay Ransomware variant outbound connection - Abnormal
+        HTTP Headers"'
+      reference: url,malware.dontneedcoffee.com/2013/02/cbeplayp-now-target-australia-and-moved.html
+      rev: '4'
+      service: http
+      sid: '26696'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

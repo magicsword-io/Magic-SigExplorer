@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"SSH-",nocase'
+      flow: to_client,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER SSH server banner overflow"'
+      pcre: '"/^SSH-\s?[^\n]{200}/ims"'
+      reference: nessus,15822
+      rev: '14'
+      sid: '1838'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '22'

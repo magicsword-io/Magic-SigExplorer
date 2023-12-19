@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|13|24xpixeladvertising|03|com"'
+      distance: '1'
+      metadata: created_at 2023_01_19, former_category MALWARE, updated_at 2023_01_19
+      msg: '"ET TROJAN BatLoader CnC Domain (24xpixeladvertising .com) in DNS Lookup"'
+      reference: url,www.trendmicro.com/en_us/research/23/a/batloader-malware-abuses-legitimate-tools-uses-obfuscated-javasc.html
+      rev: '1'
+      sid: '2043348'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

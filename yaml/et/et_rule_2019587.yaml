@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|85 19 00 00 25 04 00 00|"'
+      dsize: '16'
+      flow: established,from_server
+      metadata: created_at 2014_10_29, former_category MALWARE, updated_at 2014_10_29
+      msg: '"ET TROJAN W32/ZxShell Server Checkin Response"'
+      reference: url,blogs.cisco.com/talos/opening-zxshell/
+      rev: '1'
+      sid: '2019587'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

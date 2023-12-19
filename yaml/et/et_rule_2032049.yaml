@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<html dir=|22|ltr|22|"'
+      - value: '"microsoftonline-p.com"'
+      - value: '"|61 63 74 69 6f 6e 3d 22 2f 61 75 74 68 74 72 75 65 2e 61 73 70 78
+          3f|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_08_23, deployment Perimeter, former_category PHISHING, performance_impact
+        Low, signature_severity Major, tag Phishing, updated_at 2020_07_27
+      msg: '"ET CURRENT_EVENTS Targeted Office 365 Phishing Landing 2016-08-23"'
+      rev: '1'
+      sid: '2032049'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

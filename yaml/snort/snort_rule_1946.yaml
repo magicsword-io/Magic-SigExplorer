@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8888'
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/cgi-bin/admin/admin"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP answerbook2 admin attempt"'
+      reference: cve,2000-0696
+      rev: '11'
+      service: http
+      sid: '1946'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

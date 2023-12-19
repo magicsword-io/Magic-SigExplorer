@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"cwcsf-nativemsg-iframe-43c85c0d-d633-af5e-c056-32dc7efc570b.html"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Google_Chrome, attack_target Client_Endpoint, created_at
+        2017_01_24, deployment Perimeter, performance_impact Low, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2020_10_08
+      msg: '"ET WEB_CLIENT Possible Chrome WebEx Extension RCE Attempt"'
+      reference: url,bugs.chromium.org/p/project-zero/issues/detail?id=1096
+      rev: '1'
+      sid: '2023756'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

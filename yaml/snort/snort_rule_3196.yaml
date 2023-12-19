@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '137'
+    details:
+      byte_test: 1,&,64,2
+      classtype: attempted-admin
+      contents:
+      - value: '" ",offset 12'
+      isdataat: 56,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS name query overflow attempt UDP"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms04-006
+      rev: '9'
+      service: netbios-ns
+      sid: '3196'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

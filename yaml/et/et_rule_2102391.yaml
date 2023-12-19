@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"APPE"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2000_0133, updated_at 2010_09_23
+      msg: '"GPL FTP APPE overflow attempt"'
+      pcre: '"/^APPE\s[^\n]{100}/smi"'
+      reference: cve,2003-0466
+      rev: '10'
+      sid: '2102391'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

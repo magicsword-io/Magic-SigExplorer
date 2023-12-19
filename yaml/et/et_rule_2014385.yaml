@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: not-suspicious
+      flags: SA
+      flow: from_server,not_established
+      flowbits: noalert
+      metadata: created_at 2012_03_15, cve CVE_2012_0152, updated_at 2012_03_15
+      msg: '"ET DOS Microsoft Remote Desktop (RDP) Syn/Ack Outbound Flowbit Set"'
+      reference: cve,2012-0152
+      rev: '6'
+      sid: '2014385'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '3389'

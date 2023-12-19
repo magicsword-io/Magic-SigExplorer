@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MKD ",depth 4'
+      - value: '!"|0A|",within 75'
+      flow: to_server,established
+      isdataat: 75,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP Multiple Products FTP MKD buffer overflow attempt"'
+      reference: url,www.kb.cert.org/vuls/id/276653
+      rev: '10'
+      service: ftp
+      sid: '23055'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

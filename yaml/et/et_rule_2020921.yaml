@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?fn="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_30,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Sysget/HelloBridge HTTP GET CnC Beacon"'
+      pcre: '"/&(?:uid|name|file)=[a-f0-9]+$/U"'
+      reference: url,researchcenter.paloaltonetworks.com/2015/04/unit-42-identifies-new-dragonok-backdoor-malware-deployed-against-japanese-targets/
+      rev: '1'
+      sid: '2020921'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

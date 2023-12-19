@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"not on system console",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET not on console"'
+      rev: '15'
+      service: telnet
+      sid: '717'
+    protocol: tcp
+    source:
+      network: $TELNET_SERVERS
+      port: '23'

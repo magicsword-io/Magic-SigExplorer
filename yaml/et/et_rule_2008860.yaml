@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '31'
+        value: '"Password required, but none set"'
+      flow: from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TELNET External Telnet Attempt To Cisco Device With No Telnet Password
+        Set (Automatically Dissalowed Until Password Set)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008860
+      rev: '4'
+      sid: '2008860'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

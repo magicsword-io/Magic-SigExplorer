@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '0'
+        value: '"|9a 02 08 00|"'
+      dsize: '16'
+      flow: established,to_server
+      flowbits: set,BS.BPcheckin
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Socks666 Successful Connect Packet Packet"'
+      reference: url,doc.emergingthreats.net/2006396
+      rev: '6'
+      sid: '2006397'
+      tag: session,300,seconds
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

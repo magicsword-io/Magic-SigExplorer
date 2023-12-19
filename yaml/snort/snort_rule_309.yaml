@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"from|3A 90 90 90 90 90 90 90 90 90 90 90|",nocase'
+      flags: A+
+      flow: to_server,established
+      isdataat: '512'
+      metadata: ruleset community
+      msg: '"SERVER-MAIL sniffit overflow"'
+      reference: cve,2000-0343
+      rev: '17'
+      service: smtp
+      sid: '309'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Mozilla/3.0 (compatible|3b 20|Indy Library)|0d 0a|"'
+      - depth: '15'
+        value: '"POST / HTTP/1.0"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_07, deployment Perimeter, former_category
+        MALWARE, malware_family Ursa_Loader, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Ursa Loader CnC Checkin"'
+      pcre: '"/^[a-z]{1,10}=[A-Z]+(?:&[a-z]{1,10}=[A-Z]+){2,}$/Ps"'
+      reference: md5,d05af060e3e104dea638f17c4bceb5ac
+      rev: '2'
+      sid: '2026756'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

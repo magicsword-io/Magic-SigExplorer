@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/locate_my_ip"'
+      - value: '"maxmind.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_09, former_category POLICY, updated_at 2020_09_25
+      msg: '"ET POLICY External IP Lookup maxmind.com"'
+      reference: md5,0559c56d6dcf6ffe9ca18f43e225e3ce
+      rev: '1'
+      sid: '2019140'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

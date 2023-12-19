@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|5n7y4yihirccftc5"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_23, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Locky, signature_severity
+        Major, tag DNS_Onion_Query, tag Ransomware, updated_at 2020_09_01, mitre_tactic_id
+        TA0040, mitre_tactic_name Impact, mitre_technique_id T1486, mitre_technique_name
+        Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Ransomware Locky .onion Payment Domain (5n7y4yihirccftc5)"'
+      reference: md5,d7cb55e90dee7777fe7b77b079d51513
+      rev: '2'
+      sid: '2023084'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 40|"'
+      - value: '"|00 00 00 00 00 00 00 24|"'
+      - value: '"|00 43 00 3a 00 5c 00|"'
+      - value: '"|00 2e 00 65 00 78 00 65 00 50 4b 03 04|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_23, deployment Perimeter, former_category
+        MALWARE, malware_family PovertyStealer, confidence High, signature_severity
+        Critical, updated_at 2023_10_23
+      msg: '"ET TROJAN PovertyStealer Exfiltration M3"'
+      reference: url,twitter.com/naumovax/status/1716452167538577741
+      rev: '1'
+      sid: '2048736'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

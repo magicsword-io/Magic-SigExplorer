@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/plist.php?uid="'
+      - value: '"Host|3a| "'
+      - value: '"theinstalls.com"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Theinstalls.com Initial Checkin"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2007788
+      rev: '7'
+      sid: '2007788'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

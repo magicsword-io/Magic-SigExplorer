@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"Authorization|3A| Negotiate YIQAAABiBoMAAAYrBgEFBQKgggBTMIFQoA4wDAYKKwYBBAGCNwICCqM"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0818, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT NTLM ASN.1 vulnerability scan attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS04-007.mspx
+      rev: '11'
+      sid: '2102386'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

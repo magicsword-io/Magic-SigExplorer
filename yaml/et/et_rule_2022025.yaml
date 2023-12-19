@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/go/flashplayer_support/"'
+      - value: '"Host|3a 20|www.adobe.com"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: created_at 2015_11_03, updated_at 2020_08_03
+      msg: '"ET TROJAN Sharik/Smoke Loader Adobe Connectivity Check 2"'
+      reference: md5,aa42c4ee46136d4125bebf93e9b2776c
+      rev: '2'
+      sid: '2022025'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '24'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

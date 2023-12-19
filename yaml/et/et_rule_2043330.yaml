@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"mspbackups.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_17, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_01_17,
+        former_sid 2853051
+      msg: '"ET INFO Observed MSP360 Backup Service Domain (mspbackups .com in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x0e|.\x2e)mspbackups\.com/R"'
+      rev: '1'
+      sid: '2043330'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

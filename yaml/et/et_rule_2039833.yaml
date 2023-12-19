@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/soap.cgi?service=WANIPConn1"'
+      - value: '"|60|"'
+      - value: '"|60|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_23, cve CVE_2013_7471, deployment Perimeter,
+        former_category EXPLOIT, signature_severity Major, updated_at 2023_03_21
+      msg: '"ET EXPLOIT D-Link Related Command Injection Attempt Inbound (CVE-2013-7471)"'
+      reference: url,nvd.nist.gov/vuln/detail/cve-2013-7471
+      rev: '2'
+      sid: '2039833'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      urilen: '28'
+    protocol: tcp
+    source:
+      network: any
+      port: any

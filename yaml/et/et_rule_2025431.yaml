@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"form-data|3b 20|name=|22|hwid|22|"'
+      - value: '"form-data|3b 20|name=|22|os|22|"'
+      - value: '"form-data|3b 20|name=|22|platform|22|"'
+      - value: '"form-data|3b 20|name=|22|user|22|"'
+      - value: '"form-data|3b 20|name=|22|cccount|22|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_13, deployment Perimeter, former_category
+        MALWARE, malware_family Arkei, signature_severity Major, tag Stealer, updated_at
+        2020_08_27
+      msg: '"ET TROJAN Vidar/Arkei Stealer Client Data Upload"'
+      reference: md5,72bcbfd1020d002d2e20e0707b8ef700
+      rev: '5'
+      sid: '2025431'
+      special_options:
+      - http_method
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

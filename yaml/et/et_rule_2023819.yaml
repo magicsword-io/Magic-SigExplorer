@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"discover.com"'
+      - value: '!"discover.com|0d 0a|"'
+      - value: '!"autodiscover"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_02_02, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2020_08_17
+      msg: '"ET CURRENT_EVENTS Possible Discover Phishing Domain Feb 02 2017"'
+      pcre: '"/^Host\x3a[^\r\n]+discover\.com[^\r\n]{20,}\r\n/Hmi"'
+      rev: '3'
+      sid: '2023819'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      threshold: type limit, count 1, track by_src, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Length: 128|0D 0A|",fast_pattern,nocase'
+      - value: '" HTTP/1."'
+      - value: '"|0D 0A|User-Agent: ",within 14,distance 1'
+      - value: '!"|0D 0A|Accept"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC ZeroAccess Encrypted 128-byte POST No Accept Headers"'
+      pcre: '"/[^ -~\x0d\x0a]{4}/"'
+      rev: '3'
+      service: http
+      sid: '26910'
+      special_options:
+      - http_method
+      - http_header
+      - pkt_data
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

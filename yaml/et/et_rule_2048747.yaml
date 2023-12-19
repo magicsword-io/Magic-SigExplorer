@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Niagara"'
+      flow: established,to_client
+      metadata: affected_product Tridum_Niagara_Series, attack_target ICS, created_at
+        2023_10_23, deployment Perimeter, deployment Internal, former_category SCADA,
+        performance_impact Low, confidence High, signature_severity Minor, updated_at
+        2023_10_23, reviewed_at 2023_10_23
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Tridium Niagara Default X509 Certificate"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048747'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '443'

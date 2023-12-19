@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,1024,0,string,dec,relative
+      classtype: misc-attack
+      contents:
+      - value: '"COPY"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL IMAP copy literal overflow attempt"'
+      pcre: '"/\sCOPY\s[^\n]*?\{/smi"'
+      reference: bugtraq,1110
+      rev: '3'
+      sid: '2103058'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

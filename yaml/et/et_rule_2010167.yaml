@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/web/msgList/viewmsg/viewHeaders.asp?"'
+      - value: '"Queue="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS WebSense Email security viewHeaders.asp Queue XSS
+        Attempt"'
+      pcre: '"/Queue\s*=[\x22\x27\x3c\x3e\x20]*(script|img|src|onmouse|onkey|onload|ondragdrop|onblur|onfocus|onclick)/Ui"'
+      reference: url,doc.emergingthreats.net/2010167
+      rev: '3'
+      sid: '2010167'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

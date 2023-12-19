@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/autodiscover/autodiscover.xml"'
+      - value: '"Authorization|3a 20|Basic|20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2021_09_23, deployment Perimeter, former_category
+        POLICY, signature_severity Informational, updated_at 2021_09_23
+      msg: '"ET POLICY Possible Autodiscover Credentials Leak via Basic Auth"'
+      reference: url,guardicore.com/labs/autodiscovering-the-great-leak/
+      rev: '2'
+      sid: '2034019'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

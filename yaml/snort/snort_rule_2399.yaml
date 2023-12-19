@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/sql/db_type.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP WAnewsletter db_type.php access"'
+      reference: bugtraq,6964
+      rev: '13'
+      service: http
+      sid: '2399'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

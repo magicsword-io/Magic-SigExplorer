@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 86 A5|",depth 4,offset 12'
+      - value: '"|00 00 00 03|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC mountd UDP unmount request"'
+      rev: '11'
+      sid: '2021'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

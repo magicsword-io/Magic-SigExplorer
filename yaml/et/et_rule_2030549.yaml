@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - depth: '8'
+        value: '"<soapenv"'
+      - value: '"<sessionID>"'
+      - value: '"../../../"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2020_07_16, cve CVE_2020_6286, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, tag Exploit, updated_at
+        2020_08_19
+      msg: '"ET EXPLOIT SAP NetWeaver AS Directory Traversal Attempt Inbound (CVE-2020-6286)"'
+      reference: cve,2020-6286
+      rev: '2'
+      sid: '2030549'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

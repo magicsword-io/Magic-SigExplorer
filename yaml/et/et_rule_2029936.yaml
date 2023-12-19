@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>DRIV3R KR PRIV8 MAILER"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_17, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_17
+      msg: '"ET WEB_CLIENT Generic PHP Mailer Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2029936'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

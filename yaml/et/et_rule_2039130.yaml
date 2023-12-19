@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|0d 0a|Content-Disposition|3a 20|attachment|3b 20|filename=|22|frontend_front_"'
+      - value: '"frontendfront"'
+      distance: '10'
+      fast_pattern: 40,20
+      flow: established,to_client
+      flowbits: isset,ET.rm3loader
+      metadata: attack_target Client_Endpoint, created_at 2022_10_07, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family ursnif, signature_severity
+        Major, updated_at 2022_10_07
+      msg: '"ET TROJAN Win32/RM3Loader Server Response"'
+      reference: md5,aaef17d68339c7f2f19fb780ab90e156
+      rev: '1'
+      sid: '2039130'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      within: '35'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

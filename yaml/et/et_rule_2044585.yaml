@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '8'
+        value: '"/cgi-bin"'
+      - value: '"|3b|stok=/locale?form=country"'
+      - value: '"operation=write"'
+      - value: '"country=|24 28|"'
+      metadata: attack_target Networking_Equipment, created_at 2023_03_14, cve CVE_2023_1389,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2023_03_14
+      msg: '"ET EXPLOIT TP-Link Archer AX21 Unauthenticated Command Injection Inbound
+        (CVE-2023-1389)"'
+      reference: url,tenable.com/security/research/tra-2023-11
+      rev: '1'
+      sid: '2044585'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

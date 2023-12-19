@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00|kl|7C 27 7C 27 7C|"'
+      flow: from_client,established
+      metadata: created_at 2014_09_23, former_category MALWARE, updated_at 2014_09_23
+      msg: '"ET TROJAN njrat ver 0.7d Malware CnC Callback (Keylogging)"'
+      pcre: '"/^\d{1,6}\x00kl\x7c/i"'
+      reference: md5,bbc68c34bb2dac3ae382ecf785bdb441
+      rev: '3'
+      sid: '2019222'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

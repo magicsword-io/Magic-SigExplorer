@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?ddos=x"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Syrutrk/Gibon/Bredolab Checkin"'
+      pcre: '"/\x3Fddos\x3D(x\d{1,2}){5,}/Ui"'
+      reference: md5,a5f94577d00d0306e4ef64bad30e5d37
+      rev: '8'
+      sid: '2010381'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

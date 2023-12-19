@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".smi",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY SMI file download request"'
+      pcre: '"/\x2esmi([\?\x5c\x2f]|$)/ims"'
+      reference: url,en.wikipedia.org/wiki/SAMI
+      rev: '24'
+      service: http
+      sid: '20223'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

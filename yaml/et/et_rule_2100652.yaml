@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|90 90 90 E8 C0 FF FF FF|/bin/sh"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SHELLCODE Linux shellcode"'
+      reference: arachnids,343
+      rev: '11'
+      sid: '2100652'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: $SHELLCODE_PORTS

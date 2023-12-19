@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: '![139,445]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - offset: '2'
+        value: '"|00|"'
+      - value: '"|1a 00|"'
+      - value: '"|5c 00 5c 00|"'
+      - value: '"|24 00 00 00 06 00|"'
+      - value: '"|00 00 00 00 00 00 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!5,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Server, created_at 2020_09_14, cve CVE_2020_1472, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, signature_severity Major, updated_at 2020_09_18
+      msg: '"ET EXPLOIT Possible Zerologon NetrServerAuthenticate with 0x00 Client
+        Credentials (CVE-2020-1472)"'
+      reference: cve,2020-1472
+      rev: '3'
+      sid: '2030871'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 5, seconds 30, track by_src
+      within: '50'
+    protocol: tcp
+    source:
+      network: any
+      port: any

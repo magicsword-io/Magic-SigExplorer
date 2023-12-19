@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,1023,0,relative
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 86 A5 00|",depth 5,offset 16'
+      - value: '"|00 00 00 01|",within 4,distance 3'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC mountd TCP mount path overflow attempt"'
+      reference: nessus,11800
+      rev: '14'
+      sid: '2184'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

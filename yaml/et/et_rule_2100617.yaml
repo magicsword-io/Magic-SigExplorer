@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00|`|00 00 00 00 00 00 00 00 01 00 00 00|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SCAN ssh-research-scanner"'
+      rev: '6'
+      sid: '2100617'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&|22|+DetectRTC.isWebSocketsSupported+|22|&|22|+"'
+      - value: '"CryptoJSAesJson"'
+      flow: established,from_server
+      metadata: created_at 2015_05_16, updated_at 2015_05_16
+      msg: '"ET CURRENT_EVENTS DNSChanger EK Secondary Landing May 12 2015 M2"'
+      rev: '1'
+      sid: '2021110'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

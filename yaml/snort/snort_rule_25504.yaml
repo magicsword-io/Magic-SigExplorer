@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '15'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/op.cgi",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Necurs Rootkit op.cgi"'
+      pcre: '"/[^\x20-\x7e\x0d\x0a]{4}/"'
+      reference: url,www.virustotal.com/file/b1e6f0cad0ae5c60e9e4fa18fd3b4a045d6db172c10a1c8e054e22d1aff4c673/analysis/
+      rev: '4'
+      service: http
+      sid: '25504'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

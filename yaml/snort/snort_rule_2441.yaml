@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"login=0",nocase'
+      - value: '"login=0",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP NetObserve authentication bypass attempt"'
+      reference: bugtraq,9319
+      rev: '14'
+      service: http
+      sid: '2441'
+      special_options:
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

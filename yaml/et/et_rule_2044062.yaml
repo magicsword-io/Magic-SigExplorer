@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"cUsers/"'
+      - value: '"Microsoft_update_tool_"'
+      - value: '".dat|0d 0a|"'
+      - depth: '8'
+        value: '"|89 50 4e 47 0d 0a 1a 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_02_02
+      msg: '"ET TROJAN UAC-0114/Winter Vivern Screenshot Upload M2"'
+      pcre: '"/\.php$/U"'
+      reference: url,joesandbox.com/analysis/794564/0/html
+      rev: '1'
+      sid: '2044062'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_client_body
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

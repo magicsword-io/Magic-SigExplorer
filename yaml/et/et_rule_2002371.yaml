@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"merchant.mv"'
+      - value: '"customer_login"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS Miva Merchant Cross Site Scripting Attack"'
+      pcre: '"/customer_login.*\">/Ui"'
+      reference: url,doc.emergingthreats.net/2002371
+      rev: '6'
+      sid: '2002371'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

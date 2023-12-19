@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"|C0|PR|89 E1|PQRP|B8 3B 00 00 00 CD 80|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Apache chunked-encoding memory corruption exploit attempt"'
+      reference: cve,2002-0392
+      rev: '17'
+      service: http
+      sid: '1808'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

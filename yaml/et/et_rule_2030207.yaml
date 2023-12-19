@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?ver="'
+      - value: '"&os="'
+      - value: '"&binary="'
+      - value: '"&token="'
+      - value: '"&run_time="'
+      - value: '"Pragma|3a 20 20|"'
+      - value: '"Cache-Control|3a 20 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Linux, attack_target Client_Endpoint, created_at 2020_05_22, deployment Perimeter,
+        former_category MALWARE, malware_family BFBotnet, performance_impact Low,
+        signature_severity Major, updated_at 2020_05_22
+      msg: '"ET TROJAN BF Botnet CnC Checkin"'
+      reference: md5,3c475b319959069053191e740822fcd6
+      rev: '2'
+      sid: '2030207'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

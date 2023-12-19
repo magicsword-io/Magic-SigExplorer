@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"VRFY",nocase'
+      flow: to_server,established
+      isdataat: 255,relative
+      metadata: ruleset community
+      msg: '"SERVER-MAIL VRFY overflow attempt"'
+      pcre: '"/^VRFY[^\n]{255}/ims"'
+      reference: cve,2003-0161
+      rev: '17'
+      service: smtp
+      sid: '2260'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

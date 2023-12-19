@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      byte_jump: 1,0,relative,post_offset -4
+      byte_test: 1,<,8,0,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|84 00 00|"'
+      - value: '"|00 00 00|"'
+      flow: to_server
+      metadata: created_at 2016_02_12, cve CVE_2016_1287, former_category EXPLOIT,
+        updated_at 2017_05_02
+      msg: '"ET EXPLOIT Possible CVE-2016-1287 Invalid Fragment Size Inbound"'
+      reference: url,blog.exodusintel.com/2016/02/10/firewall-hacking
+      rev: '3'
+      sid: '2022506'
+      within: '3'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

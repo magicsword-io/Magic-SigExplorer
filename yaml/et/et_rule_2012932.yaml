@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|"'
+      - value: '"mail"'
+      - value: '"name|3d 22|"'
+      flow: to_server,established
+      metadata: created_at 2011_06_06, updated_at 2011_06_06
+      msg: '"ET TROJAN Suspicious Email Attachment Possibly Related to Mydoom.L@mm"'
+      pcre: '"/name\x3d\x22(message|letter|.*lebanon\x2donline\x2ecom\x2elb)?\x2ezip\x22\x0d\x0a/"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2004-071915-0829-99&tabid=2
+      rev: '7'
+      sid: '2012932'
+      special_options:
+      - nocase
+      - nocase
+      within: '34'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

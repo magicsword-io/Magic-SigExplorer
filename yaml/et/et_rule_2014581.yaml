@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/agent.htm"'
+      - value: '"User-Agent|3a 20|OINC|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_04_16, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Hoax.Win32.BadJoke/DownLoader1.57593 Checkin"'
+      reference: url,malwr.com/analysis/5ee02601d265a9a88f03a5465a99b190/
+      rev: '3'
+      sid: '2014581'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

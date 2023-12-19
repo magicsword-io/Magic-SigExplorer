@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rcpt to|3A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail rcpt to command attempt"'
+      pcre: '"/^rcpt\s+to\:\s*[\x7c\x3b]/ims"'
+      reference: cve,1999-0095
+      rev: '24'
+      service: smtp
+      sid: '663'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

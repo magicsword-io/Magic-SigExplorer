@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/htgrep"'
+      - value: '"hdr=/"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP htgrep attempt"'
+      reference: nessus,10495
+      rev: '13'
+      service: http
+      sid: '1615'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

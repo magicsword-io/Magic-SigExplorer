@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/api_v5/facebook_api.php?n="'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2020_09_04, deployment Perimeter,
+        former_category ADWARE_PUP, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_04
+      msg: '"ET MALWARE Haken Clicker CnC Activity"'
+      reference: md5,02939b68596873ad1835d1062ee8836a
+      rev: '2'
+      sid: '2030836'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

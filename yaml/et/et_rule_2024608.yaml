@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|30 26 e2 3d 9d f5 5b 16|"'
+      flow: established,from_server
+      flowbits: set,ET.DisDain.EK
+      metadata: created_at 2017_08_23, updated_at 2017_08_23
+      msg: '"ET CURRENT_EVENTS Disdain EK Payload Aug 23 2017"'
+      rev: '1'
+      sid: '2024608'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

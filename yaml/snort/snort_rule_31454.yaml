@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".rar HTTP/1.1|0D 0A|Accept: text/*, application/*|0D 0A|User-Agent:
+          Mozilla/5.0|0D 0A|Host: ",fast_pattern,nocase'
+      - value: '"|0D 0A|Cache-Control: no-cache|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ChoHeap variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/0423e10a674fb7e96557eac50b51207709a248df6e06aeeba401ded6157c1298/analysis/
+      rev: '1'
+      service: http
+      sid: '31454'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

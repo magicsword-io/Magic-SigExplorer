@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<svg "'
+      - value: '"xlink"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_05_04, cve CVE_2016_3714, updated_at 2020_10_06
+      msg: '"ET WEB_SERVER ImageMagick CVE-2016-3714 Inbound (svg)"'
+      pcre: '"/xlink\s*?\x3a\s*?href\s*?=\s*?(:[\x22\x27]|\\x2[27])https.+?&quot\s*?\x3b(?:\x7c|&(?:[gl]t|amp)\s*?\x3b)/Psi"'
+      rev: '3'
+      sid: '2022790'
+      special_options:
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

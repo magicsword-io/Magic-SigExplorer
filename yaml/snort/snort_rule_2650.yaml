@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"connect_data",nocase'
+      - value: '"|28|user=",nocase'
+      - value: '!"|29|",within 1000'
+      flow: to_server,established
+      isdataat: 1000,relative
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE user name buffer overflow attempt"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck62.html
+      rev: '6'
+      sid: '2650'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        offset: '4'
+        value: '"Jo*Po*Hello"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_06_26, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Critical,
+        updated_at 2020_06_26
+      msg: '"ET TROJAN RCtrl Backdoor CnC Checkin M1"'
+      reference: url,www.ptsecurity.com/ww-en/analytics/pt-esc-threat-intelligence/eagle-eye-is-back-apt30/
+      rev: '1'
+      sid: '2030401'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

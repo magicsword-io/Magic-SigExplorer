@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '11'
+        value: '"|2d 2d|PLUGIN|2d 2d|"'
+      - value: '"|2d 2d|PD94bWwg"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_22, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2019_12_22
+      msg: '"ET TROJAN Win32/Valak - Stage 2 - Response - Plugin"'
+      reference: url,medium.com/@prsecurity_/casual-analysis-of-valak-c2-3497fdb79bf7
+      rev: '2'
+      sid: '2029196'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

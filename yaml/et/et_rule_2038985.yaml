@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|updatesagent|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_09_26, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_09_26
+      msg: '"ET TROJAN Golang/Webbfustator Related Domain in DNS Lookup (updatesagent
+        .com)"'
+      reference: url,www.securonix.com/blog/golang-attack-campaign-gowebbfuscator-leverages-office-macros-and-james-webb-images-to-infect-systems/
+      rev: '1'
+      sid: '2038985'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

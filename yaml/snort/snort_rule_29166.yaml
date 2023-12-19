@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/loadmsie.php?id=",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT CritX exploit kit payload download attempt"'
+      rev: '6'
+      service: http
+      sid: '29166'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

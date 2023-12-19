@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PNC|2A 2D 5D|NK|5B 2D 2A|",depth 11'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Revenge RAT inbound heartbeat check"'
+      reference: url,www.virustotal.com/en/file/edb115dd5ca7c7f9dd069746daa0a4ee6298bf94de62510d3f8bebfa5f5a8bcd/analysis/
+      rev: '1'
+      sid: '45962'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

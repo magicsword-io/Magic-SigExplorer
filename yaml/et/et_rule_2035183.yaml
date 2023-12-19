@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/sap/admin/public/default.html?"'
+      - value: '"Content-Length|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_11, cve CVE_2022_22536, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_11
+      msg: '"ET EXPLOIT Possible SAP ICM MPI Desynchronization Scanning Activity (CVE-2022-22536)
+        M2"'
+      pcre: '"/$(?:8264[2-9]|826[5-9][0-9]|82[7-9][0-9]{2}|8[3-9][0-9]{3}|9[0-9]{4}|[1-9][0-9]{5,})\x0d\x0a/R"'
+      reference: cve,2022-22536
+      rev: '2'
+      sid: '2035183'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

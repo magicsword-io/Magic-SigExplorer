@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|pwsmbx|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2019_05_30, former_category MALWARE, tag DarkHotel, updated_at
+        2020_09_17
+      msg: '"ET TROJAN DarkHotel CnC Domain in DNS Lookup"'
+      reference: url,blogs.jpcert.or.jp/ja/2019/05/darkhotel_lnk.html
+      rev: '2'
+      sid: '2027399'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

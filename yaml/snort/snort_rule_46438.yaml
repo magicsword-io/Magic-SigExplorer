@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Shell",nocase'
+      - value: '"vbHide",within 100,fast_pattern'
+      - value: '"Chr",nocase'
+      - value: '"Asc",within 100,nocase'
+      flow: to_client,established
+      flowbits: isset,file.ole
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-CNC Vbs.Downloader.Agent inbound connection"'
+      reference: url,www.virustotal.com/#/file/7975cbaa5657d89b45126bf739fd84acd5bbe724f372a20360bd4fc038b67541
+      rev: '1'
+      service: ftp-data,http,imap,pop3
+      sid: '46438'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

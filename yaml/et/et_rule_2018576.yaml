@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,>,20,1,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"PK|03 04|"'
+      flow: to_client,established
+      metadata: created_at 2014_06_17, updated_at 2017_01_13
+      msg: '"ET TROJAN Possible Andromeda download with fake Zip header (2)"'
+      rev: '3'
+      sid: '2018576'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

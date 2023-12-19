@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/cewolf/"'
+      - value: '"?img="'
+      - value: '"|2e 2f|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_06_30, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2022_06_30
+      msg: '"ET EXPLOIT Possible ManageEngine ADAudit Plus Directory Traversal Leading
+        to Deserialization"'
+      pcre: '"/\?img=(?:\/?\.\.?\/){2}/U"'
+      reference: url,www.horizon3.ai/red-team-blog-cve-2022-28219/
+      rev: '1'
+      sid: '2037216'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

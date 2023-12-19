@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" 200 OK|0d 0a|"'
+      - value: '"|0d 0a 0d 0a|WAIT "'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.Linux.Ngioweb
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_06_21, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2019_06_21
+      msg: '"ET TROJAN Linux.Ngioweb Stage 1 CnC Activity Server Response (WAIT)"'
+      reference: url,blog.netlab.360.com/an-analysis-of-linux-ngioweb-botnet-en/
+      rev: '2'
+      sid: '2027508'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,443]'

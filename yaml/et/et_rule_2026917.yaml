@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '44818'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|4b 02 20 67 24 01|"'
+      - value: '"|a2|"'
+      - value: '"|05 47|"'
+      distance: '1'
+      flow: to_server,established
+      metadata: created_at 2019_02_18, cve CVE_2017_7924, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Moderate, signature_severity Major, updated_at
+        2019_02_18
+      msg: '"ET EXPLOIT Possible MicroLogix 1100 PCCC DoS Condition (CVE-2017-7924)"'
+      reference: url,rapid7.com/db/modules/auxiliary/dos/scada/allen_bradley_pccc
+      rev: '1'
+      sid: '2026917'
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

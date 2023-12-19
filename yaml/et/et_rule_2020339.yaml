@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/hello.php"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_01_30, former_category MALWARE, updated_at 2020_11_02
+      msg: '"ET TROJAN f0xy Checkin"'
+      pcre: '"/^Host\x3a[^\r\n]+?\r\n(?:\r\n)?$/Hi"'
+      reference: url,community.websense.com/blogs/securitylabs/archive/2015/01/29/new-f0xy-malware-employs-cunning-stealth-amp-trickery.aspx
+      rev: '1'
+      sid: '2020339'
+      special_options:
+      - http_method
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

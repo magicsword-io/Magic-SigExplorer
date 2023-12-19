@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php",fast_pattern,nocase'
+      - value: '"file="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PHP-Nuke remote file include attempt"'
+      pcre: '"/file=(https?|ftps?|php)/i"'
+      reference: cve,2002-0206
+      rev: '23'
+      service: http
+      sid: '1399'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

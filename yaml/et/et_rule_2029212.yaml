@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?hwid="'
+      - value: '"&pwd="'
+      - value: '"&cc="'
+      - value: '"&fz="'
+      - value: '"&df="'
+      - value: '"&wlt="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_31, deployment Perimeter, former_category
+        MALWARE, malware_family ViSystem, signature_severity Major, updated_at 2019_12_31
+      msg: '"ET TROJAN Win32/ViSystem CnC Checkin"'
+      reference: md5,9b0aa282698db89034d254076dd03e26
+      rev: '2'
+      sid: '2029212'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

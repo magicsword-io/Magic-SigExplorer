@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".inf HTTP/1.1|0D 0A|Accept: */*|0D 0A|Accept-Encoding: gzip, deflate|0D
+          0A|User-Agent: Mozilla/",fast_pattern,nocase'
+      - value: '"|3B 20|MSIE|20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi outbound connection"'
+      pcre: '"/\)\r\nHost\x3a\x20[\d\x2e]{7,15}\r\nConnection\x3a\x20Keep\x2dAlive\r\n\r\n$/"'
+      reference: url,www.virustotal.com/en/file/c77a679df3b74c622e39ab163fc876cc9d7719f2c2e8cf80beb36c813827d0c7/analysis/
+      rev: '2'
+      service: http
+      sid: '31261'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

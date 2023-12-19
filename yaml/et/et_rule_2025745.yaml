@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ekrishta/index.php/login/sign-in"'
+      flow: established,to_server
+      metadata: affected_product Joomla, attack_target Web_Server, created_at 2018_06_26,
+        deployment Perimeter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Component Ek rishta 2.10 - SQL Injection
+        2"'
+      pcre: '"/username=(?:[a-zA-Z0-9_])*[\x2c\x22\x27\x28]/Pi"'
+      reference: url,www.exploit-db.com/exploits/44869/
+      rev: '2'
+      sid: '2025745'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

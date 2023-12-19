@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/upload/img.jpg"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,from_client
+      metadata: created_at 2013_06_12, updated_at 2020_09_18
+      msg: '"ET TROJAN Win32/Tobfy.S"'
+      pcre: '"/^\/[a-z0-9]{3,}\/upload\/img\.jpg$/U"'
+      reference: md5,ac03c5980e2019992b876798df2df9ab
+      rev: '3'
+      sid: '2017004'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

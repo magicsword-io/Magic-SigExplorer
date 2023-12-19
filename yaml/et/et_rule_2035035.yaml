@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/api/experimental/dags/sample_trigger_target_dag/dag_runs"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_01, cve CVE_2020_11978, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_01
+      msg: '"ET EXPLOIT Possible Apache Airflow DAG Example RCE Attempt - Create DAG
+        (CVE-2020-11978)"'
+      reference: cve,2020-11978
+      rev: '1'
+      sid: '2035035'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

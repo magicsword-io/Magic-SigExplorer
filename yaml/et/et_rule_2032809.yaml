@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|22|deviceName|22 3a 22|"'
+      - value: '"|22|name|22 3a|"'
+      - value: '"|22|audio|22 3a 22|"'
+      - value: '"*/*"'
+      - value: '"Accept|3a 20|*/*|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2021_04_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MOBILE_MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2021_04_23
+      msg: '"ET MOBILE_MALWARE Phenakite Audio Upload CnC"'
+      reference: url,about.fb.com/wp-content/uploads/2021/04/Technical-threat-report-Arid-Viper-April-2021.pdf
+      rev: '2'
+      sid: '2032809'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

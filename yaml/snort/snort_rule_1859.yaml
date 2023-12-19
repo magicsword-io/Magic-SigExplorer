@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9090'
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"/servlet/admin"'
+      - value: '"ae9f86d6beaa3f9ecb9a5b7e072a4138"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Oracle JavaServer default password login attempt"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '14'
+      service: http
+      sid: '1859'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

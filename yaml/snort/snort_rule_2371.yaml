@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/Sample_showcode.html",nocase'
+      - value: '"fname"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Sample_showcode.html access"'
+      reference: cve,2004-2170
+      rev: '10'
+      service: http
+      sid: '2371'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

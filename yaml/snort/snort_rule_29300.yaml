@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|filename=CostcoForm.zip|0D 0A|",fast_pattern,nocase'
+      - value: '"CostcoForm.exe"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Graftor variant inbound connection"'
+      reference: url,www.virustotal.com/en/file/b20fcfe7d851dfe1f835e60072e53b0a3c54e14d0fc94814ce841be4740f295c/analysis
+      rev: '4'
+      service: http
+      sid: '29300'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

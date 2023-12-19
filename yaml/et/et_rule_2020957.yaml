@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NetBIOS Connection Table"'
+      - value: '"Local Name"'
+      - value: '"State"'
+      - value: '"In/Out"'
+      - value: '"Remote Host"'
+      - value: '"Input"'
+      - value: '"Output"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_04_21, updated_at 2015_04_21
+      msg: '"ET TROJAN Windows nbtstat -s Microsoft Windows DOS prompt command exit
+        OUTBOUND"'
+      rev: '2'
+      sid: '2020957'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

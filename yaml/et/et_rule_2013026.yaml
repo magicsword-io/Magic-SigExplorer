@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Content-Disposition|3A 20|form-data|3B 20|name|3D 22|programm|22
+          0d 0a 0d 0a|Windows Key|0d 0a|"'
+      fast_pattern: 46,20
+      flow: to_server,established
+      metadata: created_at 2011_06_13, former_category MALWARE, updated_at 2020_05_01
+      msg: '"ET TROJAN Secure-Soft.Stealer Checkin"'
+      reference: md5,0a52131eebbee1df877767875ab32352
+      rev: '2'
+      sid: '2013026'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

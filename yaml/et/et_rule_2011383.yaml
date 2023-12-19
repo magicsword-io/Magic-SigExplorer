@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/plugins/csstidy/css_optimiser.php?"'
+      - value: '"url="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_09_28, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_02
+      msg: '"ET WEB_SPECIFIC_APPS CSSTidy css_optimiser.php url Parameter Cross Site
+        Scripting Attempt"'
+      pcre: '"/url\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,cross-site-scripting.blogspot.com/2010/07/impresscms-121-final-reflected-cross.html
+      rev: '3'
+      sid: '2011383'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

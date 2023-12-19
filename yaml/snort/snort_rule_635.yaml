@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '49'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|80 07 00 00 07 00 00 04 00 00 00 00 00|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN XTACACS logout"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '11'
+      sid: '635'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx?m="'
+      - value: '"User-Agent|3a 20|Mozilla/4.0|20|(compatible|3b 20|MSIE|20|8.0|3b
+          20|Win32)|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter,
+        former_category MALWARE, malware_family BlackTech, signature_severity Major,
+        updated_at 2022_04_22
+      msg: '"ET TROJAN Win32/Blacktech Plead CnC Activity (POST)"'
+      pcre: '"/\.aspx\?m=[0-9]{10}$/U"'
+      reference: url,twitter.com/GlobalNTT_JP/status/1517061187107946496
+      rev: '2'
+      sid: '2036315'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

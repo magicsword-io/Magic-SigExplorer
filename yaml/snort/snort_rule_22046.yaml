@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Extended Module:",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XM file magic detected"'
+      rev: '9'
+      service: ftp-data,http,imap,pop3
+      sid: '22046'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

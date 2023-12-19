@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"/index.php?N="'
+      - value: '"["'
+      - value: '"]"'
+      - value: '"["'
+      - value: '"]"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_02, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_21,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Injector.BXEW Variant HTTP CnC Beacon 3"'
+      reference: md5,0ebaf8a6292237b33045f5e81947004b
+      rev: '1'
+      sid: '2020835'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

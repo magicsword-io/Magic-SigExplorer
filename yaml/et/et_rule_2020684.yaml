@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|mmc65z4xsgbcbazl"'
+      distance: '0'
+      metadata: created_at 2015_03_12, updated_at 2020_09_01
+      msg: '"ET TROJAN Zbot .onion Proxy Domain"'
+      rev: '3'
+      sid: '2020684'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

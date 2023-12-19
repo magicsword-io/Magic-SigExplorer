@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      - value: '"S|00|h|00|a|00|r|00|p|00|N|00|o|00|P|00|S|00|E|00|x|00|e|00|c|00
+          2e 00|e|00|x|00|e"'
+      - value: '"Z|00|Q|00|B|00|j|00|A|00|G|00|g|00|A|00|b|00|w|00|A|00|g|00|A|00|E|00|c|00|A|00|b|00|w|00|B|00|k|00|A|00|C|00|A|00|A|00|Q|00|g|00|B|00|s|00|A|00|G|00|U|00|A|00|c|00|w|00|B|00|z|00|A|00|C|00|A|00|A|00|W|00|Q|00|B|00|v|00|A|00|H|00|U|00|A|00|I|00|Q|00|A|00
+          3d|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_04_27, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_04_27
+      msg: '"ET TROJAN SharpNoPSExec EXE Lateral Movement Tool Downloaded"'
+      reference: url,github.com/juliourena/SharpNoPSExec/
+      rev: '2'
+      sid: '2032875'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

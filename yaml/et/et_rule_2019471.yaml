@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"PRIVMSG "'
+      flow: established,to_client
+      metadata: created_at 2014_10_20, updated_at 2014_10_20
+      msg: '"ET TROJAN Possible IRCBot.DDOS Common Commands"'
+      pcre: '"/^[^\r\n]*?\x3a[^\r\n]*?(?:port(?:scan)?|udp[1-3]|tcp|http|download)[^\r\n]+?(?:\d{1,3}\x2E\d{1,3}\x2E\d{1,3}\x2E\d{1,3}|https?\x3A\x2F\x2F)/Ri"'
+      reference: md5,ef54080af1782dd29356032b7ff20849
+      rev: '3'
+      sid: '2019471'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

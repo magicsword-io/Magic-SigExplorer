@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|ad da ba ab|"'
+      - value: '"|27 00 00|"'
+      distance: '5'
+      dsize: 11<>16
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_03, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_11_03, reviewed_at 2023_11_03
+      msg: '"ET TROJAN Suspected RisePro TCP Heartbeat Packet"'
+      reference: md5,dbd32d02e980ceffdce16697edd62673
+      rev: '1'
+      sid: '2049060'
+      special_options:
+      - fast_pattern
+      threshold: type both,track by_src, count 1, seconds 30
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

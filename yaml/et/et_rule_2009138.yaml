@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"clsid"'
+      - value: '"B5576893-F948-4E0F-9BE1-A37CB56D66FF"'
+      - value: '"SaveDoc"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET WEB_SPECIFIC_APPS Synactis All_IN_THE_BOX ActiveX SaveDoc Method Arbitrary
+        File Overwrite"'
+      reference: url,doc.emergingthreats.net/2009138
+      rev: '3'
+      sid: '2009138'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: RUpdate|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string RUpdate"'
+      reference: url,www.virustotal.com/en/file/0d68f1d3855543a4732e551e9e4375a2cd85d9ab11a86334f67ad99c5f6990a0/analysis/
+      rev: '3'
+      service: http
+      sid: '32645'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

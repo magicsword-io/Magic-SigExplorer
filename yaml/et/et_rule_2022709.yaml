@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"PASSWORDS="'
+      - value: '"8_=_8"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2016_04_06, former_category MALWARE, updated_at 2022_03_24
+      msg: '"ET TROJAN LuminosityLink - CnC Password Exfil"'
+      rev: '1'
+      sid: '2022709'
+    protocol: tcp
+    source:
+      network: any
+      port: any

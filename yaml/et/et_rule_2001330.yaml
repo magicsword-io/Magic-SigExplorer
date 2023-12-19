@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '0'
+        value: '"|03|"'
+      - depth: '1'
+        offset: '5'
+        value: '"|D0|"'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2010_07_30, deployment
+        Perimeter, former_category INFO, performance_impact Significant, confidence
+        Medium, signature_severity Informational, updated_at 2023_04_25
+      msg: '"ET INFO RDP - Response To External Host"'
+      reference: url,doc.emergingthreats.net/2001330
+      rev: '10'
+      sid: '2001330'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '3389'

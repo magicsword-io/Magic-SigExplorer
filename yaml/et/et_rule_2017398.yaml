@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"icanhazip.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_08_30, former_category POLICY, updated_at 2020_08_25
+      msg: '"ET POLICY IP Check Domain (icanhazip. com in HTTP Host)"'
+      pcre: '"/^Host\x3a\s*?(?:[^\r\n]+?\.)?icanhazip\.com(?:\x3a\d{1,5})?\r$/Hmi"'
+      rev: '3'
+      sid: '2017398'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

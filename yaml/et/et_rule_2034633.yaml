@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '14'
+        value: '"/index.html?q="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_08, deployment Perimeter,
+        former_category MALWARE, malware_family APT15, signature_severity Major, updated_at
+        2021_12_08
+      msg: '"ET TROJAN APT15/NICKEL KETRUM CnC Activity (POST)"'
+      pcre: '"/^Connection\x3a\x20[^\r\n]+\r\nPragma\x3a\x20[^\r\n]+\r\nContent-Type\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: url,www.microsoft.com/security/blog/2021/12/06/nickel-targeting-government-organizations-across-latin-america-and-europe
+      rev: '1'
+      sid: '2034633'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

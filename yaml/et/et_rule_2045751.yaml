@@ -1,0 +1,56 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&vs="'
+      - value: '"&sd="'
+      - value: '"&os="'
+      - value: '"&bi="'
+      - value: '"&ar="'
+      - value: '"&pc="'
+      - value: '"&un="'
+      - value: '"&av="'
+      - value: '"&lv="'
+      - value: '"&og="'
+      - value: '"Content-Type|3a 20|application|2f|x|2d|www|2d|form|2d|urlencoded|0d
+          0a|"'
+      distance: '1'
+      flow: established,to_server
+      isdataat: '!2,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_17, deployment Perimeter, former_category
+        MALWARE, malware_family Amadey, confidence Medium, signature_severity Major,
+        updated_at 2023_05_17
+      msg: '"ET TROJAN Win32/Amadey Bot Activity (POST) M2"'
+      pcre: '"/&sd=(?:[a-z0-9]{6})/P"'
+      reference: url,twitter.com/phage_nz/status/1658627716915273733
+      rev: '1'
+      sid: '2045751'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

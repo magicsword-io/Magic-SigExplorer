@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"comment"'
+      - value: '"dynamic-cached-content"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2013_04_26, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_24
+      msg: '"ET WEB_SERVER Possible Wordpress Super Cache Plugin PHP Injection dynamic-cached-content"'
+      pcre: '"/(?:%3C%21|\<\!)--[\r\n\s]*?dynamic-cached-content/Pi"'
+      rev: '1'
+      sid: '2016790'
+      special_options:
+      - http_method
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/scripts/iisadmin/default.htm",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS /scripts/iisadmin/default.htm access"'
+      rev: '19'
+      service: http
+      sid: '994'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

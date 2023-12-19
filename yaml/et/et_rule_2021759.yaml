@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"stsc|00 00 00 00 C0 00 00 03|"'
+      - value: '!"|00 00 00 00|"'
+      flow: established,from_server
+      metadata: created_at 2015_09_10, cve CVE_2015_1538, updated_at 2015_09_10
+      msg: '"ET EXPLOIT Possible Android Stagefright MP4 CVE-2015-1538 - STSC"'
+      pcre: '"/^(?P<addr1>.{4})(?P<addr2>.{4})(?P=addr2)(?P=addr1)/Rsi"'
+      reference: url,blog.zimperium.com/the-latest-on-stagefright-cve-2015-1538-exploit-is-now-available-for-testing-purposes/
+      rev: '1'
+      sid: '2021759'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

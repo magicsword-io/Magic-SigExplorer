@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"CLSID"'
+      - value: '"02000002-9DFA-4B37-ABE9-1929F4BCDEA2"'
+      - value: '".AddTrend"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_11_08, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET SCADA PROMOTIC ActiveX Control Insecure method (AddTrend)"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*02000002-9DFA-4B37-ABE9-1929F4BCDEA2/si"'
+      reference: url,aluigi.altervista.org/adv/promotic_1-adv.txt
+      rev: '2'
+      sid: '2013879'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

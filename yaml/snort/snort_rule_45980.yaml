@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|74 00 29|net.oscp.client.keylogger.KeystrokeLogger",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC MultiOS.Trojan.OSCelestial variant inbound connection"'
+      reference: url,www.virustotal.com/en/file/9b4843ff0181af15a6c8478ca00aafd4296592a2985a480575810f4f64442742/analysis/
+      rev: '2'
+      sid: '45980'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Set-Cookie|3a 20|awareness_link="'
+      - value: '"Cache|2d|Control|3a 20|no|2d|store|2c 20|no|2d|cache|2c 20|must|2d|revalidate|2c
+          20|post|2d|check|3d|0|2c 20|pre|2d|check|3d|0|0d 0a|"'
+      - value: '"Access|2d|Control|2d|Allow|2d|Origin|3a 20 2a 0d 0a|Access|2d|Control|2d|Allow|2d|Methods|3a
+          20 2a 0d 0a|Access|2d|Control|2d|Allow|2d|Headers|3a 20 2a 2c 20|x|2d|"'
+      - value: '"|0d 0a|"'
+      - depth: '10'
+        value: '"PHPSESSID="'
+      - value: '"link="'
+      - value: '"awareness_link="'
+      distance: '64'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2022_12_20, deployment Perimeter, deployment SSLDecrypt, former_category PHISHING,
+        malware_family Lucy, signature_severity Minor, tag Phishing, updated_at 2023_03_10
+      msg: '"ET CURRENT_EVENTS Lucy Security Phishing Awareness Landing Page"'
+      pcre: '"/^Access-Control-Allow-Headers\x3a\x20\x2a\x2c\x20x\x2d[a-f0-9]{64}[\r\n]+$/Hm"'
+      rev: '1'
+      sid: '2042971'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

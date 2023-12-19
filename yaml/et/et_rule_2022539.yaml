@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"GET|20 20|HTTP/1.0|0d 0a|"'
+      - value: '"www.microsoft.com"'
+      distance: '6'
+      flow: to_server,established
+      metadata: created_at 2016_02_18, updated_at 2016_02_18
+      msg: '"ET TROJAN Possible OceanLotus Time Check to Microsoft.com"'
+      reference: url,www.alienvault.com/open-threat-exchange/blog/oceanlotus-for-os-x-an-application-bundle-pretending-to-be-an-adobe-flash-update
+      rev: '1'
+      sid: '2022539'
+      within: '23'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

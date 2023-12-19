@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '22'
+        value: '"/nam/Login/SubmitPage/"'
+      - value: '"Id="'
+      - value: '"loginUser="'
+      - value: '"passwd="'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_29, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_06_29
+      msg: '"ET CURRENT_EVENTS Successful Microsoft Credential Phish 2022-06-28"'
+      reference: md5,12ace3ae7720891eb01fdeb271dbae87
+      rev: '1'
+      sid: '2037213'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3A| Opera/9.25 (Windows NT 6.0|3B| U|3B|"'
+      - value: '"Host|3A| windowsupdate.microsoft.com"'
+      - value: '"Connection|3A| Close"'
+      - value: '!"Referer|3A|"'
+      - value: '!"Accept"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: created_at 2014_04_25, updated_at 2020_04_30
+      msg: '"ET TROJAN W32/Zbot.InfoStealer WindowsUpdate Connectivity Check With
+        Opera UA"'
+      reference: md5,aa696180cd0369e264ed8e9137a4f254
+      rev: '5'
+      sid: '2018419'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

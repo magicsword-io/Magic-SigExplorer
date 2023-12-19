@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|lockbit-decryptor|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_09_01, deployment Perimeter,
+        former_category INFO, signature_severity Minor, tag Ransomware, updated_at
+        2021_09_01, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET INFO Lockbit Ransomware Related Domain in DNS Lookup (lockbit-decryptor
+        .com)"'
+      reference: md5,5b741c6abf44d2eecd853addeafdcf24
+      rev: '3'
+      sid: '2033862'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

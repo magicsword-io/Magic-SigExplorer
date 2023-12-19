@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '69'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"..",offset 2'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP parent directory"'
+      reference: cve,2011-4722
+      rev: '15'
+      sid: '519'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

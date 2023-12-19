@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Accept-Encoding:",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows HTTP protocol stack remote code execution
+        attempt"'
+      pcre: '"/^Accept-Encoding:\x20*[^\r\n]*\x2c[\x20\x09]*\x2c/im"'
+      reference: url,portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2021-31166
+      rev: '1'
+      service: http
+      sid: '300052'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

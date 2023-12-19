@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 00 00 00 3C|",depth 5'
+      flow: to_server,established
+      isdataat: '!5'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.NetWiredRC variant failed read logs"'
+      reference: url,www.circl.lu/pub/tr-23/
+      rev: '3'
+      sid: '38354'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/elections.php?",fast_pattern,nocase'
+      - value: '" Java/1."'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT Stamp exploit kit portable executable download"'
+      pcre: '"/\/elections\.php\?([a-z0-9]+\x3d\d{1,3}\&){9}[a-z0-9]+\x3d\d{1,3}$/"'
+      reference: cve,2013-0431
+      rev: '7'
+      service: http
+      sid: '26534'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| "'
+      - value: '" Netsparker)|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_13
+      msg: '"ET SCAN Netsparker Default User-Agent"'
+      reference: url,www.mavitunasecurity.com/communityedition/
+      rev: '7'
+      sid: '2011029'
+      special_options:
+      - http_header
+      - http_header
+      - fast_pattern
+      threshold: type limit,track by_src,count 1,seconds 60
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"SITE",nocase'
+      - value: '"NEWER",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP SITE NEWER attempt"'
+      pcre: '"/^SITE\s+NEWER/ims"'
+      reference: nessus,10319
+      rev: '13'
+      service: ftp
+      sid: '1864'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

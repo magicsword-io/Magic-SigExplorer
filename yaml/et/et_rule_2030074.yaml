@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Genol Shell"'
+      - value: '"><b>Uname|20 3a 20|Linux|20|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Client_Endpoint,
+        created_at 2020_05_01, deployment Perimeter, former_category WEB_SERVER, signature_severity
+        Critical, updated_at 2020_05_01
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Server"'
+      rev: '2'
+      sid: '2030074'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

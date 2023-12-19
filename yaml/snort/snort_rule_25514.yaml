@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"application/x-msdos-program",fast_pattern,nocase'
+      - value: '"MZ",within 2'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY Portable Executable download detected"'
+      pcre: '"/^Content-Type\x3a[\x20\x09]+application\/x-msdos-program/ims"'
+      rev: '12'
+      service: ftp-data,http,imap,pop3
+      sid: '25514'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

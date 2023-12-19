@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/socksLog/add"'
+      - value: '"|20|Android|20|"'
+      - depth: '14'
+        value: '"|7b 22|channelid|22 3a 22|"'
+      - value: '"|2c 22|content|22 3a 22|"'
+      - value: '"|2c 22|deviceid|22 3a 22|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_03_13, deployment Perimeter,
+        former_category MOBILE_MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_03_13
+      msg: '"ET MOBILE_MALWARE Suspected Android Youzicheng Proxy Activity"'
+      reference: md5,c907d74ace51cec7cb53b0c8720063e1
+      rev: '2'
+      sid: '2029635'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+      urilen: '17'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

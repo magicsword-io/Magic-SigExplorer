@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|77|"'
+      - value: '"|20 40 20|"'
+      - value: '"Hz"'
+      distance: '0'
+      dsize: '157'
+      flow: to_server,established
+      metadata: created_at 2015_05_04, former_category MALWARE, updated_at 2015_05_04
+      msg: '"ET TROJAN Linux.Trojan.IptabLex Variant Checkin"'
+      pcre: '"/^[\x01\x03\x08\x09\x0b]\x00/R"'
+      reference: url,blog.malwaremustdie.org/2014/06/mmd-0025-2014-itw-infection-of-elf.html
+      rev: '1'
+      sid: '2021050'
+      special_options:
+      - nocase
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

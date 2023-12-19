@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/testcgi",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP testcgi access"'
+      reference: nessus,11610
+      rev: '19'
+      service: http
+      sid: '1645'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/site/images/banners/casecor21.gif",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Trans variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a4c1234bb748f9bcabeb9ab990614fd4c1035135c5f5068fd42bace4b75fff0e/analysis/
+      rev: '3'
+      service: http
+      sid: '39738'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

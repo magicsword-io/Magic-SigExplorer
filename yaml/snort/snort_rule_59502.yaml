@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      byte_extract: 4,12,msg_size,relative,little
+      classtype: attempted-admin
+      contents:
+      - value: '"|03 00|"'
+      - value: '"|02 F0|",distance 0'
+      - value: '"|64|",distance 0'
+      - value: '"|72 44 43 49|"'
+      - value: '"|DC 90 01 08|",within msg_size,fast_pattern'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows Server 2003 smart card authentication buffer
+        overflow attempt"'
+      reference: url,www.securitytracker.com/id/1038264
+      rev: '1'
+      service: rdp
+      sid: '59502'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

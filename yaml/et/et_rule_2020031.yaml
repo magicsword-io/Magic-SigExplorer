@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".txt?dummy="'
+      - value: '"User-Agent|3a 20|Mozilla"'
+      - value: '!"|0d 0a|Accept-"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_12_23, updated_at 2020_08_17
+      msg: '"ET TROJAN Trojan.Nurjax Retrieving Domains via JS"'
+      pcre: '"/\.txt\?dummy=\d+$/U"'
+      reference: md5,1837561f9537d2fcc2b4f0ea6fd3a095
+      rev: '2'
+      sid: '2020031'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

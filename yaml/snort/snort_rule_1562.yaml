@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SITE",nocase'
+      - value: '"CHOWN",distance 0,nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP SITE CHOWN overflow attempt"'
+      pcre: '"/^SITE\s+CHOWN\s[^\n]{100}/ims"'
+      reference: nessus,10579
+      rev: '18'
+      service: ftp
+      sid: '1562'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

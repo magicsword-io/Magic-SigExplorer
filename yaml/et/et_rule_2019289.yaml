@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[5060,5061]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      flow: to_server
+      metadata: created_at 2014_09_27, cve CVE_2014_6271, former_category EXPLOIT,
+        updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible CVE-2014-6271 Attempt Against SIP Proxy"'
+      reference: cve,2014-6271
+      rev: '3'
+      sid: '2019289'
+    protocol: udp
+    source:
+      network: any
+      port: any

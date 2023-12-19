@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '0'
+        value: '"220 StnyFtpd 0wns j0"'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Hostile FTP Server Banner (StnyFtpd)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2002809
+      rev: '5'
+      sid: '2002809'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: '21'

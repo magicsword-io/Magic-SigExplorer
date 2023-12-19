@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/handler"'
+      - value: '"|7C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP handler attempt"'
+      reference: nessus,10100
+      rev: '16'
+      service: http
+      sid: '1613'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

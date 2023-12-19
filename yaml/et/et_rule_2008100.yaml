@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cfg.bin"'
+      - value: '"GET"'
+      - value: '"no-cache|0d 0a|"'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET TROJAN PRG/wnspoem/Zeus InfoStealer Trojan Config Download"'
+      pcre: '"/\/cfg\.bin$/Ui"'
+      reference: url,doc.emergingthreats.net/2008100
+      rev: '9'
+      sid: '2008100'
+      special_options:
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_method
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

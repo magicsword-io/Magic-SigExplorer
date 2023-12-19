@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|27|scriptId|27 3a 20 27|#script|27|"'
+      - value: '"|27|gate|27 3a|"'
+      - value: '"paypal_direct_cc_number"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_11_18, deployment Perimeter, former_category MALWARE, malware_family
+        Pipka, performance_impact Low, signature_severity Major, tag CardSkimmer,
+        updated_at 2020_08_19
+      msg: '"ET CURRENT_EVENTS Possible Pipka JS Skimmer - Skimmer Payload Observed
+        M5"'
+      reference: url,usa.visa.com/dam/VCOM/global/support-legal/documents/pfd-identifies-new-javascript-skimmer.pdf
+      rev: '2'
+      sid: '2028998'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"gf|3a|{"'
+      - value: '"}"'
+      flow: established,from_server
+      flowbits: isset,et.shadyratinit
+      metadata: created_at 2011_09_15, updated_at 2011_09_15
+      msg: '"ET TROJAN Shady RAT Get File Command"'
+      reference: url,www.symantec.com/connect/blogs/truth-behind-shady-rat
+      rev: '2'
+      sid: '2013653'
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

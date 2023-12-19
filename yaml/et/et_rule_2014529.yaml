@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"121212121212"'
+      flow: established,to_server
+      metadata: created_at 2012_04_06, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Taidoor.Backdoor CnC Checkin With Default Substitute MAC
+        Address Field"'
+      pcre: '"/\x2F[a-z]{5}\x2Ephp\x3Fid\x3D.+121212121212/U"'
+      reference: url,www.symantec.com/connect/blogs/trojantaidoor-takes-aim-policy-think-tanks
+      rev: '1'
+      sid: '2014529'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

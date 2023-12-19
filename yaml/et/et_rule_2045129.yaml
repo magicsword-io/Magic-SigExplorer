@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Number(getCookie("'
+      - value: '"document|2e|addEventListener|28 22|visibilitychange|22|"'
+      - value: '"|28|document|2e|hidden|20 7c 7c 20 28|f|20 3d 20 21|0|2c 20|crash|5f|page|28
+          29 2c 20|setCookie|28|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2023_04_21
+      msg: '"ET CURRENT_EVENTS Fake Google Chrome Error Landing Page, Load Payload"'
+      reference: url,insight-jp.nttsecurity.com/post/102icvb/attack-campaign-that-uses-fake-google-chrome-error-to-distribute-malware-from-com
+      rev: '1'
+      sid: '2045129'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

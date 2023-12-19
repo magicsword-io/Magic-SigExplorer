@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?response="'
+      - value: '"&cpu="'
+      - value: '"&gpu="'
+      - value: '"&ram="'
+      - value: '"&name="'
+      - value: '"&os="'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Accept"'
+      - value: '!"Cache"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_15, deployment Perimeter, former_category
+        MALWARE, malware_family Agent_BIC, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_24
+      msg: '"ET TROJAN MSIL/Agent.BIC Variant CnC Checkin"'
+      reference: md5,C6C781F0ED065476A4297C2AC96A6D83
+      rev: '2'
+      sid: '2025359'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

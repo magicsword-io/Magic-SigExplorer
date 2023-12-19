@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '5211'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|82 fe 02 e0|"'
+      - value: '"|5c 72 5c 6e|"'
+      - value: '"|bc c6 cb e3 bb fa c3 fb b3 c6 3a|"'
+      - value: '"|d7 b4 cc ac 3a|"'
+      - value: '"|c0 e0 d0 cd 3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_14, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_12_14
+      msg: '"ET TROJAN Win32/Sality.NBA Exfil"'
+      reference: md5,6c11c20b15db01f7e4a9b5f31e57c883
+      rev: '1'
+      sid: '2042891'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/administration/administre2.php?"'
+      - value: '"id_user="'
+      - value: '"DELETE"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Eric GUILLAUME uploader&downloader SQL Injection
+        Attempt -- administre2.php id_user DELETE"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2006222
+      rev: '6'
+      sid: '2006222'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

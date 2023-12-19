@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '25'
+        value: '"/EemAdminService/EemAdmin"'
+      - value: '"getruntime|28 29 2e|exec"'
+      - value: '"processbuilder|28|"'
+      flow: established,to_server
+      metadata: created_at 2021_01_25, cve CVE_2020_6207, former_category EXPLOIT,
+        updated_at 2021_01_25
+      msg: '"ET EXPLOIT Suspected SAP EEM SOLMAN RCE (CVE-2020-6207)"'
+      reference: url,github.com/chipik/SAP_EEM_CVE-2020-6207
+      rev: '2'
+      sid: '2031546'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

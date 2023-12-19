@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '31335'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"*HELLO*"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER Trin00 Daemon to Master *HELLO* message detected"'
+      reference: url,www.sans.org/newlook/resources/IDFAQ/trinoo.htm
+      rev: '13'
+      sid: '232'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

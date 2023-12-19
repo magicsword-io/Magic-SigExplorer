@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".txt"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b| Win32|3b| WinHttp.WinHttpRequest.5|29
+          0d 0a|"'
+      - value: '"Accept|3a|"'
+      - value: '"Accept-Language|3a|"'
+      fast_pattern: 51,20
+      flow: established,to_server
+      metadata: created_at 2015_06_19, updated_at 2020_05_29
+      msg: '"ET TROJAN W2KM_BARTALEX Downloading Payload 2"'
+      pcre: '"/\/\d{4,}\.txt$/U"'
+      reference: md5,545ee3114faa5abd994f9730713f2261
+      rev: '3'
+      sid: '2021304'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Verify Your Account</title>"'
+      - value: '"ACCOUNT UPGRADE"'
+      - value: '"VERIFY YOUR WEBMAIL ACCOUNT"'
+      - value: '"Domain|5c|Username"'
+      - value: '"Department|3a|"'
+      - value: '"inconveniences"'
+      distance: '0'
+      fast_pattern: 14,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_09_10, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Fake Webmail Account Phishing Landing 2015-09-10"'
+      rev: '1'
+      sid: '2031696'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

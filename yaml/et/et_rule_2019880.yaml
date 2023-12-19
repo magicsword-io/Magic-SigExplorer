@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"%252E%252E%252F"'
+      - value: '"%252E%252E%252F"'
+      flow: to_server,established
+      metadata: created_at 2014_12_06, updated_at 2020_05_14
+      msg: '"ET WEB_SERVER Double Encoded Characters in URI (../)"'
+      rev: '2'
+      sid: '2019880'
+      special_options:
+      - nocase
+      - http_raw_uri
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

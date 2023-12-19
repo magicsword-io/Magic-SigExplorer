@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|ip-api.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_11_13, former_category POLICY, updated_at 2020_08_18
+      msg: '"ET POLICY External IP Lookup ip-api.com"'
+      rev: '1'
+      sid: '2022082'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

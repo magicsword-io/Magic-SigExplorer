@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/inst.php?"'
+      - value: '"User-Agent|3a| psi"'
+      flow: to_server,established
+      metadata: created_at 2012_01_21, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE AdWare.Win32.Sushi.au Checkin"'
+      reference: url,www.securelist.com/en/descriptions/24412036/not-a-virus%3aAdWare.Win32.Sushi.au
+      rev: '4'
+      sid: '2014262'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

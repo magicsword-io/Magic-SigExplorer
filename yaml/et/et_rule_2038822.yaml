@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|onerecovery|05|click|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_09_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_09_13
+      msg: '"ET TROJAN Observed DNS Query to Malicious Powershell Payload domain (onerecovery
+        .click)"'
+      reference: url,www.huntress.com/blog/unraveling-a-reverse-shell-with-process-insights
+      rev: '1'
+      sid: '2038822'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

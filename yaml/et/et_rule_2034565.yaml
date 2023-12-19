@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?"'
+      - value: '"type=file"'
+      - value: '"&direction="'
+      - value: '"id="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_30, deployment Perimeter, former_category
+        MALWARE, malware_family Chinotto, performance_impact Low, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET TROJAN Chinotto CnC Activity (file)"'
+      pcre: '"/&direction=(send|receive)/U"'
+      reference: url,securelist.com/scarcruft-surveilling-north-korean-defectors-and-human-rights-activists/105074/
+      rev: '1'
+      sid: '2034565'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

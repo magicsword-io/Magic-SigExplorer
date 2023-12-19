@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/flash_player.exe"'
+      flow: established,to_server
+      metadata: created_at 2010_11_24, updated_at 2020_05_06
+      msg: '"ET TROJAN Suspicious flash_player.exe Download"'
+      reference: url,www.malwareurl.com/listing.php?domain=newpornmov.info
+      rev: '2'
+      sid: '2011982'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

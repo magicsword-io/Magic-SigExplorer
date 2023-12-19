@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      byte_test: 8,>,2147483647,0,relative,string,hex
+      classtype: web-application-attack
+      contents:
+      - value: '"Transfer-Encoding: Chunked",fast_pattern,nocase'
+      - value: '"|0D 0A|",distance 0'
+      - value: '"|20|",within 9'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-APACHE Apache Chunked-Encoding worm attempt"'
+      reference: nessus,10932
+      rev: '2'
+      service: http
+      sid: '31405'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

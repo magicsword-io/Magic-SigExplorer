@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Group|3D|"'
+      - value: '"Install|3D|"'
+      - value: '"Ver|3D|"'
+      - value: '"Ask|3D|"'
+      - value: '"Bn|3D|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Careto outbound connection"'
+      reference: url,www.virustotal.com/en/file/19e818d0da361c4feedd456fca63d68d4b024fbbd3d9265f606076c7ee72e8f8/analysis/
+      rev: '3'
+      service: http
+      sid: '29788'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/x25.php"'
+      - value: '"?id="'
+      - value: '"&sv="'
+      - value: '"&ip="'
+      - value: '"&sport="'
+      - value: '"&hport="'
+      - value: '"&os="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_02
+      msg: '"ET TROJAN Torpig Reporting User Activity (x25)"'
+      reference: url,doc.emergingthreats.net/2002762
+      rev: '6'
+      sid: '2002762'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

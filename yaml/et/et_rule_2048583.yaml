@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/webui/logoutconfirm.html?logon_hash=1"'
+      fast_pattern: 18,20
+      flow: established,to_server
+      metadata: affected_product iOS, attack_target Web_Server, created_at 2023_10_17,
+        cve CVE_2023_20198, deployment Perimeter, deployment SSLDecrypt, former_category
+        EXPLOIT, confidence High, signature_severity Major, updated_at 2023_10_30,
+        reviewed_at 2023_10_30
+      msg: '"ET EXPLOIT Cisco IOS XE Web Server Implant Check (CVE-2023-20198) (Outbound)
+        M1"'
+      reference: cve,2023-20198
+      rev: '2'
+      sid: '2048583'
+      special_options:
+      - http_method
+      - http_uri
+      threshold: type limit,seconds 300,count 1,track by_src
+      urilen: '38'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

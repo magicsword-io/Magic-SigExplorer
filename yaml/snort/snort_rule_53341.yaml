@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8009'
+    details:
+      byte_extract: 2,1,protocol_len,relative
+      byte_test: 1,!&,0xF9,0,relative
+      classtype: attempted-user
+      contents:
+      - value: '"|12 34|",depth 2'
+      - value: '"|02|",within 1,distance 2'
+      - value: '"HTTP",within protocol_len,nocase'
+      - value: '"javax.servlet.include.request_uri|00|",fast_pattern,nocase'
+      - value: '"javax.servlet.include.servlet_path|00|",nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-APACHE Apache Tomcat AJP connector arbitrary file access attempt"'
+      reference: cve,2020-1938
+      rev: '2'
+      service: http
+      sid: '53341'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Server|3a| RomPager"'
+      flow: established,from_server
+      flowbits: isset,ET.Misfortune_Cookie
+      metadata: created_at 2015_01_06, updated_at 2020_05_14
+      msg: '"ET EXPLOIT Possible Misfortune Cookie RomPager Server banner"'
+      reference: url,mis.fortunecook.ie/too-many-cooks-exploiting-tr069_tal-oppenheim_31c3.pdf
+      rev: '1'
+      sid: '2020101'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: '[$HTTP_PORTS,7547]'

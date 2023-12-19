@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>|0d 0a 09|Files - OneDrive|0d 0a|</title>"'
+      - value: '"<form method|3d 22|post|22|"'
+      - value: '"action|3d 22|link.php|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_09, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2021_08_09
+      msg: '"ET CURRENT_EVENTS Observed OneDrive Phishing Landing Page 2021-08-09"'
+      reference: url,app.any.run/tasks/7d82fceb-ac0f-452a-9b37-4c87478f2df6
+      rev: '1'
+      sid: '2033696'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

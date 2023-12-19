@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|wnqd|0a|navercloud|03|org"'
+      distance: '1'
+      metadata: created_at 2021_12_13, former_category MALWARE, updated_at 2021_12_13
+      msg: '"ET TROJAN Kimsuky Related Domain in DNS Lookup"'
+      reference: url,github.com/eset/malware-ioc/tree/master/kimsuky/hotdoge_donutcat_case
+      rev: '1'
+      sid: '2034689'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

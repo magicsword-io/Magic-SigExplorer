@@ -1,0 +1,74 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/report"'
+      - value: '"User-Agent|3a 20|Go-http-client"'
+      - depth: '2'
+        value: '"|7b 22|"'
+      - value: '"cookies"'
+      - value: '"discord"'
+      - value: '"minecraft"'
+      - value: '"name"'
+      - value: '"nickname"'
+      - value: '"passwords"'
+      - value: '"steam"'
+      - value: '"telegram"'
+      - value: '"|22|uploader|22 3a 22 7b 5c 22|access_key|5c 22 3a 5c 22|"'
+      - value: '"delete_key"'
+      - value: '"direct_url"'
+      - value: '"expiry"'
+      - value: '"filename"'
+      - value: '"|5c 22|mimetype|5c 22 3a 5c 22|application/zip|5c 22|"'
+      - value: '"original_name"'
+      - value: '"sha256sum"'
+      - value: '"size"'
+      - value: '"url"'
+      - value: '"wallets"'
+      - value: '"gzip"'
+      - value: '"application/json"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_25, deployment Perimeter, former_category
+        MALWARE, malware_family RootTeamStealer, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_25
+      msg: '"ET TROJAN Win32/RootTeam Stealer CnC Exfil M1"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+application\//json/Hmi"'
+      reference: url,twitter.com/FalconFeedsio/status/1649641466300334081
+      rev: '1'
+      sid: '2045867'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

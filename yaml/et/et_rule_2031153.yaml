@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|sh78bug.xyz"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_30, deployment Perimeter, former_category
+        MALWARE, malware_family BazarLoader, performance_impact Low, signature_severity
+        Major, updated_at 2020_10_30
+      msg: '"ET TROJAN Observed BazarLoader Domain (sh78bug .xyz in TLS SNI)"'
+      reference: url,github.com/blacklotuslabs/IOCs/blob/main/domains_assoc_ryuk.txt
+      rev: '2'
+      sid: '2031153'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

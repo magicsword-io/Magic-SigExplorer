@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|bootstraplink|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_22, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, tag OceanLotus,
+        updated_at 2020_09_16
+      msg: '"ET TROJAN OceanLotus Stage 2 Domain in DNS Lookup (bootstraplink .com)"'
+      reference: url,www.welivesecurity.com/2018/11/20/oceanlotus-new-watering-hole-attack-southeast-asia/
+      rev: '2'
+      sid: '2026646'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

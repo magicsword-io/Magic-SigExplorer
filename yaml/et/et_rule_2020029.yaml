@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"w-form-urlencoded|0d 0a 0d 0a|"'
+      - value: '"POST"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Connection|3a|"'
+      - depth: '5'
+        value: '"Host|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/"'
+      - value: '"|0d 0a|Accept|3a 20 2a 2f 2a 0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.Anunanak.HTTP.2
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2014_12_23, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, confidence Medium, signature_severity
+        Critical, updated_at 2023_09_27, reviewed_at 2023_09_27
+      msg: '"ET TROJAN Win32/Spy.Agent.OHT - AnunakAPT HTTP Checkin 2"'
+      pcre: '"/^Host\x3a[^\r\n]+?\r\nUser-Agent\x3a[^\r\n]+?\r\nAccept\x3a[^\r\n]+?\r\nContent-Length\x3a\x20\d{4}\r\nContent-Type\x3a\x20application\/x-www-form-urlencoded\r\n(?:\r\n)?$/Hmi"'
+      reference: md5,82332d2a0cf8330f8de608865508713d
+      rev: '3'
+      sid: '2020029'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

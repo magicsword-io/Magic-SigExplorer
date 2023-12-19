@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|00|.jsp"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_21
+      msg: '"GPL WEB_SERVER Tomcat directory traversal attempt"'
+      reference: bugtraq,2518
+      rev: '11'
+      sid: '2101055'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

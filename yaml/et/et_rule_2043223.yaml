@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '16'
+        value: '"/api/win?userid="'
+      - value: '"User-Agent|3a 20|axios/"'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_05, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_01_05
+      msg: '"ET TROJAN MintStealer CnC Activity (GET)"'
+      reference: md5,09f41a8c80ff0f738053a45de742f2cf
+      rev: '1'
+      sid: '2043223'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

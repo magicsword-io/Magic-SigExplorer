@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '111'
+        value: '"Accept|3a 20|*/*|0d 0a|Connection|3a 20|keep-alive|0d 0a|Accept-Encoding|3a
+          20|gzip, deflate, br|0d 0a|Content-Type|3a 20|text/plain|0d 0a|User-Agent|3a
+          20|"'
+      - depth: '7'
+        value: '"POST /?"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_02, deployment Perimeter, former_category
+        MALWARE, malware_family DarkSide, performance_impact Low, signature_severity
+        Major, tag Ransomware, updated_at 2021_08_02
+      msg: '"ET TROJAN BlackMatter CnC Activity"'
+      pcre: '"/^Accept\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\nContent-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,d0512f2063cbd79fb0f770817cc81ab3
+      rev: '2'
+      sid: '2033643'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

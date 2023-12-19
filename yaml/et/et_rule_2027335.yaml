@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|application/hta"'
+      - value: '"W|00|s|00|c|00|r|00|i|00|p|00|t"'
+      - value: '"S|00|h|00|e|00|l|00|l|00|"'
+      - value: '"p|00|o|00|w|00|e|00|r|00|s|00|h|00|e|00|l|00|l|00|"'
+      - value: '"h|00|i|00|d|00|d|00|e|00|n"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_08, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact
+        Low, signature_severity Major, tag PowerShell, tag T1086, updated_at 2020_11_18
+      msg: '"ET CURRENT_EVENTS Wide HTA with PowerShell Execution Inbound"'
+      reference: md5,e5a9c413812b5217ef0da962668e9651
+      rev: '2'
+      sid: '2027335'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

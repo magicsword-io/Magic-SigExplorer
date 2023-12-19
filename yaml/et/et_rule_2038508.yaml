@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/bot/"'
+      - value: '"?botid="'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|2028|Windows|20|NT|20|10|2e|0|3b20|Win64|3b20|x64|2920|AppleWebKit|2f|537|2e|36|2028|KHTML|2c20|like|20|Gecko|2920|Chrome|2f|99|2e|0|2e|4844|2e|51|20|Safari|2f|537|2e|36|20|Edg|2f|99|2e|0|2e|1150|2e|36|20|Trailer|2f|95|2e|3|2e|1132|2e|33|0d
+          0a|"'
+      distance: '3'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_15, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_08_15
+      msg: '"ET TROJAN Win.Backdoor.Kolobko-9950676-0 Retrieving CnC Commands"'
+      reference: url,blog.talosintelligence.com/2022/08/recent-cyber-attack.html
+      rev: '1'
+      sid: '2038508'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      within: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

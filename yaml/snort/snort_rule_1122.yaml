@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/etc/passwd",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP /etc/passwd file access attempt"'
+      reference: url,attack.mitre.org/techniques/T1087
+      rev: '16'
+      service: http
+      sid: '1122'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '22'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|00 00 00|"'
+      - value: '"|00 00 00|"'
+      - value: '"|0e|ssh-connection|00 00 00 08|password|00 00 00 00|"'
+      - value: '"|00 00 00 00 00 00 00 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2018_11_21, deployment
+        Perimeter, deployment Internal, former_category INFO, performance_impact Low,
+        signature_severity Informational, updated_at 2020_08_19
+      msg: '"ET INFO Plaintext SSH Authentication Identified (Encryption set to None)"'
+      reference: url,hamwan.org/Standards/Network%20Engineering/Authentication/SSH%20Without%20Encryption.html
+      rev: '3'
+      sid: '2026643'
+      within: '31'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

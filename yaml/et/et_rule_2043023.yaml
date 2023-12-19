@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|thedoodles|04|site|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_27, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2022_12_27
+      msg: '"ET TROJAN Generic Cryptocurrency Credential Phish Related Domain in DNS
+        Lookup (thedoodles .site)"'
+      reference: url,cyware.com/news/lazarus-apt-uses-phishing-domains-to-target-nft-investors-e2863fbf
+      rev: '3'
+      sid: '2043023'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

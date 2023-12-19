@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|",depth 4,offset 4'
+      - value: '"|03|",within 15'
+      - value: '"|0A|_domainkey",within 11,distance 3'
+      - value: '"|00 00 10 00 01 C0 0C 00 10 00 01 00 00 00 02 01 00 FF|v=DKIM1|5C
+          3B| p="'
+      flow: to_client
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Cobalt Strike DNS beacon inbound TXT record"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: dns
+      sid: '56593'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

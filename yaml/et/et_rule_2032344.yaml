@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '24'
+        value: '"/owa/auth/babydraco.aspx"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2021_03_29, former_category WEB_SERVER, updated_at 2023_04_03,
+        reviewed_at 2023_12_01
+      msg: '"ET WEB_SERVER Babydraco WebShell Activity"'
+      reference: url,krebsonsecurity.com/2021/03/no-i-did-not-hack-your-ms-exchange-server/
+      rev: '3'
+      sid: '2032344'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

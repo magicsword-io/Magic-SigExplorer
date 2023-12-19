@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"BDbGVhckludGVybmV0Q2FjaGUo"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_09_17, updated_at 2013_09_17
+      msg: '"ET CURRENT_EVENTS SNET EK Encoded VBS 1"'
+      rev: '1'
+      sid: '2017470'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|-hobot-|0d 0a|"'
+      - value: '"Accept-Encoding|3a 20|gzip|0d 0a|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_18, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_18
+      msg: '"ET TROJAN TA471/UNC2589 Related Activity (GET)"'
+      pcre: '"/^\/[a-z]$/U"'
+      reference: url,www.sentinelone.com/blog/threat-actor-uac-0056-targeting-ukraine-with-fake-translation-software/
+      rev: '2'
+      sid: '2035531'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      urilen: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

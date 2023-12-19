@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|www.earthtools.org|0d 0a|"'
+      - depth: '10'
+        value: '"/timezone/"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: created_at 2015_05_20, updated_at 2020_05_22
+      msg: '"ET POLICY External Timezone Check (earthtools.org)"'
+      rev: '1'
+      sid: '2021120'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

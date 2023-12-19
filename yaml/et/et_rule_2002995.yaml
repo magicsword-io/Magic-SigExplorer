@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '993'
+    details:
+      classtype: misc-activity
+      flags: S,12
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Rapid IMAPS Connections - Possible Brute Force Attack"'
+      reference: url,doc.emergingthreats.net/2002995
+      rev: '9'
+      sid: '2002995'
+      threshold: type both, track by_src, count 30, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

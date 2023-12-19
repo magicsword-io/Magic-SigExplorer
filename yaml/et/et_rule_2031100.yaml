@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Document</title>"'
+      - value: '"href=|22|run/images/"'
+      - value: '"<img src=|22|run/captcha.php?rand="'
+      - value: '"placeholder=|22|Captcha code|22 20|class=|22|input|22 20|name=|22|captcha|22|>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_10_26, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2020_10_29
+      msg: '"ET CURRENT_EVENTS Multibank Captcha Phishing Landing"'
+      rev: '3'
+      sid: '2031100'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

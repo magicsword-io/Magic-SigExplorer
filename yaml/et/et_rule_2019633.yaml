@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '17'
+        value: '"|19 00 00 00|"'
+      - value: '!"|00 00|"'
+      - value: '!"|ff ff|"'
+      - value: '!"_loc"'
+      dsize: '25'
+      flow: established,from_server
+      metadata: created_at 2014_11_04, former_category MALWARE, updated_at 2022_05_11
+      msg: '"ET TROJAN DirectsX Checkin Response"'
+      reference: url,public.gdatasoftware.com/Presse/Publikationen/Whitepaper/EN/GDATA_TooHash_CaseStudy_102014_EN_v1.pdf
+      rev: '3'
+      sid: '2019633'
+      stream_size: server,<,30
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

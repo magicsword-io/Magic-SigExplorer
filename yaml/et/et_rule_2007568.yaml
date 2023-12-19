@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?code="'
+      - value: '"&hash="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_02
+      msg: '"ET TROJAN Zlob Updating via HTTP"'
+      pcre: '"/code=[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}/Ui"'
+      reference: url,doc.emergingthreats.net/2007568
+      rev: '5'
+      sid: '2007568'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|00 B3 4B 42 19 50 7A 3B 55 78 3D 6D FD 12 54 C8 88|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_and_Server, created_at 2019_12_09, deployment
+        Perimeter, former_category MALWARE, malware_family MageCart, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2020_10_24,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (MageCart)"'
+      rev: '2'
+      sid: '2029102'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

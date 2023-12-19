@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|03 04 FF 5D C9 BB AC 50 C1 7B 3E 4C 1C 68 26 15 F0 3E|"'
+      - value: '"|55 04 03|"'
+      - value: '"|0b|mvtband.net"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|55 04 03|"'
+      - value: '"|1a|Let''s Encrypt Authority X3"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_24, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag APT28, updated_at 2020_08_27
+      msg: '"ET TROJAN Possible APT28 DOC Uploader SSL/TLS Certificate Observed"'
+      reference: md5,9b10685b774a783eabfecdb6119a8aa3
+      rev: '2'
+      sid: '2026539'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

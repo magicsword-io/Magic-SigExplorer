@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"cwyuno1c7n82bc201et81t627c8e6912r"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_07_28
+      msg: '"ET TROJAN MSIL/Heracles Variant CnC Activity"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,tria.ge/210728-48w5bjla3x
+      rev: '1'
+      sid: '2033592'
+      special_options:
+      - http_method
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 120
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

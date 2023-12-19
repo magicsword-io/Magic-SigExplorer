@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"CPlApplet"'
+      flow: established,to_client
+      flowbits: isset,ET.http.binary
+      metadata: created_at 2014_02_07, deployment Perimeter, former_category INFO,
+        signature_severity Informational, updated_at 2021_04_02
+      msg: '"ET INFO Control Panel Applet File Download"'
+      reference: url,web.archive.org/web/20140307231511/www.trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-cpl-malware.pdf
+      rev: '3'
+      sid: '2018087'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

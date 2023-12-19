@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"3832D640-CF90-11CF-8E43-00A0C911005A",fast_pattern,nocase'
+      - value: '"Workbook_Open",nocase'
+      - value: '"Document_Open",nocase'
+      flow: to_server,established
+      flowbits: isset,file.ole
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-CNC Vbs.Downloader.Agent inbound connection"'
+      reference: url,www.virustotal.com/#/file/7975cbaa5657d89b45126bf739fd84acd5bbe724f372a20360bd4fc038b67541
+      rev: '1'
+      service: smtp
+      sid: '46437'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

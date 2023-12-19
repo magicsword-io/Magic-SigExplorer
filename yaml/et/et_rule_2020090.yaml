@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?p="'
+      - value: '"&botmajor="'
+      - value: '"&botminor="'
+      - value: '"&osmajor="'
+      - value: '"&osminor="'
+      flow: to_server,established
+      metadata: created_at 2015_01_05, former_category MALWARE, updated_at 2020_05_14
+      msg: '"ET TROJAN Trojan.Generic.5325921 Checkin"'
+      reference: md5,203cec547d7d7d7b3a51084ad1abd793
+      rev: '4'
+      sid: '2020090'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

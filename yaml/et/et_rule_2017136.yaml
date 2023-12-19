@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/aj/"'
+      - value: '".php?p="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_07_12, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Adware.Gamevance.AV Checkin"'
+      reference: md5,0134997dff945fbfe62f343bcba782bc
+      rev: '4'
+      sid: '2017136'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: 6666:7000
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"PRIVMSG",fast_pattern,nocase'
+      - value: '"nickserv",nocase'
+      - value: '"IDENTIFY",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER CHAT IRC Ettercap parse overflow attempt"'
+      pcre: '"/^PRIVMSG\s+nickserv\s+IDENTIFY\s[^\n]{100}/ims"'
+      reference: url,www.bugtraq.org/dev/GOBBLES-12.txt
+      rev: '13'
+      sid: '1382'
+    protocol: tcp
+    source:
+      network: any
+      port: any

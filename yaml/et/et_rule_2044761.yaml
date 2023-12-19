@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".jpeg"'
+      - value: '"Accept|3a 20 2a 2f 2a 0d 0a|Accept|2d|Language|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_24, deployment Perimeter, former_category
+        MALWARE, performance_impact Significant, signature_severity Major, updated_at
+        2023_03_24
+      msg: '"ET TROJAN Win32/Gamaredon Payload Request (GET)"'
+      pcre: '"/\x0d\x0aHost\x3a\x20(?:[0-9]{1,3}\.){3}[0-9]{1,3}\x0d\x0aConnection\x3a\x20/Hm"'
+      reference: url,twitter.com/Cyber0verload/status/1638987820357369856
+      rev: '1'
+      sid: '2044761'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

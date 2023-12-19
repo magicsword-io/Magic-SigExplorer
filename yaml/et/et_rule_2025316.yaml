@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"content=|22|Connecting to PDSA"'
+      - value: '"<title>Sign In</title>"'
+      - value: '"function LoginErrors(){this.userNameFormatError"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_06, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_06
+      msg: '"ET CURRENT_EVENTS Office 365 Phishing Landing 2018-02-06"'
+      rev: '2'
+      sid: '2025316'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '600'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

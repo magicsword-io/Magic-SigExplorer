@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 11<=>20
+      byte_test: 8,<,369,0,relative,string
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|3B 20|MSIE|20|"'
+      - value: '!"|0D 0A|Accept|2D|Language|3A|"'
+      - value: '!"|0D 0A|Referer|3A|"'
+      - value: '!"|0D 0A|Cookie|3A|"'
+      - value: '!"Content-Disposition"'
+      - value: '"Content-Length: ",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      pcre: '"/[^\x20-\x7e\x0d\x0a]{4}/"'
+      rev: '9'
+      service: http
+      sid: '25050'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - pkt_data
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

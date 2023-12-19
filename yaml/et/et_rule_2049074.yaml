@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '3000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET|20|"'
+      - value: '"/v1/botlog/key"'
+      - value: '"|0d 0a|X-API-KEY|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_02, deployment Perimeter, former_category
+        MALWARE, malware_family NodeStealer, signature_severity Major, updated_at
+        2023_11_02, reviewed_at 2023_11_02
+      msg: '"ET TROJAN NodeStealer CnC Activity from Downloaded Archive (GET)"'
+      reference: url,bitdefender.com/blog/labs/nodestealer-attacks-on-facebook-take-a-provocative-turn-threat-actors-deploy-malvertising-campaigns-to-hijack-users-accounts
+      rev: '1'
+      sid: '2049074'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

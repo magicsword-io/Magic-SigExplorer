@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '224'
+        value: '"|72 8D 90 89 7E D6|"'
+      - value: '"|b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6 b6|"'
+      dsize: '296'
+      flow: to_server,established
+      metadata: created_at 2015_05_04, former_category MALWARE, updated_at 2015_05_04
+      msg: '"ET TROJAN Linux/DDoS.Sotdas/IptabLex Checkin"'
+      reference: md5,f7556d9ede5d988400b1edbb1a172634
+      rev: '2'
+      sid: '2021049'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

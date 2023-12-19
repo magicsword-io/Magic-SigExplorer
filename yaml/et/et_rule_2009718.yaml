@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/pics.php?"'
+      - value: '"sid="'
+      - value: '"UNION"'
+      - value: '"SELECT"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS AvailScript Photo Album Script pics.php sid Parameter
+        SQL Injection"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2009718
+      rev: '4'
+      sid: '2009718'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"bn1="'
+      - value: '"&sk1="'
+      flow: established,to_server
+      metadata: created_at 2012_02_10, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN Zeus POST Request to CnC sk1 and bn1 post parameters"'
+      pcre: '"/&sk1=[A-F0-9]{30}/P"'
+      rev: '4'
+      sid: '2014218'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

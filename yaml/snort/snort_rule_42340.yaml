@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|FF|SMB|75 00 00 00 00|",depth 9,offset 4'
+      - value: '"|00 5C 00|I|00|P|00|C|00|$|00 00 00|",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: isset,smb.null_session
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows SMB anonymous session IPC share access attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS17-010
+      rev: '4'
+      service: netbios-ssn
+      sid: '42340'
+    protocol: tcp
+    source:
+      network: any
+      port: any

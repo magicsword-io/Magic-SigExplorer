@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '" OR sqlspider"'
+      flow: established,to_server
+      metadata: created_at 2011_10_19, updated_at 2020_04_20
+      msg: '"ET SCAN NMAP SQL Spider Scan"'
+      reference: url,nmap.org/nsedoc/scripts/sql-injection.html
+      rev: '1'
+      sid: '2013778'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

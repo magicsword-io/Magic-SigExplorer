@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var|20|targets|20 3d 20 7b|"'
+      - value: '"CONCURRENCY_LIMIT"'
+      - value: '"async|20|function|20|fetchWithTimeout"'
+      - value: '"async|20|function|20|flood|28|target|29|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_10_06, deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT_KIT,
+        performance_impact Low, confidence High, signature_severity Major, tag DOS,
+        updated_at 2023_10_06
+      msg: '"ET CURRENT_EVENTS JavaScript DOS Injection"'
+      rev: '1'
+      sid: '2048488'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

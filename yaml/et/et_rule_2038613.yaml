@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '7'
+        value: '"/rga?a="'
+      - value: '"&b="'
+      - value: '"User-Agent|3a 20|Go-http-client/1.1"'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2022_08_25, deployment Perimeter, former_category MALWARE, malware_family
+        Shlayer, performance_impact Low, confidence Medium, signature_severity Major,
+        updated_at 2022_08_25
+      msg: '"ET TROJAN Possible OSX/SHLAYER Checkin M2"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      rev: '1'
+      sid: '2038613'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      threshold: type limit, count 1, seconds 600, track by_dst
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

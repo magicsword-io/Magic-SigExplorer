@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - value: '"Get-WmiObject -Query"'
+      - value: '"Select|20|*|20|from|20|win32_fan"'
+      fast_pattern: 3,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2018_09_05, deployment Perimeter, deployment
+        alert_only, former_category INFO, performance_impact Low, signature_severity
+        Major, tag PowerShell, tag Enumeration, tag Anti_VM, updated_at 2020_08_25
+      msg: '"ET ATTACK_RESPONSE Inbound PowerShell Checking for Virtual Host (Win32_Fan
+        WMI)"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/09/unit42-oilrig-targets-middle-eastern-government-adds-evasion-techniques-oopsie/
+      rev: '3'
+      sid: '2026074'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

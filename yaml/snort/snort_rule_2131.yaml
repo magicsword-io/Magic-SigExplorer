@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/iisprotect/admin/",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS IISProtect access"'
+      reference: nessus,11661
+      rev: '14'
+      service: http
+      sid: '2131'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

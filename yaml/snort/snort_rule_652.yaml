@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|90 90 90 E8 C0 FF FF FF|/bin/sh",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE Linux shellcode"'
+      rev: '15'
+      sid: '652'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

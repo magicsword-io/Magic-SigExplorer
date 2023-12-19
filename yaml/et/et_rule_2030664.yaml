@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"GET /brazi/"'
+      - value: '".exe HTTP/1.1"'
+      - value: '".top|0d 0a|"'
+      - value: '"User-Agent|3a 20|AutoHotkey|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET TROJAN AutoHotKey offthewall Downloader Requesting Payload"'
+      pcre: '"/^Host\x3a\x20[a-zA-Z0-9]+\.top\x0d\x0a/Hm"'
+      reference: md5,2b1dc86b6a28ea6ddc7c272773b7472c
+      rev: '3'
+      sid: '2030664'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

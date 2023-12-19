@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|2a|bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, tag Phishing, updated_at 2023_09_13, reviewed_at
+        2023_09_13
+      msg: '"ET CURRENT_EVENTS [TW] Microsoft Credential Phish V3 CnC Domain in DNS
+        Lookup (bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h .com)"'
+      rev: '1'
+      sid: '2048067'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendMessage"'
+      - value: '"host|3a 20|api.telegram.org"'
+      - depth: '7'
+        value: '"chat_id"'
+      - value: '"&text|3d 25 44 30 25 39 34 25 44 30 25 42 42 25 44 31 25 38 46 2b
+          25 44 30 25 42 32 25 44 30 25 42 30 25 44 31 25 38 31 2b 25 44 31 25 38
+          32 25 44 31 25 38 30 25 44 31 25 38 33 25 44 30 25 42 34 25 44 30 25 42
+          38 25 44 31 25 38 32 25 44 31 25 38 31 25 44 31 25 38 46 2b 25 44 30 25
+          39 46 25 44 30 25 39 41 25 33 41 2b 25 32 33|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2023_08_01, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_08_01
+      msg: '"ET TROJAN abubasbanditbot CnC Checkin"'
+      pcre: '"/content-type\x3a\x20[^\r\n]+\r\naccept\x3a\x20[^\r\n]+\r\nhost\x3a\x20[^\r\n]+\r\ncontent-length[^\r\n]+\r\n\r\n/Hm"'
+      reference: md5,9bd1cc9b027a4420d6e4f780c50af93c
+      rev: '1'
+      sid: '2047015'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

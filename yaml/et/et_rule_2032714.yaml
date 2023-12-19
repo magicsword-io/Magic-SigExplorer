@@ -1,0 +1,74 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '10'
+        value: '"formtext1="'
+      - value: '"&formtext2="'
+      - value: '"&formtext3="'
+      - value: '"&formtext4="'
+      - value: '"&formtext5="'
+      - value: '"&formtext6="'
+      - value: '"&formtext7="'
+      - value: '"&formtext8="'
+      - value: '"&formtext9="'
+      - value: '"&formtext10="'
+      - value: '"&formselect1="'
+      - value: '"&formselect2="'
+      - value: '"&formselect3="'
+      - value: '"&formselect4="'
+      - value: '"&formselect5="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_10_28, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_09_17, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Generic Banking Phish 2016-10-28"'
+      pcre: '"/\.php$/U"'
+      rev: '2'
+      sid: '2032714'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

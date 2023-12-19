@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST http://"'
+      - depth: '3'
+        value: '"cs="'
+      - value: '!"User-Agent"'
+      - value: '!"Referer"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_29, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_08_11
+      msg: '"ET TROJAN OSX/SHLAYER CnC Checkin"'
+      pcre: '"/^Host[^\r\n]+\r\nContent-Length[^\r\n]+\r\nContent-Type[^\r\n]+\r\nAccept[^\r\n]+\r\nConnection[^\r\n]+\r\n\r\n$/H"'
+      reference: url,securelist.com/shlayer-for-macos/95724/
+      rev: '5'
+      sid: '2030231'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, count 1, seconds 600, track by_dst
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

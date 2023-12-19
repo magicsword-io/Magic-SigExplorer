@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '10'
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php HTTP/1.0|0D 0A|Host: google.com|0D 0A|User-Agent: ",fast_pattern,nocase'
+      - value: '"0=",depth 2'
+      - value: '"Accept-Encoding: none|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Chebri variant outbound connection"'
+      pcre: '"/User\x2dAgent\x3a\x20[A-F\d]{32}\r\n/"'
+      reference: url,www.virustotal.com/en/file/db94644fc351fb4a9117b68ab625494daa2ebe36117a8333577d857a7c2d1ec6/analysis/1409853252/
+      rev: '3'
+      service: http
+      sid: '31973'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

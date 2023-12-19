@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/Android_SMS/installing.php"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2013_03_01, deployment Perimeter, signature_severity Critical, tag Android,
+        updated_at 2020_04_23
+      msg: '"ET MOBILE_MALWARE Android/Smsilence.A Successful Install Report"'
+      reference: url,blogs.mcafee.com/mcafee-labs/sms-trojan-targets-south-korean-android-devices
+      rev: '1'
+      sid: '2016512'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

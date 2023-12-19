@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,9005,9006]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '19'
+        value: '"POST /data/receive "'
+      - depth: '6'
+        value: '"ectid="'
+      - value: '"&taxCode="'
+      - value: '!"i-xinnuo.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_06_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_02_17
+      msg: '"ET TROJAN GoldenSpy CnC Activity"'
+      reference: url,www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/the-golden-tax-department-and-the-emergence-of-goldenspy-malware/
+      rev: '3'
+      sid: '2030394'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

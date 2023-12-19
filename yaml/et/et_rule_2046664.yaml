@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"RDTPBINS"'
+      - value: '"|00 00|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_26, deployment Perimeter,
+        former_category MALWARE, malware_family GH0stBins, performance_impact Low,
+        confidence Medium, signature_severity Major, updated_at 2023_06_26
+      msg: '"ET TROJAN [ANY.RUN] Gh0stBins RDP Remote Connection"'
+      reference: url,any.run/cybersecurity-blog/gh0stbins-chinese-rat-malware-analysis/
+      rev: '1'
+      sid: '2046664'
+      special_options:
+      - fast_pattern
+      within: '256'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

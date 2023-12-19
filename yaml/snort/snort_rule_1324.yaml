@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $SSH_PORTS
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"/bin/sh"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE ssh CRC32 overflow /bin/sh"'
+      reference: cve,2001-0572
+      rev: '12'
+      sid: '1324'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

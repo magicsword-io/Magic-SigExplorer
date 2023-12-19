@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1600:1604
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"myversion|7C|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!19'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zbot/Bublik outbound connection"'
+      pcre: '"/myversion\x7c(\d\x2e){3}\d\x0d\x0a/"'
+      reference: url,www.virustotal.com/en/file/bbc1a8b0892785c75f0f44d9414e424ed03cefbf951ed20eaae50031670c8a96/analysis/
+      rev: '4'
+      sid: '30484'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

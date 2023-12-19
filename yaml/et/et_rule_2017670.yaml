@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"word/activeX/activeX40.xml"'
+      - value: '"word/media/"'
+      flow: established,from_server
+      flowbits: isset,et.http.PK
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_11_06, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS Word DOCX with Many ActiveX Objects and
+        Media"'
+      reference: url,blogs.mcafee.com/mcafee-labs/mcafee-labs-detects-zero-day-exploit-targeting-microsoft-office-2
+      rev: '6'
+      sid: '2017670'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

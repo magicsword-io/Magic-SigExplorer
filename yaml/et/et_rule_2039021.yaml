@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"We make it easy to manage your shipments and logistics online. From
+          finding a price and making bookings to submitting documents and tracking
+          cargo."'
+      - value: '"We are leading air freight service provider with high performance
+          standards and the flexibility to meet your changing needs.."'
+      - value: '"We are specializes in Truck Loading & Cargo delivery. We offer a
+          rapid response service as well as an on-time guarantee."'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_28, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_09_28
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page M2 2022-09-28"'
+      rev: '2'
+      sid: '2039021'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

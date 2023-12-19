@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|pastetext|03|net"'
+      distance: '1'
+      metadata: created_at 2022_04_21, former_category INFO, updated_at 2022_04_21
+      msg: '"ET INFO Pastebin Style Domain in DNS Lookup (pastetext .net)"'
+      rev: '1'
+      sid: '2036287'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

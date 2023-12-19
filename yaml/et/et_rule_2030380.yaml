@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|free247downloads|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Mobile_Client, created_at 2020_06_22, deployment Perimeter,
+        former_category MOBILE_MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_17
+      msg: '"ET MOBILE_MALWARE NSO Group Domain in DNS Lookup (free247downloads .com)"'
+      reference: url,www.amnesty.org/en/latest/research/2020/06/moroccan-journalist-targeted-with-network-injection-attacks-using-nso-groups-tools/
+      rev: '2'
+      sid: '2030380'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!"googleusercontent"'
+      - value: '!"google.com"'
+      - value: '"|2F|crx|2F|blobs"'
+      - value: '!"gvt1.com"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-WEBKIT Possible Google Chrome Plugin install from non-trusted
+        source"'
+      reference: url,blogs.technet.com/b/mmpc/archive/2013/05/10/browser-extension-hijacks-facebook-profiles.aspx
+      rev: '5'
+      service: http
+      sid: '26658'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

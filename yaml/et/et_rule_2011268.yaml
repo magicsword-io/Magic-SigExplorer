@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/faces/jsf/tips.jsp?"'
+      - value: '"context="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS Oracle Business Process Management context Parameter
+        Cross Site Scripting Attempt"'
+      pcre: '"/context\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,doc.emergingthreats.net/2011268
+      rev: '3'
+      sid: '2011268'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"POST http|3a 2f 2f|proxy"'
+      - value: '"i2p|0d 0a 0d 0a|"'
+      - value: '!"|0d 0a|Accept-"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_01_21, updated_at 2020_05_14
+      msg: '"ET TROJAN CryptoWall CryptoWall 3.0 Check-in"'
+      reference: md5,3c53c9f7ab32a09de89bb44e5f91f9af
+      rev: '2'
+      sid: '2020233'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

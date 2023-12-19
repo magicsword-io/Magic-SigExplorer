@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_test: 1,&,16,1,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C 00|P|00|I|00|P|00|E|00 5C 00 05 00 0B|"'
+      - value: '"|A0 01 00 00 00 00 00 00 C0 00 00 00 00 00 00|F"'
+      distance: '29'
+      flow: to_server,established
+      flowbits: set,dce.isystemactivator.bind.call.attempt
+      metadata: created_at 2010_09_23, cve CVE_2003_0813, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS DCERPC ISystemActivator unicode bind attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS04-011.mspx
+      rev: '8'
+      sid: '2102491'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

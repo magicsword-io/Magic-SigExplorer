@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"telefone="'
+      - value: '"&senha"'
+      - value: '"&proceguir="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_09_29, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_12, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Banco do Brasil Phish M2 Sep 29 2017"'
+      rev: '2'
+      sid: '2024783'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

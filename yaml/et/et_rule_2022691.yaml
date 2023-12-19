@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"avirus"'
+      - value: '!"|07|spotify|03|com"'
+      distance: '0'
+      metadata: created_at 2016_03_30, former_category WEB_CLIENT, updated_at 2020_09_01
+      msg: '"ET WEB_CLIENT Possible Fake AV Phone Scam Long Domain Mar 30 M2"'
+      pcre: '"/^[a-z0-9\x02-\x50]{100,}\x00\x00\x01\x00\x01$/Rsi"'
+      rev: '4'
+      sid: '2022691'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

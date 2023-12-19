@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '0'
+      itype: '19'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Reserved for Security Type 19"'
+      rev: '9'
+      sid: '439'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

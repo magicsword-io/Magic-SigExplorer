@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"home/requested_user/Sent interest/"'
+      fast_pattern: 14,20
+      flow: established,to_server
+      metadata: affected_product Joomla, attack_target Web_Server, created_at 2018_06_26,
+        cve CVE_2018_12254, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Component Ek rishta 2.10 - SQL Injection
+        1"'
+      pcre: '"/\/Sent\x20interest\/(?:[a-zA-Z0-9_])*[\x2c\x22\x27\x28]/Ui"'
+      reference: url,www.exploit-db.com/exploits/44869/
+      rev: '3'
+      sid: '2025744'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"administrator/components/com_joomlaupdate/restoration.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Akeeba Kickstart restoration.php reconnaissance attempt"'
+      reference: cve,2014-7229
+      rev: '3'
+      service: http
+      sid: '46340'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

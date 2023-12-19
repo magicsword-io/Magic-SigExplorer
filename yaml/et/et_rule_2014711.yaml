@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/anzeigen_neu.php?"'
+      - value: '"bereich="'
+      - value: '"kat_id="'
+      - value: '"kategorie="'
+      flow: established,to_server
+      metadata: created_at 2012_05_04, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS maxxweb Cms kategorie parameter Cross-Site Scripting
+        Attempt"'
+      pcre: '"/kategorie\x3d.+(s(cript|tyle\x3D)|on(mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: url,packetstormsecurity.org/files/112289/Maxxweb-CMS-Cross-Site-Scripting.html
+      rev: '2'
+      sid: '2014711'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

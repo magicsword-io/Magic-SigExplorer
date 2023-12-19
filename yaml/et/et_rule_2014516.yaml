@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|CE FA ED FE|"'
+      - value: '"__TEXT"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_04_06, updated_at 2022_05_03
+      msg: '"ET INFO EXE - OSX Executable Download - Intel Arch"'
+      rev: '3'
+      sid: '2014516'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<head><!-- WFB 3.4 -->"'
+      - value: '"var bundle|3b|(function(){function a(b){var c=|22 22 3b|for(var d=0,e=b.length|3b|d<e|3b|++d){var
+          f=b.charCodeAt(d)|3b|c+=f>=55296?b[d]|3a|String.fromCharCode"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_02, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_02
+      msg: '"ET CURRENT_EVENTS Wells Fargo Phishing Landing 2018-02-02 M8"'
+      rev: '2'
+      sid: '2025299'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

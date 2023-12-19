@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?action=add&cn="'
+      - value: '"&un="'
+      - value: '"&v="'
+      - value: '"&av="'
+      - value: '"&an="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2020_08_24, deployment Perimeter, former_category MALWARE,
+        malware_family Janicab, signature_severity Major, tag APT, updated_at 2020_08_24
+      msg: '"ET TROJAN DeathStalker/Janicab CnC Checkin"'
+      reference: url,securelist.com/deathstalker-mercenary-triumvirate/98177/
+      rev: '2'
+      sid: '2030725'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

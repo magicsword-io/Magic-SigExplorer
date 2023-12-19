@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /3001",fast_pattern'
+      - value: '"0000000000000000000000000"'
+      flow: to_server,established
+      isdataat: 260,relative
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bisonha variant outbound connection"'
+      pcre: '"/\/3001[0-9A-F]{262,304}/"'
+      reference: url,www.virustotal.com/en/file/f0d8834fb0e2d3c6e7c1fde7c6bcf9171e5deca119338e4fac21568e0bb70ab7/analysis/
+      rev: '2'
+      service: ssl
+      sid: '27805'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

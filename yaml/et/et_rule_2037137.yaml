@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Windows Explorer|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_28, deployment Perimeter, former_category
+        USER_AGENTS, signature_severity Informational, updated_at 2022_06_28
+      msg: '"ET USER_AGENTS Suspicious User-Agent (Windows Explorer)"'
+      reference: md5,a750e7ca3c96e229159290610f050f44
+      rev: '1'
+      sid: '2037137'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

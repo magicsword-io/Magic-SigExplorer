@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '16680'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '8'
+        offset: '0'
+        value: '"REGISTER"'
+      - value: '"operaunite.com"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY OperaUnite URL Registration"'
+      reference: url,doc.emergingthreats.net/2009895
+      rev: '3'
+      sid: '2009895'
+      within: '109'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

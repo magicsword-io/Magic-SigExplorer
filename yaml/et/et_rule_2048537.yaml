@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 08|2fa.live"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_10_11, deployment Perimeter,
+        former_category INFO, confidence High, signature_severity Informational, tag
+        SSL_Malicious_Cert, updated_at 2023_10_11, reviewed_at 2023_11_10
+      msg: '"ET INFO Observed Pastebin Style Domain in TLS SNI"'
+      reference: md5,bf0a154231ca33db31c420206546cc81
+      rev: '1'
+      sid: '2048537'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

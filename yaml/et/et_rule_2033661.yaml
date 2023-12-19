@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '12345'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"TLPU"'
+      - value: '"|00 00 00 01|"'
+      distance: '4'
+      dsize: <21
+      metadata: attack_target Server, created_at 2021_08_03, cve CVE_2021_37162, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_08_03
+      msg: '"ET EXPLOIT [PwnedPiper] Exploitation Attempt - Small Malformed Translogic
+        Packet (Multiple CVEs)"'
+      reference: cve,2021-37161
+      rev: '1'
+      sid: '2033661'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: udp
+    source:
+      network: any
+      port: any

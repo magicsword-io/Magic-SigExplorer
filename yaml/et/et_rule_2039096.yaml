@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '14'
+        value: '"/metrics/geoip"'
+      - value: '"Authorization|3a 20|SIGN|20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2022_10_05
+      msg: '"ET TROJAN Malicious Browser Installer Checkin (POST)"'
+      pcre: '"/Connection[^\r\n]+\r\nDate[^\r\n]+\r\nPragma[^\r\n]+\r\nAuthorization[^\r\n]+\r\nHost[^\r\n]+\r\n/Hm"'
+      reference: url,securelist.com/onionpoison-infected-tor-browser-installer-youtube/107627/
+      rev: '1'
+      sid: '2039096'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

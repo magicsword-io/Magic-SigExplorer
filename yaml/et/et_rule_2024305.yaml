@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var|20|total|20|=|20 22 22 3b|"'
+      - value: '"total|20|=|20|total"'
+      - value: '"history.pushState"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_05_16, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2017_05_16
+      msg: '"ET WEB_CLIENT Multibrowser Resource Exhaustion observed in Tech Support
+        Scam"'
+      pcre: '"/^\s*\(\s*0\s*,\s*0\s*,\s*total\s*\)/Ri"'
+      reference: url,bugzilla.mozilla.org/show_bug.cgi?id=1246773
+      rev: '2'
+      sid: '2024305'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

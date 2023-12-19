@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 5900:5920
+    details:
+      classtype: attempted-recon
+      flags: S,12
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Potential VNC Scan 5900-5920"'
+      reference: url,doc.emergingthreats.net/2002911
+      rev: '5'
+      sid: '2002911'
+      threshold: type both, track by_src, count 5, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

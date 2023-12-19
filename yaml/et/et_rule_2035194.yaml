@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"api/sites/site/"'
+      - value: '"/ping"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_14, cve CVE_2021_38454, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_14
+      msg: '"ET EXPLOIT Possible Moxa MxView RCE Attempt (CVE-2021-38454)"'
+      pcre: '"/\/ping$/U"'
+      reference: cve,2021-38454
+      rev: '1'
+      sid: '2035194'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NOTICE"'
+      - value: '"|3a|Flooding with TCP"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_10_06, updated_at 2023_02_23
+      msg: '"ET TROJAN ELF/muBoT IRC Activity 5"'
+      reference: url,pastebin.com/EH1SH9aL
+      rev: '2'
+      sid: '2021916'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

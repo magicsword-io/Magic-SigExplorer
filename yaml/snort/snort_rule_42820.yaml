@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Error"'
+      - value: '".toString.call",within 50,fast_pattern'
+      - value: '"message",within 25'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Malware Protection Engine type confusion attempt"'
+      reference: url,technet.microsoft.com/en-us/library/security/4022344.aspx
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '42820'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

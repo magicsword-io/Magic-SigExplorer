@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '7'
+        value: '"|00 15|r|01 02 03 04|"'
+      - value: '"|8b f4 e6 ad dd 72 a9 c4 c4 71 47 08 d2 94 15 28|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_05_23, cve CVE_2022_24706, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_05_23
+      msg: '"ET EXPLOIT Default Apache CouchDB Erlang Cookie Observed (CVE-2022-24706)"'
+      reference: cve,2022-24706
+      rev: '1'
+      sid: '2036650'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

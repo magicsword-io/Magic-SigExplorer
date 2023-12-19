@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?8"'
+      - value: '!"="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Qbot, performance_impact Moderate,
+        confidence High, signature_severity Major, updated_at 2023_03_24
+      msg: '"ET TROJAN Qbot Payload Request (2023-03-21) M8"'
+      pcre: '"/^\/(?P<base_dir>[a-z]{2,4})\/(?P=base_dir)\.php\?8[0-9]{4}$/U"'
+      rev: '2'
+      sid: '2044731'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      urilen: <21
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

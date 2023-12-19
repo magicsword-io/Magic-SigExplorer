@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%PDF-"'
+      - value: '"|3C 21 2D 2D 0D 0A 63 57 4B 51 6D 5A 6C 61 56 56 56 56 56 56 56 56
+          56 56 56 56 56 63 77 53 64 63 6A 4B 7A 38 35 6D 37 4A 56 6D 37 4A 46 78
+          6B 5A 6D 5A 6D 52 44 63 5A 58 41 73 6D 5A 6D 5A 7A 42 4A 31 79 73 2F 4F
+          0D 0A|"'
+      flow: from_server,established
+      metadata: created_at 2013_03_15, former_category MALWARE, updated_at 2013_03_15
+      msg: '"ET TROJAN APT_NGO_wuaclt PDF file"'
+      reference: url,labs.alienvault.com/labs/index.php/2013/latest-adobe-pdf-exploit-used-to-target-uyghur-and-tibetan-activists/
+      rev: '1'
+      sid: '2016579'
+      special_options:
+      - file_data
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

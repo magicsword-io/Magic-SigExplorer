@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/oka/ok.php"'
+      - value: '"TAN=&valider="'
+      flow: established,to_server
+      metadata: created_at 2022_12_02, updated_at 2022_12_02
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-12-02"'
+      reference: md5,fc68fded6fc19e85d37f244329c9ff45
+      rev: '1'
+      sid: '2041667'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

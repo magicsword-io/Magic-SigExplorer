@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|python-requests"'
+      - depth: '18'
+        value: '"|7b 22|architecture|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|ram|22 3a 20|"'
+      - value: '"|22|cpu|22 3a 20 7b 22|module|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|cores|22 3a 20|"'
+      - value: '"|7d 7d|"'
+      - value: '"Connection|3a 20|keep-alive"'
+      - value: '"Content-Type|3a 20|application/json"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_06, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_08_29
+      msg: '"ET TROJAN Win32/Generik.NWVMNHQ Variant Exfil (POST)"'
+      reference: url,twitter.com/1ZRR4H/status/1611013038987005954
+      rev: '2'
+      sid: '2043235'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

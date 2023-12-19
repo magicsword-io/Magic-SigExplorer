@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '9'
+        offset: '12'
+        value: '"/2/0/1/"'
+      - value: '"/files-"'
+      - value: '"/hta"'
+      distance: '8'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_24, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, confidence High, signature_severity Major, updated_at
+        2022_10_24
+      msg: '"ET TROJAN Sidewinder APT Related Malware Activity M2 (GET)"'
+      pcre: '"/\/hta$/U"'
+      reference: md5,6c8ac90f16acfc0ca871f74d47ac3856
+      rev: '1'
+      sid: '2039548'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

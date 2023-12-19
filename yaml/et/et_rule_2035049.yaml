@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"404"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Content-Length|3a 20|148|0d 0a|"'
+      - value: '!"<html"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_19, deployment Perimeter, former_category
+        MALWARE, malware_family Emotet, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_09
+      msg: '"ET TROJAN Emotet Post Drop C2 Comms M2"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,20}[^\x20-\x7e\r\n]/si"'
+      reference: md5,dacdcd451204265ad6f44ef99db1f371
+      rev: '2'
+      sid: '2035049'
+      special_options:
+      - http_stat_code
+      - http_header
+      - fast_pattern
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,7080,8080,80]'

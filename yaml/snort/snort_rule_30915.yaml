@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3E 00|e|00|c|00|h|00|o|00 20 00|c|00|m|00|d|00 5F 00|b|00|e|00|g|00|i|00|n|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SpySmall variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/df51eccf430ac391d09817d003977b4ea6af36117ce3aaee2fa0ebf04505c0d2/analysis/
+      rev: '3'
+      service: http
+      sid: '30915'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

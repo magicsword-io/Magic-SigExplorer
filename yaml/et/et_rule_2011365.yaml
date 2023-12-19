@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"/search"'
+      - depth: '28'
+        value: '"?fr=altavista&itag="'
+      - value: '"&kls="'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN Sinowal/sinonet/mebroot/Torpig infected host checkin"'
+      rev: '9'
+      sid: '2011365'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

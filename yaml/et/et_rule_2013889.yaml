@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|MediaLabsSiteInstaller"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_11_08,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Major,
+        tag User_Agent, updated_at 2020_08_13
+      msg: '"ET MALWARE Suspicious User-Agent (MediaLabsSiteInstaller)"'
+      rev: '2'
+      sid: '2013889'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

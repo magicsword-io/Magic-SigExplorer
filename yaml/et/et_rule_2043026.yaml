@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: unknown
+      contents:
+      - value: '"Accept-Encoding|3a 20 0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2022_12_28, deployment Perimeter, former_category INFO,
+        performance_impact Moderate, signature_severity Minor, updated_at 2022_12_28
+      msg: '"ET INFO Suspicious Empty Accept-Encoding Header"'
+      rev: '2'
+      sid: '2043026'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7001'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/ws_utc/resources/setting/keystore",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Oracle WebLogic Server potential precursor to keystore
+        attack attempt"'
+      reference: url,www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html
+      rev: '2'
+      service: http
+      sid: '47388'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"clsid"'
+      - value: '"5A074B2B-F830-49DE-A31B-5BB9D7F6B407"'
+      - value: '"ShortFormat"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2019_09_27
+      msg: '"ET ACTIVEX Ask.com Toolbar askBar.dll ActiveX ShortFormat Buffer Overflow
+        Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*5A074B2B-F830-49DE-A31B-5BB9D7F6B407/si"'
+      reference: url,doc.emergingthreats.net/2010921
+      rev: '5'
+      sid: '2010921'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%66%75%6e%63%74%69%6f%6e%20%72%65%64%69%72%65%63%74"'
+      - value: '"%66%75%6e%63%74%69%6f%6e%20%63%72%65%61%74%65%43%6f%6f%6b%69%65"'
+      - value: '"%64%6f%52%65%64%69%72%65%63%74"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: created_at 2014_01_30, former_category CURRENT_EVENTS, updated_at
+        2019_10_08
+      msg: '"ET WEB_CLIENT CookieBomb 2.0 In Server Response Jan 29 2014"'
+      reference: url,malwaremustdie.blogspot.jp/2014/01/and-another-detonating-method-of-todays.html
+      rev: '3'
+      sid: '2018037'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

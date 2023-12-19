@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_extract: 1,0,cnlen,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|02 09 00|"'
+      - value: '"|06 03 55 04 06 13 02|"'
+      - value: '"|30 09 06 03 55 04 08 0c 02|"'
+      - value: '"|06 03 55 04 07 0c|"'
+      - value: '"|06 03 55 04 0a 0c|"'
+      - value: '!"|20|"'
+      - value: '"|06 03 55 04 03 0c|"'
+      - value: '!"|2e|"'
+      - value: '!"|2a|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_07_17, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_27
+      msg: '"ET TROJAN Possible Dyre SSL Cert M3 (O CN)"'
+      pcre: '"/^(?=[a-z0-9]{0,119}[A-Z])(?=[A-Z0-9]{0,119}[a-z])(?P<var>[a-zA-Z0-9]{10,120}[01]).+?\x55\x04\x03.{2}(?P=var)/Rs"'
+      rev: '2'
+      sid: '2021434'
+      special_options:
+      - fast_pattern
+      within: cnlen
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,4443]'

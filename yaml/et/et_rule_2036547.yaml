@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"kind"'
+      - value: '"tm|3a|util|3a|bash|3a|runstate"'
+      - value: '"command"'
+      - value: '"run"'
+      - value: '"utilCmdArgs"'
+      - value: '"commandResult"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.F5AuthBypass
+      metadata: attack_target Web_Server, created_at 2022_05_09, cve CVE_2022_1388,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2022_05_09
+      msg: '"ET EXPLOIT F5 BIG-IP iControl REST Authentication Bypass Server Response
+        (CVE-2022-1388)"'
+      reference: cve,2022-1388
+      rev: '1'
+      sid: '2036547'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

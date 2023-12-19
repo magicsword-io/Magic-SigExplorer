@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SELECT"'
+      - value: '"sysobjects"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_08_15, updated_at 2013_08_15
+      msg: '"ET WEB_SERVER SQLi - SELECT and sysobject"'
+      rev: '1'
+      sid: '2017330'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

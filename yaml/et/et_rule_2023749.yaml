@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"<title>"'
+      - value: '"|26 23|x1F512"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_01_19, deployment Perimeter, former_category INFO, performance_impact
+        Low, signature_severity Informational, updated_at 2019_10_08
+      msg: '"ET INFO Lock Emoji In Title - Possible Social Engineering Attempt"'
+      pcre: '"/^(?:(?!<\/title).)*\x26\x23x1F512/Ri"'
+      rev: '2'
+      sid: '2023749'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

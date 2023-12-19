@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Location|3A|",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"FILE-OTHER local resource redirection attempt"'
+      pcre: '"/^Location\x3a(\s*|\s*\r?\n\s+)*URL\s*\x3a/ims"'
+      reference: url,www.kb.cert.org/vuls/id/713878
+      rev: '10'
+      service: http
+      sid: '2577'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

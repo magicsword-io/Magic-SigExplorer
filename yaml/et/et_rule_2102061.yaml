@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|00|.jsp"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0042, updated_at 2020_09_04
+      msg: '"GPL WEB_SERVER Tomcat null byte directory listing attempt"'
+      reference: cve,2003-0042
+      rev: '6'
+      sid: '2102061'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

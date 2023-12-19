@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/webadmin/script?command="'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_06_11, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_08_31
+      msg: '"ET EXPLOIT Possible OpenDreamBox Attempted Remote Command Injection Outbound"'
+      reference: cve,CVE-2017-14135
+      rev: '3'
+      sid: '2027452'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

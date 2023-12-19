@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|win7-update|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_03_06, deployment Perimeter, former_category
+        MALWARE, malware_family MechaFlounder, performance_impact Low, signature_severity
+        Major, tag APT, tag Chafer, tag Python, updated_at 2020_09_16
+      msg: '"ET TROJAN Chafer CnC DNS Query"'
+      reference: url,unit42.paloaltonetworks.com/new-python-based-payload-mechaflounder-used-by-chafer/
+      rev: '2'
+      sid: '2027055'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"E protocol error|3A| invalid directory syntax in"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0015, updated_at 2010_09_23
+      msg: '"GPL MISC CVS invalid directory response"'
+      reference: cve,2003-0015
+      rev: '5'
+      sid: '2102011'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

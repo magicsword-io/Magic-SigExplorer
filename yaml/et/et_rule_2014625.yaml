@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/modules/ajax/remote.php?"'
+      - value: '"rootpath="'
+      flow: established,to_server
+      metadata: created_at 2012_04_20, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS DirectNews remote.php Remote File inclusion Attempt"'
+      pcre: '"/rootpath=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,1337day.com/exploits/15795
+      rev: '2'
+      sid: '2014625'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

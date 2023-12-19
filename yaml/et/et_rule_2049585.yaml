@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -18
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"naverk.myvnc.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_06, deployment Perimeter, performance_impact
+        Low, confidence High, signature_severity Major, tag TA444, updated_at 2023_12_06
+      msg: '"ET CURRENT_EVENTS TA444 Domain in TLS SNI (naverk .myvnc .com)"'
+      pcre: '"/^(?:\x00\x10|.\x2e)naverk\.myvnc\.com/R"'
+      reference: url,twitter.com/SlowMist_Team/status/1732311816557269067
+      rev: '1'
+      sid: '2049585'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

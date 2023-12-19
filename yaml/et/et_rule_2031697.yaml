@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"//configure destination URL"'
+      - value: '"Verifying Login, Please wait"'
+      - value: '"Loading"'
+      - value: '"and collaborate documents"'
+      - value: '"Initializing"'
+      distance: '0'
+      fast_pattern: 8,20
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2015_10_01, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2022_03_17
+      msg: '"ET WEB_CLIENT Phishing Fake Document Loading Error 2015-10-01"'
+      rev: '1'
+      sid: '2031697'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

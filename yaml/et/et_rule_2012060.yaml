@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"%u64%u6f%u63%u75%u6d%u65%u6e%u74%u2e%u77%u72%u69%u74%u65"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Hex Obfuscation of document.write %u UTF-8 Encoding"'
+      reference: url,www.sophos.com/security/technical-papers/malware_with_your_mocha.html
+      rev: '1'
+      sid: '2012060'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

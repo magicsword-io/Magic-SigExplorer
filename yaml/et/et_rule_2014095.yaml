@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|3b| Silk/"'
+      fast_pattern: only
+      flow: from_client,established
+      metadata: created_at 2012_01_04, updated_at 2020_04_24
+      msg: '"ET POLICY Kindle Fire Browser User-Agent Outbound"'
+      pcre: '"/User-Agent\x3a [^\n]+ Silk\/\d+\.\d/Hi"'
+      reference: url,www.amazon.com/gp/product/B0051VVOB2%23silk
+      rev: '2'
+      sid: '2014095'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '17'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/checkupdate.asmx",fast_pattern,nocase'
+      - value: '"SOAPAction|3A 20|"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|20 28|compatible|3B 20|MSIE 6.0|3B 20|MS
+          Web Services Client Protocol"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TinyZBot outbound SOAP connection attempt"'
+      pcre: '"/SOAPAction\x3a[^\r\n]*Get(ServerTime|FileList|File)\x22/i"'
+      reference: url,www.virustotal.com/en/file/0d1f479842cd5bde4f18ab8c85a099da39e13a4051a7c21334e33d55b6f18d76/analysis/
+      rev: '2'
+      service: http
+      sid: '32957'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

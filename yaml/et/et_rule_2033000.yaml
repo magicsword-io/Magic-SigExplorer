@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"discord.com"'
+      - value: '"**Program executed**"'
+      - value: '"Status|3a 20|Active|20|"'
+      - value: '"PC|20|Name|3a 20|"'
+      - value: '"IP|20|Address|3a 20|"'
+      - depth: '19'
+        value: '"POST /api/webhooks/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_19, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2021_05_19, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN NightfallGT Discord Nitro Ransomware"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+discord\.com/Hmi"'
+      reference: url,github.com/NightfallGT/Nitro-Ransomware
+      rev: '2'
+      sid: '2033000'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"dbInfo"'
+      - value: '"dbInfoRequest"'
+      - value: '"searchStr"'
+      flow: established,to_server
+      metadata: created_at 2012_12_21, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS SonicWALL SonicOS searchStr XML Tag Script Insertion
+        Attempt"'
+      pcre: '"/(\x3c|\x253c)dbInfo(\x3e|\x253e)[\r\n\s]*?(\x3c|\x253c)dbInfoRequest(\x3e|\x253e).+?(\x3c|\x253c)searchStr(\x3e|\x253e)((?!(\x3c|\x253c)(\/|\x252f)searchStr(\x3e|\x253e)).)+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=)).+?(\x3c|\x253c)(\/|\x252f)searchStr(\x3e|\x253e)/Psi"'
+      reference: url,seclists.org/bugtraq/2012/Dec/110
+      rev: '1'
+      sid: '2016086'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_12_30, former_category MALWARE, updated_at 2020_08_20
+      msg: '"ET TROJAN Win64/Havex Checkin"'
+      pcre: '"/\.php\?id=\d{30}\w{6}-\d{2}-\d{3}-\d{9}$/U"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/64-bit-version-of-havex-spotted/
+      rev: '1'
+      sid: '2020083'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '27'
+        value: '"/_sec/cp_challenge/sec-cpt-"'
+      - value: '"-"'
+      - value: '".js"'
+      distance: '1'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: attack_target Client_Endpoint, created_at 2022_08_22, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2022_08_22
+      msg: '"ET INFO Possible Obfuscator io JavaScript Obfuscation Exclusion"'
+      pcre: '"/\.js$/U"'
+      reference: url,obfuscator.io
+      rev: '1'
+      sid: '2038591'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

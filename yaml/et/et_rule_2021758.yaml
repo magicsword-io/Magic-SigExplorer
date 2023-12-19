@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|00 00 00 18 66 74 79 70|mp4"'
+      - value: '"|98 2A 00 B0 B3 38 00 B0|"'
+      - value: '"|00 10 00 00 07 00 00 00 03 D0 00 D0 04 D0 00 D0 44 11 00 B0|"'
+      distance: '4'
+      flow: established,from_server
+      metadata: created_at 2015_09_10, cve CVE_2015_1538, updated_at 2015_09_10
+      msg: '"ET EXPLOIT Possible Android Stagefright MP4 CVE-2015-1538 - ROP"'
+      reference: url,blog.zimperium.com/the-latest-on-stagefright-cve-2015-1538-exploit-is-now-available-for-testing-purposes/
+      rev: '1'
+      sid: '2021758'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

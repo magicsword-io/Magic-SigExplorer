@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"_phishme.com_session_id="'
+      - value: '"<!-- ORGANIZATION LOGO"'
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2016_04_13, deployment Perimeter,
+        former_category INFO, signature_severity Major, tag Phishing, updated_at 2020_08_24
+      msg: '"ET INFO PhishMe.com Phishing Landing Exercise"'
+      rev: '2'
+      sid: '2022730'
+      special_options:
+      - http_stat_code
+      - http_cookie
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

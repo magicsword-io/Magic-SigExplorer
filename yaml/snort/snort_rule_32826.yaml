@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/html/docu.php"'
+      - value: '"User-Agent|3A 20|"'
+      - value: '"Media Center PC 6.0",within 175'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Darkhotel data upload attempt"'
+      reference: url,securelist.com/files/2014/11/darkhotelappendixindicators_kl.pdf
+      rev: '2'
+      service: http
+      sid: '32826'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/_temp_view?limit="'
+      - value: '"|22|cmd|22|"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_06_25, cve CVE_2017_12636,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Apache CouchDB Remote Code Execution 3"'
+      reference: cve,2017-12636
+      rev: '2'
+      sid: '2025742'
+      special_options:
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

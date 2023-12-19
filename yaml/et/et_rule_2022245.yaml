@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20 2e|net backdor"'
+      flow: to_server,established
+      metadata: created_at 2015_12_12, former_category MALWARE, updated_at 2020_08_04
+      msg: '"ET TROJAN NetBackdoor User-Agent (.net backdoor)"'
+      reference: md5,a6a9e8b0432ad557245ac8ad2926ed7c
+      rev: '1'
+      sid: '2022245'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

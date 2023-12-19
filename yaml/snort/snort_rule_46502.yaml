@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?&1001=",fast_pattern,nocase'
+      - value: '"1="'
+      - value: '"2="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Agent outbound request"'
+      pcre: '"/(^|&)\d{1,2}=[^&]*?\d{4}/m"'
+      reference: url,www.virustotal.com/en/file/123275cc76ef377986715c98abb0fec50cbd53f01dc3976080009dc7cdafbe86/analysis/
+      rev: '1'
+      service: http
+      sid: '46502'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '"/axis-cgi/smtptest.cgi"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_10_06, cve CVE_2021_31986, deployment
+        Perimeter, deployment Internal, former_category INFO, performance_impact Low,
+        signature_severity Informational, updated_at 2021_10_06
+      msg: '"ET INFO Suspicious POST to Axis OS (smtptest.cgi)"'
+      reference: cve,2021-31986
+      rev: '2'
+      sid: '2034130'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

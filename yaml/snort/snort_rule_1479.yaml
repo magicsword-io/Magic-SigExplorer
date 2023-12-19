@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ttawebtop.cgi",nocase'
+      - value: '"pg=../",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP ttawebtop.cgi arbitrary file attempt"'
+      reference: nessus,10696
+      rev: '16'
+      service: http
+      sid: '1479'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

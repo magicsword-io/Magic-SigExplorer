@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 0c|s.rapid7.xyz|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Observed MongoLock Variant CnC Domain (s .rapid7 .xyz in TLS
+        SNI)"'
+      reference: md5,fa64390d7ffa4ee604dd944bbcf0bc09
+      rev: '2'
+      sid: '2026722'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

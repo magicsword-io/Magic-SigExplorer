@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|125122112551"'
+      fast_pattern: 4,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_02_06
+      msg: '"ET TROJAN Win32/RecordBreaker - Observed UA M8 (125122112551)"'
+      reference: md5,6460a227e417bfcb0da89ab4a83548fb
+      rev: '1'
+      sid: '2044135'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

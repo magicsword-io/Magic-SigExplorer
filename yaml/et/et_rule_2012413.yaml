@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/plugins/iwant-one-ihave-one/updateAJAX.php?"'
+      - value: '"post_id="'
+      - value: '"UNION"'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, affected_product Wordpress,
+        affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2011_03_04,
+        deployment Datacenter, signature_severity Major, tag SQL_Injection, tag Wordpress,
+        updated_at 2020_09_13
+      msg: '"ET WEB_SPECIFIC_APPS IWantOneButton Wordpress SQL Injection Attempt updateAJAX.php
+        post_id UNION SELECT"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,htbridge.ch/advisory/sql_injection_in_iwantonebutton_wordpress_plugin.html
+      rev: '2'
+      sid: '2012413'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

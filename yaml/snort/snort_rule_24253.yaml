@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<html><head><meta http-equiv=|22|refresh"'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE IP only webpage redirect attempt"'
+      pcre: '"/^[^>]*\x2f\x2f\d{1,3}\x2e\d{1,3}\x2e\d{1,3}\x2e\d{1,3}/Rs"'
+      rev: '7'
+      service: http
+      sid: '24253'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

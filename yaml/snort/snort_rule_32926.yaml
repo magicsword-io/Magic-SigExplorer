@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|15 02 14 17 08 09 14 02 67 75 77 77 67 08 0C 66 66 66|",depth 22'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Win.Trojan.Wiper listener download attempt"'
+      reference: url,us-cert.gov/ncas/alerts/TA14-353A
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '32926'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

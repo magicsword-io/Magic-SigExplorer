@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/index.shtml"'
+      - value: '"Host|3a 20|"'
+      - value: '"b4secure.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_31, former_category POLICY, malware_family
+        Emissary, malware_family Lotus_Blossom, signature_severity Informational,
+        updated_at 2020_08_03
+      msg: '"ET POLICY External IP Address Lookup - b4secure .com"'
+      pcre: '"/^Host\x3a[^\r\n]+(?:www\.)?b4secure\.com\r$/Hmi"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/10/unit42-psa-conference-invite-used-lure-operation-lotus-blossom-actors/
+      rev: '1'
+      sid: '2023469'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - fast_pattern
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

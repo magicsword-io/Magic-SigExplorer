@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"/webdynpro/resources/"'
+      - value: '"/JWFTestAddAssignees#"'
+      flow: to_server,established
+      metadata: attack_target Web_Server, created_at 2022_08_31, cve CVE_2016_2388,
+        deployment Perimeter, deployment SSLDecrypt, former_category INFO, signature_severity
+        Informational, updated_at 2022_08_31
+      msg: '"ET WEB_SPECIFIC_APPS Vulnerable SAP NetWeaver Path Observed - Information
+        Disclosure (CVE-2016-2388)"'
+      reference: cve,2016-2388
+      rev: '2'
+      sid: '2038697'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

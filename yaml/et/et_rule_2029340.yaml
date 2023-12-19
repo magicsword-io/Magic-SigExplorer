@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        value: '"|15|"'
+      - value: '"|00 02 02 28|"'
+      distance: '2'
+      dsize: '7'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_01_30, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2020_01_30
+      msg: '"ET INFO TLS Handshake Failure"'
+      rev: '2'
+      sid: '2029340'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

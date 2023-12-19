@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Mozilla/4.0 (compatible|3B| MSIE 8.0|3B| Windows NT 6.1|3B| Trident/4.0|3B|
+          SLCC2|3B| .NET CLR 2.0.50727|3B| .NET CLR 3.5.30729|3B| .NET CLR 3.0.30729|3B|
+          Media Center PC 6.0)"'
+      - value: '"oprat=",depth 6'
+      - value: '"&uinfo=",within 10,distance 23'
+      - value: '"&win=",distance 0'
+      - value: '"&vers=",within 6,distance 3'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Poseidon outbound connection"'
+      reference: url,blogs.cisco.com/security/talos/poseidon
+      rev: '3'
+      service: http
+      sid: '33852'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

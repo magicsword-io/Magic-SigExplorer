@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Cpa=+EXEC+",depth 10'
+      - value: '"%27%2C%27"'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.HW32 variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/0b2e8a9413d3b34d532d553922bd402830c1784302fc8ecaeeee17e826798d46/analysis/
+      rev: '2'
+      service: http
+      sid: '46129'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

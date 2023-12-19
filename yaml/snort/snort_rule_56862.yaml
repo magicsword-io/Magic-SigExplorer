@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|0D 0A 0D 0A|murica",fast_pattern,nocase'
+      - value: '!"|0D 0A|Referer:"'
+      - value: '!"|0D 0A|Accept"'
+      - value: '!"|0D 0A|Cookie:"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC MultiOS.Malware.GORAT outbound communication attempt"'
+      reference: url,fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56862'
+      special_options:
+      - http_method
+      - raw_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

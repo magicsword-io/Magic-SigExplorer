@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"|0d 0a|X-Sn|3a 20|"'
+      - value: '"|0d 0a|X-Session|3a 20|"'
+      - value: '"|0d 0a|X-Status|3a 20|"'
+      - value: '"|0d 0a|X-Size|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2014_06_06, former_category CURRENT_EVENTS, updated_at
+        2020_08_18
+      msg: '"ET TROJAN PlugX/Destory HTTP traffic"'
+      reference: url,circl.lu/pub/tr-24/
+      rev: '1'
+      sid: '2018541'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

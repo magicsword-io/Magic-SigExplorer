@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '82'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"script"'
+      - value: '"/proxy.php?"'
+      - value: '"url="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET WEB_SPECIFIC_APPS ClarkConnect Linux proxy.php XSS Attempt"'
+      pcre: '"/\/proxy\.php(\?|.*[\x26\x3B])url=[^&\'
+      reference: url,doc.emergingthreats.net/2010602
+      rev: '4'
+      sid: '2010602'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - \x0D\x0A]*[<>\"\']/i"
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

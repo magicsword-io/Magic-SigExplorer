@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|16|Splashtop Inc. Self CA"'
+      distance: '1'
+      flow: from_server,established
+      metadata: attack_target Client_and_Server, created_at 2021_08_06, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_08_06
+      msg: '"ET TROJAN Observed SSL/TLS Cert (Splashtop Remote Support)"'
+      rev: '1'
+      sid: '2033685'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

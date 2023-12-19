@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 0b|samane.site"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_17, former_category MOBILE_MALWARE, updated_at
+        2022_03_17
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Realrat.c (TLS SNI) 6"'
+      reference: md5,1cf18d4f51326c4409fccff0b05bd254
+      rev: '1'
+      sid: '2035495'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

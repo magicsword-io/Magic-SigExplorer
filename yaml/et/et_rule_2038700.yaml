@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|5f|agent|3d|agent|3b 20 5f|campaign|5f|product|5f|"'
+      - depth: '19'
+        offset: '36'
+        value: '"|3b 20 5f|trackid|5f|product|5f|"'
+      - value: '"|5f|agent|3d|agent|3b 20 5f|campaign|5f|product|5f|"'
+      - value: '"=activeinstall"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_31, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2022_08_31
+      msg: '"ET MALWARE Win32/ReImageRepair.T CnC Cookie Pattern"'
+      reference: md5,39fef85fe114d96dde745b8ce0659b2e
+      rev: '1'
+      sid: '2038700'
+      special_options:
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      within: '18'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

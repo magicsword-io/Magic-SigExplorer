@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"|0d 0a|Content-Length|3a 20|0|0d 0a|"'
+      - value: '"|0d 0a|location|3a 20|"'
+      flow: to_client,established
+      flowbits: isset,ET.wpphish
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Client_Endpoint, created_at 2016_01_08, deployment Perimeter, deployment Datacenter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, tag Wordpress,
+        updated_at 2020_11_04, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access,
+        mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Suspicious Wordpress Redirect - Possible Phishing Landing
+        Jan 7 2016"'
+      pcre: '"/^[a-f0-9]{32}(?:\/index\.php)?\x0d\x0a/R"'
+      rev: '3'
+      sid: '2025671'
+      special_options:
+      - http_stat_code
+      - http_header
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

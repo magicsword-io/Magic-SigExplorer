@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/bot"'
+      - value: '"/sendDocument"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|document|22
+          3b 20|filename|3d 22|"'
+      - value: '".zip|22 0d 0a|Content-Type: application/x-zip-compressed|0d 0a 0d
+          0a 37 7a bc af 27 1c|"'
+      - value: '"Content-Type|3a 20|multipart|2f|form|2d|data|3b 20|boundary|3d 2d
+          2d 2d 2d|WebKitFormBoundaryovEAlxca0DiIz7tl|0d 0a|"'
+      distance: '36'
+      flow: established,to_server
+      metadata: created_at 2022_06_17, updated_at 2022_06_17
+      msg: '"ET TROJAN CopperStealer - Browser Stealer Exfil via Telegram"'
+      pcre: '"/\/sendDocument$/U"'
+      reference: url,www.trendmicro.com/en_us/research/22/f/websites-hosting-fake-cracks-spread-updated-copperstealer.html
+      rev: '1'
+      sid: '2037027'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      within: '85'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

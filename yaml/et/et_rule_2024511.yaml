@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|00 01 ff ff|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2017_08_02, deployment Internal, former_category
+        DOS, performance_impact Significant, signature_severity Major, updated_at
+        2017_08_03
+      msg: '"ET DOS SMBLoris NBSS Length Mem Exhaustion Attempt (PoC Based)"'
+      reference: url,isc.sans.edu/forums/diary/SMBLoris+the+new+SMB+flaw/22662/
+      rev: '2'
+      sid: '2024511'
+      threshold: type both,track by_dst,count 30, seconds 300
+    protocol: tcp
+    source:
+      network: any
+      port: any

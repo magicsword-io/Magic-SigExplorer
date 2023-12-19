@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!&,8,3
+      classtype: attempted-user
+      contents:
+      - depth: '2'
+        offset: '4'
+        value: '"|00 01|"'
+      - value: '"|00 00 01 00 01|"'
+      flow: from_server
+      isdataat: '2049'
+      metadata: created_at 2016_02_18, cve CVE_2015_7547, updated_at 2016_02_18
+      msg: '"ET EXPLOIT Possible CVE-2015-7547 Long Response to A lookup"'
+      pcre: '"/^.{6}[^\x00]+/Rs"'
+      reference: cve,2015-7547
+      rev: '1'
+      sid: '2022543'
+      within: '5'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

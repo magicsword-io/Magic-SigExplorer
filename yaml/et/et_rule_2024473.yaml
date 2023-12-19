@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|bowenpress|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_18, deployment Perimeter, former_category
+        TROJAN, performance_impact Moderate, signature_severity Major, updated_at
+        2020_09_17
+      msg: '"ET TROJAN CDT Credphish/Netwire Campaign DNS Lookup"'
+      reference: url,citizenlab.ca/2017/07/insider-information-an-intrusion-campaign-targeting-chinese-language-news-sites
+      rev: '2'
+      sid: '2024473'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

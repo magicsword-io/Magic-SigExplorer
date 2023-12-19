@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"function Invoke-"'
+      - value: '"|0a 7b 0a 3c 23 0a 2e 53 59 4e 4f 50 53 49 53 0a|"'
+      - value: '"|0a|PowerSploit Function|3a 20|"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2015_12_24, updated_at 2015_12_24
+      msg: '"ET TROJAN Powersploit Framework Script Downloaded"'
+      reference: md5,0aa391dc6d9ebec2f5d0ee6b4a4ba1fa
+      rev: '1'
+      sid: '2022309'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

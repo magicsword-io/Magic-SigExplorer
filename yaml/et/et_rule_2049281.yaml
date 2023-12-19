@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"|2e|"'
+      - depth: '8'
+        value: '"|7b 22 75 69 64 22 3a 22|"'
+      - value: '"|22 2c 20 22 6d 69 64 22 3a 22|"'
+      - value: '"|22 2c 20 22 64 61 74 61 22 3a 22 7c|"'
+      - value: '"|7c 53 79 73 74 65 6d 7c|"'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_22, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_11_22
+      msg: '"ET TROJAN TA444 Related JS Activity Sending Windows System Process Information
+        (POST)"'
+      reference: md5,31af7ca58c844bdc40d367ff91ee55f7
+      rev: '1'
+      sid: '2049281'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '36'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

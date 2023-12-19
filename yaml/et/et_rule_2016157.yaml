@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/mail/filters/editfilter.html?"'
+      - value: '"account="'
+      - value: '"filtername="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_01_05, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS WHM filtername Parameter Cross Site Scripting Attempt"'
+      pcre: '"/filtername\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|error|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,securityfocus.com/bid/57061
+      rev: '2'
+      sid: '2016157'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

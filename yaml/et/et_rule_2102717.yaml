@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_rectifier_diff.differences"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2019_10_08
+      msg: '"GPL SQL dbms_rectifier_diff.differences buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1075,}\x27|\x22[^\x22]{1075,}\x22)[\r\n\s]*\x3b.*(missing_rows_oname1|missing_rows_oname2)[\r\n\s]*=>[\r\n\s]*\2|(missing_rows_oname1|missing_rows_oname2)\s*=>\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})|\(\s*((\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*){9}(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})|\(\s*((\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*){10}(\x27[^\x27]{1075,}|\x22[^\x22]{1075,}))/si"'
+      reference: url,www.appsecinc.com/resources/alerts/oracle/2004-0001/25.html
+      rev: '3'
+      sid: '2102717'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<input type=password name=pass style=''background-color:whitesmoke|3b|border:1px
+          solid #FFF|3b|outline:none|3b|'' required>"'
+      - value: '"<input type=submit name=''watching'' value=''>>'' style="'
+      distance: '0'
+      fast_pattern: 19,20
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_14, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_04_14
+      msg: '"ET WEB_SERVER Generic Webshell Password Prompt Accessed on Internal Compromised
+        Server"'
+      rev: '2'
+      sid: '2029909'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/process.php?xy="'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_03_12, former_category MALWARE, updated_at 2020_09_25
+      msg: '"ET TROJAN vSkimmer.PoS Checkin"'
+      reference: url,anubis.iseclab.org/action=result&task_id=1b92f08cdbfb73e64450fd07ec88849b3
+      rev: '4'
+      sid: '2018109'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

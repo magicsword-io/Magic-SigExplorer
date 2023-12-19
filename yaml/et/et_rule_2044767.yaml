@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,26,465,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|"'
+      - value: '"|20 7c 20|Snake Tracker|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_27, deployment Perimeter, former_category
+        MALWARE, malware_family Snake_Keylogger, performance_impact Low, signature_severity
+        Critical, updated_at 2023_03_27
+      msg: '"ET TROJAN Snake Keylogger Exfil via SMTP"'
+      reference: md5,b8eb18c7a33fec016ff3c1777f3819c2
+      rev: '1'
+      sid: '2044767'
+      special_options:
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

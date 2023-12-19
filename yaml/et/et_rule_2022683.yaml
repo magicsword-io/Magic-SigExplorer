@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|3d 30 78 30 36 2c 30 78 30 32 2c 30 78 30 30 2c 30 78 30 30|"'
+      - value: '"|2c 3c 62 72 3e 30 78|"'
+      - value: '"|2c 3c 62 72 3e 30 78|"'
+      - value: '"|2c 3c 62 72 3e 30 78|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_03_29, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family CryptFile2, signature_severity
+        Major, tag Ransomware, updated_at 2020_08_03, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Win32/CryptFile2 Ransomware Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: md5,5bb7d85f7a5f1d2b01efabe5635e2992
+      rev: '6'
+      sid: '2022683'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

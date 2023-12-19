@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/d/processhider.c"'
+      - value: '"User-Agent|3a 20|curl/"'
+      - value: '"Host|3a 20|m.windowsupdatesupport.org|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_08, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2021_06_08
+      msg: '"ET INFO Unix/Linux Processhider Source Being Downloaded"'
+      reference: url,twitter.com/JAMESWT_MHT/status/1402239031602302983
+      rev: '1'
+      sid: '2033117'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '17'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

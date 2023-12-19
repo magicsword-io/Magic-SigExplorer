@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|07|Unknown"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|07|Unknown"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|07|Unknown"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|09|Send-Safe"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|07|Unknown"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|09|Send-Safe"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_11_30, deployment Perimeter,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_03_23
+      msg: '"ET TROJAN Send-Safe Bulk Mailer SSL Cert - Observed in Spam Campaigns"'
+      reference: md5,837c7af7f376722a0315cb0a7cb12399
+      rev: '2'
+      sid: '2022194'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

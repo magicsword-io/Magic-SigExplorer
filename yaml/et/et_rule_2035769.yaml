@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"4D5A"'
+      - value: '"63616E6E6F74"'
+      - value: '"72756E"'
+      - value: '"444F53"'
+      distance: '8'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_06, deployment Perimeter, former_category
+        HUNTING, signature_severity Minor, updated_at 2022_04_06
+      msg: '"ET INFO [TW] Likely Hex Executable String"'
+      rev: '1'
+      sid: '2035769'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

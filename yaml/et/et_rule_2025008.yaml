@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '9'
+        value: '"|05 00 00 00 00 ff ff ff ff|"'
+      dsize: '9'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_11_16, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Informational, tag RemoteAccessTool,
+        updated_at 2023_05_09
+      msg: '"ET POLICY PTsecurity Remote Desktop AeroAdmin Server Hello"'
+      reference: md5,fa6ad2e8eef98abc0bbb252ff994a38d
+      rev: '2'
+      sid: '2025008'
+      special_options:
+      - fast_pattern
+      stream_size: server,=,10
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

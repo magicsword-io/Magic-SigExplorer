@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|empty"'
+      - value: '"|0C|explorer_exe"'
+      distance: '0'
+      metadata: created_at 2011_09_02, former_category MALWARE, updated_at 2020_09_01
+      msg: '"ET TROJAN TR/Spy.Gen checkin via dns ANY query"'
+      reference: md5,2519bdb5459bc9f59f59cd7ccb147d23
+      rev: '2'
+      sid: '2013516'
+      special_options:
+      - nocase
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

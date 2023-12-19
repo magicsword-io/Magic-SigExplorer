@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"exe=http://"'
+      - value: '"|2e|exe|3b|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_17, deployment Perimeter, former_category
+        TROJAN, performance_impact Moderate, signature_severity Major, updated_at
+        2020_08_25
+      msg: '"ET TROJAN Quant Loader Download Response M2"'
+      reference: md5,aa0b114a64683d89f62d26a088e164f6
+      rev: '2'
+      sid: '2024206'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

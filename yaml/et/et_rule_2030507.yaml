@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Microsoft Office Protocol Discovery|0d 0a|"'
+      fast_pattern: 29,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_14, deployment Perimeter, signature_severity
+        Informational, updated_at 2020_07_14
+      msg: '"ET INFO Possible Malicious Document Request to ChangeIP Dynamic DNS Domain"'
+      pcre: '"/\.(?:m(?:y(?:p(?:op3\.(?:net|org)|icture\.info)|n(?:etav\.(?:net|org)|umber\.org)|(?:secondarydns|lftv|03)\.com|d(?:ad\.info|dns\.com)|ftp\.(?:info|name)|(?:mom|z)\.info|www\.biz)|(?:r(?:b(?:asic|onus)|(?:slov|fac)e)|efound)\.com|oneyhome\.biz)|d(?:yn(?:amicdns\.(?:(?:org|co|me)\.uk|biz)|dns\.pro|ssl\.com)|ns(?:(?:-(?:stuff|dns)|0[45]|et|rd)\.com|[12]\.us)|dns\.(?:m(?:e\.uk|obi|s)|info|name|us)|(?:smtp|umb1)\.com|hcp\.biz)|(?:j(?:u(?:ngleheart|stdied)|etos|kub)|y(?:ou(?:dontcare|rtrap)|gto)|4(?:mydomain|dq|pu)|q(?:high|poe)|2(?:waky|5u)|z(?:yns|zux)|vizvaz|1dumb)\.com|s(?:e(?:(?:llclassics|rveusers?|ndsmtp)\.com|x(?:idude\.com|xxy\.biz))|quirly\.info|sl443\.org|ixth\.biz)|o(?:n(?:mypc\.(?:info|biz|net|org|us)|edumb\.com)|(?:(?:urhobb|cr)y|rganiccrap|tzo)\.com)|f(?:ree(?:(?:ddns|tcp)\.com|www\.(?:info|biz))|a(?:qserv|rtit)\.com|tp(?:server|1)\.biz)|a(?:(?:(?:lmostm|cmeto)y|mericanunfinished)\.com|uthorizeddns\.(?:net|org|us))|n(?:s(?:0(?:1\.(?:info|biz|us)|2\.(?:info|biz|us))|[123]\.name)|inth\.biz)|c(?:hangeip\.(?:n(?:ame|et)|org)|leansite\.(?:info|biz|us)|ompress\.to)|i(?:(?:t(?:emdb|saol)|nstanthq|sasecret|kwb)\.com|ownyour\.(?:biz|org))|g(?:r8(?:domain|name)\.biz|ettrials\.com|ot-game\.org)|l(?:flink(?:up\.(?:com|net|org)|\.com)|ongmusic\.com)|t(?:o(?:ythieves\.com|h\.info)|rickip\.(?:net|org))|(?:undefineddynamic-dns|rebatesrule|3-a)\.net|x(?:x(?:xy\.(?:info|biz)|uz\.com)|24hr\.com)|p(?:canywhere\.net|roxydns\.com|ort25\.biz)|w(?:ww(?:host|1)\.biz|ikaba\.com|ha\.la)|e(?:(?:smtp|dns)\.biz|zua\.com|pac\.to)|https443\.(?:net|org)|bigmoney\.biz)(?:\x3a\d{1,5})?$/Hm"'
+      rev: '2'
+      sid: '2030507'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

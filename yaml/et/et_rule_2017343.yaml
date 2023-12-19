@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        value: '"pcname="'
+      - value: '"&note="'
+      - value: '"&country="'
+      - value: '"&user="'
+      - value: '"&log="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_08_19, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN W32/Spy.KeyLogger.OCI CnC Checkin"'
+      reference: url,www.virustotal.com/en/file/ec19e12e5dafc7aafaa0f582cd714ee5aa3615b89fe2f36f7851d96ec55e3344/analysis/
+      rev: '1'
+      sid: '2017343'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

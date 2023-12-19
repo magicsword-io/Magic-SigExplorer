@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"200"'
+      - value: '"|20|id=|22|L_p|22|"'
+      - value: '"Program</span>"'
+      - value: '"|22|xpath|22 20|type=|22|text|22 20|value=|22|c|3a 5c|windows|5c|system32|5c|cmd.exe|22|"'
+      - value: '"|22|xcmd|22 20|type=|22|text|22 20|value=|22|/c net user|22 20|id=|22|xcmd|22|"'
+      distance: '0'
+      fast_pattern: 30,20
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2022_10_03, deployment Perimeter,
+        former_category WEB_SERVER, signature_severity Major, updated_at 2022_10_03
+      msg: '"ET WEB_SERVER Suspected Generic Webshell Activity (Outbound)"'
+      reference: url,symantec-enterprise-blogs.security.com/blogs/threat-intelligence/witchetty-steganography-espionage
+      rev: '1'
+      sid: '2039079'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

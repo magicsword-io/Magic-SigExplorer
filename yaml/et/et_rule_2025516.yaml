@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Bank of America|20 7c 20|Online Banking|20 7c 20|Sign In|20
+          7c 20|Online ID"'
+      - value: '"content=|22|WYSIWYG Web Builder"'
+      - value: '"href=|22|css/Untitled1.css"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_04_19, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_04_19
+      msg: '"ET CURRENT_EVENTS Bank of America Phishing Landing 2018-04-19"'
+      rev: '2'
+      sid: '2025516'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

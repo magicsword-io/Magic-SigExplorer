@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '13180'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"|fa e5 f9 fe 8a 85 c9 c6 c3 cf c4 de 85 c6 c5 cd c3 c4 95 dc cf d8
+          97|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Minor, updated_at 2023_03_06
+      msg: '"ET MALWARE Win32/Pearfoos.B!ml Checkin"'
+      reference: md5,9f52d77ef7287902c0fe86b92ea9078b
+      rev: '1'
+      sid: '2044452'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

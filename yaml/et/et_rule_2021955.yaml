@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%PDF-"'
+      flow: from_server,established
+      flowbits: isset,ET.nemucod.pdfrequest
+      metadata: created_at 2015_10_15, updated_at 2015_10_15
+      msg: '"ET TROJAN JS/Nemucod.M.gen downloading PDF payload"'
+      reference: md5,0bc86ab7ead67e264531ccb16c3c529a
+      rev: '1'
+      sid: '2021955'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

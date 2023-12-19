@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/user/login"'
+      - value: '"Content-Type|3a 20|application/vnd.php.serialized|0d 0a|"'
+      - value: '"username"'
+      - value: '"SelectQuery"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Drupal_Server, attack_target Server, created_at 2017_03_08,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Moderate, signature_severity Minor, updated_at 2020_10_08
+      msg: '"ET WEB_SPECIFIC_APPS Possible Drupal Object Unserialize Exploit Attempt"'
+      reference: url,www.ambionics.io/blog/drupal-services-module-rce
+      rev: '1'
+      sid: '2024039'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

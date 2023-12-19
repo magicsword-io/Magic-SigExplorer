@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '40'
+        offset: '30'
+        value: '"|3c|title|3e 0a|Exploit|0a 3c 2f|title|3e|"'
+      - value: '"|3c|script|3e 0a 2f 2f|"'
+      - value: '"window|2e|location|2e|href|20 3d 20 22|ms|2d|msdt|3a|"'
+      distance: '0'
+      fast_pattern: 4,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_23, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2022_09_23
+      msg: '"ET ATTACK_RESPONSE MalDoc/Generik.ILNMZZB Payload Inbound"'
+      reference: url,twitter.com/h2jazi/status/1570246175747457026
+      rev: '1'
+      sid: '2038959'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

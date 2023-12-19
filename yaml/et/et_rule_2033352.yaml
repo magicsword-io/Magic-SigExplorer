@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/man.cgi?redirect=setting.htm"'
+      - value: '"TF_port=|2f 22 3e 3c|img|20|src|3d 22 23 22 3e|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_16, cve CVE_2021_31250,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, updated_at
+        2021_07_16
+      msg: '"ET EXPLOIT Stored XSS Vulnerability CVE-2021-31250 M4"'
+      reference: url,packetstormsecurity.com/files/162887/CHIYU-IoT-Cross-Site-Scripting.html
+      rev: '1'
+      sid: '2033352'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?cx="'
+      - value: '"&b="'
+      - value: '"&gt="'
+      - value: '"&tx="'
+      - value: '"|0d 0a|Content-Length|3a 20|0|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_21, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_11_09
+      msg: '"ET TROJAN W32/Patchwork.Backdoor Communicating with CnC"'
+      pcre: '"/\.php\?cx=[A-F0-9]+&b=[A-F0-9]+&gt=[A-F0-9]+&tx=[A-F0-9]+$/Ui"'
+      reference: md5,ddeabe234c4084ba379cf3be4fdf503d
+      rev: '3'
+      sid: '2025163'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

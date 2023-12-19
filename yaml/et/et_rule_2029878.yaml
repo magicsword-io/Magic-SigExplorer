@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Instagram Help Center</title>"'
+      - value: '"reviewed and decied your account complaited"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_04_10, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2020_04_10
+      msg: '"ET CURRENT_EVENTS Instagram Phishing Landing 2020-04-10"'
+      rev: '2'
+      sid: '2029878'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

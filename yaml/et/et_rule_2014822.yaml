@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-content/rss.php"'
+      - depth: '14'
+        value: '"UNIQUE_NUMBER="'
+      - value: '"&PASSWORD="'
+      - value: '"&ACTION="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_05_30, updated_at 2020_05_08
+      msg: '"ET TROJAN Possible SKyWIper/Win32.Flame POST"'
+      reference: url,blog.cuckoobox.org/2012/05/29/cuckoo-in-flame/
+      rev: '6'
+      sid: '2014822'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

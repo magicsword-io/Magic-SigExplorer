@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - depth: '2'
+        value: '"l="'
+      - value: '!"%"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_03, deployment Perimeter, former_category
+        MALWARE, malware_family Zebrocy, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_27
+      msg: '"ET TROJAN APT28/Sofacy Zebrocy Secondary Payload CnC Checkin"'
+      reference: md5,3773150aeee03783a6da0820a8feb752
+      rev: '2'
+      sid: '2026754'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

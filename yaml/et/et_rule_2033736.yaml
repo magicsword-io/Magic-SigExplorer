@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '"dpbmRvd3MgSVAgQ29uZmlndXJhdGlvbg0KDQogICBIb3N0IE5hbWUgLi"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_16, deployment Perimeter,
+        former_category HUNTING, performance_impact Low, signature_severity Informational,
+        updated_at 2021_08_16
+      msg: '"ET INFO Base64 Encoded Windows IP Configuration Output in HTTP POST M3"'
+      rev: '1'
+      sid: '2033736'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

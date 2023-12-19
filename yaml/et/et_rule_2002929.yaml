@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"param="'
+      - value: '"&socksport="'
+      - value: '"&httpport="'
+      - value: '"&uptime"'
+      - value: '"&uid="'
+      - value: '"&ver="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_18
+      msg: '"ET TROJAN Haxdoor Reporting User Activity 2"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2003-113016-1420-99&tabid=2
+      rev: '7'
+      sid: '2002929'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

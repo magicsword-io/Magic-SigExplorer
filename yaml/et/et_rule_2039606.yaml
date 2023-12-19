@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|e-demarches|05|kodeo|02|ch|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_31, deployment Perimeter, performance_impact
+        Low, signature_severity Major, updated_at 2022_10_31
+      msg: '"ET TROJAN Malicious Doc CnC Domain (e-demarches .kodeo .ch) in DNS Lookup"'
+      reference: md5,76ee96d37d492dddcd8b62a2a0c1e426
+      rev: '1'
+      sid: '2039606'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

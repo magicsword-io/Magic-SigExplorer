@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 03|"'
+      - value: '"|0c|alsalaf.info"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|55 04 03|"'
+      - value: '"|1a|Let''s Encrypt Authority X3"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_22, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, tag WRAT, updated_at 2021_02_22
+      msg: '"ET TROJAN SSL/TLS Certificate Observed (WRAT)"'
+      reference: md5,7831f12dac1d4ef7dcd6e3218b8dad68
+      rev: '2'
+      sid: '2031645'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

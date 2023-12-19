@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/index.php",nocase'
+      - value: '"ideaDir=",fast_pattern,nocase'
+      - value: '"cord.php",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP IdeaBox cord.php file include"'
+      reference: bugtraq,7488
+      rev: '11'
+      service: http
+      sid: '2353'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '20'
+        value: '"/declaration.php?id="'
+      - depth: '5'
+        value: '"name="'
+      - value: '"&count="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_18, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2022_02_18
+      msg: '"ET TROJAN Win32/Pterodo Activity (POST)"'
+      reference: url,raw.githubusercontent.com/pan-unit42/iocs/master/Gamaredon/2022_02_Gamaredon_UPDATE.txt
+      rev: '1'
+      sid: '2035219'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

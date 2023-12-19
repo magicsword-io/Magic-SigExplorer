@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/mod_articles-auth-",depth 19,fast_pattern'
+      - value: '"/jquery/",within 8,distance 7'
+      - value: '"Accept: */*|0D 0A|Connection|3A 20|Close|0D 0A|"'
+      - value: '"Cache-Control|3A 20|no-cache|0D 0A|"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zemot payload download attempt"'
+      reference: url,www.virustotal.com/en/file/8ba8292eaa47967618c2376afe524736f4fa7eec15ed9cca17abfca692d26fe4/analysis/
+      rev: '2'
+      service: http
+      sid: '32074'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

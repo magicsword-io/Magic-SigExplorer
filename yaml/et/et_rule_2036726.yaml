@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"location.href"'
+      - value: '"ms-msdt|3a|"'
+      flow: from_server,established
+      isdataat: '4096'
+      metadata: attack_target Server, created_at 2022_05_31, cve CVE_2022_30190, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_05_31
+      msg: '"ET EXPLOIT Possible Microsoft Support Diagnostic Tool Exploitation Inbound
+        (CVE-2022-30190)"'
+      pcre: '"/^\s*=\s*[\x22\x27]\s*ms-msdt\x3a/Ri"'
+      reference: cve,2022-30190
+      rev: '2'
+      sid: '2036726'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

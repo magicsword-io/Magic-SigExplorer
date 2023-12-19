@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A|ICQ"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_20
+      msg: '"GPL CHAT ICQ access"'
+      rev: '12'
+      sid: '2100541'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

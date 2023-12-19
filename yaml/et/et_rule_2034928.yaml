@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"http|2d|equiv|3d|refresh"'
+      - value: '"email="'
+      - value: '"&.rand=13InboxLight.aspx?n="'
+      - value: '"&fid="'
+      - value: '"n="'
+      - value: '"&fid="'
+      - value: '"&fav="'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_14, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS Generic Phish Landing Page 2022-01-14"'
+      reference: md5,43ac0c5346bf8aefc0068c30a34b7d39
+      rev: '2'
+      sid: '2034928'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

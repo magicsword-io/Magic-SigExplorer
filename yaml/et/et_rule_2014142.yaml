@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%PDF"'
+      - value: '"/Author (yvp devo)/Creator (bub lob)"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_01_23,
+        deployment Perimeter, former_category CURRENT_EVENTS, signature_severity Major,
+        tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS Likely Driveby Delivered Malicious PDF"'
+      rev: '3'
+      sid: '2014142'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

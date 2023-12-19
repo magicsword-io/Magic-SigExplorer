@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '15'
+      classtype: trojan-activity
+      contents:
+      - value: '"/news/index.php HTTP/1.1|0D 0A|Content-Type: application/octet-stream|0D
+          0A|Host: ",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      - value: '!"Referer:"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Necurs variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/565496cb40fc868d233dabfb1e178e8b9042d964cb1e4f5f3386a6db4f1cf30e/analysis/1400509611/
+      rev: '1'
+      service: http
+      sid: '31243'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

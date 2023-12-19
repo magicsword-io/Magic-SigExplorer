@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|dns-report|03|com|00|"'
+      - value: '"|00 00 00 00|"'
+      distance: '0'
+      metadata: created_at 2019_05_17, deployment Perimeter, former_category MALWARE,
+        performance_impact Low, signature_severity Informational, updated_at 2020_09_17
+      msg: '"ET POLICY Observed DNS Query to DynDNS Domain (dns-report .com)"'
+      pcre: '"/^(?:[\x01-\x20][a-z0-9\-]{1,60}){1,10}\x0adns-report\x03com\x00/R"'
+      rev: '2'
+      sid: '2027363'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

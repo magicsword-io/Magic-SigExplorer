@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b|jndi|3a|"'
+      - value: '"|3a 2f 2f|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_17, cve CVE_2021_44228, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_12_17
+      msg: '"ET EXPLOIT Apache log4j RCE Attempt - lower/upper TCP Bypass M2 (Outbound)
+        (CVE-2021-44228)"'
+      pcre: '"/^(l|r|d|\x24\x7b(lower|upper)\x3a(l|r|d)\x7d)(d|n|m|\x24\x7b(lower|upper)\x3a(d|n|m)\x7d)(a|i|s|\x24\x7b(lower|upper)\x3a(a|i|s)\x7d)(p|\x24\x7b(lower|upper)\x3a(p)\x7d)/Ri"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034800'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

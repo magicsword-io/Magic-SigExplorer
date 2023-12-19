@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '8'
+        value: '"PRIVMSG "'
+      - value: '" |3A|.DCC SEND"'
+      flow: to_server,established
+      flowbits: set,is_proto_irc
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL CHAT IRC DCC file transfer request"'
+      rev: '11'
+      sid: '2101639'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

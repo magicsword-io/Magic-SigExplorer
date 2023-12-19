@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/a/rep"'
+      - value: '"|20 28|unknown|20|version|29 20|CFNetwork|2f|"'
+      - value: '"Host|3a 20|m."'
+      - depth: '3'
+        value: '"smc"'
+      - value: '"$"'
+      - value: '"Content-Type|3a 20|charset=utf-8|0d 0a|"'
+      distance: '7'
+      flow: established,to_server
+      isdataat: 200,relative
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_08_11, deployment Perimeter, former_category MALWARE, malware_family
+        Adload, signature_severity Critical, updated_at 2023_08_11
+      msg: '"ET TROJAN MacOS/Adload CnC Beacon"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x20\x28unknown\x20version\x29\x20CFNetwork\x2f/Hmi"'
+      reference: url,cybersecurity.att.com/blogs/labs-research/mac-systems-turned-into-proxy-exit-nodes-by-adload
+      rev: '2'
+      sid: '2047628'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_header
+      threshold: type limit, count 1, seconds 600, track by_dst
+      urilen: '6'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length: 150|0D 0A|",fast_pattern,nocase'
+      - value: '"|0D 0A|",depth 2,offset 4'
+      - value: '"|0D 0A|",within 2,distance 4'
+      - value: '"|0D 0A|",within 2,distance 4'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dapato variant inbound response connection"'
+      pcre: '"/^([A-F0-9]{4})\r\n\1\r\n\1\r\n([A-F0-9]{26})\r\n[A-F0-9]{48}\r\n\2\r\n\2$/"'
+      reference: url,www.virustotal.com/en/file/111ffe389dc8fa802b8aff3b4e02a2f59d1b6492763f9dc5a20a84f4da46932a/analysis/
+      rev: '2'
+      service: http
+      sid: '27017'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

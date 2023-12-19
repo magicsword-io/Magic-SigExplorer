@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/search.php?"'
+      - value: '"search_user="'
+      - value: '"UNION"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_02
+      msg: '"ET WEB_SPECIFIC_APPS w-Agora SQL Injection Attempt -- search.php search_user
+        UNION SELECT"'
+      pcre: '"/UNION\s+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2004135
+      rev: '6'
+      sid: '2004135'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Code?sslchannel=true&sessionid="'
+      - value: '"type=|22|password|22|"'
+      - value: '"window.screen.availWidth"'
+      - value: '"window.screen.availHeight"'
+      - value: '"jscd.browser"'
+      - value: '"jscd.browserMajorVersion"'
+      - value: '"jscd.browserVersion"'
+      - value: '"jscd.os"'
+      - value: '"jscd.osVersion"'
+      - value: '"jscd.screen"'
+      - value: '"avail_res"'
+      - value: '"screen.colorDepth"'
+      - value: '"screen.deviceXDPI"'
+      - value: '"screen.deviceYDPI"'
+      - value: '"language"'
+      - value: '"jscd|2e|flashVersion|3b|"'
+      - value: '"navigator.javaEnabled()"'
+      - value: '"mime"'
+      - value: '"plugins"'
+      - value: '"listFonts().join('','')"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_13, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_13
+      msg: '"ET CURRENT_EVENTS Sparkasse Credential Phish Landing Page M2 2022-04-13"'
+      rev: '1'
+      sid: '2035936'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '45'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

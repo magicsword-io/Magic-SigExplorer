@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '".zip"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_06, deployment Perimeter,
+        former_category HUNTING, performance_impact Significant, signature_severity
+        Informational, updated_at 2023_02_06
+      msg: '"ET INFO Terse Request for Zip File (GET)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      rev: '1'
+      sid: '2044121'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - value: '"?p4="'
+      - value: '"&p5="'
+      - value: '"&hs="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_22
+      msg: '"ET TROJAN Gamania Trojan Check-in"'
+      pcre: '"/p4=\d+&p5=\d+&hs=\d/Ui"'
+      reference: url,doc.emergingthreats.net/2009531
+      rev: '9'
+      sid: '2009531'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

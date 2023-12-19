@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"X-Powered-By: PHP"'
+      - depth: '17'
+        value: '"PHPSESSID="'
+      - value: '"<title>404 Not Found</title><p>The requested URL was not found on
+          this server.</p>"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_08_11, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2023_05_03
+      msg: '"ET INFO Possible Fake 404 Credential Phish Landing Page"'
+      reference: url,github.com/phish-report/IOK
+      rev: '1'
+      sid: '2038494'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

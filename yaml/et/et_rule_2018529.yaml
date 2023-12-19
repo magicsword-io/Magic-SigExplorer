@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20 09 0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2014_06_04, former_category MALWARE, updated_at 2020_04_30
+      msg: '"ET TROJAN Soraya C2 User-Agent (x09)"'
+      reference: url,www.arbornetworks.com/asert/2014/06/the-best-of-both-worlds-soraya/
+      rev: '1'
+      sid: '2018529'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

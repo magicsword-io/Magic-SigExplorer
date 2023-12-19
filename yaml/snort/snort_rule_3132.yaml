@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,32767,0,relative
+      classtype: attempted-user
+      contents:
+      - value: '"|89|PNG|0D 0A 1A 0A|"'
+      - value: '"IHDR",within 8'
+      flow: to_client,established
+      flowbits: isset,file.png
+      metadata: ruleset community
+      msg: '"FILE-IMAGE Microsoft and libpng multiple products PNG large image width
+        overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS05-009
+      rev: '15'
+      service: ftp-data,http,imap,pop3
+      sid: '3132'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

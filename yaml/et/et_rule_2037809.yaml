@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"/extr/wave.php?st="'
+      - value: '"|2a|"'
+      - value: '"User-Agent|3a 20|Windows Installer|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_07_22, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_07_22
+      msg: '"ET TROJAN Bitter APT Payload Request"'
+      reference: url,twitter.com/RedDrip7/status/1536989979229835265
+      rev: '1'
+      sid: '2037809'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

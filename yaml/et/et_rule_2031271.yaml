@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"c99shell</title>"'
+      - value: '"<b>C99Shell v. "'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_12_08, deployment Perimeter, signature_severity Major, updated_at
+        2020_12_08
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2031271'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

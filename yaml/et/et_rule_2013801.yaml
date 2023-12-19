@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - depth: '170'
+        value: '"|63 68 72 6F 6D 6F 74 69 6E 67|"'
+      - value: '"|63 68 72 6F 6D 6F 74 69 6E 67|"'
+      distance: '39'
+      metadata: created_at 2011_10_26, updated_at 2016_08_09
+      msg: '"ET POLICY Incoming Chromoting Session Response"'
+      reference: url,xinn.org/Chromoting.html
+      rev: '4'
+      sid: '2013801'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|ml|00|"'
+      distance: '0'
+      metadata: created_at 2017_12_03, former_category INFO, signature_severity Informational,
+        updated_at 2020_09_16
+      msg: '"ET INFO DNS Query for Suspicious .ml Domain"'
+      rev: '5'
+      sid: '2025106'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type limit, count 1, track by_src, seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

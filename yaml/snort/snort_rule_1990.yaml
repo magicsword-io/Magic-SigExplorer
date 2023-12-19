@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1863'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"CAL ",depth 4,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Microsoft MSN user search"'
+      rev: '7'
+      sid: '1990'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1434'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|04|",depth 1'
+      - value: '"|81 F1 03 01 04 9B 81 F1|",fast_pattern,nocase'
+      - value: '"sock"'
+      - value: '"send"'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SQL Worm propagation attempt OUTBOUND"'
+      reference: url,vil.nai.com/vil/content/v_99992.htm
+      rev: '15'
+      sid: '2004'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '13'
+      classtype: trojan-activity
+      contents:
+      - value: '"/webstat/?i=",depth 12,fast_pattern'
+      - value: '"User-Agent: Mozilla/7"'
+      - value: '"|3B 20|MSIE|20|",distance 0'
+      - value: '!"Accept-Encoding:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      rev: '2'
+      service: http
+      sid: '29127'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

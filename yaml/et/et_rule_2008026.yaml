@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"BAGLANTI?"'
+      dsize: '9'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C Keepalive (BAGLANTI)"'
+      reference: url,doc.emergingthreats.net/2008026
+      rev: '3'
+      sid: '2008026'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

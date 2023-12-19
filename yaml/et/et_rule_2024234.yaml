@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8082'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/report-email/send"'
+      - value: '"/dev-report-overview.html"'
+      - value: '"|3B|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product HTTP_Server, attack_target Web_Server, created_at
+        2017_04_21, cve CVE_2016_9091, deployment Internal, former_category EXPLOIT,
+        performance_impact Moderate, signature_severity Major, updated_at 2020_08_05
+      msg: '"ET EXPLOIT BlueCoat CAS v1.3.7.1 Report Email Command Injection attempt"'
+      pcre: '"/\/dev-report-overview\.html[^\"]*?\x3b/Pi"'
+      reference: url,bto.bluecoat.com/security-advisory/sa138
+      rev: '1'
+      sid: '2024234'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3a 20|RE9ORQ==|0d 0a|"'
+      flow: established,to_client
+      flowbits: isset,ET.IIS-Raid.INJ
+      metadata: attack_target Web_Server, created_at 2023_06_09, deployment Perimeter,
+        deployment Internal, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Critical, updated_at 2023_06_09
+      msg: '"ET TROJAN IIS-Raid Module Backdoor - Successful INJ Command in HTTP Response"'
+      reference: url,github.com/0x09AL/IIS-Raid
+      rev: '1'
+      sid: '2046177'
+      special_options:
+      - http_stat_code
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

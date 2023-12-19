@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|5C 00 5C 00|*|00|S|00|M|00|B|00|S|00|E|00|R|00|V|00|E|00|R|00 00
+          00 00 00 01 00 00 00 01 00 00 00 00 00 00 00 FF FF FF FF 00 00 00 00|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DOS RFPoison"'
+      reference: arachnids,454
+      rev: '8'
+      sid: '2100529'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|AU"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|05|Hello"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|05|China"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|09|Microsoft"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|06|dirweb"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|2a|secfire/emailAddress=iunkown1987@gmail.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2020_12_22, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2020_12_22, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (PhantomNet/Smanager CnC)"'
+      reference: url,insight-jp.nttsecurity.com/post/102glv5/pandas-new-arsenal-part-3-smanager
+      rev: '2'
+      sid: '2031448'
+      special_options:
+      - fast_pattern
+      within: '43'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

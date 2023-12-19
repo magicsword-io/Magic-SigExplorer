@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '119'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"sendsys",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-NNTP sendsys overflow attempt"'
+      pcre: '"/^sendsys\x3a[^\n]{21}/ims"'
+      reference: nessus,11984
+      rev: '13'
+      sid: '2424'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

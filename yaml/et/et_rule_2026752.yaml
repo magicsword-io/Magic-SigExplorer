@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?id_name="'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - depth: '7'
+        value: '"attach="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_03, deployment Perimeter, former_category
+        MALWARE, malware_family Sofacy, malware_family Zebrocy, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN APT28/Sofacy Zebrocy Go Variant CnC Activity"'
+      reference: md5,400a162a9e5946be10b9fd7155a9ee48
+      rev: '2'
+      sid: '2026752'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

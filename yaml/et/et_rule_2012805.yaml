@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/admin/upload-controler.php?"'
+      - value: '"atm-regen="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: created_at 2011_05_14, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS Automne upload-controler.php Arbitrary File Upload
+        Vulnerability"'
+      reference: url,securelist.com/en/advisories/43589
+      rev: '3'
+      sid: '2012805'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

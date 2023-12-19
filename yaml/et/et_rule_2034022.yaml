@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"=bmFtZT"'
+      - value: '"User-Agent|3a 20|REBOL"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_24, deployment Perimeter, former_category
+        MALWARE, malware_family MirrorBlast, performance_impact Low, signature_severity
+        Major, updated_at 2021_09_24
+      msg: '"ET TROJAN MirrorBlast CnC Activity M2"'
+      pcre: '"/bmFtZT.{0,200}(?:JmJ1aWxkP|YnVpbGQ9|ZidWlsZD)/U"'
+      reference: md5,6b59a4657eb90d92590f5a183d9d1e77
+      rev: '2'
+      sid: '2034022'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

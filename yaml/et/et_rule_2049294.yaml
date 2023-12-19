@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -25
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"sync.oystergardens.club"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_23, deployment Perimeter, malware_family
+        SocGholish, performance_impact Low, confidence High, signature_severity Critical,
+        updated_at 2023_11_23
+      msg: '"ET TROJAN SocGholish CnC Domain in TLS SNI (* .sync .oystergardens .club)"'
+      pcre: '"/^(?:\x00\x17|.\x2e)sync\.oystergardens\.club/R"'
+      reference: url,infosec.exchange/@monitorsg/111460031615803764
+      rev: '1'
+      sid: '2049294'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

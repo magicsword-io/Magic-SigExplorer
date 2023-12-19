@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Host|3a| "'
+      - value: '".3322.org.cn|0D 0A|"'
+      flow: to_server,established
+      metadata: created_at 2012_02_28, updated_at 2020_05_08
+      msg: '"ET INFO HTTP Request to a 3322.org.cn Domain"'
+      rev: '2'
+      sid: '2014289'
+      special_options:
+      - http_header
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

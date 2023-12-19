@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"&os="'
+      - value: '"&bot_id="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_04_06, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2020_09_18, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Revoyem Ransomware Check-in"'
+      pcre: '"/\.php\?id=[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}&os=\d\.\d[^&]*&bot_id=/U"'
+      reference: url,www.botnets.fr/index.php/Revoyem
+      rev: '3'
+      sid: '2016731'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

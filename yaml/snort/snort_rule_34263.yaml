@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <64
+      classtype: trojan-activity
+      contents:
+      - value: '"/upload/module"'
+      - value: '"build.tgz",within 9,distance 32'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Linux.Trojan.XORDDoS outbound connection"'
+      reference: url,www.virustotal.com/en/file/92a260d856e00056469fb26f5305a37f6ab443d735d1476281b053b10b3c4f86/analysis/
+      rev: '3'
+      service: http
+      sid: '34263'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

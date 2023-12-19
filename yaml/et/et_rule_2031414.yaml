@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"$(''#password'').keyup("'
+      - value: '"$(''#Tombol1'').click("'
+      - value: '"data: { u : email, p : password_v"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_12_16, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_12_16
+      msg: '"ET CURRENT_EVENTS Generic Tombol Microsoft Account Phishing Landing 2020-12-16"'
+      rev: '2'
+      sid: '2031414'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

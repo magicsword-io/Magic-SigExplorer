@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/r0/index.php"'
+      - value: '"Mozilla/5.0 (Windows NT 6.3|3b 20|rv|3a|36.0) Gecko/20100101 Firefox/36.0"'
+      - value: '"Expect|3a 20|100-continue"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: created_at 2015_09_25, former_category MALWARE, updated_at 2020_06_01
+      msg: '"ET TROJAN r0 CnC POST"'
+      reference: url,blog.cari.net/carisirt-defaulting-on-passwords-part-1-r0_bot/
+      rev: '1'
+      sid: '2021839'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

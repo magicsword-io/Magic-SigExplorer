@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"User-Agent|3a 20|struts-pwn"'
+      flow: established,to_server
+      metadata: affected_product Apache_Struts2, attack_target Web_Server, created_at
+        2017_10_16, cve CVE_2017_9805, deployment Datacenter, former_category SCAN,
+        performance_impact Moderate, signature_severity Minor, updated_at 2022_04_18
+      msg: '"ET SCAN struts-pwn User-Agent"'
+      reference: url,paladion.net/paladion-cyber-labs-discovers-a-new-ransomware/
+      rev: '2'
+      sid: '2024843'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

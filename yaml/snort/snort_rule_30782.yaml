@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 2,0,relative
+      byte_test: 2,>,128,0,relative
+      classtype: attempted-recon
+      contents:
+      - value: '"|17 03 02|"'
+      - value: '"|18 03 02|",within 3,fast_pattern'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-OTHER OpenSSL TLSv1.1 large heartbeat response - possible ssl
+        heartbleed attempt"'
+      reference: cve,2014-0160
+      rev: '4'
+      service: ssl
+      sid: '30782'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '[21,25,443,465,636,992,993,995,2484]'

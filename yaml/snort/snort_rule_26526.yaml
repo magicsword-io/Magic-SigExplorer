@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"MZ",depth 2'
+      - value: '"|2F 2A 14 20|",distance 0'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Portable Executable downloaded with bad DOS stub"'
+      reference: url,www.invincea.com/2013/04/k-i-a-java-cve-2013-2423-via-new-and-improved-cool-ek/
+      rev: '6'
+      service: ftp-data,http,imap,pop3
+      sid: '26526'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|jhomitevd2abj3fk"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2016_10_07, deployment Perimeter,
+        tag Ransomware, updated_at 2020_09_01
+      msg: '"ET TROJAN ABUSE.CH Locky Payment Domain Detected"'
+      reference: url,ransomwaretracker.abuse.ch
+      rev: '2'
+      sid: '2023329'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

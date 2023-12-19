@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"convert|28|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SQL generic convert injection attempt - GET parameter"'
+      reference: url,www.securiteam.com/securityreviews/5DP0N1P76E.html
+      rev: '2'
+      service: http
+      sid: '26925'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

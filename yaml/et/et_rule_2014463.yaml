@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"document.getElementById|28 27|tableid|27 29|.cloneNode"'
+      - value: '"cells.urns"'
+      - value: '"cells.item"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2012_04_04, cve CVE_2010_0248, deployment
+        Perimeter, former_category WEB_CLIENT, confidence Medium, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Internet Explorer CTableRowCellsCollectionCacheItem.GetNext
+        Memory Use-After-Free Attempt"'
+      reference: cve,2010-0248
+      rev: '2'
+      sid: '2014463'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

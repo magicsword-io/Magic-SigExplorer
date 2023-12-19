@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"TWljcm9zb2Z0IFdpbmRvd3MgW1ZlcnNpb24"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_06_16
+      msg: '"ET TROJAN Base64 Encoded Windows Command Prompt (Outbound)"'
+      pcre: '"/(?:TWljcm9zb2Z0IENvcnBvcmF0aW9uL|1pY3Jvc29mdCBDb3Jwb3JhdGlvbi|NaWNyb3NvZnQgQ29ycG9yYXRpb24u)[a-zA-Z0-9\x2f\x2b]{25,35}(?:Cg0KQzpc|oNCkM6XD|KDQpDOlw\x2b)/R"'
+      reference: md5,29b6b195cf0671901b75b7d2ac6814f6
+      rev: '1'
+      sid: '2037018'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

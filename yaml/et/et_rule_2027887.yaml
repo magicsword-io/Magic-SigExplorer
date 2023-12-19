@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"namepc="'
+      - value: '"nadir="'
+      - value: '"menrut0="'
+      - value: '"menfile0="'
+      - value: '"mens0="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_15, deployment Perimeter, former_category
+        MALWARE, malware_family Machete, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_09_01
+      msg: '"ET TROJAN [TGI] Py.Machete HTTP CnC Exfil"'
+      reference: url,travisgreen.net/2019/08/14/machete-malware.html
+      rev: '4'
+      sid: '2027887'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

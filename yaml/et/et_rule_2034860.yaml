@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"200"'
+      - value: '"<script>"'
+      - value: '"addEventListener|28 27|copy|27|"'
+      - value: '"clipboardData|2e|setData|28 27|text|2f|plain|27|"'
+      - value: '"sh"'
+      - value: '"|5c|n"'
+      - value: '"</script>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_01_04, deployment Perimeter,
+        former_category WEB_CLIENT, signature_severity Informational, updated_at 2022_01_07
+      msg: '"ET WEB_CLIENT Observed JavaScript Event Listener with Clipboard Data"'
+      reference: url,www.bleepingcomputer.com/news/security/dont-copy-paste-commands-from-webpages-you-can-get-hacked
+      rev: '2'
+      sid: '2034860'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

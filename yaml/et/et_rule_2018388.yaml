@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[443,636,989,990,992,993,994,995,5061,25]'
+    details:
+      byte_test: 2,>,150,0,relative
+      classtype: bad-unknown
+      contents:
+      - value: '"|18 03|"'
+      - value: '"|00 03 01|"'
+      distance: '1'
+      flow: established,to_server
+      isdataat: '!18,relative'
+      metadata: created_at 2014_04_15, cve CVE_2014_0160, former_category CURRENT_EVENTS,
+        updated_at 2014_04_15
+      msg: '"ET EXPLOIT Possible TLS HeartBleed Unencrypted Request Method 4 (Inbound
+        to Common SSL Port)"'
+      reference: url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/
+      rev: '3'
+      sid: '2018388'
+      threshold: type limit,track by_src,count 1,seconds 120
+      within: '3'
+    protocol: tcp
+    source:
+      network: any
+      port: any

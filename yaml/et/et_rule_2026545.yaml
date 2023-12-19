@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '9'
+        value: '"/plugins/"'
+      - value: '"/true/true/done"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"WinHttp.WinHttpRequest."'
+      - value: '"|29 0d 0a|"'
+      - value: '"Referer|3a|"'
+      - value: '!"Cache"'
+      distance: '1'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_24, deployment Perimeter, former_category
+        TROJAN, malware_family Sidewinder, performance_impact Low, signature_severity
+        Major, tag VBS, updated_at 2022_03_24
+      msg: '"ET TROJAN Sidewinder Stage 2 VBS Downloader Reporting Successful Infection"'
+      pcre: '"/\/true\/true\/done$/U"'
+      reference: url,medium.com/@Sebdraven/apt-sidewinder-changes-theirs-ttps-to-install-their-backdoor-f92604a2739
+      rev: '2'
+      sid: '2026545'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

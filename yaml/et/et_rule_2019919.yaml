@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"POST /check.jsp HTTP/1."'
+      - value: '!"Referer|3a|"'
+      - value: '"Content-Type|3a 20|application/octet-stream|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_12_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_28,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cloud Atlas CnC Beacon"'
+      reference: url,securelist.com/blog/research/68083/cloud-atlas-redoctober-apt-is-back-in-style/
+      rev: '1'
+      sid: '2019919'
+      threshold: type limit, count 1, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

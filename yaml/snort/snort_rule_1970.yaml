@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/msadcs.dll",nocase'
+      - value: '"Content-Type|3A|",nocase'
+      - value: '!"|0A|",within 50'
+      flow: to_server,established
+      isdataat: 50,relative
+      metadata: ruleset community
+      msg: '"SERVER-IIS MDAC Content-Type overflow attempt"'
+      pcre: '"/^POST\s/ims"'
+      reference: url,www.foundstone.com/knowledge/randd-advisories-display.html?id=337
+      rev: '22'
+      service: http
+      sid: '1970'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

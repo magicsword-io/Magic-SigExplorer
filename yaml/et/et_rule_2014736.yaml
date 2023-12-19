@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/andromeda.php?"'
+      - value: '"q="'
+      - value: '"s="'
+      flow: established,to_server
+      metadata: created_at 2012_05_11, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Andromeda Streaming MP3 Server andromeda.php Cross-Site
+        Scripting Attempt"'
+      pcre: '"/s\x3d.+(s(cript|tyle\x3D)|on(mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: url,packetstormsecurity.org/files/112549/Andromeda-Streaming-MP3-Server-1.9.3.6-Cross-Site-Scripting.html
+      rev: '2'
+      sid: '2014736'
+      special_options:
+      - http_uri
+      - nocase
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

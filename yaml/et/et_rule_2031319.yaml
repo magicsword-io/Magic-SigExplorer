@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"JDatabaseDriverMysqli"'
+      - value: '"JSimplepieFactory"'
+      flow: established,to_server
+      metadata: created_at 2020_12_11, updated_at 2020_12_11
+      msg: '"ET EXPLOIT Joomla RCE (JDatabaseDriverMysqli) M2"'
+      reference: url,blog.sucuri.net/2015/12/remote-command-execution-vulnerability-in-joomla.html
+      rev: '2'
+      sid: '2031319'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

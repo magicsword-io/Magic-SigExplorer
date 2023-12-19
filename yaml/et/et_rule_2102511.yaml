@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|FF|SMB"'
+      - value: '"|05|"'
+      - value: '"|00|"'
+      - value: '"|09 00|"'
+      distance: '19'
+      flow: to_server,established
+      flowbits: isset,netbios.lsass.bind.attempt
+      metadata: created_at 2010_09_23, cve CVE_2003_0533, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB DCERPC LSASS DsRolerUpgradeDownlevelServer exploit attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS04-011.mspx
+      rev: '10'
+      sid: '2102511'
+      special_options:
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

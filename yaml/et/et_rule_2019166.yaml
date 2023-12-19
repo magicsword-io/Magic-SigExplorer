@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/windowsupdate/v6/thanks.aspx?ln=en&&thankspage="'
+      - depth: '28'
+        value: '"Host|3a 20|update.microsoft.com|0d 0a|"'
+      - value: '!"Accept-Language|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '"|0d 0a 0d 0a|"'
+      fast_pattern: 28,20
+      flow: established,to_server
+      metadata: created_at 2014_09_11, updated_at 2020_11_05
+      msg: '"ET TROJAN Stobox Connectivity Check"'
+      reference: md5,aba20c8289b37b10d42979730674a2ca
+      rev: '3'
+      sid: '2019166'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      threshold: type both, count 5, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

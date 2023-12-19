@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/2/files/create_folder_v2"'
+      - value: '"Authorization|3a 20|Bearer|20|iioKFUvLMX0AAAAAAAAAARDKLMS9uW1ax9ogdxWVqMC582VLW-CVofMpeFTEVfhU|0d
+          0a|"'
+      - value: '"Host|3a 20|api.dropboxapi.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_02
+      msg: '"ET TROJAN IndigoZebra APT BoxCaon DropBox Activity (POST)"'
+      reference: url,research.checkpoint.com/2021/indigozebra-apt-continues-to-attack-central-asia-with-evolving-tools/
+      rev: '1'
+      sid: '2033220'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

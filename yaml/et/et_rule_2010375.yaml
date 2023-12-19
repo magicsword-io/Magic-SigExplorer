@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ctxsys|2E|drvxtabc|2E|create|5F|tables"'
+      - value: '"dbms|5F|sql|2E|execute"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, cve CVE_2009_1991, deployment Datacenter, signature_severity
+        Major, tag SQL_Injection, updated_at 2016_07_01
+      msg: '"ET EXPLOIT Possible Oracle Database Text Component ctxsys.drvxtabc.create_tables
+        Remote SQL Injection Attempt"'
+      pcre: '"/ctxsys\x2Edrvxtabc\x2Ecreate\x5Ftables.+(SELECT|DELETE|CREATE|INSERT|UPDATE|OUTFILE)/si"'
+      reference: url,doc.emergingthreats.net/2010375
+      rev: '2'
+      sid: '2010375'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

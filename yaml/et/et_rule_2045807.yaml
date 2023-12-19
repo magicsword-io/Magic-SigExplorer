@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"OPTIONS"'
+      - depth: '6'
+        value: '"/USER-"'
+      - value: '"User-Agent|3a 20|Microsoft Office Protocol Discovery|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_20, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, confidence Medium, signature_severity
+        Major, updated_at 2023_05_20
+      msg: '"ET TROJAN Suspected Gamaredon Related Maldoc Activity M1"'
+      reference: md5,7866fd386ebcadd51966f3ed2092c10
+      rev: '1'
+      sid: '2045807'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|ntc-pk|05|sytes|03|net"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_13, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_13
+      msg: '"ET TROJAN APT-C-48 Related CnC Domain in DNS Lookup (ntc-pk .sytes .net)"'
+      reference: md5,dc7044f273b0a161279ddce8c5dff0a7
+      rev: '1'
+      sid: '2033724'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

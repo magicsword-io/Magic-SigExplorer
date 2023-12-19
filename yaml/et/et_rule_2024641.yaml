@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|soligro|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_31, deployment Perimeter, former_category
+        TROJAN, malware_family Gazer, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN Gazer DNS query observed (soligro . com)"'
+      reference: url,securelist.com/introducing-whitebear/81638/
+      rev: '3'
+      sid: '2024641'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

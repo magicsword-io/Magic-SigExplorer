@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Log in to my account"'
+      - value: '"iCloud"'
+      - value: '"disabled for security reasons"'
+      - value: '"confirm your account information"'
+      - value: '"account has been frozen"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_08_10, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact
+        Low, signature_severity Major, tag Phishing, updated_at 2020_08_13
+      msg: '"ET CURRENT_EVENTS Apple Suspended Account Phishing Landing Aug 09 2016"'
+      rev: '2'
+      sid: '2023044'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

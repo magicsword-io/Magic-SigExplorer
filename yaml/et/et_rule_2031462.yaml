@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '12'
+        value: '"/up.php?key="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_29, deployment Perimeter, former_category
+        EXPLOIT_KIT, signature_severity Major, tag Exploit_Kit, updated_at 2020_12_29
+      msg: '"ET TROJAN Possible PurpleFox EK Framework URI Struct Payload Request
+        M1"'
+      pcre: '"/^\/up\.php\?key=\d$/U"'
+      reference: url,twitter.com/nao_sec/status/1343918070989877252
+      rev: '2'
+      sid: '2031462'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

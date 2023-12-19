@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|orge|02|pl"'
+      distance: '0'
+      metadata: created_at 2011_11_05, former_category HUNTING, updated_at 2020_09_17
+      msg: '"ET INFO DNS Query to a Suspicious *.orge.pl Domain"'
+      rev: '3'
+      sid: '2013843'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

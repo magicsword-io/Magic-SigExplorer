@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"nodebb|2e|org|2f 3f 5b 5b 2e 2e 2f|"'
+      - value: '"|3a|"'
+      - value: '"|5d 5d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_06, cve CVE_2021_43788, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_24
+      msg: '"ET EXPLOIT NodeBB Path Traversal (CVE-2021-43788)"'
+      pcre: '"/|5d\x205d|$/U"'
+      reference: cve,2021-43788
+      rev: '1'
+      sid: '2034590'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_uri
+      within: '50'
+    protocol: tcp
+    source:
+      network: any
+      port: any

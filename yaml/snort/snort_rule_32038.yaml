@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"() {",fast_pattern,nocase'
+      - value: '"MAIL",nocase'
+      - value: '"FROM|3A|",distance 0,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"OS-OTHER Bash environment variable injection attempt"'
+      pcre: '"/^\s*?MAIL\s+?FROM\x3a[^\r\n]*?\x28\x29\s\x7b/i"'
+      reference: cve,2014-7169
+      rev: '3'
+      service: smtp
+      sid: '32038'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

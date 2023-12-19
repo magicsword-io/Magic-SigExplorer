@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Download Master"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE User-Agent (Download Master) - Possible Malware Downloader"'
+      reference: url,doc.emergingthreats.net/2011146
+      rev: '5'
+      sid: '2011146'
+      special_options:
+      - http_header
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

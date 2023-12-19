@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&itwm=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Downloader.XAgent variant outbound connection"'
+      pcre: '"/&itwm=([a-z0-9\-\=]{1,50})/i"'
+      reference: url,www.virustotal.com/#/file/b814fdbb7cfe6e5192fe1126835b903354d75bfb15a6c262ccc2caf13a8ce4b6
+      rev: '2'
+      service: http
+      sid: '48140'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

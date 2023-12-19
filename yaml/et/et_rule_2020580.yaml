@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"X-TA-ClientVer|3a 20|"'
+      - value: '"X-TA-ClientOS|3a 20|"'
+      - value: '"/update.inf"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_02_27, updated_at 2020_09_29
+      msg: '"ET POLICY Privdog Update check"'
+      reference: url,blog.lumension.com/9848/whats-worse-than-superfish-meet-privdog-leaving-users-wide-open-to-attacks/
+      rev: '1'
+      sid: '2020580'
+      special_options:
+      - http_header
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

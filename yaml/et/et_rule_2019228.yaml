@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/__dmp__/"'
+      - depth: '6'
+        value: '"data={"'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_24, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Win32/SoftPulse.H Checkin"'
+      reference: md5,6424fb3317b4be3d00e4d489122c9a48
+      rev: '3'
+      sid: '2019228'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

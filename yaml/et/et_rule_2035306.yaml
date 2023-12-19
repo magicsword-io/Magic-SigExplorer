@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Host|3a 20|community.chocolatey.org|0d 0a|"'
+      - value: '"GET /install.ps1 HTTP/1.1"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_28, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_02_28
+      msg: '"ET INFO Chocolatey Windows Package Management Installation File Retrieval"'
+      rev: '1'
+      sid: '2035306'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

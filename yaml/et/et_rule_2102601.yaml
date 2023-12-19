@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat.drop_master_repgroup"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2019_10_08
+      msg: '"GPL SQL dbms_repcat.drop_master_repgroup buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*gname[\r\n\s]*=>[\r\n\s]*\2|gname\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/si"'
+      rev: '4'
+      sid: '2102601'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

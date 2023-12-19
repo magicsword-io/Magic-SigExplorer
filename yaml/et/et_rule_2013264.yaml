@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '3'
+        value: '"MKD"'
+      - value: '"Nessus"'
+      flow: to_server,established
+      metadata: created_at 2011_07_13, updated_at 2011_07_13
+      msg: '"ET SCAN Nessus FTP Scan detected (ftp_writeable_directories.nasl)"'
+      reference: url,osvdb.org/show/osvdb/76
+      rev: '1'
+      sid: '2013264'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

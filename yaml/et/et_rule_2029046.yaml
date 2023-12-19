@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 00 02 B3 E5 B3 D6 E6 DE 7C 7D 79 40 A5 4F D9 B0 AC 7B 2D
+          C6 CE 69 EF F3 C4 58 F2 98 A8 92 DF 92 9E 0E|"'
+      dsize: '69'
+      metadata: affected_product Linux, created_at 2019_11_21, deployment Perimeter,
+        deployment Internal, former_category MALWARE, malware_family Roboto, performance_impact
+        Low, signature_severity Major, updated_at 2019_11_21
+      msg: '"ET TROJAN ELF/Roboto - Communicating with Hardcoded Peer 5"'
+      reference: url,blog.netlab.360.com/the-awaiting-roboto-botnet-en/
+      rev: '2'
+      sid: '2029046'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

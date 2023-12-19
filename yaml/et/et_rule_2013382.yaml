@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images/img.php?id="'
+      - value: '"HTTP/1.1|0d 0a|User-Agent"'
+      - value: '"|20|HTTP/1.1|0d 0a|User-Agent|3a 20|Mozilla/4.0|20|(compatible|3b
+          20|MSIE|20|"'
+      - value: '"|3b 20|Windows|20|NT|20|"'
+      - value: '")|0d 0a|Host|3a 20|"'
+      - value: '"Cache-Control|3a 20|no-cache|0d 0a 0d 0a|"'
+      - value: '!"|0d 0a|Accept"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_08_09, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Fakealert.Rena CnC Checkin 2"'
+      reference: url,www.malware-control.com/statics-pages/24b9c5f59a4706689d4f9bb5f510ec35.php
+      rev: '2'
+      sid: '2013382'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

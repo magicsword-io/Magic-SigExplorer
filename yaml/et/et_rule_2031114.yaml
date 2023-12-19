@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - depth: '22'
+        value: '"/service/v1/createUser"'
+      - value: '"|22|username|22|"'
+      - value: '"|3a 20|"'
+      - value: '"Content-Type|3a 20|application/json"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product IoT, created_at 2020_10_26, cve CVE_2020_26878, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2020_10_26
+      msg: '"ET EXPLOIT Ruckus vRIoT Command Injection Attempt Inbound (CVE-2020-26878)"'
+      pcre: '"/^\x22[^\x22]*\x3b[^\x22]*\x22/R"'
+      reference: cve,2020-26878
+      rev: '2'
+      sid: '2031114'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

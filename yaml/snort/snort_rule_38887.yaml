@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/log.php?",fast_pattern,nocase'
+      - value: '"UA-CPU"'
+      - value: '"Accept|3A 20|*/*"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Locky JS dropper outbound connection"'
+      pcre: '"/\/log\.php\x3f[a-z]\x3d\d{3}/i"'
+      reference: url,www.virustotal.com/en/file/11180a0ff4576e0dbbe48d77ed717e72678520516ff13f523cad832d1b9fa9ac/analysis/1462906326/
+      rev: '2'
+      service: http
+      sid: '38887'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

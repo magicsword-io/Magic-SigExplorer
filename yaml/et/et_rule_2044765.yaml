@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|NSIS_Inetc"'
+      - depth: '7'
+        value: '"rms_id="'
+      - value: '"&right=SYSTEM&os="'
+      - value: '"&hostname="'
+      - value: '"&domain="'
+      - depth: '20'
+        value: '"POST|20|/temp/gate.php|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_24, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_03_24
+      msg: '"ET MALWARE Win32/DealPly.EJ Checkin"'
+      reference: md5,f991b46ef74ad56672e6cde2bccdab9c
+      rev: '1'
+      sid: '2044765'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

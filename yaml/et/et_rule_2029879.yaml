@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '20'
+        value: '"log=save&session_id="'
+      - value: '"&value="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_04_10, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_11_16
+      msg: '"ET TROJAN Possible DACLS RAT CnC (Log Server Reporting)"'
+      pcre: '"/^log=save&session_id=[^&]+&value=[^&]+$/P"'
+      reference: url,blog.netlab.360.com/dacls-the-dual-platform-rat-en/
+      rev: '2'
+      sid: '2029879'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

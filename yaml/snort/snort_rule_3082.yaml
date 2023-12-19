@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5880'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"getclient",depth 9'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR Y3KRAT 1.5 Connect Client Response"'
+      rev: '13'
+      sid: '3082'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

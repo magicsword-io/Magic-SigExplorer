@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"option=com_jeformcr"'
+      - value: '"view="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_08_03, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_jeformcr view parameter Local File Inclusion
+        Attempt"'
+      reference: url,packetstormsecurity.org/files/94549/Joomla-Jeformcr-Local-File-Inclusion.html
+      rev: '1'
+      sid: '2015568'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

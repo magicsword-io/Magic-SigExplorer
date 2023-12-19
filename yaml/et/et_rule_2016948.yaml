@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Set-Cookie|3a| ci_session="'
+      - value: '"|0d 0a 0d 0a|2|0d 0a|ok|0d 0a|0"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.Bicololo.Request
+      metadata: created_at 2013_05_31, updated_at 2020_09_17
+      msg: '"ET TROJAN Win32.Bicololo Response 2"'
+      pcre: '"/^(\r\n)+?$/R"'
+      reference: md5,691bd07048b09c73f0a979529a66f6e3
+      rev: '1'
+      sid: '2016948'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '!80'

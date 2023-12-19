@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|",fast_pattern,nocase'
+      dsize: '20'
+      icmp_id: '0'
+      icmp_seq: '0'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Nemesis v1.1 Echo"'
+      rev: '9'
+      sid: '467'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/ftpsync.settings"'
+      flow: to_server,established
+      metadata: created_at 2021_10_26, former_category SCAN, updated_at 2021_10_26
+      msg: '"ET SCAN FTPSync Settings Disclosure Attempt"'
+      pcre: '"/\/ftpsync\.settings$/U"'
+      reference: url,github.com/NoxArt/SublimeText2-FTPSync
+      rev: '2'
+      sid: '2034253'
+      special_options:
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

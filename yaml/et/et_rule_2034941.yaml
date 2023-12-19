@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"nyt-a="'
+      - value: '"GET /api/market HTTP/1.1"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_19, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Cobalt_Strike,
+        signature_severity Major, updated_at 2022_01_20, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Activity (GET)"'
+      pcre: '"/^nyt-a=(?:[A-Za-z0-9-_]){176}$/C"'
+      reference: url,twitter.com/h2jazi/status/1483504922003968003
+      rev: '2'
+      sid: '2034941'
+      special_options:
+      - http_cookie
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|ip.webmasterhome.cn|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_06_11, former_category POLICY, updated_at 2020_10_01
+      msg: '"ET POLICY Possible External IP Lookup ip.webmasterhome.cn"'
+      rev: '2'
+      sid: '2021250'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

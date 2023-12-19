@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/infusions/"'
+      - value: '"downloads.php?cat_id=|24 7b|system"'
+      flow: established,to_server
+      metadata: created_at 2021_07_27, cve CVE_2020_24949, updated_at 2021_07_27
+      msg: '"ET WEB_SPECIFIC_APPS PHP-Fusion Downloads.php Command Injection (CVE-2020-24949)"'
+      reference: cve,2020-24949
+      rev: '1'
+      sid: '2033462'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

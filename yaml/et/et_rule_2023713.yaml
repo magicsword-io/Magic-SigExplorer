@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|66 74 79 70 6D|"'
+      - value: '"mp4"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: attack_target Client_Endpoint, created_at 2017_01_10, deployment Perimeter,
+        performance_impact Low, signature_severity Major, updated_at 2017_02_10
+      msg: '"ET INFO MP4 in HTTP Flowbit Set"'
+      rev: '2'
+      sid: '2023713'
+      special_options:
+      - file_data
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"|3c|meta|20|name|3d 22|author|22 20|content|3d 22|PhishingBox|2c
+          20|LLC|2e 22 2f 3e|"'
+      flow: established,to_client
+      metadata: created_at 2023_09_11, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, tag Phishing_Simulation, updated_at 2023_09_11
+      msg: '"ET INFO PhishingBox Landing Page - Phishing Simulation"'
+      reference: url,urlscan.io/result/0afd62d2-2336-4ded-8089-39347d936664/
+      rev: '1'
+      sid: '2047992'
+      special_options:
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 3600, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

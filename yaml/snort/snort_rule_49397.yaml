@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ministerstvo-energetiki/seminars/2019/06/Seminar.rtf",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zebrocy variant outbound connection"'
+      reference: url,virustotal.com/#/file/f617e805ccd0b1451e1f448d1328201d79cb846ba8b5b97221c26188fd1a1836
+      rev: '1'
+      service: http
+      sid: '49397'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

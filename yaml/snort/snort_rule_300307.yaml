@@ -1,0 +1,21 @@
+- rule:
+    details:
+      ( msg: '"SERVER-OTHER OpenSSL x509 crafted email address buffer overflow attempt"'
+      ber_data: '0x30'
+      ber_skip: 0x01,optional
+      byte_test: 2,>,500,0,relative
+      classtype: attempted-user
+      contents:
+      - value: '"|06 03 55 1D 1E|"'
+      - value: '"|81 82|",within 2'
+      - value: '"xn--",within 4,distance 2,fast_pattern'
+      flow: established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      reference: url,blog.talosintelligence.com/openssl-vulnerability/
+      rev: '3'
+      sid: '300307'
+      special_options:
+      - )
+    protocol: ssl

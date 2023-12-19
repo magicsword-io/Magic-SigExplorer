@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|ransomware|03|bit|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_04_02, deployment Perimeter, former_category
+        MALWARE, malware_family GandCrab, signature_severity Major, tag Ransomware,
+        updated_at 2020_09_16, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed GandCrab Ransomware Domain (ransomware .bit in DNS
+        Lookup)"'
+      reference: md5,a85907638378377ff357242a7311244d
+      rev: '3'
+      sid: '2025452'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type both, track by_src, count 1, seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

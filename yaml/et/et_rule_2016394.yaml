@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"FWS"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: created_at 2013_02_09, deployment Perimeter, former_category INFO,
+        performance_impact Low, signature_severity Informational, updated_at 2018_08_10
+      msg: '"ET INFO Adobe Flash Uncompressed in HTTP Flowbit Set"'
+      rev: '6'
+      sid: '2016394'
+      special_options:
+      - file_data
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

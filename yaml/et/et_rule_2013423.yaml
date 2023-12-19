@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Referer|3A 20|Mozilla/4.0 "'
+      flow: established,to_server
+      metadata: created_at 2011_08_18, updated_at 2020_12_22
+      msg: '"ET TROJAN User-Agent in Referer Field - Likely Malware"'
+      rev: '7'
+      sid: '2013423'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

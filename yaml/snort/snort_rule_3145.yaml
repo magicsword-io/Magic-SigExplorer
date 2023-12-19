@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 2,>,15,7,relative,little
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00|",depth 1'
+      - value: '"|FF|SMB2",within 5,distance 3'
+      flow: to_client,established
+      flowbits: unset,smb.trans2
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows SMB-DS Trans2 FIND_FIRST2 response overflow
+        attempt"'
+      pcre: '"/^.{27}/R"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS05-011
+      rev: '16'
+      service: netbios-ssn
+      sid: '3145'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '445'

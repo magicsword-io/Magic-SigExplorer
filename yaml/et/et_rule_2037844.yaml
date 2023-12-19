@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/image-directory/dz.png"'
+      - value: '"Mozilla/5.0|20 28|Linux|3b 20|Android 6.0|3b 20|HTC One X10 Build/MRA58K|3b
+          20|wv|29 20|AppleWebKit/537.36|20 28|KHTML, like Gecko|29 20|Version/4.0"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_28, deployment SSLDecrypt, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_07_28
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 Beacon (Custom)"'
+      reference: url,www.malware-traffic-analysis.net/2022/07/26/index.html
+      rev: '1'
+      sid: '2037844'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '23'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

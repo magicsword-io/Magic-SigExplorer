@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/c/p1/dnsc.php?n="'
+      flow: established,to_server
+      metadata: created_at 2021_12_06, former_category TROJAN, updated_at 2021_12_06
+      msg: '"ET TROJAN TA505 P2P CnC Checkin"'
+      reference: url,research.nccgroup.com/2021/12/01/tracking-a-p2p-network-related-with-ta505/
+      rev: '1'
+      sid: '2034584'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

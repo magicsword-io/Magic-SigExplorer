@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"POST http://"'
+      - value: '".onion/stealer/"'
+      - value: '"?pwds="'
+      - value: '"&cards="'
+      - value: '"&wlts="'
+      - value: '"&files="'
+      - value: '"&user="'
+      - value: '"&ip="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_26, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_05_26
+      msg: '"ET TROJAN MSIL/Spy.Agent.CVT CnC Exfil"'
+      reference: url,inquest.net/blog/2022/05/25/tandem-espionage
+      rev: '1'
+      sid: '2036689'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

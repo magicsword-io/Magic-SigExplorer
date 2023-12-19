@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/e.php?s=itfullemail&n="'
+      - value: '"&b="'
+      - value: '"&_="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_11, deployment Perimeter, former_category
+        TROJAN, malware_family Danabot, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN Win32/DanaBot Harvesting Email Addresses 1"'
+      reference: url,www.bleepingcomputer.com/news/security/danabot-banking-trojan-gets-into-spam-business/
+      rev: '3'
+      sid: '2026721'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

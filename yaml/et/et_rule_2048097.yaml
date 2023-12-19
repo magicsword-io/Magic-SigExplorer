@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -12
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"zochao.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_15, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Major, tag SSL_TLS_SNI, updated_at
+        2023_09_15, reviewed_at 2023_09_15, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1573, mitre_technique_name Encrypted_Channel
+      msg: '"ET TROJAN Observed DarkGate Domain (zochao .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0a|.\x2e)zochao\.com/R"'
+      reference: url,0xtoxin.github.io/threat%20breakdown/DarkGate-Camapign-Analysis/
+      rev: '1'
+      sid: '2048097'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

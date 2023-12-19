@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Host|3a 20|content.dropboxapi.com|0d 0a|"'
+      - value: '"Authorization: Bearer 88THpJioM6QAAAAAAAAAAQKMa4g-5-qcnYv1lIQi3ue3U41FJvH_p23jQR_5c146|3a
+          20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_27, deployment Perimeter, former_category
+        MALWARE, malware_family Molerats, signature_severity Major, updated_at 2021_12_27
+      msg: '"ET TROJAN TA402/Molerats CnC Activity"'
+      rev: '1'
+      sid: '2035120'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

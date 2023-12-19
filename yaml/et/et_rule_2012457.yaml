@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/ddos.exe"'
+      flow: established,to_server
+      metadata: created_at 2011_03_10, updated_at 2020_04_19
+      msg: '"ET TROJAN Possible JKDDOS download ddos.exe"'
+      reference: url,asert.arbornetworks.com/2011/03/jkddos-ddos-bot-with-an-interest-in-the-mining-industry
+      rev: '1'
+      sid: '2012457'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

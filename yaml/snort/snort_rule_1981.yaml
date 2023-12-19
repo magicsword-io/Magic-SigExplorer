@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3150'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"00",depth 2'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR DeepThroat 3.1 Connection attempt on port 3150"'
+      reference: nessus,10053
+      rev: '12'
+      sid: '1981'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

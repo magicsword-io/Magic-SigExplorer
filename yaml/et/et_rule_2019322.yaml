@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1194'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|20|"'
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      flow: to_server
+      metadata: created_at 2014_09_30, cve CVE_2014_6271, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible OpenVPN CVE-2014-6271 attempt"'
+      reference: url,news.ycombinator.com/item?id=8385332
+      rev: '2'
+      sid: '2019322'
+    protocol: udp
+    source:
+      network: any
+      port: any

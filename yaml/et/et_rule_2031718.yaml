@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Verification</title>"'
+      - value: '"chosed your country."'
+      - value: '"chosed an expiration month."'
+      - value: '"chosed an expiration year."'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_07_30, deployment Perimeter, former_category PHISHING, signature_severity
+        Minor, tag Phishing, updated_at 2017_10_13
+      msg: '"ET CURRENT_EVENTS Possible Apple Store Phish Landing 2015-07-30"'
+      rev: '2'
+      sid: '2031718'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

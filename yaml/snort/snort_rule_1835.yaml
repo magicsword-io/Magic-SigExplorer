@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/error/500error.jsp",nocase'
+      - value: '"et="'
+      - value: '"<script",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Macromedia SiteSpring cross site scripting attempt"'
+      reference: cve,2002-1027
+      rev: '14'
+      service: http
+      sid: '1835'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

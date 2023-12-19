@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '67'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|63 82 53 63 35 01 03|"'
+      - value: '"|0c 04|kali"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2016_07_18, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2023_11_27
+      msg: '"ET POLICY Possible Kali Linux hostname in DHCP Request Packet"'
+      reference: url,www.kali.org
+      rev: '1'
+      sid: '2022973'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: any
+      port: '68'

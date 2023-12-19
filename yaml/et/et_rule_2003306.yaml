@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/trackedevent.aspx?"'
+      - value: '"ver="'
+      - value: '"&ver="'
+      - value: '"&rnd="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_09_02
+      msg: '"ET MALWARE 180solutions Spyware (tracked event 2 reporting)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003306
+      rev: '10'
+      sid: '2003306'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,139,445,593,1024:]'
+    details:
+      byte_jump: 4,-4,relative,dce,align
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00 00 00 00|",within 4,distance 8'
+      dce_iface: uuid 4b324fc8-1670-01d3-1278-5a47bf6ee188
+      dce_opnum: '"15"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"NETBIOS DCERPC NCACN-IP-TCP srvsvc NetrShareEnum null policy handle attempt"'
+      pcre: '"/^.{4}(\x00\x00\x00\x00|.{12})/s"'
+      rev: '16'
+      sid: '529'
+      special_options:
+      - dce_stub_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

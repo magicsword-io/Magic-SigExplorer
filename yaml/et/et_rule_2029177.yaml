@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"ip="'
+      - value: '"&pcname="'
+      - value: '"&username="'
+      - value: '"&privatekey="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_17, deployment Perimeter, former_category
+        MALWARE, malware_family ShivaGood, signature_severity Major, tag Ransomware,
+        updated_at 2019_12_17, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN ShivaGood Ransomware CnC Checkin"'
+      reference: md5,ee732410b7389a047177b2e730742f8d
+      rev: '2'
+      sid: '2029177'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

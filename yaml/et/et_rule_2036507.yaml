@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|ny|0a|nsd-gov-pk|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_05_06
+      msg: '"ET TROJAN PhantomNet/Smanager Related Domain in DNS Lookup"'
+      reference: url,twitter.com/nao_sec/status/1521453116024971264
+      rev: '2'
+      sid: '2036507'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

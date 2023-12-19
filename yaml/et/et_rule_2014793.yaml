@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-Mailer|3a| Blat "'
+      - value: '"Subject|3A 20|Contents of file|3A 20|stdin.txt"'
+      - value: '"name|3D|"'
+      - value: '".mpf"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_05_19, updated_at 2012_05_19
+      msg: '"ET TROJAN Win32/MultiPasswordRecovery.A cs-crash PWS"'
+      rev: '3'
+      sid: '2014793'
+      within: '24'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

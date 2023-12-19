@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/js/disable.js?type=",fast_pattern,nocase'
+      - value: '"Accept|3A 20|application/javascript|2C 20 2A 2F 2A 3B|q=0.8"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Medfos variant outbound connection"'
+      reference: url,www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=Trojan:JS/Medfos.B
+      rev: '3'
+      service: http
+      sid: '25660'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

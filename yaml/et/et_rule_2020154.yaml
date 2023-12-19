@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 9000:10000
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|e8 03 00 00|"'
+      dsize: '4'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2015_01_08, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Win32/Recslurp.D C2 Request (no alert)"'
+      reference: md5,fcf364abd9c82d89f8d0b4b091276b41
+      rev: '2'
+      sid: '2020154'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

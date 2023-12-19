@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WindowsNT"'
+      - value: '!".rview.com|0d 0a|"'
+      - value: '!".mobizen.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_10_01,
+        deployment Perimeter, signature_severity Major, tag User_Agent, updated_at
+        2020_08_18
+      msg: '"ET TROJAN Suspicious User-Agent (WindowsNT) With No Separating Space"'
+      pcre: '"/User-Agent\x3A[^\r\n]*WindowsNT/H"'
+      rev: '4'
+      sid: '2013721'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

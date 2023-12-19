@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/eventmanager/index.php?"'
+      - value: '"id="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Component Event Manager 1.5 (id) Blind SQL
+        Injection Attempt"'
+      pcre: '"/(\?|&)id=[^\s\x26\x3B\x2f]*[\s\x2f]/iU"'
+      reference: url,doc.emergingthreats.net/2010536
+      rev: '3'
+      sid: '2010536'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '10498'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"stream/"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER mstream handler to agent"'
+      reference: cve,2000-0138
+      rev: '8'
+      sid: '244'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

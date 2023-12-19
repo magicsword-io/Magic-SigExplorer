@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Facebook"'
+      - value: '"ibb.co"'
+      - value: '"open_facebook()"'
+      - value: '"tutup_facebook()"'
+      - value: '"action|3d 22 2f|verification|2e|php|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_29, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_07_29
+      msg: '"ET CURRENT_EVENTS Facebook Credential Phish Landing Page 2022-07-29"'
+      reference: md5,effbb613cf2cf673bd32c4740fb50849
+      rev: '1'
+      sid: '2037869'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

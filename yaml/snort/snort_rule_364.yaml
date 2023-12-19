@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      itype: '10'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP IRDP router selection"'
+      reference: cve,1999-0875
+      rev: '11'
+      sid: '364'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

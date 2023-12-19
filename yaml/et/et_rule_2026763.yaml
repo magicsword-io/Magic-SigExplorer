@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|my-homework|04|890m|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_08, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, tag Operation_Cobra_Venom,
+        updated_at 2020_09_16
+      msg: '"ET TROJAN Operation Cobra Venom Stage 1 DNS Lookup"'
+      reference: url,blog.alyac.co.kr/2066
+      rev: '2'
+      sid: '2026763'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

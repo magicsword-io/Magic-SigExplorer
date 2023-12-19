@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"PCRatd",depth 6'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Win.Backdoor.PCRat data upload"'
+      reference: url,www.virustotal.com/en/file/669DF9DED24D56997D7B1EA6249BB704226DADA09230DC285AE66CA0C9B7247B/analysis/
+      rev: '2'
+      service: http
+      sid: '26655'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

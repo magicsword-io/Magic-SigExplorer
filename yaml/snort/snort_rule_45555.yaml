@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      byte_test: 10,>,0x20000,0,relative,string,dec
+      classtype: attempted-admin
+      contents:
+      - value: '"/jsproxy",depth 8,fast_pattern,nocase'
+      - value: '"|0D 0A|Content-Length: ",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP MikroTik RouterOS jsproxy readPostData memory corruption
+        attempt"'
+      reference: url,forum.mikrotik.com/viewtopic.php?t=119308
+      rev: '3'
+      service: http
+      sid: '45555'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Content-Disposition|3A|",nocase'
+      - value: '"{48123bc4-99d9-11d1-a6b3-00c04fd91555}"'
+      - value: '"%2e",within 50,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows Content-Disposition CLSID command attempt"'
+      reference: url,docs.microsoft.com/en-us/security-updates/SecurityBulletins/2004/ms04-024
+      rev: '1'
+      service: http
+      sid: '58617'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

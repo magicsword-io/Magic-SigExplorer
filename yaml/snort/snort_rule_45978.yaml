@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_extract: 2,0,uid,relative
+      byte_test: 2,=,uid,240,relative
+      classtype: attempted-recon
+      contents:
+      - value: '"|FF|SMB|A0|",depth 5,offset 4'
+      - value: '"|FA FF FF|",within 3,distance 108'
+      - value: '"|FA FF FF|",distance 0'
+      flow: to_client,established
+      isdataat: '111'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows SMB kernel heap memory leak attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS17-010
+      rev: '2'
+      service: netbios-ssn
+      sid: '45978'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '445'

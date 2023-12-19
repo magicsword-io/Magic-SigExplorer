@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.76 [ru] (X11|3b| U|3b| SunOS 5.7 sun4u)"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET WEB_SERVER Bot Search RFI Scan (ByroeNet/Casper-Like sun4u)"'
+      reference: url,doc.emergingthreats.net/2011244
+      rev: '8'
+      sid: '2011244'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

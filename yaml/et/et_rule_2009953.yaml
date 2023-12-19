@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '".aspx~"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SERVER, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Tilde in URI - potential .aspx source disclosure vulnerability"'
+      reference: url,doc.emergingthreats.net/2009953
+      rev: '11'
+      sid: '2009953'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

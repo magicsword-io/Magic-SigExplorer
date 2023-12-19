@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"FETCH",nocase'
+      flow: to_server,established
+      isdataat: 256,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP fetch overflow attempt"'
+      pcre: '"/\sFETCH\s[^\n]{256}/ims"'
+      reference: nessus,15867
+      rev: '13'
+      service: imap
+      sid: '3070'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

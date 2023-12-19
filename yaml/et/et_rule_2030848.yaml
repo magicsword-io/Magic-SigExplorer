@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '3306'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '28'
+        offset: '3'
+        value: '"|00 03|UPDATE users SET uname|20 3d 20 27|"'
+      - value: '"|27 20|WHERE hwid|20 3d 20 27|"'
+      - value: '"|27 20|LIMIT 1|3b|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_09_08, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_09_08
+      msg: '"ET TROJAN Win32/Spy.Agent.PZE Variant CnC Activity"'
+      reference: md5,39d55aa51967c001b7cc85f539055637
+      rev: '2'
+      sid: '2030848'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

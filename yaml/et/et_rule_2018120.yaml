@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/task/2000"'
+      flow: established,to_server
+      metadata: created_at 2014_02_12, updated_at 2020_04_27
+      msg: '"ET TROJAN Blackbeard Check-in"'
+      pcre: '"/\/task\/2000$/U"'
+      reference: url,blog.avast.com/2014/01/15/win3264blackbeard-pigeon-stealthiness-techniques-in-64-bit-windows-part-1/
+      rev: '1'
+      sid: '2018120'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

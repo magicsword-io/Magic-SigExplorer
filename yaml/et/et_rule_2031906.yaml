@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Encoding|3a 20|gzip"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<meta http-equiv=|22|Refresh|22|"'
+      - value: '"content=|22|0|3b 20|URL="'
+      - value: '"data|3a|text/html|3b|base64,"'
+      distance: '0'
+      fast_pattern: 6,20
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_11_30, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_11_17
+      msg: '"ET CURRENT_EVENTS Possible Base64 Obfuscated Phishing Landing 2015-11-30"'
+      rev: '3'
+      sid: '2031906'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      within: '25'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

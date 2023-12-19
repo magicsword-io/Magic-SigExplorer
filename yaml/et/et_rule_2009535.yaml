@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"HP JetDirect"'
+      - depth: '30'
+        offset: '40'
+        value: '"Password is not set"'
+      flow: to_client,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Telnet to HP JetDirect Printer With No Password Set"'
+      reference: url,doc.emergingthreats.net/2009535
+      rev: '4'
+      sid: '2009535'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

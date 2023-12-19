@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A|"'
+      - value: '"Samsung",distance 0,fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-MOBILE Samsung User-Agent detected"'
+      pcre: '"/^User-Agent\x3a[^\r\n]*samsung/i"'
+      rev: '4'
+      service: http
+      sid: '25523'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

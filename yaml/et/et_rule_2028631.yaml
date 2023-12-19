@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|00 00 13 00 01|"'
+      distance: '0'
+      isdataat: '!1,relative'
+      metadata: attack_target Client_and_Server, created_at 2019_09_19, deployment
+        Perimeter, deployment Internal, former_category MALWARE, performance_impact
+        Low, signature_severity Major, tag DNS_tunneling, updated_at 2020_04_15
+      msg: '"ET TROJAN DNSG - Data Exfiltration via DNS"'
+      pcre: '"/^.[\x14-\x50][A-Za-z0-9\-_\.]{20,80}\x04[a-z]{2}\d{2}\x03com/R"'
+      rev: '2'
+      sid: '2028631'
+      threshold: type limit, count 1, seconds 60, track by_src
+      within: '5'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

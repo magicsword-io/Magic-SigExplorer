@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"200"'
+      - depth: '8'
+        value: '"var _a|3d 27|"'
+      - value: '"|27 2c|_b|3d 27|"'
+      - value: '"|27 2c|_c|3d 27|"'
+      - value: '"|27 2c|e|3d|"'
+      - value: '"|2c|t|3d|"'
+      - value: '"|2c|n|3d|"'
+      - value: '"|5d 3b|if|28 2f|chrome|5c 2f 28 5b 5c|d|5d 2b 29 2f|gi"'
+      - value: '"|5d 5d 28|window|5b 5f|"'
+      distance: '26'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_09_06, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Minor, updated_at 2020_11_19
+      msg: '"ET WEB_CLIENT Great Cannon DDoS JS M3"'
+      reference: url,twitter.com/chrisdoman/status/1168576334777454594
+      rev: '3'
+      sid: '2027963'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

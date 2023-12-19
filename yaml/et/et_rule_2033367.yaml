@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/.mini/.report_system"'
+      - value: '"User-Agent|3a 20|curl/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Linux_Unix, created_at 2021_07_21, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_21
+      msg: '"ET TROJAN ELF/Miner Loader Activity M1 (GET)"'
+      reference: md5,92ea08fb8af71468bd74d19b1b9994cd
+      rev: '1'
+      sid: '2033367'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '21'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

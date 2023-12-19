@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|F2 3D 8D 23|"'
+      fast_pattern: only
+      flow: established,to_client
+      flowbits: isset,ET.flash.pdf
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_29, cve CVE_2010_1297, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT Possible Adobe Acrobat Reader Newclass Invalid Pointer
+        Remote Code Execution Attempt"'
+      reference: cve,2010-1297
+      rev: '2'
+      sid: '2011519'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

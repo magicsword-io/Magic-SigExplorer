@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Visbot"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Magento, attack_target Web_Server, created_at 2016_12_02,
+        deployment Datacenter, malware_family Visbot, performance_impact Low, signature_severity
+        Major, updated_at 2020_10_07
+      msg: '"ET TROJAN User-Agent (Visbot)"'
+      reference: url,www.bleepingcomputer.com/news/security/visbot-malware-found-on-6-691-magento-online-stores/
+      rev: '2'
+      sid: '2023575'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

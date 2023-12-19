@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Cookie|3a 20|BEEFSESSION="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2014_02_07, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT BeEF Cookie Outbound"'
+      reference: url,beefproject.com
+      rev: '2'
+      sid: '2018088'
+      threshold: type limit, track by_src, seconds 300, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

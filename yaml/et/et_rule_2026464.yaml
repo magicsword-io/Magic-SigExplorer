@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"=die(|27|Hello, Peppa!|27|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_10, deployment Perimeter, former_category
+        SCAN, malware_family Hello_Peppa, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_26
+      msg: '"ET SCAN Hello Peppa! Scan Activity"'
+      reference: url,isc.sans.edu/diary/rss/23860
+      rev: '2'
+      sid: '2026464'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

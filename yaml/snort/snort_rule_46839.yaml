@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <20
+      classtype: trojan-activity
+      contents:
+      - value: '".NET CLR 3.0.30729|3B| .NET4.0C|3B| .NET4.0E)|0D 0A|Content-Length",fast_pattern,nocase'
+      - value: '"/index.php"'
+      - value: '"POST"'
+      - value: '"Connection: Keep-Alive|0D 0A|Accept: */*|0D 0A|"'
+      - value: '!"Content-Type"'
+      - value: '!"Referer"'
+      - value: '!"Accept-"'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.RedLeaves variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f6449e255bc1a9d4a02391be35d0dd37def19b7e20cfcc274427a0b39cb21b7b/analysis/
+      rev: '1'
+      service: http
+      sid: '46839'
+      special_options:
+      - http_header
+      - http_raw_uri
+      - http_uri
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

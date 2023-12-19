@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<TITLE>FEDEX|20 7c 20|Tracking</TITLE>"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_12_20, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2017_12_20
+      msg: '"ET CURRENT_EVENTS Possible Fedex Phishing Landing - Title over non SSL"'
+      rev: '2'
+      sid: '2025158'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

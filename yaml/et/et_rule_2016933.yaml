@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" Java/1."'
+      flow: to_server,established
+      metadata: created_at 2013_05_29, former_category INFO, updated_at 2020_04_30
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS Java Request to Afraid.org Top 100 Dynamic
+        DNS Domain"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.(?:s(?:tr(?:eetdirectory\.co\.id|angled\.net)|(?:at(?:dv\.net|-dv)|vlen)\.ru(?:pacetechnology\.ne|oon\.i)t|hop\.tm|uka\.se)|c(?:(?:hickenkiller|rabdance)\.com|o(?:ntinent\.kz|alnet\.ru)|sproject\.org|c\.st|f\.gs)|m(?:i(?:ne(?:craftn(?:ation\.net|oob\.com)|\.bz)|l\.nf)|ooo\.(?:info|com)|adhacker\.biz)|t(?:h(?:emafia\.info|cgirls\.com)|wilightparadox\.com|ime4film\.ru|ruecsi\.org|28\.net)|a(?:(?:(?:vangardkennel|gropeople)\.r|buser\.e)u|ntongorbunov\.com|llowed\.org|x\.lt)|h(?:a(?:ck(?:quest\.com|ed\.jp)|ppyforever\.com)|ome(?:net\.or|\.k)g|-o-s-t\.name)|p(?:(?:rivatedns|sybnc|ort0|wnz)\.org|(?:hoto-frame|irat3)\.com|unked\.us)|i(?:n(?:fo\.(?:gf|tm)|c\.gs)|gnorelist\.com|iiii\.info|z\.rs)|b(?:i(?:gbox\.info|z\.tm)|yte4byte\.com|ot\.nu|rb\.dj)|d(?:earabba\.org|-n-s\.name|alnet\.ca|ynet\.com)|(?:w(?:ith-linux|hynotad)|3dxtras|ohbah)\.com|u(?:n(?:do\.it|i\.cx)|k\.(?:is|to)|s\.to)|v(?:(?:erymad\.ne|r\.l)t|ietnam\.ro)|r(?:o(?:ot\.sx|\.lt)|-o-o-t\.net)|n(?:eon\.org|ow\.im|a\.tl|x\.tc)|j(?:umpingcrab\.com|avafaq\.nu)|f(?:(?:art|ram)ed\.net|tp\.sh)|(?:k(?:ir22\.r|\.v)|69\.m)u|l(?:inux[dx]\.org|eet\.la)|e(?:vils\.in|z\.lv)|(?:24-7\.r|qc\.t)o|(?:55|gw)\.lt|1337\.cx)(\x3a\d{1,5})?\r$/Hmi"'
+      rev: '2'
+      sid: '2016933'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

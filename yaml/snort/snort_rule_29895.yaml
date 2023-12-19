@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length: 166"'
+      - value: '".php HTTP/1.1|0D 0A|Accept: */*|0D 0A|Content-Type: application/x-www-form-urlencoded|0D
+          0A|User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| Trident/7.0|3B| rv:11.0)
+          like Gecko|0D 0A|Host: ",fast_pattern,nocase'
+      - value: '"v=",depth 2'
+      - value: '"&c=",within 7'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection"'
+      pcre: '"/\x3d\x3d$/"'
+      reference: url,www.virustotal.com/en/file/51540d7c9a4bc2a430bc50c85cf9cec5c6f2bb755e800a3f3575ba34fe5f008c/analysis
+      rev: '3'
+      service: http
+      sid: '29895'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

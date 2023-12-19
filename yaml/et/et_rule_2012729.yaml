@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|08|ntkrnlpa|04|info|00|"'
+      metadata: created_at 2011_04_27, updated_at 2020_09_15
+      msg: '"ET TROJAN Known Hostile Domain .ntkrnlpa.info Lookup"'
+      rev: '3'
+      sid: '2012729'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

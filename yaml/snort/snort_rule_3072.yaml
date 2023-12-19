@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"STATUS",nocase'
+      - value: '!"|0D 0A|",within 100'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP STATUS overflow attempt"'
+      reference: nessus,15867
+      rev: '20'
+      service: imap
+      sid: '3072'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"Microsoft OLE DB Provider for SQL Server error"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET WEB_SERVER MSSQL Server OLEDB asp error"'
+      reference: url,doc.emergingthreats.net/2001768
+      rev: '13'
+      sid: '2001768'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

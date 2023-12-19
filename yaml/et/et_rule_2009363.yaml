@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"chmod"'
+      - value: '!"&launchmode="'
+      - value: '!"/chmod/"'
+      - value: '!"searchmod"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2010_07_30, deployment Perimeter, former_category HUNTING, signature_severity
+        Minor, updated_at 2020_10_27
+      msg: '"ET WEB_SERVER Suspicious Chmod Usage in URI (Inbound)"'
+      pcre: '"/chmod(?:\+|\x2520|\x24IFS|\x252B|\s)+(?:x|[0-9]{3,4})/Ui"'
+      reference: url,doc.emergingthreats.net/2009363
+      rev: '8'
+      sid: '2009363'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

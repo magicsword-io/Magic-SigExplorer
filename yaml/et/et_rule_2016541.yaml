@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<applet"'
+      - value: '"MyApplet"'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_03_06, updated_at 2013_03_06
+      msg: '"ET CURRENT_EVENTS SofosFO/GrandSoft landing applet plus class Mar 03
+        2013"'
+      rev: '3'
+      sid: '2016541'
+      special_options:
+      - file_data
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|4d 5a 4b 45 52 4e 45 4c 33 32 2e 44 4c 4c 00 00|"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2019_10_08
+      msg: '"ET INFO WinUpack Modified PE Header Inbound"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/WinPEHeaders
+      rev: '6'
+      sid: '2003614'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

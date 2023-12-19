@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"<?xml",depth 50,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,policy security-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XML file magic detected"'
+      rev: '10'
+      service: smtp
+      sid: '23759'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

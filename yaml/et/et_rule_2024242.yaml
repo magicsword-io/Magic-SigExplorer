@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/set_ftp.cgi"'
+      - value: '"&next_url=ftp.htm&port=21&user=ftp&pwd=ftp&dir=/&mode=PORT&upload_interval=0&svr="'
+      distance: '0'
+      flow: from_server,established
+      flowbits: isset,ET.armwget
+      metadata: attack_target IoT, created_at 2017_04_25, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2017_04_25
+      msg: '"ET TROJAN ARM Binary Downloaded via WGET Containing GoAhead and Multiple
+        Camera RCE 0Day Vulnerabilities"'
+      reference: url,pierrekim.github.io/blog/2017-03-08-camera-goahead-0day.html
+      rev: '1'
+      sid: '2024242'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

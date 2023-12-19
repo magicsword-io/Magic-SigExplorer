@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".symantec.com|0d 0a|"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_16, deployment Perimeter, performance_impact
+        Low, signature_severity Minor, updated_at 2022_05_03
+      msg: '"ET INFO Symantec Download Flowbit Set"'
+      pcre: '"/^Host\x3a[^\r\n]*\.symantec\.com(?:\x3a\d{1,5})?\r?$/Hmi"'
+      rev: '2'
+      sid: '2023067'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

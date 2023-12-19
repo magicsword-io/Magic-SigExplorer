@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/xml/"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.3|3b| rv|3a|48.0) Gecko/20100101
+          Firefox/48.0"'
+      - value: '"Host|3a 20|freegeoip.net|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_07, deployment Perimeter, former_category
+        MALWARE, malware_family Qasar_Rat, malware_family VoidRat, signature_severity
+        Major, updated_at 2020_11_16
+      msg: '"ET TROJAN W32/Quasar 1.3/Venom RAT Connectivity Check 2"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nConnection\x3a\x20Keep-Alive[\r\n]*$/H"'
+      reference: md5,69aeb53d5d8792e5479966aeed917bc4
+      rev: '1'
+      sid: '2036859'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

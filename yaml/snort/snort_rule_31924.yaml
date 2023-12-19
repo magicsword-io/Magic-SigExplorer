@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?method="'
+      - value: '"&mode=sox&v=",fast_pattern,nocase'
+      - value: '" HTTP/1.0|0D 0A|Accept: */*|0D 0A|Connection: close|0D 0A|Host: "'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/4c0549384574ae91b68d58d92da3deacfcf714b27fb8d762ce9de8c58990ffb1/analysis/
+      rev: '3'
+      service: http
+      sid: '31924'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

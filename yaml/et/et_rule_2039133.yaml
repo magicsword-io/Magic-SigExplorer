@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/DOMAIN/"'
+      - depth: '14'
+        value: '"accountnumber="'
+      - value: '"/DOMAIN/"'
+      flow: established,to_server
+      metadata: created_at 2022_10_10, updated_at 2022_10_10
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish 2022-10-10"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+\/DOMAIN\//Hmi"'
+      reference: md5,92e8d4cd5dc17f176569da79c09c0d80
+      rev: '1'
+      sid: '2039133'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

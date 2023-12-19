@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|34 44 35 41|"'
+      - value: '"|35 30 34 35 30 30|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2014_01_13, updated_at 2022_05_03
+      msg: '"ET TROJAN PE EXE or DLL Windows file download disguised as ASCII"'
+      rev: '4'
+      sid: '2017962'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

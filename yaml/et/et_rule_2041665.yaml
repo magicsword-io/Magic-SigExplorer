@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?servername=msi"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_02, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2022_12_02
+      msg: '"ET TROJAN JS/Batloader Payload Request (GET)"'
+      pcre: '"/\x3fservername=msi$/U"'
+      reference: url,twitter.com/SquiblydooBlog/status/1598089057879625732
+      rev: '1'
+      sid: '2041665'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

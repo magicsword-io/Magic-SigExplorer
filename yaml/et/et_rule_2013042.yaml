@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/ProtocolGW/protocol/"'
+      flow: established,to_server
+      metadata: created_at 2011_06_16, former_category POLICY, updated_at 2022_05_03
+      msg: '"ET MOBILE_MALWARE Android.Plankton/Tonclank Successful Installation Device
+        Information POST"'
+      pcre: '"/(?:(?:command(?:statu)?|bookmark|shortcut)s|h(?:omepage|istory)|eula(?:status)?|installation|activate|dumplog)/Ui"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2011-060910-5804-99&tabid=2
+      rev: '7'
+      sid: '2013042'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

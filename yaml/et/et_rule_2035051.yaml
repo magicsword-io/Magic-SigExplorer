@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|05|Texas"'
+      - value: '"|55 04 07|"'
+      - value: '"|06|Phenix"'
+      - value: '"|55 04 0a|"'
+      - value: '"|05|Yahos"'
+      - value: '"|55 04 0b|"'
+      - value: '"|02|IT"'
+      - value: '"|55 04 03|"'
+      - value: '"|06|foror2"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_28, deployment Perimeter, former_category
+        MALWARE, malware_family Emotet, malware_family IcedID, signature_severity
+        Major, tag Emotet, tag IcedID, updated_at 2020_08_25
+      msg: '"ET TROJAN IcedID/Emotet Certificate Observed M1"'
+      reference: md5,8430d8cf1b1edd6c49092a7dd6412a8a
+      rev: '3'
+      sid: '2035051'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

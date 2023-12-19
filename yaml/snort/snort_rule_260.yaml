@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ADMROCKS"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Bind Buffer Overflow via NXT records named overflow ADMROCKS"'
+      reference: url,www.cert.org/advisories/CA-1999-14.html
+      rev: '19'
+      service: dns
+      sid: '260'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

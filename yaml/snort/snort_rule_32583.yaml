@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '16'
+      classtype: trojan-activity
+      contents:
+      - value: '"/cbrry/cbre.html",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/7c110c2d125a4100322bd9c4328d0a01259cb00a4e3709815711b8b364a58bdd/analysis/1415285838/
+      rev: '3'
+      service: http
+      sid: '32583'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

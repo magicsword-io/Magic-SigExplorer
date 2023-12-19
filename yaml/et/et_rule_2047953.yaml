@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"blgbeach.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_09_07, deployment Perimeter,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_09_07, reviewed_at 2023_10_11
+      msg: '"ET TROJAN Observed Malicious Debugging Application Related  Domain (blgbeach
+        .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)blgbeach\.com/R"'
+      reference: url,blog.google/threat-analysis-group/active-north-korean-campaign-targeting-security-researchers/
+      rev: '1'
+      sid: '2047953'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

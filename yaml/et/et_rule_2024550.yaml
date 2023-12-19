@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".sct"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: isset,et.IE7.NoRef.NoCookie
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_15, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family PowerShell, performance_impact Low, signature_severity
+        Major, tag PowerShell_Downloader, updated_at 2020_10_09
+      msg: '"ET CURRENT_EVENTS Likely Malicious Windows SCT Download MSXMLHTTP M1"'
+      pcre: '"/\.sct$/Ui"'
+      reference: url,www.carbonblack.com/2016/04/28/threat-advisory-squiblydoo-continues-trend-of-attackers-using-native-os-tools-to-live-off-the-land/
+      rev: '1'
+      sid: '2024550'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

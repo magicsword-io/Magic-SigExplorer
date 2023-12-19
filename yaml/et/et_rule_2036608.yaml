@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|sseekk|03|xyz|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_17, deployment Perimeter,
+        former_category MALWARE, malware_family Restylink, performance_impact Low,
+        signature_severity Major, updated_at 2022_12_16
+      msg: '"ET TROJAN Restylink Domain in DNS Lookup (sseekk .xyz)"'
+      reference: url,insight-jp.nttsecurity.com/post/102hojk/operation-restylink-apt-campaign-targeting-japanese-companies
+      rev: '2'
+      sid: '2036608'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

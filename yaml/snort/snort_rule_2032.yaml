@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A9|",depth 4,offset 16'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC yppasswd user update TCP"'
+      reference: cve,2001-0779
+      rev: '11'
+      sid: '2032'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

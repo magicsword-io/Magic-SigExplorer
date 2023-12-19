@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"User-Agent|3A| Mozzilla/4.0 (copmatible|3B|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_12_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Coinminer, updated_at
+        2020_05_14, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN W32/Coinminer.Backdoor CnC Beacon"'
+      reference: md5,8e29a15caef546aab0f19a9a81732163
+      rev: '1'
+      sid: '2019826'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '12'
+        value: '"Accept|3a 20|*/*"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 7.0|3b 20|Windows
+          NT 6.1|3b|"'
+      - value: '"Host|3a 20|"'
+      - value: '"Connection|3a 20|close"'
+      - value: '"=|22|billinfo|22|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_19, deployment Perimeter, former_category
+        MALWARE, malware_family TrickBot, signature_severity Major, updated_at 2021_07_21
+      msg: '"ET TROJAN [PTsecurity] Trickbot Data Exfiltration"'
+      pcre: '"/Content-Disposition\x3a\x20form-data\x3b\s*name=\x22(?:source|formdata|billinfo|cardinfo)\x22/Pm"'
+      rev: '4'
+      sid: '2026738'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

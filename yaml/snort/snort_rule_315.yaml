@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '635'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"^|B0 02 89 06 FE C8 89|F|04 B0 06 89|F"'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-LINUX x86 Linux mountd overflow"'
+      reference: cve,1999-0002
+      rev: '11'
+      sid: '315'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

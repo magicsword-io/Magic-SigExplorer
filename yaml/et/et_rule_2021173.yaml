@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/?uid="'
+      - value: '"&affid="'
+      - value: '"&inst_date="'
+      - value: '"&prod="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_05_30, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Major, tag c2, updated_at 2020_08_31,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MALWARE PUP Win32/Conduit.SearchProtect.O CnC Beacon"'
+      reference: md5,525917c79e22fa9bc54da36b94437a46
+      rev: '2'
+      sid: '2021173'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

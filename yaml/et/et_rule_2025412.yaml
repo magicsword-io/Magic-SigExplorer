@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|07|Arizona"'
+      - value: '"|55 04 07|"'
+      - value: '"|07|Phoenix"'
+      - value: '"|55 04 0a|"'
+      - value: '"|12|Yahoo Widget, Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|13|Yahoo|20|Widget|20|Bureau"'
+      - value: '"|55 04 03|"'
+      - value: '"|12|Yahoo Widget, Inc."'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|07|Arizona"'
+      - value: '"|55 04 07|"'
+      - value: '"|07|Phoenix"'
+      - value: '"|55 04 0a|"'
+      - value: '"|12|Yahoo Widget, Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|13|Yahoo|20|Widget|20|Bureau"'
+      - value: '"|55 04 03|"'
+      - value: '"|12|Yahoo Widget, Inc."'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_12, deployment Perimeter, former_category
+        TROJAN, malware_family QRat, performance_impact Low, signature_severity Major,
+        updated_at 2022_05_03
+      msg: '"ET TROJAN [PTsecurity] Fake SSL Certificate Observed (Yahoo)"'
+      reference: md5,ce413a29e6cde5701a26e7e4e02ecc66
+      rev: '3'
+      sid: '2025412'
+      special_options:
+      - fast_pattern
+      within: '19'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

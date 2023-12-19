@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"* Doly trojan v1.5 - Connected.",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Doly variant outbound connection attempt"'
+      reference: url,virustotal.com/en/file/499446edf3dfd200ebf3df2526cd4d101979e626afcd1860193f71829be23922/
+      rev: '9'
+      service: http
+      sid: '1985'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

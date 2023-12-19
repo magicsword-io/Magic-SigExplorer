@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/WebInterface/"'
+      - value: '"as2-to|3a 20|"'
+      - value: '"Cookie|3a 20|CrushAuth|3d|"'
+      flow: established,to_server
+      metadata: attack_target FTP_Server, created_at 2023_11_20, cve CVE_2023_43177,
+        deployment Perimeter, deployment Internet, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence Medium, signature_severity Major, updated_at
+        2023_11_20
+      msg: '"ET WEB_SPECIFIC_APPS Possible CrushFTP as2-to Anonymous User Rename Attempt
+        (CVE-2023-43177)"'
+      reference: url,convergetp.com/2023/11/16/crushftp-zero-day-cve-2023-43177-discovered/
+      rev: '1'
+      sid: '2049265'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

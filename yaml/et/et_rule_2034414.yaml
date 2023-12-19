@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '30003'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - value: '"Host|3a 20|seed.nkn.org|3a|"'
+      - value: '"{|22|id|22 3a 22|"'
+      - value: '"POST|20|/|20|HTTP/1.1"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_10, deployment Perimeter, former_category
+        INFO, performance_impact Low, confidence High, signature_severity Informational,
+        tag Web3, updated_at 2021_11_10
+      msg: '"ET INFO Observed Initial New Kind of Network (NKN) POST Request"'
+      reference: url,nkn.org
+      rev: '3'
+      sid: '2034414'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|autoddns|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_and_Server, created_at 2019_04_30, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, tag DynamicDNS, updated_at 2020_09_17, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1568, mitre_technique_name
+        Dynamic_Resolution
+      msg: '"ET INFO DYNAMIC_DNS Query to *.autoddns .com Domain"'
+      rev: '4'
+      sid: '2027299'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type limit, count 1, track by_src, seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

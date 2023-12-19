@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '137'
+    details:
+      byte_test: 1,&,0x80,2
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01|",depth 2,offset 6'
+      dsize: <56
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"NETBIOS NS lookup short response attempt"'
+      reference: url,www.eeye.com/html/Research/Advisories/AD20040512C.html
+      rev: '8'
+      service: netbios-ns
+      sid: '2564'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '137'

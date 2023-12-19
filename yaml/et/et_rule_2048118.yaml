@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,0,relative,post_offset -1
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|bc bc ac ac|"'
+      flow: established,to_server
+      isdataat: '!2,relative'
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2023_09_19, deployment Perimeter, former_category MALWARE, malware_family
+        SprySOCKS, performance_impact Moderate, confidence Medium, signature_severity
+        Major, updated_at 2023_10_11, reviewed_at 2023_10_11
+      msg: '"ET TROJAN Earth Lusca/SprySOCKS CnC Checkin"'
+      reference: url,www.trendmicro.com/en_us/research/23/i/earth-lusca-employs-new-linux-backdoor.html
+      rev: '2'
+      sid: '2048118'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

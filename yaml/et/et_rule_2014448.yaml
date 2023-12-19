@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/plugins/enable-latex/core.php?"'
+      - value: '"url="'
+      distance: '0'
+      fast_pattern: 19,20
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2012_04_01, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2022_03_17
+      msg: '"ET WEB_SPECIFIC_APPS WEB-PHP Wordpress enable-latex plugin url Remote
+        File inclusion Attempt"'
+      pcre: '"/url=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/107260/WordPress-Enable-Latex-Remote-File-Inclusion.html
+      rev: '3'
+      sid: '2014448'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

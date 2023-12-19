@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a 20|WPScan v"'
+      fast_pattern: 12,8
+      flow: established,to_server
+      metadata: created_at 2015_01_30, updated_at 2020_05_15
+      msg: '"ET WEB_SERVER WPScan User Agent"'
+      reference: url,github.com/wpscanteam/wpscan
+      rev: '2'
+      sid: '2020338'
+      special_options:
+      - http_header
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

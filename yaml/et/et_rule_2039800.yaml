@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '1'
+        value: '"|00 ca 0a 62|"'
+      - value: '"|ca fa ca ca ca|"'
+      dsize: <200
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2022_11_16, deployment Perimeter,
+        former_category MALWARE, malware_family Bitter, signature_severity Major,
+        updated_at 2022_11_16
+      msg: '"ET TROJAN Suspected Bitter APT Related Activity"'
+      reference: md5,06a7eccd74a6aa5aa12755cd48829f90
+      rev: '1'
+      sid: '2039800'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

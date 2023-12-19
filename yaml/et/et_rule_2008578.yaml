@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"From|3A 20 22|sipvicious"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Sipvicious Scan"'
+      reference: url,doc.emergingthreats.net/2008578
+      rev: '6'
+      sid: '2008578'
+      threshold: type limit, count 1, seconds 10, track by_src
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

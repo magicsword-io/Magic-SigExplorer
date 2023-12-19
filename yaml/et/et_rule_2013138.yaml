@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"<IMEI>"'
+      - value: '"<|2F|IMEI>"'
+      - value: '!".blackberry.com|0d 0a|"'
+      - value: '!".nokia.com|0d 0a|"'
+      - value: '!".sonyericsson.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_06_30, updated_at 2020_08_18
+      msg: '"ET MOBILE_MALWARE XML Style POST Of IMEI International Mobile Equipment
+        Identity"'
+      reference: url,www.met.police.uk/mobilephone/imei.htm
+      rev: '6'
+      sid: '2013138'
+      special_options:
+      - http_method
+      - http_client_body
+      - nocase
+      - nocase
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

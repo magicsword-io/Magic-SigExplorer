@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/webapps/"'
+      - value: '"/websrc"'
+      distance: '5'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_24, deployment Perimeter, former_category
+        PHISHING, tag Phishing, updated_at 2020_08_04
+      msg: '"ET WEB_CLIENT Common Paypal Phishing URI Feb 24 2017"'
+      pcre: '"/\/webapps\/[a-f0-9]{5}\/websrc/Ui"'
+      rev: '1'
+      sid: '2024018'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

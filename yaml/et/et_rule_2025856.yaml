@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/system-crontabs.sh"'
+      - value: '"Save Changes"'
+      flow: established,to_server
+      metadata: created_at 2018_07_17, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Microhard Systems 3G/4G Cellular Ethernet and Serial
+        Gateway - Crontab"'
+      reference: url,exploit-db.com/exploits/45036/
+      rev: '2'
+      sid: '2025856'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".mot"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|@"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_21, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, confidence Medium, signature_severity
+        Major, updated_at 2022_12_28, reviewed_at 2023_09_01
+      msg: '"ET TROJAN Gamaredon APT Related Maldoc Activity (GET)"'
+      pcre: '"/\.mot$/U"'
+      reference: url,unit42.paloaltonetworks.com/trident-ursa/
+      rev: '2'
+      sid: '2042977'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

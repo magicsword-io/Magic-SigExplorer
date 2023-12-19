@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|82|"'
+      - value: '"jsonrpc"'
+      - value: '"Your parcel has been sent out.Please check and accept it. http"'
+      distance: '5'
+      fast_pattern: 26,20
+      flow: established,to_client
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_04_14, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2022_04_14
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.Wroba Lure (Package Delivery)"'
+      reference: url,team-cymru.com/blog/2022/04/07/moqhao-part-2-continued-european-expansion
+      rev: '2'
+      sid: '2036215'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

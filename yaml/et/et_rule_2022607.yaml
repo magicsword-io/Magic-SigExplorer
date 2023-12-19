@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>ALERT"'
+      - value: '"makeNewPosition"'
+      - value: '"animateDiv"'
+      - value: '"div.fakeCursor"'
+      - value: '"<audio autoplay"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2016_03_09, former_category WEB_CLIENT, updated_at 2016_03_09
+      msg: '"ET WEB_CLIENT Generic Fake Support Phone Scam Mar 9 M3"'
+      rev: '2'
+      sid: '2022607'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

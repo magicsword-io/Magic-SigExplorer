@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '27'
+        value: '"HTTP|20|1.1|20|/member.php|20|SSL3.4"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_16, deployment Perimeter, former_category
+        MALWARE, malware_family Lazarus, malware_family Andariel, signature_severity
+        Major, tag Backdoor, updated_at 2021_06_16
+      msg: '"ET TROJAN Andariel Backdoor Activity (Checkin)"'
+      reference: md5,569246a3325effa11cb8ff362428ab2c
+      rev: '1'
+      sid: '2033146'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"RETR",nocase'
+      - value: '"1MB",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE FTP ''RETR 1MB'' possible warez site"'
+      rev: '10'
+      service: ftp
+      sid: '544'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

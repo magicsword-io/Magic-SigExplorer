@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length|3a| 9|0d 0a|"'
+      - value: '"|6C 95 32 CB|"'
+      flow: established,to_client
+      metadata: created_at 2012_11_20, former_category TROJAN, updated_at 2020_09_02
+      msg: '"ET TROJAN Andromeda Check-in Response"'
+      rev: '4'
+      sid: '2015896'
+      special_options:
+      - http_header
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

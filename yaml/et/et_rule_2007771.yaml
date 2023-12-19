@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/40E800"'
+      - value: '"C00000"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Pushdo Update URL Detected"'
+      reference: url,doc.emergingthreats.net/2007771
+      rev: '9'
+      sid: '2007771'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

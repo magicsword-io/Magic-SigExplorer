@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"nyt-gdpr=0|3B|nyt-purr=cfh|3B|nyt-geo=US}",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Cobalt Strike beacon outbound connection attempt"'
+      pcre: '"/^GET\s(?:\/ads\/google|\/vi-assets\/static-assets|\/v1\/preferences|\/idcta\/translations|\/v2\/preferences)/"'
+      reference: url,fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56615'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

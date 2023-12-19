@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"CLSID"'
+      - value: '"0014085F-B1BA-11CE-ABC6-F5B2E79D9E3F"'
+      - value: '".SaveMessage"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_07_01, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX LEADTOOLS Imaging LEADSmtp ActiveX SaveMessage Method Vulnerability"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*0014085F-B1BA-11CE-ABC6-F5B2E79D9E3F/si"'
+      reference: bugtraq,48408
+      rev: '2'
+      sid: '2013163'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

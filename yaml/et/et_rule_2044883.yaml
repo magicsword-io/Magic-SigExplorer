@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '47'
+        value: '"let|20|agent1|20 3d 20|navigator|2e|userAgent|2e|toLowerCase|28 29
+          3b|"'
+      - value: '"let|20|lang1|20 3d 20|navigator|2e|language|7c 7c|navigator|2e|userLanguage|3b|"'
+      - value: '"if|28|agent1|2e|indexOf|28 27|win|27 29 20 3c 20|0|20 7c 7c 20|lang1|2e|indexOf|28
+          27|CN|27 29 20 3e 20|0|20 29|"'
+      - value: '"if|20 28|Math|2e|random|28 29 20 3e|0|29 7b|"'
+      - value: '"|3d|document|2e|createElement|28 27|script|27 29 3b|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_04, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_04_04
+      msg: '"ET TROJAN Fake Browser Update via Error Page Loader"'
+      reference: url,isc.sans.edu/diary/Supply%20Chain%20Compromise%20or%20False%20Positive%3A%20The%20Intriguing%20Case%20of%20efile.com%20%5Bupdated%20-%20confirmed%20malicious%20code%5D/29708
+      rev: '1'
+      sid: '2044883'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

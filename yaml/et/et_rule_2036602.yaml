@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Microsoft Office/16.0 |28|Windows NT 10.0|3b 20|Microsoft Outlook
+          16.0.4551|3b 20|Pro|29|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_05_17, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family IceApple, performance_impact
+        Low, signature_severity Major, updated_at 2022_05_17
+      msg: '"ET TROJAN IceApple User-Agent observed"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Microsoft Office\/16\.0 \x28Windows NT 10\.0\x3b
+        Microsoft Outlook 16\.0\.4551\x3b Pro\x29/Hmi"'
+      reference: url,www.crowdstrike.com/wp-content/uploads/2022/05/crowdstrike-iceapple-a-novel-internet-information-services-post-exploitation-framework.pdf
+      rev: '1'
+      sid: '2036602'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

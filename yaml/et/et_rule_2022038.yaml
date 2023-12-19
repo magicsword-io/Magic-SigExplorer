@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"redir.php"'
+      - value: '!"Referer|3a| "'
+      - value: '"jndj="'
+      - value: '"&ncm="'
+      distance: '0'
+      flow: to_server,established
+      flowbits: set,ET.nemucod.pdfrequest
+      metadata: created_at 2015_11_05, updated_at 2020_06_09
+      msg: '"ET TROJAN JS/Nemucod.M.gen requesting PDF payload 2015-11-02"'
+      pcre: '"/^[a-zA-Z]{4,}=0\.[0-9]{10,}&jndj=[a-zA-Z0-9]{4,}&ncm=[a-zA-Z]{4,}$/P"'
+      reference: md5,f77e7cac3793136bcd1d77ec6a00d8e2
+      rev: '1'
+      sid: '2022038'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - nocase
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

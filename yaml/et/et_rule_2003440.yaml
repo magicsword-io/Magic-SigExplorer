@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/reportaddon.cgi?"'
+      - value: '"report.cgi?"'
+      - value: '"user="'
+      - value: '"software="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Dropspam.com Spyware Reporting"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003440
+      rev: '5'
+      sid: '2003440'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

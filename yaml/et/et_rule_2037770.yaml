@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"email="'
+      - value: '"&password="'
+      - depth: '25'
+        value: '"POST|20 2f|themepark|2f|next|2e|php|20|"'
+      distance: '0'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_14, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_14
+      msg: '"ET CURRENT_EVENTS Successful OWA Credential Phish 2022-07-13"'
+      reference: md5,9da66e99dfa47eca7b5a5212eb53dd8e
+      rev: '1'
+      sid: '2037770'
+      special_options:
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

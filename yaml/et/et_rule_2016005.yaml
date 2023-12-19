@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/dispatch.php?"'
+      - value: '"atkaction=search"'
+      - value: '"atknodetype="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_12_08, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Achievo atknodetype parameter Local File Inclusion
+        Vulnerability"'
+      reference: url,packetstormsecurity.org/files/117822/Achievo-1.4.5-XSS-LFI-SQL-Injection.html
+      rev: '2'
+      sid: '2016005'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

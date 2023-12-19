@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2224'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|01|1|DB CD 80 E8|[|FF FF FF|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER MDBMS overflow"'
+      reference: nessus,10422
+      rev: '10'
+      sid: '1240'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

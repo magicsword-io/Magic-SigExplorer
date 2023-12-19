@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a 20|Go-http-client"'
+      - depth: '11'
+        value: '"PassworldX="'
+      - value: '"&TegX="'
+      - value: '"&chatID="'
+      - value: '"&coockiesX="'
+      - value: '"&grabfiles="'
+      - value: '"&tgstat="'
+      - value: '"&wallets="'
+      - value: '"&zipx="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2022_07_25, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Loli Stealer CnC Activity"'
+      pcre: '"/\.php$/U"'
+      reference: url,twitter.com/Finch39487976/status/1550885316931850241
+      rev: '1'
+      sid: '2037814'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

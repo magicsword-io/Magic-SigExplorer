@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"logincreds=",fast_pattern,nocase'
+      - value: '"isAdmin="'
+      - value: '"antivirus="'
+      - value: '"commentary="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TeamBot outbound cnc connection"'
+      reference: url,www.virustotal.com/#/file/5ef40f982016085ed58e0088eaa4be6e8c32cfa6526a5e681116b0914427ee21
+      rev: '2'
+      service: http
+      sid: '50263'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

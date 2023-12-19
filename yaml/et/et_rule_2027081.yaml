@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|p|3e|In order to continue the install"'
+      - value: '"enter your Piratebay user and pass below"'
+      - value: '"If u don''t have an PirateBay"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_13, deployment Perimeter, former_category
+        PHISHING, malware_family PirateMatryoshka, performance_impact Low, signature_severity
+        Major, tag Phish, updated_at 2020_08_28
+      msg: '"ET WEB_CLIENT PirateBay Phish - Possibly PirateMatryoshka Related"'
+      reference: url,securelist.com/piratebay-malware/89740/
+      rev: '2'
+      sid: '2027081'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

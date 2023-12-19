@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '33434'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|4E 4F 43 54 49 4F 4E 20 49 52 50|"'
+      flags: SP
+      flow: stateless
+      metadata: created_at 2016_12_14, deployment Perimeter, performance_impact Low,
+        signature_severity Minor, updated_at 2016_12_14
+      msg: '"ET INFO Noction IRP Probe"'
+      reference: url,www.noction.com/faq
+      rev: '1'
+      sid: '2023640'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

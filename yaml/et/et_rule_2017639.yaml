@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Content-Type|3A| application/java-archive"'
+      - value: '"Content-Length|3A| "'
+      - value: '"|0D 0A|"'
+      - value: '"PK"'
+      distance: '5'
+      fast_pattern: 26,12
+      flow: established,to_client
+      metadata: created_at 2013_10_28, updated_at 2020_08_20
+      msg: '"ET INFO JAR Size Under 30K Size - Potentially Hostile"'
+      pcre: '"/^Content\x2DLength\x3A\x20[12]\d{1,4}\x0D\x0A/Hmi"'
+      rev: '2'
+      sid: '2017639'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

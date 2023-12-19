@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b 24 7b 3a 3a 2d 24 7b 3a 3a 2d 24 24 7b 3a 3a 2d|"'
+      - value: '"|7d 7d 7d 7d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_12_22, cve CVE_2021_45105, former_category EXPLOIT,
+        updated_at 2021_12_22
+      msg: '"ET EXPLOIT Possible Apache log4j Uncontrolled Recursion Lookup (CVE-2021-45105)"'
+      reference: cve,2021-45105
+      rev: '1'
+      sid: '2034839'
+      special_options:
+      - fast_pattern
+      within: '6'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|idtpl|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_01_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_01_04
+      msg: '"ET TROJAN APT32/OceanLotus CnC Domain in DNS Lookup (idtpl .org)"'
+      reference: url,labs.sentinelone.com/apt32-multi-stage-macos-trojan-innovates-on-crimeware-scripting-technique/
+      rev: '2'
+      sid: '2031476'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

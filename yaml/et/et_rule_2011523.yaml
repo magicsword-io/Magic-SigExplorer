@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/socks.php?"'
+      - value: '"name="'
+      - value: '"&port="'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, former_category MALWARE, updated_at 2020_09_10
+      msg: '"ET TROJAN Shiz or Rohimafo Reporting Listening Socket to CnC Server"'
+      pcre: '"/port=[1-9]{1,5}/Ui"'
+      reference: md5,3614d4f6527d512b61c27c4e213347a6
+      rev: '2'
+      sid: '2011523'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

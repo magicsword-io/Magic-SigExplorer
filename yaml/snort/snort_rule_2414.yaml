@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|0B|",depth 1,offset 16'
+      - value: '"|00 0C 00 00 00 01 01 00 06 02|",depth 10,offset 30'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ISAKMP initial contact notification without SPI attempt"'
+      reference: cve,2004-0164
+      rev: '16'
+      sid: '2414'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

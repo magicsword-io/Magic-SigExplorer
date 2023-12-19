@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|3c|HTML|3e 3c|BODY|3e|"'
+      - value: '"Commands with JSP"'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_30, deployment Perimeter,
+        deployment SSLDecrypt, former_category WEB_SERVER, performance_impact Low,
+        confidence High, signature_severity Major, tag WebShell, updated_at 2023_11_30,
+        mitre_tactic_id TA0003, mitre_tactic_name Persistence, mitre_technique_id
+        T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET WEB_SERVER Simple JSP WebShell Landing Page"'
+      reference: url,www.cisa.gov/sites/default/files/publications/MAR-10410305.r1.v1.CLEAR_0.pdf
+      rev: '1'
+      sid: '2049405'
+      special_options:
+      - file_data
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

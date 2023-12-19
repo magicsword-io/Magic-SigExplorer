@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|VP-EYE Downloader"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_02_06,
+        deployment Perimeter, signature_severity Major, tag Trojan_Downloader, updated_at
+        2020_04_21
+      msg: '"ET TROJAN W32/VPEYE Trojan Downloader User-Agent (VP-EYE Downloader)"'
+      rev: '1'
+      sid: '2014193'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|su|07|vealcat|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2023_07_05, deployment Perimeter, malware_family GobRAT, performance_impact
+        Low, signature_severity Major, tag RAT, updated_at 2023_07_05, reviewed_at
+        2023_10_06
+      msg: '"ET TROJAN GobRAT CnC Domain in DNS Lookup (su .vealcat .com)"'
+      reference: url,blogs.jpcert.or.jp/en/2023/05/gobrat.html
+      rev: '1'
+      sid: '2046732'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

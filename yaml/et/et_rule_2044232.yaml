@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"7ux4398!"'
+      - value: '"POST"'
+      - value: '"/default.aspx"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_02_16, deployment Perimeter,
+        deployment Internal, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_02_16
+      msg: '"ET TROJAN Win32/frebniis IIS Backdoor Trigger Attempt M2"'
+      reference: url,symantec-enterprise-blogs.security.com/blogs/threat-intelligence/frebniis-malware-iis
+      rev: '1'
+      sid: '2044232'
+      special_options:
+      - fast_pattern
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

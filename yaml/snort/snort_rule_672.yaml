@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"vrfy",nocase'
+      - value: '"decode",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL vrfy decode"'
+      pcre: '"/^vrfy\s+decode/ims"'
+      reference: cve,1999-0096
+      rev: '17'
+      service: smtp
+      sid: '672'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

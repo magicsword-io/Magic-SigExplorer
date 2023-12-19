@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/stats/counterz.php?id="'
+      - value: '"&stat="'
+      flow: established,to_server
+      metadata: created_at 2012_03_07, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Trojan.Win32.Genome.aetqe Checkin"'
+      reference: md5,700b7a81d1460a652e5f9f06fc54dcd6
+      rev: '2'
+      sid: '2014331'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

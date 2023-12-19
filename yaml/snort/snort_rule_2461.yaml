@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|0D 00 05 00|",depth 4'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Yahoo IM conference watch"'
+      rev: '10'
+      sid: '2461'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5100'

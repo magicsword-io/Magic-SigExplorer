@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0e|temisleyes.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2021_05_11,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed DarkSide Ransomware Domain (temisleyes .com in TLS
+        SNI)"'
+      reference: md5,f00aded4c16c0e8c3b5adfc23d19c609
+      rev: '2'
+      sid: '2032940'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

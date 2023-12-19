@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '22'
+        value: '"D2|7c|System|20|Information&"'
+      - value: '"Manufacturer|3a|"'
+      - value: '"Product|20|Name|3a|"'
+      - value: '"Version|3a 20|"'
+      - value: '"|0a|D3|7c|MemTotal|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_04_03, deployment Perimeter, former_category MALWARE, malware_family
+        CoinMiner, signature_severity Major, tag Coinminer, updated_at 2019_04_03,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496,
+        mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN ELF.Initdz.Coinminer C2 Systeminfo (D2)"'
+      reference: md5,8438f4abf3bc5844af493d60ea8eb8f6
+      rev: '1'
+      sid: '2027150'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '16'
+        value: '"|d9 2c c6 af f6 26 56 bb 73 f5 c4 68 0f 90 d9 d4|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_17, deployment Perimeter, former_category
+        TROJAN, malware_family ursnif, malware_family Gozi, performance_impact Low,
+        signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN [PTsecurity] Gozi/Ursnif Payload v14"'
+      reference: url,github.com/ptresearch/AttackDetection
+      rev: '2'
+      sid: '2025205'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

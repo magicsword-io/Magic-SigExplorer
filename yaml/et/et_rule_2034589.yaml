@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|republicofaf|03|xyz|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_12_06, deployment Perimeter,
+        former_category MALWARE, malware_family SideCopy, signature_severity Major,
+        updated_at 2021_12_06
+      msg: '"ET TROJAN Sidecopy APT Related CnC Domain in DNS Lookup (republicofaf
+        .xyz)"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2021/12/sidecopy-apt-connecting-lures-to-victims-payloads-to-infrastructure/
+      rev: '2'
+      sid: '2034589'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

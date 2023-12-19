@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|requestbin|02|cn|00|"'
+      distance: '1'
+      metadata: created_at 2023_08_26, former_category INFO, updated_at 2023_08_26,
+        reviewed_at 2023_08_26, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration,
+        mitre_technique_id T1567, mitre_technique_name Exfiltration_Over_Web_Service
+      msg: '"ET INFO DNS Query for Webhook/HTTP Request Inspection Service (requestbin
+        .cn)"'
+      reference: url,requestbin.cn
+      rev: '1'
+      sid: '2047772'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

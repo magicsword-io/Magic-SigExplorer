@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: string-detect
+      contents:
+      - value: '"/LPT1/"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE FTP inaccessible directory access LPT1"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000503
+      rev: '9'
+      sid: '2000503'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

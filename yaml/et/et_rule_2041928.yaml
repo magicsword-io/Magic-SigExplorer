@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"XOXO"'
+      - value: '"XOXO"'
+      - value: '"XOXO|20|Host|20|Name|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_06, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_12_06
+      msg: '"ET TROJAN Confucious APT CnC Checkin"'
+      pcre: '"/^(?:[A-F0-9]{2}-){5}[A-F0-9]{2}/R"'
+      reference: md5,23537d81e9cd285b41185a0e4c3d37c1
+      rev: '1'
+      sid: '2041928'
+      special_options:
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

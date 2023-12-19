@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| z00sAgent"'
+      fast_pattern: 12,9
+      flow: to_server,established
+      metadata: created_at 2013_04_02, updated_at 2020_04_23
+      msg: '"ET TROJAN Zeus User-Agent(z00sAgent)"'
+      reference: md5,e94fb19f3a38f9b2a775b925e4c0abe3
+      rev: '1'
+      sid: '2016710'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

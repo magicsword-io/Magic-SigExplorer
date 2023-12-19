@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"c2NyZWVuc2hvdA==|0a|"'
+      dsize: '17'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_04_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_04_02
+      msg: '"ET TROJAN Suspected CHAOS CnC Inbound (screenshot command)"'
+      reference: url,github.com/tiagorlampert/CHAOS
+      rev: '1'
+      sid: '2029797'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

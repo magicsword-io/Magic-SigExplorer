@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '10'
+      classtype: trojan-activity
+      contents:
+      - value: '"sousi.extasix.com|0D 0A|",fast_pattern,nocase'
+      - value: '"/genst.htm"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Harakit botnet traffic"'
+      reference: url,www.virustotal.com/en/file/3df72fe102fddc74de2da518ea16948bd2c8c0e910c28c4358367e10723ba21f/analysis/
+      rev: '2'
+      service: http
+      sid: '26563'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '63'
+        value: '"Congratulations! Perfect Kelogger was successfully installed"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Perfect Keylogger FTP Initial Install Log Upload"'
+      reference: url,doc.emergingthreats.net/2007973
+      rev: '3'
+      sid: '2007973'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

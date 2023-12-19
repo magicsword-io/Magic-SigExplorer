@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/3.0 (compatible|3b| TALWinInetHTTPClient)|0d
+          0a|"'
+      fast_pattern: 17,20
+      flow: to_server,established
+      metadata: created_at 2010_09_28, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE User-Agent (TALWinInetHTTPClient)"'
+      rev: '4'
+      sid: '2011283'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

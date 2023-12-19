@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Cache-Control|3a| no-cache"'
+      - value: '"id="'
+      - value: '"&build_id="'
+      dsize: <400
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Blackenergy Bot Checkin to C&C"'
+      pcre: '"/id=x.+_[0-9A-F]{8}&build_id=./P"'
+      reference: url,doc.emergingthreats.net/2007668
+      rev: '14'
+      sid: '2007668'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

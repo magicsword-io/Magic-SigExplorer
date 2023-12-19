@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      - value: '"{|22|log|22 3a 22|UEs"'
+      - value: '"|22 2c 22|passwords|22 3a 22|"'
+      - value: '"|22 2c 22|cookies|22 3a 22|"'
+      - value: '"|22 2c 22|wallets|22 3a 22|"'
+      - value: '"|22 2c 22|name|22 3a 22|"'
+      - value: '"|22 2c 22|nickname|22 3a 22|"'
+      - value: '!"|2e|"'
+      - value: '!"Referer|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_18, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_08_29, reviewed_at 2023_10_30
+      msg: '"ET TROJAN [ANY.RUN] Win32/RootTeam Stealer CnC Exfil M3"'
+      reference: url,app.any.run/tasks/616ca90b-9f70-4d8c-ab9b-68ae70ab65d2
+      rev: '2'
+      sid: '2047672'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| Opera BitTorrent, Opera/"'
+      fast_pattern: 11,15
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_04_23
+      msg: '"ET P2P Bittorrent P2P Client User-Agent (Opera/10.x)"'
+      reference: url,doc.emergingthreats.net/2011701
+      rev: '5'
+      sid: '2011701'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

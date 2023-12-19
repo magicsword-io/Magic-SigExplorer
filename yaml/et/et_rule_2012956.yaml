@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|co|02|tv"'
+      distance: '1'
+      fast_pattern: only
+      metadata: created_at 2011_06_08, former_category HUNTING, updated_at 2020_09_15
+      msg: '"ET DNS DNS Query for a Suspicious *.co.tv domain"'
+      rev: '3'
+      sid: '2012956'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '".php?hwid="'
+      - value: '".txt|22 0d 0a|Content-Type|3a 20|application/octet-stream|0d 0a|"'
+      - value: '"|22|PC Name|22|"'
+      - value: '"|22|Operating System|22|"'
+      - value: '"|22|Anti virus|22|"'
+      - value: '"|22|Firewall|22|"'
+      - value: '"|22|Processor|22|"'
+      - value: '"|22|Memory|20|(RAM)|22|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_30, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_09_30
+      msg: '"ET TROJAN Megalodon/Gomorrah/CosaNostra HTTP Bot CnC Exfil"'
+      reference: md5,0dad0861840cb73b4cefce3dcce28fa5
+      rev: '2'
+      sid: '2034056'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

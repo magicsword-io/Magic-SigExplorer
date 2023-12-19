@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"@@version"'
+      flow: established,to_server
+      metadata: created_at 2012_06_14, updated_at 2020_04_21
+      msg: '"ET WEB_SERVER Possible attempt to enumerate MS SQL Server version"'
+      reference: url,support.microsoft.com/kb/321185
+      rev: '1'
+      sid: '2014890'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

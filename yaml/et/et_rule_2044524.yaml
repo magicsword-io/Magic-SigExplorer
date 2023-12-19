@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendDocument?chat_id="'
+      - value: '"&caption|3d 0a 2d 20|IP|20|Info|20 2d 0a 0a|IP|3a 20|"'
+      - value: '"|0a 2d 20|PC|20|Info|20 2d 0a|"'
+      - value: '"|0a|GPU|3a 20 0a|"'
+      - value: '"|0a|FileLocation|3a 20|"'
+      - value: '"Host|3a 20|api.telegram.org"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family LucaStealer,
+        performance_impact Low, signature_severity Major, updated_at 2023_03_21, reviewed_at
+        2023_11_28
+      msg: '"ET TROJAN Win32/Luca Stealer Sending System Information via Telegram
+        (GET)"'
+      reference: md5,49d57061203091edfdeee7ec378811ea
+      rev: '2'
+      sid: '2044524'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

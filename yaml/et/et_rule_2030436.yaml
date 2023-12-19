@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/ru5555/"'
+      - value: '"-fmld-0.exe"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_01
+      msg: '"ET TROJAN Suspected Glupteba Download"'
+      reference: url,news.sophos.com/wp-content/uploads/2020/06/glupteba_final-1.pdf
+      rev: '2'
+      sid: '2030436'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

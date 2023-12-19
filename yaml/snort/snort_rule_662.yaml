@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"mail from|3A| |22 7C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail 5.5.5 exploit"'
+      reference: nessus,10258
+      rev: '17'
+      service: smtp
+      sid: '662'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"charset = |22 22|",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Microsoft Windows Exchange Server 5.5 mime DOS"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS00-082
+      rev: '19'
+      service: smtp
+      sid: '658'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

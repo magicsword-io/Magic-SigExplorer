@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/dnscfg.cgi?dnsPrimary="'
+      - value: '"&dnsSecondary="'
+      - value: '"&dnsDynamic=0&dnsRefresh=1"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2019_08_23, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Moderate, signature_severity Major,
+        updated_at 2022_03_24
+      msg: '"ET EXPLOIT D-Link Router DNS Changer Exploit Attempt"'
+      reference: url,csirt.bank.gov.ua/en/news/44
+      rev: '2'
+      sid: '2027906'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

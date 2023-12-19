@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '139'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"s|00|p|00|_|00|p|00|a|00|s|00|s|00|w|00|o|00|r|00|d|00|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SQL sp_password password change"'
+      rev: '7'
+      sid: '2100677'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

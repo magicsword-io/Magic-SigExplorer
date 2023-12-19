@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|00 e7 f9 b6 de a6 57 93 e2 44 6a 3b 95 c6 b3 ec df|"'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_09_29, deployment Perimeter, former_category POLICY, signature_severity
+        Minor, updated_at 2020_08_20
+      msg: '"ET POLICY Request for Jsecoin Browser Miner M2"'
+      rev: '2'
+      sid: '2024788'
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

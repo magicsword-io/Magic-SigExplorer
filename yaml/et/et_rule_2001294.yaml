@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"DWRCK.DLL"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Dameware Remote Control Service Install"'
+      reference: url,doc.emergingthreats.net/2001294
+      rev: '5'
+      sid: '2001294'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Mozilla/5.0 (compatible|3B| MSIE 9.0|3B| Windows NT 6.1|3B|
+          Trident/5.0)|0D 0A|Content-Type: application/x-www-form-urlencoded|0D 0A|Host:
+          ",fast_pattern,nocase'
+      - value: '"|0D 0A|Content-Length: 13|0D 0A|Connection: Close|0D 0A|Cache-Control:
+          no-cache|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Tinybanker variant outbound connection"'
+      pcre: '"/[^\x20-\x7e\r\n]{3}/"'
+      reference: url,www.virustotal.com/en/file/b88b978d00b9b3a011263f398fa6a21098aba714db14f7e71062ea4a6b2e974e/analysis/
+      rev: '3'
+      service: http
+      sid: '31641'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

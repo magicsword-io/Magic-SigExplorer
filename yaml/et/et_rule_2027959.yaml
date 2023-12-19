@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,465,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|5c 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2019_09_06, cve CVE_2019_15846, former_category EXPLOIT,
+        performance_impact Significant, updated_at 2019_09_10
+      msg: '"ET EXPLOIT Possible EXIM RCE Inbound (CVE-2019-15846)"'
+      pcre: '"/[\x20-\x7e]{5,}\x5c\x00[\x20-\x7e]{5,}/"'
+      reference: url,exim.org/static/doc/security/CVE-2019-15846.txt
+      rev: '3'
+      sid: '2027959'
+      special_options:
+      - fast_pattern
+      within: '1'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".cmd|22|"'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, cve CVE_2000_0886, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT .cmd executable file parsing attack"'
+      pcre: '"/\.cmd\x22.*?\x26/Ui"'
+      reference: cve,2000-0886
+      rev: '6'
+      sid: '2103193'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

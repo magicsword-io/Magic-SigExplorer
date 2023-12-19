@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"2|7C|http://",depth 9'
+      - value: '"/search.php|7C|http://",within 60'
+      - value: '"|7C|Mozilla/4.0 ",within 100'
+      - value: '"/r.php?key=",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Cryptowall click fraud response"'
+      reference: url,www.virustotal.com/en/file/3b78dd891a81c18cffa5031e52f9c2329e2986ba83c5c75a67dc4ae3d1f0bec3/analysis/
+      rev: '2'
+      service: http
+      sid: '35344'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

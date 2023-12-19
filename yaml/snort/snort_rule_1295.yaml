@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"R|00|I|00|C|00|H|00|E|00|D|00|2|00|0|00|.|00|D|00|L|00|L",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE nimda RICHED20.DLL"'
+      reference: url,www.f-secure.com/v-descs/nimda.shtml
+      rev: '13'
+      sid: '1295'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/goformFOO/AlFrame?"'
+      - value: '"/goformFOO/AlFrame?"'
+      - value: '"Gateway.Wan.dnsAddress1="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_04_08, updated_at 2020_05_21
+      msg: '"ET EXPLOIT Motorola SBG900 Router DNS Change GET Request"'
+      reference: url,github.com/hkm/routerpwn.com/blob/master/index.html
+      rev: '1'
+      sid: '2020861'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"receipt="'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_02_07, updated_at 2020_09_18
+      msg: '"ET TROJAN Request for fake postal receipt from e-mail link"'
+      pcre: '"/\.php\?(print_)?receipt=(s00|\d{3})_\d+$/Ui"'
+      rev: '2'
+      sid: '2016359'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

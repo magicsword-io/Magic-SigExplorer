@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".png HTTP/1.1|0d 0a|Host|3a 20|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Trickbot, updated_at 2022_05_03
+      msg: '"ET TROJAN Trickbot Payload Request"'
+      pcre: '"/^\/(?:kas|ser|mac)[0-9]+\.png$/Ui"'
+      reference: md5,2c6cd25a31fe097ee7532422fc8eedc8
+      rev: '4'
+      sid: '2024901'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

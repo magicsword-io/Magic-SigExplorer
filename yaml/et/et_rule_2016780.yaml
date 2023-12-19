@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?data="'
+      - value: '"&version="'
+      - value: '"User-Agent|3a| win32|0D 0A|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_23, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Adware.Win32/SProtector.A Client Checkin"'
+      reference: md5,38f61d046e575971ed83c4f71accd132
+      rev: '2'
+      sid: '2016780'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

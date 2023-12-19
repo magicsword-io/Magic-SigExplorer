@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/dlink/hwiz.html"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET POLICY Dlink Soho Router Config Page Access Attempt"'
+      reference: url,doc.emergingthreats.net/2008942
+      rev: '7'
+      sid: '2008942'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

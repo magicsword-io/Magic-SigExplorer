@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|e0 e0 e0 e0 97 89 8e 84 8f|"'
+      - value: '"|98 90 e0|"'
+      distance: '2'
+      dsize: <512
+      flow: to_server,established
+      metadata: created_at 2014_03_06, former_category MALWARE, updated_at 2014_03_06
+      msg: '"ET TROJAN Darkshell.A Checkin XOR C0 Win XP"'
+      rev: '2'
+      sid: '2018229'
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

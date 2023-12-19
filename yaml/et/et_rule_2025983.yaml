@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - offset: '4'
+        value: '"|FD 53 4D 42 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41
+          41 41 41 41 41 41 41 41 41 41 41 41 41 41|"'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_08, cve CVE_2018_0833, deployment Internal,
+        former_category EXPLOIT, signature_severity Minor, updated_at 2018_08_08
+      msg: '"ET EXPLOIT SMB Null Pointer Dereference PoC Inbound (CVE-2018-0833)"'
+      reference: cve,2018-0833
+      rev: '2'
+      sid: '2025983'
+    protocol: tcp
+    source:
+      network: any
+      port: '445'

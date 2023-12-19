@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|IH"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|02|IH"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|02|IH"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|02|IH"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|02|IH"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|CA"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|02|CA"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|02|CA"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|02|CA"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|02|CA"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2021_06_21, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2021_06_21, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Gelsemium CnC)"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2021/06/eset_gelsemium.pdf
+      rev: '2'
+      sid: '2033152'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

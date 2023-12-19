@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"CCCCCCCCCCCCCCCCCCCCCCCC"'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SHELLCODE x86 inc ebx NOOP"'
+      rev: '17'
+      sid: '1390'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"F7014877-6F5A-4019-A3B2-74077F2AE126"'
+      - value: '".SaveToFile|28|"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_28, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Quest Explain Plan Display ActiveX Control SaveToFile Insecure
+        Method Access"'
+      reference: url,secunia.com/advisories/48681/
+      rev: '2'
+      sid: '2014652'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

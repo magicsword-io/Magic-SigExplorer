@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"pdfxctrlLib.PdfPrinterPreferences"'
+      - value: '"StoreInRegistry"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_28, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Tracker Software pdfSaver ActiveX StoreInRegistry Method Access
+        Potential Buffer Overflow 2"'
+      reference: url,exploit-db.com/exploits/18427/
+      rev: '4'
+      sid: '2014649'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

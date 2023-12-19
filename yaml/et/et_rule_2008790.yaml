@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"CLSID"'
+      - value: '"4A46B8CD-F7BD-11D4-B1D8-000102290E7C"'
+      - value: '"0x400000"'
+      - value: '"ImageURL"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2019_09_27
+      msg: '"ET ACTIVEX DjVu DjVu_ActiveX_MSOffice.dll ActiveX Component Heap Buffer
+        Overflow"'
+      reference: url,doc.emergingthreats.net/2008790
+      rev: '6'
+      sid: '2008790'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

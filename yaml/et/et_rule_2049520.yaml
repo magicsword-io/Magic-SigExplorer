@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"querryfiles.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_12_06, deployment Perimeter,
+        former_category MALWARE, confidence High, signature_severity Major, tag SSL_TLS_SNI,
+        updated_at 2023_12_06, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1573, mitre_technique_name Encrypted_Channel
+      msg: '"ET TROJAN Observed Teal Kurma Domain (querryfiles .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)querryfiles\.com/R"'
+      reference: url,www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/tortoise-and-malwahare.html
+      rev: '1'
+      sid: '2049520'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

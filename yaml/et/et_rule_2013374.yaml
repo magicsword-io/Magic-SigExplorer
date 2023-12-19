@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| XML|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2011_08_05, former_category USER_AGENTS, updated_at 2020_08_13
+      msg: '"ET TROJAN FakeAV User-Agent XML"'
+      rev: '2'
+      sid: '2013374'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

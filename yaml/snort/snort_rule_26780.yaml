@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00|<script type=|22|text/javascript|22| src=|22|/scripts/default0.js|22|></script>|00|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC cridex HTTP Response - default0.js"'
+      reference: url,www.virustotal.com/en/file/843ffd922b9bd902d736ddb664b578cde6e3033fa5a14b862b09045c36aa7524/analysis/1369942427/
+      rev: '2'
+      service: http
+      sid: '26780'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

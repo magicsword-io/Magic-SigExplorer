@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"."'
+      - value: '"?"'
+      - value: '"="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (MSIE 7.1|3b| Windows NT 6.0)|0d 0a|"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_01, deployment Perimeter, former_category
+        MALWARE, malware_family DistTrack, malware_family Shamoon, signature_severity
+        Major, tag c2, updated_at 2020_08_03, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN DistTrack/Shamoon CnC Beacon M2"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})\x20HTTP\/1\.1\r\n/R"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/11/unit42-shamoon-2-return-disttrack-wiper/
+      rev: '1'
+      sid: '2023571'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

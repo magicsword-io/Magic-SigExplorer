@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - depth: '10'
+        value: '"PHPSESSID|3d|"'
+      - value: '"module=Users"'
+      - value: '"action=Authenticate"'
+      - value: '"user_name=1"'
+      - value: '"user_password=1"'
+      flow: established,to_server
+      metadata: affected_product SugarCRM, attack_target Server, created_at 2023_01_11,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, tag Exploit, updated_at 2023_01_11
+      msg: '"ET EXPLOIT SugarCRM Auth Bypass Attempt 2022-12-31"'
+      pcre: '"/^PHPSESSID\x3d[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/C"'
+      reference: url,sugarclub.sugarcrm.com/dev-club/f/questions-answers/6123/exploit-for-sugarcrm-shell-upload
+      rev: '1'
+      sid: '2043272'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

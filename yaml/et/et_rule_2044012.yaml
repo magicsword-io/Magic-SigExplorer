@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"bne:uueupload=TRUE"'
+      - value: '"POST"'
+      - depth: '27'
+        value: '"/OA_HTML/BneDownloadService"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_27, cve CVE_2022_21587,
+        deployment Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2023_01_27
+      msg: '"ET EXPLOIT Possible Oracle E-Business RCE Attempt Inbound M3 (CVE-2022-21587)"'
+      reference: cve,2022-21587
+      rev: '1'
+      sid: '2044012'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

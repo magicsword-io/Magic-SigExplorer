@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2a 86 48 86 f7 0d 01 09 01|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_12_06, deployment Perimeter, malware_family
+        Upatre, signature_severity Critical, tag SSL_Malicious_Cert, tag Exploit_Kit,
+        tag Downloader, tag Upatre, updated_at 2022_03_15
+      msg: '"ET TROJAN Possible Upatre Downloader SSL certificate"'
+      pcre: '"/^.{2}(?P<fake_email>([asdfgh]+|[qwerty]+|[zxcvbn]+)\@([asdfgh]+|[qwerty]+|[zxcvbn]+)\.).+?\x2a\x86\x48\x86\xf7\x0d\x01\x09\x01.{2}(?P=fake_email)/Rs"'
+      reference: url,blogs.technet.com/b/mmpc/archive/2013/10/31/upatre-emerging-up-d-at-er-in-the-wild.aspx
+      rev: '4'
+      sid: '2017816'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

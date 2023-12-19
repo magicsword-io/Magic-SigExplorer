@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '34'
+        value: '"Windows PowerShell running as user"'
+      - value: '"|20|on|20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_24, deployment Perimeter,
+        former_category ATTACK_RESPONSE, performance_impact Low, signature_severity
+        Major, updated_at 2022_08_24
+      msg: '"ET ATTACK_RESPONSE Nishang Invoke-PowerShellTcp Shell Prompt Outbound"'
+      reference: url,github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
+      rev: '1'
+      sid: '2038605'
+      special_options:
+      - fast_pattern
+      within: '258'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

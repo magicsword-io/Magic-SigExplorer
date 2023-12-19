@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"CWD|20|"'
+      - value: '"SEL-2701"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target
+        ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, former_category
+        SCADA, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_10_19, reviewed_at 2023_10_19
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL
+        FTP Server Activity - Change working directory 2701"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048670'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: any
+      port: any

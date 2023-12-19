@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/setup/"'
+      - value: '"GALLERY_BASEDIR="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP gallery remote file include attempt"'
+      pcre: '"/GALLERY_BASEDIR=(https?|ftps?|php)/i"'
+      reference: nessus,11876
+      rev: '14'
+      service: http
+      sid: '2306'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

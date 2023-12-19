@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,>,13,1,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|03 02 01 02 02 09 00|"'
+      - value: '"|30 09 06 03 55 04 06 13 02|"'
+      - value: '"|55 04 07|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|55 04 03|"'
+      - value: '!"www."'
+      - value: '!"|2a 86 48 86 f7 0d 01 09 01|"'
+      - value: '!"GoDaddy"'
+      distance: '2'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2016_11_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2017_02_23, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL certificate detected (Dridex)"'
+      pcre: '"/^.{2}(?P<CN>(?:(?:\d?[A-Z]?|[A-Z]?\d?)(?:[a-z]{3,20}|[a-z]{3,6}[0-9_][a-z]{3,6})\.){0,2}?(?:\d?[A-Z]?|[A-Z]?\d?)[a-z]{3,}(?:[0-9_-][a-z]{3,})?\.(?!com|org|net|tv)[a-z]{2,9})[01].*?(?P=CN)[01]/Rs"'
+      reference: url,sslbl.abuse.ch
+      rev: '4'
+      sid: '2023476'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

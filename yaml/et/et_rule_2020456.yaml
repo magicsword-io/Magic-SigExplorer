@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '10'
+        value: '"|00 00|OS|3a 20|"'
+      - value: '"|2c 20|Domain|3a 20|"'
+      - value: '"|2c 20|User|3a 20|"'
+      - value: '"|00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_02_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_02_17,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Carbanak APT CnC Beacon 2"'
+      reference: url,securelist.com/files/2015/02/Carbanak_APT_eng.pdf
+      rev: '1'
+      sid: '2020456'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

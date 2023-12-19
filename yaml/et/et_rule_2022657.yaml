@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".old"'
+      - value: '".old|20|HTTP/1.1|0d 0a|Host"'
+      - value: '!"User-Agent"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: created_at 2016_03_24, updated_at 2020_11_05
+      msg: '"ET TROJAN IrcBot Downloading .old"'
+      reference: md5,ca6208a4dd3f1f846aaaf4a6cbcc66ea
+      rev: '1'
+      sid: '2022657'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

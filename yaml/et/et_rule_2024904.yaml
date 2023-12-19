@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/?i="'
+      - value: '"Content-Type|3a| application/x-www-form-urlencoded"'
+      - value: '!"Accept-Encoding|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - depth: '20'
+        value: '"report=AAA"'
+      flow: established, to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_23, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Moderate, signature_severity Minor, updated_at
+        2020_08_31
+      msg: '"ET MALWARE [PTsecurity] Adware.FileFinder Activity"'
+      rev: '3'
+      sid: '2024904'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

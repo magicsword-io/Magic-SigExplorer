@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"themes/css/"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_21, deployment Perimeter, former_category
+        PHISHING, performance_impact Moderate, signature_severity Major, updated_at
+        2021_10_05
+      msg: '"ET CURRENT_EVENTS PerSwaysion Phishkit Javascript - Observed Repetitive
+        Custom CSS Components"'
+      pcre: '"/^[a-f0-9]{42}\.css\x27\x29\.then\x28(?:.{1,1000}themes\/css\/[a-f0-9]{42}\.css\x27\x29\.then\x28){5,}/Rsi"'
+      reference: url,blog.group-ib.com/perswaysion
+      rev: '4'
+      sid: '2034001'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,443]'
+    details:
+      bufferlen: '43'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST /",depth 6'
+      - value: '" HTTP/1.1",within 9,distance 42'
+      - value: '"Firefox/",distance 0'
+      - value: '!"|0D 0A|Accept-"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluoz outbound connection"'
+      pcre: '"/^POST\x20\x2f[A-F\d]{42}\x20HTTP/"'
+      reference: url,www.virustotal.com/en/file/93a40a83977ca24df6e12d7d6f19a9b9d92cb3ea3174ea9d4398ad2048205c42/analysis/
+      rev: '5'
+      service: http
+      sid: '31244'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

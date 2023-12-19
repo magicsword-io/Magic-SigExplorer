@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|78 70|"'
+      - value: '"|1f 8b 08 00 00 00 00 00 00 00 75 54|"'
+      distance: '4'
+      flow: established,to_server
+      flowbits: isset,ET.rat.alienspy
+      metadata: created_at 2014_11_18, former_category MALWARE, updated_at 2014_11_18
+      msg: '"ET TROJAN OSX/AlienSpy RAT Checkin"'
+      reference: url,contagiodump.blogspot.com/2014/11/alienspy-java-rat-samples-and-traffic.html?m=1
+      rev: '2'
+      sid: '2019740'
+      within: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

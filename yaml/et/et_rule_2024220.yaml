@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"|00 00 00 31 ff|SMB|2b 00 00 00 00 18 07 c0|"'
+      - value: '"|4a 6c 4a 6d 49 68 43 6c 42 73 72 00|"'
+      distance: '0'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: attack_target SMB_Server, created_at 2017_04_17, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2017_11_27
+      msg: '"ET EXPLOIT Possible ETERNALBLUE MS17-010 Echo Request (set)"'
+      rev: '3'
+      sid: '2024220'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!---<table<b"'
+      flow: established,from_server
+      flowbits: isset,ET.webc2
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2013_02_20
+      msg: '"ET TROJAN WEBC2-TABLE Checkin Response - Embedded CnC APT1 Related"'
+      reference: md5,110160e9d6e1483192653d4bfdcbb609
+      rev: '1'
+      sid: '2016438'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

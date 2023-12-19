@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|0d 0a|VAGAA-OPERATION|3a| Transfer|0d 0a|"'
+      flow: from_client,established
+      metadata: created_at 2014_01_27, updated_at 2020_04_27
+      msg: '"ET P2P Vagaa peer-to-peer (Transfer)"'
+      reference: url,en.wikipedia.org/wiki/Vagaa
+      rev: '1'
+      sid: '2018012'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

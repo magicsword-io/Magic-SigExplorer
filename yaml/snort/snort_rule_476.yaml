@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00 00|EEEEEEEEEEEE",fast_pattern,nocase'
+      icode: '0'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP webtrends scanner"'
+      rev: '10'
+      sid: '476'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"clsid"'
+      - value: '"E7B62F4E-82F4-11D2-BD41-00105A0A7E89"'
+      - value: '"BuildPath"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX SoftArtisans XFile FileManager ActiveX Buildpath method stack
+        overflow Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*E7B62F4E-82F4-11D2-BD41-00105A0A7E89/si"'
+      reference: url,doc.emergingthreats.net/2010746
+      rev: '3'
+      sid: '2010746'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

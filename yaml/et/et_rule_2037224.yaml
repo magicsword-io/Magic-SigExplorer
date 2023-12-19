@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"SM_SESSION=PING|3b|"'
+      - value: '"SM_SESSION=PING|3b|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_06_30, deployment Perimeter,
+        former_category WEB_SERVER, malware_family SessionManager, signature_severity
+        Major, updated_at 2023_05_11, reviewed_at 2023_11_07
+      msg: '"ET WEB_SERVER Win32/SessionManager2 Backdoor PING Command (Inbound)"'
+      reference: url,securelist.com/the-sessionmanager-iis-backdoor/106868/
+      rev: '2'
+      sid: '2037224'
+      special_options:
+      - http_cookie
+      threshold: type limit, track by_src, count 1, seconds 120
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

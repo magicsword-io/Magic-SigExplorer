@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/site_news.php?id="'
+      flow: established,to_server
+      metadata: created_at 2013_01_18, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS Mu Perspectives Cms id parameter Cross-Site Scripting
+        Attempt"'
+      pcre: '"/id\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.com/files/116148/Mu-Perspectives-CMS-Cross-Site-Scripting.html
+      rev: '2'
+      sid: '2016234'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

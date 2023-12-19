@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<b><br><br>Linux|20|"'
+      - value: '"method=|22|post|22 20|enctype=|22|multipart/form-data|22 20|name=|22|uploader|22
+          20|id=|22|uploader|22|><input type=|22|file|22 20|name=|22|file|22 20|size="'
+      - value: '"<input name=|22|_upl|22 20|type=|22|submit|22 20|id=|22|_upl|22 20|value=|22|Upload|22|></form>"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2021_04_09, deployment Perimeter, signature_severity Major, updated_at
+        2021_04_09
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2032635'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

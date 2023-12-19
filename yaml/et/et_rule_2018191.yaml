@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".googlecode.com"'
+      - value: '"/svn/"'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_02_27, former_category CURRENT_EVENTS, updated_at
+        2020_09_13
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS .exe Downloaded from SVN/HTTP on GoogleCode"'
+      pcre: '"/^Host\x3a[^\r\n]+\.googlecode\.com[\x3a\r]/Hmi"'
+      rev: '1'
+      sid: '2018191'
+      special_options:
+      - nocase
+      - http_header
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

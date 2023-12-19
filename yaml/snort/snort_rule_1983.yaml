@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4120'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"00",depth 2'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR DeepThroat 3.1 Connection attempt on port 4120"'
+      reference: nessus,10053
+      rev: '11'
+      sid: '1983'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

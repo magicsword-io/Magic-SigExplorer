@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/login/login.html"'
+      - value: '"myname="'
+      - value: '"mypasswd="'
+      - value: '"Submit=Login"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_06_01, cve CVE_2021_4039,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2022_06_01
+      msg: '"ET EXPLOIT Zyxel NWA-1100-NH Command Injection Attempt (CVE-2021-4039)"'
+      pcre: '"/myname=[^&]+(?:[\x60\x3b\x7c\x26]|%60|%3b|%7c|%26|(?:[\x3c\x3e\x24]|%3c|%3e|%24)(?:\x28|%28))/Pi"'
+      reference: cve,2021-4039
+      rev: '1'
+      sid: '2036737'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '17'
+    protocol: tcp
+    source:
+      network: any
+      port: any

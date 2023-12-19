@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      byte_test: 1,&,8,4
+      classtype: attempted-recon
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS TCP inverse query"'
+      reference: nessus,10605
+      rev: '12'
+      service: dns
+      sid: '2922'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

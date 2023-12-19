@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '6'
+        value: '"|7b 22|k|22 3a 22|"'
+      - value: '"|22|rer_module|22 3a 22|"'
+      - value: '"|22|rer_direct_link|22 3a 22|"'
+      - value: '"|22|fem_module|22 3a 22|"'
+      - value: '"|22|fem_header|22 3a 22|"'
+      - value: '"|22|fem_body|22 3a 22|"'
+      - value: '"|22|fg_module|22 3a 22|"'
+      - value: '"|22|fg_dirs|22 3a 22|"'
+      - value: '"|22|fg_ext|22 3a 22|"'
+      - value: '"|22|self_kill|22 3a 22|"'
+      - value: '"|22|mozilla_modules|22 3a 22|"'
+      - value: '"|22|anti_vm_score|22 3a 22|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_06, deployment Perimeter, former_category
+        MALWARE, malware_family Erbium, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_09_06
+      msg: '"ET TROJAN ErbiumStealer Response From CnC"'
+      reference: md5,6b74547f37e8c088ffa81dab867b241e
+      rev: '1'
+      sid: '2038746'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

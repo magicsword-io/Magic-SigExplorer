@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| BTWebClient"'
+      flow: established,to_server
+      metadata: created_at 2011_01_27, updated_at 2020_09_14
+      msg: '"ET P2P BTWebClient UA uTorrent in use"'
+      rev: '2'
+      sid: '2012247'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

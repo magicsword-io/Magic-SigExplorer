@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SITE",nocase'
+      - value: '"CHMOD",distance 0,nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP SITE CHMOD overflow attempt"'
+      pcre: '"/^SITE\s+CHMOD\s[^\n]{200}/ims"'
+      reference: nessus,12037
+      rev: '15'
+      service: ftp
+      sid: '2340'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

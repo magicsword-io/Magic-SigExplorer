@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[80,443]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        offset: '160'
+        value: '"|BB 4E 4E BC BC BC 7E 7E|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_01_13, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_01_13,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Hong Kong SWC Attack PcClient CnC Beacon"'
+      reference: url,blog.dragonthreatlabs.com/2015/01/dtl-12012015-01-hong-kong-swc-attack.html
+      rev: '1'
+      sid: '2020169'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

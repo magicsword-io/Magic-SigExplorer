@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| Blizzard Web Client"'
+      flow: established,to_server
+      metadata: created_at 2011_01_10, updated_at 2020_08_18
+      msg: '"ET GAMES Blizzard Web Downloader Install Detected"'
+      rev: '2'
+      sid: '2012170'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

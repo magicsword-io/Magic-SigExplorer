@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"connect_data|28|command=version|29|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SQL connect_data remote version detection attempt"'
+      rev: '7'
+      sid: '2101674'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"uid=",nocase'
+      - value: '" gid=",distance 0'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE id check returned userid"'
+      pcre: '"/uid=\d{1,5}\S+\s+gid=\d{1,5}/ims"'
+      rev: '20'
+      sid: '1882'
+    protocol: ip
+    source:
+      network: $HOME_NET
+      port: any

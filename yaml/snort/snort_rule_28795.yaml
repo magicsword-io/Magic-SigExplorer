@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <30
+      classtype: trojan-activity
+      contents:
+      - value: '".mp3",fast_pattern,nocase'
+      - value: '" Java/1."'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"EXPLOIT-KIT Goon/Infinity exploit kit payload download attempt"'
+      pcre: '"/\/\d+\.mp3$/"'
+      reference: url,blog.talosintel.com/2013/11/im-calling-this-goon-exploit-kit-for-now.html
+      rev: '7'
+      service: http
+      sid: '28795'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

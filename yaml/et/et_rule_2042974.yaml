@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '4'
+        value: '"|f1 00|"'
+      - value: '!"|00 00 00 00 00 00|"'
+      - value: '"|51 00 00 02|"'
+      distance: '6'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_20, deployment Perimeter,
+        former_category MALWARE, malware_family TA453, malware_family CharmingKitten,
+        confidence High, signature_severity Major, updated_at 2022_12_20
+      msg: '"ET TROJAN Charming Kitten APT Related DNS Activity"'
+      reference: url,www.team-cymru.com/post/apt35-exploitation-activities-continue-as-of-november-2022
+      rev: '1'
+      sid: '2042974'
+      threshold: type both,track by_src, count 10, seconds 30
+      within: '4'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

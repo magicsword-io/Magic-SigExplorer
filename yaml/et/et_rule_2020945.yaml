@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Internet  Explorer|0d 0a|"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_21,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN  Win32/Tesch.B CnC Beacon"'
+      pcre: '"/^[a-f0-9]+(?:\x20[a-f0-9]+)+$/P"'
+      reference: md5,0032395c3a980e09c511b6b41ab3da48
+      rev: '2'
+      sid: '2020945'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

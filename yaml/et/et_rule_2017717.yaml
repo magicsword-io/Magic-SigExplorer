@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/monitor.php?resp=ID|3a|"'
+      - value: '"Target|3a|"'
+      - value: '"Message|3a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (SEObot)|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_11_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Trojan.BlackRev Botnet Monitor Request CnC Beacon"'
+      pcre: '"/\/monitor\.php\?resp=ID\x3a[A-Za-z]{15}/U"'
+      reference: url,www.btpro.net/blog/2013/05/black-revolution-botnet-trojan/
+      rev: '2'
+      sid: '2017717'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Server|3a 20|HFS|20|"'
+      - value: '"|6f 62 6a 57 73 68 2e 72 75 6e 20 22 43 3a 5c 57 69 6e 64 6f 77 73
+          5c 54 65 6d 70 5c 70 75 74 74 79 2e 65 78 65 22|"'
+      flow: established,from_server
+      metadata: affected_product Internet_Explorer, attack_target Client_Endpoint,
+        created_at 2016_09_01, cve CVE_2014_6332, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family IEiExploit, performance_impact Low, signature_severity
+        Major, updated_at 2023_03_10
+      msg: '"ET CURRENT_EVENTS CVE-2014-6332 Sep 01 2016 (HFS Actor) M2"'
+      reference: cve,2014-6332
+      rev: '1'
+      sid: '2023146'
+      special_options:
+      - http_header
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

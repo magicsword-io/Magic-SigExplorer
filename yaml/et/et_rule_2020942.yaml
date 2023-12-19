@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|tkj3higtqlvohs7z"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2015_04_17, deployment Perimeter,
+        former_category MALWARE, malware_family Filecoder, signature_severity Major,
+        tag Ransomware, updated_at 2020_09_01, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Win32/Filecoder Ransomware Variant .onion Proxy Domain (tkj3higtqlvohs7z)"'
+      rev: '3'
+      sid: '2020942'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

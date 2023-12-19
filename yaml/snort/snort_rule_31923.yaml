@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%set_intercepts%",fast_pattern,nocase'
+      - value: '"%ban_contact%"'
+      - value: '"%ebaylive%"'
+      - value: '"%dep_host%"'
+      - value: '"%relay_soxid%"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant HTTP response attempt"'
+      reference: url,www.virustotal.com/en/file/4c0549384574ae91b68d58d92da3deacfcf714b27fb8d762ce9de8c58990ffb1/analysis/
+      rev: '2'
+      service: http
+      sid: '31923'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

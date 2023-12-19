@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|cleverapps|02|io|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_16, deployment Perimeter, former_category
+        INFO, confidence High, signature_severity Informational, updated_at 2023_05_16
+      msg: '"ET INFO Platform-As-A-Service Domain in DNS Lookup (cleverapps .io)"'
+      reference: url,next-www.cleverapps.io/en/about
+      rev: '1'
+      sid: '2045737'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

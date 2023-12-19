@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1556'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"ack="'
+      - value: '"extension=bprd"'
+      - value: '"/bin/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2017_05_17, deployment Internal,
+        former_category EXPLOIT, performance_impact Moderate, signature_severity Major,
+        updated_at 2017_05_17
+      msg: '"ET EXPLOIT NB8-02 - Possible Unauthed RCE via nbbsdtar"'
+      reference: url,seclists.org/fulldisclosure/2017/May/27
+      rev: '1'
+      sid: '2024309'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

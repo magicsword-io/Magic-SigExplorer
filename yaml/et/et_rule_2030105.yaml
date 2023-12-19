@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '4000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"100|3b|"'
+      - value: '"|3b|"'
+      - value: '"|3b 00 00 00 00|"'
+      distance: '0'
+      dsize: <200
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2020_05_05, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag NazarAPT, updated_at
+        2020_05_05
+      msg: '"ET TROJAN Nazar Implant - Sending Basic System Info to CnC"'
+      reference: url,research.checkpoint.com/2020/nazar-spirits-of-the-past/
+      rev: '2'
+      sid: '2030105'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

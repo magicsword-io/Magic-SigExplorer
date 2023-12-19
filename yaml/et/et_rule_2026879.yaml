@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|ff|SMB"'
+      - value: '"|5c 00|a|00|h|00|e|00|x|00|e|00|c|00 00 00|"'
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_05, deployment Perimeter, former_category
+        POLICY, performance_impact Moderate, signature_severity Informational, updated_at
+        2020_11_10
+      msg: '"ET POLICY Possible winexe over SMB - Possible Lateral Movement"'
+      reference: url,attack.mitre.org/software/S0191/
+      rev: '3'
+      sid: '2026879'
+      special_options:
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

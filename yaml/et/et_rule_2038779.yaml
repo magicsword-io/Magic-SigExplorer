@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/file.php"'
+      - value: '"&iddd="'
+      - value: '"&txtPassword="'
+      - value: '"|26|ctlSignon|25|24btnLogin|3d|Log|2b|in|26 5f 5f|VIEWSTATEGENERATOR|3d|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_08, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_09_08
+      msg: '"ET CURRENT_EVENTS Successful BECU Phish 2022-09-08"'
+      pcre: '"/\/file\.php$/U"'
+      reference: md5,01db3a0b73e2e2f700f3772cdff848e4
+      rev: '1'
+      sid: '2038779'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

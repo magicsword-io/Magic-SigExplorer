@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"SEARCH ",depth 8,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP WebDAV search access"'
+      reference: cve,2000-0951
+      rev: '16'
+      service: http
+      sid: '1070'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

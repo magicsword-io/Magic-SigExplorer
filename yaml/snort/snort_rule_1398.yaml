@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '6112'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"1",depth 1,offset 10'
+      - value: '!"000",depth 3,offset 11'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER CDE dtspcd exploit attempt"'
+      reference: url,www.cert.org/advisories/CA-2002-01.html
+      rev: '14'
+      sid: '1398'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

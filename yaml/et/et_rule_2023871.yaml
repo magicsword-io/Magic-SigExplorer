@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"X32.jpg"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_06, deployment Perimeter, malware_family
+        ursnif, signature_severity Major, updated_at 2020_10_08
+      msg: '"ET TROJAN Ursnif Variant Retrieving Payload (x32)"'
+      pcre: '"/X32\.jpg$/U"'
+      reference: md5,4dbff312f5ee5bfbd757030109faec2d
+      rev: '1'
+      sid: '2023871'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

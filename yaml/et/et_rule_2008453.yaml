@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '8080'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Authorization|3a| Basic YWRtaW46"'
+      fast_pattern: 15,14
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET SCAN Tomcat Auth Brute Force attempt (admin)"'
+      reference: url,doc.emergingthreats.net/2008453
+      rev: '9'
+      sid: '2008453'
+      special_options:
+      - http_header
+      threshold: type threshold, track by_src, count 5, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

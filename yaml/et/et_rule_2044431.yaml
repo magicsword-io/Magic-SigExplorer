@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary|3d 2d 2d 2d
+          2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d|"'
+      - value: '"|2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d
+          2d 2d 2d 2d 2d|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|file|22 3b 20|filename|3d
+          22|C|3a 5c|Users|5c|"'
+      - value: '"|5c|AppData|5c|Roaming|5c|"'
+      - value: '"|0d 0a|Content-Type|3a 20|application/zip"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      - value: '"Screen.jpg"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_03_02
+      msg: '"ET TROJAN MSIL/PSW.Agent.STP Data Exfiltration Attempt"'
+      pcre: '"/^\[[A-F0-9]{32}\]\x20\[\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{4}\]\x2ezip\x22/R"'
+      reference: md5,34d48a426f395f40e12438cf2eea1c57
+      rev: '1'
+      sid: '2044431'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

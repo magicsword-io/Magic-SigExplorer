@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/mobile-home"'
+      - value: '"Cache-Control|3a 20|no-cache|0d 0a|"'
+      - depth: '14'
+        value: '"|5f 5f|session|5f 5f|id|3d|"'
+      - value: '"Content-Type|3a 20|text/plain|0d 0a|"'
+      - value: '!"|0d 0a|Referer|3a 20|"'
+      - value: '"Connection|3a 20|Close|0d 0a|"'
+      - value: '"Accept|3a 20 2a 2f 2a 0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_24, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, confidence High, signature_severity
+        Major, updated_at 2023_05_24
+      msg: '"ET TROJAN Cobalt Strike CnC Beacon (POST)"'
+      reference: url,thedfirreport.com/2023/05/22/icedid-macro-ends-in-nokoyawa-ransomware
+      rev: '1'
+      sid: '2045857'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_cookie
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

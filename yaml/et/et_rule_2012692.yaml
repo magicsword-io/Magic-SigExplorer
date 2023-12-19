@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"<p>Your current User-Agent string appears to be from an automated
+          process,"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2011_04_19, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2023_05_08
+      msg: '"ET POLICY Microsoft user-agent automated process response to automated
+        request"'
+      rev: '10'
+      sid: '2012692'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

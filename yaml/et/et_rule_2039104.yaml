@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|faristo|04|site|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_10_06, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2022_10_06
+      msg: '"ET TROJAN Gamaredon APT Related Domain in DNS Lookup (faristo .site)"'
+      reference: md5,32af33f9bc5fff2c9a3562731d3a1124
+      rev: '1'
+      sid: '2039104'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

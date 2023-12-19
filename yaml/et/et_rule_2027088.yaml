@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|googleservice-info|02|ru|00|"'
+      distance: '0'
+      fast_pattern: 0,20
+      metadata: attack_target Client_Endpoint, created_at 2019_03_18, deployment Perimeter,
+        former_category MALWARE, malware_family Win32_Dorv, performance_impact Low,
+        signature_severity Major, tag Stealer, updated_at 2020_09_16
+      msg: '"ET TROJAN Win32/Dorv InfoStealer CnC DNS Query"'
+      reference: url,twitter.com/wdsecurity/status/1105992405629583362
+      rev: '2'
+      sid: '2027088'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"WScript.Shell"'
+      - value: '".Run"'
+      flow: established,to_server
+      metadata: created_at 2013_07_27, updated_at 2013_07_27
+      msg: '"ET EXPLOIT Wscript Shell Run Attempt - Likely Hostile"'
+      pcre: '"/[\r\n\s]+(?P<var1>([a-z]([a-z0-9_])*|_+([a-z0-9])([a-z0-9_])*))[\r\n\s]*\x3d[\r\n\s]*CreateObject\(\s*[\x22\x27]Wscript\.Shell[\x27\x22]\s*\).+?(?P=var1)\.run/si"'
+      rev: '1'
+      sid: '2017205'
+      special_options:
+      - nocase
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

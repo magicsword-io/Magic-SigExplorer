@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"LOGIN",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP login format string attempt"'
+      pcre: '"/\sLOGIN\s[^\n]*?%/ims"'
+      reference: cve,2004-0777
+      rev: '12'
+      service: imap
+      sid: '2664'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

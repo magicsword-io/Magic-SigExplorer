@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php|20|HTTP/1.0|0d 0a|Host|3a 20|"'
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '7'
+        value: '"ABCDIMQ"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_17, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_11_09
+      msg: '"ET TROJAN Win32/Unk.Joia CnC Activity"'
+      reference: md5,7e10e615edd111a5b77266c862aca78a
+      rev: '2'
+      sid: '2029641'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

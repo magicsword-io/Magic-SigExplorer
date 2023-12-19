@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"/story.pl"'
+      - value: '"next=../"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Interactive Story story.pl arbitrary file read attempt"'
+      reference: nessus,10817
+      rev: '13'
+      service: http
+      sid: '1868'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

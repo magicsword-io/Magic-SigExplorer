@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/exec"'
+      - value: '"|31 00 00|"'
+      - value: '"|01 00 00|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2022_08_23
+      msg: '"ET INFO SAFIB Assistant Remote Administration Tool CnC Checkin"'
+      pcre: '"/Host\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,7a40cf7374eb22988a32f47a433a76fe
+      rev: '1'
+      sid: '2038600'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

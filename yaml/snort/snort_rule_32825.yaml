@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/bin/read_i.php?"'
+      - value: '"a1="'
+      - value: '"&a2=step2-down",fast_pattern,nocase'
+      - value: '"&a3="'
+      - value: '"&a4="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Darkhotel outbound connection"'
+      reference: url,securelist.com/files/2014/11/darkhotelappendixindicators_kl.pdf
+      rev: '3'
+      service: http
+      sid: '32825'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

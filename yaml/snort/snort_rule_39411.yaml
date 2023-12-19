@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"zwlviewforumogaf.php",fast_pattern,nocase'
+      - value: '"Host|3A| a.topgunnphoto.com"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Qbot variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/020356457e95f7607c1941e03294b4c16e23daa402d7e79cfd2ba91b23969480/analysis/1463667519/
+      rev: '2'
+      service: http
+      sid: '39411'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

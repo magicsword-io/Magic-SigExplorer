@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"1234",fast_pattern,nocase'
+      icmp_id: '678'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP TFN Probe"'
+      reference: cve,2000-0138
+      rev: '12'
+      sid: '221'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

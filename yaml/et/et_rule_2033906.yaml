@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '14'
+        value: '"|7b 22|CPU_Model|22 3a 22|"'
+      - value: '"|22 2c 22|Elevated|22 3a|"'
+      - value: '"|22|GPU_Model|22 3a 22|"'
+      - value: '"|22|Identity|22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_07, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag Coinminer, updated_at 2021_09_08, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN Win32/Unk.Coinminer Checkin"'
+      reference: md5,a98df471bde22b7b2d25aae974237363
+      rev: '1'
+      sid: '2033906'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

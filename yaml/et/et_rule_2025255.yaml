@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>&#37038|3b|&#20214|3b|&#35774|3b|&#32622|3b 20 7c 20|&#30005|3b|&#23376|3b|&#37038|3b|&#20214|3b|&#21319|3b|&#32423|3b|</title>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_26, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_26
+      msg: '"ET CURRENT_EVENTS Mailbox Phishing Landing 2018-01-29"'
+      rev: '2'
+      sid: '2025255'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/nagiosxi/includes/components/graphexplorer/visApi.php?"'
+      flow: to_server,established
+      metadata: created_at 2012_12_04, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Nagios XI Network Monitor - OS Command Injection"'
+      pcre: '"/(\?|&)(host|service|opt|end|start)=[^&]+?\x60.+?\x60/Ui"'
+      reference: url,exchange.nagios.org/directory/Addons/Components/Graph-Explorer-Component/details
+      rev: '2'
+      sid: '2016015'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

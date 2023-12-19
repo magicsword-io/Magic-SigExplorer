@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/v2/api/product/manger/getInfo"'
+      - value: '"ENTITY"'
+      - value: '"DOCTYPE"'
+      - value: '"SYSTEM"'
+      - value: '"file|3a|//"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_08_02, cve CVE_2020_11991, updated_at 2021_08_02
+      msg: '"ET EXPLOIT Apache Cocoon <= 2.1.x LFI (CVE-2020-11991)"'
+      pcre: '"/ENTITY\s+?[^\s\>]+?\s+?SYSTEM\s/Pi"'
+      reference: cve,2020-11991
+      rev: '2'
+      sid: '2033641'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

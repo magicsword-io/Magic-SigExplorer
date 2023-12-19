@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/api/software/?s="'
+      - value: '"&os="'
+      - value: '"&output="'
+      - value: '"&v="'
+      - value: '"&l="'
+      - value: '"&np="'
+      - value: '"&osv="'
+      - value: '"&b="'
+      - value: '"&bv="'
+      - value: '"&c="'
+      - value: '"&cv="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_03_26, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Major, tag c2, updated_at 2020_10_12,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MALWARE W32/Linkular.Adware Successful Install Beacon (2)"'
+      reference: url,webroot.com/blog/2014/03/25/deceptive-ads-expose-users-adware-linkularwin32-speedupmypc-puas-potentially-unwanted-applications/
+      rev: '3'
+      sid: '2018323'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

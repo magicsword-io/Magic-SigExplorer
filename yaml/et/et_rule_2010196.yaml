@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/2fly_gift.php?"'
+      - value: '"gameid="'
+      - value: '"UNION"'
+      - value: '"SELECT"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS 2FLY Gift Delivery 2fly_gift.php gameid Parameter
+        SQL Injection"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2010196
+      rev: '3'
+      sid: '2010196'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

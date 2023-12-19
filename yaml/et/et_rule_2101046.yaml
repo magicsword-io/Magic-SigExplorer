@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/site/iisamples"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT site/iisamples access"'
+      reference: nessus,10370
+      rev: '10'
+      sid: '2101046'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

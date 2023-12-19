@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -15
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"syncromsp.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter,
+        signature_severity Informational, updated_at 2022_04_25
+      msg: '"ET INFO Observed Remote Management Software Domain (syncromsp .com in
+        TLS SNI)"'
+      pcre: '"/^(?:\x00\x0d|.\x2e)syncromsp\.com/R"'
+      rev: '2'
+      sid: '2036347'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

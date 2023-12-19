@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|nomadpkg|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_26, deployment Perimeter,
+        signature_severity Major, tag TraderTraitor, updated_at 2023_07_26, reviewed_at
+        2023_10_05
+      msg: '"ET TROJAN TraderTraitor CnC Domain in DNS Lookup (nomadpkg .com)"'
+      reference: url,www.sentinelone.com/labs/jumpcloud-intrusion-attacker-infrastructure-links-compromise-to-north-korean-apt-activity/
+      rev: '1'
+      sid: '2046933'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

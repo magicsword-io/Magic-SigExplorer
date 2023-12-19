@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|ipapi|02|co|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2017_08_08, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        tag IP_address_lookup_website, updated_at 2020_09_15
+      msg: '"ET POLICY External IP Lookup Domain (ipapi .co in DNS lookup)"'
+      rev: '3'
+      sid: '2024527'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

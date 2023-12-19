@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|08 00 1b 00 00 00 1b 00 00 00 02 00 00 00 00 00 00 00 00 00|"'
+      - depth: '4'
+        offset: '20'
+        value: '"|00 00 00 00 |"'
+      dsize: '24'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_12_23, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Win32/Spy.Agent.OHT - AnunakAPT TCP Checkin 1"'
+      reference: url,fox-it.com/en/files/2014/12/Anunak_APT-against-financial-institutions2.pdf
+      rev: '2'
+      sid: '2020024'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

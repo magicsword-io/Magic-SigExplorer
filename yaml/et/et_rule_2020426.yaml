@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CZsUGLrxyYsEGLwhibvlGdj5WdmhCbhZXZ"'
+      flow: established,from_server
+      metadata: created_at 2015_02_16, updated_at 2015_02_16
+      msg: '"ET CURRENT_EVENTS Double-Encoded Reverse Base64/Dean Edwards Packed JavaScript
+        Observed in Unknown EK Feb 16 2015 b64 1 M2"'
+      rev: '2'
+      sid: '2020426'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

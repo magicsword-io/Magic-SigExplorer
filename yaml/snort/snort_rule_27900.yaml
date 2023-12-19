@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"SIP/2.0",fast_pattern,nocase'
+      detection_filter: track by_src,count 100,seconds 25
+      flow: to_client
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-VOIP Excessive number of SIP 4xx responses potential user or
+        password guessing attempt"'
+      reference: url,blog.sipvicious.org/2008/02/detecting-sip-attacks-with-snort.html
+      rev: '4'
+      service: sip
+      sid: '27900'
+      sip_stat_code: '4'
+    protocol: udp
+    source:
+      network: $SIP_SERVERS
+      port: $SIP_PORTS

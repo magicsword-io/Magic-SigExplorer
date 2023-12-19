@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"|5c 00 74 00 65 00 73 00 74 00 2e 00 70 00 77 00 64|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT Pwdump6 Session Established test file created on victim"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008445
+      rev: '4'
+      sid: '2008445'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"sp_configure"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_09_28, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_21
+      msg: '"ET WEB_SERVER Possible SQL Injection Using MSSQL sp_configure Command"'
+      reference: url,technet.microsoft.com/en-us/library/ms190693.aspx
+      rev: '4'
+      sid: '2011424'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

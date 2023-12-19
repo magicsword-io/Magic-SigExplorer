@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/conf_mail.php"'
+      - value: '"mail_address="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_05_23, cve CVE_2022_29303, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_05_23
+      msg: '"ET EXPLOIT SolarView Compact Command Injection Inbound (CVE-2022-29303)"'
+      pcre: '"/mail_address=\s?(?:[\x3b\x0a\x26\x60\x7c\x24]|%(3b|0a|26|60|7c|24))/Pi"'
+      reference: cve,2022-29303
+      rev: '1'
+      sid: '2036649'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

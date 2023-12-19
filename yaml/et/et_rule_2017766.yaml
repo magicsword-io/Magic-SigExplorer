@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"glassfish/external/statistics/impl"'
+      flow: established,from_server
+      flowbits: isset,et.JavaArchiveOrClass
+      metadata: created_at 2013_11_26, former_category WEB_CLIENT, updated_at 2013_11_26
+      msg: '"ET WEB_CLIENT SUSPICIOUS Java Request With Uncompressed JAR/Class Importing
+        glassfish external statistics impl"'
+      rev: '1'
+      sid: '2017766'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

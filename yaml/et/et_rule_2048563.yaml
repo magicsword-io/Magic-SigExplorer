@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - value: '"Content-Length|3a 20|8|0d 0a|"'
+      - value: '"X-Client-Id|3a 20|"'
+      - value: '"X-Client-Controller|3a 20|"'
+      - value: '"X-Client-Ut|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_13, deployment Perimeter, former_category
+        MALWARE, malware_family DarkWatchman, signature_severity Major, updated_at
+        2023_10_13, reviewed_at 2023_10_13
+      msg: '"ET TROJAN Win32/DarkWatchMan Checkin Activity (POST) M2"'
+      pcre: '"/\/index\.php$/U"'
+      reference: url,securityintelligence.com/x-force/new-hive0117-phishing-campaign-imitates-conscription-summons-deliver-darkwatchman-malware/
+      rev: '1'
+      sid: '2048563'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

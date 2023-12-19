@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|02 09 a9|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02 2d 2d|"'
+      - value: '"|55 04 08|"'
+      - value: '"|09|SomeState"'
+      distance: '1'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_04_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_25
+      msg: '"ET TROJAN CozyDuke APT Possible SSL Cert 6"'
+      reference: md5,1dde02ff744fa4e261168e2008fd613a
+      rev: '1'
+      sid: '2020971'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

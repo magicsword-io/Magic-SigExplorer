@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_test: 1,&,1,0,relative
+      classtype: attempted-dos
+      contents:
+      - value: '"|05|",depth 1'
+      - value: '"|0B|",within 1,distance 1'
+      - value: '"|00|",within 1,distance 21'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"NETBIOS DCERPC invalid bind attempt"'
+      rev: '6'
+      sid: '2190'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

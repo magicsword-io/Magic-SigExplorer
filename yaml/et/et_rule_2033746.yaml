@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api"'
+      - depth: '36'
+        value: '"4F440D71527A05240C72440216527C015109"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_19, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_19
+      msg: '"ET TROJAN Win32/Malgent!MSR Dropper Requesting Payload"'
+      pcre: '"/\/api$/U"'
+      reference: md5,4c1e57a0388a703307319d17ae5e9039
+      rev: '1'
+      sid: '2033746'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

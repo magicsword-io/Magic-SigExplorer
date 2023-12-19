@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Host|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      - depth: '13'
+        value: '"GET /addbild/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_29, deployment Perimeter, former_category
+        MALWARE, malware_family TheBoxClipper, confidence High, signature_severity
+        Major, updated_at 2023_08_30, reviewed_at 2023_08_30
+      msg: '"ET TROJAN [ANY.RUN] TheBoxClipper (addbild)"'
+      pcre: '"/\/(?:[a-f0-9]{32})$/R"'
+      reference: url,twitter.com/James_inthe_box/status/1696566802094919995
+      rev: '1'
+      sid: '2047821'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

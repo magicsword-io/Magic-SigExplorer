@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      byte_jump: 2,30
+      classtype: misc-attack
+      contents:
+      - value: '"|0B|",depth 1,offset 28'
+      - value: '"|00 0C 00 00 00 01 01 00|`|02|",within 10,distance -2'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ISAKMP second payload initial contact notification without
+        SPI attempt"'
+      reference: cve,2004-0164
+      rev: '16'
+      sid: '2415'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

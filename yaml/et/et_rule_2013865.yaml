@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?tq="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2011_11_08, former_category MALWARE, updated_at 2020_04_28
+      msg: '"ET TROJAN Kazy/Kryptor/Cycbot Trojan Checkin 2"'
+      pcre: '"/\.(?:(?:jp|pn)g|cgi|gif)\?tq=/U"'
+      rev: '5'
+      sid: '2013865'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

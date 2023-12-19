@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: policy-violation
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      - value: '"CommandCam "'
+      distance: '-64'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_07_06, deployment Perimeter,
+        deployment SSLDecrypt, former_category POLICY, performance_impact Low, signature_severity
+        Informational, updated_at 2020_07_06
+      msg: '"ET POLICY CommandCam Download"'
+      reference: url,github.com/tedburke/CommandCam
+      rev: '2'
+      sid: '2030474'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

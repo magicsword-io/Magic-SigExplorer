@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: policy-violation
+      contents:
+      - value: '"Content-Type|3a 20|image/jpeg|0d 0a|"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,to_client
+      flowbits: set,ET.http.binary
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_23, deployment Perimeter, former_category
+        POLICY, performance_impact Moderate, signature_severity Major, updated_at
+        2020_09_16
+      msg: '"ET POLICY Suspicious EXE Download Content-Type image/jpeg"'
+      rev: '2'
+      sid: '2026537'
+      special_options:
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

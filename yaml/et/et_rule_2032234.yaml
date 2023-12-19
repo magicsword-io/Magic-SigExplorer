@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&pass"'
+      - value: '"&submit=View+Document"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_08_10, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_08_10, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Adobe Shared Document Phish 2016-08-10"'
+      rev: '2'
+      sid: '2032234'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

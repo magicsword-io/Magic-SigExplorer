@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/reviews.php?"'
+      - value: '"browse="'
+      - value: '"UNION"'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, cve CVE_2008_5841, deployment Datacenter, signature_severity
+        Major, tag SQL_Injection, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS iGaming CMS reviews.php browse parameter SQL injection"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2009069
+      rev: '4'
+      sid: '2009069'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

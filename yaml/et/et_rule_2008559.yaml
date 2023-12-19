@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"#|0d 0a|#|20|This|20|is|20|a|20|sample|20|HOSTS|20|file|20|used|20|by|20|Microsoft|20|TCP/IP|20|for|20|Windows.|0d
+          0a|#|0d 0a|#|20|This|20|file|20|contains|20|the|20|mappings|20|of|20|IP|20|addresses|20|to|20|host|20|names."'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET ATTACK_RESPONSE Windows LMHosts File Download - Likely DNSChanger
+        Infection"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008559
+      rev: '6'
+      sid: '2008559'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

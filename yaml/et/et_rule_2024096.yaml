@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Content-Disposition|3a|"'
+      - value: '"filename"'
+      - value: '"multipart/form-data"'
+      flow: to_server,established
+      metadata: affected_product Apache_Struts2, attack_target Web_Server, created_at
+        2017_03_20, deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2020_08_04
+      msg: '"ET WEB_SPECIFIC_APPS Possible Apache Struts OGNL Expression Injection
+        (CVE-2017-5638) (Content-Disposition) M1"'
+      pcre: '"/^[^\r\n]*filename\s*=\s*[^\x3b\x3a\r\n]*[\x25\x24]\s*\{[^\r\n]{20,}\}/Pmi"'
+      reference: url,community.hpe.com/t5/Security-Research/Struts2-046-A-new-vector/ba-p/6949723#.WNF-_kcpDUJ
+      rev: '3'
+      sid: '2024096'
+      special_options:
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

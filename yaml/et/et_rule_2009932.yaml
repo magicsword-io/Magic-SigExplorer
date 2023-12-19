@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/libraries/database.php?"'
+      - value: '"="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Possible eFront database.php Remote File Inclusion
+        Attempt"'
+      pcre: '"/\x2Ephp\x3F.{0,300}\x3D(http\x3A|ftp\x3A|https\x3A|ftps\x3A)/Ui"'
+      reference: url,doc.emergingthreats.net/2009932
+      rev: '4'
+      sid: '2009932'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

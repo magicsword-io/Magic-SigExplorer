@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20 82 92 3f 43 2c 8f 75 b7 ef 0f 6a d9 3c 8e 5d|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|03|SUR"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2013_02_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_22
+      msg: '"ET TROJAN SUR SSL Cert APT1"'
+      reference: url,www.mandiant.com/apt1
+      rev: '5'
+      sid: '2016468'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

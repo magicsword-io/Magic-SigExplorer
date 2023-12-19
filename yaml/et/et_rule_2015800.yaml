@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '49'
+        value: '"User-Agent|3a| Mozilla/4.0|0d 0a|Host|3a| api.wipmania.com|0d 0a|"'
+      fast_pattern: 31,18
+      flow: to_server,established
+      metadata: created_at 2012_10_13, updated_at 2020_09_14
+      msg: '"ET TROJAN Dorkbot GeoIP Lookup to wipmania"'
+      rev: '6'
+      sid: '2015800'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/updateserver"'
+      - value: '"User-Agent|3a 20|MSFX/"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2015_02_19, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, former_category POLICY, signature_severity Informational,
+        tag Metasploit, updated_at 2020_10_09
+      msg: '"ET INFO Metasploit Framework Checking For Update"'
+      rev: '2'
+      sid: '2020475'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

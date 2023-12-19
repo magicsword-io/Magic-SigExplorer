@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '5'
+        value: '"/AFCU"'
+      - value: '"/process"'
+      - value: '".php"'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&emailpass="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_01, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_10_27, reviewed_at 2023_09_14
+      msg: '"ET CURRENT_EVENTS America First CU Successful Phish 2022-10-27"'
+      pcre: '"/\.php$/U"'
+      reference: md5,29d96a74215c911c8631bc23eed49153
+      rev: '2'
+      sid: '2037876'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

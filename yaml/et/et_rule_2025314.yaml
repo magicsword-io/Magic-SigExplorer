@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" Java/9."'
+      flow: established,to_server
+      flowbits: set,ET.http.javaclient.vulnerable
+      metadata: affected_product Java, attack_target Client_Endpoint, created_at 2018_02_05,
+        deployment Perimeter, deployment Internal, former_category POLICY, performance_impact
+        Low, signature_severity Informational, tag EOL, updated_at 2020_08_25
+      msg: '"ET POLICY Vulnerable Java Version 9.x Detected"'
+      reference: url,www.oracle.com/technetwork/java/javase/documentation/9u-relnotes-3704429.html
+      rev: '4'
+      sid: '2025314'
+      special_options:
+      - http_header
+      threshold: type limit, count 2, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"cardcc|27 29|.mask|28 20 22|9999"'
+      - value: '"<title>Remboursement<|2f|title>"'
+      - value: '"id=|22|impotsgouv|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2019_07_04, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Major, tag Phish, updated_at 2020_08_31
+      msg: '"ET CURRENT_EVENTS France Ministry of Action and Public Accounts Phish
+        Landing"'
+      rev: '2'
+      sid: '2027680'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

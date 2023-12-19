@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"404"'
+      - value: '!"<html"'
+      flow: established,from_server
+      flowbits: isset,ETPRO.Emotet
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_01, deployment Perimeter, former_category
+        MALWARE, malware_family Geodo, malware_family Emotet, performance_impact Low,
+        signature_severity Major, updated_at 2022_02_03
+      msg: '"ET TROJAN W32.Geodo/Emotet Checkin Fake 404 Response"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,13}[^\x20-\x7e\r\n]/si"'
+      reference: md5,dacdcd451204265ad6f44ef99db1f371
+      rev: '2'
+      sid: '2035062'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '8080'

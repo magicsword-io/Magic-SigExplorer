@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/express/MrCorona/GetBILL.php"'
+      - value: '"&pin="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_02_27
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish 2023-02-27"'
+      reference: md5,47da90762ce10943c2d8d54e6a679942
+      rev: '1'
+      sid: '2044355'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Echo This"'
+      dsize: '9'
+      icode: '0'
+      itype: '0'
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Overtoolbar.net Backdoor ICMP Checkin Response"'
+      reference: url,doc.emergingthreats.net/2009131
+      rev: '3'
+      sid: '2009131'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

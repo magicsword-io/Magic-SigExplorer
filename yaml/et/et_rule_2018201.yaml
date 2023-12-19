@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".asp?MAC="'
+      - value: '"&ver="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_04, former_category MALWARE, updated_at 2020_09_22
+      msg: '"ET TROJAN Downloader.Win32.Geral Checkin"'
+      pcre: '"/\.asp\?MAC=[A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}-[A-F0-9]{2}&VER=[^&]+$/Ui"'
+      reference: md5,f01260fff3d6fb705fc8afaa3ea54564
+      rev: '2'
+      sid: '2018201'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

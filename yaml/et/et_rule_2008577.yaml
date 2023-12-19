@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"sip|3a|tester@"'
+      - depth: '60'
+        offset: '20'
+        value: '"Via|3a| SIP/2.0"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Voiper Fuzzing Scan"'
+      reference: url,doc.emergingthreats.net/2008577
+      rev: '4'
+      sid: '2008577'
+      threshold: type threshold, track by_dst, count 5, seconds 15
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

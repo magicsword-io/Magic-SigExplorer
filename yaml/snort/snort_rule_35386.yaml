@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"protocolVersion|22|",offset 2'
+      - value: '"|22|rev|22|",within 10'
+      - value: '"|22|buildId|22|",within 15'
+      - value: '"|22|tags|22 3A|",distance 0'
+      - value: '"|22|type|22 3A 22|",within 10'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bedep initial outbound connection"'
+      reference: url,malware.dontneedcoffee.com/2015/07/a-fileless-ursnif-doing-some-pos.html
+      rev: '3'
+      service: http
+      sid: '35386'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

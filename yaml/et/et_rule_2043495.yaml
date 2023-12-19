@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"ad.ipsecloud.ru"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_24, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag SSL_Malicious_Cert,
+        updated_at 2023_01_24, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1572, mitre_technique_name Protocol_Tunneling
+      msg: '"ET INFO Observed DNS over HTTPS Domain in TLS SNI (ad .ipsecloud .ru)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)ad\.ipsecloud\.ru/R"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2043495'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

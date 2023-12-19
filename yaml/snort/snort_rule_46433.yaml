@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"data=85702b2fccafcb2f",depth 21'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Adware.Doyo initial connection"'
+      reference: url,www.virustotal.com/#/file/0692bfe17754036b12b862cd5618051d8b2def85aca2a910188a12baa1ed0060
+      rev: '2'
+      service: http
+      sid: '46433'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

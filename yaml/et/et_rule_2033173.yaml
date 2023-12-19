@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|3c 7c|"'
+      - value: '"SOCKET|7c 3e|"'
+      - value: '"|3c 7c|END|7c 3e|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_24, deployment Perimeter, former_category
+        MALWARE, malware_family AllaKore, signature_severity Major, tag RAT, updated_at
+        2021_06_24
+      msg: '"ET MALWARE AllaKore CnC Activity"'
+      reference: md5,8f8bad9fb9a1f333bd3380e2698b4236
+      rev: '2'
+      sid: '2033173'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

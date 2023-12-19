@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/admin-ajax.php?"'
+      - value: '"slider_show_image"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_01_21, updated_at 2020_09_29
+      msg: '"ET WEB_SPECIFIC_APPS WP Generic revslider Arbitrary File Download"'
+      pcre: '"/slider_show_image[^\r\n]*(?:%2(?:52e(?:%2(?:52e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/)|e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/))|\.(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/))|e(?:%2(?:52e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/)|e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/))|\.(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/)))|\.(?:%2(?:52e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/)|e(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/))|\.(?:%(?:c(?:0%af|1%9c)|(?:25)?2f)|5c|\/)))/Uim"'
+      reference: url,blog.sucuri.net/2014/09/slider-revolution-plugin-critical-vulnerability-being-exploited.html
+      rev: '2'
+      sid: '2020221'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

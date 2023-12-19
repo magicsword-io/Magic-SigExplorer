@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?id="'
+      - value: '"&cc="'
+      - value: '"&pc="'
+      - value: '"&hash="'
+      - value: '"User-Agent|3a 20|uploader|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name="'
+      - value: '".zip|22 0d 0a|"'
+      - value: '"PK"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_26, deployment Perimeter, former_category
+        MALWARE, malware_family CollectorStealer, signature_severity Major, updated_at
+        2020_08_19
+      msg: '"ET TROJAN Win32/CollectorStealer - Uploading System Information"'
+      reference: md5,046dcdb20a8358faadc394e786820dd4
+      rev: '2'
+      sid: '2034323'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '150'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

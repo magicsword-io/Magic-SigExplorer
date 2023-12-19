@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|globalupdate"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: set,ET.WireLurkerUA
+      metadata: created_at 2014_11_06, updated_at 2020_05_13
+      msg: '"ET TROJAN OSX/WireLurker User-agent (globalupdate)"'
+      reference: url,researchcenter.paloaltonetworks.com/2014/11/wirelurker-new-era-os-x-ios-malware
+      rev: '2'
+      sid: '2019660'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

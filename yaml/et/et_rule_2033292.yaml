@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|0x3s|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_07_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_09
+      msg: '"ET TROJAN BIOPASS RAT Related Domain in DNS Lookup (0x3s .com)"'
+      reference: url,www.trendmicro.com/en_us/research/21/g/biopass-rat-new-malware-sniffs-victims-via-live-streaming.html
+      rev: '2'
+      sid: '2033292'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '10'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

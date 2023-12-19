@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|rbresults.pm|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_29, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2022_07_29
+      msg: '"ET CURRENT_EVENTS [TW] Robin Banks HTTP HOST M2"'
+      rev: '1'
+      sid: '2037865'
+      special_options:
+      - fast_pattern
+      - http_header
+      threshold: type limit,count 1,seconds 30,track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

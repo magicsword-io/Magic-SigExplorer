@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        offset: '4'
+        value: '"|28 94 8d ab c9 c0 d1 99|"'
+      dsize: '16'
+      metadata: created_at 2012_07_17, updated_at 2012_07_17
+      msg: '"ET TROJAN ZeroAccess Outbound udp traffic detected"'
+      rev: '8'
+      sid: '2015482'
+      threshold: type both, track by_src, count 10, seconds 600
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

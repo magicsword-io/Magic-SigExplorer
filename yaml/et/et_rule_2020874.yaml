@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/setup.cgi?todo=wan_dns1="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_04_09, updated_at 2020_09_30
+      msg: '"ET EXPLOIT Netgear DGN1000B Router DNS Change GET Request"'
+      reference: url,www.rapid7.com/db/modules/exploit/linux/http/netgear_dgn1000b_setup_exec
+      rev: '1'
+      sid: '2020874'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

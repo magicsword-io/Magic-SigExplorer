@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|gg-l|03|xyz"'
+      distance: '1'
+      metadata: created_at 2022_04_29, former_category INFO, updated_at 2022_04_29
+      msg: '"ET INFO URL Shortening Service Domain in DNS Lookup (gg-l .xyz)"'
+      rev: '2'
+      sid: '2036420'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

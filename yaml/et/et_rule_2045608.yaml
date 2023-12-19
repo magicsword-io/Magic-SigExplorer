@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function(_0x4461d6,_0x85069)"'
+      - value: '"bot|20 3d 20|isBot|28 29 3b|"'
+      - value: '"var|20|hash|20 3d 20|location|2e|hash|2e|substr|28|1|29 3b|"'
+      - value: '"window|2e|location|2e|href|20 3d 20 27|verify|3f|"'
+      - value: '"|26|data|3d 27 2b|hash|3b|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, confidence High, signature_severity
+        Major, updated_at 2023_05_05
+      msg: '"ET CURRENT_EVENTS W3LL STORE Credential Phish Landing Page (Capt) 2023-05-05"'
+      rev: '2'
+      sid: '2045608'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

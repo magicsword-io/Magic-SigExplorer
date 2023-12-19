@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/step/next/mainnet.php"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_19, deployment Perimeter, former_category
+        PHISHING, confidence High, signature_severity Major, updated_at 2022_12_19
+      msg: '"ET CURRENT_EVENTS Successful DarkX Credential Phish 2022-12-19"'
+      reference: md5,722d836f344c3212f74004c44626e745
+      rev: '1'
+      sid: '2042965'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      urilen: '22'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

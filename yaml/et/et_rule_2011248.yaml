@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| XieHongWei"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE User-Agent (XieHongWei-HttpDown/2.0)"'
+      reference: url,doc.emergingthreats.net/2011248
+      rev: '7'
+      sid: '2011248'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

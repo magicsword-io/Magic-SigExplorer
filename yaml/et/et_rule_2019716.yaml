@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"bin.base64"'
+      - value: '"<file"'
+      - value: '"<stream"'
+      - value: '"<?xml"'
+      - value: '"TVqQA"'
+      flow: established,from_server
+      metadata: created_at 2014_11_15, updated_at 2014_11_15
+      msg: '"ET TROJAN Windows executable base64 encoded in XML"'
+      pcre: '"/^[A-Za-z0-9\s/+]{100}/Rs"'
+      rev: '8'
+      sid: '2019716'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

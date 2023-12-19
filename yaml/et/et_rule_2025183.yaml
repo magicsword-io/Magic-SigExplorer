@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|zsw8|02|cc|00|"'
+      distance: '0'
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2018_01_04, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, tag Cryptominer, updated_at 2022_05_03
+      msg: '"ET TROJAN Python Monero Miner CnC DNS Query"'
+      pcre: '"/\x01[a-z]\x04zsw8\x02cc\x00/"'
+      reference: url,f5.com/labs/articles/threat-intelligence/malware/new-python-based-crypto-miner-botnet-flying-under-the-radar
+      rev: '4'
+      sid: '2025183'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|python-requests/"'
+      - value: '"="'
+      - value: '"=Py+version+"'
+      - value: '"POST"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_10_28, deployment Perimeter, former_category MALWARE, malware_family
+        BadPatch, performance_impact Low, signature_severity Major, updated_at 2020_10_30
+      msg: '"ET TROJAN BadPatch CnC Activity"'
+      pcre: '"/^(?:[A-F0-9]{2}%3A){5}[A-F0-9]{2}&/R"'
+      reference: url,www.fortinet.com/blog/threat-research/badpatch-campaign-uses-python-malware.html
+      rev: '2'
+      sid: '2028913'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_method
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

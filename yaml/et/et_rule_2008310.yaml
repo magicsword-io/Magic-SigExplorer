@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Subject|3a| Codesoft PW Stealer"'
+      - value: '"******STEAM PASS STEALER*******"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Codesoft PW Stealer Email Report Outbound"'
+      reference: url,doc.emergingthreats.net/2008310
+      rev: '2'
+      sid: '2008310'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

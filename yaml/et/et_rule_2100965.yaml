@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/_vti_pvt/writeto.cnf"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_22
+      msg: '"GPL WEB_SERVER writeto.cnf access"'
+      reference: nessus,10575
+      rev: '11'
+      sid: '2100965'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

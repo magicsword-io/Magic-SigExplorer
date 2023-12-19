@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a 20|EBook|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_04_16, updated_at 2020_04_21
+      msg: '"ET POLICY eBook Generator User-Agent (EBook)"'
+      reference: url,www.ebookgenerator.com/
+      rev: '2'
+      sid: '2014576'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

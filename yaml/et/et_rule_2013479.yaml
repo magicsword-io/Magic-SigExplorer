@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '3389'
+    details:
+      classtype: misc-activity
+      flags: S,12
+      metadata: created_at 2011_08_29, former_category SCAN, updated_at 2017_05_11
+      msg: '"ET SCAN Behavioral Unusually fast Terminal Server Traffic Potential Scan
+        or Infection (Outbound)"'
+      reference: url,threatpost.com/en_us/blogs/new-worm-morto-using-rdp-infect-windows-pcs-082811
+      rev: '4'
+      sid: '2013479'
+      threshold: type both, track by_src, count 20, seconds 360
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

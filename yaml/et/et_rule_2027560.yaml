@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - value: '"<!-- mirrored from www.ziggo.nl"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_06_26, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_31, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET INFO Cloned Ziggo NL Page - Possible Phishing Landing"'
+      rev: '2'
+      sid: '2027560'
+      special_options:
+      - http_stat_code
+      - file_data
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

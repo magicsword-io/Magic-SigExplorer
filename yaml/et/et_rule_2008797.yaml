@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| miip|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2020_10_17
+      msg: '"ET USER_AGENTS Suspicious User-Agent (miip)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008797
+      rev: '8'
+      sid: '2008797'
+      special_options:
+      - http_header
+      threshold: type limit,count 2,track by_src,seconds 300
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

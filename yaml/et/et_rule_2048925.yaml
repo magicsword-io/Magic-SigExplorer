@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/tmui"'
+      - value: '"Transfer-Encoding|3a 20|chunked, chunked"'
+      fast_pattern: 19,15
+      flow: established,to_server
+      metadata: affected_product F5, attack_target Networking_Equipment, created_at
+        2023_10_27, cve CVE_2023_46747, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_10_27, reviewed_at
+        2023_10_27
+      msg: '"ET WEB_SPECIFIC_APPS Possible F5 BIG-IP AJP Request Smuggling Attempt
+        (CVE-2023-46747)"'
+      reference: cve,2023-46747
+      rev: '1'
+      sid: '2048925'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

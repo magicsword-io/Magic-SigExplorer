@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".js"'
+      - value: '"/i.html"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_02_05, former_category EXPLOIT_KIT, updated_at 2020_09_18
+      msg: '"ET CURRENT_EVENTS Styx Exploit Kit Secondary Landing"'
+      pcre: '"/^Referer\x3a[^\r\n]+\/i.html(\?[^=]{1,10}=[^&\r\n]{100,})?\r?$/Hmi"'
+      rev: '5'
+      sid: '2016347'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

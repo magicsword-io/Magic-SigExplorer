@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"plugins.nessus.org"'
+      - depth: '88'
+        offset: '432'
+        value: '"https|3a|//www.thawte.com/repository/index.html"'
+      flow: to_client,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Nessus Vulnerability Scanner Plugins Update"'
+      reference: url,doc.emergingthreats.net/2009706
+      rev: '6'
+      sid: '2009706'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

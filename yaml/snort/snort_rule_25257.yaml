@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/bin/check.php?cv="'
+      - value: '"ThIs_Is_tHe_bouNdaRY_$",fast_pattern'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Skintrim variant outbound connection"'
+      reference: url,www.virustotal.com/file/80e67695fa394f56fd6ddae74b72e9050f651244aad52ad48ebe6304edff95e2/analysis/1357239259/
+      rev: '5'
+      service: http
+      sid: '25257'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

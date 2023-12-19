@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/cb_soft.php?"'
+      - value: '"q="'
+      - value: '"tj="'
+      flow: established,to_server
+      metadata: created_at 2012_01_03, updated_at 2020_04_21
+      msg: '"ET TROJAN TROJAN Win32-WebSec Reporting"'
+      reference: md5,971e560b80e335ab88ef518b416d415a
+      rev: '4'
+      sid: '2014085'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

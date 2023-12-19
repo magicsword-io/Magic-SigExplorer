@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        offset: '13'
+        value: '"dj02LjAmaWQ9"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: created_at 2013_09_13, updated_at 2020_04_24
+      msg: '"ET TROJAN ZeroAccess P2P Module v6 Reporting"'
+      reference: url,dnsamplificationattacks.blogspot.gr/p/blog-page.html
+      rev: '1'
+      sid: '2017462'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

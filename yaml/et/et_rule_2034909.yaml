@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|db f6 94 f6 9f f6 82 f6 f6 f6|"'
+      - value: '"|f6 cc f6|"'
+      - value: '"|f6 cc f6|"'
+      - value: '"|f6 cc f6|"'
+      - value: '"|f6 cc f6|"'
+      - value: '"|f6 cc f6|"'
+      - value: '"|f6 f6 f6|"'
+      distance: '3'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag RAT, updated_at 2022_01_13
+      msg: '"ET TROJAN APT/Bitter Related CnC Activity"'
+      reference: md5,1cdc2c0f6834b37da085c0deb9d3461a
+      rev: '2'
+      sid: '2034909'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

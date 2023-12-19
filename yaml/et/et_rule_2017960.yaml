@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"X-Stratum|3A|"'
+      flow: established,to_client
+      metadata: created_at 2014_01_12, former_category POLICY, updated_at 2020_04_27
+      msg: '"ET POLICY Bitcoin Mining Server Stratum Protocol HTTP Header"'
+      reference: url,www.anubisnetworks.com/unknowndga17-the-mevade-connection/
+      rev: '1'
+      sid: '2017960'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

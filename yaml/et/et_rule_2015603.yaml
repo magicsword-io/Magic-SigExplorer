@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/spl_data/"'
+      - value: '" Java/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_08_10,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2020_09_17
+      msg: '"ET CURRENT_EVENTS DRIVEBY SPL - Java Exploit Requested - /spl_data/"'
+      rev: '1'
+      sid: '2015603'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

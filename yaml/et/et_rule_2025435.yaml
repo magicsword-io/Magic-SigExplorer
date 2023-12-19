@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5984'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '12'
+        value: '"PUT /_users/"'
+      - value: '"|0d 0a 0d 0a|"'
+      - value: '"_admin"'
+      distance: '0'
+      flow: established,to_server,only_stream
+      metadata: attack_target Server, created_at 2018_03_19, cve CVE_2017_12635, deployment
+        Datacenter, former_category EXPLOIT, malware_family CoinMiner, signature_severity
+        Major, updated_at 2020_11_05
+      msg: '"ET EXPLOIT Apache CouchDB JSON Remote Privesc Attempt (CVE-2017-12635)"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/vulnerabilities-apache-couchdb-open-door-monero-miners/
+      rev: '1'
+      sid: '2025435'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

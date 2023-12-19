@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '5'
+        value: '"|0b 00 d2 0b 00 00|"'
+      dsize: '11'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_21, deployment Perimeter, former_category
+        MALWARE, malware_family BitterRAT, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2019_01_22
+      msg: '"ET TROJAN [PTsecurity] Bitter RAT C2 Response"'
+      reference: md5,fc516905e3237f1aa03a38a0dde84b52
+      rev: '2'
+      sid: '2026826'
+      stream_size: server,=,12
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

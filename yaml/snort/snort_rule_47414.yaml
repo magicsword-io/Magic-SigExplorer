@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/calisto/upload.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Osx.Trojan.Calisto outbound connection"'
+      reference: url,virustotal.com/en/file/81c127c3cceaf44df10bb3ceb20ce1774f6a9ead0db4bd991abf39db828661cc/analysis/
+      rev: '1'
+      service: http
+      sid: '47414'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

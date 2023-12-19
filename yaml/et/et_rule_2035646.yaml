@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|dost|0c|igov-service|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_29
+      msg: '"ET TROJAN Win32/Warzone RAT Variant CnC Domain in DNS Lookup (dost .igov-service
+        .net)"'
+      reference: md5,49e8853801554d9de4dd281828094c8a
+      rev: '2'
+      sid: '2035646'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

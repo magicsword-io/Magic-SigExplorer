@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '".x.pipedream.net"'
+      distance: '4'
+      flow: established,to_server
+      metadata: created_at 2023_08_25, deployment Perimeter, former_category INFO,
+        performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2023_08_26, reviewed_at 2023_08_26, mitre_tactic_id TA0010, mitre_tactic_name
+        Exfiltration, mitre_technique_id T1567, mitre_technique_name Exfiltration_Over_Web_Service
+      msg: '"ET INFO Webhook/HTTP Request Inspection Service Domain (x .pipedream
+        .net in TLS SNI)"'
+      reference: url,pipedream.com/requestbin
+      rev: '2'
+      sid: '2047736'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|securmeawards|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_25, deployment Perimeter,
+        signature_severity Major, updated_at 2022_03_25
+      msg: '"ET TROJAN FIN7 JSSLoader Related Domain in DNS Lookup"'
+      reference: url,blog.morphisec.com/new-jssloader-trojan-delivered-through-xll-files
+      rev: '2'
+      sid: '2035610'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

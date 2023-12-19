@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '48'
+        value: '"|00 00 00 13|CMD session opened|2e 00 00 00 01 00 00 00|qMicrosoft
+          Windows"'
+      fast_pattern: 2,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_01, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_07_01
+      msg: '"ET TROJAN Generic CMD Remote Shell"'
+      reference: md5,38e3ff2c1ad395cc854e2b620adc1a0f
+      rev: '1'
+      sid: '2037255'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

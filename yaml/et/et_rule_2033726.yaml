@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|nitb|06|pk-gov|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_13, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_13
+      msg: '"ET TROJAN APT-C-48 Related CnC Domain in DNS Lookup (nitb .pk-gov .org)"'
+      reference: url,mp.weixin.qq.com/s/dMFyLxsErYUZX7BQyBL9YQ
+      rev: '2'
+      sid: '2033726'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

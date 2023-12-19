@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"|22|admin|22 3a|"'
+      - value: '"|22|cmd|22 3a 20 22 22 2c|"'
+      - value: '"|22|cpu_vendor|22 3a 20 7b|"'
+      - value: '"|22|brand|22 3a 20 22|"'
+      - value: '"|22|cores|22 3a 20|"'
+      - value: '"|22|cpu_usage|22 3a 20|"'
+      - value: '"|22|frequency|22 3a 20|"'
+      - value: '"|22|name|22 3a 20 22|"'
+      - value: '"|22|vendor_id|22 3a 20 22|"'
+      - value: '"|22|hwid|22 3a 20 22|"'
+      - value: '"|22|ip|22 3a 20 22|"'
+      - value: '"|22|memory|22 3a 20 22|"'
+      - value: '"|22|resolution|22 3a 20 22|"'
+      - value: '"|22|software|22 3a 20 5b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_24, deployment Perimeter, former_category
+        MALWARE, malware_family JLORAT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_04_24
+      msg: '"ET TROJAN JLORAT CnC Checkin"'
+      reference: url,securelist.com/tomiris-called-they-want-their-turla-malware-back/109552/
+      rev: '1'
+      sid: '2045175'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

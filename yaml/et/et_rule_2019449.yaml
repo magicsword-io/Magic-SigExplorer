@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"%6e%61m%65%5b"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_10_16, cve CVE_2014_3704, updated_at 2020_09_25
+      msg: '"ET EXPLOIT Possible CVE-2014-3704 Drupal SQLi attempt URLENCODE 28"'
+      pcre: '"/(?:^|&|Content-Disposition[\x3a][^\n]*?name\s*?=\s*?[\x22\x27])\%6e\%61m\%65\%5b[^\x5d]*?\W/Pi"'
+      reference: url,pastebin.com/F2Dk9LbX
+      rev: '1'
+      sid: '2019449'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

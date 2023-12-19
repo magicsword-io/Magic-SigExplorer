@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 29|application/json|0d 0a|"'
+      - depth: '7'
+        value: '"|7b 22|io|22 3a 22|"'
+      - value: '"|22 2c 22|tu|22 3a 22|"'
+      - value: '"|22 2c 22|sd|22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_05_28, deployment Perimeter, former_category MALWARE, malware_family
+        EnvyScout, signature_severity Major, updated_at 2021_12_07
+      msg: '"ET TROJAN NOBELIUM (TA421) EnvyScout Fingerprint Checkin"'
+      reference: url,www.microsoft.com/security/blog/2021/05/28/breaking-down-nobeliums-latest-early-stage-toolset
+      rev: '3'
+      sid: '2033052'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

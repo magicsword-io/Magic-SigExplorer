@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/classes/flash_mp3_player.23/extras/external_feeds/getfeed.php?"'
+      - value: '"file="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_10_25, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS MyOWNspace getfeed.php file Parameter Local File
+        Inclusion Attempt(2)"'
+      reference: url,inj3ct0r.com/exploits/12674
+      rev: '2'
+      sid: '2011830'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

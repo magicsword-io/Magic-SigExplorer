@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|51|new york/O=new york/OU=new york/ST=new york/emailAddress=admin@thoughtlibrary.top"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|2e|new york/emailAddress=admin@thoughtlibrary.top"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|3a|new york/ST=new york/emailAddress=admin@thoughtlibrary.top"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|46|new york/OU=new york/ST=new york/emailAddress=admin@thoughtlibrary.top"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|66|thoughtlibrary.top/L=new york/O=new york/OU=new york/ST=new york/emailAddress=admin@thoughtlibrary.top"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2020_02_10, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_05_03, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (TinyNuke Variant CnC) 2020-02-09"'
+      reference: url,twitter.com/P3pperP0tts/status/1226493807061094406
+      rev: '3'
+      sid: '2029400'
+      special_options:
+      - fast_pattern
+      within: '103'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

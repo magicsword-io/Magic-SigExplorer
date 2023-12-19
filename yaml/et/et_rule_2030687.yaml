@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|7b 22|children|22|"'
+      - value: '"|22|name|22|"'
+      - value: '"|22|module|22|"'
+      - value: '"|22|dHVubmVs|22|"'
+      - value: '"|22|name|22|"'
+      - value: '"|22|action|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2020_08_13, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2020_08_13
+      msg: '"ET TROJAN Drovorub tunnel Module Server Response"'
+      reference: url,media.defense.gov/2020/Aug/13/2002476465/-1/-1/0/CSA_DROVORUB_RUSSIAN_GRU_MALWARE_AUG_2020.PDF
+      rev: '2'
+      sid: '2030687'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

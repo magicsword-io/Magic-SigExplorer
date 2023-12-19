@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1720'
+    details:
+      classtype: network-scan
+      contents:
+      - depth: '12'
+        offset: '55'
+        value: '"|40 04 00 63 00 69 00 73 00 63 00 6f|"'
+      flow: established,to_server
+      metadata: created_at 2015_04_08, updated_at 2015_04_08
+      msg: '"ET SCAN H.323 Scanning device"'
+      reference: url,videonationsltd.co.uk/2014/11/h-323-cisco-spam-calls/
+      rev: '2'
+      sid: '2020853'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 60
+    protocol: tcp
+    source:
+      network: any
+      port: any

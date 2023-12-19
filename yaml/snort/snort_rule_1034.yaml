@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/Sites/Samples/Knowledge/Membership/Inspiredtutorial/ViewCode.asp",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS viewcode access"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms99-013
+      rev: '20'
+      service: http
+      sid: '1034'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/insert/index?",fast_pattern,nocase'
+      - value: '"id="'
+      - value: '"hst="'
+      - value: '"ttype="'
+      - value: '"state="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.StoneDrill get commands outbound connection"'
+      reference: url,securelist.com/files/2017/03/Report_Shamoon_StoneDrill_final.pdf
+      rev: '2'
+      service: http
+      sid: '45092'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

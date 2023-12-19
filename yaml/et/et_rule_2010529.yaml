@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"option=com_jinc"'
+      - value: '"newsid="'
+      - value: '"index.php?"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla component com_jinc (newsid) Blind SQL Injection
+        Attempt"'
+      pcre: '"/newsid=[^\s\x26\x3B\x2f]*[\s\x2f]/iU"'
+      reference: url,doc.emergingthreats.net/2010529
+      rev: '3'
+      sid: '2010529'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

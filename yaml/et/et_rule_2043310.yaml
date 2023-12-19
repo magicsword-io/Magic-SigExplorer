@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - depth: '20'
+        value: '"Server|3a 20|DDoS-Guard"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_01_17, deployment Perimeter,
+        former_category HUNTING, performance_impact Moderate, signature_severity Informational,
+        updated_at 2023_01_17
+      msg: '"ET INFO DDoS-Guard Hosted Content"'
+      reference: url,malwarebytes.com/blog/threat-intelligence/2023/01/crypto-inspired-magecart-skimmer-surfaces-via-digital-crime-haven
+      rev: '1'
+      sid: '2043310'
+      special_options:
+      - http_stat_code
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

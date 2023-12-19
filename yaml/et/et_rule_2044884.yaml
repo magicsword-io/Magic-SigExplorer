@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20 3d 20|window|2e|location|2e|href|3b 0a|if|28|"'
+      - value: '"|2e|indexOf|28 27|"'
+      - value: '"|27 29 3c|99|29 0a 7b 0a|eval|28|atob|28 27|"'
+      - value: '"|27 29 29 3b 7d 2f 2f|eval|28|atob|28 27|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_04, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        Medium, signature_severity Minor, updated_at 2023_04_04
+      msg: '"ET TROJAN Fake Browser Update via Error Page Web Inject"'
+      reference: url,isc.sans.edu/diary/Supply%20Chain%20Compromise%20or%20False%20Positive%3A%20The%20Intriguing%20Case%20of%20efile.com%20%5Bupdated%20-%20confirmed%20malicious%20code%5D/29708
+      rev: '1'
+      sid: '2044884'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

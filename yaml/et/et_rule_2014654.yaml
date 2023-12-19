@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"option=com_videogallery"'
+      - value: '"controller="'
+      - value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_04_28, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2022_05_03
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_videogallery controller parameter Local
+        File Inclusion Attempt"'
+      reference: url,packetstormsecurity.org/files/112161/Joomla-Video-Gallery-Local-File-Inclusion-SQL-Injection.html
+      rev: '4'
+      sid: '2014654'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

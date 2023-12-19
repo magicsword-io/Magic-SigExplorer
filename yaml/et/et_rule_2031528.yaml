@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '19'
+        value: '"/checkupdate.js?id="'
+      - value: '"&token="'
+      - value: '"&platform="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_01_19, deployment Perimeter,
+        former_category MALWARE, malware_family Arbitrium_RAT, performance_impact
+        Low, signature_severity Major, updated_at 2021_01_19
+      msg: '"ET TROJAN Arbitrium-RAT CnC Activity"'
+      reference: url,github.com/BenChaliah/Arbitrium-RAT/
+      rev: '2'
+      sid: '2031528'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        offset: '2'
+        value: '"|01 00 00 01 00 00 00 00|"'
+      - value: '"|0a|getupdates|00 00 10 00 01|"'
+      flow: to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_11, deployment Perimeter, former_category
+        MALWARE, malware_family MozartLoader, signature_severity Major, updated_at
+        2020_02_11
+      msg: '"ET TROJAN Mozart Loader Command Request (getupdates)"'
+      reference: md5,cb20d25c5e5e31ffaa8101449d50745a
+      rev: '2'
+      sid: '2029409'
+      special_options:
+      - fast_pattern
+      threshold: type both, track by_src, count 30, seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

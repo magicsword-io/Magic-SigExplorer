@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/passwd.php3"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP piranha passwd.php3 access"'
+      reference: cve,2000-0322
+      rev: '17'
+      service: http
+      sid: '1161'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

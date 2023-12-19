@@ -1,0 +1,9 @@
+# {{ header }}
+
+{% for classtype, rules in classtypes.items() %}
+## {{ classtype }}
+
+{% for rule in rules %}
+- [{{ rule.msg }}](/rules/{{ rule_type }}/{{ rule_type }}_rule_{{ rule.sid }})
+{% endfor %}
+{% endfor %}

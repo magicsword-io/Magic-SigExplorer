@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/account_change.php?"'
+      - value: '"style="'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_11_02
+      msg: '"ET WEB_SPECIFIC_APPS BtiTracker SQL Injection Attempt -- account_change.php
+        style SELECT"'
+      pcre: '"/SELECT.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2004023
+      rev: '6'
+      sid: '2004023'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

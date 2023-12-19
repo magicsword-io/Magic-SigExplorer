@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|8a 00 d1 00 8a 00 6a 00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_18, deployment Perimeter, former_category
+        MALWARE, malware_family KeyBoy, signature_severity Major, tag c2, updated_at
+        2016_11_18, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN KeyBoy CnC Beacon"'
+      reference: md5,8846d109b457a2ee44ddbf54d1cf7944
+      rev: '1'
+      sid: '2023527'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

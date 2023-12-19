@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,0,relative,big
+      classtype: misc-activity
+      contents:
+      - depth: '3'
+        value: '"|16 03 01|"'
+      - value: '"|02|"'
+      - value: '"|16 03 01|"'
+      - value: '"|0b|"'
+      - value: '"|30 82|"'
+      - value: '"|30 82|"'
+      - value: '"|a0 03 02 01 02 02|"'
+      - value: '"|30 0d 06 09 2a 86 48 86 f7 0d 01 01 04 05 00|"'
+      distance: '2'
+      flow: established,from_server
+      metadata: created_at 2012_09_07, updated_at 2012_09_07
+      msg: '"ET POLICY Signed TLS Certificate with md5WithRSAEncryption"'
+      reference: url,news.netcraft.com/archives/2012/08/31/governments-and-banks-still-using-weak-md5-signed-ssl-certificates.html
+      rev: '2'
+      sid: '2015686'
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

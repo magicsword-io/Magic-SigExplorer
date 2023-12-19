@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|24 04 ff 00|"'
+      - value: '"|01 00 00 00 30 7c 1e 1e 1f 7c|"'
+      distance: '4'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_16, deployment Perimeter, former_category
+        MALWARE, malware_family Remcos, signature_severity Major, updated_at 2021_04_16
+      msg: '"ET TROJAN Remcos 3.x Unencrypted Server Response"'
+      reference: md5,d27f70216d11b769c937a961fc1b1c81
+      rev: '2'
+      sid: '2032777'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 120
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

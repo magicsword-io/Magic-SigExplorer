@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[9200,9292]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '6'
+        value: '"POST /"'
+      - value: '"search"'
+      - value: '"script_fields"'
+      - value: '".class.forName"'
+      - value: '"java.lang.Runtime"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_03_09, cve CVE_2015_1427, updated_at 2015_03_09
+      msg: '"ET WEB_SERVER Possible CVE-2015-1427 Elastic Search Sandbox Escape Remote
+        Code Execution Attempt"'
+      reference: url,jordan-wright.github.io/blog/2015/03/08/elasticsearch-rce-vulnerability-cve-2015-1427
+      rev: '2'
+      sid: '2020648'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

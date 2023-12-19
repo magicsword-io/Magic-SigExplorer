@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"TVqQA"'
+      flow: established,to_client
+      metadata: created_at 2014_07_31, updated_at 2022_05_03
+      msg: '"ET TROJAN Windows executable base64 encoded"'
+      pcre: '"/[^A-Za-z0-9+/]TVqQA/"'
+      reference: md5,49aca228674651cba776be727bdb7e60
+      rev: '12'
+      sid: '2018856'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

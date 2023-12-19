@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?url="'
+      - value: '"&affid="'
+      - value: '"User-Agent|3a| Mozilla/5.0 (compatible|3b| MSIE 6.0|3b| Windows XP)|0d
+          0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_10_13
+      msg: '"ET TROJAN FAKE/ROGUE AV/Security Application Checkin"'
+      pcre: '"/\?url=[0-9]&affid=[0-9]{5}/Ui"'
+      reference: url,doc.emergingthreats.net/2009554
+      rev: '5'
+      sid: '2009554'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

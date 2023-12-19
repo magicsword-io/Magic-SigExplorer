@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '623'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '2'
+        offset: '4'
+        value: '"|06 12|"'
+      metadata: created_at 2013_07_09, former_category POLICY, updated_at 2013_07_09
+      msg: '"ET POLICY Possible IPMI 2.0 RAKP Remote SHA1 Password Hash Retrieval
+        RAKP message 1 with default BMC usernames (Admin|root|Administrator|USERID)"'
+      pcre: '"/((\x0d|\x05)Admin(istrator)?|\x04root|\x06USERID)/Ri"'
+      rev: '2'
+      sid: '2017120'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx"'
+      - value: '"Backdoor="'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22 5f 5f|EVENTTARGET|22
+          0d 0a 0d 0a|Bin_"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22 5f 5f|FILE|22
+          0d 0a 0d 0a|"'
+      fast_pattern: 40,20
+      flow: established,to_server
+      metadata: affected_product Microsoft_IIS, attack_target Web_Server, created_at
+        2023_07_07, deployment Perimeter, deployment Internal, deployment SSLDecrypt,
+        former_category WEB_SERVER, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_07_07
+      msg: '"ET TROJAN ASPXSPY - Manic Menagerie Variant Activity M1"'
+      pcre: '"/Backdoor\x3d[a-f0-9]{32}/C"'
+      reference: url,unit42.paloaltonetworks.com/manic-menagerie-targets-web-hosting-and-it/
+      rev: '1'
+      sid: '2046753'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"AnnotationX.AnnList.1"'
+      - value: '".Add("'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_01, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Quest InTrust Annotation Objects ActiveX Control Add Access
+        Potential Remote Code Execution 2"'
+      reference: url,www.exploit-db.com/exploits/18674/
+      rev: '3'
+      sid: '2014454'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

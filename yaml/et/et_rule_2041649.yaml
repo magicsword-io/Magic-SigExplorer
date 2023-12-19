@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<!-- saved from url="'
+      - value: '"http|2d|equiv|3d 22|refresh|22 20|content|3d 22|15|3b 20|url|3d 2e
+          2f|bestatigungsnachricht|2e|html|22|"'
+      - value: '"<title>ING Login</title>"'
+      fast_pattern: 40,20
+      flow: established,to_client
+      metadata: created_at 2022_12_02, updated_at 2022_12_02
+      msg: '"ET CURRENT_EVENTS ING Group Credential Phish Landing Page 2022-12-02"'
+      reference: md5,fc68fded6fc19e85d37f244329c9ff45
+      rev: '1'
+      sid: '2041649'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

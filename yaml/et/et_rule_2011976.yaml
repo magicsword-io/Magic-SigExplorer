@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '912'
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '4'
+        value: '"|64 12 54 6a|"'
+      - value: '"|00 00 00 f4 1f 00 00|"'
+      - value: '!"|0a|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '220'
+      metadata: created_at 2010_11_24, former_category SCADA, confidence High, updated_at
+        2010_11_24
+      msg: '"ET SCADA RealWin SCADA System Buffer Overflow"'
+      pcre: '"/\x64\x12\x54\x6a[\x20\x10\x02]\x00\x00\x00\xf4\x1f\x00\x00/"'
+      reference: url,www.exploit-db.com/exploits/15337/
+      rev: '1'
+      sid: '2011976'
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

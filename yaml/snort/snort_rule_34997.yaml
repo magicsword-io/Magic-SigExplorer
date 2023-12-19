@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HTTP/1.1 200 OK|0D 0A|Content-Length: "'
+      - value: '"|0D 0A 0D 0A|session:",within 15,fast_pattern'
+      flow: to_client,established
+      isdataat: '!53'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Graftor variant HTTP Response"'
+      pcre: '"/\r\n\r\nsession\x3a\d{1,7}$/"'
+      reference: url,www.virustotal.com/en/file/1ed49a78ee46c4a0d2eeb3b9ab707b40d3c87448c6f399d7fceefc0c16c66d38/analysis/
+      rev: '3'
+      service: http
+      sid: '34997'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

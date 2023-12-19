@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"?param=a"'
+      - value: '"exec%20master%2E%2Esp%5Fconfigure%20%27show%20advanced%20options"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN SQLNinja Attempt To Recreate xp_cmdshell Using sp_configure"'
+      reference: url,doc.emergingthreats.net/2009043
+      rev: '4'
+      sid: '2009043'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

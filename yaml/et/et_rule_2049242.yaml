@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -21
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"drive-google-com.tk"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_16, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_16
+      msg: '"ET TROJAN Observed Malicious Domain (drive-google-com .tk in TLS SNI)"'
+      pcre: '"/^(?:\x00\x13|.\x2e)drive\-google\-com\.tk/R"'
+      reference: url,twitter.com/h2jazi/status/1719064131087532050
+      rev: '1'
+      sid: '2049242'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

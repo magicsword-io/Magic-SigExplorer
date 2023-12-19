@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '12'
+        value: '"/bot/online?"'
+      - value: '"guid="'
+      - value: '"key="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_14, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_02_16, reviewed_at 2023_08_21
+      msg: '"ET TROJAN Laplas Clipper - SetOnline CnC Checkin"'
+      pcre: '"/^[a-f0-9]{64}/R"'
+      reference: url,blog.cyble.com/2022/11/02/new-laplas-clipper-distributed-by-smokeloader/
+      rev: '4'
+      sid: '2039776'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

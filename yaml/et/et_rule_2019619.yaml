@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"EAdQB0AG8ARQB4AGUAY"'
+      flow: established,to_server
+      metadata: created_at 2014_10_31, updated_at 2014_10_31
+      msg: '"ET POLICY Office Document Containing AutoExec Macro Via smtp"'
+      reference: url,support.microsoft.com/kb/286310
+      rev: '2'
+      sid: '2019619'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

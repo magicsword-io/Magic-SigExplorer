@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"MKD UFR_Stealer|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2011_04_20, updated_at 2011_04_20
+      msg: '"ET TROJAN Win32.UFRStealer.A issuing MKD command FTP"'
+      reference: md5,a251ef38f048d695eae52626e57d617d
+      rev: '4'
+      sid: '2014111'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

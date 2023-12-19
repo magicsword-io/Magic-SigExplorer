@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ourtyaz/dwnack.php?cId=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BitterRAT variant outbound connection"'
+      reference: url,virustotal.com/#/file/f5afe24061226630faa0f1a125e011819627cee3254060bdf2691bad65ff1d1c
+      rev: '1'
+      service: http
+      sid: '48874'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

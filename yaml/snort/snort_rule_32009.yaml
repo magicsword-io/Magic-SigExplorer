@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|21 2A 20|SCANNER ON",fast_pattern,nocase'
+      flow: to_client,established
+      isdataat: '!14'
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Linux.Backdoor.Flooder inbound connection attempt - command"'
+      reference: url,www.virustotal.com/en/file/73b0d95541c84965fa42c3e257bb349957b3be626dec9d55efcc6ebcba6fa489/analysis/
+      rev: '3'
+      sid: '32009'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

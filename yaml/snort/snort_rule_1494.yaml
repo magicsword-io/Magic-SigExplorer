@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/generate.cgi"'
+      - value: '"content=../"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP SIX webboard generate.cgi attempt"'
+      reference: nessus,10725
+      rev: '15'
+      service: http
+      sid: '1494'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

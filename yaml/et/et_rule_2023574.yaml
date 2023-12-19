@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/plugins/system/plugin_googlemap2_proxy.php?url="'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 28,20
+      flow: established,to_server
+      metadata: affected_product Joomla, attack_target Web_Server, created_at 2016_12_02,
+        deployment Datacenter, performance_impact Low, signature_severity Major, updated_at
+        2020_08_03
+      msg: '"ET WEB_SPECIFIC_APPS Joomla GoogleMaps Plugin Open Proxy Access"'
+      reference: url,bnshosting.net/googlemap-proxy-vulnerability
+      rev: '1'
+      sid: '2023574'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

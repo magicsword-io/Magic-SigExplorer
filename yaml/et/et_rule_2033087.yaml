@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?"'
+      - value: '"|0d 0a|Content-Type|3a 20|"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      - value: '"Browsers/"'
+      - value: '!"Accept-"'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_04, deployment Perimeter, former_category
+        MALWARE, malware_family DCRat, signature_severity Major, updated_at 2021_07_09
+      msg: '"ET TROJAN Win32/DCRat CnC Exfil"'
+      pcre: '"/\r\nContent-Type\x3a\x20[a-f0-9]{32}\r\n\r\nPK/Psi"'
+      reference: md5,3aa17643535d17db367447e1104e12d9
+      rev: '3'
+      sid: '2033087'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '>150'
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|00 14|check.torproject.org"'
+      flow: established,to_server
+      metadata: created_at 2014_01_04, updated_at 2020_08_20
+      msg: '"ET POLICY check.torproject.org IP lookup/Tor Usage check over TLS with
+        SNI"'
+      rev: '2'
+      sid: '2017928'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

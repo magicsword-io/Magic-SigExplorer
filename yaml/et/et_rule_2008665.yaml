@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"btn="'
+      - value: '"q="'
+      - value: '"SOFT"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_04
+      msg: '"ET TROJAN Zbot/Zeus or Related Infection Checkin"'
+      reference: url,doc.emergingthreats.net/2008665
+      rev: '7'
+      sid: '2008665'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

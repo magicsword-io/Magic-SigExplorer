@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"document.write|28 22 5C|u"'
+      - value: '!"|29|"'
+      - value: '"|5C|u"'
+      - value: '"|5C|u"'
+      - value: '"|5C|u"'
+      - value: '"|5C|u"'
+      - value: '"|5C|u"'
+      distance: '4'
+      flow: established,to_client
+      flowbits: noalert
+      isdataat: 100,relative
+      metadata: created_at 2012_01_04, former_category EXPLOIT_KIT, updated_at 2012_01_04
+      msg: '"ET CURRENT_EVENTS Document.write Long Backslash UTF-16 Encoded Content
+        - Exploit Kit Behavior Flowbit Set"'
+      reference: url,www.kahusecurity.com/2011/elaborate-black-hole-infection/
+      rev: '6'
+      sid: '2014096'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

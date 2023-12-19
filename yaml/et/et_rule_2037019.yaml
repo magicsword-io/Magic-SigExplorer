@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|23|2"'
+      - value: '"0000|7c|auto|7c|1|23|"'
+      - value: '"|23|"'
+      distance: '1'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_16, deployment Perimeter, former_category
+        MALWARE, malware_family TA457, signature_severity Major, updated_at 2022_06_16
+      msg: '"ET TROJAN TA457 Backdoor CnC Activity"'
+      reference: md5,29b6b195cf0671901b75b7d2ac6814f6
+      rev: '1'
+      sid: '2037019'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/gbsf/"'
+      - value: '"gtrg2ze"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Gator/Clarian Agent"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001306
+      rev: '12'
+      sid: '2001306'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

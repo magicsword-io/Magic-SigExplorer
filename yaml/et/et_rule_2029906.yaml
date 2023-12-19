@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Owl PHPMailer"'
+      - value: '"function stopSending()"'
+      - value: '"function startSending()"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_14, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_14
+      msg: '"ET WEB_CLIENT Owl PHPMailer Accessed on External Server"'
+      rev: '2'
+      sid: '2029906'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

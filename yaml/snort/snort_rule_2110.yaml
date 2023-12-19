@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"STAT",nocase'
+      flow: to_server,established
+      isdataat: 10,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-POP STAT overflow attempt"'
+      pcre: '"/^STAT\s[^\n]{10}/ims"'
+      rev: '9'
+      service: pop3
+      sid: '2110'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

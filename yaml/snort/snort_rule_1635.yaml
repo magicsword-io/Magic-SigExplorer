@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"APOP",nocase'
+      flow: to_server,established
+      isdataat: 256,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-POP APOP overflow attempt"'
+      pcre: '"/^APOP\s[^\n]{256}/ims"'
+      reference: nessus,10559
+      rev: '19'
+      service: pop3
+      sid: '1635'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

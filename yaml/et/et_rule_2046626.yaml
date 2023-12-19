@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|User|3a 20|"'
+      - value: '"User-Agent|3a 20 20|AV|3a 20|"'
+      - value: '"User-Agent|3a 20 20|STM|3a 20|"'
+      - value: '"User-Agent|3a 20 20|RSM|3a 20|"'
+      - value: '"User-Agent|3a 20 20|RZ|3a 20|"'
+      distance: '4'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family RedEnergy, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_06_22
+      msg: '"ET TROJAN Win32/RedEnergy System Information Retrieval Attempt"'
+      reference: md5,642dbe8b752b0dc735e9422d903e0e97
+      rev: '1'
+      sid: '2046626'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

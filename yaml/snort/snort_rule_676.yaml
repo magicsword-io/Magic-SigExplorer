@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '139'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"s|00|p|00|_|00|s|00|t|00|a|00|r|00|t|00|_|00|j|00|o|00|b|00|",depth
+          32,offset 32,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL sp_start_job - program execution"'
+      rev: '9'
+      sid: '676'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

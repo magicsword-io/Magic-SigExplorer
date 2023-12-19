@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '10498'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"pong"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER mstream agent pong to handler"'
+      reference: cve,2000-0138
+      rev: '8'
+      sid: '246'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

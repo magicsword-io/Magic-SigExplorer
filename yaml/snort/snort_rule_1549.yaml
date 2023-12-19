@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"HELO",nocase'
+      flow: to_server,established
+      isdataat: 500,relative
+      metadata: ruleset community
+      msg: '"SERVER-MAIL HELO overflow attempt"'
+      pcre: '"/^HELO\s[^\n]{500}/ims"'
+      reference: nessus,11674
+      rev: '27'
+      service: smtp
+      sid: '1549'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

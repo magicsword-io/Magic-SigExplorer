@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"CWD",nocase'
+      - value: '"~root",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP CWD ~root attempt"'
+      pcre: '"/^CWD\s+~root/ims"'
+      reference: cve,1999-0082
+      rev: '17'
+      service: ftp
+      sid: '336'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

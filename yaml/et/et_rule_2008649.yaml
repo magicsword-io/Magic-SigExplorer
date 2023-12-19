@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/view_cat.php?v_cat="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Realtor v_cat SQL Injection"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2008649
+      rev: '4'
+      sid: '2008649'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

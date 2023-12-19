@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1431'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GETSERVER|7c|"'
+      flow: established,to_server
+      metadata: created_at 2014_02_13, updated_at 2014_02_13
+      msg: '"ET TROJAN Win32/Tapazom.A 2"'
+      reference: md5,030f3840d2729243280d3cea3d99d8e6
+      rev: '1'
+      sid: '2018134'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

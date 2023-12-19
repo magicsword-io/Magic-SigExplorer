@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/v1/client/report"'
+      - depth: '12'
+        value: '"|5b 7b 22|action|22 3a 22|"'
+      - value: '"|22 2c 22|device|5f|id|22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_01_13, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Major, updated_at 2021_01_13
+      msg: '"ET TROJAN Win32/Qihoo360.J Variant Install Report"'
+      reference: md5,93dc18be56153f41fd1e12b686cca9fe
+      rev: '2'
+      sid: '2031522'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

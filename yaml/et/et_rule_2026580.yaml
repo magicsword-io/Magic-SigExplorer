@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"AUT_packet_"'
+      dsize: '11'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_07, deployment Perimeter, former_category
+        MALWARE, malware_family JavaRAT, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_11_10
+      msg: '"ET TROJAN JavaRAT CnC Init Activity"'
+      reference: md5,9a33176dd80de6f49099a148a2df3491
+      rev: '2'
+      sid: '2026580'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

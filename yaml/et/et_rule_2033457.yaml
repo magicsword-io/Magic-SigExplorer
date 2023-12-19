@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '6'
+        value: '"/eabr/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_27, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_27
+      msg: '"ET TROJAN Maldoc Activity Sending Windows User Info (GET)"'
+      pcre: '"/\/eabr\/[a-zA-z]{8}\./U"'
+      reference: url,twitter.com/ShadowChasing1/status/1417650046485495808
+      rev: '1'
+      sid: '2033457'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

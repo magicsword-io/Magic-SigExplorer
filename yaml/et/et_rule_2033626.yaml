@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|05|Texas"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|06|Austin"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0b|Development"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0f|www.example.com"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|05|Texas"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|06|Austin"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0b|Development"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0f|www.example.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2021_07_30, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2021_07_30, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Meterpreter Paranoid Mode CnC)"'
+      reference: url,titanwolf.org/Network/Articles/Article?AID=97b8845a-85d0-407a-b14b-8dc773ed551b
+      rev: '2'
+      sid: '2033626'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

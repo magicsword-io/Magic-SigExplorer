@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/boaform/admin/"'
+      - value: '"target_addr=|22|"'
+      - value: '"|60|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_07_08, updated_at 2021_07_08
+      msg: '"ET EXPLOIT OptiLink ONT1GEW GPON RCE Inbound"'
+      pcre: '"/\/boaform\/admin\/form(?:Ping|Tracert)$/U"'
+      reference: url,packetstormsecurity.com/files/162993/OptiLink-ONT1GEW-GPON-2.1.11_X101-Remote-Code-Execution.html
+      rev: '2'
+      sid: '2033280'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

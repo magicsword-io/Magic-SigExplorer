@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|22|fr|22|+|22|omCh|22|+|22|arCo|22|+|22|de|22|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION Javascript obfuscation - fromCharCode - seen in
+        IFRAMEr Tool attack"'
+      reference: url,attack.mitre.org/techniques/T1140
+      rev: '3'
+      service: http
+      sid: '28421'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

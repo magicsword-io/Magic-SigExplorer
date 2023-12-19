@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|08|go-phish"'
+      distance: '1'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_07_28, deployment Perimeter, former_category INFO, signature_severity
+        Major, tag Phishing, updated_at 2017_07_28
+      msg: '"ET INFO Phishery Phishing Tool - Default SSL Certificate Observed"'
+      reference: url,github.com/ryhanson/phishery
+      rev: '2'
+      sid: '2024505'
+      special_options:
+      - fast_pattern
+      within: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

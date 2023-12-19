@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/payment_gateway/"'
+      - value: '".gz"'
+      - value: '"User-Agent|3A| OperaMini|0D 0A|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_12_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2022_03_24,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Hyteod.Downloader CnC Beacon"'
+      pcre: '"/^\x2Fpayment_gateway\x2F[a-z0-9]{3,}\x2Egz$/U"'
+      reference: md5,8258c3d8bab63cacf143cf034e2e7c1a
+      rev: '1'
+      sid: '2019824'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

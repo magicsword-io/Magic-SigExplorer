@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-ip2 "'
+      flow: established,to_client
+      flowbits: isset,ET.Drive.DDoS.Checkin
+      metadata: created_at 2013_06_22, updated_at 2013_06_22
+      msg: '"ET TROJAN Drive Receiving IP2 DDoS instructions"'
+      reference: url,ddos.arbornetworks.com/2013/06/dirtjumpers-ddos-engine-gets-a-tune-up-with-new-drive-variant/
+      rev: '3'
+      sid: '2017050'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

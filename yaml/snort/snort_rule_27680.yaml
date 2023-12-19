@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>95'
+      classtype: trojan-activity
+      contents:
+      - value: '".php HTTP/1.1|0D 0A|User-Agent: Opera/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ZeroAccess variant outbound connection"'
+      pcre: '"/(?=^[a-z\x2d\x5f\x2f]{95,}\.php$).*?[a-z]{2,48}\x2d[a-z]{2,48}\x2d[a-z]{2,48}\x2d[a-z]{2,48}\x2d?\.php$/"'
+      rev: '2'
+      service: http
+      sid: '27680'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

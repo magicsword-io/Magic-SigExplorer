@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00|ll"'
+      - value: '"TGltZV8"'
+      distance: '0'
+      dsize: <250
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_06, deployment Perimeter, former_category
+        MALWARE, malware_family njrat, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_19
+      msg: '"ET TROJAN njRAT/Bladabindi Variant (Lime) CnC Checkin"'
+      pcre: '"/^[0-9]{2,3}\x00\x6c\x6c(?P<var>[\x20-\x2f\x30-\x39\x3a-\x40\x5b-\x60\x7b-\x7e][\x20-\x7e]+?[\x20-\x2f\x30-\x39\x3a-\x40\x5b-\x60\x7b-\x7e])(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})(?P=var)[^\r\n]+(?P=var)$/s"'
+      reference: md5,ce37b5b473377810bc76e0491533b4e7
+      rev: '1'
+      sid: '2025136'
+      special_options:
+      - fast_pattern
+      within: '30'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"http|3a 2f 2f|"'
+      - value: '".gethompy.com/404.html?id="'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.kimsukymisc
+      metadata: attack_target Client_Endpoint, created_at 2023_06_22, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_06_22
+      msg: '"ET TROJAN Suspected Kimsuky Related Activity (Response)"'
+      reference: url,twitter.com/StopMalvertisin/status/1669379332547186690
+      rev: '1'
+      sid: '2046619'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

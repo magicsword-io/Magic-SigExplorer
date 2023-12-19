@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '14'
+        offset: '298'
+        value: '"|5f 53 40 59 32 32 32 32 32 32 32 32 32 32|"'
+      - depth: '3'
+        offset: '564'
+        value: '"|65 5b 5c|"'
+      dsize: '576'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_28, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_04_28
+      msg: '"ET TROJAN Win32/TrojanDropper.Agent.RLO CnC Acitivty"'
+      reference: md5,a6d36df7ee6cb5407853aeacfd818ac9
+      rev: '1'
+      sid: '2032887'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

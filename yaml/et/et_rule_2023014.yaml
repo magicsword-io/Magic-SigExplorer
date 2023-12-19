@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|65 78 70 6c 6f 69 74 4c 69 73 74 2e 73 70 6c 69 63 65|"'
+      - value: '"|73 65 74 54 69 6d 65 6f 75 74 28 22 6c 6f 61 64 45 78 70 6c 6f 69
+          74 28 29 22|"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_02, deployment Perimeter, performance_impact
+        Low, signature_severity Major, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Metasploit Browser Autopwn Aug1 2016"'
+      rev: '1'
+      sid: '2023014'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/automation/n09230945.asp"'
+      - value: '"User-Agent|3a| Mozilla/5.0 (X11|3b| U|3b| Linux i686|3b| en-US|3b|
+          rv|3a|1.9.0.4) Ubuntu/8.04 (hardy) Firefox/3.0.0|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_14
+      msg: '"ET TROJAN Fruspam polling for IP likely infected"'
+      reference: url,doc.emergingthreats.net/2011072
+      rev: '4'
+      sid: '2011072'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

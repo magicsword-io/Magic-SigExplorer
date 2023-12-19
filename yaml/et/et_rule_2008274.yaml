@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"|05 00 00 00 BC|"'
+      - value: '"|CC|"'
+      distance: '3'
+      dsize: '9'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Bifrose Response from Controller"'
+      reference: url,doc.emergingthreats.net/2008274
+      rev: '4'
+      sid: '2008274'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

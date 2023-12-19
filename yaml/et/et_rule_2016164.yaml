@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/style/blue/get_templet.php?"'
+      - value: '"MyStyle[StylePath]="'
+      flow: established,to_server
+      metadata: created_at 2013_01_05, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS SiteGo get_templet.php of blue Remote File Inclusion
+        Attempt"'
+      pcre: '"/MyStyle\[StylePath\]=\s*(?:(?:ht|f)tps?|data|php)\x3a\//Ui"'
+      reference: url,packetstormsecurity.com/files/116412/SiteGo-Remote-File-Inclusion.html
+      rev: '1'
+      sid: '2016164'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

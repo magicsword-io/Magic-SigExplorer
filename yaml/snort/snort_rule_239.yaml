@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '18753'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"alive tijgu"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER shaft handler to agent"'
+      reference: cve,2000-0138
+      rev: '10'
+      sid: '239'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

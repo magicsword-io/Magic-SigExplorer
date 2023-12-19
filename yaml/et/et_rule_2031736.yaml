@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Sign in with your email address"'
+      - value: '"view or download attachment"'
+      - value: '"Select your email provider"'
+      - value: '"Sign in with Gmail"'
+      - value: '"Sign in with Yahoo"'
+      - value: '"Sign in with Hotmail"'
+      - value: '"Sign in with AOL"'
+      - value: '"Sign in with Others"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_11_06, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2017_09_27
+      msg: '"ET CURRENT_EVENTS Google Drive Phishing Landing 2015-11-06"'
+      rev: '2'
+      sid: '2031736'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

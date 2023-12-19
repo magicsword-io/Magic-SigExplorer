@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|12|ezan.yikongjian.cc"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|CN"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|1c|TrustAsia Technologies, Inc."'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|14|Domain Validated SSL"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|14|TrustAsia TLS RSA CA"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2020_10_05, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2022_04_18, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (MosaicRegressor WinHTTP Downloader)"'
+      reference: url,74DB88B890054259D2F16FF22C79144D
+      rev: '3'
+      sid: '2030963'
+      special_options:
+      - fast_pattern
+      within: '21'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

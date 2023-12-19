@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '80'
+        value: '"|7b 22 54 79 70 65 22 3a 22 43 6f 6e 6e 65 63 74 69 6f 6e 54 79 70
+          65 22 2c 22 43 6f 6e 6e 65 63 74 69 6f 6e 54 79 70 65 22 3a 22 43 6c 69
+          65 6e 74 22 2c 22 53 65 73 73 69 6f 6e 49 44 22 3a 22|"'
+      - value: '"|22 2c 22 42 6f 74 4e 61 6d 65 22 3a 22|"'
+      - value: '"|22 2c 22 42 6f 74 4f 53 22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_02, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_01_02
+      msg: '"ET TROJAN Arechclient2 Backdoor CnC Checkin"'
+      reference: md5,4ccba79d95dfd7d87b43643058e1cdd0
+      rev: '1'
+      sid: '2029218'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

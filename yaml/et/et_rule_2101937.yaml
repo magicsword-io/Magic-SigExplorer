@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"LIST"'
+      flow: to_server,established
+      isdataat: 10,relative
+      metadata: created_at 2010_09_23, cve CVE_2000_0096, updated_at 2010_09_23
+      msg: '"GPL POP3 LIST overflow attempt"'
+      pcre: '"/^LIST\s[^\n]{10}/smi"'
+      reference: nessus,10197
+      rev: '8'
+      sid: '2101937'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

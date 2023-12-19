@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1039'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"s|00|e|00|l|00|e|00|c|00|t|00| |00|v|00|e|00|r|00|i|00|f|00|i|00|c|00|a|00|n|00|d|00|o|00|
+          |00|f|00|r|00|o|00|m|00| |00|v|00|e|00|r|00|i|00|f|00|i|00|c|00|a|00|n|00|d|00|o|00|
+          |00|w|00|h|00|e|00|r|00|e|00| |00|i|00|d|00|_|00|p|00|c|00|=|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant SQL check-in"'
+      reference: url,www.virustotal.com/en/file/47c71ff0eb61b371e967b93b6909bb05f2aab973e3214ea2d5ed246884dd045e/analysis/
+      rev: '2'
+      sid: '28446'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"LOGS1"'
+      dsize: '5'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C Logs Parse Command (LOGS1)"'
+      reference: url,doc.emergingthreats.net/2008024
+      rev: '4'
+      sid: '2008024'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

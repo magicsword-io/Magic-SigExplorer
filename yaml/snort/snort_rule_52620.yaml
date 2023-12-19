@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/vpns/",fast_pattern,nocase'
+      - value: '"NSC_USER:"'
+      - value: '"../",within 10'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Citrix ADC and Gateway arbitrary code execution attempt"'
+      reference: url,support.citrix.com/article/CTX267027
+      rev: '2'
+      service: http
+      sid: '52620'
+      special_options:
+      - http_uri
+      - http_raw_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

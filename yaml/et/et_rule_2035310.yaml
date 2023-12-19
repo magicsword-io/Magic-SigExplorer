@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".html"'
+      - value: '!"Android"'
+      - value: '!"Linux"'
+      - depth: '9'
+        value: '"username="'
+      - value: '"_"'
+      - value: '"&cart="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_28, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2022_02_28
+      msg: '"ET TROJAN Win32/Pterodo CnC Activity (POST)"'
+      pcre: '"/\.html$/U"'
+      reference: url,twitter.com/h2jazi/status/1498017819539116033
+      rev: '2'
+      sid: '2035310'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

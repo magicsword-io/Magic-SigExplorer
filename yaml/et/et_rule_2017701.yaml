@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?webr00t="'
+      flow: established,to_server
+      metadata: created_at 2013_11_09, former_category CURRENT_EVENTS, updated_at
+        2020_08_18
+      msg: '"ET ATTACK_RESPONSE webr00t WebShell Access"'
+      reference: url,blog.sucuri.net/2013/11/case-study-analyzing-a-wordpress-attack-dissecting-the-webr00t-cgi-shell-part-i.html
+      rev: '4'
+      sid: '2017701'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

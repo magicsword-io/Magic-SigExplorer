@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Adobe Flash must be updated to view this"'
+      - value: '"/lib/adobe.php?id="'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2013_01_30, former_category EXPLOIT_KIT, updated_at 2013_01_30
+      msg: '"ET CURRENT_EVENTS JDB Exploit Kit Landing Page"'
+      pcre: '"/^[a-f0-9]{32}/R"'
+      rev: '3'
+      sid: '2016307'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

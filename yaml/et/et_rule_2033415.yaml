@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 17|shipmentofficedepot.com"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2021_07_25, former_category MALWARE, updated_at 2021_07_25
+      msg: '"ET TROJAN RustyBuer CnC Domain in SNI"'
+      rev: '1'
+      sid: '2033415'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

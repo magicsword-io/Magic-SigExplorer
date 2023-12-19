@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3A| DotDotPwn"'
+      flow: established,to_server
+      metadata: created_at 2010_11_09, updated_at 2020_09_04
+      msg: '"ET SCAN DotDotPwn User-Agent"'
+      reference: url,dotdotpwn.sectester.net
+      rev: '1'
+      sid: '2011915'
+      special_options:
+      - nocase
+      - http_header
+      threshold: type limit, track by_src,count 1, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

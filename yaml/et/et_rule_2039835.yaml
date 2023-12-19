@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"sendLogin.php"'
+      - depth: '9'
+        value: '"password="'
+      - value: '"&j_password="'
+      - value: '"&j_username="'
+      - value: '"&j_currentpath="'
+      - value: '"&j_validate="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_23, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_11_23
+      msg: '"ET CURRENT_EVENTS Successful Credit Agricole Credential Phish 2022-11-23"'
+      pcre: '"/sendLogin\.php$/U"'
+      reference: md5,f19502fe48e091f408f2e8fd18b603c5
+      rev: '1'
+      sid: '2039835'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

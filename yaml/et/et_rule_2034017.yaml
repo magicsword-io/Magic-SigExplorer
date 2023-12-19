@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/nagiosxi/includes/components/autodiscovery/?mode=newjob"'
+      - value: '"job=|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Nagios, attack_target Server, created_at 2021_09_23,
+        cve CVE_2021_37343, deployment Perimeter, deployment Internal, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, tag Exploit, updated_at
+        2021_09_23
+      msg: '"ET EXPLOIT Nagios XI Post-Auth Path Traversal (CVE-2021-37343)"'
+      reference: cve,2021-37343
+      rev: '2'
+      sid: '2034017'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

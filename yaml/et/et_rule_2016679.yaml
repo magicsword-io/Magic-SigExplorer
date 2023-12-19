@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"- Simple Shell</title>"'
+      flow: established,to_client
+      metadata: created_at 2013_03_27, updated_at 2013_03_27
+      msg: '"ET WEB_SERVER WebShell - Simple - Title"'
+      rev: '1'
+      sid: '2016679'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

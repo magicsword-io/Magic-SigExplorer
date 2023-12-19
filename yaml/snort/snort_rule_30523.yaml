@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[21,25,443,465,636,992,993,995,2484]'
+    details:
+      byte_test: 2,>,128,3
+      classtype: attempted-recon
+      contents:
+      - value: '"|18 03 03|",depth 3'
+      detection_filter: track by_dst,count 2,seconds 5
+      flow: to_server,established,only_stream
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-OTHER OpenSSL TLSv1.2 heartbeat read overrun attempt - vulnerable
+        client response"'
+      reference: cve,2014-0160
+      rev: '9'
+      service: ssl
+      sid: '30523'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

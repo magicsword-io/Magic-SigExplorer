@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".ga|0d 0a|"'
+      flow: established,to_server
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_10_23, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_11_17, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Generic Phish to .ga Domain 2018-10-23"'
+      rev: '3'
+      sid: '2026534'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

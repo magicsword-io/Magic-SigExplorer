@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"%u0008%u4141%u4141%u4141"'
+      - value: '"redim"'
+      - value: '"Preserve"'
+      - value: '"2000"'
+      - value: '"%u400C%u0000%u0000%u0000"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_07_15, cve CVE_2016_0189, deployment Perimeter,
+        performance_impact Low, signature_severity Major, tag CVE_2016_0189, updated_at
+        2022_05_03
+      msg: '"ET EXPLOIT CVE-2016-0189 Common Construct M1"'
+      pcre: '"/^\s*?\x29/Rs"'
+      reference: cve,2016-0189
+      rev: '2'
+      sid: '2022971'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

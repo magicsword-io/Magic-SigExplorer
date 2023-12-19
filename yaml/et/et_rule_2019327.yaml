@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"NICK"'
+      flow: established,to_server
+      metadata: created_at 2014_10_01, former_category MALWARE, updated_at 2014_10_01
+      msg: '"ET TROJAN Likely Bot Nick in IRC (Country Code ISO 3166-1 alpha-3)"'
+      pcre: '"/^[^\r\n]{0,7}\b(?:M(?:A[CFR]|D[AGV]|N[EGP]|L[IT]|Y[ST]|[MS]R|CO|EX|HL|KD|OZ|RT|TQ|US|WI)|S(?:L[BEV]|[DEH]N|[JOP]M|G[PS]|V[KN]|W[EZ]|Y[CR]|[MU]R|AU|RB|SD|TP)|B(?:L[MRZ]|R[ABN]|E[LN]|G[DR]|H[RS]|[FW]A|DI|IH|MU|OL|TN|VT)|C(?:O[DGKLM]|H[ELN]|A[FN]|Y[MP]|[IP]V|[MX]R|CK|RI|UB|ZE)|A(?:R[EGM]|T[AFG]|L[AB]|N[DT]|U[ST]|BW|FG|GO|IA|SM|ZE)|G(?:R[CDL]|U[FMY]|I[BN]|N[BQ]|[AM]B|BR|EO|GY|HA|LP|TM)|T(?:U[NRV]|C[AD]|K[LM]|[GT]O|[HZ]A|[OW]N|JK|LS)|P(?:R[IKTY]|A[KN]|[HO]L|CN|ER|LW|NG|SE|YF)|N(?:[CPZ]L|I[CU]|[EO]R|AM|FK|GA|LD|RU)|L(?:B[NRY]|[CKV]A|[AS]O|IE|TU|UX)|I(?:R[LNQ]|S[LR]|[DM]N|ND|OT|TA)|K(?:[AG]Z|[IO]R|EN|HM|NA|WT)|E(?:S[HPT]|CU|GY|RI|TH)|V(?:[ACU]T|EN|GB|IR|NM)|D(?:[MZ]A|EU|JI|NK|OM)|F(?:R[AO]|IN|JI|LK|SM)|H(?:[MN]D|KG|RV|TI|UN)|U(?:[GS]A|KR|MI|RY|ZB)|J(?:AM|EY|OR|PN)|R(?:[EO]U|US|WA)|Z(?:AF|MB|WE)|W(?:LF|SM)|OMN|QAT|YEM)\b/R"'
+      rev: '6'
+      sid: '2019327'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

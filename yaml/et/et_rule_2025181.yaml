@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '300'
+        value: '"L&#959|3b|g|20|in|20|t&#959|3b 20|y&#959|3b|ur|20|&Rho|3b|ay&Rho|3b|aI|20|acc&#959|3b|unt"'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_03, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_03
+      msg: '"ET CURRENT_EVENTS Paypal Phishing Landing 2018-01-03"'
+      rev: '2'
+      sid: '2025181'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

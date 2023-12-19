@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        offset: '2'
+        value: '"|00 00 99 4F B9 74 E2 75 94 0A 5A|"'
+      flow: established,to_server
+      metadata: created_at 2011_08_02, former_category MALWARE, updated_at 2011_08_02
+      msg: '"ET TROJAN Bifrose Client Checkin"'
+      rev: '2'
+      sid: '2013338'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

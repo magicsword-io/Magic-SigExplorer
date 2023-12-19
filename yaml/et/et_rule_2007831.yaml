@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"bot_id="'
+      - value: '"&build_id="'
+      - value: '"&sport="'
+      - value: '"&hport="'
+      - value: '"&ping="'
+      - value: '"&speed="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Downloader General Bot Checking In via HTTP Post (bot_id push)"'
+      reference: url,doc.emergingthreats.net/2007831
+      rev: '8'
+      sid: '2007831'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

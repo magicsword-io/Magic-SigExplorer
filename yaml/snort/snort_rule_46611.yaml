@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Referer|3A|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3A 20|http"'
+      - value: '".zip HTTP/1.1|0D 0A|Host|3A 20|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!100'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banload second stage download request"'
+      pcre: '"/GET \/\w*.zip HTTP\/1.1\r\nHost\x3a\x20\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:\x3a\d{1,5})?\r\n/i"'
+      rev: '2'
+      service: http
+      sid: '46611'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

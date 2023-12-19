@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/counter/?"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '!"User-Agent|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_03_08, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2020_11_03
+      msg: '"ET TROJAN WS/JS Downloader Mar 07 2017 M2"'
+      pcre: '"/\/counter\/(?:\?[a-z]?\d{1,2}$|[^\x2f]*\d\.exe$|.*?[?=](?=[A-Za-z_-]{0,200}[0-9][A-Za-z_-]{0,200}[0-9])(?=[A-Z0-9_-]{0,200}[a-z][A-Z0-9_-]{0,200}[a-z])(?=[a-z0-9_-]{0,200}[A-Z][a-z0-9_-]{0,200}[A-Z])[A-Za-z0-9_-]{50,}(?:&|$))/U"'
+      rev: '2'
+      sid: '2024036'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

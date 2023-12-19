@@ -1,0 +1,50 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"sid="'
+      - value: '"s="'
+      - value: '"type="'
+      - value: '"appname="'
+      - value: '"pos="'
+      - value: '"pn="'
+      - value: '"code="'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"AppName|3a|"'
+      - value: '"|3b 20|WinVer|3a|"'
+      - value: '"paX64|3b 20|"'
+      - value: '"AdapterCount|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_07, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2022_10_07
+      msg: '"ET MALWARE Win32/Adware.Agent.NSF CnC Checkin M1"'
+      pcre: '"/s\=[A-Z0-9]{9}/U"'
+      reference: md5,204a7ed84357875d0a94c7b9862c378e
+      rev: '1'
+      sid: '2039128'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

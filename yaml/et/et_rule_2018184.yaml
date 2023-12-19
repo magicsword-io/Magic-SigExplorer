@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"2p/"'
+      - value: '".exe"'
+      flow: established,to_server
+      metadata: created_at 2014_02_27, updated_at 2022_03_24
+      msg: '"ET TROJAN Zeus.Downloader Campaign Second Stage Executable Request"'
+      pcre: '"/\/p?2p\/[0-9]{1,2}\.exe$/U"'
+      reference: md5,ca15e5e96aee8b18ca6f3c185a690cea
+      rev: '5'
+      sid: '2018184'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

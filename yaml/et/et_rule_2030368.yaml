@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?id="'
+      - value: '"&cc="'
+      - value: '"&pc="'
+      - value: '"User-Agent|3a 20|uploader|0d 0a|"'
+      - value: '".zip|22 0d 0a|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_06_22, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_06_22
+      msg: '"ET TROJAN CollectorStealer CnC Exfil"'
+      reference: md5,e929f02353d22d95523be4f8fbf794c4
+      rev: '2'
+      sid: '2030368'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

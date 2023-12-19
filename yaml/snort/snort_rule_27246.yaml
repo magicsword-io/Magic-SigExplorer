@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<iframe src=|22|YOUR|25|20BROWSER|25|20HAS|25|20BEEN|25|20LOCKED",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Mac OSX FBI ransomware"'
+      reference: url,blog.malwarebytes.org/intelligence/2013/07/fbi-ransomware-now-targeting-apples-mac-os-x-users/
+      rev: '2'
+      service: http
+      sid: '27246'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|shareboxs|03|net|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_09_18, deployment Perimeter, malware_family CapraRAT, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_18, reviewed_at
+        2023_09_18
+      msg: '"ET TROJAN Transparent Tribe/CapraRAT CnC Domain in DNS Lookup"'
+      reference: url,www.sentinelone.com/labs/capratube-transparent-tribes-caprarat-mimics-youtube-to-hijack-android-phones
+      rev: '1'
+      sid: '2048107'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

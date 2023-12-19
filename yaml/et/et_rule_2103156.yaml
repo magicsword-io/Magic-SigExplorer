@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_test: 1,!&,16,3,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|B0 01|R|97 CA|Y|D0 11 A8 D5 00 A0 C9 0D 80|Q"'
+      distance: '29'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2010_09_23, cve CVE_2003_0995, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DCERPC msqueue bind attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-026.mspx
+      rev: '4'
+      sid: '2103156'
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

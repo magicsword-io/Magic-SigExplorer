@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/WebCam/Cam.txt"'
+      - value: '"User-Agent|3a 20|Python-urllib/"'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_20, former_category MALWARE, updated_at 2020_09_25
+      msg: '"ET TROJAN Python.Ragua Checkin"'
+      reference: md5,a8602b4c35f426107c9667d804470745
+      rev: '1'
+      sid: '2018968'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

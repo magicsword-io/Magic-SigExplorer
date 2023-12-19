@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|EF BB BF 50 4B 03 04|",depth 7'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER UTF-8 BOM in zip file attachment detected"'
+      rev: '4'
+      service: http
+      sid: '26382'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

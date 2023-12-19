@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/plugins/editors/jckeditor/plugins/jtreelink/dialogs/links.php"'
+      - value: '"extension=menu"'
+      - value: '"view=menu"'
+      - value: '"parent="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_28, cve CVE_2018_17254,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2021_07_28
+      msg: '"ET EXPLOIT JCK Editor 6.4.4 SQLi Attempt (CVE-2018-17254)"'
+      pcre: '"/parent=[^&]*(?:S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO|\/\*.+\*\/|EXEC)/Ui"'
+      reference: cve,2018-17254
+      rev: '2'
+      sid: '2033604'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

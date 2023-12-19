@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".rmp",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY RealNetworks Realplayer .rmp playlist file download request"'
+      pcre: '"/\x2ermp([\?\x5c\x2f]|$)/ims"'
+      reference: url,en.wikipedia.org/wiki/.ram
+      rev: '33'
+      service: http
+      sid: '2420'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

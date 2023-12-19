@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?"'
+      - value: '"=%96%"'
+      - value: '"User-Agent|3a| Mozilla/4.0 (compatible|3b| MSIE 8.0|3b| Trident/4.0|3b|
+          .NET CLR 2.0.50727|3b| .NET CLR 1.1.4322|3b| .NET CLR 3.0.04506.590|3b|
+          .NET CLR 3.0.04506.648|3b| .NET CLR 3.5.21022|3b| .NET CLR 3.0.4506.2152|3b|
+          .NET CLR 3.5.30729)|0d 0a|"'
+      fast_pattern: 37,20
+      flow: established,to_server
+      metadata: created_at 2012_07_20, former_category MALWARE, updated_at 2020_09_15
+      msg: '"ET TROJAN Simda.C Checkin"'
+      pcre: '"/^Host\x3a[^\r\n]+?\r\nUser-Agent\x3a[^\r\n]+?\r\n\r\n$/H"'
+      reference: md5,10642e1067aca9f04ca874c02aabda5c
+      rev: '3'
+      sid: '2016300'
+      special_options:
+      - nocase
+      - http_uri
+      - http_raw_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

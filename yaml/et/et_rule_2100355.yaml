@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"pass wh00t"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2019_10_08
+      msg: '"GPL FTP pass wh00t"'
+      reference: arachnids,324
+      rev: '7'
+      sid: '2100355'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

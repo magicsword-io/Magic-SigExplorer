@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|KZ"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|06|Astana"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|06|Astana"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|07|NN Fern"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|09|KZ System"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0b|forenzik.kz"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_03_23, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_03_23, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Bazar Backdoor)"'
+      reference: md5,4cf6fb8514073319e7759b4f66d13f08
+      rev: '2'
+      sid: '2032313'
+      special_options:
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

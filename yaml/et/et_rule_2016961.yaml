@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ts="'
+      - value: '"affid="'
+      - value: '"GenuineIntel|3b|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_06_01, updated_at 2020_09_18
+      msg: '"ET TROJAN System Progressive Detection FakeAV (GenuineIntel)"'
+      pcre: '"/\(b\x3a\d+?\x3bc\x3a[^\x3b]+GenuineIntel\x3b/H"'
+      reference: md5,16d529fc48250571a9e667fb264c8497
+      rev: '9'
+      sid: '2016961'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

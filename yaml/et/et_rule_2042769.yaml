@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        value: '"/files/"'
+      - value: '"WindowsPowerShell/"'
+      - value: '"Content|2d|Length|3a 20|43|0d 0a|Connection|3a 20|Keep|2d|Alive|0d
+          0a 0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_13, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2022_12_13
+      msg: '"ET TROJAN PSRansom File Exfiltration (POST)"'
+      pcre: '"/^[a-zA-Z0-9_+]{43}$/P"'
+      reference: url,github.com/JoelGMSec/PSRansom
+      rev: '1'
+      sid: '2042769'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '41'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

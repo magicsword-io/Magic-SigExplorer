@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 12|poweruphosting.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_27, deployment Perimeter, malware_family
+        Upatre, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2019_12_27
+      msg: '"ET TROJAN Observed Upatre CnC Domain in TLS SNI"'
+      reference: md5,f83e76c4e5185e17b23b886b3614379f
+      rev: '2'
+      sid: '2029202'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '443'

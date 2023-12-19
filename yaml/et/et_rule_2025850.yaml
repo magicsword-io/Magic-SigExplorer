@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/system-services.sh?service="'
+      - value: '"&action=start"'
+      flow: established,to_server
+      metadata: created_at 2018_07_17, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Microhard Systems 3G/4G Cellular Ethernet and Serial
+        Gateway - Service start"'
+      reference: url,exploit-db.com/exploits/45036/
+      rev: '2'
+      sid: '2025850'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"Microsoft Windows",depth 18'
+      - value: '"Microsoft Corp",within 250'
+      flow: established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Microsoft cmd.exe banner"'
+      reference: nessus,11633
+      rev: '1'
+      sid: '46983'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '!21:23'

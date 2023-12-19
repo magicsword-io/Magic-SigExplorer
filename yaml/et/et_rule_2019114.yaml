@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/UID"'
+      - value: '".jsp?"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_09_04, former_category MALWARE, updated_at 2020_05_04
+      msg: '"ET TROJAN W32/Threebyte.APT Checkin"'
+      pcre: '"/^\/UID\d+\.jsp\?/U"'
+      reference: url,fireeye.com/blog/technical/botnet-activities-research/2014/09/darwins-favorite-apt-group-2.html
+      rev: '1'
+      sid: '2019114'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

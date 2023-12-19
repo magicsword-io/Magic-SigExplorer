@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - depth: '16'
+        value: '"Invalid login"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL POLICY PCAnywhere Failed Login"'
+      reference: arachnids,240
+      rev: '5'
+      sid: '2100512'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: 5631:5632

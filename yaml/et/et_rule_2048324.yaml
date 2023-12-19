@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"169"'
+      distance: '14'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_28, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, confidence High, signature_severity
+        Major, updated_at 2023_10_02, reviewed_at 2023_10_02
+      msg: '"ET TROJAN [ANY.RUN] Lu0bot-Style DNS Query in DNS Lookup M1"'
+      pcre: '"/^\d{10}(?:[0-9a-z]{36})?[\x03\x04\x05]/R"'
+      reference: url,any.run/cybersecurity-blog/lu0bot-analysis
+      rev: '2'
+      sid: '2048324'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

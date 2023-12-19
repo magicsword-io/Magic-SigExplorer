@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: string-detect
+      contents:
+      - value: '"%",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP format string attempt"'
+      pcre: '"/\s+.*?%.*?%/ims"'
+      reference: cve,2009-4769
+      rev: '17'
+      service: ftp
+      sid: '2417'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

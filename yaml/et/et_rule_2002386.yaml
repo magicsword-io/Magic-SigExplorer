@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3a|"'
+      - value: '"|20|332|20|"'
+      - value: '"|2023|"'
+      - value: '"|203a|"'
+      flow: established,from_server
+      flowbits: isset,is_proto_irc
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN IRC channel topic misc bot commands"'
+      pcre: '"/(\.aim\w*|ascanall)\s+\w/i"'
+      reference: url,doc.emergingthreats.net/2002386
+      rev: '12'
+      sid: '2002386'
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

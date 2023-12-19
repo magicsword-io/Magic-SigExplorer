@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"public"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP public access tcp"'
+      reference: cve,2002-0013
+      rev: '22'
+      service: snmp
+      sid: '1412'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

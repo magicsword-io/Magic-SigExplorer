@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/nessus_is_probing_you_",depth 32'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP nessus 1.X 404 probe"'
+      rev: '16'
+      service: http
+      sid: '1102'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

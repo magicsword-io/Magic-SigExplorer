@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"6116A7EC-B914-4CCE-B186-66E0EE7067CF"'
+      - value: '"LicenseName"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_16, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Possible Edraw Diagram Component 5 ActiveX LicenseName Access
+        Potential buffer overflow DOS"'
+      reference: url,exploit-db.com/exploits/18461/
+      rev: '3'
+      sid: '2014585'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/imprimir.php?"'
+      - value: '"id="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_03_25, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_19
+      msg: '"ET WEB_SPECIFIC_APPS Shape Web Solutions imprimir.php DELETE FROM SQL
+        Injection Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,packetstormsecurity.org/files/view/99467/shapewebsolutions-sql.txt
+      rev: '3'
+      sid: '2012557'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

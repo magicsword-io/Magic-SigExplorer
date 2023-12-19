@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!"https://www.dropbox.com/"'
+      - value: '"<title>Dropbox Business</title>"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_06_16, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_11_17
+      msg: '"ET CURRENT_EVENTS Possible Dropbox Phishing Landing - Title over non
+        SSL"'
+      rev: '2'
+      sid: '2024403'
+      special_options:
+      - http_header
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

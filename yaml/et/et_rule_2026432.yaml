@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|kmbr1|08|nitesbr1|03|org|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_01, deployment Perimeter, former_category
+        MALWARE, malware_family Final1stspy, malware_family DOGCALL, performance_impact
+        Low, signature_severity Major, tag APT37, tag Reaper, updated_at 2020_09_16
+      msg: '"ET TROJAN Reaper (APT37) DNS Lookup (kmbr1 .nitesbr1 .org)"'
+      reference: md5,a2fe5dcb08ae8b72e8bc98ddc0b918e7
+      rev: '2'
+      sid: '2026432'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"_pdf.exe",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.zip
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Potential malware download - _pdf.exe within .zip
+        file"'
+      reference: url,www.virustotal.com/en/file/0d68f1d3855543a4732e551e9e4375a2cd85d9ab11a86334f67ad99c5f6990a0/analysis/
+      rev: '2'
+      service: http
+      sid: '32646'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

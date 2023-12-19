@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '!"NSIS|5f|Inetc |28|Mozilla|29|"'
+      - value: '!"Accept|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_10_23, updated_at 2020_09_15
+      msg: '"ET TROJAN Win32/Necurs Common POST Header Structure"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,20}[^\x20-\x7e\r\n]/P"'
+      reference: md5,d11a453d4de6e6fd991967d67947c0d7
+      rev: '3'
+      sid: '2021995'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: 10<>20
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

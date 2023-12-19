@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Host|3a|"'
+      - value: '".tk|0d 0a|"'
+      - value: '!".tcl.tk|0d 0a|"'
+      - value: '!"Host|3a 20|tcl.tk|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2011_05_15, former_category POLICY, updated_at 2020_09_15
+      msg: '"ET POLICY HTTP Request to a *.tk domain"'
+      rev: '9'
+      sid: '2012810'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

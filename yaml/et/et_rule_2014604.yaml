@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/stat.php?w="'
+      - value: '"&i="'
+      - value: '"&a="'
+      - value: '"User-Agent|3A| Opera/6"'
+      - value: '"|3B| LangID="'
+      flow: to_server,established
+      metadata: created_at 2012_03_02, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Trojan.Win32.Yakes.pwo Checkin"'
+      reference: md5,d40927e8c4b59a1c2af4f981ef295321
+      rev: '2'
+      sid: '2014604'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

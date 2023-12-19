@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '37'
+        value: '"|7b 22|result|22 3a 22|ok|22 2c 22|payload|22 3a 7b 22|country|22
+          3a 22|"'
+      - value: '"|22 2c 22|about|22 3a 22|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_02, deployment Perimeter, former_category
+        MALWARE, malware_family Arkei, signature_severity Major, updated_at 2021_06_02
+      msg: '"ET TROJAN Vidar Stealer - FaceIt Checkin Response"'
+      pcre: '"/^[^\"]+\x7c\x22\x2c\x22/R"'
+      reference: url,medium.com/s2wlab/deep-analysis-of-vidar-stealer-ebfc3b557aed
+      rev: '1'
+      sid: '2033066'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

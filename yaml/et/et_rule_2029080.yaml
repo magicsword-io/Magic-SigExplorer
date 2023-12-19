@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 03|"'
+      - value: '"|15|prioritywireless.club"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|55 04 03|"'
+      - value: '"|1a|Let''s Encrypt Authority X3"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_19, deployment Perimeter, former_category
+        MALWARE, malware_family BuerLoader, signature_severity Major, updated_at 2020_10_21
+      msg: '"ET TROJAN SSL/TLS Certificate Observed (Buer Loader)"'
+      rev: '2'
+      sid: '2029080'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

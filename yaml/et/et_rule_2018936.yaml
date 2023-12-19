@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"produced by Synapse"'
+      - value: '"X|2d|mailer|3a 20|Synapse|20 2d 20|Pascal TCP|2f|IP library by Lukas
+          Gebauer"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_14, updated_at 2019_10_08
+      msg: '"ET TROJAN Suspicious X-mailer Synapse"'
+      reference: url,www.joewein.net/spam/spam-joejob.htm
+      rev: '1'
+      sid: '2018936'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

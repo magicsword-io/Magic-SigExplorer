@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/passwordrecovered.cgi?id="'
+      flow: to_server,established
+      metadata: created_at 2014_01_15, cve CVE_2017_5521, former_category CURRENT_EVENTS,
+        updated_at 2020_08_18
+      msg: '"ET EXPLOIT Netgear passwordrecovered.cgi attempt"'
+      reference: cve,2017-5521
+      rev: '3'
+      sid: '2017969'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

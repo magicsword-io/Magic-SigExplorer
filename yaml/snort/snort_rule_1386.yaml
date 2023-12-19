@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '139'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"r|00|a|00|i|00|s|00|e|00|r|00|r|00|o|00|r|00|",offset 32,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MSSQL raiserror possible buffer overflow"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-060
+      rev: '15'
+      sid: '1386'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

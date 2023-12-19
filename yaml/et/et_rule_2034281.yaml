@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"MELTED|00|"'
+      dsize: '7'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_28, deployment Perimeter, former_category
+        MALWARE, malware_family TinyNuke, signature_severity Major, tag RAT, updated_at
+        2021_10_28
+      msg: '"ET TROJAN TinyNuke VNC Checkin"'
+      reference: url,twitter.com/Jane_0stin/status/1453441977014497280
+      rev: '1'
+      sid: '2034281'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

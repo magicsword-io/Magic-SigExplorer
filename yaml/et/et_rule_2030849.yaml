@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '16'
+        value: '"/api/ckwkc2?icc="'
+      - value: '"(Linux|3b 20|U|3b 20|Android"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2020_09_08, deployment Perimeter,
+        former_category MOBILE_MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_08
+      msg: '"ET MOBILE_MALWARE Android Joker CnC Configuration Retrieval"'
+      reference: url,research.checkpoint.com/2020/android-app-fraud-haken-clicker-and-joker-premium-dialer/
+      rev: '2'
+      sid: '2030849'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

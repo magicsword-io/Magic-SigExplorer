@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"=ID:__"'
+      - value: '"___Key1|3a|___"'
+      - value: '"___Key2|3a|___"'
+      - value: '"User-Agent|3a 20|Mozilla/3.0 (compatible|3b 20|Indy Library)|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_07, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2020_01_24,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Mermaid Ransomware Variant CnC Activity M1"'
+      reference: md5,b3bc3fe63fad42ae8bcd448b8aec3e3e
+      rev: '4'
+      sid: '2029234'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

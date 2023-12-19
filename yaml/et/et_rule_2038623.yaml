@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|linkedopports|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2022_08_25, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_08_25
+      msg: '"ET TROJAN PyPI Phishing/Malware Data Exfiltration Domain (linkedopports
+        .com) in DNS Lookup"'
+      reference: md5,9bb6d11368fcd7cedd468dc7abd76567
+      rev: '1'
+      sid: '2038623'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/pin/"'
+      - value: '"User-Agent|3a 20|Internet Explorer 6.0|0d 0a|"'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 15,20
+      flow: established,to_server
+      metadata: created_at 2014_12_18, updated_at 2022_04_18
+      msg: '"ET TROJAN Win32/Spy.Banker.AAXV Retrieving key from Pinterest"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/malware-campaign-targets-south-korean-banks-uses-pinterest-as-cc-channel/
+      rev: '2'
+      sid: '2019961'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

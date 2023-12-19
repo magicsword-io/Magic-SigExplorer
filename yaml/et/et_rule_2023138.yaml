@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"/distr/Proxifier"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      - value: '!"Cookie|3a|"'
+      - value: '"proxifier.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_26, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, tag MalDoc,
+        updated_at 2020_11_05
+      msg: '"ET CURRENT_EVENTS Suspicious Proxifier DL (non-browser observed in maldoc
+        campaigns)"'
+      reference: md5,2a0728a6edab6921520a93e10a86d4b2
+      rev: '1'
+      sid: '2023138'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

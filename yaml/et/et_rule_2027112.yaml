@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"net|2e|tcp"'
+      - value: '"|2f|IModuleGetter"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_25, deployment Perimeter, former_category
+        MALWARE, malware_family DataMilk, performance_impact Low, signature_severity
+        Major, tag Stealer, updated_at 2020_08_19
+      msg: '"ET TROJAN MSIL/DataMilk Stealer Communicating with CnC"'
+      reference: url,app.any.run/tasks/f435d89d-30a5-465b-8a8d-b7a042665e0e
+      rev: '1'
+      sid: '2027112'
+      special_options:
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

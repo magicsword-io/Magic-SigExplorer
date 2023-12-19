@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/com_incapsula/assets/tips/en/Performance.php?"'
+      - value: '"token="'
+      flow: established,to_server
+      metadata: created_at 2013_01_18, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Incapsula component Performance.php file
+        XSS Attempt"'
+      pcre: '"/token\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.com/files/119364/Joomla-Incapsula-1.4.6_b-Cross-Site-Scripting.html
+      rev: '1'
+      sid: '2016239'
+      special_options:
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,256,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"AUTHENTICATE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP authenticate literal overflow attempt"'
+      pcre: '"/\sAUTHENTICATE\s[^\n]*?\{/ims"'
+      reference: nessus,10292
+      rev: '16'
+      service: imap
+      sid: '2105'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

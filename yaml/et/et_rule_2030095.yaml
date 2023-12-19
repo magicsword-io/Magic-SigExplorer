@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '22'
+        value: '"GET //netcore_get.cgi"'
+      - value: '"homeFirstShow=yes"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2020_05_04, deployment Perimeter, signature_severity Major, updated_at 2020_05_04
+      msg: '"ET EXPLOIT Netis E1+ 1.2.32533 - Unauthenticated WiFi Password Leak"'
+      reference: url,www.exploit-db.com/exploits/48384
+      rev: '2'
+      sid: '2030095'
+      special_options:
+      - fast_pattern
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

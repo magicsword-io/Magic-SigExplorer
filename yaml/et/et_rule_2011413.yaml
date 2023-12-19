@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/modules/gnupg/json.php?"'
+      - value: '"task=send_key"'
+      - value: '"fingerprint="'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS Group Office json.php fingerprint Parameter Remote
+        Command Execution Attempt"'
+      pcre: '"/fingerprint=\w*\'
+      reference: url,inj3ct0r.com/exploits/13365
+      rev: '2'
+      sid: '2011413'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - /Ui"
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

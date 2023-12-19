@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"discord.com"'
+      - value: '"form-data|3b 20|name=content|0d 0a 0d 0a 5c|n|20 3a|spy|3a 20|NEW
+          LOG FROM -|20|"'
+      - value: '"|20 30|person_in_manual_wheelchair|3a 0d 0a 5c|n|20 3a|eye|3a 20|IP|3a
+          20|"'
+      - value: '"|5c|n|20 3a|desktop|3a 20|"'
+      - depth: '19'
+        value: '"POST /api/webhooks/"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary=|22|"'
+      distance: '0'
+      fast_pattern: 24,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_21, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_04_21
+      msg: '"ET TROJAN 44 Caliber Stealer Data Exfil via Discord"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+discord\.com/Hmi"'
+      reference: url,twitter.com/nao_sec/status/1370702500798418946
+      rev: '2'
+      sid: '2032803'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

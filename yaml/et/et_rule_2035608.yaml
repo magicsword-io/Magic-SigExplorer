@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /?id="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_25, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family FIN7, malware_family
+        CarbonSpider, signature_severity Major, updated_at 2022_03_25
+      msg: '"ET TROJAN FIN7 JSSLoader Activity (GET)"'
+      pcre: '"/^Host[^\r\n]+\r\n\r\n$/H"'
+      reference: url,blog.morphisec.com/new-jssloader-trojan-delivered-through-xll-files
+      rev: '2'
+      sid: '2035608'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

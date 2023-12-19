@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NetSphere"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR NetSphere access"'
+      rev: '13'
+      sid: '146'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: 30100:30102

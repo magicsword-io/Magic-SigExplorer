@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Mozilla/4.0 (Windows NT 6.1|3b 20|WOW64|3b 20|Trident/7.0|3b 20|rv|3a|11.0)
+          like Gecko|0d 0a|"'
+      - value: '"checkip.dyndns.org|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_10_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_04_18,
+        reviewed_at 2023_08_22
+      msg: '"ET TROJAN W32.Netwire Connectivity Check"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+checkip\.dyndns\.org/Hmi"'
+      reference: url,malpedia.caad.fkie.fraunhofer.de/details/win.netwire
+      rev: '2'
+      sid: '2034089'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

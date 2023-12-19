@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"cmd="'
+      - value: '"pwd=dayoff"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_12_06, updated_at 2020_09_22
+      msg: '"ET WEB_SPECIFIC_APPS PeopleSoft Portal Command with Default Creds"'
+      pcre: '"/[&?]cmd=/Ui"'
+      reference: url,media.blackhat.com/us-13/US-13-Polyakov-Practical-Pentesting-of-ERPs-and-Business-Applications-Slides.pdf
+      rev: '2'
+      sid: '2017801'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

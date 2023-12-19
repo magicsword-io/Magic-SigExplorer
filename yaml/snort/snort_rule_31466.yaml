@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A|builddate:",fast_pattern,nocase'
+      - value: '"|0D 0A|aid: "'
+      - value: '"|0D 0A|redirect: http://"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Androm Click Fraud Request"'
+      reference: url,malwr.com/analysis/ZmE3ZWU2YTkyM2U0NGQ0MmI1NDcxMjUwZDE2NTM5MjQ/
+      rev: '2'
+      service: http
+      sid: '31466'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

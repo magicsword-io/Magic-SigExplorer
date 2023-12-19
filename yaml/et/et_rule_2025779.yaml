@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"220|20 22|"'
+      - value: '!"|00|"'
+      - value: '!"|22|"'
+      - value: '!"|0b|"'
+      - value: '!"|0a|"'
+      - value: '!"|0d|"'
+      - value: '"|ed 2e 45 22 20|"'
+      distance: '400'
+      flow: established,from_server
+      isdataat: 400,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_03, cve CVE_2018_8734, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2018_07_18
+      msg: '"ET EXPLOIT FTPShell client Stack Buffer Overflow"'
+      reference: url,exploit-db.com/exploits/44968/
+      rev: '2'
+      sid: '2025779'
+      special_options:
+      - fast_pattern
+      within: '400'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '21'

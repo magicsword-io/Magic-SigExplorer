@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - value: '"|20|4RR0B4R 4 X0T4 D4 TU4 M4E|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Cache"'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_07, deployment Perimeter, former_category
+        MALWARE, malware_family ArrobarLoader, performance_impact Low, signature_severity
+        Major, tag Loader, updated_at 2020_09_16
+      msg: '"ET TROJAN ArrobarLoader CnC Checkin M1"'
+      reference: md5,3d7436bcf635a7e56a785c9d26ed3767
+      rev: '3'
+      sid: '2026528'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

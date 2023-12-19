@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|z2luqg4xu5r6zm6o"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_27, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, signature_severity Major, tag Ransomware_Onion_Domain,
+        tag Ransomware, updated_at 2020_09_01, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN DeepEnd Research Ransomware CrypMIC Payment Onion Domain"'
+      reference: url,www.deependresearch.org/2017/01/threat-intel-ransomware-payment-sites.html
+      rev: '3'
+      sid: '2024263'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

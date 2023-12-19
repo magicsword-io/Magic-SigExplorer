@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3A 20|ip-whois.net|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2015_04_02, former_category POLICY, updated_at 2020_05_21
+      msg: '"ET POLICY External IP Lookup - ip-whois"'
+      rev: '2'
+      sid: '2020831'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

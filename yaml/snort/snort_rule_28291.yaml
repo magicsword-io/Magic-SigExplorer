@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 50<=>150
+      classtype: trojan-activity
+      contents:
+      - value: '" Java/1.",fast_pattern,nocase'
+      - value: '".php?"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Blackholev2/Cool exploit kit exploit download attempt"'
+      pcre: '"/\/(?:[^\/]+?\/[a-z]{2,24}|closest\/[a-z0-9]{15,25})\.php\?[ab10]+=[ab10]+&[ab10]+=[ab10]+&[ab10]+=[ab10]+&[ab10]+=[ab10]+&[ab10]+=[ab10]+$/"'
+      rev: '3'
+      service: http
+      sid: '28291'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

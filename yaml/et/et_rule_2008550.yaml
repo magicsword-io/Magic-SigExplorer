@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?guid_bot="'
+      - value: '"&ver_bot="'
+      - value: '"&stat_bot="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Trojan.Win32.Buzus Checkin"'
+      reference: url,doc.emergingthreats.net/2008550
+      rev: '4'
+      sid: '2008550'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

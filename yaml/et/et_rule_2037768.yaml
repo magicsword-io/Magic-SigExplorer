@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"HTTP|2f|1|2e|1|20|200|20|OK"'
+      - value: '"|0d 0a|Content|2d|type|3a 20|text|2f|html|3b|"'
+      - value: '"|0d 0a|Content-Length|3a 20|18|0d 0a|"'
+      - value: '"|0d 0a 0d 0a|Key upload Success"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_04_04, reviewed_at 2023_10_16
+      msg: '"ET TROJAN Win32/H0lyGh0st Ransomware CnC Response"'
+      reference: url,microsoft.com/security/blog/2022/07/14/north-korean-threat-actor-targets-small-and-midsize-businesses-with-h0lygh0st-ransomware/
+      rev: '2'
+      sid: '2037768'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

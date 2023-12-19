@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"/?q="'
+      - value: '!"Referer|3a 20|"'
+      - value: '"GET"'
+      - value: '"+"'
+      - value: '!"map24.com|0d 0a|"'
+      - value: '!"aptrk.com|0d 0a|"'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_01_09, deployment Perimeter, former_category
+        ADWARE_PUP, malware_family PUA, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_31
+      msg: '"ET MALWARE MultiPlug.J Checkin"'
+      pcre: '"/^Accept\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n\r?$/H"'
+      reference: md5,6b95ddc5238cc0576db7b206af13339e
+      rev: '2'
+      sid: '2023707'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_method
+      - http_raw_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>103'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

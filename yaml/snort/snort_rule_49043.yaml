@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: LinqurySearch",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Osx.Adware.Genieo variant outbound connection detected"'
+      reference: url,virustotal.com/#/file/850b4f620e874ed6117c7e1d15dd1c502d7e38cd4dd872753d502f39e3a5c8d8
+      rev: '1'
+      service: http
+      sid: '49043'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

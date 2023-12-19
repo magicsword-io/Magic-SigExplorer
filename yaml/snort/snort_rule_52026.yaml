@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"_spacertoofee=",fast_pattern,nocase'
+      - value: '"hondacbrheavy"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Xml.Phishing.Evernote outbound connection"'
+      reference: url,www.virustotal.com/en/file/26f541b6e334574311c168af5d84b2d6887115bbff33ae5b45d28b0f66901b87/analysis/
+      rev: '1'
+      service: http
+      sid: '52026'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

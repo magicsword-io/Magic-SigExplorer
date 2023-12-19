@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"X-siLock-Comment|3a 20|"'
+      - value: '"X-siLock-Step2|3a 20|"'
+      - value: '"X-siLock-Step3|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_06_02, deployment Perimeter,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, malware_family LEMURLOOT,
+        performance_impact Low, confidence High, signature_severity Major, tag WebShell,
+        updated_at 2023_06_02
+      msg: '"ET WEB_SERVER LEMURLOOT WebShell Interaction Header - X-siLock-Step2/3
+        File Retrieval Request- Observed in MOVEit File Transfer - INBOUND"'
+      reference: url,www.mandiant.com/resources/blog/zero-day-moveit-data-theft
+      rev: '1'
+      sid: '2046052'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, count 1, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

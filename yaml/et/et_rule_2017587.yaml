@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/getTask.php?"'
+      - value: '"imei="'
+      - value: '"balance="'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2013_10_14, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, tag Android, tag c2, updated_at 2020_10_09, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/Opfake.A GetTask CnC Beacon"'
+      reference: url,quequero.org/2013/09/android-opfake-malware-analysis/
+      rev: '3'
+      sid: '2017587'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

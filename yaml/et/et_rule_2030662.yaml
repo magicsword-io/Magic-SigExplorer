@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<pre align=center><form method=post>Password<br><input type=password
+          name=pass"'
+      - value: '"background-color|3a|whitesmoke|3b|border"'
+      - value: '"type=submit name=''watching'' value=''Login''"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_08_06, deployment Perimeter, signature_severity Major, updated_at
+        2020_08_06
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2030662'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

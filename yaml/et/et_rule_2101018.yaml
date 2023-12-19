@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/iisadmpwd/aexp"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0407, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT iisadmpwd attempt"'
+      reference: cve,1999-0407
+      rev: '12'
+      sid: '2101018'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

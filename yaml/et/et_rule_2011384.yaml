@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/includes/file_manager/special.php?"'
+      - value: '"fm_includes_special="'
+      flow: to_server,established
+      metadata: created_at 2010_09_28, updated_at 2020_09_02
+      msg: '"ET WEB_SPECIFIC_APPS MAXcms fm_includes_special Parameter Remote File
+        Inclusion Attempt"'
+      pcre: '"/fm_includes_special=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,vupen.com/english/advisories/2009/2136
+      rev: '3'
+      sid: '2011384'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/modules/formmailer/formmailer.admin.inc.php?"'
+      - value: '"BASE_DIR[jax_formmailer]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS FormMailer formmailer.admin.inc.php BASE_DIR Parameter
+        Remote File Inclusion Attempt"'
+      pcre: '"/BASE_DIR\[jax_formmailer\]\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010484
+      rev: '3'
+      sid: '2010484'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"upload"'
+      dsize: '>787'
+      metadata: attack_target Client_Endpoint, created_at 2021_05_05, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_05_10
+      msg: '"ET TROJAN Pingback Upload Command Issued"'
+      reference: md5,264c2ede235dc7232d673d4748437969
+      rev: '2'
+      sid: '2032918'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

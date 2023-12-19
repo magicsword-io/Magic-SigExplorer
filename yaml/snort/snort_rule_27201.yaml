@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ps0=",depth 4'
+      - value: '"ps1=",distance 0'
+      - value: '"cs1=",distance 0'
+      - value: '"cs2=",distance 0'
+      - value: '"cs3=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Neurevt variant outbound connection"'
+      pcre: '"/ps0=[A-F0-9]*&ps1=[A-F0-9]*&cs1=[A-F0-9]*&cs2=[A-F0-9]*&cs3=[A-F0-9]*/"'
+      rev: '5'
+      service: http
+      sid: '27201'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|docusign|06|agency|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_27
+      msg: '"ET TROJAN Lazarus APT Related Domain in DNS Lookup (docusign .agency)"'
+      reference: url,twitter.com/ShadowChasing1/status/1486530954382348290
+      rev: '1'
+      sid: '2034991'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

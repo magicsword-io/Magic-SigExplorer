@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"200"'
+      - value: '"|3c 2f|div|3e 3c 21 2d 2d 20 5c 23|sidebar|2d|container|20 2d 2d
+          3e 0a 0a 20 20 20 20 20 20 20 20|success|0a 20 20 20 20 20 20 20 20 20 20
+          20 20 3c 2f|main|3e 3c 21 2d 2d 20 5c 23|main|20 2d 2d 3e 0a|"'
+      fast_pattern: 44,20
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2023-22515.step1.request
+      metadata: affected_product Atlassian_Confluence, attack_target Web_Server, created_at
+        2023_10_12, cve CVE_2023_22515, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Critical, updated_at 2023_10_12,
+        reviewed_at 2023_10_12
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian Confluence CVE-2023-22515 Step 1/2 Success"'
+      reference: cve,2023-22515
+      rev: '1'
+      sid: '2048544'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

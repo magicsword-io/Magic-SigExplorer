@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/login.php"'
+      - value: '"Sec-Fetch-Mode|3a 20|10"'
+      - value: '"Sec-Fetch-Dest|3a 20|01"'
+      - value: '"Host|3a 20|www.google.com"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Windows_11, attack_target Client_and_Server, created_at 2023_11_28, deployment
+        Perimeter, former_category MALWARE, malware_family NukeSped, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_11_28
+      msg: '"ET TROJAN Andariel Group Nukesped Variant CnC Checkin"'
+      pcre: '"/Host\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+\r\nSec-Fetch-Mode\x3a\x20[^\r\n]+\r\nSec-Fetch-User\x3a\x20[^\r\n]+\r\nSec-Fetch-Dest\x3a\x20[^\r\n]+\r\n\r\n/"'
+      reference: md5,7699ba4eab5837a4ad9d5d6bbedffc18
+      rev: '1'
+      sid: '2049380'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

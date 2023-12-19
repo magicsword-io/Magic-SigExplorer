@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/includes/InstantSite/inc.is_root.php?is_projectPath=http|3a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS MAXcms RFI attempt (1)"'
+      reference: url,doc.emergingthreats.net/2009888
+      rev: '4'
+      sid: '2009888'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

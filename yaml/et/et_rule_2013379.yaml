@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"|2F 2A 0A 40 2A 2A 2A 40 2A 40 40 40 40 40 40 40 40 40 40 40|"'
+      dsize: <90
+      flow: established,from_server
+      flowbits: set,et.shadyratinit
+      metadata: created_at 2011_08_09, updated_at 2011_08_09
+      msg: '"ET TROJAN Downbot/Shady Rat Remote Shell Connection"'
+      reference: url,www.symantec.com/connect/blogs/truth-behind-shady-rat
+      rev: '3'
+      sid: '2013379'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

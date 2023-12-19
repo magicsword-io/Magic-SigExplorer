@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|efxs|02|ca|00|"'
+      distance: '0'
+      metadata: attack_target Client_and_Server, created_at 2023_11_16, deployment
+        Perimeter, signature_severity Informational, updated_at 2023_11_16, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1568, mitre_technique_name
+        Dynamic_Resolution
+      msg: '"ET INFO DYNAMIC_DNS Query to a *.efxs .ca Domain"'
+      reference: url,freedns.afraid.org/domain/registry/page-10.html
+      rev: '1'
+      sid: '2049219'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

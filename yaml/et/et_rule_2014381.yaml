@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"head"'
+      - value: '!"HEAD"'
+      flow: established,to_server
+      metadata: created_at 2012_03_15, former_category POLICY, updated_at 2020_08_25
+      msg: '"ET POLICY HTTP HEAD invalid method case outbound"'
+      reference: url,www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+      rev: '3'
+      sid: '2014381'
+      special_options:
+      - http_method
+      - nocase
+      - http_method
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

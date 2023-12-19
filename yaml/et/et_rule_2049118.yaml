@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ping.cpp"'
+      - value: '"&ping_addr=|24 28|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product D_Link, attack_target Networking_Equipment, created_at
+        2023_11_08, cve CVE_2015_1187, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_11_08, reviewed_at 2023_11_08
+      msg: '"ET EXPLOIT D-Link TRENDnet NCC Service Command Injection Attempt (CVE-2015-1187)"'
+      reference: cve,2015-1187
+      rev: '1'
+      sid: '2049118'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

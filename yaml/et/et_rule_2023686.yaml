@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b|"'
+      - value: '"<?php"'
+      - value: '"|5c 22 20|"'
+      - value: '"-X"'
+      - value: '".php"'
+      - value: '"@"'
+      flow: to_server,established
+      metadata: affected_product PHPMailer, attack_target Web_Server, created_at 2016_12_27,
+        cve CVE_2016_10033, deployment Datacenter, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_03
+      msg: '"ET EXPLOIT Possible CVE-2016-10033 PHPMailer RCE Attempt"'
+      reference: url,github.com/opsxcq/exploit-CVE-2016-10033
+      rev: '1'
+      sid: '2023686'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

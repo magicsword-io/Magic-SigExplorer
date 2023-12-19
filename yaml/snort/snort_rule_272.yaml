@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      fragbits: M+
+      ip_proto: '2'
+      metadata: ruleset community
+      msg: '"OS-WINDOWS Microsoft WIndows IGMP dos attack"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS99-034
+      rev: '16'
+      sid: '272'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

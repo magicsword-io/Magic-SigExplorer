@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '" HTTP/1."'
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_11_04, cve CVE_2014_6271, updated_at 2019_10_08
+      msg: '"ET WEB_SERVER Possible CVE-2014-6271 Attempt"'
+      pcre: '"/^[^\r\n]*?HTTP\/1(?:(?!\r?\n\r?\n)[\x20-\x7e\s]){1,500}\n[\x20-\x7e]{1,100}\x3a[\x20-\x7e]{0,500}\x28\x29\x20\x7b/s"'
+      reference: url,blogs.akamai.com/2014/09/environment-bashing.html
+      rev: '1'
+      sid: '2022028'
+    protocol: tcp
+    source:
+      network: any
+      port: any

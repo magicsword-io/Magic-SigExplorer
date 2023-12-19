@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary="'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22 3b 20|filename=|22|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 32,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_11, deployment Perimeter, former_category
+        MALWARE, malware_family Unknown, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_10
+      msg: '"ET TROJAN MSIL/PSW.Agent.QJK Stealer Data Exfil Via HTTP"'
+      pcre: '"/^(?:(?:Passwords|PCinformation)\.txt|(?:Data|GrabbedTxtFiles)\.zip)\x22\r\n/Ri"'
+      reference: md5,4bc4b071d9a7e482f3ecf8b2cbe10873
+      rev: '1'
+      sid: '2024455'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

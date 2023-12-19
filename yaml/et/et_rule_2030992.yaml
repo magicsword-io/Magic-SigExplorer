@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Phishing Server"'
+      - value: '"system.appName =|20 22|Phishing Server|22 3b|"'
+      - value: '"href=|22|/admin/login|22|>Phishing Server"'
+      - value: '"title=|22|Lucy|22|"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_10_09, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, updated_at 2020_10_09
+      msg: '"ET CURRENT_EVENTS Lucy Phishing Panel Accessed on Internal Server"'
+      reference: url,lucysecurity.com/
+      rev: '2'
+      sid: '2030992'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

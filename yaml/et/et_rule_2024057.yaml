@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|6a 52 58 99 52 66 68 2d 46 54 5b 52 48 b9 69 70 74 61 62 6c 65 73
+          51 d0 e0 28 c8 48 b9 2f 2f 73 62 69 6e 2f 2f 51 54 5f 52 53 57 54 5e 0f
+          05|"'
+      fast_pattern: only
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2017_03_15, deployment Perimeter, former_category SHELLCODE, performance_impact
+        Low, signature_severity Critical, updated_at 2019_10_08
+      msg: '"ET SHELLCODE Linux/x86-64 - Polymorphic Flush IPTables Shellcode"'
+      reference: url,a41l4.blogspot.ca/2017/03/polyflushiptables1434.html
+      rev: '1'
+      sid: '2024057'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/compcheckjava.cgi",fast_pattern,nocase'
+      - value: '"hashid=",nocase'
+      - value: '"checkcode=",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Perl.Backdoor.HARDPULSE variant inbound cnc connection"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day.html
+      rev: '1'
+      service: http
+      sid: '57464'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

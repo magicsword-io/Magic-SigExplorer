@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/globals.pl"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0330, updated_at 2020_04_21
+      msg: '"GPL WEB_SERVER globals.pl access"'
+      reference: cve,2001-0330
+      rev: '5'
+      sid: '2102073'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

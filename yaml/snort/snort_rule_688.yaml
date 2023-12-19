@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"Login failed for user ''sa''",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SQL sa login failed"'
+      reference: nessus,10673
+      rev: '18'
+      sid: '688'
+    protocol: tcp
+    source:
+      network: $SQL_SERVERS
+      port: '1433'

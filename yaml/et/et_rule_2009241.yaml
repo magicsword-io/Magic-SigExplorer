@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"Admin="'
+      - value: '"&UserName="'
+      - value: '"&IsProxy="'
+      flow: established,to_server
+      flowbits: isset,ET.bd1
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN General Win32 Backdoor Checkin POST"'
+      reference: url,doc.emergingthreats.net/2009241
+      rev: '5'
+      sid: '2009241'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

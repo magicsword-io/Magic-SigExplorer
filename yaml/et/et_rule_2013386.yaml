@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"==/count.htm"'
+      flow: established,to_server
+      metadata: created_at 2011_08_09, former_category MALWARE, updated_at 2020_04_20
+      msg: '"ET TROJAN W32/FakeAlert Fake Security Tool Checkin"'
+      reference: md5,03abdc31d0f864c7b69b09d6481d3ff7
+      rev: '1'
+      sid: '2013386'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

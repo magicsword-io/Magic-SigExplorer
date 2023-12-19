@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?ip="'
+      - value: '"&os=",distance 0'
+      - value: '"&name=",distance 0'
+      - value: '"&id=",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dorkbot variant outbound connection"'
+      reference: url,www.virustotal.com/file/c425af6875dff2c0627421086f66b7e058f51d22939478529702d193837c6cfe/analysis/
+      rev: '4'
+      service: http
+      sid: '24886'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

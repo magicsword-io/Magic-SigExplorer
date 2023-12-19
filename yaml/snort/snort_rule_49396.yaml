@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/help-desk/remote-assistant-service/PostId.php?q=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zebrocy variant outbound connection"'
+      reference: url,virustotal.com/#/file/dc64fec5e951acf298184be89cf89128550b318d719dcc8e2c3194ec3bdb340b
+      rev: '1'
+      service: http
+      sid: '49396'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

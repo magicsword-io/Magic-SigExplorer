@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      asn1: double_overflow, bitstring_overflow, relative_offset 54, oversize_length
+        2048
+      byte_test: 4,&,2147483648,48,relative,little
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMBs"'
+      - value: '!"NTLMSSP"'
+      distance: '54'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, cve CVE_2003_0818, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS Session Setup NTMLSSP asn1 overflow attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS04-007.mspx
+      rev: '21'
+      sid: '2102383'
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

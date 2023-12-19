@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '18'
+        value: '"MSEARCH * HTTP/1.1"'
+      - value: '"MAN|3a| ssdp|3a|"'
+      distance: '0'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN External to Internal UPnP Request udp port 1900"'
+      reference: url,doc.emergingthreats.net/2008094
+      rev: '4'
+      sid: '2008094'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

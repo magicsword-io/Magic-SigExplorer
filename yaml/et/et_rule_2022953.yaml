@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|19|g5wcesdfjzne7255.onion.to"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Mac_OSX, attack_target Client_and_Server, created_at
+        2016_07_07, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, tag TROJAN_OSX_Keydnap,
+        updated_at 2022_03_24, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Malicious SSL certificate detected (OSX/Keydnap CnC)"'
+      reference: url,welivesecurity.com/2016/07/06/new-osxkeydnap-malware-hungry-credentials
+      rev: '2'
+      sid: '2022953'
+      within: '26'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

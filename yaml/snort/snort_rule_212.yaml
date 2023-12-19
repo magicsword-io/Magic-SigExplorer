@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rewt"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR MISC rewt attempt"'
+      rev: '7'
+      sid: '212'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

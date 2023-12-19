@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"/?xclzve_"'
+      flow: established,to_server
+      metadata: created_at 2012_08_03, updated_at 2020_04_22
+      msg: '"ET TROJAN Trojan.Win32.Jorik.Totem.vg HTTP request"'
+      reference: md5,cf5df13f8498326f1c6407749b3fe160
+      rev: '1'
+      sid: '2015562'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

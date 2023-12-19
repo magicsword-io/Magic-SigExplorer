@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"FILES/jstz.min.js?s="'
+      - value: '"rcube_webmail()"'
+      - value: '"function MM_findObj"'
+      - value: '"function MM_validateForm"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_31, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_31
+      msg: '"ET CURRENT_EVENTS Generic Roundcube Multi-Brand Phishing Landing 2018-01-31"'
+      rev: '2'
+      sid: '2025280'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"iframe name="'
+      - value: '"scrolling=auto frameborder=no align=center height=2 width=2 src=http|3a|//"'
+      fast_pattern: 48,20
+      flow: established,from_server
+      metadata: created_at 2013_01_03, former_category CURRENT_EVENTS, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Injected iframe leading to Redkit Jan 02 2013"'
+      pcre: '"/^[^\r\n\s>]+\/[a-z]{4,5}\.html\>\<\/iframe\>/R"'
+      rev: '2'
+      sid: '2016144'
+      special_options:
+      - file_data
+      within: '71'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

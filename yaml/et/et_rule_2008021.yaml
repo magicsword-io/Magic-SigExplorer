@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ams"'
+      dsize: '3'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C Initial Checkin (ams)"'
+      reference: url,doc.emergingthreats.net/2008021
+      rev: '3'
+      sid: '2008021'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/buy-sell/search.asp?newsid="'
+      - value: '"User-Agent|3A| Mozilla/4.0 |28|compatible|3B| MSIE 5.0|3B| Windows
+          NT 5.0|29|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Aumlib variant outbound connection"'
+      rev: '5'
+      service: http
+      sid: '27631'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

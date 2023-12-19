@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Mozilla/4.0 |28|compatible|29 0D 0A|",fast_pattern,nocase'
+      - value: '"/launch.php"'
+      - value: '"?f="'
+      - value: '"&s=",distance 0'
+      - value: '"&is_direct=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Steckt IRCbot executable download"'
+      reference: url,www.virustotal.com/en/file/411e93206a7750c8df25730349bf9756ddba52c1bc780eaac4bba2b3872bc037/analysis/
+      rev: '4'
+      service: http
+      sid: '28983'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

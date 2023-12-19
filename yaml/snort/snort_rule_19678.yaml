@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      detection_filter: track by_src,count 250,seconds 1
+      icode: '3'
+      itype: '3'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER multiple products blacknurse ICMP denial of service attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS11-083
+      rev: '10'
+      sid: '19678'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

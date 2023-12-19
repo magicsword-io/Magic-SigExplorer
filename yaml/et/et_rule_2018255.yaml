@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php?user="'
+      - value: '"&id="'
+      - value: '"&type="'
+      - value: '!"User-Agent|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_12, updated_at 2020_09_23
+      msg: '"ET TROJAN Win32/Expiro.CD Check-in"'
+      pcre: '"/\.php\?user=[a-f0-9]{32}&id=\d+&type=\d+(?:$|&)/U"'
+      reference: md5,c6e161a948f4474849d5740b2f27964a
+      rev: '1'
+      sid: '2018255'
+      special_options:
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

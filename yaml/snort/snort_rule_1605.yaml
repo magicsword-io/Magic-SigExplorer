@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '6004'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|FF FF FF FF FF FF|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER iParty DOS attempt"'
+      reference: nessus,10111
+      rev: '13'
+      sid: '1605'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/pub/health_check.php"'
+      - value: '"name=|22|addr_post|22|"'
+      - value: '"name=|22|port_post|22|"'
+      - value: '"name=|22|auth_post|22|"'
+      - value: '"name=|22|session_key|22|"'
+      - value: '"name=|22|data_post|22|"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2023_04_06, reviewed_at 2023_08_21
+      msg: '"ET MALWARE Nerbian RAT Data Exfiltration"'
+      pcre: '"/Content-Type/x3a/x20multipart\/form-data/x3b/x20boundary=[a-f0-9]{60}/Hmi"'
+      reference: url,twitter.com/pr0xylife/status/1519704793593307136
+      rev: '3'
+      sid: '2036427'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      urilen: '21'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

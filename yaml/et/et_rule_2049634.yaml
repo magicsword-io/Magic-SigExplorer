@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"|16 03 03|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0c|2pO0SfY"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2023_12_11, deployment Perimeter, former_category MALWARE,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_12_11
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Brushaloader CnC) 2023-12-4"'
+      reference: md5,e5653b5074bd52cc6d4e95ca6ae5177f
+      rev: '1'
+      sid: '2049634'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,8080]'

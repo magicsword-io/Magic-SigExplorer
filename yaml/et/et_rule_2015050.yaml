@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-Disposition|3a| inline"'
+      - value: '".jar"'
+      - value: '"PK"'
+      flow: established,to_client
+      metadata: created_at 2012_07_12, updated_at 2020_11_05
+      msg: '"ET TROJAN Generic - 8Char.JAR Naming Algorithm"'
+      pcre: '"/[=\"]\w{8}\.jar/Hi"'
+      rev: '3'
+      sid: '2015050'
+      special_options:
+      - http_header
+      - nocase
+      - http_header
+      - fast_pattern
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

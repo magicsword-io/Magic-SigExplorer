@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"drive.google.com"'
+      - value: '!"drive.google.com|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_08_25, deployment Perimeter, performance_impact Low, signature_severity
+        Major, tag Phishing, updated_at 2020_08_17
+      msg: '"ET CURRENT_EVENTS Possible Google Drive Phishing Domain Aug 25 2016"'
+      pcre: '"/^Host\x3a[^\r\n]+drive\.google\.com[^\r\n]{20,}\r\n/Hmi"'
+      rev: '1'
+      sid: '2023092'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+      threshold: type limit, count 1, track by_src, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

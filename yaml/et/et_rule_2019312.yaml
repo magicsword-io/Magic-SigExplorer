@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '20000:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|0a 10|"'
+      dsize: '18'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2014_09_29, updated_at 2019_01_10
+      msg: '"ET TROJAN Sourtoff Download Simda Request"'
+      reference: md5,5469af0daa10f8acbe552cd2f1f6a6bb
+      rev: '3'
+      sid: '2019312'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '![23,25,80,137,139,445]'

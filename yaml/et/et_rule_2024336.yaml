@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        offset: '5'
+        value: '"SMB|a2 00|"'
+      - value: '"|00 00|"'
+      - value: '"|2e|so|00|"'
+      distance: '16'
+      flow: to_server,established
+      metadata: attack_target SMB_Server, created_at 2017_05_25, cve CVE_2017_7494,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Critical, updated_at 2017_05_25
+      msg: '"ET EXPLOIT Samba Arbitrary Module Loading Vulnerability (NT Create AndX
+        .so) (CVE-2017-7494)"'
+      reference: url,github.com/rapid7/metasploit-framework/pull/8450
+      rev: '1'
+      sid: '2024336'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: any
+      port: any

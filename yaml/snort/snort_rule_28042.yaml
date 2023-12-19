@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ping.html?r=",fast_pattern,nocase'
+      - value: '!"/utils/"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Caphaw variant outbound connection"'
+      reference: url,research.zscaler.com/2013/09/a-new-wave-of-win32caphaw-attacks.html
+      rev: '5'
+      service: http
+      sid: '28042'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

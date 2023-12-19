@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"AAAAAAAAAAAAAAAA",depth 16'
+      flags: 12AP
+      flow: stateless
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN cybercop os PA12 attempt"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '13'
+      sid: '626'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

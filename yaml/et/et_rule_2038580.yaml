@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"How to Cancel Account disabled"'
+      - value: '"Confirm that This is your account"'
+      - value: '"|20|Because|20|someone|20|else|20|has|20|already|20|reported|20|your|20|account|20|and|20|this|20|will|20|cause|20|your|20|account|20|to|20|be|20|deactivated|2e
+          20|"'
+      - value: '".php?button_location=settings"'
+      - value: '"button_name=help"'
+      - value: '"type|3d 22|password|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_22, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_08_22
+      msg: '"ET CURRENT_EVENTS Facebook Credential Phish Landing Page 2022-08-22"'
+      reference: md5,35c4949b3c8ddfd7a047a98336f27350
+      rev: '1'
+      sid: '2038580'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".net78.net|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_05_30, updated_at 2020_09_18
+      msg: '"ET POLICY HTTP connection to net78.net Free Web Hosting (Used by Various
+        Trojans)"'
+      reference: url,www.net78.net
+      rev: '1'
+      sid: '2016944'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

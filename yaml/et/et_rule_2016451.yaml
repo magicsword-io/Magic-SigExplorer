@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|!--<2010QBP"'
+      - value: '" 2010QBP//-->"'
+      flow: established,from_server
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2013_02_20
+      msg: '"ET TROJAN WEBC2-QBP Checkin Response 1 - Embedded CnC APT1 Related"'
+      reference: md5,fcdaa67e33357f64bc4ce7b57491fc53
+      rev: '2'
+      sid: '2016451'
+      special_options:
+      - file_data
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"|00 00 50 00 02 00 00 00 00 04 00 00 00 10 00 00 00 00 00 00|"'
+      - value: '!"|00 00|"'
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      distance: '3'
+      dsize: '36'
+      metadata: attack_target Client_Endpoint, created_at 2015_09_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_09_17,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN PlugX UDP CnC Beacon"'
+      reference: url,trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-operation-iron-tiger.pdf
+      rev: '1'
+      sid: '2021791'
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|SEX/1"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_06_18, updated_at 2020_09_18
+      msg: '"ET TROJAN Unknown Webserver Backdoor"'
+      reference: url,blog.sucuri.net/2013/06/apache-php-injection-to-javascript-files.html
+      rev: '1'
+      sid: '2017026'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?api=40"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0|20|(Windows|20|NT|20|10.0|3b 20|Win64|3b
+          20|x64)|20|AppleWebKit/537.36|20|(KHTML|2e 20|like|20|Gecko)|20|Chrome/72.0.3626.121|20|Safari/537.36|0d
+          0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_10_21, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag MustangPanda, tag RedDelta, updated_at 2020_10_21
+      msg: '"ET TROJAN Mustang Panda/RedDelta Downloader Activity"'
+      pcre: '"/40$/U"'
+      reference: md5,1ec914ef8443a1fb259c79b038e64ebf
+      rev: '2'
+      sid: '2031073'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

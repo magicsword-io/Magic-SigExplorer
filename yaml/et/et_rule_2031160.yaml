@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '4'
+        value: '"key="'
+      - value: '"&id="'
+      - value: '"&date="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_02, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2020_11_02,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN LolliCrypt Ransomware Sending Data to CnC"'
+      pcre: '"/^key=[^\r\n]+&id=[^\r\n]+&date=(?:[A-Za-z0-9%2b%2f]{4})*(?:[A-Za-z0-9%2b%2f]{2}%3d%3d|[A-Za-z0-9%2b%2f]{3}%3d|[A-Za-z0-9%2b%2f]{4})$/Ps"'
+      reference: md5,8e23b560b66134dcc4e21c461ed1a399
+      rev: '2'
+      sid: '2031160'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

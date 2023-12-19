@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"?param=a"'
+      - value: '"if%20is%5Fsrvrolemember%28%27sysadmin"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN SQLNinja MSSQL Database User Rights Scan"'
+      reference: url,doc.emergingthreats.net/2009041
+      rev: '4'
+      sid: '2009041'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

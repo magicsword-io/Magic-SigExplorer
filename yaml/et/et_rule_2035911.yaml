@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"%DESKTOP%|5c 3b|*.txt|3a|*.dat|3a|*wallet*.*|3a|*2fa*.*|3a|*backup*.*|3a|*code*.*|3a|*password*.*|3a|*auth*.*|3a|*google*.*|3a|*utc*.*|3a|*UTC*.*|3a|*crypt*.*|3a|*key*.*|3b|"'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_11, deployment Perimeter, former_category
+        MALWARE, malware_family Arkei, signature_severity Major, tag Megumin, updated_at
+        2020_08_31
+      msg: '"ET TROJAN Vidar/Arkei/Megumin Stealer Keywords Retrieved"'
+      rev: '2'
+      sid: '2035911'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

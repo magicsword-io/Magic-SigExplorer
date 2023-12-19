@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"eXNvc2VyaWFsL"'
+      flow: to_server,established
+      metadata: affected_product Apache_Struts2, attack_target Web_Server, created_at
+        2017_09_07, cve CVE_2017_9805, deployment Datacenter, former_category EXPLOIT,
+        signature_severity Critical, tag possible_exploitation, updated_at 2020_08_12
+      msg: '"ET EXPLOIT Apache Struts 2 REST Plugin ysoserial Usage (B64) 1"'
+      reference: url,lgtm.com/blog/apache_struts_CVE-2017-9805_announcement
+      rev: '1'
+      sid: '2024668'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

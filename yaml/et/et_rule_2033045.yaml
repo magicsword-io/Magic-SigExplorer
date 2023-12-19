@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '15'
+        value: '"POST|20|//|20|HTTP/1."'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_05_28,
+        deployment Perimeter, former_category INFO, signature_severity Informational,
+        updated_at 2021_05_28
+      msg: '"ET INFO POST to Double Slash in URI"'
+      rev: '2'
+      sid: '2033045'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

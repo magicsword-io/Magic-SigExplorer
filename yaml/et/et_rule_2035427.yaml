@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|05 00 00|"'
+      - value: '"cmd|20 2f|c|20|start|20|regsvr32|20 2f|s|20 2f|i"'
+      - value: '"|5c|c"'
+      - value: '"|2e|dat|20 26 20|start|20|cmd|20 2f|c|20 22|ping|20|localhost|20
+          2d|n|20|7|20 26 20|wevtutil|20|cl|20|System|22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_03_10, deployment Internal, deployment
+        Datacenter, former_category MALWARE, malware_family HermeticWizard, signature_severity
+        Major, updated_at 2022_03_10
+      msg: '"ET TROJAN HermeticWizard - SMB Spreader - Remote Process Creation"'
+      pcre: '"/^[A-F0-9]{12}/R"'
+      reference: md5,517d2b385b846d6ea13b75b8adceb061
+      rev: '2'
+      sid: '2035427'
+      special_options:
+      - fast_pattern
+      within: '62'
+    protocol: tcp
+    source:
+      network: any
+      port: any

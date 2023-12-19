@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/software-apptication/help-support-apl/getidpolapl.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zebrocy variant outbound connection"'
+      reference: url,virustotal.com/#/file/fcf03bf5ef4babce577dd13483391344e957fd2c855624c9f0573880b8cba62e
+      rev: '1'
+      service: http
+      sid: '48904'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

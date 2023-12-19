@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Content-Disposition|3A|",nocase'
+      - value: '"name=|22 CC CC CC CC CC|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP content-disposition memchr overflow"'
+      reference: nessus,10867
+      rev: '24'
+      service: http
+      sid: '1423'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

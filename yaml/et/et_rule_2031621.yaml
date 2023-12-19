@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$SMTP_SERVERS]'
+      port: '[25,26,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MAIL|20|FROM|3a|<|3b|"'
+      flow: established,to_server
+      metadata: attack_target SMTP_Server, created_at 2021_02_17, cve CVE_2020_7247,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_02_17
+      msg: '"ET EXPLOIT Possible OpenSMTPD RCE Inbound (CVE-2020-7247)"'
+      reference: cve,2020-7247
+      rev: '2'
+      sid: '2031621'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

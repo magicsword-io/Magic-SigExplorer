@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|64 6f 63 75 6d 65 6e 74 2e 77 72 69 74 65 28 58 4f 52 28 75 6e 65
+          73 63 61 70 65 28 73 74 72 48 54 4d 4c 29|"'
+      flow: established,from_server
+      metadata: created_at 2015_06_19, updated_at 2015_06_19
+      msg: '"ET CURRENT_EVENTS Suspicious JS Observed in Unknown EK Landing"'
+      rev: '1'
+      sid: '2021313'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

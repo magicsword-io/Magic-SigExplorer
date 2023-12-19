@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|drivres-update|04|info|00|"'
+      distance: '0'
+      metadata: created_at 2015_11_19, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN Sofacy DNS Lookup"'
+      reference: md5,c3ae4a37094ecfe95c2badecf40bf5bb
+      rev: '2'
+      sid: '2022122'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?action="'
+      - value: '"&pc_id="'
+      - value: '"&abbr="'
+      - value: '"&err="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_12
+      msg: '"ET MALWARE Antispywaremaster.com/Privacyprotector.com Fake AV Checkin"'
+      reference: url,doc.emergingthreats.net/2008282
+      rev: '6'
+      sid: '2008282'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"/muieblackcat",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC URI - known scanner tool muieblackcat"'
+      pcre: '"/\/muieblackcat$/i"'
+      reference: url,serverfault.com/questions/309309/what-is-muieblackcat
+      rev: '5'
+      service: http
+      sid: '21257'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

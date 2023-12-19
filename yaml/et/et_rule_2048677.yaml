@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"STOR DNPMAP.TXT"'
+      flow: established,to_server
+      metadata: affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target
+        ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, former_category
+        SCADA, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_10_19, reviewed_at 2023_10_19
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL
+        FTP Server Activity - DNPMAP.TXT File Upload Attempt"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048677'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

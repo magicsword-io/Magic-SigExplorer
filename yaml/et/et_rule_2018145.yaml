@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"CollectGarbage"'
+      - value: '"var"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2014_02_15, former_category CURRENT_EVENTS, updated_at
+        2019_10_08
+      msg: '"ET CURRENT_EVENTS Generic HeapSpray Construct"'
+      pcre: '"/^\s+?(?P<vname>[^\s\x3d]+)\s*?=\s*?(?:0x(?:(6[4-9a-f]|[7-9a-f])|\d{3,})|\d{3,}).+?[\s\x3b]for\s*?\([^\x3b\)]*?\x3b[^\x3b\)]+?<=?\s*?(?P=vname)[^\)]+?\)\s*?(?:\{[^}]*?|[^\r\n]*?)document\s*\.\s*createElement/Rsi"'
+      rev: '4'
+      sid: '2018145'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

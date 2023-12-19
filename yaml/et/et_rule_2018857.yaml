@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '4'
+        value: '"&op="'
+      - value: '"&id="'
+      - value: '"&ui="'
+      - value: '"&wv="'
+      - value: '"&bv="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_03_06, former_category MALWARE, updated_at 2020_09_25
+      msg: '"ET TROJAN Backoff POS Checkin"'
+      pcre: '"/^&op=\d{1,2}&id=\w+?&ui=.+?&bv=\d{1,2}\.\d{1,2}($|&)/P"'
+      reference: md5,d0c74483f20c608a0a89c5ba05c2197f
+      rev: '6'
+      sid: '2018857'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

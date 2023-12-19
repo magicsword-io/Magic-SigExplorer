@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|24 7B|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Apache Log4j logging remote code execution attempt"'
+      pcre: '"/^[\w\x2d\x20]+\x3a[^\r\n]*?\x24\x7b(jndi|lower|upper)\x3a/im"'
+      reference: cve,2021-45105
+      rev: '4'
+      service: smtp
+      sid: '58751'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

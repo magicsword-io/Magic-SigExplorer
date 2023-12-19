@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A|ICQ",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL ICQ access"'
+      rev: '15'
+      sid: '541'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/api/getServices?name"'
+      - value: '"|3d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_25, cve CVE_2021_21315, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_01_25
+      msg: '"ET EXPLOIT NodeJS System Information Library Command Injection Attempt
+        (CVE-2021-21315)"'
+      pcre: '"/\/api\/getServices\?name(?:\x28|\x29|\x3c|\x3e|\x26|\x2a|\xe2|\x80|\x98|\x7c|\x3f|\x3b|\x5b|\x5d|\x5e|\x7e|\x21|\x2e|\xe2|\x80|\x9d|\x25|\x40|\x2f|\x5c|\x3a|\x2b|\x2c|\x60)/U"'
+      reference: cve,2021-21315
+      rev: '1'
+      sid: '2034973'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      within: '10'
+    protocol: tcp
+    source:
+      network: any
+      port: any

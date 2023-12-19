@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"mnt/custom/ProductDefinition"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2022_12_01, cve CVE_2017_7577, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Minor, updated_at 2022_12_01
+      msg: '"ET EXPLOIT Xiongmai/HiSilicon DVR - Request for Product Details Possible
+        CVE-2017-7577 Exploit Attempt"'
+      pcre: '"/mnt\/custom\/ProductDefinition$/Ui"'
+      reference: url,github.com/tothi/pwn-hisilicon-dvr/blob/master/pwn_hisilicon_dvr.py
+      rev: '1'
+      sid: '2041450'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|rorfog|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_11_02, deployment Perimeter,
+        malware_family ursnif, signature_severity Major, updated_at 2022_11_02, reviewed_at
+        2023_10_05
+      msg: '"ET TROJAN Observed DNS Query to Ursnif Domain (rorfog .com)"'
+      reference: url,www.mandiant.com/resources/blog/rm3-ldr4-ursnif-banking-fraud
+      rev: '1'
+      sid: '2039648'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

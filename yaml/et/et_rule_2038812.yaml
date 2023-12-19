@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '9'
+        value: '"/bananas/"'
+      - value: '"|3b 20|ms-office|3b 20|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_01, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2021_12_01
+      msg: '"ET TROJAN Gamaredon Related Maldoc Activity (GET)"'
+      pcre: '"/\.dot$/U"'
+      reference: md5,9afeb4ce2d1a9cd13c6e5bd2ccb7b060
+      rev: '2'
+      sid: '2038812'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

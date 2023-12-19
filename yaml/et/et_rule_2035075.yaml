@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '8080'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '".php|20|HTTP/1.1|0d 0a|Host|3a|"'
+      - value: '!".360.cn"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_06_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_12_11,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Emotet CnC Beacon"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\n(?:Cache-Control|Pragma)\x3a\x20no-cache\r\n(?:\r\n)?$/H"'
+      reference: md5,518d189f8922280c81ab123604076dfd
+      rev: '2'
+      sid: '2035075'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

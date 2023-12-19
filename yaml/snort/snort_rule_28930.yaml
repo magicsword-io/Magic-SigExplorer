@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>150'
+      classtype: trojan-activity
+      contents:
+      - value: '"/?",depth 2'
+      - value: '"Firefox/4.0b8pre|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fakeav variant outbound data connection"'
+      pcre: '"/^\/\?[a-z0-9]{2}\=[a-z1-9]{100}/is"'
+      rev: '2'
+      service: http
+      sid: '28930'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/cgibin/rbaccess/"'
+      - value: '"username="'
+      - value: '"&password="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_02, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_03_02
+      msg: '"ET CURRENT_EVENTS Successful Royal Bank of Canada Credential Phish 2022-03-02"'
+      reference: md5,e29fe69e683c7c04e9b14e46cdfd2e17
+      rev: '1'
+      sid: '2035378'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

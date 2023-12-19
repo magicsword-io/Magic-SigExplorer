@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cgi-bin/pingping.cgi",fast_pattern,nocase'
+      - value: '"ping_ip=",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP QNAP VioStor NVR and QNAP NAS command injection attempt"'
+      pcre: '"/[?&]ping(\x5f|%5f)ip=[^&]*?%26/i"'
+      reference: cve,2013-0143
+      rev: '3'
+      service: http
+      sid: '46298'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

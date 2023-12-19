@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '8'
+        value: '"newtask|3b|"'
+      - value: '"|3b|1|3b|http"'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_05_28, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2022_05_03
+      msg: '"ET TROJAN Win32/ProtonBot CnC Response"'
+      reference: md5,efb1db340e78f6799d9fbc5ee08f40fe
+      rev: '3'
+      sid: '2027382'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

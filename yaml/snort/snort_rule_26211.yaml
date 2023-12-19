@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '12'
+      classtype: trojan-activity
+      contents:
+      - value: '"/pid/pid.txt",fast_pattern,nocase'
+      - value: '"(compatible|3B 20|Indy Library)|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Eldorado variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/46b01e093493ff14a4f1a43905d4943f5559fb518c04edde46084d9672d0f20f/analysis/1363359002/
+      rev: '3'
+      service: http
+      sid: '26211'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

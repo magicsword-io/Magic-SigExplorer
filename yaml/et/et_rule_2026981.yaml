@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|00 00 08|fmchr.in"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_25, deployment Perimeter, former_category
+        MALWARE, malware_family BabyShark, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN BabyShark CnC Domain in SNI"'
+      reference: url,unit42.paloaltonetworks.com/new-babyshark-malware-targets-u-s-national-security-think-tanks/
+      rev: '2'
+      sid: '2026981'
+      special_options:
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

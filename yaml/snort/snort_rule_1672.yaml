@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"CWD",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP CWD ~ attempt"'
+      pcre: '"/^CWD\s+~/ims"'
+      reference: cve,2001-0421
+      rev: '22'
+      service: ftp
+      sid: '1672'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

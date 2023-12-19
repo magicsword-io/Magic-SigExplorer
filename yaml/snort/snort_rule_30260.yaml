@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gcs?alpha=",fast_pattern,nocase'
+      - value: '"|0D 0A|Cache-Control: no-store,no-cache|0D 0A|Pragma: no-cache|0D
+          0A|Connection: Keep-Alive|0D 0A 0D 0A|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Lucky Leap Adware outbound connection"'
+      reference: url,www.virustotal.com/en/file/43c6fb02baf800b3ab3d8f35167c37dced8ef3244691e70499a7a9243068c016/analysis/1395425759/
+      rev: '8'
+      service: http
+      sid: '30260'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

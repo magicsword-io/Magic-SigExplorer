@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"HEAD/./"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP whisker HEAD/./"'
+      reference: url,www.wiretrip.net/rfp/pages/whitepapers/whiskerids.html
+      rev: '13'
+      service: http
+      sid: '1139'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

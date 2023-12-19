@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00|U|00|n|00|d|00|e|00|r|00 20 00|C|00|o|00|n|00|s|00|t|00|r|00|u|00|c|00|t|00|i|00|o|00|n|00|<|00|/"'
+      - value: '"|00 22 00 3E 00|w|00|w|00|w|00|.|00|m|00|i|00|c|00|r|00|o|00|s|00|o|00|f|00|t|00
+          2E 00|c|00|o|00|m|00 3C|",distance 0'
+      flow: to_client,established
+      isdataat: '!509'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Medusa variant inbound connection"'
+      rev: '3'
+      service: http
+      sid: '33058'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

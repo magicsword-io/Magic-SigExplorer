@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '288'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '21'
+        value: '"|44 78 47 54 33 43 6D 42 66 39 73 39 6C 74 62 6A 35 61 4A 7C 0A|"'
+      flow: established,to_server
+      metadata: created_at 2011_05_31, former_category MALWARE, updated_at 2011_05_31
+      msg: '"ET TROJAN Dropper.Win32.Agent.ahju Checkin"'
+      reference: md5,a264690a775a4e1b3d91c2dbcd850ce9
+      rev: '2'
+      sid: '2012895'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

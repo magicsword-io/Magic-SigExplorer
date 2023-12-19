@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"_RLD",fast_pattern,nocase'
+      - value: '"bin/sh"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET SGI telnetd format bug"'
+      reference: cve,2000-0733
+      rev: '18'
+      service: telnet
+      sid: '711'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

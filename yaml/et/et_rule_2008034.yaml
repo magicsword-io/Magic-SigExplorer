@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a| Passes from"'
+      - value: '"application/octet-stream|3b|"'
+      - value: '".bin"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_08_19
+      msg: '"ET TROJAN LDPinch SMTP Password Report"'
+      reference: url,doc.emergingthreats.net/2008034
+      rev: '6'
+      sid: '2008034'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

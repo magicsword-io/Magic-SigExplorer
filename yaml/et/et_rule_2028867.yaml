@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|20|Java/11.0."'
+      - value: '!"21"'
+      flow: established,to_server
+      flowbits: set,ET.http.javaclient.vulnerable
+      metadata: affected_product Java, attack_target Client_Endpoint, created_at 2019_10_18,
+        deployment Perimeter, signature_severity Informational, updated_at 2023_12_13
+      msg: '"ET POLICY Vulnerable Java Version 11.0.x Detected"'
+      reference: url,www.oracle.com/technetwork/java/javase/11u-relnotes-5093844.html
+      rev: '9'
+      sid: '2028867'
+      special_options:
+      - http_header
+      - http_header
+      threshold: type limit, count 2, seconds 300, track by_src
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

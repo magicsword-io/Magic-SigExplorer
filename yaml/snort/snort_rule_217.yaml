@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"hax0r"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR MISC sm4ck attempt"'
+      rev: '7'
+      sid: '217'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

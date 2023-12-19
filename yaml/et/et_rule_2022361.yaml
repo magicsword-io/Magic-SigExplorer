@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|07 0d 00 00 00 00 00 00 00 00 00 00 00|"'
+      dsize: '13'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_01_13, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2019_10_08,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN TrochilusRAT CnC Beacon 2"'
+      reference: url,asert.arbornetworks.com/wp-content/uploads/2016/01/ASERT-Threat-Intelligence-Brief-Uncovering-the-Seven-Pointed-Dagger.pdf
+      rev: '2'
+      sid: '2022361'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

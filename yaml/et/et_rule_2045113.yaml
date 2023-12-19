@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|setnewcreds|03|ukr|03|net|04|frge|02|io|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_20, deployment Perimeter, former_category
+        MALWARE, malware_family APT28, malware_family FROZENLAKE, performance_impact
+        Low, signature_severity Major, tag APT28, tag FROZENLAKE, updated_at 2023_04_20,
+        reviewed_at 2023_08_21
+      msg: '"ET TROJAN FROZENLAKE (APT 28) Related Domain in DNS Lookup (setnewcreds
+        .ukr .net .frge .io)"'
+      reference: url,blog.google/threat-analysis-group/ukraine-remains-russias-biggest-cyber-focus-in-2023/
+      rev: '1'
+      sid: '2045113'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '29'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

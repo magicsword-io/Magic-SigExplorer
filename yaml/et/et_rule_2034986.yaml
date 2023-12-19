@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"delete"'
+      - value: '"CERT"'
+      - value: '"n"'
+      - value: '"perl"'
+      - value: '"base64"'
+      - value: '"POST /cgi-bin/viewcert HTTP/1.1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_26, cve CVE_2021_20039, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_01_26
+      msg: '"ET EXPLOIT SonicWall SMA Authenticated Command Injection Attempt CVE-2021-20039"'
+      reference: cve,2021-20039
+      rev: '1'
+      sid: '2034986'
+      special_options:
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+      within: '30'
+    protocol: tcp
+    source:
+      network: any
+      port: any

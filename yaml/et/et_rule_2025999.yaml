@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|urimchi3dt4|07|website|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_20, deployment Perimeter, former_category
+        TROJAN, malware_family Panda_Banker, signature_severity Major, updated_at
+        2020_09_16
+      msg: '"ET TROJAN Panda Banker Injects Domain (urimchi3dt4 .website in DNS Lookup)"'
+      reference: url,www.vkremez.com/2018/08/lets-learn-dissecting-panda-banker.html
+      rev: '1'
+      sid: '2025999'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

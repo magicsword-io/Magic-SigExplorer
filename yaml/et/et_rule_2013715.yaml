@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A 20|BingBar|20|"'
+      flow: established,to_server
+      metadata: created_at 2011_10_01, updated_at 2020_04_22
+      msg: '"ET POLICY BingBar ToolBar User-Agent (BingBar)"'
+      rev: '2'
+      sid: '2013715'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"LIST",nocase'
+      flow: to_server,established
+      isdataat: 128,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP LIST buffer overflow attempt"'
+      pcre: '"/^LIST(?!\n)\s[^\n]{128}/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS99-003
+      rev: '35'
+      service: ftp
+      sid: '2338'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

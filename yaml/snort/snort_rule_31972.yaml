@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|DC C7 5E 47 A0 DB D2 51|",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.exploit_kit.pe
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Astrum exploit kit payload delivery"'
+      reference: url,malware.dontneedcoffee.com/2014/09/astrum-ek.html
+      rev: '3'
+      service: http
+      sid: '31972'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

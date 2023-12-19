@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|officeframework|06|online|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2021_10_07, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_10_07
+      msg: '"ET TROJAN DonotGroup Related Domain in DNS Lookup (officeframework .online)"'
+      reference: url,www.amnesty.org/en/documents/afr57/4756/2021/en/
+      rev: '2'
+      sid: '2034149'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

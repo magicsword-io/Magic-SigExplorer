@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"UltraMJCam.UltraMJCam.1"'
+      - value: '".OpenFileDlg"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_01, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX TRENDnet TV-IP121WN UltraMJCam ActiveX Control OpenFileDlg
+        Access Potential Remote Stack Buffer Overflow 2"'
+      reference: url,www.exploit-db.com/exploits/18675/
+      rev: '5'
+      sid: '2014456'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

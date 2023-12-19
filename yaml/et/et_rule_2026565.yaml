@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '".aspx"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 |28|compatible|3b| MSIE 8.0|3b| Win32|29|"'
+      - value: '"|0d 0a|Cookie|3a 20|"'
+      - value: '"|0d 0a|Date|3a 20|"'
+      - value: '"|0d 0a|Connection|3a 20|"'
+      - value: '"|0d 0a|Pragma|3a 20|"'
+      - value: '"|0d 0a|Cache-Control|3a 20|"'
+      distance: '0'
+      fast_pattern: 33,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_06, deployment Perimeter, former_category
+        MALWARE, malware_family TScookie, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_27
+      msg: '"ET TROJAN BlackTech/PLEAD TSCookie CnC Checkin M1"'
+      pcre: '"/^[A-F0-9]{50,}\r\n/R"'
+      reference: url,blog.jpcert.or.jp/2018/03/malware-tscooki-7aa0.html
+      rev: '4'
+      sid: '2026565'
+      threshold: type both, count 1, seconds 30, track by_dst
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

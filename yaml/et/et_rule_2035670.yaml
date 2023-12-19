@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"spring.cloud.function.routing-expression|3a|"'
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2022_03_31, cve CVE_2022_22963, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_31
+      msg: '"ET EXPLOIT Possible Spring Cloud Connector RCE Inbound (CVE-2022-22963)"'
+      reference: cve,2022-22963
+      rev: '1'
+      sid: '2035670'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

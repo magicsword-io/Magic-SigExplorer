@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|03|lol"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|03|lol"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_21, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, performance_impact Low, signature_severity
+        Major, tag SSL_Suspicious_Cert, updated_at 2020_10_21
+      msg: '"ET TROJAN Possible UNC1878/FIN12 Cobalt Strike CnC SSL Cert Inbound (lol)"'
+      reference: url,www.youtube.com/watch?v=BhjQ6zsCVSc
+      rev: '2'
+      sid: '2031133'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

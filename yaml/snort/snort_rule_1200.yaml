@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Invalid URL",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE Invalid URL"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS00-063
+      rev: '17'
+      service: http
+      sid: '1200'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|httpdebugger|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_09_09, deployment Perimeter,
+        signature_severity Informational, updated_at 2022_09_09
+      msg: '"ET INFO Observed DNS Query to HTTP Sniffer Domain (httpdebugger .com)"'
+      reference: url,www.safebreach.com/resources/blog/remote-access-trojan-coderat
+      rev: '1'
+      sid: '2038784'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

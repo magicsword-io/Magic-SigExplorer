@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '40'
+        value: '"GNUTELLA OK"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL P2P GNUTella client request"'
+      rev: '7'
+      sid: '2100557'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

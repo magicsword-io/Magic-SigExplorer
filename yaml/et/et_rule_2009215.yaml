@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/getmac.asp?x="'
+      - value: '"&y="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_02
+      msg: '"ET TROJAN Farfli HTTP Checkin Activity"'
+      pcre: '"/x=[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}-[a-f0-9]{2}/Ui"'
+      reference: url,doc.emergingthreats.net/2009215
+      rev: '6'
+      sid: '2009215'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

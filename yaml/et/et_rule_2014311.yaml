@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"0000/log"'
+      - value: '"User-Agent|3a| Mozilla/4.0|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_03_05, former_category TROJAN, updated_at 2022_05_03
+      msg: '"ET TROJAN RegSubsDat Checkin Off Ports"'
+      pcre: '"/\/\d\d[A-F0-9]{4}0000\/log /"'
+      reference: url,www.secureworks.com/research/threats/sindigoo/
+      rev: '5'
+      sid: '2014311'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

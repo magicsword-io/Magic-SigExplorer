@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '45'
+        value: '"/c/msdownload/update/others/2016/12/29136388_"'
+      - value: '".cab"'
+      - value: '"User-Agent|3a 20|Windows-Update-Agent/10.0.10011.16384 Client-Protocol/1.40|0d
+          0a|"'
+      - value: '!"Referer|3a|"'
+      distance: '171'
+      fast_pattern: 25,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_09_18, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2020_11_19, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 (Microsoft Update GET)"'
+      reference: url,github.com/rsmudge/Malleable-C2-Profiles/blob/master/normal/microsoftupdate_getonly.profile
+      rev: '2'
+      sid: '2032752'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '220'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

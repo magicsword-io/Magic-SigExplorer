@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        value: '"/https/"'
+      - value: '".php"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_07, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_02_07
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish 2023-02-07"'
+      pcre: '"/\.php$/U"'
+      reference: md5,42502c50509187bbbc6ff2881fc93195
+      rev: '1'
+      sid: '2044149'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

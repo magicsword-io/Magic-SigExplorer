@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: macsearch/1 CFNetwork/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Osx.Adware.MacSearch variant outbound connection detected"'
+      reference: url,virustotal.com/#/file/f54bb130f750f77546aebf690ba4b89f0ddb3c27a5e297383d0a30bcaa5f9cb4
+      rev: '1'
+      service: http
+      sid: '49044'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

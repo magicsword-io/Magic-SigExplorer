@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title"'
+      - value: '"Mail Verification"'
+      - value: '"img src=|22|files/"'
+      - value: '"method=|22|post|22|"'
+      - value: '"name=|22|passwd|22|"'
+      - value: '"All rights reserved"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_04_18, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_04_18
+      msg: '"ET CURRENT_EVENTS Mail Verification Phishing Landing 2018-04-18"'
+      rev: '2'
+      sid: '2025514'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

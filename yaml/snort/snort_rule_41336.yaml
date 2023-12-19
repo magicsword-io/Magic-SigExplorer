@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"time|3A 20|",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|HttpEngine"'
+      - value: '".do"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.Sysch variant outbound connection"'
+      pcre: '"/\.(do|jar)$/im"'
+      reference: url,virustotal.com/en/file/82da35ab3b0a47fe8de8b0cc24d53711e17960f5887a16769e76650d9556b399/analysis/1484684069/
+      rev: '3'
+      service: http
+      sid: '41336'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

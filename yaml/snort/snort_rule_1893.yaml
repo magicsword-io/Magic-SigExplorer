@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"0",depth 1'
+      - value: '"|02|",within 6'
+      - value: '"|04 00|",within 8'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP missing community string attempt"'
+      pcre: '"/^\x30(\x84....|\x82..|[^\x80-\xFF])\x02(\x84\x00\x00\x00\x01.|\x82\x00\x01.|\x01.)\x04\x00/"'
+      reference: cve,1999-0517
+      rev: '13'
+      service: snmp
+      sid: '1893'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

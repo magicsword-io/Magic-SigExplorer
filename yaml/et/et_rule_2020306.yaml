@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '1'
+        value: '"|05|"'
+      - value: '"ServerName|3b|"'
+      - value: '"InstanceName|3b|"'
+      - value: '"IsClustered|3b|"'
+      - value: '"Version|3b|"'
+      distance: '0'
+      metadata: created_at 2015_01_23, updated_at 2015_01_23
+      msg: '"ET DOS MC-SQLR Response Inbound Possible DDoS Target"'
+      reference: url,kurtaubuchon.blogspot.com.es/2015/01/mc-sqlr-amplification-ms-sql-server.html
+      rev: '3'
+      sid: '2020306'
+      special_options:
+      - nocase
+      threshold: type both,track by_dst,count 30,seconds 60
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '1434'

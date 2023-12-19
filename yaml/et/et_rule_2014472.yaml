@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"PK"'
+      - value: '".class"'
+      fast_pattern: only
+      flow: established,to_client
+      flowbits: isset,ET.http.javaclient
+      metadata: attack_target Client_and_Server, created_at 2012_04_04, deployment
+        Perimeter, former_category INFO, signature_severity Informational, updated_at
+        2022_05_03
+      msg: '"ET INFO JAVA - Java Archive Download"'
+      rev: '7'
+      sid: '2014472'
+      special_options:
+      - file_data
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

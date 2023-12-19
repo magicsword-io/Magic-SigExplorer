@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/USER-"'
+      - value: '"|3b 20|ms-office|3b 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_10, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, performance_impact Moderate,
+        signature_severity Major, updated_at 2023_02_10
+      msg: '"ET TROJAN Suspected Gamaredon Related Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x3b\x20ms-office\x3b\x20/Hmi"'
+      reference: url,twitter.com/StopMalvertisin/status/1624040846785134592
+      rev: '1'
+      sid: '2044166'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '>30'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

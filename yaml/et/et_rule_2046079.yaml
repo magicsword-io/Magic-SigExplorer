@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '10'
+        value: '"|0b 15 1f 29 33 3d 47 51|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_05, deployment Perimeter, former_category
+        MALWARE, malware_family Andarat, signature_severity Major, tag Andariel, tag
+        c2, updated_at 2023_06_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN [DCSO] Andariel CnC Activity, Check String"'
+      reference: url,medium.com/@DCSO_CyTec/49a9d04acbc6
+      rev: '1'
+      sid: '2046079'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

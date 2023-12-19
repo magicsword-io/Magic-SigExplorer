@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"|68 78 20 cf 01 00 00 c0 01 00 00 01 00 00 00 cb|"'
+      flow: established,to_server
+      metadata: created_at 2022_04_08, updated_at 2022_04_08
+      msg: '"ET TROJAN Win32/Farfli.CUY KeepAlive M2"'
+      reference: md5,87100cb600d876bd022a4d93ce6305a0
+      rev: '2'
+      sid: '2035880'
+      special_options:
+      - fast_pattern
+      stream_size: client,>,200
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

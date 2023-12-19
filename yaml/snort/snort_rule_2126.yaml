@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1723'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01|",depth 2,offset 2'
+      - value: '"|00 01|",depth 2,offset 8'
+      flow: to_server,established,no_stream
+      isdataat: '156'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows PPTP Start Control Request buffer overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS02-063
+      rev: '16'
+      sid: '2126'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

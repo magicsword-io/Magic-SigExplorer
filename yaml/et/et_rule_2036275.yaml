@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4567'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '21'
+        value: '"GET /saveSystemConfig"'
+      - value: '"|0d 0a|{D79E94C5-70F0-46BD-965B-E17497CCB598}|20|2|0d 0a 0d 0a|DAAAAAEAAAADAAAAIQACAAEABA"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: isset,ET.tvt_stage1
+      metadata: affected_product DVR, attack_target Networking_Equipment, created_at
+        2022_04_19, deployment Perimeter, deployment Internal, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, updated_at 2022_04_19
+      msg: '"ET EXPLOIT Shenzhen TVT DVR/NVR/IPC ConfigSyncProc RCE Attempt"'
+      reference: url,raw.githubusercontent.com/mcw0/PoC/master/TVT_and_OEM_IPC_NVR_DVR_RCE_Backdoor_and_Information_Disclosure.txt
+      rev: '1'
+      sid: '2036275'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

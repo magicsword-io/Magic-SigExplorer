@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        offset: '6'
+        value: '".php"'
+      - value: '".net|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: to_server,established
+      metadata: created_at 2013_04_16, former_category MALWARE, updated_at 2020_11_05
+      msg: '"ET TROJAN Win32/Redyms.A Checkin"'
+      pcre: '"/^POST \/(?P<filep>[a-z]{5,8})\.php HTTP.+?\r\nHost\x3a\x20(?P=filep)[a-z]+?\.net\r\n/s"'
+      rev: '1'
+      sid: '2016759'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

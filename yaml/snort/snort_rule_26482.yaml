@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/thinner/thumb?img=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Unknown Thinner Encrypted POST botnet C&C"'
+      pcre: '"/[^\x20-\x7e\x0d\x0a]{4}/"'
+      reference: url,support.clean-mx.de/clean-mx/viruses.php?sort=firstseen%20desc&review=95.57.120.111
+      rev: '2'
+      service: http
+      sid: '26482'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

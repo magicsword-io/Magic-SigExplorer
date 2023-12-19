@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a|"'
+      - value: '"KAMA NT"'
+      - value: '"BULLET|3b|"'
+      - value: '"REGION|3b|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_09, deployment Perimeter, former_category
+        MALWARE, malware_family CoalaBot, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_19
+      msg: '"ET TROJAN MSIL/CoalaBot CnC Activity"'
+      pcre: '"/^[A-Za-z0-9]{10,}[\-\)\(]{1,2}/Pi"'
+      reference: md5,523de838dd44cdd6f212d36c142d830c
+      rev: '3'
+      sid: '2024531'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

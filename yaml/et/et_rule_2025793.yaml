@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"JHtydW57L2Jpbi9iYXNoIC1jICIvYmluL2Jhc2ggLWkgPiYgL2Rldi90Y3Av"'
+      flow: established,to_server
+      metadata: attack_target SMTP_Server, created_at 2018_07_09, cve CVE_2018_6789,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2018_07_18
+      msg: '"ET EXPLOIT Exim Internet Mailer Remote Code Execution"'
+      reference: url,exploit-db.com/exploits/44571/
+      rev: '2'
+      sid: '2025793'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

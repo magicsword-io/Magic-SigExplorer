@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"NOTIFY * "'
+      metadata: created_at 2010_09_23, cve CVE_2001_0876, updated_at 2010_09_23
+      msg: '"GPL MISC UPnP malformed advertisement"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS01-059.mspx
+      rev: '9'
+      sid: '2101384'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

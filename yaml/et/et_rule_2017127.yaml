@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"$$$$|3a|(![]+|22 22|)["'
+      flow: established,from_server
+      metadata: created_at 2013_07_11, updated_at 2013_07_11
+      msg: '"ET INFO JJEncode Encoded Script"'
+      pcre: '"/^(?P<global_var>((?!(\]\,__\$\x3a\+\+)).)+)]\,__\$\x3a\+\+(?P=global_var)/R"'
+      rev: '1'
+      sid: '2017127'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

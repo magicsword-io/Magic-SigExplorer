@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,128,0,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01 86 F3|",depth 4,offset 16'
+      - value: '"|00 00 00 07|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC tooltalk TCP overflow attempt"'
+      reference: cve,2001-0717
+      rev: '17'
+      sid: '1965'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/web/msgList/viewmsg/actions/msgAnalyse.asp?"'
+      - value: '"Scoring="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS WebSense Email security msgAnalyse.asp Scoring XSS
+        Attempt"'
+      pcre: '"/Scoring\s*=[\x22\x27\x3c\x3e\x20]*(script|img|src|onmouse|onkey|onload|ondragdrop|onblur|onfocus|onclick)/Ui"'
+      reference: url,doc.emergingthreats.net/2010175
+      rev: '3'
+      sid: '2010175'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

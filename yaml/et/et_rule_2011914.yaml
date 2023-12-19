@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/thereIsNoWayThat-You-CanBeThere"'
+      flow: established,to_server
+      metadata: created_at 2010_11_09, updated_at 2020_09_03
+      msg: '"ET SCAN DirBuster Scan in Progress"'
+      reference: url,www.owasp.org/index.php/Category%3aOWASP_DirBuster_Project
+      rev: '1'
+      sid: '2011914'
+      special_options:
+      - nocase
+      - http_uri
+      threshold: type limit, track by_src,count 1, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

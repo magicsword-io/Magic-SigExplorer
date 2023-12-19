@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/kys_allow_put.asp?type="'
+      - value: '"&hostname="'
+      flow: established,from_client
+      metadata: created_at 2011_12_09, updated_at 2020_04_20
+      msg: '"ET TROJAN Backdoor.Win32.Sykipot Put"'
+      reference: url,contagiodump.blogspot.com/2011/12/adobe-zero-day-cve-2011-2462.html
+      rev: '1'
+      sid: '2014007'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

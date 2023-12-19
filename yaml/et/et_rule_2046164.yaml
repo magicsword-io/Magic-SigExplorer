@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2404'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|68|"'
+      - value: '"|64|"'
+      - value: '"|ff ff 00 00 00 14|"'
+      distance: '3'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment
+        Perimeter, deployment Internal, deployment Datacenter, former_category SCADA,
+        confidence High, signature_severity Informational, updated_at 2023_06_07
+      msg: '"ET SCADA IEC-104 Station Interrogation - Global ASDU Broadcast"'
+      reference: url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104
+      rev: '1'
+      sid: '2046164'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,256,0,relative,string
+      classtype: attempted-admin
+      contents:
+      - value: '"SUBSCRIBE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP SUBSCRIBE literal overflow attempt"'
+      pcre: '"/^\w+\s+SUBSCRIBE\s[^\n]*?\{/ims"'
+      reference: nessus,15867
+      rev: '18'
+      service: imap
+      sid: '3073'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2a|PennyWise|20|v1|2e|"'
+      - value: '"Worker|3a 20|"'
+      - value: '"IP|3a 20|"'
+      - value: '"Username|3a 20|"'
+      - value: '"PC|3a 20|"'
+      - value: '"System|3a 20|"'
+      - value: '"|2a|Browsers|3a 2a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category
+        MALWARE, malware_family PennyWise, performance_impact Low, confidence High,
+        signature_severity Critical, updated_at 2023_05_25, reviewed_at 2023_12_06
+      msg: '"ET TROJAN PennyWise Stealer Data Exfil M2"'
+      reference: url,twitter.com/crep1x/status/1638596449226170370
+      rev: '4'
+      sid: '2044748'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

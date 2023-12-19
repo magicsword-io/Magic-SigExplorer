@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"f="'
+      - value: '"&a="'
+      - value: '"&v="'
+      - value: '"&c="'
+      - value: '"&s="'
+      - value: '"&l="'
+      - value: '"&ck="'
+      - value: '"&c_fb="'
+      - value: '"&c_ms="'
+      - value: '"&c_hi="'
+      - value: '"&c_be="'
+      - value: '"&c_fr="'
+      - value: '"&c_yb="'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Koobface Checkin via POST"'
+      reference: url,doc.emergingthreats.net/2009156
+      rev: '9'
+      sid: '2009156'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

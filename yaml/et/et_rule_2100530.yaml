@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00 00|W|00|i|00|n|00|d|00|o|00|w|00|s|00| |00|N|00|T|00| |00|1|00|3|00|8|00|1"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_0347, updated_at 2010_09_23
+      msg: '"GPL NETBIOS NT NULL session"'
+      reference: cve,2000-0347
+      rev: '11'
+      sid: '2100530'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

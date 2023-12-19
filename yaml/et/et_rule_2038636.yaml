@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST|20|"'
+      - value: '".php/|20|HTTP/1."'
+      - value: '"|0d 0a 0d 0a|EaKOK77b+Iomsb"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_07_08, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2022_07_08
+      msg: '"ET MOBILE_MALWARE Trojan-Dropper.AndroidOS.Hqwar.hf Checkin"'
+      reference: url,twitter.com/0xrb/status/1564222855830597632
+      rev: '1'
+      sid: '2038636'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

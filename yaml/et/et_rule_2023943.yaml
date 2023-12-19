@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"XAGUAYgBDAGwAaQBlAG4AdAApAC4ARABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgBn"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_16, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2017_11_16
+      msg: '"ET TROJAN Possibly Malicious Base64 Unicode WebClient DownloadString
+        M3"'
+      reference: md5,2a0df97277ddb361cecf8726df6d78ac
+      rev: '2'
+      sid: '2023943'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

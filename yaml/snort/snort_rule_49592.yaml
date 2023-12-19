@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/bbs/data/tmp/ping.php",fast_pattern,nocase'
+      - value: '"word=",nocase'
+      - value: '"note=",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SectorA05 outbound connection attempt"'
+      reference: url,threatrecon.nshc.net/2019/01/30/operation-kitty-phishing/
+      rev: '1'
+      service: http
+      sid: '49592'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

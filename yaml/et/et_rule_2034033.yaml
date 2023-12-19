@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"upload.aspx"'
+      - value: '"id=../"'
+      - value: '"bp="'
+      - value: '"accountid="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_09_27, cve CVE_2021_22941, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_09_27
+      msg: '"ET EXPLOIT Possible Citrix ShareFile RCE Inbound (CVE-2021-22941)"'
+      reference: cve,2021-22941
+      rev: '1'
+      sid: '2034033'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

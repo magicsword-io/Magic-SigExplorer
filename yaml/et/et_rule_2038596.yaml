@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"/?Key="'
+      - value: '"&Crc="'
+      - value: '"|22|appName|22 3a 20 22|Gmail Downloader|22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter,
+        former_category MALWARE, malware_family TA453, malware_family APT35, malware_family
+        CharmingKitten, signature_severity Major, updated_at 2022_08_23
+      msg: '"ET TROJAN TA453/CharmingKitten HYPERSCRAPE Tool Sending System Information
+        (POST)"'
+      reference: url,blog.google/threat-analysis-group/new-iranian-apt-data-extraction-tool/
+      rev: '1'
+      sid: '2038596'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

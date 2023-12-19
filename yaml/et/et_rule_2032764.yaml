@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|ctgame|02|tk"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_04_15, deployment Perimeter,
+        former_category EXPLOIT, signature_severity Major, updated_at 2022_05_02
+      msg: '"ET CURRENT_EVENTS Observed BottleEK Domain in DNS Lookup 2021-04-15"'
+      reference: url,twitter.com/nao_sec/status/1381100024919035908
+      rev: '3'
+      sid: '2032764'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| Mozilla/4.0 (SPGK)|0d 0a|"'
+      fast_pattern: 24,8
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2020_08_13
+      msg: '"ET TROJAN Luder.B User-Agent (Mozilla/4.0 (SPGK)) - GET"'
+      reference: url,doc.emergingthreats.net/2009805
+      rev: '6'
+      sid: '2009805'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

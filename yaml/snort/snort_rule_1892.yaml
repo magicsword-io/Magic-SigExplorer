@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|04 01 00|",depth 15,offset 5'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP null community string attempt"'
+      reference: cve,1999-0517
+      rev: '14'
+      service: snmp
+      sid: '1892'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

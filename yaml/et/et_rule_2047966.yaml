@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -18
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"amscloudhost.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        tag Red_Wolf, tag RedCurl, updated_at 2023_09_07, reviewed_at 2023_09_07
+      msg: '"ET TROJAN Red Wolf/RedCurl Domain (amscloudhost .com) in TLS SNI"'
+      pcre: '"/^(?:\x00\x10|.\x2e)amscloudhost\.com/R"'
+      reference: url,www.facct.ru/blog/redcurl-2023/
+      rev: '1'
+      sid: '2047966'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

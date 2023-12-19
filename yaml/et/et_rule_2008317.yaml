@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".asp"'
+      - value: '"|3F|ver="'
+      - value: '"|26|tgid="'
+      - value: '"|26|address="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Hitpop.AG/Pophot.az HTTP Checkin"'
+      pcre: '"/address\=([0-9A-F][0-9A-F]-){5}([0-9A-F][0-9A-F])/Ui"'
+      reference: url,doc.emergingthreats.net/2008317
+      rev: '9'
+      sid: '2008317'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

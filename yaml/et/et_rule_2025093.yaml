@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|bc b0 b0 88 88 88 88 88 88 88 88 88|"'
+      dsize: '>48'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_01, deployment Perimeter, former_category
+        MALWARE, malware_family UBoatRAT, performance_impact Low, signature_severity
+        Major, updated_at 2017_12_01
+      msg: '"ET TROJAN UBoatRAT CnC Check-in"'
+      reference: url,researchcenter.paloaltonetworks.com/2017/11/unit42-uboatrat-navigates-east-asia/
+      rev: '1'
+      sid: '2025093'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

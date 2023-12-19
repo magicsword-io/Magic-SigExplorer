@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|jojoa|0d|mypressonline|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_17, deployment Perimeter, malware_family
+        Kimsuky, performance_impact Low, signature_severity Major, updated_at 2022_11_17
+      msg: '"ET TROJAN Kimsuky CnC Domain (jojoa .mypressonline .com) Observed in
+        DNS Query"'
+      reference: url,asec.ahnlab.com/ko/42163/
+      rev: '1'
+      sid: '2039802'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '25'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

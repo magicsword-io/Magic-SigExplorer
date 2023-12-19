@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[443,80,8080,9000:9009]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/1/?"'
+      - value: '" HTTP"'
+      - value: '"MSIE 7.0|3b|"'
+      - value: '".ddns"'
+      - value: '".eu|0d 0a|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2012_11_30, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN WORM_VOBFUS Checkin 1"'
+      pcre: '"/\r\nHost\x3a \d{5}\x2eddns[a-z0-9]\x2eeu\r\n\r\n$/"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/watch-out-for-worm_vobfus/
+      rev: '5'
+      sid: '2015968'
+      special_options:
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

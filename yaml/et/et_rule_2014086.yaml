@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/RESTART.HTM?"'
+      - value: '"NDSContext="'
+      flow: established,to_server
+      metadata: created_at 2012_01_03, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS Planex Mini-300PU & Mini100s Cross-site Scripting
+        Attempt"'
+      pcre: '"/NDSContext\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,exploit-db.com/exploits/17114
+      rev: '3'
+      sid: '2014086'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

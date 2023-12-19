@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"SSH-2.0-NetScreen"'
+      flow: to_client,established
+      metadata: created_at 2015_12_22, cve CVE_2015_7755, updated_at 2015_12_22
+      msg: '"ET POLICY FOX-SRT - Juniper ScreenOS SSH World Reachable"'
+      reference: url,kb.juniper.net/JSA10713
+      rev: '2'
+      sid: '2022299'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '22'

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/?unix|3a|"'
+      - value: '"|7c|http"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_30, cve CVE_2021_40438, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_11_30
+      msg: '"ET EXPLOIT Apache HTTP Server SSRF (CVE-2021-40438)"'
+      reference: cve,2021-40438
+      rev: '2'
+      sid: '2034566'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      urilen: '>200'
+    protocol: tcp
+    source:
+      network: any
+      port: any

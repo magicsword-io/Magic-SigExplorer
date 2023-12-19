@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[23,2323,3323,4323]'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"/bin/busybox"'
+      flow: established,to_server
+      flowbits: set,ET.telnet.busybox
+      metadata: attack_target Server, created_at 2016_08_08, deployment Datacenter,
+        former_category TELNET, performance_impact Low, signature_severity Major,
+        updated_at 2022_04_18
+      msg: '"ET TELNET SUSPICIOUS Path to BusyBox"'
+      reference: url,lists.emergingthreats.net/pipermail/emerging-sigs/2016-August/027524.html
+      rev: '2'
+      sid: '2023016'
+      threshold: type limit, count 1, track by_src, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|IDOSJNDX|0d 0a|"'
+      flow: established,to_server
+      flowbits: set,ET.centerpos
+      metadata: created_at 2016_01_29, updated_at 2019_10_23
+      msg: '"ET TROJAN CenterPOS User Agent Observed"'
+      reference: url,www.fireeye.com/blog/threat-research/2016/01/centerpos_an_evolvi.html
+      rev: '1'
+      sid: '2022468'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

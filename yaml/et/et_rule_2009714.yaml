@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"</script>"'
+      fast_pattern: only
+      flags: '!R'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, former_category WEB_SERVER,
+        signature_severity Major, tag XSS, tag Cross_Site_Scripting, updated_at 2020_08_20
+      msg: '"ET WEB_SERVER Script tag in URI Possible Cross Site Scripting Attempt"'
+      reference: url,doc.emergingthreats.net/2009714
+      rev: '9'
+      sid: '2009714'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

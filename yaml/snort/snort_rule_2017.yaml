@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A0|",depth 4,offset 12'
+      - value: '"|00 00 00 03|",within 4,distance 4'
+      - value: '"|00 05 F7|u",within 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC portmap espd request UDP"'
+      reference: cve,2001-0331
+      rev: '20'
+      service: sunrpc
+      sid: '2017'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

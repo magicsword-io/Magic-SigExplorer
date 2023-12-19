@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST / HTTP/1.1"'
+      - value: '"Content-Length|3a 20|0|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_14, deployment Perimeter,
+        former_category INFO, performance_impact Moderate, signature_severity Major,
+        updated_at 2022_04_15, reviewed_at 2023_09_01
+      msg: '"ET INFO Empty POST with Terse Headers Over Non Standard Port"'
+      pcre: '"/Host[^\r\n]+\r\nContent-Length[^\r\n]+\r\n\r\n/"'
+      reference: md5,52a46f058ec6b726fe2829a590a15155
+      rev: '2'
+      sid: '2036225'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

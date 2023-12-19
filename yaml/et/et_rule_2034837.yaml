@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '21'
+        value: '"HTTP|20|1.1|20|/member.php="'
+      - value: '"SSL3."'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_22, deployment Perimeter,
+        former_category MALWARE, malware_family Andariel, signature_severity Major,
+        updated_at 2021_12_22
+      msg: '"ET TROJAN Andariel Backdoor Activity (Checkin)"'
+      reference: url,threatray.com/blog/establishing-the-tigerrat-and-tigerdownloader-malware-families/
+      rev: '1'
+      sid: '2034837'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

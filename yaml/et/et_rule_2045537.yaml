@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|6id|03|xyz|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_04, deployment Perimeter,
+        former_category MALWARE, malware_family RaspberryRobin, signature_severity
+        Major, updated_at 2023_05_04, reviewed_at 2023_08_22
+      msg: '"ET TROJAN DNS Query to Raspberry Robin Domain (6id .xyz)"'
+      reference: url,blog.bushidotoken.net/2023/05/raspberry-robin-global-usb-malware.html
+      rev: '1'
+      sid: '2045537'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '9'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

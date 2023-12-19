@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        offset: '0'
+        value: '"Status|2a 28|Idle|2e 2e 2e 29 2a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Backdoor.Win32.VB.brg C&C Checkin"'
+      reference: url,doc.emergingthreats.net/2007922
+      rev: '5'
+      sid: '2007922'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

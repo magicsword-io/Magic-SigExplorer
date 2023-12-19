@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3A 20|video/quicktime|0D 0A 0D 0A|"'
+      - value: '"MZ",within 2'
+      - value: '"PE|00 00|",within 4,distance -64'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC binary download while video expected"'
+      reference: url,www.virustotal.com/en/file/38221267218184b17a78d8814d1bd06b12143be859488ae15ca0d754f32d60fc/analysis/1460472611/
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '38517'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

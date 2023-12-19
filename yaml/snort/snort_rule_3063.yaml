@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1020'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Hello...",depth 8'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR Vampire 1.2 connection request"'
+      rev: '6'
+      sid: '3063'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|16|ios-certificate-update|03|com|00|"'
+      distance: '0'
+      metadata: affected_product iOS, attack_target Mobile_Client, created_at 2018_07_17,
+        deployment Perimeter, former_category MOBILE_MALWARE, malware_family iOS_Bahamut,
+        signature_severity Critical, tag iOS, updated_at 2020_09_16
+      msg: '"ET MOBILE_MALWARE iOS/Bahamut DNS Lookup"'
+      reference: url,blog.talosintelligence.com/2018/07/Mobile-Malware-Campaign-uses-Malicious-MDM.html
+      rev: '2'
+      sid: '2025727'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

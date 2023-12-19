@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|0d 0a|Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22
+          3b 20|filename=|22|"'
+      - value: '".zip|22 0d 0a|"'
+      - value: '"passwords.txt"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_27, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_04_27
+      msg: '"ET TROJAN Win32.SpyEyes.bllw CnC Exfil"'
+      reference: md5,c818013b12aedef81965f4dd98634ea8
+      rev: '1'
+      sid: '2035017'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

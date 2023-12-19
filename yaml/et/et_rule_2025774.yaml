@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/ajaxhelper.php?cmd=getxicoreajax"'
+      - value: '"&opts=%7b%22func%22%3a%22get_hoststatus_table%22%7d"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_02, cve CVE_2018_8734, deployment
+        Datacenter, former_category EXPLOIT, signature_severity Critical, updated_at
+        2020_08_25
+      msg: '"ET EXPLOIT Nagios XI Remote Code Execution"'
+      reference: url,exploit-db.com/exploits/44969/
+      rev: '2'
+      sid: '2025774'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|s3|0a|hiahornber|03|com"'
+      distance: '0'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2018_04_05, deployment Perimeter, former_category MALWARE, malware_family
+        OceanLotus, performance_impact Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN OSX/OceanLotus.D CnC DNS Lookup (s3 .hiahornber .com)"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/new-macos-backdoor-linked-to-oceanlotus-found/
+      rev: '2'
+      sid: '2025467'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

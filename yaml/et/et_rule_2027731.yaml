@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|32|"'
+      - value: '"|7c 78 01|"'
+      distance: '2'
+      dsize: 200<>300
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_19, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Blacknix, updated_at 2019_07_19
+      msg: '"ET TROJAN Win32/Blacknix CnC Checkin"'
+      pcre: '"/^[0-9]{3}\x7cx/"'
+      reference: md5,b4e95d3ec39cf8c7347ca1c64cfed631
+      rev: '2'
+      sid: '2027731'
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

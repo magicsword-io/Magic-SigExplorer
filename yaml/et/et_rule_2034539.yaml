@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|01|a|05|pwn-t|02|tk|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_11_23, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_11_23, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike CnC Domain in DNS Lookup (a .pwn-t .tk)"'
+      reference: md5,36be5b491426de64f9ac85c50f85808c
+      rev: '2'
+      sid: '2034539'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

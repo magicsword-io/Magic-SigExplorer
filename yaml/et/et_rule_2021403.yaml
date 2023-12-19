@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/adm/contador.php"'
+      - value: '"User-Agent|3A 20|Firefox/15.0.1|0D 0A|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_07_10, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_01,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Banload.VZS Banker POST CnC Beacon 1"'
+      reference: md5,b9d6539f4136b715656f8a515810c90d
+      rev: '1'
+      sid: '2021403'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Username|3a 20|"'
+      - value: '"|0d 0a|Machine Name|3a 20|"'
+      - value: '"|0d 0a|Operating System|3a 20|"'
+      - value: '"|0d 0a|IP Address|3a 20|"'
+      - value: '"|0d 0a|Country|3a 20|"'
+      - value: '"|0d 0a|RAM|3a 20|"'
+      - value: '"|0d 0a|Online since|3a 20|"'
+      - value: '"|0d 0a 0d 0a 0d 0a 0d 0a|================================|0d 0a|Keystrokes
+          and Window Log|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_17, deployment Perimeter, former_category
+        TROJAN, malware_family AtomLogger, performance_impact Moderate, signature_severity
+        Major, updated_at 2019_01_17
+      msg: '"ET TROJAN AtomLogger Exfil via FTP"'
+      reference: md5,78bd897a638e7c0d3c00c31c8c68f18b
+      rev: '2'
+      sid: '2026824'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

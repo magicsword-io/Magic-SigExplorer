@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <17
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"HTTP/1.1|0D 0A|Accept: */*|0D 0A|Content-Type: application/x-www-form-urlencoded|0D
+          0A|Connection: Close|0D 0A|Content-Length: 100|0D 0A|User-Agent: ",fast_pattern,nocase'
+      - value: '"=",depth 1,offset 1'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CryptoWall outbound connection"'
+      pcre: '"/[a-z]=[a-f0-9]{98}/"'
+      reference: url,www.virustotal.com/en/file/a92ae8e80b0b70288a32c0455856453c5980021156132a540035e7ef5e0fa79e/analysis/
+      rev: '3'
+      service: http
+      sid: '31450'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - pkt_data
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

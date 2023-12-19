@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".htm"'
+      - value: '!"Accept"'
+      - value: '"|0A|Content-Length: 164|0D 0A|User-Agent: ",fast_pattern,nocase'
+      - value: '"host|3A|",nocase'
+      - value: '"|2E|",within 5'
+      - value: '"|2E|",within 4'
+      - value: '"|2E|",within 4'
+      - value: '"|6C 55 55 45|",depth 4,offset 4'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fareit variant outbound connection"'
+      rev: '5'
+      service: http
+      sid: '27775'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

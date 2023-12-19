@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a 20|B4ckdoor|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_11_21,
+        deployment Perimeter, signature_severity Major, updated_at 2020_10_23
+      msg: '"ET TROJAN Mirai Variant User-Agent (Outbound)"'
+      rev: '2'
+      sid: '2029031'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

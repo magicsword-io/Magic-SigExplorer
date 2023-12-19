@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|EB|E|EB| [|FC|3|C9 B1 82 8B F3 80|+",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL x86 windows MailMax overflow"'
+      reference: cve,1999-0404
+      rev: '13'
+      service: smtp
+      sid: '310'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

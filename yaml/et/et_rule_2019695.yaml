@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|fasternation|03|net|00|"'
+      distance: '1'
+      fast_pattern: only
+      metadata: created_at 2014_11_12, updated_at 2020_09_15
+      msg: '"ET TROJAN Ponmocup Post Infection DNS Lookup fasternation"'
+      rev: '2'
+      sid: '2019695'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

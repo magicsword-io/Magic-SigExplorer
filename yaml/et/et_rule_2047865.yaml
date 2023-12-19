@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|0f|geodatatool.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_10_27,
+        deployment Perimeter, former_category INFO, performance_impact Low, confidence
+        High, signature_severity Informational, updated_at 2020_10_27, former_sid
+        2845167
+      msg: '"ET INFO External IP Address Lookup Domain SSL Cert (geodatatool .com)"'
+      rev: '4'
+      sid: '2047865'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

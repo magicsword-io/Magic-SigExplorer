@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<h1>404 Not Found</h1><span>The resource requested could not be found
+          on this server!</span>"'
+      flow: established,to_client
+      flowbits: isset,ET.xls.dde.drop
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_16, deployment Perimeter, former_category
+        MALWARE, malware_family MalDocGeneric, malware_family Maldoc, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Malicious XLS DDE rar Drop Fake 404 Response"'
+      reference: md5,63b070b222d170ef4cc35ad94d42a088
+      rev: '1'
+      sid: '2026491'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '26'
+        value: '"/salt_view_doc_words?user="'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_10_30, deployment
+        Perimeter, former_category MALWARE, malware_family KONNI, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_10_30
+      msg: '"ET TROJAN Possible Konni RAT Related Activity Observed"'
+      pcre: '"/\/salt_view_doc_words\?user=[A-Z0-9]{24}$/U"'
+      reference: md5,d1dc2db2956803de7eef7a76a6ac5cb2
+      rev: '1'
+      sid: '2048949'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

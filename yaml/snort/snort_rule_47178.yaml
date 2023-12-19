@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[9000:]'
+    details:
+      byte_test: 1,>,2,0,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|50 00 00 00|",depth 4'
+      - value: '!"|0A|",within 1,distance 1'
+      flow: to_server,established
+      gid: '1'
+      isdataat: '!84'
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.NukeSped RAT variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/4a740227eeb82c20286d9c112ef95f0c1380d0e90ffb39fc75c8456db4f60756/
+      rev: '2'
+      sid: '47178'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

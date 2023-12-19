@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe|0D 0A|",fast_pattern,nocase'
+      - value: '"filename="'
+      - value: '".exe|0D 0A|",within 6,distance 24'
+      flow: to_client,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT CritX exploit kit payload download attempt"'
+      pcre: '"/filename=(?![a-f]{24}|\d{24})[a-f\d]{24}\.exe\r\n/"'
+      rev: '6'
+      service: http
+      sid: '29167'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

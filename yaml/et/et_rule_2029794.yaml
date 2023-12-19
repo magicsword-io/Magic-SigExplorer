@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 0f|stitch626hctits"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Connection|3a 20|"'
+      - value: '!"Host|3a 20|"'
+      - value: '!"Keep-Alive:|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_04_02, deployment Perimeter,
+        former_category MALWARE, malware_family Stitch, performance_impact Low, signature_severity
+        Major, updated_at 2021_09_09
+      msg: '"ET TROJAN Suspected Stitch Variant Backdoor CnC"'
+      reference: md5,ec993ff561cbc175953502452bfa554a
+      rev: '2'
+      sid: '2029794'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"MJ12bot/"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2011_07_12, deployment Perimeter,
+        deployment SSLDecrypt, former_category POLICY, signature_severity Informational,
+        tag WebCrawler, updated_at 2020_08_20, mitre_tactic_id TA0043, mitre_tactic_name
+        Reconnaissance, mitre_technique_id T1593, mitre_technique_name Search_Open_Websites
+      msg: '"ET POLICY Majestic12 User-Agent Request Outbound"'
+      rev: '3'
+      sid: '2013256'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

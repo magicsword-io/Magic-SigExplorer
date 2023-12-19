@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '31'
+        value: '"|7b 22|DataList|22 3a 22 5b 7b 5c 22|ActionKey|5c 22 3a 5c 22|"'
+      - value: '"|5c 22 2c 5c 22|ClientCPU|5c 22 3a 5c 22|"'
+      - value: '"|5c 22 2c 5c 22|ClientRAM|5c 22 3a 5c 22|"'
+      - value: '"|5c 22 2c 5c 22|OSTypeName|5c 22 3a 5c 22|"'
+      - depth: '35'
+        value: '"POST|20|/api/StatData/ProductStatLogs|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_29, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2023_03_29
+      msg: '"ET MALWARE Win32/VrBrothers Checkin"'
+      reference: md5,1a128e28c626a706a6f0e65afb89efbe
+      rev: '1'
+      sid: '2044832'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

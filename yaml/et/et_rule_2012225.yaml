@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"praquem="'
+      - value: '"titulo="'
+      - value: '"Dir+System32"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_01_24, updated_at 2011_01_24
+      msg: '"ET TROJAN Spy Banker Outbound Communication Attempt"'
+      reference: md5,58b3c37b61d27cdc0a55321f4c12ef04
+      rev: '2'
+      sid: '2012225'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

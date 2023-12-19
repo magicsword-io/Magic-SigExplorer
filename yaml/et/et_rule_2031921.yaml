@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"myFunction()"'
+      - value: '"function myFunction() {"'
+      - value: '"if (feedUpdateSplit[x]==|22|#|22|"'
+      - value: '"#|22|+btoa(che)|3b|"'
+      - value: '"window.location.href=joinlink|3b|"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_03_10, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2021_03_10
+      msg: '"ET CURRENT_EVENTS Generic Redirector Phishing Landing 2021-03-10"'
+      rev: '2'
+      sid: '2031921'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

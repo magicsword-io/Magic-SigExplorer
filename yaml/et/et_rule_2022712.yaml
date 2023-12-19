@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '6129'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"|44 9c 00 00|"'
+      - value: '"|90 90 90 90 90 90 90 90|"'
+      - value: '"|eb 06 ff ff 61 11 40 00 90 90 90 e9 6b fa ff ff|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2016_04_06, cve CVE_2016_2345, former_category EXPLOIT,
+        confidence High, updated_at 2016_04_06
+      msg: '"ET EXPLOIT Dameware DMRC Buffer Overflow Attempt (CVE-2016-2345)"'
+      reference: url,www.securifera.com/blog/2016/04/03/fun-with-remote-controllers-dameware-mini-remote-control-cve-2016-2345
+      rev: '1'
+      sid: '2022712'
+    protocol: tcp
+    source:
+      network: any
+      port: any

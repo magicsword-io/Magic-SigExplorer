@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".lnk|22|"'
+      - value: '"|28|New-Object|20|-COM|20|WScript.Shell|29|.CreateShortcut|28|"'
+      flow: established,to_client
+      metadata: created_at 2021_09_15, former_category HUNTING, updated_at 2021_09_15
+      msg: '"ET INFO Inbound Powershell Creating .lnk File"'
+      rev: '1'
+      sid: '2033957'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

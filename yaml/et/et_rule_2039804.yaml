@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|mypressonline|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2022_11_17,
+        deployment Perimeter, performance_impact Low, signature_severity Informational,
+        updated_at 2022_11_17, reviewed_at 2023_08_21
+      msg: '"ET INFO Observed Free Hosting Domain (mypressonline .com) in DNS Lookup"'
+      rev: '1'
+      sid: '2039804'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

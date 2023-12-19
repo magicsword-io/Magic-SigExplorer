@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"auth|20|"'
+      flow: established
+      flowbits: isset,ET.eximsmtp
+      metadata: attack_target SMTP_Server, created_at 2023_10_03, cve CVE_2023_4115,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Significant, confidence Low, signature_severity Major, updated_at 2023_10_03,
+        reviewed_at 2023_10_03
+      msg: '"ET EXPLOIT Suspected Exim External Auth Overflow (CVE-2023-4115)"'
+      pcre: '"/^(?:(?:[^A\r\n]+[A])(?:[^A\r\n]+[A])){2,}/R"'
+      reference: cve,2023-4115
+      rev: '1'
+      sid: '2048390'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|login|10|drive-google-com|02|tk|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_11_30, deployment Perimeter, malware_family
+        SugarGh0st_RAT, performance_impact Low, confidence High, signature_severity
+        Major, tag RAT, updated_at 2023_11_30
+      msg: '"ET TROJAN SugarGh0st RAT Domain in DNS Lookup (login .drive-google-com
+        .tk)"'
+      reference: url,github.com/Cisco-Talos/IOCs/blob/main/2023/11/new-sugargh0st-rat.txt
+      rev: '1'
+      sid: '2049410'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '27'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

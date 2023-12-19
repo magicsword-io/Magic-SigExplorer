@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MDTM"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_1021, updated_at 2019_10_08
+      msg: '"GPL FTP invalid MDTM command attempt"'
+      pcre: '"/^MDTM \d+[-+]\D/smi"'
+      reference: cve,2004-0330
+      rev: '7'
+      sid: '2102416'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

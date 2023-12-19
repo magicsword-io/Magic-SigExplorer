@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|3c|html"'
+      - value: '"data|3a|application|2f|octet|2d|stream|3b|base64|2c|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_08_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, performance_impact Moderate,
+        signature_severity Informational, updated_at 2023_10_06, reviewed_at 2023_10_06
+      msg: '"ET INFO Base64 Encoded octet-stream File in HTML Body (Mime Type)"'
+      rev: '2'
+      sid: '2047790'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

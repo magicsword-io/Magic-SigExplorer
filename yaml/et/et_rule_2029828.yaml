@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<link rel=|22|icon|22 20|href=|22|https://www.cdc.gov/"'
+      - value: '"method=|22|post|22|"'
+      - value: '".php|22|"'
+      - value: '"submit=|22|return ValidateContactForm()|3b 22|"'
+      - value: '"src=|22|./untitled.png|22|"'
+      - value: '"Sign in with your email"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_04_07, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_04_07
+      msg: '"ET CURRENT_EVENTS CDC Coronavirus Related Phishing Landing 2020-04-07"'
+      rev: '2'
+      sid: '2029828'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

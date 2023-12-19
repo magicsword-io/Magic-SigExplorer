@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"|3c|meta|20|name|3d 22|ajs|2d|version|2d|number|22 20|content|3d
+          22|7|2e|"'
+      flow: established,to_client
+      metadata: affected_product Atlassian_Confluence, attack_target Web_Server, created_at
+        2023_11_06, cve CVE_2023_22518, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, updated_at 2023_11_06
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian Confluence CVE-2023-22518 Vulnerable Server
+        Detected Version 7.x M1"'
+      pcre: '"/^(?:1(?:9(?:\.(?:[023456789]|1[012345]?))?|3(?:\.(?:[03456789]|1\d?|20?))?|1(?:\.[0123456])?|2(?:\.[012345])?|6(?:\.[012345])?|7(?:\.[012345])?|4(?:\.[01234])?|5(?:\.[0123])?|8(?:\.[0123])?|0(?:\.[012])?|\.[012])?|4(?:\.(?:[023456789]|1[012345678]?))?|2(?:0(?:\.[0123])?|\.[012])?|0(?:\.[012345])?|3(?:\.[012345])?|7(?:\.[01234])?|8(?:\.[0123])?|9(?:\.[0123])?|5(?:\.[012])?|6(?:\.[012])?)\x22/R"'
+      reference: cve,2023-22518
+      rev: '1'
+      sid: '2049084'
+      special_options:
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 3600, track by_src
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

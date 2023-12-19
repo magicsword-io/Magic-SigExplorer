@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"|0a 51 00 00 00 00 00 00 00|"'
+      flow: established,to_server
+      flowbits: set,ET.ZenRATStatus
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_08_25, deployment Perimeter, former_category
+        MALWARE, malware_family ZenRAT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_08_25, reviewed_at 2023_08_25
+      msg: '"ET TROJAN ZenRAT Get Status Command"'
+      pcre: '"/([\x00-\xff]\x00{7}){2}/R"'
+      reference: md5,6f809b1c82d9fb6cd277c6b645ecaf84
+      rev: '1'
+      sid: '2047756'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

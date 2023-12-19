@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|68 61 78 30 72 20|"'
+      dsize: '23'
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2023_08_09, deployment Perimeter, former_category MALWARE, malware_family
+        Reptile_Rootkit, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_08_09
+      msg: '"ET TROJAN Reptile Rootkit Default UDP Magic Packet Trigger"'
+      reference: url,github.com/f0rb1dd3n/Reptile
+      rev: '1'
+      sid: '2047158'
+    protocol: udp
+    source:
+      network: any
+      port: '666'

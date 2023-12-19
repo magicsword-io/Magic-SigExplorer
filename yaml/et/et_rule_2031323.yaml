@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"name=|22|"'
+      - value: '"|22 3b|filename=|22|"'
+      - value: '"|22 0a|Content-Type|3a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_12_14, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_12_14,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN [Fireeye] Backdoor.BEACON M1"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+      rev: '2'
+      sid: '2031323'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

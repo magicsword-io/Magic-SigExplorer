@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"public"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, cve CVE_1999_0517, updated_at 2019_10_08
+      msg: '"GPL SNMP public access udp"'
+      reference: cve,2002-0013
+      rev: '12'
+      sid: '2101411'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

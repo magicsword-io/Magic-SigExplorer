@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Zollard"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_12_05, updated_at 2020_04_27
+      msg: '"ET EXPLOIT Zollard PHP Exploit UA"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+?Zollard/Hmi"'
+      reference: url,deependresearch.org/2013/12/hey-zollard-leave-my-internet-of-things.html
+      rev: '4'
+      sid: '2017798'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"WRAssembly",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.rtf
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"FILE-OFFICE Microsoft Office RTF WRAssembly ASLR bypass download attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms15-033
+      rev: '4'
+      service: ftp-data,http,imap,pop3
+      sid: '39528'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

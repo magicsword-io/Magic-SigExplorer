@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|one-click|02|cc|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, confidence Medium,
+        signature_severity Major, updated_at 2023_08_24, reviewed_at 2023_11_27
+      msg: '"ET CURRENT_EVENTS Abused Domain Delivering Malicious Payloads in DNS
+        Lookup (one-click .cc)"'
+      rev: '1'
+      sid: '2047724'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/server/gate.php",fast_pattern,nocase'
+      - value: '"name=|22|hwid|22|"'
+      - value: '"name=|22|platform|22|"'
+      - value: '"name=|22|pcount|22|"'
+      - value: '"name=|22|cccount|22|"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Nocturnal outbound connection"'
+      reference: url,www.virustotal.com/en/file/ae7e5a7b34dc216e9da384fcf9868ab2c1a1d731f583f893b2d2d4009da15a4e/analysis/
+      rev: '1'
+      service: http
+      sid: '46895'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

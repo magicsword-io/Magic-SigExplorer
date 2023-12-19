@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '".forward"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL FTP .forward"'
+      reference: arachnids,319
+      rev: '6'
+      sid: '2100334'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

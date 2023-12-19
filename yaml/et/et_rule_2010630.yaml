@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/nsi_install.php?inst_result=success&aff_id="'
+      - value: '"&id="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Generic Adware Install Report"'
+      reference: url,doc.emergingthreats.net/2010630
+      rev: '6'
+      sid: '2010630'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

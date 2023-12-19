@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/image/"'
+      - value: '".jpg"'
+      - value: '"User-Agent|3a| Mozilla/5.0 |28|compatible|3b| MSIE 8.0|3b| Windows
+          NT 6.1|3b| Trident/5.0|29 0d 0a|"'
+      - value: '"Referer|3a| http|3a|//www.google.com/"'
+      fast_pattern: 55,20
+      flow: established,to_server
+      metadata: created_at 2014_06_09, updated_at 2020_04_30
+      msg: '"ET TROJAN EtumBot Registration Request"'
+      pcre: '"/^\x2fimage\x2f[A-Za-z0-9\+_-]+\x2ejpg$/Ui"'
+      reference: md5,ca838b98ca0f516858a8a523dcd1338d
+      rev: '5'
+      sid: '2018546'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

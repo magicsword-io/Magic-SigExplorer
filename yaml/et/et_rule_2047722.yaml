@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|gk-stst|02|ru|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_08_24, reviewed_at 2023_11_27
+      msg: '"ET TROJAN Commonly Abused Domain in DNS Lookup (gk-stst .ru)"'
+      reference: md5,f3100ed6ed9526289473ecd6af30061e
+      rev: '1'
+      sid: '2047722'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

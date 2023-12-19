@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/api/jsonws/"'
+      - value: '".c3p0.WrapperConnectionPoolDataSource"'
+      - value: '"&defaultData.userOverridesAsString=HexAsciiSerializedMap|3a|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_01_29, cve CVE_2020_7961, deployment
+        Perimeter, deployment Internal, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2021_01_29
+      msg: '"ET WEB_SPECIFIC_APPS Liferay Unauthenticated RCE via JSONWS Inbound (CVE-2020-7961)"'
+      reference: cve,2020-7961
+      rev: '2'
+      sid: '2031592'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/p/util/show_device_info"'
+      - value: '"DEVICEID"'
+      - value: '"FGMGTOKEN"'
+      flow: established,to_server
+      metadata: affected_product Fortigate, attack_target Server, created_at 2023_03_17,
+        deployment Perimeter, deployment Internal, former_category MALWARE, performance_impact
+        Low, confidence High, updated_at 2023_03_17
+      msg: '"ET TROJAN Fortigate THINCRUST Backdoor Activity M1"'
+      reference: url,www.mandiant.com/resources/blog/fortinet-malware-ecosystem
+      rev: '1'
+      sid: '2044678'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

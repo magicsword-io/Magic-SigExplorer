@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>180'
+      classtype: trojan-activity
+      contents:
+      - value: '"/api.php?d=",fast_pattern,nocase'
+      - value: '"Accept|3A 20|*/*|0D 0A|"'
+      - value: '"Connection|3A 20|close|0D 0A|"'
+      - value: '!"User-Agent"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.DFSCook variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/7a32e9d01e66f68461e410a29e38e147fb8a3d3695f1e55f4cf0d2ad789d5b2d/analysis/1460564508/
+      rev: '3'
+      service: http
+      sid: '38586'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

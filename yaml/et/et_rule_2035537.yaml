@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0_Frsg_stredf_o21_crown_type"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2022_03_18, deployment Perimeter,
+        former_category USER_AGENTS, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2022_03_18, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET USER_AGENTS Observed Malicious User-Agent (CobaltStrike)"'
+      reference: md5,b8b7a10dcc0dad157191620b5d4e5312
+      rev: '1'
+      sid: '2035537'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

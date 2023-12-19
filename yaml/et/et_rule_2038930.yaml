@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"GET"'
+      - value: '"/rest/api/"'
+      - value: '"/projects/"'
+      - value: '"/repos/"'
+      - value: '"|00|--"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Atlassian, attack_target Client_Endpoint, created_at
+        2022_09_22, cve CVE_2022_36804, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, signature_severity Major, updated_at 2022_09_22
+      msg: '"ET EXPLOIT Atlassian Bitbucket CVE-2022-36804 Exploit Attempt"'
+      reference: url,attackerkb.com/topics/iJIxJ6JUow/cve-2022-36804/rapid7-analysis
+      rev: '1'
+      sid: '2038930'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

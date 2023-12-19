@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|achilleaso|02|ru|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_08, deployment Perimeter, former_category
+        MALWARE, malware_family Gamaredon, signature_severity Major, updated_at 2023_08_08
+      msg: '"ET TROJAN Gamaredon APT Related Domain in DNS Lookup (achilleaso .ru)"'
+      reference: url,twitter.com/Cyber0verload/status/1686972930360553473
+      rev: '1'
+      sid: '2047100'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

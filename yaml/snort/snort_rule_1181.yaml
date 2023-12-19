@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"/ping?query="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Annex Terminal DOS attempt"'
+      reference: nessus,10017
+      rev: '18'
+      service: http
+      sid: '1181'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

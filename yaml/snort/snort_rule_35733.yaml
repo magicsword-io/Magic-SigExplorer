@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3C|methodName|3E|10a7d030-1a61-11e3-beea-001c42e2a08b|3C 2F|methodName|3E|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Potao outbound connection"'
+      reference: url,www.virustotal.com/en/file/c66955f667e9045ea5591ebf9b59246ad86227f174ea817d1398815a292b8c88/analysis/
+      rev: '3'
+      service: http
+      sid: '35733'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

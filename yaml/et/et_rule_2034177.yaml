@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,1,relative, post_offset -34
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"OU=Delegated Licensor,KYP SDT LTD"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_10_12, deployment Perimeter,
+        former_category MALWARE, malware_family Fin12, signature_severity Major, tag
+        SSL_Malicious_Cert, updated_at 2021_10_12
+      msg: '"ET TROJAN Observed Malicious FIN12 Related SSL Cert"'
+      pcre: '"/^(?:\x21|\x2e)OU=Delegated Licensor,KYP SDT LTD/R"'
+      reference: url,www.mandiant.com/resources/fin12-ransomware-intrusion-actor-pursuing-healthcare-targets
+      rev: '2'
+      sid: '2034177'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

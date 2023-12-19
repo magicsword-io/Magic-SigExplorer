@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".%20.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP serv-u directory traversal"'
+      reference: nessus,10565
+      rev: '16'
+      service: ftp
+      sid: '360'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

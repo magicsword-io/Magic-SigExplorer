@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id="'
+      - value: '"&token1="'
+      - value: '"&token2="'
+      - value: '"&C="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2016_01_08, former_category MALWARE, updated_at 2020_06_17
+      msg: '"ET TROJAN DustySky Payload Link Request"'
+      pcre: '"/\/[A-Za-z]+\.php\?((?:id|token1|token2|C)=[A-Za-z0-9\/=+%]*={0,2}&?){4}$/U"'
+      reference: url,www.clearskysec.com/wp-content/uploads/2016/01/Operation%20DustySky_TLP_WHITE.pdf
+      rev: '1'
+      sid: '2022343'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

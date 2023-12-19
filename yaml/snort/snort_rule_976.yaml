@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '".bat?",fast_pattern,nocase'
+      - value: '"/cgi-bin/",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP .bat? access"'
+      reference: url,support.microsoft.com/support/kb/articles/Q155/0/56.asp
+      rev: '22'
+      service: http
+      sid: '976'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

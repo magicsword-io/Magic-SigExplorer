@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '!"Mozilla/"'
+      - value: '!"Referer|3A 20|"'
+      - value: '!"Accept"'
+      - value: '!"MstarUpdate"'
+      - depth: '12'
+        value: '"User-Agent|3a 20|"'
+      - value: '!".bitdefender.com|0d 0a|"'
+      - value: '!".homestead.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_04_01, former_category CURRENT_EVENTS, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Potential Dridex.Maldoc Minimal Executable Request"'
+      pcre: '"/^User-Agent\x3A\x20[a-z\x20]{2,30}\r\nHost\x3A[^\r\n]+\r\n(?:\r\n)?$/Hmi"'
+      reference: url,blogs.cisco.com/security/dridex-attacks-target-corporate-accounting
+      rev: '6'
+      sid: '2020826'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: <40
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

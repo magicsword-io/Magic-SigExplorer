@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Zadanie|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2023_06_02, updated_at 2023_06_02
+      msg: '"ET USER_AGENTS Suspicious User Agent (Zadanie)"'
+      reference: url,twitter.com/nahamike01/status/1664595922360344578
+      rev: '1'
+      sid: '2046057'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

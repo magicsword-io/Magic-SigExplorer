@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<FORM METHOD=\"GET\" NAME=\"comments\" ACTION=\"\">"'
+      flow: established,to_client
+      metadata: created_at 2013_03_27, updated_at 2013_03_27
+      msg: '"ET WEB_SERVER WebShell - JSPCMD - Form"'
+      rev: '1'
+      sid: '2016684'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

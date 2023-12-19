@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?cmd=p&id="'
+      - value: '"&rnd="'
+      - value: '!"Referer"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_07, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, updated_at 2020_10_09
+      msg: '"ET TROJAN JS/HTA Downloader Behavior M3"'
+      pcre: '"/\.php\?cmd=p&id=\w+.*?&rnd=[\x2e\d]+$/Ui"'
+      reference: md5,d3abaa6736d7d549eca8644c67e9fcfe
+      rev: '3'
+      sid: '2023485'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

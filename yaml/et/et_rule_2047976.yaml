@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"JSCAPE MFT "'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"JSCAPE L"'
+      distance: '2'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2023_09_08, deployment Perimeter,
+        deployment Internal, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2023_09_08, reviewed_at 2023_09_08
+      msg: '"ET INFO JSCAPE MFT - Binary Management Service Default TLS Certificate"'
+      reference: url,www.jscape.com/blog/binary-management-service-patch-cve-2023-4528
+      rev: '1'
+      sid: '2047976'
+      within: '8'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '10880'

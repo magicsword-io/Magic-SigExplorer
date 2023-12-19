@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"FHScan Core 1."'
+      flow: to_server,established
+      metadata: created_at 2012_04_12, updated_at 2020_04_22
+      msg: '"ET SCAN FHScan core User-Agent Detect"'
+      reference: url,www.tarasco.org/security/FHScan_Fast_HTTP_Vulnerability_Scanner/index.html
+      rev: '4'
+      sid: '2014541'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

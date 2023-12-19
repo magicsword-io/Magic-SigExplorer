@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '".xsph.ru|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_04_08,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, updated_at
+        2021_04_08
+      msg: '"ET INFO Observed POST to xsph .ru Domain"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.xsph\.ru/Hmi"'
+      rev: '2'
+      sid: '2032531'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

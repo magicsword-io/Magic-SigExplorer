@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|50 4b 03 04 14 00|"'
+      - value: '"Desktop.png"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_11, deployment Perimeter, former_category
+        MALWARE, malware_family HunterStealer, malware_family AlfonsoStealer, malware_family
+        PhoenixStealer, signature_severity Major, updated_at 2020_11_11
+      msg: '"ET TROJAN Win32/HunterStealer/AlfonsoStealer/PhoenixStealer CnC Exfil"'
+      reference: md5,490f0cff27a1cff0aead0ca3864e15d6
+      rev: '1'
+      sid: '2031198'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: network-scan
+      contents:
+      - depth: '3'
+        value: '"220"'
+      - value: '"WS_FTP|20|Server|20|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product WS_FTP, attack_target FTP_Server, created_at 2023_10_05,
+        cve CVE_2023_40044, deployment Perimeter, deployment Internal, former_category
+        FTP, performance_impact Low, confidence High, signature_severity Minor, updated_at
+        2023_10_06, reviewed_at 2023_10_06
+      msg: '"ET FTP Vulnerable WS_FTP Version in FTP Banner Response (CVE-2023-40044)"'
+      pcre: '"/^(8\.7\.[0-3])|(8\.[0-6]\.)|(8\.8\.[0-1])/R"'
+      reference: cve,2023-40044
+      rev: '2'
+      sid: '2048464'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 3600, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $FTP_PORTS

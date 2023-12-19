@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/forum/search.php?email="'
+      - value: '"&method=",distance 0'
+      - value: '!"Referer"'
+      - value: '!"Accept-"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Win32 Facebook Secure Cryptor C2"'
+      reference: url,blog.avast.com/2013/06/18/your-facebook-connection-is-now-secured
+      rev: '3'
+      service: http
+      sid: '26965'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

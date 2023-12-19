@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '"/yahoo.php"'
+      - depth: '7'
+        value: '".tries="'
+      - value: '"&.challenge="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_06_23, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_11, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Yahoo Phish Jun 23 2015"'
+      rev: '4'
+      sid: '2021323'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

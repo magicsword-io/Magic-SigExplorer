@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/api/internet/ping"'
+      - value: '"ping_addr"'
+      fast_pattern: 6,20
+      flow: to_server,established
+      metadata: attack_target Networking_Equipment, created_at 2022_11_16, cve CVE_2022_31898,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_11_16
+      msg: '"ET EXPLOIT GL iNet MTN300n Command Injection Attempt Inbound (CVE-2022-31898)"'
+      pcre: '"/ping_addr[\x22\x27]\s*\x3a\s*[\x22\x27]\x3b/P"'
+      reference: cve,2022-31898
+      rev: '1'
+      sid: '2039794'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

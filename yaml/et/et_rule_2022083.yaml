@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Mailbox renewal"'
+      - value: '"autorised email address"'
+      - value: '"To complete this autorization"'
+      - value: '"Online MailBox Renewal"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_11_13, updated_at 2015_11_13
+      msg: '"ET CURRENT_EVENTS Mailbox Renewal Phish Landing Nov 13"'
+      rev: '1'
+      sid: '2022083'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

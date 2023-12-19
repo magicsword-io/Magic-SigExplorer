@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".asp?cookie="'
+      - value: '"&type="'
+      - value: '"&vid="'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_08_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_08_18,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Sakula/Mivast RAT CnC Beacon 6"'
+      reference: url,www.secureworks.com/cyber-threat-intelligence/threats/sakula-malware-family/
+      rev: '1'
+      sid: '2021569'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

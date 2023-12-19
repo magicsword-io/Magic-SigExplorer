@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '16'
+        value: '"/index.php?name="'
+      - value: '"&host="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_31, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2022_10_31
+      msg: '"ET INFO GET Request Exfiltrating Username and Hostname"'
+      reference: md5,76ee96d37d492dddcd8b62a2a0c1e426
+      rev: '1'
+      sid: '2039605'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

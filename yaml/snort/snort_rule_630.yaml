@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      flags: FS
+      flow: stateless
+      id: '39426'
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN synscan portscan"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '11'
+      sid: '630'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

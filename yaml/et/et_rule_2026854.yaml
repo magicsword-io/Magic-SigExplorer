@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '21'
+        value: '"<RESULT>true</RESULT>"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_24, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Teambot, updated_at 2020_08_27
+      msg: '"ET TROJAN [PTsecurity] Possible Backdoor.Win32.TeamBot / RTM C2 Response"'
+      rev: '2'
+      sid: '2026854'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

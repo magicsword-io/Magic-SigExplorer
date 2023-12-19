@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2381'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"echo -n|20|"'
+      flow: to_server,established
+      metadata: affected_product HP_Smart_Storage_Administrator, attack_target Server,
+        created_at 2017_03_15, cve CVE_2016_8523, deployment Datacenter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Critical, updated_at 2017_03_15
+      msg: '"ET EXPLOIT HP Smart Storage Administrator Remote Command Injection"'
+      pcre: '"/^\s*(?:f0VMR|9FTE|\/RUxG)/R"'
+      reference: cve,2016-8523
+      rev: '2'
+      sid: '2024063'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

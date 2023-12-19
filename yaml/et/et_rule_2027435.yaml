@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 2a 00 2a 00 2a 00 20 00|p|00|r|00|o|00|c|00|d|00|u|00|m|00|p|00|6|00|4|00
+          2e 00|e|00|x|00|e"'
+      fast_pattern: 9,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_06_05, deployment Perimeter, former_category ATTACK_RESPONSE, performance_impact
+        Low, signature_severity Major, tag T1003, tag credential_dumping, updated_at
+        2019_06_05
+      msg: '"ET ATTACK_RESPONSE Windows 64bit procdump Dump File Exfiltration"'
+      reference: url,attack.mitre.org/techniques/T1003/
+      rev: '2'
+      sid: '2027435'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

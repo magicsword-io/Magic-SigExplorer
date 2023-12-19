@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '68'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"() {",fast_pattern,nocase'
+      - value: '"|02 01 06 00|",depth 4'
+      flow: stateless
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"OS-OTHER Malicious DHCP server bash environment variable injection attempt"'
+      reference: cve,2014-7169
+      rev: '6'
+      sid: '31985'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '67'

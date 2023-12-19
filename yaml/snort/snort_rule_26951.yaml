@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/.cache/?f=",fast_pattern'
+      - value: '".jar"'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT DotkaChef/Rmayana/DotCache exploit kit Malvertising Campaign
+        URI request"'
+      pcre: '"/[^&]+&[a-z]=[a-f0-9]{16}&[a-z]=[a-f0-9]{16}$/"'
+      reference: url,research.zscaler.com/2013/06/openxadvertisingcom-mass-malvertising.html
+      rev: '5'
+      service: http
+      sid: '26951'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

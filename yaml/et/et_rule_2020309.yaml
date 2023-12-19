@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '5'
+        value: '"SMB"'
+      - value: '"|00|{|00|6|00|6|00|f|00|b|00|e|00|8|00|7|00|a|00|-|00|4|00|3|00|7|00|2|00|-|00|1|00|f|00|5|00|1|00|-|00|1|00|0|00|1|00|d|00|-|00|1|00|a|00|a|00|f|00|0|00|0|00|4|00|3|00|1|00|2|00|7|00|a|00|}"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_01_26, updated_at 2015_01_26
+      msg: '"ET TROJAN Regin Hopscotch Module Accessing SMB2 Named Pipe (Unicode)
+        1"'
+      reference: url,securelist.com/blog/research/68438/an-analysis-of-regins-hopscotch-and-legspin
+      rev: '1'
+      sid: '2020309'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

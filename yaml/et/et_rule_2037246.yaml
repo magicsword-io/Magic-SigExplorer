@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 1d 11|"'
+      - value: '"*.rnit.me"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2022_07_01, updated_at 2022_07_01
+      msg: '"ET TROJAN Observed Malicious SSL/TLS Certificate (SilentLibrarian)"'
+      rev: '1'
+      sid: '2037246'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

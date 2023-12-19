@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/home/aravalcl/public_html/"'
+      - value: '"ob_start|28 29|"'
+      - value: '">Command</a>>"'
+      - value: '"Software|3a|"'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2023_10_13, deployment Perimeter,
+        former_category WEB_SERVER, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_10_13, reviewed_at 2023_10_13
+      msg: '"ET WEB_SERVER Generic PHP Webshell Activity"'
+      reference: md5,f899d6cbe1be6395a0fa2a802b8eb579
+      rev: '1'
+      sid: '2048557'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

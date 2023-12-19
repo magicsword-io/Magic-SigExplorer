@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        offset: '16'
+        value: '"|90 48 5c d5 ec 70 a3 8b 41 72 28 50 ec f6 d5 2a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_08_01, deployment Perimeter, former_category
+        MALWARE, malware_family PoisonIvy, signature_severity Critical, tag PoisonIvy,
+        updated_at 2016_07_01
+      msg: '"ET TROJAN PoisonIvy.E Keepalive to CnC"'
+      reference: md5,fc414168a5b4ca074ea6e03f770659ef
+      rev: '4'
+      sid: '2013337'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

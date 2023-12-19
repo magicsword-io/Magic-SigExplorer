@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>7'
+      classtype: trojan-activity
+      contents:
+      - value: '"/exe.exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE exe.exe download"'
+      reference: url,urlquery.net/search.php?q=%5C%2F%5BEe%5D%5BXx%5D%5BEe%5D%5C.%5BEe%5D%5BXx%5D%5BEe%5D%24&type=regexp&start=2013-11-21&end=2013-12-06&max=400
+      rev: '2'
+      service: http
+      sid: '28945'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

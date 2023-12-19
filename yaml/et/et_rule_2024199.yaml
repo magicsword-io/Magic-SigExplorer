@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|69 64 3d 22 70 70 68 68 22 20 3e 54 68 65 20 22 48 6f 65 66 6c 65
+          72 54 65 78 74 22 20 66 6f 6e 74 20 77 61 73 6e 27 74 20 66 6f 75 6e 64
+          2e|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_11, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family EITest, signature_severity Major, updated_at
+        2021_03_08
+      msg: '"ET CURRENT_EVENTS EITest SocENG Inject M2"'
+      rev: '1'
+      sid: '2024199'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

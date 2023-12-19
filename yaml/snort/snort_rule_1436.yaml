@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A| Quicktime",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-MULTIMEDIA Apple Quicktime User Agent access"'
+      rev: '12'
+      service: http
+      sid: '1436'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

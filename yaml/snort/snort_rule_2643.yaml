@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sys.dbms_repcat_fla.ensure_not_published",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sys.dbms_repcat_fla.ensure_not_published buffer overflow
+        attempt"'
+      pcre: '"/\(\s*(\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})/is"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck96.html
+      rev: '5'
+      sid: '2643'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

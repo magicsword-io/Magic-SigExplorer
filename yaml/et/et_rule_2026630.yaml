@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"HTTP/1.1|20|200|20|OK"'
+      - value: '"|0d 0a 0d 0a|getbotdata"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: isset,ET.DarkGate.1
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_19, deployment Perimeter, former_category
+        MALWARE, malware_family DarkGate, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2020_09_16
+      msg: '"ET TROJAN DarkGate CnC Requesting Data Exfiltration from Bot"'
+      reference: url,blog.ensilo.com/darkgate-malware
+      rev: '2'
+      sid: '2026630'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

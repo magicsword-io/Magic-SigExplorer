@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Opera|5C|9.64|0A|",fast_pattern,nocase'
+      - value: '"bb.php?v="'
+      - value: '"id=",distance 0'
+      - value: '"b=",distance 0'
+      - value: '"tm=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Injector variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/2afb098dfea7d2acd73da520fe26d09acee1449c79d2c8753f3008a2a8f648b2/analysis/
+      rev: '8'
+      service: http
+      sid: '20221'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

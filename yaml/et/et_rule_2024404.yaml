@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9100'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '7'
+        value: '"@PJL FS"'
+      - value: '"NAME="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2017_06_16, cve CVE_2017_2741, deployment
+        Internal, former_category EXPLOIT, performance_impact Moderate, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET EXPLOIT HP Printer Attempted Path Traversal via PJL"'
+      pcre: '"/^\s*[\x22\x27][^\x22\x27]{0,128}\x2e\x2e/Ri"'
+      reference: cve,2017-2741
+      rev: '3'
+      sid: '2024404'
+    protocol: tcp
+    source:
+      network: any
+      port: any

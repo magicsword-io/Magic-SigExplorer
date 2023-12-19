@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '" Firefox/2."'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_05_21, updated_at 2020_04_24
+      msg: '"ET POLICY Unsupported/Fake FireFox Version 2."'
+      pcre: '"/^User-Agent\x3a[^\r\n]+?\sFirefox\/2\./Hmi"'
+      rev: '2'
+      sid: '2016877'
+      special_options:
+      - http_header
+      - nocase
+      threshold: type limit,track by_src,count 2,seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

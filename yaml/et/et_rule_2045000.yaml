@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|s|3a|Envelope|20|xmlns|3a|s|3d 22|http|3a 2f 2f|schemas|2e|xmlsoap|2e|org|2f|soap|2f|envelope|2f
+          22 3e 3c|s|3a|Body|3e 3c|CheckConnectResponse|20|xmlns|3d 22|http|3a 2f
+          2f|tempuri|2e|org|2f 22 3e 3c|CheckConnectResult|3e|true|3c 2f|CheckConnectResult|3e
+          3c 2f|CheckConnectResponse|3e 3c 2f|s|3a|Body|3e 3c 2f|s|3a|Envelope|3e|"'
+      - depth: '212'
+      fast_pattern: 112,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, former_category
+        MALWARE, malware_family Redline, confidence High, signature_severity Major,
+        updated_at 2023_07_13, reviewed_at 2023_11_17
+      msg: '"ET TROJAN RedLine Stealer - CheckConnect Response"'
+      reference: md5,43967615d9e0e19bc59d32fdb5afd7e4
+      rev: '3'
+      sid: '2045000'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

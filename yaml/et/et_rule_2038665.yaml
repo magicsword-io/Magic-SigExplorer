@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/delsnap.pl|3f 7c|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2022_08_29, cve CVE_2022_34753, former_category
+        EXPLOIT, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_08_29
+      msg: '"ET EXPLOIT Attempted Schneider Electric SpaceLogic C-Bus Home Controller
+        5200WHC2 Remote Code Execution (CVE-2022-34753)"'
+      reference: url,www.exploit-db.com/exploits/50987
+      rev: '1'
+      sid: '2038665'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

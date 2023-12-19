@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|akamaitechnologies|02|kz|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_06, deployment Perimeter, former_category
+        MALWARE, malware_family StealerOne, performance_impact Low, signature_severity
+        Major, tag FIN6, updated_at 2020_09_16
+      msg: '"ET TROJAN FIN6 StealerOne CnC DNS Query"'
+      reference: url,usa.visa.com/content/dam/VCOM/global/support-legal/documents/fin6-cybercrime-group-expands-threat-To-ecommerce-merchants.pdf
+      rev: '2'
+      sid: '2027059'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".php?"'
+      - value: '"=zlib|3a|//"'
+      flow: established,to_server
+      metadata: created_at 2011_06_10, cve CVE_2002_0953, updated_at 2020_04_20
+      msg: '"ET WEB_SERVER PHP Possible zlib Remote File Inclusion Attempt"'
+      reference: url,diablohorn.wordpress.com/2010/01/16/interesting-local-file-inclusion-method/
+      rev: '4'
+      sid: '2013014'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

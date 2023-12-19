@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/v22/mutabixa/1nf3ct/"'
+      - value: '"chave=",distance 0'
+      - value: '"&url=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banload information upload"'
+      reference: url,www.nyxbone.com/malware/banload.html
+      rev: '3'
+      service: http
+      sid: '28106'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

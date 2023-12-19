@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"secure_site, ok",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP SecureSite authentication bypass attempt"'
+      reference: bugtraq,4621
+      rev: '9'
+      service: http
+      sid: '1744'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

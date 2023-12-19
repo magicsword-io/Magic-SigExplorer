@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a| Alina v"'
+      - value: '"act="'
+      - value: '"&b="'
+      - value: '"&c="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2013_05_09, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Alina Checkin"'
+      reference: url,blog.spiderlabs.com/2013/05/alina-shedding-some-light-on-this-malware-family.html
+      rev: '5'
+      sid: '2016837'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

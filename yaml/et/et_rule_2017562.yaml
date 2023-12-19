@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Embassy  Tokyo, Japan"'
+      - value: '"<applet"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_10_05, former_category EXPLOIT_KIT, updated_at 2013_10_05
+      msg: '"ET CURRENT_EVENTS Sweet Orange Landing with Applet Oct 4 2013"'
+      rev: '5'
+      sid: '2017562'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

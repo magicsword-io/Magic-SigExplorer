@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"alter user",nocase'
+      - value: '" identified by ",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE ALTER USER attempt"'
+      rev: '7'
+      sid: '1691'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

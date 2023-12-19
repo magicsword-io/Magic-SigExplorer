@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '9'
+      classtype: trojan-activity
+      contents:
+      - value: '"/diff.php",fast_pattern,nocase'
+      - value: '"|0D 0A|User-Agent: Mozilla/4.0|0D 0A|"'
+      - value: '"|0D 0A|Content-Type: application/octet-stream|0D 0A|"'
+      - value: '"|A0 CD 37 A4 5B|",depth 5'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a7009a6ed3ff0191e3c8e7f8b27b9b16afe2a82d1eb131ecd27d8f8a5b17e819/analysis/1433243075/
+      rev: '2'
+      service: http
+      sid: '35030'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

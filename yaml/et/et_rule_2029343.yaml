@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|09|dnslookup|08|services"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_31, deployment Perimeter, former_category
+        MALWARE, malware_family Winnti, signature_severity Major, updated_at 2020_01_31
+      msg: '"ET TROJAN Possible Winnti TLS Certificate Observed"'
+      reference: url,www.welivesecurity.com/2020/01/31/winnti-group-targeting-universities-hong-kong/
+      rev: '2'
+      sid: '2029343'
+      special_options:
+      - fast_pattern
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '12'
+        value: '"/front/login"'
+      - depth: '10'
+        value: '"|7b 22|force|22 3a 22|"'
+      - value: '"|22 2c 22|login|22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_07, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_07
+      msg: '"ET CURRENT_EVENTS Successful Orange Credential Phish 2022-07-07"'
+      reference: md5,4c80bc4f11a19f74c381d18b091a46b4
+      rev: '1'
+      sid: '2037280'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

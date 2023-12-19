@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|2f|key|2f|"'
+      - value: '"Go|2d|http|2d|client"'
+      - value: '"Host|3a 20|karen|2e|"'
+      - depth: '3'
+        value: '"id|3d|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|26|key|3d|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '12'
+      isdataat: '!513,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2023_04_05,
+        reviewed_at 2023_10_16, mitre_tactic_id TA0040, mitre_tactic_name Impact,
+        mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed Karen Ransomware CnC Checkin"'
+      pcre: '"/id\x3d[a-z0-9]{8}\x2d[a-z0-9]{4}\x2d[a-z0-9]{4}\x2d[a-z0-9]{4}\x2d[a-z0-9]{12}\x26key\x3d[a-z0-9]{512}/P"'
+      reference: url,twitter.com/fbgwls245/status/1427610307283677186
+      rev: '2'
+      sid: '2033772'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '23'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/var/run/.zollard/"'
+      flow: to_server,established
+      metadata: created_at 2013_12_05, updated_at 2013_12_05
+      msg: '"ET EXPLOIT Zollard PHP Exploit Telnet Inbound"'
+      reference: url,deependresearch.org/2013/12/hey-zollard-leave-my-internet-of-things.html
+      rev: '2'
+      sid: '2017799'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

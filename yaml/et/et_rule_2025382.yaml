@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|vip|05|rm028|02|cn"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_23, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN Known Malicious Redirector in DNS Lookup (vip.rm028 .cn)"'
+      reference: url,blog.malwarebytes.com/threat-analysis/2018/02/chinese-criminal-experiments-with-exploits-in-drive-by-download-campaign/
+      rev: '2'
+      sid: '2025382'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

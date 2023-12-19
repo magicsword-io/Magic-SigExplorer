@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"?cmd=<cms-ping>"'
+      - value: '"|3c 21 5b|CDATA|5b 7c 7c|"'
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2022_08_31, cve CVE_2020_2038, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_08_31
+      msg: '"ET EXPLOIT PAN-OS OS Command Injecton Attempt Inbound (CVE-2020-2038)"'
+      reference: cve,2020-2038
+      rev: '1'
+      sid: '2038688'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

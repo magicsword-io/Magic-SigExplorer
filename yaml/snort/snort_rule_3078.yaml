@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '119'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SEARCH|20|",depth 7,nocase'
+      flow: to_server,established
+      isdataat: 160,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-NNTP Microsoft Windows SEARCH pattern overflow attempt"'
+      pcre: '"/^SEARCH\s+[^\n]{160}/i"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-036
+      rev: '13'
+      sid: '3078'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

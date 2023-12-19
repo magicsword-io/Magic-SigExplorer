@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|82 F4 DE D4 D3 C2 CA F5 C8 C8 D3 82 FB F4 DE D4 D3 C2 CA 94 95 FB
+          D4 D1 C4 CF C8 D4 D3 89 C2 DF C2 87 8A CC 87 00|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-TOOLS Win.Trojan.Wiper proxy tool download attempt"'
+      reference: url,us-cert.gov/ncas/alerts/TA14-353A
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '32938'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

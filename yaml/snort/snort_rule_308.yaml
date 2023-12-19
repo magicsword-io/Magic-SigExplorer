@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|B4| |B4|!|8B CC 83 E9 04 8B 19|3|C9|f|B9 10|"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER NextFTP client overflow"'
+      reference: cve,1999-0671
+      rev: '14'
+      service: ftp
+      sid: '308'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '21'

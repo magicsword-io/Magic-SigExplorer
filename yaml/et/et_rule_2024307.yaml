@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"&act="'
+      - value: '!".money-media.com|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '"rprt="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product MS_Office, attack_target Client_Endpoint, created_at
+        2017_05_17, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2020_10_30
+      msg: '"ET TROJAN MWI Maldoc Posting Host Data"'
+      pcre: '"/\?id=\d+&act=\d$/U"'
+      rev: '1'
+      sid: '2024307'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

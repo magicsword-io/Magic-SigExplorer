@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/installer?dp="'
+      - value: '"&sdp="'
+      - value: '"&f="'
+      - value: '"&id="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2014_09_10, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE MAC/Conduit Component Download"'
+      reference: url,blogs.cisco.com/security/kyle-and-stan/
+      rev: '2'
+      sid: '2019144'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

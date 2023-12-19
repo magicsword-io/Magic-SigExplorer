@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<script"'
+      - value: '"powershell"'
+      - value: '"gALAAkACgAWwBDAG8AbgB2AGUAcgB0AF0AOgA6AEYAcgBvAG0AQgBhAHMAZQA2ADQAUwB0AHIAaQBuAGcAK"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_11, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, updated_at 2017_08_11
+      msg: '"ET CURRENT_EVENTS Possible Veil Powershell Encoder B642"'
+      rev: '1'
+      sid: '2024539'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

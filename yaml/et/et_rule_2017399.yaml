@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"base64_decode"'
+      - value: '"eval"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2013_08_31, updated_at 2019_10_08
+      msg: '"ET WEB_SERVER WebShell Generic eval of base64_decode"'
+      pcre: '"/^[\r\n\s]*?\x28[\r\n\s]*?base64_decode/Rsi"'
+      rev: '6'
+      sid: '2017399'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

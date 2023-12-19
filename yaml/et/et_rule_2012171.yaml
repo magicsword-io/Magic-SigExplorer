@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|3322|03|org"'
+      distance: '0'
+      metadata: created_at 2011_01_12, updated_at 2020_09_14
+      msg: '"ET INFO DYNAMIC_DNS Query to 3322.org Domain"'
+      reference: url,www.mywot.com/en/scorecard/3322.org
+      rev: '7'
+      sid: '2012171'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

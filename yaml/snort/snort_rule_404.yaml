@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '2'
+      itype: '3'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-ICMP Destination Unreachable Protocol Unreachable"'
+      reference: cve,2005-0068
+      rev: '14'
+      sid: '404'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

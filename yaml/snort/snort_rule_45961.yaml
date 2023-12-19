@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Information",depth 11'
+      - value: '"false|2A 2D 5D|NK|5B 2D 2A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Revenge RAT initial outbound connection"'
+      reference: url,www.virustotal.com/en/file/edb115dd5ca7c7f9dd069746daa0a4ee6298bf94de62510d3f8bebfa5f5a8bcd/analysis/
+      rev: '1'
+      sid: '45961'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

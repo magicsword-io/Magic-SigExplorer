@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cache/pdf_efax_",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Win.Trojan.Agent E-FAX phishing attempt"'
+      pcre: '"/\/cache\/pdf\x5Fefax\x5F\d{8,15}\.zip$/i"'
+      reference: url,www.virustotal.com/en/file/4e102fd6fce767fa6c0d0a9871bb71ec5969ded694a9292c2c8a9749e5648ed4/analysis/
+      rev: '3'
+      service: http
+      sid: '30568'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

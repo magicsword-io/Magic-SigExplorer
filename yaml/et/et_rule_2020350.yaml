@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/app.exe"'
+      - value: '"User-Agent|3a 20|Wget"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_02_03, updated_at 2020_09_30
+      msg: '"ET TROJAN BePush/Kilim payload retrieval"'
+      pcre: '"/\/app\.exe$/U"'
+      reference: md5,cdcc132fad2e819e7ab94e5e564e8968
+      rev: '3'
+      sid: '2020350'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

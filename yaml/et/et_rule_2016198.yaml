@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/up.php?del="'
+      - value: '"del="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_01_12, updated_at 2020_09_18
+      msg: '"ET WEB_SPECIFIC_APPS Free Blog Arbitrary File Deletion Attempt"'
+      reference: url,packetstormsecurity.com/files/119385/Free-Blog-1.0-Shell-Upload-Arbitrary-File-Deletion.html
+      rev: '2'
+      sid: '2016198'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

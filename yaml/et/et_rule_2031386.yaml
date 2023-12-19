@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api"'
+      - depth: '22'
+        value: '"f=100&p=ew0KICAgIk0iOi"'
+      flow: established,to_server
+      metadata: created_at 2020_12_15, former_category ADWARE_PUP, updated_at 2020_12_15
+      msg: '"ET MALWARE Windows Explorer Tab Add-on Post Install Checkin"'
+      pcre: '"/^\/api$/U"'
+      reference: md5,47d9aee3497bed660b640194dbab5879
+      rev: '2'
+      sid: '2031386'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

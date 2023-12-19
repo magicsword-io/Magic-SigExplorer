@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '".php|20|HTTP/1.1|0d 0a|"'
+      - value: '"form-data|3b 20|name=|22|uid|22|"'
+      - value: '"form-data|3b 20|name=|22|uname|22|"'
+      - value: '"form-data|3b 20|name=|22|cname|22|"'
+      - value: '"form-data|3b 20|name=|22|ltime|22|"'
+      - value: '"form-data|3b 20|name=|22|uright|22|"'
+      - value: '"form-data|3b 20|name=|22|sysinfo|22|"'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_01_03, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, signature_severity Major, tag Ransomware,
+        updated_at 2020_08_03, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN MRCR1 Ransomware Checkin M1"'
+      reference: md5,a1d83e290429477f05c0eaddafdb0355
+      rev: '1'
+      sid: '2023691'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

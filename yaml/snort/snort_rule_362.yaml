@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" --use-compress-program ",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP tar parameters"'
+      reference: cve,1999-0997
+      rev: '20'
+      service: ftp
+      sid: '362'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<td>logon|3a|<td>"'
+      - value: '"name=|22|sport|22 20|"'
+      - value: '"<td>cmd|3a|"'
+      - value: '"input|20|name=|22|balls|22 20|"'
+      - value: '"name=|22|woods|22|"'
+      - value: '"name=|22|sky|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2021_03_04, deployment Perimeter,
+        former_category WEB_CLIENT, performance_impact Low, signature_severity Major,
+        updated_at 2021_03_04
+      msg: '"ET WEB_CLIENT APT/Hafnium SPORTSBALL Webshell Observed Outbound"'
+      reference: md5,1a4ab99bbe9adbe2deb0e4b96d82a955
+      rev: '2'
+      sid: '2031812'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

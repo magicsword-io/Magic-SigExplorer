@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '",|22|installerBehavior|22|:{|22|hideOnInstall|22|:",fast_pattern,nocase'
+      - value: '"{|22|time|22|:"'
+      - value: '"|22|country|22|",within 30'
+      - value: '",|22|countryId|22|:",within 20'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"PUA-ADWARE SoftPulse variant HTTP response attempt"'
+      reference: url,www.virustotal.com/en/file/7aa774bffa2eb38c691774c1cc59e0adf6186da62afc417baa6333670e1e3011/analysis/1421687954/
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '33212'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

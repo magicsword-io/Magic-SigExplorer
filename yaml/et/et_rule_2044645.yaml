@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!".asp"'
+      - value: '!".php"'
+      - value: '!".htm"'
+      - depth: '10'
+        value: '"anvaro=|25 32 30|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_16, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2023_03_16
+      msg: '"ET TROJAN Sidecopy APT Related Activity (POST)"'
+      pcre: '"/\r\nContent-Type\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nExpect\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: md5,30e8c453d72000d647435d92ffa94616
+      rev: '1'
+      sid: '2044645'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

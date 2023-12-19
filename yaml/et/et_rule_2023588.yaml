@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        offset: '10'
+        value: '"AAAA"'
+      - depth: '1'
+        offset: '7'
+        value: '"="'
+      - value: '!"Referer|3A|"'
+      - value: '!"Connection|3A|"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_10_10, deployment Perimeter, former_category
+        MALWARE, malware_family Qadars, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_03
+      msg: '"ET TROJAN Trojan.Win32.Qadars Checkin"'
+      pcre: '"/^[a-zA-Z]{7}=(?:[A-Za-z0-9+/]|%2[FB]){2}AAAA[a-z]A[^\s=]+=?=?$/P"'
+      reference: url,www.lexsi-leblog.com/cert-en/qadars-new-banking-malware-with-fraudulent-mobile-application-component.html
+      rev: '4'
+      sid: '2023588'
+      special_options:
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

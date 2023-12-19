@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"splashtop.eu"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_04_05, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2022_04_05
+      msg: '"ET INFO Splashtop Domain (splashtop .eu) in TLS SNI"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)splashtop\.eu/R"'
+      reference: url,support-splashtopbusiness.splashtop.com/hc/en-us/articles/115001811966-What-are-the-Firewall-Exceptions-and-IP-addresses-of-Splashtop-servers-Services-
+      rev: '2'
+      sid: '2035765'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

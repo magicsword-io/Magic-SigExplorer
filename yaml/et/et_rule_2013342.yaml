@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/GetGrid.asp"'
+      - depth: '3'
+        value: '"SN="'
+      - value: '"&SP="'
+      flow: established,to_server
+      metadata: created_at 2011_08_02, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32/Sisproc Variant POST to CnC Server"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Trojan%3AWin32%2FSisproc&ThreatID=-2147342628
+      rev: '3'
+      sid: '2013342'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

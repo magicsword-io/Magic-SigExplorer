@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/help.html"'
+      - value: '!"Accept|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (compatible|3b| MSIE 7.0|3b| Windows
+          NT 6.0)"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_17, former_category MALWARE, updated_at 2020_09_23
+      msg: '"ET TROJAN BKDR_SLOTH.A Checkin"'
+      reference: url,fireeye.com/blog/technical/targeted-attack/2014/03/a-detailed-examination-of-the-siesta-campaign.html
+      rev: '2'
+      sid: '2018285'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

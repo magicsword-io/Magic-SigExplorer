@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '20034'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"BN |00 02 00|",depth 6'
+      - value: '"|05 00|",depth 2,offset 8'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR NetBus Pro 2.0 connection request"'
+      rev: '8'
+      sid: '3009'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

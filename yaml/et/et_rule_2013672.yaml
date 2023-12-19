@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/postit3.php"'
+      - value: '"Content-Type|3A| multipart/form-data|3B| boundary="'
+      flow: to_server,established
+      metadata: created_at 2011_09_19, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32.Riberow.A (postit3)"'
+      reference: md5,c55fe941b80b3e5e77be8728642d138e
+      rev: '2'
+      sid: '2013672'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06 13 02|US"'
+      - value: '"|06 03 55 04 08 13 0a|Washington"'
+      - value: '"|06 03 55 04 07 13 07|Spokane"'
+      - value: '"|06 03 55 04 09 13 00|"'
+      - value: '"|06 03 55 04 11 13 04|"'
+      - value: '"|06 03 55 04 0a 13 04|corp"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '!"|2a 86 48 86 f7 0d 01 09 01|"'
+      distance: '3'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2022_07_07, deployment Perimeter, former_category ATTACK_RESPONSE, malware_family
+        Sliver, malware_family Havoc, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_07
+      msg: '"ET ATTACK_RESPONSE Havoc/Sliver Framework TLS Certificate Observed"'
+      pcre: '"/^\d{4}[01]/R"'
+      reference: url,github.com/BishopFox/sliver/blob/97d3da75b6e24defb3a2a97443a15a632b3a8448/server/certs/subject.go
+      rev: '1'
+      sid: '2037503'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|0c 00 00 00 00|in"'
+      - value: '"fo="'
+      - value: '"|7c|"'
+      - value: '"|7c 7c|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter,
+        former_category MALWARE, malware_family TransparentTribe, signature_severity
+        Major, updated_at 2022_06_06
+      msg: '"ET TROJAN Transparent Tribe APT Related Backdoor Sending System Information"'
+      reference: md5,ac4944bec64b6d40f3bb16d6ed3f06e8
+      rev: '1'
+      sid: '2036869'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

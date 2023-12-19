@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat.drop_object_from_flavor",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE dbms_repcat.drop_object_from_flavor buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1075,}\x27|\x22[^\x22]{1075,}\x22)[\r\n\s]*\x3b.*gname[\r\n\s]*=>[\r\n\s]*\2|gname\s*=>\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})|\(\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,}))/is"'
+      reference: url,www.appsecinc.com/resources/alerts/oracle/2004-0001/25.html
+      rev: '6'
+      sid: '2770'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

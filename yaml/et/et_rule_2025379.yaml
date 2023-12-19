@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<img src=|22|./hellion/logo1.png"'
+      - value: '"method=|22|post|22 20|action=|22|post.php"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_22, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_22
+      msg: '"ET CURRENT_EVENTS Upgrade Advantage Phishing Landing 2018-02-22"'
+      rev: '2'
+      sid: '2025379'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

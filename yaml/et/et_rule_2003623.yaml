@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"USER-Agent|3a| Domain Dossier utility (http|3a|//CentralOps.net/)"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_03
+      msg: '"ET POLICY Centralops.net Domain Dossier Utility Probe"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003623
+      rev: '5'
+      sid: '2003623'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

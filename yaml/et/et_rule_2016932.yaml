@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/search?hl="'
+      - value: '"q="'
+      - value: '"meta="'
+      - value: '"Windows NT 5."'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"sogou.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_05_29, deployment Perimeter,
+        former_category TROJAN, malware_family HIMAN, performance_impact Moderate,
+        signature_severity Major, updated_at 2020_10_08
+      msg: '"ET TROJAN Spy/Infostealer.Win32.Embed.A Client Traffic"'
+      pcre: '"/meta=(?:(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}))?(?:&?id=[a-z]+)?$/U"'
+      reference: url,contagiodump.blogspot.no/2011/01/jan-6-cve-2010-3333-with-info-theft.html
+      rev: '3'
+      sid: '2016932'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '28'
+        value: '"POST /index HTTP/1.1|0d 0a|Host|3a 20|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '"Content-length|3a 20|0|0d 0a|Cookie|3a 20|APSCOOKIE=Era=0&Payload="'
+      distance: '0'
+      fast_pattern: 31,20
+      flow: established,to_server
+      metadata: affected_product Fortigate, attack_target Server, created_at 2016_08_17,
+        deployment Datacenter, performance_impact Low, signature_severity Major, updated_at
+        2020_11_05
+      msg: '"ET EXPLOIT Equation Group EGREGIOUSBLUNDER Fortigate Exploit Attempt"'
+      pcre: '"/^[A-Za-z0-9+/]{0,4}?[^\x20-\x7e]/R"'
+      rev: '1'
+      sid: '2023075'
+      within: '51'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

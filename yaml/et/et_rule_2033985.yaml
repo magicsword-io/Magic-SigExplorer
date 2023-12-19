@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/jbossmq-httpil/HTTPServerILServlet"'
+      - value: '"|AC ED 00|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_09_17, cve CVE_2017_7504, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_09_17
+      msg: '"ET EXPLOIT JBOSS Deserialization Attempt Inbound (CVE-2017-7504)"'
+      reference: cve,2017-7504
+      rev: '1'
+      sid: '2033985'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

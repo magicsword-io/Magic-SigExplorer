@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST //?m="'
+      - value: '"&p1="'
+      - value: '!"Referer"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2022_03_25, former_category MALWARE, malware_family Kimsuky,
+        updated_at 2022_05_03
+      msg: '"ET TROJAN Kimsuky APT Related Host Data Exfil M5"'
+      pcre: '"/^\/\?m=[abcde]&p1=[a-f0-9-]{8,40}(?:&p2=[^&]+)?(?:&p3=[^&]+)?$/Ui"'
+      reference: url,twitter.com/s1ckb017/status/1507316584079142915
+      rev: '3'
+      sid: '2035611'
+      special_options:
+      - fast_pattern
+      - http_header
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

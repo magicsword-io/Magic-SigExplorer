@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".github.io/PHP-Backdoor/"'
+      - value: '"<title>j3mb03dz m4w0tz sh311"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_10_02, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2020_10_02
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2030942'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"RENAME",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP rename overflow attempt"'
+      pcre: '"/\sRENAME\s[^\n]{100}/ims"'
+      reference: nessus,10374
+      rev: '16'
+      service: imap
+      sid: '1903'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

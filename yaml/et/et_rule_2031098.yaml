@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '").attr(''src'', ''https://logo.clearbit.com/'' + my_slice)|3b|"'
+      - value: '"//new injection//"'
+      - value: '"var|20|filter|20|=|20|/^([a-zA-Z0-9_|5c|.|5c|-])+|5c|@(([a-zA-Z0-9|5c|-])+|5c|.)+([a-zA-Z0-9]{2,4})+$/|3b|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_10_23, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_10_23
+      msg: '"ET CURRENT_EVENTS Generic Custom Logo Phishing Landing"'
+      rev: '2'
+      sid: '2031098'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

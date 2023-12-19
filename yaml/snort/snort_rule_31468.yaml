@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/viewforum.php?f=",fast_pattern,nocase'
+      - value: '"&sid="'
+      - value: '!"Referer:"'
+      - value: '!"Cookie:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Papras variant outbound connection"'
+      pcre: '"/sid=[0-9A-F]{32}/"'
+      reference: url,www.virustotal.com/en/file/9e548d9a37c46423680e324b31204197babc45ddc05835afa772fde8627e72b2/analysis/
+      rev: '2'
+      service: http
+      sid: '31468'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

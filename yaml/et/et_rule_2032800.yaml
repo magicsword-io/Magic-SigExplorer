@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"200"'
+      - value: '"|0d 0a|Results of|20 27|"'
+      - value: '"|27 20|execution|3a 0a 0a|"'
+      distance: '1'
+      flow: from_server,established
+      metadata: created_at 2021_04_21, former_category MALWARE, updated_at 2021_04_21
+      msg: '"ET TROJAN Possible STEADYPULSE Webshell Accessed M2"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day.html
+      rev: '2'
+      sid: '2032800'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '256'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS

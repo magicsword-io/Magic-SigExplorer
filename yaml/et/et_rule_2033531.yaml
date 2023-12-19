@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/+vADGAwAABQBzAHIAAAA5AG8AcgBnAC4AagBiAG8AcwBzAC4AdwBlAGwAZAAuAGkAbgB0AGUAcgBjAGUAcAB0AG8AcgAuAH"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_07_28, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, malware_family ysoserial, signature_severity
+        Major, tag Exploit, tag possible_exploitation, updated_at 2021_07_28
+      msg: '"ET EXPLOIT ysoserial Payload in HTTP Header (JavassistWeld1) M2"'
+      rev: '1'
+      sid: '2033531'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

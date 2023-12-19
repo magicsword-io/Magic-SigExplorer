@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '!"Linux"'
+      - value: '!"Android"'
+      - depth: '5'
+        value: '"page="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_22, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, confidence Medium, signature_severity
+        Major, updated_at 2023_06_22
+      msg: '"ET TROJAN Suspected Kimsuky Activity (POST)"'
+      pcre: '"/page=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/P"'
+      reference: url,twitter.com/StopMalvertisin/status/1669379332547186690
+      rev: '1'
+      sid: '2046617'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

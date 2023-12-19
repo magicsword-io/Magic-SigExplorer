@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?hwid="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_13, deployment Perimeter,
+        former_category MALWARE, malware_family Gomorrah, signature_severity Major,
+        updated_at 2022_06_13
+      msg: '"ET TROJAN MegalodonHTTP/LuciferHTTP/Gomorrah Client Action M2"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,d543973bd33d45d515e8dfc251411c4b
+      rev: '1'
+      sid: '2036964'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"t34kjfdla45l",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Copperhedge outbound connection"'
+      reference: url,virustotal.com/gui/file/b4bf6322c67a23553d5a9af6fcd9510eb613ffac963a21e32a9ced83132a09ba/detection
+      rev: '1'
+      service: http
+      sid: '54054'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

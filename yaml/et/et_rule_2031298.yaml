@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '7'
+        value: '"__io_r="'
+      - value: '"|3b 20|__io_vl="'
+      - value: '"|3b 20|__io_bl="'
+      - value: '"|3b 20|Session_id="'
+      - value: '"|3b 20|__io_uniq="'
+      - value: '"|3b 20|__io_f="'
+      - value: '"HTTP/1.1|0d 0a|Connection|3a 20|Keep-Alive|0d 0a|Cookie|3a 20|__io_r="'
+      distance: '0'
+      fast_pattern: 29,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_12_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family IcedID, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_12_18
+      msg: '"ET TROJAN Win32/IcedID Requesting Encoded Binary M5"'
+      pcre: '"/^Connection[^\r\n]+\r\nCookie[^\r\n]+\r\nHost[^\r\n]+\r\n(?:\r\n)?$/H"'
+      rev: '4'
+      sid: '2031298'
+      special_options:
+      - http_method
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

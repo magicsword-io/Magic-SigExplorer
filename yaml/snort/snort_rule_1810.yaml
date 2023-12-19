@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"*GOBBLE*"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER successful gobbles ssh exploit GOBBLE"'
+      reference: cve,2002-0640
+      rev: '19'
+      sid: '1810'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '22'

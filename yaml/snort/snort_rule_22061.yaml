@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"name=|5C 22|Twitter|5C 22| scrolling=|5C 22|auto|5C 22| frameborder=|5C
+          22|no|5C 22| align=|5C 22|center|5C 22| height = |5C 22|1px|5C 22| width
+          = |5C 22|1px|5C 22|>",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy balanced-ips alert,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-OTHER Alureon - Malicious IFRAME load attempt"'
+      reference: url,attack.mitre.org/techniques/T1102
+      rev: '8'
+      service: http
+      sid: '22061'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

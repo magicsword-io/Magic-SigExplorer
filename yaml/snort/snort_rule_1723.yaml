@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/emumail.cgi"'
+      - value: '"type=",nocase'
+      - value: '"%00"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP emumail.cgi NULL attempt"'
+      reference: cve,2002-1526
+      rev: '14'
+      service: http
+      sid: '1723'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

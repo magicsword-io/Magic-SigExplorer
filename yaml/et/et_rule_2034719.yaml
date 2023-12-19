@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '4'
+        value: '"|30 1d 02 01|"'
+      - value: '"|77 18 80 16 31 2e 33 2e 36 2e 31 2e 34 2e 31 2e 31 34 36 36 2e 32
+          30 30 33 37|"'
+      flow: established,to_server
+      flowbits: isnotset,ET.LDAPSBindRequest
+      isdataat: '!1,relative'
+      metadata: attack_target Client_and_Server, created_at 2021_12_14, deployment
+        Perimeter, former_category POLICY, signature_severity Informational, updated_at
+        2023_04_06
+      msg: '"ET POLICY LDAPSv3 LDAPS_START_TLS Request Outbound"'
+      reference: url,ldap.com/ldapv3-wire-protocol-reference-extended/
+      rev: '3'
+      sid: '2034719'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

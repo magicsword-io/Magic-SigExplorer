@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Vega/"'
+      detection_filter: track by_src, count 5, seconds 40
+      flow: established,to_server
+      metadata: created_at 2011_07_11, updated_at 2020_04_21
+      msg: '"ET SCAN Vega Web Application Scan"'
+      pcre: '"/User-Agent\x3A[^\r\n]+Vega\x2F/H"'
+      reference: url,www.darknet.org.uk/2011/07/vega-open-source-cross-platform-web-application-security-assessment-platform/
+      rev: '2'
+      sid: '2013249'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

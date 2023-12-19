@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"/mifs/aad/api/v2/"'
+      flow: established,to_server
+      metadata: affected_product Ivanti, attack_target Web_Server, created_at 2023_08_03,
+        cve CVE_2023_35078, deployment Perimeter, deployment Internal, deployment
+        SSLDecrypt, former_category WEB_SPECIFIC_APPS, confidence High, signature_severity
+        Major, updated_at 2023_08_03
+      msg: '"ET WEB_SPECIFIC_APPS Possible Ivanti Endpoint Manager Mobile CVE-2023-35078
+        Check/Exploitation Attempt"'
+      reference: cve,2023-35078
+      rev: '1'
+      sid: '2047054'
+      special_options:
+      - http_uri
+      threshold: type limit, count 5, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

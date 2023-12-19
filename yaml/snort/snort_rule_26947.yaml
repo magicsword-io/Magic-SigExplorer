@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename=atom.jar",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT DotkaChef/Rmayana/DotCache exploit kit inbound java exploit
+        download"'
+      reference: url,www.basemont.com/new_exploit_kit_june_2013
+      rev: '5'
+      service: http
+      sid: '26947'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

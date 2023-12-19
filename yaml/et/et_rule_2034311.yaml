@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/lilac/autodiscovery.php"'
+      - value: '"request=autodiscover"'
+      - value: '"job_name="'
+      - value: '"nmap_binary"'
+      - value: '"target[]"'
+      - value: '"os.execute("'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_01, cve CVE_2020_8654, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_11_01
+      msg: '"ET EXPLOIT EyesOfNetwork Autodiscover Command Injection (CVE-2020-8654)"'
+      pcre: '"/\/lilac\/autodiscovery\.php$/U"'
+      reference: cve,2020-8655
+      rev: '1'
+      sid: '2034311'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

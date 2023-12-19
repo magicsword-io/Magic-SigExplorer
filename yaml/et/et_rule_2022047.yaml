@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        offset: '4'
+        value: '"nocookie"'
+      dsize: '12'
+      flow: established,to_server
+      metadata: created_at 2015_11_09, former_category MALWARE, updated_at 2015_11_09
+      msg: '"ET TROJAN Wrapper/Gholee/Wedex Checkin"'
+      reference: url,blog.checkpoint.com/2015/11/09/rocket-kitten-a-campaign-with-9-lives/
+      rev: '1'
+      sid: '2022047'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

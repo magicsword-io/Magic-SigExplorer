@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|52 65 67 45 78 70 28 27|"'
+      - value: '"|27 2b 27 3d 28 5b 5e 3b 5d 29 7b 31 2c 7d 27 29 3b|"'
+      - value: '"|3b 64 2e 73 65 74 44 61 74 65 28 64 2e 67 65 74 44 61 74 65 28 29
+          2b 31 29 3b|"'
+      - value: '"|3c 69 66 72 61 6d 65|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_03_19, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS Evil Redirect Leading to EK Mar 18 2016"'
+      rev: '1'
+      sid: '2022628'
+      special_options:
+      - file_data
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

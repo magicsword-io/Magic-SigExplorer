@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"produced by Synapse"'
+      - value: '"X|2d|mailer|3a 20|Synapse|20 2d 20|Pascal TCP|2f|IP library by Lukas
+          Gebauer"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_05_21, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Suspicious X-mailer Synapse Inbound to SMTP Server"'
+      reference: url,www.joewein.net/spam/spam-joejob.htm
+      rev: '1'
+      sid: '2021135'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

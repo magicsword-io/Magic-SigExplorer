@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"POST /"'
+      - value: '"User-Agent|3a| Wget/"'
+      flow: established,to_server
+      metadata: created_at 2014_06_13, updated_at 2020_05_01
+      msg: '"ET TROJAN Dyreza RAT Ex-filtrating Data"'
+      reference: url,phishme.com/project-dyre-new-rat-slurps-bank-credentials-bypasses-ssl/
+      rev: '5'
+      sid: '2018578'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

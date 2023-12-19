@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '4'
+        value: '"|01 00 00 00|"'
+      dsize: '12'
+      flow: established,from_server
+      flowbits: set,ET.gadu.welcome
+      metadata: created_at 2010_07_30, former_category CHAT, updated_at 2017_12_11
+      msg: '"ET CHAT GaduGadu Chat Server Welcome Packet"'
+      reference: url,doc.emergingthreats.net/2008297
+      rev: '5'
+      sid: '2008297'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '8074'

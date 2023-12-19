@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '68'
+        value: '"GET / HTTP/1.1|0d 0a|Accept|3a| */*|0d 0a|Connection|3a| Close|0d
+          0a|User-Agent|3a 20|Mozilla/"'
+      - value: '"|0d 0a|Host|3a| "'
+      - value: '!"|0d 0a|Referer|3a| "'
+      - value: '"|3a| no-cache"'
+      - depth: '6'
+        value: '!"/webhp"'
+      - value: '!"Host|3a| login.live.com|0d 0a|"'
+      - value: '!"google.com|0d 0a|"'
+      - value: '!"www.bing.com"'
+      - value: '!"yandex.ru|0d 0a|"'
+      - value: '!"linkedin.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_10_02, updated_at 2020_10_23
+      msg: '"ET TROJAN Zeus Bot Connectivity Check"'
+      reference: url,lists.emergingthreats.net/pipermail/emerging-sigs/2010-October/009807.html
+      rev: '21'
+      sid: '2011588'
+      special_options:
+      - http_header
+      - nocase
+      - http_header
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

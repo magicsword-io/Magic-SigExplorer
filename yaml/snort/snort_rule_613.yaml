@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      ack: '0'
+      classtype: attempted-recon
+      flags: S
+      flow: stateless
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN myscan"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '11'
+      sid: '613'
+      ttl: '>220'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '10101'

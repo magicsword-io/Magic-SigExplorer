@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/admin/plugins/videoReport/lib/tmp-upload-images"'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS OpenX OpenFlashChart Remote Exploit - possible Access
+        to uploaded Files"'
+      reference: url,doc.emergingthreats.net/2011494
+      rev: '4'
+      sid: '2011494'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

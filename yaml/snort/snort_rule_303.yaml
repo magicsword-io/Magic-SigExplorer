@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|AB CD 09 80 00 00 00 01 00 00 00 00 00 00 01 00 01|    |02|a"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Bind Buffer Overflow named tsig overflow attempt"'
+      reference: nessus,10605
+      rev: '24'
+      service: dns
+      sid: '303'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

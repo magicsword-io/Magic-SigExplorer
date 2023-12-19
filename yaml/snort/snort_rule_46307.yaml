@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cgi-bin/wizReq.cgi",fast_pattern,nocase'
+      - value: '"SMB",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP QNAP WTS 4.2.1 command injection attempt"'
+      pcre: '"/(^|&)SMB(\x5f|%5f)(LOCATION|USERNAME)=[^&]*?([\x60\x3b\x7c]|[\x3c\x3e\x24]\x28|%60|%3b|%7c|%26|%3c%28|%3e%28|%24%28)/im"'
+      rev: '2'
+      service: http
+      sid: '46307'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/index.php?"'
+      - value: '"option=com_zoomportfolio"'
+      - value: '"view=portfolio"'
+      - value: '"id="'
+      - value: '"SELECT"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_09_27, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_zoomportfolio component SELECT FROM SQL
+        Injection Attempt"'
+      pcre: '"/SELECT.+FROM/Ui"'
+      reference: url,exploit-db.com/exploits/14718/
+      rev: '2'
+      sid: '2011560'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

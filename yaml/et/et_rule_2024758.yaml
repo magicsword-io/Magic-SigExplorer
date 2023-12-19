@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      byte_test: 1,>,0x30,0,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"/WP"'
+      - value: '".php"'
+      - value: '"Content-Length|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|3b| Charset=UTF-8|0d
+          0a|"'
+      distance: '0'
+      fast_pattern: 44,20
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_21, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_11_19
+      msg: '"ET TROJAN Win32/Scarsi Variant CnC Activity"'
+      pcre: '"/^[\x20-\x25\x27-\x3c\x3e-\x7e]{25,}$/Psi"'
+      reference: md5,52c193a7994a6bb55ec85addc8987c10
+      rev: '6'
+      sid: '2024758'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

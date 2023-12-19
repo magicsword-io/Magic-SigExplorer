@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|13 11 18 19|"'
+      dsize: '4'
+      flow: established,to_client
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2021_12_09, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2021_12_09
+      msg: '"ET TROJAN ELF/MooBot Mirai DDoS Variant Server Keep Alive"'
+      reference: url,blog.netlab.360.com/ddos-botnet-moobot-en/
+      rev: '2'
+      sid: '2034639'
+      threshold: type threshold, count 4, seconds 40, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '![443,80]'

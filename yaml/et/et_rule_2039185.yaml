@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$SQL_SERVERS]'
+      port: '1433'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"e|00|x|00|e|00|c"'
+      - value: '"m|00|a|00|g|00|g|00|i|00|e|00 20 00 27 00|s|00|y|00|s|00|i|00|n|00|f|00|o|00
+          27 00 3b 00|"'
+      fast_pattern: 14,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at
+        2022_10_12, deployment Perimeter, deployment Internal, deployment Datacenter,
+        former_category MALWARE, malware_family maggie, confidence High, signature_severity
+        Major, updated_at 2022_10_14
+      msg: '"ET TROJAN MSSQL maggie backdoor sysinfo Query Observed"'
+      reference: url,medium.com/@DCSO_CyTec/mssql-meet-maggie-898773df3b01
+      rev: '2'
+      sid: '2039185'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

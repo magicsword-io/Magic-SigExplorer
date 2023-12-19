@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Vary|3a 20|Accept-Encoding,User-Agent"'
+      - value: '"|0d 0a|X-Powered-By|3a 20|PHP"'
+      - value: '"|ef bb bf 3c 68 74 6d 6c 3e 0d 0a 3c 62 6f 64 79 20 62 67 63 6f 6c
+          6f 72 3d 22 23|"'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Any, attack_target Client_Endpoint, created_at 2014_05_05, deployment Perimeter,
+        malware_family Nuclear, signature_severity Critical, tag DriveBy, tag Exploit_Kit,
+        tag Nuclear, updated_at 2020_04_29
+      msg: '"ET CURRENT_EVENTS DRIVEBY Nuclear EK Landing May 05 2014"'
+      pcre: '"/^[a-f0-9]{6}\x22>\r\n(?:<(?P<tag>[^>]{1,10})>[A-Za-z0-9]+?<\/(?P=tag)>\r\n){0,10}\r\n<script>(?:var
+        [a-zA-Z0-9]{1,20}\x3b){1,20}[a-zA-Z0-9]{1,20}\s*?=/R"'
+      rev: '1'
+      sid: '2018451'
+      special_options:
+      - http_header
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

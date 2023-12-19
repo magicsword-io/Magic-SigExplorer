@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0+(Windows+NT+10.0|3b|+WOW64|3b|+Trident/7.0|3b|+rv|3a|11.0)+like+Gecko|0d
+          0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_11
+      msg: '"ET TROJAN Suspected Praying Mantis Threat Actor Activity"'
+      reference: url,f.hubspotusercontent30.net/hubfs/8776530/TG1021%20-%20Praying%20Mantis%20Threat%20Actor.pdf
+      rev: '2'
+      sid: '2033710'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

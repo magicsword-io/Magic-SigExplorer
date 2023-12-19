@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|31 ff 57 6a 69 58 48 bb 5e c4 d2 dc 5e 5e e6 d0 0f 05 48 d1 cb b0
+          3b 53 87 f7 54 99 5f 0f 05|"'
+      fast_pattern: only
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2017_03_15, deployment Perimeter, former_category SHELLCODE, performance_impact
+        Low, signature_severity Critical, updated_at 2019_10_08
+      msg: '"ET SHELLCODE Linux/x86-64 - Polymorphic Setuid(0) & Execve(/bin/sh) Shellcode"'
+      reference: url,a41l4.blogspot.ca/2017/03/polysetuidexecve1434.html
+      rev: '1'
+      sid: '2024058'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|pathc.space"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_05_17, deployment Perimeter,
+        signature_severity Major, updated_at 2021_05_17
+      msg: '"ET TROJAN Observed MageCart Group 12 Domain (pathc .space in TLS SNI)"'
+      reference: url,blog.malwarebytes.com/cybercrime/2021/05/newly-observed-php-based-skimmer-shows-ongoing-magecart-group-12-activity/
+      rev: '2'
+      sid: '2032970'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

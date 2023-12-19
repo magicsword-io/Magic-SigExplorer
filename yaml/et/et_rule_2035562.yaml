@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|vtaurl|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_23, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_03_23
+      msg: '"ET INFO URL Shortening Service Domain in DNS Lookup (vtaurl .com)"'
+      rev: '2'
+      sid: '2035562'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

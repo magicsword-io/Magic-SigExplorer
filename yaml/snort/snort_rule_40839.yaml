@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/UpgSvr/",fast_pattern,nocase'
+      - value: '".xml"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Sokuxuan outbound connection attempt"'
+      reference: url,www.virustotal.com/en/file/f35b65743142090ecf031731cb0bd77b15055e36dcdaa7a4ab09c5b2add13d15/analysis/1479759162/
+      rev: '2'
+      service: http
+      sid: '40839'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

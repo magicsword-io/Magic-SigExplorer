@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|3A|"'
+      - value: '" 302 "'
+      - value: '"=+",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL IRC dns response"'
+      rev: '11'
+      sid: '1790'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: 6666:7000

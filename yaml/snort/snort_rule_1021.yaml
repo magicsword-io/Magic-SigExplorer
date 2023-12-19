@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '" .htr",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS ism.dll attempt"'
+      pcre: '"/\s{230,}\.htr/"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS00-031
+      rev: '29'
+      service: http
+      sid: '1021'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

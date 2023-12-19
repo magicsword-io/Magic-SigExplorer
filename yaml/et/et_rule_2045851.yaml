@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|kicknocisd|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_24, deployment Perimeter,
+        former_category MALWARE, malware_family IcedID, signature_severity Major,
+        updated_at 2023_05_24, reviewed_at 2023_09_19
+      msg: '"ET TROJAN DNS Query to IcedID Domain (kicknocisd .com)"'
+      reference: url,thedfirreport.com/2023/05/22/icedid-macro-ends-in-nokoyawa-ransomware/
+      rev: '1'
+      sid: '2045851'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

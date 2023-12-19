@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ETRN",nocase'
+      flow: to_server,established
+      isdataat: 500,relative
+      metadata: ruleset community
+      msg: '"SERVER-MAIL ETRN overflow attempt"'
+      pcre: '"/^ETRN\s[^\n]{500}/ims"'
+      reference: nessus,10438
+      rev: '21'
+      service: smtp
+      sid: '1550'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

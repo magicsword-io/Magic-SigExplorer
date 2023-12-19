@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-FILE-"'
+      flow: established,from_client
+      metadata: created_at 2018_10_04, former_category MALWARE, updated_at 2018_10_04
+      msg: '"ET TROJAN NCSC APT28 - Web/request -FILE- contenttype"'
+      pcre: '"/[A-Z0-9\-]{16}-FILE-[^\r\n]+.tmp/"'
+      reference: url,www.ncsc.gov.uk/content/files/protected_files/article_files/IOC-APT28-malware-advisory.pdf
+      rev: '2'
+      sid: '2026441'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Server Prent <please>|0D 0A|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Android.Trojan.SpyNote RAT variant inbound connection"'
+      reference: url,www.virustotal.com/en/file/14eb51b26fa4932fc660daf7e803600bf29a8a46fe3f1d652194bc48e9617bd9/analysis/1478720273/
+      rev: '2'
+      sid: '40762'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

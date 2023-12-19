@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '" MSIE "'
+      - value: '!"Content-Type"'
+      - value: '!"Accept-"'
+      - value: '!"Referer"'
+      - depth: '24'
+        value: '"Accept|3a 20|*/*|0d 0a|User-Agent|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_12_06, updated_at 2020_09_17
+      msg: '"ET TROJAN Chthonic Check-in"'
+      pcre: '"/^Accept\x3a\x20\*\/\*\r\nUser-Agent\x3a\x20Mozilla\/\d+\.\d+\x20\x28compatible\x3b\x20MSIE\x20\d+\.\d+\x3b\x20Windows
+        NT \d+\.\d+\x3b SV1\x29\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20\d{3,}\r\nConnection\x3a\x20Keep-Alive\r\n(?:Cache-Control|Pragma)\x3a\x20no-cache\r\n(?:\r\n)?$/H"'
+      rev: '3'
+      sid: '2019881'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

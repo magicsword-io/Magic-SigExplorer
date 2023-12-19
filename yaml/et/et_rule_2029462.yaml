@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '62'
+        value: '"|8b 31 11 eb 26 66 9b 26 66 9a 26 66 9a 41 70 9d 36 70 9d 34 70 9d
+          37 70 9c 47|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_14, deployment Perimeter, former_category
+        MALWARE, malware_family AZORult, performance_impact Low, signature_severity
+        Major, updated_at 2022_08_30
+      msg: '"ET TROJAN Win32/AZORult V3.3 Client Checkin M12"'
+      pcre: '"/^(?:\x00\x00\x00)?(?:[\x40-\x42]|[\x45-\x47]|\x26\x66)/P"'
+      rev: '4'
+      sid: '2029462'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

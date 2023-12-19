@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/getversion.php?sn="'
+      - value: '!"Accept|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.WireLurkerUA
+      metadata: attack_target Client_Endpoint, created_at 2014_11_06, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_28,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN OSX/WireLurker CnC Beacon"'
+      reference: url,paloaltonetworks.com/content/dam/paloaltonetworks-com/en_US/assets/pdf/reports/Unit_42/unit42-wirelurker.pdf
+      rev: '2'
+      sid: '2019662'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

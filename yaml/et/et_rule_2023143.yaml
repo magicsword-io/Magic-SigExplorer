@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"base64_decode("'
+      - value: '"Bbm9uR2hvc3Qg"'
+      flow: from_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2016_09_01, deployment Datacenter, performance_impact Low, signature_severity
+        Major, updated_at 2016_09_01
+      msg: '"ET WEB_SERVER AnonGhost PHP Webshell"'
+      rev: '1'
+      sid: '2023143'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

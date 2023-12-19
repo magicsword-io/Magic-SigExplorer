@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '5100'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"<R",depth 2'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Yahoo IM conference request"'
+      pcre: '"/^\x3c(REQIMG|RVWCFG)\x3e/ims"'
+      rev: '9'
+      sid: '2460'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

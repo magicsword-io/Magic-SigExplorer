@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/stat_d/"'
+      flow: established,to_server
+      metadata: created_at 2012_04_05, updated_at 2020_04_21
+      msg: '"ET TROJAN OSX/Flashback.K/I reporting successful infection"'
+      pcre: '"/\/stat_d\/$/U"'
+      reference: url,vms.drweb.com/virus/?i=1816029
+      rev: '2'
+      sid: '2014522'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

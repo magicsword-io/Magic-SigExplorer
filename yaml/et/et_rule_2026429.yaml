@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"-Agent|3a 20|curl53|0d 0a|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2018_10_01, deployment Perimeter, former_category MALWARE, malware_family
+        VPNFilter, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN VPNFilter htpx Module C2 Request"'
+      pcre: '"/^Host[^\r\n]+\r\nAccept[^\r\n]+\r\nUser-Agent[^\r\n]+[\r\n]+$/Hi"'
+      reference: url,blog.talosintelligence.com/2018/09/vpnfilter-part-3.html
+      rev: '1'
+      sid: '2026429'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

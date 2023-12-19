@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/ads_redir.php"'
+      - value: '"Full-FileName|3a 20|%64%69%76%73%69%67%5F%61%69%6E%66%6F%2E%74%78%74"'
+      - value: '"pcname|20 20 20 3d 20|"'
+      - value: '"username|20 3d 20|"'
+      - value: '"fulluser|20 3d 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_21, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_06_21
+      msg: '"ET TROJAN Win64/Agent.BP System Info Exfil"'
+      reference: md5,fc878529af50b87ce71c8c36959f542a
+      rev: '1'
+      sid: '2037054'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '14'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

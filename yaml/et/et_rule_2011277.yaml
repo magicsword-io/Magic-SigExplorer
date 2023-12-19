@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"in.php?affid="'
+      - value: '"&url="'
+      - value: '"&win="'
+      - value: '"&sts="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Rogue.Win32/Winwebsec Checkin"'
+      reference: url,doc.emergingthreats.net/2011277
+      rev: '5'
+      sid: '2011277'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

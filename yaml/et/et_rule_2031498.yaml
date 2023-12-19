@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"POST //"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&cred="'
+      - value: '"|7c|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_01_08, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, signature_severity Major,
+        updated_at 2021_01_08
+      msg: '"ET TROJAN Amadey Stealer CnC"'
+      pcre: '"/^id=\d+&cred=[a-z]+\x7c/P"'
+      reference: url,www.intezer.com/blog/research/operation-electrorat-attacker-creates-fake-companies-to-drain-your-crypto-wallets/
+      rev: '2'
+      sid: '2031498'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

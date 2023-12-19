@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent: BLP_bbot",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"APP-DETECT Bloomberg web crawler outbound connection"'
+      reference: url,irwebreport.com/20110223/bloomberg-bot-strikes-again-transocean-earnings-leaked
+      rev: '2'
+      service: http
+      sid: '38594'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

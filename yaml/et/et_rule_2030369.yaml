@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/gate?pc_name="'
+      - value: '"&ip="'
+      - value: '"&city="'
+      - value: '"&countryCode="'
+      - value: '"&passwords="'
+      - value: '"&hwid="'
+      - value: '"&user_id="'
+      - value: '".zip|22 0d 0a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_06_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2020_06_24
+      msg: '"ET TROJAN VikroStealer CnC Exfil"'
+      reference: md5,15c587698be36a72f4015b2758442e3c
+      rev: '3'
+      sid: '2030369'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

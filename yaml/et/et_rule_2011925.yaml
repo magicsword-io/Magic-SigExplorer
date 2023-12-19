@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"x="'
+      - value: '"os="'
+      - value: '"n="'
+      flow: established,to_server
+      metadata: created_at 2010_11_15, updated_at 2020_05_06
+      msg: '"ET TROJAN Rogue AV Downloader concat URI"'
+      pcre: '"/\.php\?id=[a-zA-Z]{15,}&?x=\d+&?os=[0-9.]+&?n=\d/U"'
+      reference: url,malwareurl.com
+      rev: '5'
+      sid: '2011925'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

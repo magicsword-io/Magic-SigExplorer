@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '900'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"myversion|7C|2.5.2.",depth 19'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Spyrat variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/e64f536556739d50a673a952da7f110f1156fad0f7360d401794e5a8d65ce63a/analysis/
+      rev: '2'
+      sid: '39801'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

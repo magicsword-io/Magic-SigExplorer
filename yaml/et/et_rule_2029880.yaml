@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"ELF"'
+      - value: '"UPX|21|4"'
+      - value: '"|2f|tmp|2f|hdv"'
+      - value: '"_log"'
+      distance: '20'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_04_10, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_04_10
+      msg: '"ET TROJAN Possible DACLS RAT Log Collector Download"'
+      reference: url,blog.netlab.360.com/dacls-the-dual-platform-rat-en/
+      rev: '2'
+      sid: '2029880'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

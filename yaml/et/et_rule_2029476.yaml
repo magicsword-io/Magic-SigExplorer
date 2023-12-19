@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/ReportServer/pages/ReportViewer.aspx"'
+      - depth: '76'
+        value: '"NavigationCorrector|24|PageState|3d|NeedsCorrection|26|NavigationCorrector|24|ViewState|3d|"'
+      - value: '"|26 5f 5f|VIEWSTATE|3d|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Web_Server_Applications, attack_target Client_Endpoint,
+        created_at 2020_02_18, cve CVE_2020_0618, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2022_03_24
+      msg: '"ET EXPLOIT Possible Microsoft SQL RCE Attempt (CVE-2020-0618)"'
+      reference: url,github.com/euphrat1ca/CVE-2020-0618
+      rev: '3'
+      sid: '2029476'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '37'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

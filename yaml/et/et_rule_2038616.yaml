@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Browser Exploitation Framework (BeEF) - http://beefproject.com"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_08_25, deployment Perimeter,
+        former_category WEB_CLIENT, signature_severity Major, updated_at 2022_08_25
+      msg: '"ET WEB_CLIENT BeEF Framework Comment In Response"'
+      reference: url,github.com/beefproject/beef
+      rev: '1'
+      sid: '2038616'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

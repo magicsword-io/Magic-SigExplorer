@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Info Coronavirus COVID-19|20 7c 20|Gouvernement.fr"'
+      - value: '"Informations <strong>Coronavirus </strong></h1>"'
+      - value: '"method=|22|post|22 20|action=|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2020_05_11, former_category PHISHING, updated_at 2020_05_11
+      msg: '"ET CURRENT_EVENTS French Government COVID-19 Landing Page"'
+      pcre: '"/^(?:(?!\.php).+)\.php\x22/R"'
+      rev: '2'
+      sid: '2030145'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

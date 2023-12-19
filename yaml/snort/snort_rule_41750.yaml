@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/dnslookup.cgi",fast_pattern,nocase'
+      - value: '"host_name=",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear DGN2200 dnslookup.cgi command injection attempt"'
+      pcre: '"/[?&]host_name=[^&]*?%26/i"'
+      reference: cve,2017-6334
+      rev: '3'
+      service: http
+      sid: '41750'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

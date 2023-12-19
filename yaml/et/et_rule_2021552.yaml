@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_07_30, former_category CURRENT_EVENTS, updated_at
+        2020_10_01
+      msg: '"ET CURRENT_EVENTS Possible Malicious Redirect 8x8 script tag URI struct"'
+      pcre: '"/\/(?=[a-zA-Z\d]{0,6}[a-z][A-Z])[A-Za-z\d]{8}\.php\?id=\d{6,9}$/U"'
+      rev: '1'
+      sid: '2021552'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

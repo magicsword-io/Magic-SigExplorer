@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -31
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"bankofamerica.offerings.cloud"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_15, deployment Perimeter, malware_family
+        TA444, signature_severity Major, updated_at 2022_09_15
+      msg: '"ET TROJAN Observed TA444 Domain (bankofamerica .offerings .cloud in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x1d|.\x2e)bankofamerica\.offerings\.cloud/R"'
+      rev: '1'
+      sid: '2038853'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|HTTPGET"'
+      - value: '!"autodesk.com|0d 0a|"'
+      - value: '!"rsa.com"'
+      - value: '!"consumersentinel.gov"'
+      - value: '!"technet.microsoft.com"'
+      - value: '!"metropolis.com"'
+      - value: '!"www.catalog.update.microsoft.com|0d|"'
+      flow: established,to_server
+      metadata: created_at 2011_08_31, former_category TROJAN, updated_at 2020_09_15
+      msg: '"ET USER_AGENTS Downloader User-Agent HTTPGET"'
+      rev: '9'
+      sid: '2013508'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

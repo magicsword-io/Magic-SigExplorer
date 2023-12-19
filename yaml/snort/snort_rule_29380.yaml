@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[777,778]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|05 29 00 00 00|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!5'
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dropper outbound encrypted traffic"'
+      reference: url,www.virustotal.com/en/file/559e8dbe388c8c103996b208eb5532e295da717f84b4a7ddf5c9885de8115606/analysis/
+      rev: '2'
+      sid: '29380'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

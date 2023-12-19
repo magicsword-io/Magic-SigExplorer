@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"EEA36793-F574-4CC1-8690-60E3511CFEAA"'
+      - value: '".Load"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2013_01_05, updated_at 2013_01_05
+      msg: '"ET ACTIVEX Possible Sony PC Companion Load method Stack-based Unicode
+        Buffer Overload SEH"'
+      reference: url,packetstormsecurity.com/files/119022/Sony-PC-Companion-2.1-Load-Unicode-Buffer-Overflow.html
+      rev: '2'
+      sid: '2016160'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

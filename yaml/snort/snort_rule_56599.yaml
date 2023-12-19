@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Accept: */*"'
+      - value: '"Accept-Language: en-US"'
+      - value: '"Accept-Encoding: gzip, deflate"'
+      - value: '"Cookie: SIDCC=AN0-TYutOSq-fxZK6e4kagm70VyKACiG1susXcYRuxK08Y-rHysliq0LWklTqjtulAhQOPH8uA"'
+      - value: '"/api/v1/user"'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.CSBundle_Original stager outbound connection
+        attempt"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56599'
+      special_options:
+      - http_header
+      - http_cookie
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Referer|3a|"'
+      - value: '!"."'
+      - depth: '7'
+        value: '"/en-us/"'
+      - value: '"=|20|HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|"'
+      - value: '!"/im/"'
+      flow: to_server,established
+      metadata: created_at 2015_03_25, updated_at 2020_11_05
+      msg: '"ET TROJAN Win32.Chroject.B Retrieving encoded payload"'
+      pcre: '"/^\/en-us\/(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)$/U"'
+      reference: md5,6c8c988a8129ff31ad0e764e59b31200
+      rev: '8'
+      sid: '2020746'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

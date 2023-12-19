@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '139'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"s|00|p|00|_|00|d|00|e|00|l|00|e|00|t|00|e|00|_|00|a|00|l|00|e|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL sp_delete_alert log file deletion"'
+      rev: '10'
+      sid: '678'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/kys_allow_get.asp?"'
+      - value: '"name=getkys.kys"'
+      flow: established,to_server
+      metadata: created_at 2011_12_09, updated_at 2020_04_21
+      msg: '"ET TROJAN Backdoor.Win32.Sykipot Get Config Request"'
+      reference: url,blog.9bplus.com/analyzing-cve-2011-2462
+      rev: '4'
+      sid: '2014008'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"/klog.php|20|HTTP/"'
+      - value: '"Accept|3a 20|text|2f|html|3b|q=0|2e|7|2c 20 2a 2f 2a 3b|q=1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_19, deployment Perimeter, former_category
+        MALWARE, malware_family Punto, performance_impact Low, signature_severity
+        Major, tag Loader, updated_at 2020_09_16
+      msg: '"ET TROJAN Punto Loader Checkin"'
+      rev: '2'
+      sid: '2026945'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

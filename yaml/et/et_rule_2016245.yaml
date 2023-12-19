@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<b>Software|3a|"'
+      - value: '"<b>uname -a|3a|"'
+      - value: '"<b>uid="'
+      flow: established,to_client
+      metadata: created_at 2013_01_22, updated_at 2013_01_22
+      msg: '"ET WEB_SERVER WebShell - Generic - c99shell based header"'
+      rev: '2'
+      sid: '2016245'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

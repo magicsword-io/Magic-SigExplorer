@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|novelty|0d|akibacreative|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_19, deployment Perimeter,
+        former_category MALWARE, malware_family SocGholish, performance_impact Low,
+        confidence High, signature_severity Critical, updated_at 2023_11_19
+      msg: '"ET TROJAN SocGholish CnC Domain in DNS Lookup (* .novelty .akibacreative
+        .com)"'
+      reference: url,infosec.exchange/@monitorsg/111437135586839468
+      rev: '1'
+      sid: '2049266'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

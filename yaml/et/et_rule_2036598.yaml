@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"_method=__construct&filter[]=assert&method=get&server[REQUEST_METHOD]"'
+      fast_pattern: 10,25
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_05_17, cve CVE_2018_20062,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Informational,
+        updated_at 2022_05_17
+      msg: '"ET EXPLOIT Attempted ThinkPHP < 5.2.x RCE Inbound (CVE-2018-20062)"'
+      reference: cve,2019-9082
+      rev: '2'
+      sid: '2036598'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/zm/index.php"'
+      - value: '"view|3d|snapshot&action=create&monitor_ids|5b|"'
+      - value: '"|5b|Id|5d 3d 3b|"'
+      - value: '"&__csrf_magic|3d|key|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2023_11_15,
+        cve CVE_2023_26035, deployment Perimeter, deployment Internal, former_category
+        WEB_SPECIFIC_APPS, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_11_16
+      msg: '"ET WEB_SPECIFIC_APPS Zoneminder Create Snapshot Command Injection Attempt
+        (CVE-2023-26035)"'
+      reference: cve,2023-26035
+      rev: '2'
+      sid: '2049214'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '200'
+    protocol: tcp
+    source:
+      network: any
+      port: any

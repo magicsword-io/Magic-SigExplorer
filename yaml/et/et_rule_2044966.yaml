@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"|0a 0a f0 9f 91 a4 20|User|20|details|3a 0a|Date|3a|"'
+      - value: '"|0a 0a f0 9f a5 b7 20|System|20|info|3a 0a|"'
+      - value: '"Network|20|Details|3a|"'
+      - value: '"Location|20|Details|3a|"'
+      - value: '"Important|20|Details|3a|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family TyphoonStealer, signature_severity
+        Major, updated_at 2023_04_17
+      msg: '"ET TROJAN TyphonStealer Exfil via Telegram"'
+      reference: md5,8581eae9949adfdce9a7bf6ae5ae0141
+      rev: '1'
+      sid: '2044966'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

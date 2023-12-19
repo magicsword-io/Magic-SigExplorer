@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|upperdunk|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_19, deployment Perimeter, former_category
+        MALWARE, malware_family Domino_Loader, performance_impact Low, signature_severity
+        Major, tag Domino_Loader, updated_at 2023_04_19, reviewed_at 2023_08_21
+      msg: '"ET TROJAN Domino Loader CnC Domain (upperdunk .com) in DNS Lookup"'
+      reference: url,hsecurityintelligence.com/posts/ex-conti-fin7-actors-collaborate-new-domino-backdoor/
+      rev: '1'
+      sid: '2045061'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

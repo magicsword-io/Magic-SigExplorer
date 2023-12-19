@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 135:139
+    details:
+      classtype: attempted-dos
+      flags: U+
+      flow: stateless
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Winnuke attack"'
+      reference: cve,1999-0153
+      rev: '15'
+      sid: '1257'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

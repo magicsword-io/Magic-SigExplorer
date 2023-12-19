@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/x3/files/dir.html?"'
+      - value: '"showhidden="'
+      - value: '"dir="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_01_05, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS cPanel dir Parameter Cross Site Scripting Attempt"'
+      pcre: '"/dir\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|error|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,securityfocus.com/bid/57064
+      rev: '1'
+      sid: '2016165'
+      special_options:
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

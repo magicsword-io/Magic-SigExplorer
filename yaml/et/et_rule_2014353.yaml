@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Set-Cookie|3A 20 |MediagetDownloaderInfo=installer"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,to_client
+      flowbits: isnotset,ET.Adobe.Site.Download
+      metadata: created_at 2012_03_09, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/MediaGet.Adware Installer Download"'
+      reference: md5,39c1769c39f61dd2ec009de8374352c6
+      rev: '5'
+      sid: '2014353'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

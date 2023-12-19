@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&id="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_05_28
+      msg: '"ET TROJAN Win32/Keatep.B Checkin"'
+      pcre: '"/\?[0-9a-f]{5,}=\d+&id=\d+&v=\d+$/U"'
+      reference: md5,239aacf49bb6381fd71841fda4d4ee58
+      rev: '6'
+      sid: '2011336'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

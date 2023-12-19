@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text|2f|html|3b 20|charset|3d|UTF|2d|8|0d 0a|"'
+      - value: '"bgABExk3KwQzPic3bF9YcnJuHz02Jz4nI"'
+      - value: '"259Hz02Jz4nIWxfWHJybhcqIj08NzwmbBMDExBufRcqIj08NzwmbF9Ybn0AARMZNysEMz4nN2w="'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_17, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag Ransomware,
+        updated_at 2022_03_17, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Loki Locker Ransomware Server Response (Public Key) M2"'
+      reference: url,twitter.com/James_inthe_box/status/1504194638885711872
+      rev: '2'
+      sid: '2035513'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

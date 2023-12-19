@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/scripts/vtest.php?get_url=http://127.0.0.1/ucbsync.php?cmd=syncfile:db_files/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_06_24, cve CVE_2022_29499,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2022_06_24
+      msg: '"ET EXPLOIT Attempted Mitel MiVoice Connect Data Validation RCE Inbound
+        (CVE-2022-29499)"'
+      reference: cve,2022-29499
+      rev: '1'
+      sid: '2037121'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

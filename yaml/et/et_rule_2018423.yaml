@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<base>PGNtZD"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2014_04_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2019_09_27,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Eclipse.DDOSBot CnC Beacon Response"'
+      reference: url,www.arbornetworks.com/asert/2014/04/trojan-eclipse-a-bad-moon-rising/
+      rev: '1'
+      sid: '2018423'
+      special_options:
+      - file_data
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

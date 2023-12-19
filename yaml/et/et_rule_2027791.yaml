@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '60'
+        value: '"<html>|0d 0a|<!--|20|Lord|20|EK|20|-|20|Landing|20|page"'
+      flow: established,from_server
+      metadata: created_at 2019_08_02, deployment Perimeter, former_category CURRENT_EVENTS,
+        malware_family LordEK, performance_impact Low, signature_severity Major, tag
+        Exploit_Kit, updated_at 2020_08_31
+      msg: '"ET CURRENT_EVENTS Obfuscated LordEK Landing M2"'
+      rev: '2'
+      sid: '2027791'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

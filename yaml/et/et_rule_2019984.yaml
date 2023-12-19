@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|ymleyd4xs3it55m7"'
+      distance: '0'
+      metadata: created_at 2014_12_20, updated_at 2020_09_01
+      msg: '"ET TROJAN Cryptolocker .onion Proxy Domain"'
+      reference: url,barracudalabs.com/2014/12/new-cryptolocker-spear-phishing-campaign-looks-to-be-the-grinch-that-stole-christmas-in-australia/
+      rev: '3'
+      sid: '2019984'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

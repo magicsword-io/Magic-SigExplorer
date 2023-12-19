@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/se/gate.php"'
+      - value: '"HTTP/1.1|0D 0A|Cache-Control: no-cache|0D 0A|Connection: close|0D
+          0A|Pragma: no-cache|0D 0A|Content-Type: application/x-www-form-urlencoded|0D
+          0A|User-Agent: Mozilla/4.0|0D 0A|Content-Length: ",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Androm variant outbound connection"'
+      pcre: '"/\x3d\x0a$/"'
+      reference: url,www.virustotal.com/en/file/0baf3197bdb2c665fea0a84db91d3f65171cf6cf9a732fd394ff9f707ddaf682/analysis/
+      rev: '2'
+      service: http
+      sid: '29216'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

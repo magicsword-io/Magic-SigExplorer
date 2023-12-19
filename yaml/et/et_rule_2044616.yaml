@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/sendMessage?chat_id="'
+      - value: '"&"'
+      - value: '"User-Agent|3a 20|curl/"'
+      - depth: '5'
+        value: '"text="'
+      - value: '"%3A+encrypt+"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_14, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2023_03_14, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Linux DarkRadiation Ransomware Telegram Activity M2"'
+      pcre: '"/\+encrypt\+(?:PASS|HOME|DATABASE|SSH KEYS|grep)\+files\+(?:started|Done\.\+Delete\+files)\.$/P"'
+      reference: url,www.trendmicro.com/en_us/research/21/f/bash-ransomware-darkradiation-targets-red-hat--and-debian-based-linux-distributions.html
+      rev: '1'
+      sid: '2044616'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      threshold: type limit, count 1, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

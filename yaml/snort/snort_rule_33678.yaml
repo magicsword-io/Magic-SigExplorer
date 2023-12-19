@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B|)|0D 0A|",fast_pattern,nocase'
+      - value: '"/ads/QueryRecord"'
+      - value: '".html",within 25'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.FannyWorm outbound connection"'
+      reference: url,www.virustotal.com/en/file/003315b0aea2fcb9f77d29223dd8947d0e6792b3a0227e054be8eb2a11f443d9/analysis/
+      rev: '3'
+      service: http
+      sid: '33678'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

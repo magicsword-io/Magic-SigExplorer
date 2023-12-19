@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"PK"'
+      - value: '"Passwords.txt"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_08_11,
+        deployment Perimeter, former_category MALWARE, signature_severity Minor, updated_at
+        2020_08_11
+      msg: '"ET TROJAN Suspicious Zipped Filename in Outbound POST Request (Passwords.txt)
+        M2"'
+      rev: '2'
+      sid: '2035016'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"option=com_jmsfileseller"'
+      - value: '"cat_id="'
+      - value: '"view="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_06_15, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_jmsfileseller view parameter Local File
+        Inclusion Attempt"'
+      reference: url,packetstormsecurity.org/files/101770/Joomla-JMSFileSeller-Local-File-Inclusion.html
+      rev: '3'
+      sid: '2014897'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

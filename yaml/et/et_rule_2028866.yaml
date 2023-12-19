@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Please, wait...</title>"'
+      - value: '"dgduehue()|3b|"'
+      - value: '"catch ("'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_18, deployment Perimeter, signature_severity
+        Major, updated_at 2019_11_15
+      msg: '"ET CURRENT_EVENTS Spelevo Download Payload Landing"'
+      rev: '3'
+      sid: '2028866'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

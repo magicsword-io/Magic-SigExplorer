@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"background-color|3a 20|#ffffff|3b|border|3a 20|1px solid #d0d4d9|3b|box-shadow|3a
+          20|4px 4px 4px #d0d4d9|3b|"'
+      - value: '"id=|22|wk|22 20|name=|22|wk|22 20|method=|22|post|22|"'
+      - value: '"Sign In To View"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_07, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_07
+      msg: '"ET CURRENT_EVENTS Dropbox Business Phishing Landing 2018-02-07"'
+      rev: '2'
+      sid: '2025325'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

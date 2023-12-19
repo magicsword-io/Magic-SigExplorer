@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/info.php?act=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rombrast Trojan outbound connection"'
+      pcre: '"/^\/info\.php\?act\x3d(list|online)/"'
+      reference: url,www.virustotal.com/en/file/deac0b06fb36e38520b002489dae6fff3d346e72d331c3889e9d2764fe2bcf14/analysis/
+      rev: '3'
+      service: http
+      sid: '26911'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

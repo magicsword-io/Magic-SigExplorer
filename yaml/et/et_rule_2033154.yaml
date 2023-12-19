@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|eonsabode|02|at|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_06_21, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_06_21
+      msg: '"ET TROJAN Matanbuchus CnC Domain in DNS Lookup (eonsabode .at)"'
+      reference: url,unit42.paloaltonetworks.com/matanbuchus-malware-as-a-service/
+      rev: '2'
+      sid: '2033154'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

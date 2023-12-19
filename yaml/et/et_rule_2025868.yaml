@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|5c|177|5c|105|5c|114|5c|106|5c|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Web_Server, created_at 2018_07_19,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2018_07_19
+      msg: '"ET WEB_SPECIFIC_APPS ELF file magic plain Inbound Web Servers Likely
+        Command Execution 11"'
+      rev: '2'
+      sid: '2025868'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

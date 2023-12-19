@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/pentest-macro?computer=c_"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_08, deployment Perimeter, former_category
+        HUNTING, signature_severity Informational, updated_at 2022_05_03
+      msg: '"ET INFO Suspicious GET Request (Likely Pentester CnC)"'
+      reference: md5,f7ddcef3607b41c593284dde397e35b8
+      rev: '1'
+      sid: '2034637'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

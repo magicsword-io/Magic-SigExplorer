@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a| application/x-javascript"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,from_server
+      metadata: created_at 2011_08_04, updated_at 2020_07_27
+      msg: '"ET TROJAN Executable Download Purporting to be JavaScript likely 2nd
+        stage Infection"'
+      rev: '2'
+      sid: '2013352'
+      special_options:
+      - http_stat_code
+      - nocase
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

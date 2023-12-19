@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/PhantomSuper.class"'
+      - value: '"Java/"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2015_07_31, cve CVE_2015_2590, updated_at 2020_05_29
+      msg: '"ET TROJAN Possible Java/Downloader Observed in Pawn Storm CVE-2015-2590
+        1"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/an-in-depth-look-at-how-pawn-storms-java-zero-day-was-used/
+      rev: '1'
+      sid: '2021557'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

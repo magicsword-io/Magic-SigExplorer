@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?"'
+      - value: '"uid="'
+      - value: '"&mk=",fast_pattern'
+      - value: '"&os="'
+      - value: '"&rs="'
+      - value: '"&c="'
+      - value: '"&rq="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.MadnessPro outbound connection"'
+      reference: url,blog.cylance.com/a-study-in-bots-madness-pro
+      rev: '3'
+      service: http
+      sid: '31053'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

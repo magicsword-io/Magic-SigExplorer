@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|13|gulfcoastoilngas-ae|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_05, deployment Perimeter,
+        signature_severity Major, updated_at 2022_12_05
+      msg: '"ET CURRENT_EVENTS Observed Phish Domain in DNS Lookup (gulfcoastoilngas-ae
+        .com) 2022-12-05"'
+      reference: url,cloudsek.com/threatintelligence/advanced-phishing-campaign-targeting-individuals-businesses-in-the-middle-east-part-2/
+      rev: '1'
+      sid: '2041701'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '25'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

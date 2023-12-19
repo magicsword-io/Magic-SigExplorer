@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Rift"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        IoT, created_at 2019_03_27, deployment Perimeter, former_category USER_AGENTS,
+        malware_family Mirai, performance_impact Low, signature_severity Informational,
+        updated_at 2020_10_23
+      msg: '"ET TROJAN ELF/Mirai Variant UA Inbound (Rift)"'
+      pcre: '"/User-Agent\x3a\x20Rift(?:\/[0-9]\.0)?\r\n/Hi"'
+      rev: '3'
+      sid: '2027120'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|0D 0A|User-Agent|3A 20|sipcli/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_07_17, updated_at 2019_10_08
+      msg: '"ET SCAN SipCLI VOIP Scan - TCP"'
+      reference: url,www.yasinkaplan.com/SipCli/
+      rev: '1'
+      sid: '2017161'
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

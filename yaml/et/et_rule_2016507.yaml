@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ping.html?r="'
+      - value: '!"/utils/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_02_27, former_category MALWARE, updated_at 2020_09_21
+      msg: '"ET TROJAN W32/Caphaw Requesting Additional Modules From CnC"'
+      pcre: '"/\x2Fping\x2Ehtml\x3Fr\x3D[0-9]{5,14}$/U"'
+      reference: url,www.welivesecurity.com/2013/02/25/caphaw-attacking-major-european-banks-with-webinject-plugin/
+      rev: '4'
+      sid: '2016507'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $DNS_SERVERS
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '2'
+        offset: '2'
+        value: '"|29 00|"'
+      dsize: '>1300'
+      metadata: attack_target DNS_Server, created_at 2021_03_30, cve CVE_2021_26897,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_03_30
+      msg: '"ET EXPLOIT Windows DNS Server RCE Attempt Inbound (CVE-2021-26897)"'
+      reference: cve,2021-26897
+      rev: '1'
+      sid: '2032348'
+      threshold: type limit, count 45, seconds 90, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

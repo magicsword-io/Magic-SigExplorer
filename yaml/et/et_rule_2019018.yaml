@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: '123'
+    details:
+      byte_test: 1,&,1,0
+      classtype: attempted-dos
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"|00 03 01|"'
+      metadata: created_at 2014_08_26, updated_at 2014_08_26
+      msg: '"ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST_SUM Requests
+        IMPL 0x03"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2014/08/25/r7-2014-12-more-amplification-vulnerabilities-in-ntp-allow-even-more-drdos-attacks
+      rev: '3'
+      sid: '2019018'
+      threshold: type both,track by_dst,count 2,seconds 60
+    protocol: udp
+    source:
+      network: any
+      port: any

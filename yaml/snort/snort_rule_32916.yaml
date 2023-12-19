@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '488'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|65 DB 37 37 37 37 37 37|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Win.Trojan.Wiper outbound communication attempt"'
+      reference: url,us-cert.gov/ncas/alerts/TA14-353A
+      rev: '2'
+      sid: '32916'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

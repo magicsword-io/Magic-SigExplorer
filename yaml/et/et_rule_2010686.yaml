@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"=XXXXXXXX"'
+      fast_pattern: only
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN ICMP =XXXXXXXX Likely Precursor to Scan"'
+      reference: url,doc.emergingthreats.net/2010686
+      rev: '4'
+      sid: '2010686'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

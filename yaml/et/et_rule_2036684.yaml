@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"IP="'
+      - value: '"&User="'
+      - value: '"&uuid="'
+      - value: '"&Isping="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_25, deployment Perimeter, former_category
+        MALWARE, malware_family Patchwork, signature_severity Major, tag RAT, updated_at
+        2022_05_25
+      msg: '"ET TROJAN Patchwork APT Related Activity M2 (POST)"'
+      pcre: '"/\.php$/U"'
+      reference: url,twitter.com/katechondic/status/1529378164237008896
+      rev: '1'
+      sid: '2036684'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

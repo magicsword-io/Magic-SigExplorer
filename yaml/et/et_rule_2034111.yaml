@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|honeypoc|02|io|00|"'
+      distance: '1'
+      metadata: created_at 2021_10_05, former_category MALWARE, updated_at 2021_10_05
+      msg: '"ET MALWARE Observed DNS Query to Known PUA Host Domain"'
+      rev: '1'
+      sid: '2034111'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

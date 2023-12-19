@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>X-Sec Shell V."'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_10, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2020_04_10
+      msg: '"ET WEB_CLIENT X-Sec Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2029863'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

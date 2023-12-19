@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/fm-ws/services"'
+      - value: '"<?xml"'
+      - value: '"<!DOCTYPE data SYSTEM"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Web_Server, created_at 2018_07_16, cve CVE_2018_12463,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET WEB_SPECIFIC_APPS Fortify Software Security Center XML External Entity
+        Injection 3"'
+      pcre: '"/<\x21DOCTYPE data SYSTEM[^>]+\x22\s*ftp\x3a\x2f\x2f/Pi"'
+      reference: cve,2018-12463
+      rev: '2'
+      sid: '2025843'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

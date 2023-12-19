@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| NOKIAN95|2F|WEB",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user agent NOKIAN95/WEB"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/targeted-attack-campaign-hides-behind-ssl-communication/
+      rev: '4'
+      service: http
+      sid: '26522'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,0,relative,align
+      byte_test: 4,>,64,0,relative
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A9|",depth 4,offset 16'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC yppasswd username overflow attempt TCP"'
+      reference: nessus,10684
+      rev: '15'
+      sid: '2026'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: unknown
+      contents:
+      - depth: '4'
+        value: '"PK|03 04|"'
+      - value: '".lnk"'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_01, deployment Perimeter,
+        former_category HUNTING, performance_impact Moderate, signature_severity Informational,
+        updated_at 2022_02_01
+      msg: '"ET INFO SUSPICIOUS .LNK File Inside of Zip"'
+      rev: '1'
+      sid: '2035026'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

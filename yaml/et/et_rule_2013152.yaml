@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"util.printf|28 22 25|"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2011_07_01, cve CVE_2008_2992, deployment
+        Perimeter, former_category WEB_CLIENT, confidence High, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Adobe Acrobat Util.printf Buffer Overflow Attempt"'
+      pcre: '"/util.printf\x28\x22\x25[^\x2C\x29]*f\x22\x2C/i"'
+      reference: cve,2008-2992
+      rev: '1'
+      sid: '2013152'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

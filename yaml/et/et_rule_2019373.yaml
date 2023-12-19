@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".__$+"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2014_10_09,
+        deployment Perimeter, former_category EXPLOIT_KIT, signature_severity Major,
+        tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY Generic CollectGarbage in JJEncode (Observed
+        in Sednit)"'
+      pcre: '"/^(?P<sep>.{1,20})\.___\+(?P=sep)\._\$\$\+(?P=sep)\._\$\+\(\!\[\]\+\x22\x22\)\[(?P=sep)\._\$_\]\+\(\!\[\]\+\x22\x22\)\[(?P=sep)\._\$_\]\+(?P=sep)\.\$\$\$_\+(?P=sep)\.\$\$__\+(?P=sep)\.__\+\x22\x5c\x5c\x22\+(?P=sep)\.__\$\+(?P=sep)\.___\+(?P=sep)\.\$\$\$\+(?P=sep)\.\$_\$_\+\x22\x5c\x5c\x22\+(?P=sep)\.__\$\+(?P=sep)\.\$\$_\+(?P=sep)\._\$_\+(?P=sep)\.\$_\$\$\+(?P=sep)\.\$_\$_\+\x22\x5c\x5c\x22\+(?P=sep)\.__\$\+(?P=sep)\.\$__\+(?P=sep)\.\$\$\$\+(?P=sep)\.\$\$\$_\+/R"'
+      reference: url,www.welivesecurity.com/2014/10/08/sednit-espionage-group-now-using-custom-exploit-kit/
+      rev: '5'
+      sid: '2019373'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

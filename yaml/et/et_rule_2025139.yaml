@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '".localtunnel.me"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2017_12_06, former_category POLICY, updated_at 2020_09_16
+      msg: '"ET POLICY localtunnel Reverse Proxy Domain (localtunnel .me in TLS SNI)"'
+      reference: url,localtunnel.github.io/www/
+      rev: '2'
+      sid: '2025139'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

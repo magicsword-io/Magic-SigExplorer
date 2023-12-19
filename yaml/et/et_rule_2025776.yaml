@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/index.php?cmd=submitcommand&command="'
+      - value: '"&command_data=$("'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_03, cve CVE_2018_8734, deployment
+        Datacenter, former_category EXPLOIT, signature_severity Critical, updated_at
+        2022_05_03
+      msg: '"ET EXPLOIT Nagios XI Remote Code Execution 3"'
+      reference: url,exploit-db.com/exploits/44969/
+      rev: '2'
+      sid: '2025776'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"v="'
+      - value: '"a="'
+      - value: '"u="'
+      - value: '"i=0"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_03_09, former_category MALWARE, updated_at 2020_09_29
+      msg: '"ET TROJAN Win32/Trapwot FakeAV Checkin"'
+      pcre: '"/^\/(?:[a-z]+\/)?[a-z_]+\?[a-z]=/U"'
+      reference: md5,baf71ace207afd3f330c4aba3784e074
+      rev: '3'
+      sid: '2020646'
+      special_options:
+      - http_header
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

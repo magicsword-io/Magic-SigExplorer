@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"voicemail",fast_pattern,nocase'
+      - value: '".zip"'
+      - value: '"PK",depth 2'
+      - value: '".exe",within 50'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"POLICY-SPAM Potential phishing attack - .zip voicemail filename download
+        with .exe name within .zip the same "'
+      pcre: '"/\sfilename=[a-z0-9]{0,20}voicemail[a-z0-9]{0,20}\.zip/i"'
+      reference: url,attack.mitre.org/techniques/T1192
+      rev: '4'
+      service: http
+      sid: '29398'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

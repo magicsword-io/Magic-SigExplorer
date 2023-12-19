@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 00 0e 4c 50 68 61 6e 74 6f 6d 53 75 70 65 72 3b|"'
+      - value: '"|01 00 32 4c 6a 61 76 61 2f 75 74 69 6c 2f 63 6f 6e 63 75 72 72 65
+          6e 74 2f 61 74 6f 6d 69 63 2f 41 74 6f 6d 69 63 52 65 66 65 72 65 6e 63
+          65 41 72 72 61 79 3b|"'
+      flow: established,from_server
+      metadata: created_at 2015_08_28, former_category CURRENT_EVENTS, updated_at
+        2015_08_28
+      msg: '"ET CURRENT_EVENTS PawnStorm Java Class Stage 2 M1 Aug 28 2015"'
+      rev: '1'
+      sid: '2021727'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

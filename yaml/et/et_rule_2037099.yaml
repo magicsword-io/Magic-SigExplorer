@@ -1,0 +1,63 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/dist/main.php"'
+      - depth: '19'
+        value: '"loginForm=loginForm"'
+      - value: '"&longitude="'
+      - value: '"&latitude="'
+      - value: '"&fingerprint="'
+      - value: '"&language="'
+      - value: '"&colorDepth="'
+      - value: '"&deviceMemory="'
+      - value: '"&screenResolution="'
+      - value: '"&hardwareConcurrency="'
+      - value: '"&timezone="'
+      - value: '"&pixelRatio="'
+      - value: '"&platform="'
+      - value: '"&username="'
+      - value: '"&username_hidden="'
+      - value: '"&loginPswd="'
+      - value: '"&action=First"'
+      - value: '"&javax.faces.ViewState="'
+      - value: '"&contextToken="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_23, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_06_23
+      msg: '"ET CURRENT_EVENTS Successful Emirates NBD Bank Credential Phish 2022-06-23"'
+      rev: '1'
+      sid: '2037099'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '14'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

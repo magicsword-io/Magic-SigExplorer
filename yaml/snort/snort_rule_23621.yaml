@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"eval(function(p,a,c,k,e,r)",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION known packer routine with secondary obfuscation"'
+      reference: url,dean.edwards.name/packer/
+      rev: '9'
+      service: ftp-data,http,imap,pop3
+      sid: '23621'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

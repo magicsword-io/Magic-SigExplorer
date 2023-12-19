@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat_instantiate.instantiate_online"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2019_10_08
+      msg: '"GPL SQL dbms_repcat_instantiate.instantiate_online buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*refresh_template_name[\r\n\s]*=>[\r\n\s]*\2|refresh_template_name\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/si"'
+      rev: '4'
+      sid: '2102647'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".aspx?V="'
+      - value: '"&R="'
+      - value: '"|2d 40 2d|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_02, deployment Perimeter,
+        former_category MALWARE, malware_family sLoad, signature_severity Major, updated_at
+        2022_08_02
+      msg: '"ET TROJAN Win32/VBS.Sload Activity (GET)"'
+      reference: md5,760ec44980ed5be70fafa5addf538306
+      rev: '1'
+      sid: '2037881'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

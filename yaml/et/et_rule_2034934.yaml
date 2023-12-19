@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|18|confusion-cerulean-samba|06|glitch|02|me"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_18, deployment Perimeter,
+        former_category MALWARE, malware_family APT32, malware_family OceanLotus,
+        signature_severity Major, updated_at 2022_01_18
+      msg: '"ET TROJAN OceanLotus APT Related Domain in DNS Lookup (confusion-cerulean-samba
+        .glitch .me)"'
+      reference: url,twitter.com/ShadowChasing1/status/1483011032612499460
+      rev: '1'
+      sid: '2034934'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

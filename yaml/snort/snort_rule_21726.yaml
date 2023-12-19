@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".ani",fast_pattern,nocase'
+      - value: '"Content-Disposition: attachment|3B|"'
+      - value: '"filename=",nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY ANI file attachment detected"'
+      pcre: '"/filename=[^\n]*\x2eani/i"'
+      rev: '13'
+      service: smtp
+      sid: '21726'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

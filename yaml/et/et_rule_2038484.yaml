@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '15'
+        value: '"/dir/id.php?id="'
+      - value: '"&cn="'
+      - value: '"&un="'
+      - value: '"&admin="'
+      - value: '"&comment="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_10, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_08_10
+      msg: '"ET TROJAN Win32/RA-based.NCX CnC Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,b2b1098602897dc4ca2f886b59e5c50e
+      rev: '1'
+      sid: '2038484'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

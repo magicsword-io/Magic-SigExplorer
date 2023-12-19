@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      icmp_id: '666'
+      itype: '0'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Stacheldraht server spoof"'
+      reference: cve,2000-0138
+      rev: '10'
+      sid: '224'
+    protocol: icmp
+    source:
+      network: 3.3.3.3/32
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>PHP Shell offender</title>"'
+      flow: established,to_client
+      metadata: created_at 2014_01_11, updated_at 2014_01_11
+      msg: '"ET WEB_SERVER ATTACKER WebShell - PHP Offender - Title"'
+      rev: '2'
+      sid: '2017951'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

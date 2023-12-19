@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7C|ge|7C|t|7C|SM|7C|S|7C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Android.Trojan.SpyNote RAT variant getSMS command response"'
+      reference: url,www.virustotal.com/en/file/14eb51b26fa4932fc660daf7e803600bf29a8a46fe3f1d652194bc48e9617bd9/analysis/1478720273/
+      rev: '2'
+      sid: '40763'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

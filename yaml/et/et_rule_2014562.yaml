@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/4.0|20|(compatible|3b 20|MSIE 5.0|3b 20|Windows
+          98)"'
+      - value: '"*|3b|q=0"'
+      - value: '"HTTP/1.0|0d 0a|Host|3a 20|"'
+      fast_pattern: 37,20
+      flow: established,to_server
+      metadata: created_at 2012_04_13, updated_at 2020_11_05
+      msg: '"ET TROJAN Pony Downloader HTTP Library MSIE 5 Win98"'
+      rev: '4'
+      sid: '2014562'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

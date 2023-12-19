@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '84'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Mozilla/5.0 |28|Windows|3B| U|3B| MSIE 9.0|3B| Windows
+          NT 9.0|3B| en-US|29|"'
+      detection_filter: track by_src,count 1,seconds 120
+      flow: to_server,established,no_stream
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-OTHER Malicious UA detected on non-standard port"'
+      reference: url,anubis.iseclab.org/?action=result&task_id=1691c3b8835221fa4692960681f39c736&format=html
+      rev: '6'
+      sid: '24265'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/yws/api/personal/file/"'
+      - value: '"?method=download&shareKey="'
+      - value: '"Host|3a 20|note.youdao.com|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_30, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, performance_impact Moderate,
+        signature_severity Informational, updated_at 2022_03_31
+      msg: '"ET INFO Terse Request to note .youdao .com - Possible Download"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/Hmi"'
+      reference: url,twitter.com/malwrhunterteam/status/1509160261881667585
+      rev: '2'
+      sid: '2035681'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

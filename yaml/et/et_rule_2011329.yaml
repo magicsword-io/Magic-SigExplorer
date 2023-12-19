@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"PDF-"'
+      - value: '"/"'
+      - value: '!"Launch"'
+      - value: '"#"'
+      - value: '".exe"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_28, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Possible PDF Launch Function Remote Code Execution Attempt
+        with Name Representation Obfuscation"'
+      pcre: '"/\x2F(?!Launch)(L|#4C)(a|#61)(u|#75)(n#6E)(c|#63)(h|#68).+\x2F(W|#57)(i|#69)(n|#6E).+\x2Eexe/sm"'
+      reference: url,blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/
+      rev: '5'
+      sid: '2011329'
+      special_options:
+      - file_data
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

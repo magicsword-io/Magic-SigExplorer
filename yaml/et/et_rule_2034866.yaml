@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/?kmd=|22|"'
+      flow: established,to_server
+      metadata: created_at 2022_01_10, former_category ATTACK_RESPONSE, updated_at
+        2022_01_10
+      msg: '"ET ATTACK_RESPONSE Possible ELEFANTE/ElephantBeetle Lateral Movement
+        Activity"'
+      reference: url,blog.sygnia.co/elephant-beetle-an-organized-financial-theft-operation
+      rev: '1'
+      sid: '2034866'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

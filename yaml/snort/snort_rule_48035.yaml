@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"browser/Vivaldi.txtPK",fast_pattern,nocase'
+      - value: '"/Upload/"'
+      - value: '!"User-Agent|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.AcridRain outbound connection"'
+      reference: url,www.virustotal.com/#/file/3d28392d2dc1292a95b6d8f394c982844a9da0cdd84101039cf6ca3cf9874c1c/analysis/
+      rev: '1'
+      service: http
+      sid: '48035'
+      special_options:
+      - http_client_body
+      - http_uri
+      - http_raw_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

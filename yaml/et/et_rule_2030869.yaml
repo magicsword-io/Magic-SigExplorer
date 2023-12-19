@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Zimbra Web Client Sign In"'
+      flow: established,to_client
+      flowbits: isset,ET.appspothosted
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_09_14, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_09_14
+      msg: '"ET CURRENT_EVENTS Zimbra Phishing Landing on Appspot Hosting"'
+      rev: '2'
+      sid: '2030869'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

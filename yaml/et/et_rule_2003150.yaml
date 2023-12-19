@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '"root|3a|*|3a|0|3a|0|3a|"'
+      - value: '"|3a|/root|3a|/bin"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Possible /etc/passwd via SMTP (BSD style)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003150
+      rev: '6'
+      sid: '2003150'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

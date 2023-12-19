@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"description=|28|",nocase'
+      - value: '!"connect_data=|28|sid=",nocase'
+      - value: '!"address=|28|protocol=tcp",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE misparsed login response"'
+      rev: '8'
+      sid: '1675'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

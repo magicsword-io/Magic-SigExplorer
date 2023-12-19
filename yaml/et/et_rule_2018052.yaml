@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".bin"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-Language|3a|"'
+      - value: '" MSIE "'
+      - value: '!"AskTbARS"'
+      - value: '!".passport.net|0d 0a|"'
+      - value: '!".microsoftonline-p.net|0d 0a|"'
+      - value: '!".symantec.com|0d 0a|"'
+      - value: '!".qq.com|0d 0a|"'
+      - value: '!"kankan.com|0d 0a|"'
+      - value: '!"aocdn.net"'
+      - value: '!"conf.v.xunlei.com|0d 0a|"'
+      - value: '!"burstek.com|0d 0a|"'
+      - value: '"|0d 0a 0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_02_01, former_category CURRENT_EVENTS, updated_at
+        2021_09_21
+      msg: '"ET CURRENT_EVENTS Zbot Generic URI/Header Struct .bin"'
+      pcre: '"/\/[a-z0-9]{1,31}\.bin$/U"'
+      rev: '8'
+      sid: '2018052'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

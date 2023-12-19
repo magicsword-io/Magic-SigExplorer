@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Content-Encoding",nocase'
+      - value: '"|3A|",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"BROWSER-IE Microsoft Internet Explorer Content-Encoding overflow attempt"'
+      pcre: '"/^\s*Content-Encoding\s*\x3A\s*[^\r\n]{300}/im"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-015
+      rev: '14'
+      service: smtp
+      sid: '3462'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

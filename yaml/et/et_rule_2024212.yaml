@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        offset: '4'
+        value: '"|ff|SMB|25 00 00 00 00 18 03 c0 00 00 00 00 00 00 00 00 00 00 00
+          00|"'
+      - value: '"|00 00 00 00 ff ff ff ff 00 00|"'
+      - value: '"|5c 00 50 00 49 00 50 00 45 00 5c 00 4c 00 41 00 4e 00 4d 00 41 00
+          4e 00 00 00|"'
+      - value: '"|82 00|zb12g12DWrLehig24"'
+      distance: '13'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: attack_target SMB_Server, created_at 2017_04_17, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2017_04_17
+      msg: '"ET EXPLOIT Possible ETERNALCHAMPION MS17-010 Sync Request (set)"'
+      rev: '2'
+      sid: '2024212'
+      special_options:
+      - fast_pattern
+      within: '19'
+    protocol: tcp
+    source:
+      network: any
+      port: any

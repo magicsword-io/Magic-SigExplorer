@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>"'
+      - value: '"id.me"'
+      - value: '"</title>"'
+      - value: '"|3c|form|20|class|3d 22|new|5f|user|22 20|action|3d|"'
+      - value: '".php"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_06_21, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2023_06_21, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS ID.me Credential Theft Landing Page 2023-06-21"'
+      rev: '1'
+      sid: '2046501'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

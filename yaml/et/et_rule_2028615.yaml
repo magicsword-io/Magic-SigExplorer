@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|en-content|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2019_09_23, deployment Perimeter, former_category MALWARE,
+        performance_impact Low, signature_severity Major, tag DonotGroup, updated_at
+        2020_09_17
+      msg: '"ET TROJAN DonotGroup CnC Domain Observed in DNS Query"'
+      rev: '2'
+      sid: '2028615'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

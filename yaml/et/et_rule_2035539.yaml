@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"check.php"'
+      - value: '".duckdns.org"'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&password="'
+      - value: '"&link_grup="'
+      - value: '"login.php|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_18, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish 2022-03-18"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+login\.php/Hmi"'
+      reference: md5,221ce301229b990a02f433a0f2e25a18
+      rev: '2'
+      sid: '2035539'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

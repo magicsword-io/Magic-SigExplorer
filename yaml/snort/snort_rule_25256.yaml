@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '12'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/a/image.php",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Worm.Gamarue variant outbound connection"'
+      rev: '4'
+      service: http
+      sid: '25256'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

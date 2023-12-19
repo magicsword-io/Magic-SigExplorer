@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"{(new Image).src=|22|/"'
+      - value: '"%72%6f%72%72%65%6e%6f",distance 0,fast_pattern'
+      flow: to_client,established
+      flowbits: set,file.exploit_kit.flash&file.exploit_kit.jar&file.exploit_kit.pdf&file.exploit_kit.silverlight
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT Astrum exploit kit landing page"'
+      reference: url,malware.dontneedcoffee.com/2014/09/astrum-ek.html
+      rev: '4'
+      service: http
+      sid: '31965'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

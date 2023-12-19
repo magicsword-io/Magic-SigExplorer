@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Mindspark MIP ",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE MindSpark framework installer attempt"'
+      reference: url,www.virustotal.com/en/file/9f2cc1688bee96849ced91ade04d4d51e6fd18fa47ab1dc2c12a029aa672f7ce/analysis/
+      rev: '2'
+      service: http
+      sid: '40827'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

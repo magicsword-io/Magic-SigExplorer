@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET|20|"'
+      - value: '"/SWNetPerfMon.db.i18n.ashx?"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Client_Endpoint,
+        created_at 2020_12_29, cve CVE_2020_10148, deployment Perimeter, former_category
+        EXPLOIT, updated_at 2021_09_09
+      msg: '"ET EXPLOIT Possible SolarWinds Orion API Local File Disclosure (SWNetPerfMon.db)
+        (CVE-2020-10148)"'
+      reference: cve,2020-10148
+      rev: '2'
+      sid: '2031460'
+      special_options:
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: any
+      port: any

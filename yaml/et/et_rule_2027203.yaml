@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '".ps1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2019_04_16, updated_at 2019_04_16
+      msg: '"ET POLICY Possible Powershell .ps1 Script Use Over SMB"'
+      rev: '1'
+      sid: '2027203'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

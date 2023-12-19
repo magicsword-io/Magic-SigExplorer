@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HEAD"'
+      - value: '".bin",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Microsoft BITS"'
+      - value: '"Accept-Encoding|3A 20|identity|0D 0A|"'
+      - value: '!"Content-Length"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Sweeper variant dropper initial download attempt"'
+      pcre: '"/\/[a-f0-9]{32}\/\w+\.bin/"'
+      reference: url,www.virustotal.com/en/file/70e6df66c76700afef596e2dd7c956f4f476acca5b935b3f067084241638d182/analysis/1460636221/
+      rev: '3'
+      service: http
+      sid: '38565'
+      special_options:
+      - http_method
+      - pkt_data
+      - http_header
+      - pkt_data
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

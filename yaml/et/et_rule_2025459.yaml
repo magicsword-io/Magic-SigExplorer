@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/editor.php"'
+      - value: '"&map_title="'
+      - value: '"&map_legend="'
+      - value: '"&editorsettings_showrelative="'
+      - value: '"="'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2018_04_03,
+        cve CVE_2013_2618, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, signature_severity Major, updated_at 2020_11_05
+      msg: '"ET WEB_SPECIFIC_APPS Possible CVE-2013-2618 Attempt (PHP Weathermap Persistent
+        XSS)"'
+      pcre: '"/.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/R"'
+      reference: cve,2013-2618
+      rev: '2'
+      sid: '2025459'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

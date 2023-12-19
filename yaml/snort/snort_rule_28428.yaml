@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"= |22|applet|22 3B 20|"'
+      - value: '"= |22|object|22 3B 20|",within 50'
+      - value: '"=|27|param|27 3B 20|",within 50'
+      - value: '".zip|27 3B| </script>",distance 0'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Glazunov exploit kit landing page"'
+      pcre: '"/\/\d+\/\d\.zip\x27\x3b/"'
+      reference: url,nakedsecurity.sophos.com/2013/07/02/the-four-seasons-of-glazunov-digging-further-into-sibhost-and-flimkit/
+      rev: '3'
+      service: http
+      sid: '28428'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

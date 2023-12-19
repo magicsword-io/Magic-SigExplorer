@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '69'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"|00 01 25 2E|"'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL TFTP MISC TFTP32 Get Format string attempt"'
+      reference: url,www.critical.lt/?vulnerabilities/200
+      rev: '3'
+      sid: '2101222'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

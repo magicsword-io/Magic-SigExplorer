@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '11'
+        value: '"parameters="'
+      - depth: '34'
+        value: '"POST /lm/dynamicLicense HTTP/1.1|0d 0a|"'
+      - value: '"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_03_08, deployment Perimeter, former_category
+        GAMES, performance_impact Low, signature_severity Informational, updated_at
+        2021_03_08
+      msg: '"ET GAMES GameHouse License Check"'
+      reference: md5,0e29380dcc1f9a57f545fc26b4045c94
+      rev: '2'
+      sid: '2031878'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

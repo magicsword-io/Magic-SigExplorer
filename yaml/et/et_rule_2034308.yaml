@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ExpandedWrapperOfObjectStateFormatterObjectDataProvider"'
+      - value: '"DNNPersonalization="'
+      - value: '"<profile"'
+      - value: '"MethodName"'
+      - value: '"Deserialize"'
+      - value: '"MethodParameters"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_01, cve CVE_2018_15811, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_11_01
+      msg: '"ET EXPLOIT DotNetNuke 9.2-9.2.2 Cookie Deserialization Exploit (CVE-2018-15811)"'
+      reference: cve,2018-15812
+      rev: '1'
+      sid: '2034308'
+      special_options:
+      - fast_pattern
+      - nocase
+      - http_cookie
+      - nocase
+      - http_cookie
+      - nocase
+      - http_cookie
+      - nocase
+      - http_cookie
+      - nocase
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

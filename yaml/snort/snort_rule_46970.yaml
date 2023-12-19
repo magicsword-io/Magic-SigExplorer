@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Disposition: form-data|3B| name=|22|board_id|22|",fast_pattern,nocase'
+      - value: '"Content-Disposition: form-data|3B| name=|22|user_id|22|"'
+      - value: '"Content-Disposition: form-data|3B| name=|22|file1|22|"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Autophyte RAT variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/e98991cdd9ddd30adf490673c67a4f8241993f26810da09b52d8748c6160a292/detection
+      rev: '1'
+      service: http
+      sid: '46970'
+      special_options:
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

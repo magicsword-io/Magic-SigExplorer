@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Tarjeta.html"'
+      - value: '"ccn="'
+      - value: '"&exp1="'
+      - value: '"&cv="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_23, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2022_08_23, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish 2022-08-23"'
+      pcre: '"/Tarjeta\.html$/U"'
+      reference: md5,750224be88972b410cd55e946f7393ac
+      rev: '1'
+      sid: '2038598'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

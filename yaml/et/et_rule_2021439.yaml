@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a|"'
+      - depth: '11'
+        value: '"ID_MAQUINA="'
+      - value: '"&VERSAO="'
+      - value: '"&WIN="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_07_20, deployment Perimeter,
+        former_category MALWARE, malware_family Bancos, signature_severity Major,
+        tag Banking_Trojan, tag c2, updated_at 2020_05_29, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Bancos.AMM CnC Beacon"'
+      reference: md5,f52ff1dc059f1df95781830d84a12869
+      rev: '3'
+      sid: '2021439'
+      special_options:
+      - http_method
+      - http_header
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

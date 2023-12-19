@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '34'
+        value: '"/adfs/portal/images/theme/light01/"'
+      - value: '".webp"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Server, created_at 2021_09_28, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category MALWARE, malware_family FoggyWeb, performance_impact
+        Low, signature_severity Major, updated_at 2021_09_28
+      msg: '"ET TROJAN FoggyWeb Backdoor Incoming Request (POST)"'
+      pcre: '"/\.webp$/U"'
+      reference: url,www.microsoft.com/security/blog/2021/09/27/foggyweb-targeted-nobelium-malware-leads-to-persistent-backdoor
+      rev: '1'
+      sid: '2034035'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

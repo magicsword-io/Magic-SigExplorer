@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Server|3a 20|NimPlant C2 Server|0d 0a|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_02_24, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_02_24
+      msg: '"ET TROJAN Observed NimPlant Server Response (Inbound)"'
+      reference: url,github.com/chvancooten/NimPlant
+      rev: '1'
+      sid: '2044340'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

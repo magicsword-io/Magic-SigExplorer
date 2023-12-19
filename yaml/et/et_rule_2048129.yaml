@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"|1f 00 00 00 31 00 32 00 33 00 34 00 35 00 36 00 00 00|"'
+      - value: '"|78 9c|"'
+      distance: '4'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_20, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, tag c2, updated_at
+        2023_09_20, reviewed_at 2023_09_20
+      msg: '"ET TROJAN Win32/Gh0stRat C2 Response (X11 SelectionNotify)"'
+      reference: url,twitter.com/naumovax/status/1703765086014152778
+      rev: '1'
+      sid: '2048129'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

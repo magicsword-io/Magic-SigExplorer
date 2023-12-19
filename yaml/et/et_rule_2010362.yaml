@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/install/di.php?"'
+      - value: '"pathtoserverdata="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS AjaxPortal di.php pathtoserverdata Parameter Remote
+        File Inclusion Attempt"'
+      pcre: '"/pathtoserverdata\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010362
+      rev: '3'
+      sid: '2010362'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

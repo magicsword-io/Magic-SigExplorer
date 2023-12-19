@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"cngameanti|7c|"'
+      dsize: '1024'
+      flow: established,to_server
+      metadata: created_at 2014_09_24, former_category MALWARE, updated_at 2014_09_24
+      msg: '"ET TROJAN Linux/Yangji.A Checkin"'
+      pcre: '"/^\x2d?\d/R"'
+      reference: md5,b5badeb16414cba66999742601c092b8
+      rev: '1'
+      sid: '2019229'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

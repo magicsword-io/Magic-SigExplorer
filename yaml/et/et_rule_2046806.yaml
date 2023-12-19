@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/report"'
+      - value: '"User-Agent|3a 20|Go-http-client"'
+      - depth: '11'
+        value: '"|7b 22|cookies|22 3a|"'
+      - value: '"|22 2c 22|discord|22 3a 22|"'
+      - value: '"|22 2c 22|passwords|22 3a 22|"'
+      - value: '"|22|uploader|22 3a 22 7b 5c 22|access|5f|key|5c 22 3a|"'
+      - value: '"|2c 5c 22|sha256sum|5c 22 3a 5c|"'
+      - value: '"Content-Type|3a 20|application/json"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_12, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family RootTeamStealer, confidence High,
+        signature_severity Critical, updated_at 2023_07_12
+      msg: '"ET TROJAN Win32/RootTeam Stealer CnC Exfil M2"'
+      reference: md5,b985f86091846026c4ea9b93d78e7524
+      rev: '1'
+      sid: '2046806'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

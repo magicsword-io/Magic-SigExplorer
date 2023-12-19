@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/functions.php",nocase'
+      - value: '"PGV_BASE_DIRECTORY",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PhpGedView PGV functions.php base directory manipulation
+        attempt"'
+      reference: cve,2004-0030
+      rev: '12'
+      service: http
+      sid: '2367'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

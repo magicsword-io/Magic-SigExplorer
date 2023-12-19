@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"OPTIONS"'
+      - value: '"/ame_icon.png"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2017_10_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2020_09_14
+      msg: '"ET TROJAN Possible Dragonfly APT Activity HTTP URI OPTIONS"'
+      reference: url,www.us-cert.gov/sites/default/files/publications/MIFR-10128883_TLP_WHITE.pdf
+      rev: '2'
+      sid: '2024899'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

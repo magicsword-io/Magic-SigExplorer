@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/adm_bord/login_new_check.php "'
+      - value: '"boundary|3d 22|boundary_.oOo._"'
+      - depth: '17'
+        value: '"--boundary_.oOo._"'
+      - value: '"name|3d 22|type|22 3b|"'
+      - value: '"name|3d 22|id|22 3b 0d 0a 0d 0a|"'
+      - value: '"name|3d 22|session|22 3b 0d 0a 0d 0a|"'
+      - value: '"name|3d 22|file|22 3b 20|filename|3d 22|"'
+      - value: '"information|24 24 24|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_07, deployment Perimeter,
+        former_category MALWARE, malware_family MagicRAT, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2022_09_07
+      msg: '"ET TROJAN Win32/MagicRAT CnC Checkin M2"'
+      pcre: '"/filename\=\"[a-f0-9]{32}\.gif\"/P"'
+      reference: md5,b4c9b903dfd18bd67a3824b0109f955b
+      rev: '1'
+      sid: '2038766'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - \x0d\x0a\x0d\x0a[a-f0-9]{32}/P"
+      - http_client_body
+      - \x0d\x0a\x0d\x0a[a-z0-9]{19}/P"
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '21'
+        value: '"/downloads/impcremote"'
+      - value: '"Host|3a 20|impcremote.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_16, deployment Perimeter, former_category
+        INFO, signature_severity Informational, tag RemoteAccessTool, updated_at 2022_03_16
+      msg: '"ET INFO imPcRemote Download"'
+      reference: md5,3d72ee8e1e59b143fa496fa63ca33994
+      rev: '2'
+      sid: '2035475'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

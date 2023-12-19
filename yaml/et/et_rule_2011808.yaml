@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3A| inspath [path disclosure finder"'
+      flow: established,to_server
+      metadata: created_at 2010_10_13, updated_at 2020_09_10
+      msg: '"ET SCAN Inspathx Path Disclosure Scanner User-Agent Detected"'
+      reference: url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/
+      rev: '2'
+      sid: '2011808'
+      special_options:
+      - http_header
+      threshold: type limit, count 1, seconds 30, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

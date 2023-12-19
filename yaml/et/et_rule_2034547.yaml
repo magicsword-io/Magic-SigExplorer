@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?key="'
+      - value: '"User-Agent|3a 20|test-upload|0d 0a|"'
+      - depth: '5'
+        value: '"lang="'
+      - value: '"&image=iVBORw"'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_29, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_11_29
+      msg: '"ET TROJAN MSIL/Bobik CnC Traffic"'
+      reference: md5,c110a5814451bbfba9eb41a2b2328213
+      rev: '2'
+      sid: '2034547'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

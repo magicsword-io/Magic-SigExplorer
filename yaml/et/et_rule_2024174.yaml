@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|7a 8d 9b dc|"'
+      dsize: '12'
+      flow: established,to_client
+      flowbits: isset,ncc.apt10.beacon_send
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_04, deployment Perimeter, former_category
+        MALWARE, malware_family RedLeaves, malware_family Red_Leaves, performance_impact
+        Low, signature_severity Major, tag APT, tag APT10, tag RedLeaves, updated_at
+        2017_04_28
+      msg: '"ET TROJAN Red Leaves magic packet response detected (APT10 implant)"'
+      reference: url,blog.jpcert.or.jp/2017/04/redleaves---malware-based-on-open-source-rat.html
+      rev: '2'
+      sid: '2024174'
+      threshold: type limit, track by_dst, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

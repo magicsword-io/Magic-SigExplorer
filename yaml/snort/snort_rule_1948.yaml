@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      byte_test: 1,!&,0xF8,2
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 00 00 00 00 00|",depth 8,offset 4'
+      - value: '"|00 00 FC 00 01|",fast_pattern'
+      flow: to_server
+      isdataat: '!1,relative'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS dns zone transfer via UDP detected"'
+      reference: nessus,10595
+      rev: '20'
+      service: dns
+      sid: '1948'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

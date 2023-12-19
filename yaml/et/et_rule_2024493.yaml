@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var a=a|7c 7c|window.event|3b|doOpen|28 22|http"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family EITest, performance_impact Low, signature_severity
+        Major, tag Redirector, updated_at 2017_07_25
+      msg: '"ET CURRENT_EVENTS EITest Inject July 25 2017"'
+      pcre: '"/^s?\x3a\x2f\x2f[^\x22\x27]+\/\?[A-Za-z0-9]{5,6}(?:=[^&\x22\x27]+)?[\x22\x27]\x29\x3bsetCookie\(\x22popundr\x22,1,864e5\)\}/Ri"'
+      rev: '2'
+      sid: '2024493'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

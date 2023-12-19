@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/perl/invoc_oneway.pl"'
+      - value: '"?id_service="'
+      - value: '"&nom_exe="'
+      - value: '"&skin="'
+      - value: '"&id_produit="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Dialer-715 Install Checkin"'
+      reference: url,doc.emergingthreats.net/2003650
+      rev: '4'
+      sid: '2003650'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

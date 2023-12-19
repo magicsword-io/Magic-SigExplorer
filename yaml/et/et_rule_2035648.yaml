@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '[443,444,$HTTP_PORTS]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/autodiscover"'
+      - value: '"/mapi/emsmdb"'
+      - value: '"Email=autodiscover/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Microsoft_Exchange, attack_target Server, created_at
+        2022_03_29, cve CVE_2021_31207, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category EXPLOIT, signature_severity Major,
+        tag Exploit, updated_at 2022_03_29
+      msg: '"ET EXPLOIT Microsoft Exchange SUID Disclosure via SSRF Inbound M2 (CVE-2021-31207)"'
+      reference: cve,2021-31207
+      rev: '2'
+      sid: '2035648'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

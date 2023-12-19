@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9080'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cgi-bin/cgictl",fast_pattern,nocase'
+      - value: '"reportId=",nocase'
+      - value: '"../"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Kaspersky Linux File Server WMC directory traversal attempt"'
+      pcre: '"/[?&]reportId=[^&]*?\x2e\x2e\x2f/i"'
+      reference: url,coresecurity.com/advisories/Kaspersky-Anti-Virus-File-Server-Multiple-Vulnerabilities
+      rev: '2'
+      service: http
+      sid: '43810'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

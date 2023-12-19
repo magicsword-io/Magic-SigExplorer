@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '12'
+        value: '"/protection/"'
+      - value: '"|22 3b 20|city|3d|"'
+      - depth: '6'
+        value: '"user|3d 22|"'
+      - value: '"|22 3b 20|city|3d|"'
+      - value: '!"Referer"'
+      - value: '!"Connection"'
+      - value: '!"Cache"'
+      - value: '!"Accept"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_31, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2022_08_31
+      msg: '"ET MALWARE Win32/ReImageRepair.T CnC Activity"'
+      reference: md5,39fef85fe114d96dde745b8ce0659b2e
+      rev: '1'
+      sid: '2038701'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - http_cookie
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

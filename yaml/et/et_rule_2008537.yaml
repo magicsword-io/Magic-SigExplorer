@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"HTTP/1.0"'
+      - value: '"User-Agent|3a| Mozilla"'
+      - value: '"4.75 [en] (Windows NT 5.0"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET SCAN Hmap Webserver Fingerprint Scan"'
+      reference: url,doc.emergingthreats.net/2008537
+      rev: '8'
+      sid: '2008537'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

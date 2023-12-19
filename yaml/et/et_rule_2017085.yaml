@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"godid="'
+      - value: '"godid="'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2013_07_02, updated_at 2020_04_24
+      msg: '"ET WEB_SERVER WebShell - GODSpy - Cookie"'
+      rev: '1'
+      sid: '2017085'
+      special_options:
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

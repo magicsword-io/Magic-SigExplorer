@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".jpg?log="'
+      - offset: '11'
+        value: '"&ts="'
+      - value: '"&act="'
+      - value: '"client|3a 20|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_10_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_25,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Siggen.Dropper CnC Beacon"'
+      reference: md5,ee363de2168aab353c829434189350e4
+      rev: '1'
+      sid: '2019515'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

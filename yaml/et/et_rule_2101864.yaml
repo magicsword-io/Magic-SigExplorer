@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"SITE"'
+      - value: '"NEWER"'
+      distance: '1'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0880, updated_at 2010_09_23
+      msg: '"GPL FTP SITE NEWER attempt"'
+      pcre: '"/^SITE\s+NEWER/smi"'
+      reference: nessus,10319
+      rev: '8'
+      sid: '2101864'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

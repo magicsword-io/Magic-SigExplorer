@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"list.php?c="'
+      - value: '"&v="'
+      - value: '"&t="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_03_21, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32/Virut.BN Checkin"'
+      pcre: '"/c\x3d[0-9A-F]{100}/i"'
+      reference: md5,199d9ea754f193194e251415a2f6dd46
+      rev: '6'
+      sid: '2012533'
+      special_options:
+      - nocase
+      within: '32'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

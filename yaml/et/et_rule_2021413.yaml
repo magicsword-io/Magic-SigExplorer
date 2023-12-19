@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - depth: '33'
+        value: '"Accept-Encoding|3a 20|identity|0d 0a|Host|3a 20|"'
+      - value: '!"Accept-L"'
+      - value: '!"Accept|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_07_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_17,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN SeaDuke CnC Beacon"'
+      pcre: '"/^[a-zA-Z0-9_-]{2,6}=[a-zA-Z0-9_-]+(?:\x3b\x20[a-zA-Z0-9_-]{2,6}=[a-zA-Z0-9_-]+){1,6}={0,2}?$/C"'
+      reference: url,researchcenter.paloaltonetworks.com/2015/07/unit-42-technical-analysis-seaduke/
+      rev: '1'
+      sid: '2021413'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

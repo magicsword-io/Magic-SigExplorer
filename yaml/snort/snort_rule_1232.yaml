@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1812'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/catinfo",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP VirusWall catinfo access"'
+      reference: nessus,10650
+      rev: '14'
+      service: http
+      sid: '1232'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

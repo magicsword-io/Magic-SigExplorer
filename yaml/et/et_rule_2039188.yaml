@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$SQL_SERVERS]'
+      port: '1433'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"s|00|p|00|_|00|a|00|d|00|d|00|e|00|x|00|t|00|e|00|n|00|d|00|e|00|d|00|p|00|r|00|o|00|c|00|"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Microsoft_SQL_Server, attack_target SQL_Server, created_at
+        2022_10_12, deployment Perimeter, deployment Internal, deployment Datacenter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_10_12
+      msg: '"ET INFO MSSQL sp_addextendedproc Command Observed"'
+      reference: url,learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-addextendedproc-transact-sql?view=sql-server-ver16
+      rev: '1'
+      sid: '2039188'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

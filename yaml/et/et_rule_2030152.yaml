@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|0d 0a|Host|3a 20|address.works|0d 0a|"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2020_05_11, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2020_05_11
+      msg: '"ET POLICY IP Check Domain (address .works)"'
+      rev: '2'
+      sid: '2030152'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/OvCgi/"'
+      - value: '"/OpenView5.exe?"'
+      - value: '"Action=../../"'
+      - value: '" HTTP/1"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2022_04_18
+      msg: '"ET WEB_SERVER HP OpenView Network Node Manager CGI Directory Traversal"'
+      reference: url,doc.emergingthreats.net/2008171
+      rev: '10'
+      sid: '2008171'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

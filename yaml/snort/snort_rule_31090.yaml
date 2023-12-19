@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: hello crazyk|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user agent - User-Agent hello
+        crazyk"'
+      reference: url,www.virustotal.com/file/e61acf1cf61938eaa9cfa40e9dcd357f271c17c20218ba895c1f4a/analysis/
+      rev: '3'
+      service: http
+      sid: '31090'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

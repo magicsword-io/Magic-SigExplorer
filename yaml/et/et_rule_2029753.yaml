@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"covid"'
+      - value: '!".jhu.edu|0d 0a|"'
+      - value: '!".ncsc.gov.ie|0d 0a|"'
+      - value: '!".nhs.wales|0d 0a|"'
+      - value: '!".govt.nz|0d 0a|"'
+      - value: '!".nhp.gov.in|0d 0a|"'
+      - value: '!".oracle.com|0d 0a|"'
+      - value: '!".cdc.gov|0d 0a|"'
+      metadata: created_at 2020_03_28, former_category HUNTING, updated_at 2020_11_11
+      msg: '"ET INFO Suspicious GET Request with Possible COVID-19 URI M1"'
+      rev: '3'
+      sid: '2029753'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

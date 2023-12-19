@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/usbinteract.cgi"'
+      - depth: '14'
+        value: '"action=7&path="'
+      flow: to_server,established
+      metadata: created_at 2018_09_10, updated_at 2020_08_25
+      msg: '"ET EXPLOIT EnGenius EnShare IoT Gigabit Cloud Service RCE"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/09/unit42-multi-exploit-iotlinux-botnets-mirai-gafgyt-target-apache-struts-sonicwall/
+      rev: '1'
+      sid: '2026104'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

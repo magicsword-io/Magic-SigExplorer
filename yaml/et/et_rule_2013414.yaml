@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: bad-unknown
+      contents:
+      - value: '"Server|3A| AmazonS3"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,to_client
+      metadata: created_at 2011_08_17, updated_at 2011_08_17
+      msg: '"ET POLICY Executable served from Amazon S3"'
+      reference: url,www.securelist.com/en/blog/208188099/Financial_data_stealing_Malware_now_on_Amazon_Web_Services_Cloud
+      rev: '5'
+      sid: '2013414'
+      special_options:
+      - http_header
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - depth: '4'
+        offset: '4'
+        value: '"|FF|SMB"'
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"j|28 19|9|0C B1 D0 11 9B A8 00 C0|O|D9|.|F5|"'
+      distance: '29'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2010_09_23, cve CVE_2003_0533, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS DCERPC LSASS direct bind attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS04-011.mspx
+      rev: '7'
+      sid: '2102526'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|0D 0A 0D 0A|UEsDB"'
+      flow: established,to_server
+      metadata: created_at 2014_10_15, former_category SMTP, updated_at 2014_10_15
+      msg: '"ET SMTP SUSPICIOUS SMTP Attachment Inbound PPT attachment with Embedded
+        OLE Object M1"'
+      pcre: '"/^[A-Za-z0-9\/\+\x0D\x0A]+?B[\x0d\x0a]{0,2}w[\x0d\x0a]{0,2}d[\x0d\x0a]{0,2}C[\x0d\x0a]{0,2}9[\x0d\x0a]{0,2}l[\x0d\x0a]{0,2}b[\x0d\x0a]{0,2}W[\x0d\x0a]{0,2}J[\x0d\x0a]{0,2}l[\x0d\x0a]{0,2}Z[\x0d\x0a]{0,2}G[\x0d\x0a]{0,2}R[\x0d\x0a]{0,2}p[\x0d\x0a]{0,2}b[\x0d\x0a]{0,2}m[\x0d\x0a]{0,2}d[\x0d\x0a]{0,2}z[\x0d\x0a]{0,2}L[\x0d\x0a]{0,2}2[\x0d\x0a]{0,2}9[\x0d\x0a]{0,2}s[\x0d\x0a]{0,2}Z[\x0d\x0a]{0,2}U[\x0d\x0a]{0,2}9[\x0d\x0a]{0,2}i[\x0d\x0a]{0,2}a[\x0d\x0a]{0,2}m[\x0d\x0a]{0,2}V[\x0d\x0a]{0,2}j[\x0d\x0a]{0,2}d/R"'
+      rev: '2'
+      sid: '2019406'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

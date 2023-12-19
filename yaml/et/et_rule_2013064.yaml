@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"fQ_fQ_fQ_fQ"'
+      flow: to_server,established
+      metadata: created_at 2011_06_17, updated_at 2020_05_06
+      msg: '"ET TROJAN Possible Tracur.Q HTTP Communication"'
+      reference: url,xml.ssdsandbox.net/view/d2afc3be7357f96834ec684ab329d7e2
+      rev: '2'
+      sid: '2013064'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

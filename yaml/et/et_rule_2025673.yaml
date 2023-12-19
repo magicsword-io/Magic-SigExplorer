@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<meta name=|22|SiteID|22 20|content=|22 22|"'
+      - value: '"<meta name=|22|ReqLC|22 20|content=|22|1033|22|"'
+      - value: '"<meta name=|22|LocLC|22 20|content="'
+      - value: '"microsoftonline-p.com"'
+      - value: '"id=|22|credentials|22|"'
+      - value: '!"action=|22|/common/login|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_24, deployment Perimeter, former_category
+        PHISHING, performance_impact Low, signature_severity Major, updated_at 2020_08_19
+      msg: '"ET CURRENT_EVENTS Possible Office 365 Phishing Landing 2016-08-24"'
+      rev: '1'
+      sid: '2025673'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      threshold: type limit, track by_src, count 1, seconds 30
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

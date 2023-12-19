@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"http|3A|//"'
+      - value: '".exe?ts="'
+      - value: '"&affid="'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.asproxfakeav
+      metadata: created_at 2013_03_05, former_category TROJAN, updated_at 2017_11_01
+      msg: '"ET TROJAN W32/Asprox.FakeAV Affiliate Download Location Response - Likely
+        Pay-Per-Install For W32/Papras.Spy or W32/ZeroAccess"'
+      reference: url,www.trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-asprox-reborn.pdf
+      rev: '2'
+      sid: '2016531'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

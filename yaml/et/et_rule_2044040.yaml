@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/taskforecast/installed"'
+      - value: '"Content-Length|3a 20|0|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter,
+        former_category ADWARE_PUP, performance_impact Low, signature_severity Minor,
+        updated_at 2023_01_31
+      msg: '"ET MALWARE BoostBeast Checkin M1"'
+      reference: md5,73923a750344d1a1e734a12e98271c69
+      rev: '1'
+      sid: '2044040'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '27'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

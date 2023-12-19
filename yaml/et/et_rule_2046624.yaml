@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2e|Windows IP Configuration"'
+      dsize: <28
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_06_22, deployment Perimeter, former_category
+        MALWARE, malware_family DarkFinger, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_06_22
+      msg: '"ET TROJAN Possible DarkFinger ipconfig Retrieval Attempt"'
+      reference: url,github.com/hyp3rlinx/DarkFinger-C2/
+      rev: '1'
+      sid: '2046624'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

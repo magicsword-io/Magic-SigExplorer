@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| AutoHotkey"'
+      - value: '!".ahk4.net|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2020_08_13
+      msg: '"ET USER_AGENTS Suspicious User-Agent (AutoHotkey)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008259
+      rev: '9'
+      sid: '2008259'
+      special_options:
+      - http_header
+      - http_header
+      threshold: type limit,count 2,track by_src,seconds 300
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

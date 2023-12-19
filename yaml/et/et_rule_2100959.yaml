@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/service.pwd"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_22
+      msg: '"GPL WEB_SERVER service.pwd"'
+      reference: bugtraq,1205
+      rev: '8'
+      sid: '2100959'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

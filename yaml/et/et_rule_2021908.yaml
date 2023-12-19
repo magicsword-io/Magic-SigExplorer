@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function ckl"'
+      - value: '"VIP*/"'
+      flow: established,from_server
+      metadata: created_at 2015_10_06, updated_at 2015_10_06
+      msg: '"ET CURRENT_EVENTS KaiXin Landing Page Oct 05 2015"'
+      rev: '2'
+      sid: '2021908'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

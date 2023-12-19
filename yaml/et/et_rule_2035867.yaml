@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|mobiles-security|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Mobile_Client, created_at 2022_04_07, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_05_02
+      msg: '"ET TROJAN Pegasus Domain in DNS Lookup"'
+      reference: url,citizenlab.ca/2022/04/peace-through-pegasus-jordanian-human-rights-defenders-and-journalists-hacked-with-pegasus-spyware
+      rev: '3'
+      sid: '2035867'
+      special_options:
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

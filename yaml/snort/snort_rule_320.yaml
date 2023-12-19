@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"cmd_rootsh"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER cmd_rootsh backdoor attempt"'
+      reference: url,www.sans.org/y2k/fingerd.htm
+      rev: '15'
+      sid: '320'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

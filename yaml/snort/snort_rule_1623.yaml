@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"MODE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP invalid MODE"'
+      pcre: '"/^MODE\s+[^ABSC]{1}/ims"'
+      reference: url,www.faqs.org/rfcs/rfc959.html
+      rev: '14'
+      service: ftp
+      sid: '1623'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

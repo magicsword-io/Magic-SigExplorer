@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"CSCO_WebVPN"'
+      - value: '"csco_wrap_js"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, cve CVE_2009_1201, deployment Datacenter, signature_severity
+        Major, tag XSS, tag Cross_Site_Scripting, updated_at 2019_09_27
+      msg: '"ET WEB_SERVER Possible Cisco ASA Appliance Clientless SSL VPN HTML Rewriting
+        Security Bypass Attempt/Cross Site Scripting Attempt"'
+      reference: url,doc.emergingthreats.net/2010730
+      rev: '4'
+      sid: '2010730'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

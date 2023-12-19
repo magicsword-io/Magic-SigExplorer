@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 10|dubaiexpo2020.cf|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_03, deployment Perimeter, former_category
+        MALWARE, malware_family Turla, malware_family APT34, performance_impact Low,
+        signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN Observed Turla/APT34 CnC Domain Domain (dubaiexpo2020 .cf in
+        TLS SNI)"'
+      reference: md5,4079500faa93e32a2622e1593ad94738
+      rev: '2'
+      sid: '2027669'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

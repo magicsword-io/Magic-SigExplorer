@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/tmps."'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_05, updated_at 2020_09_25
+      msg: '"ET TROJAN W32/Bapy.Downloader PE Download Request"'
+      pcre: '"/[a-z]\d{2}$/U"'
+      reference: md5,e256976cedda8c9d07a21ca0e5c2f86c
+      rev: '1'
+      sid: '2019127'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

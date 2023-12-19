@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/scripts/ajaxPortal.lua"'
+      - value: '"destination="'
+      - value: '"source="'
+      - value: '"test="'
+      - value: '"&requestTimeout="'
+      - value: '"auth_token="'
+      - value: '"cmd=run_diagnostic"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_02, cve CVE_2018_6961, deployment
+        Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Critical, updated_at 2020_08_25
+      msg: '"ET EXPLOIT VMware NSX SD-WAN Command Injection"'
+      pcre: '"/destination=[^&]*\x24\x28/Pi"'
+      reference: cve,2018-6961
+      rev: '2'
+      sid: '2025767'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

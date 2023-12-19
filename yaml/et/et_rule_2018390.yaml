@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        offset: '8'
+        value: '"|55 60 67 6c 69 70 9a|"'
+      dsize: '>11'
+      flow: to_server,established
+      metadata: created_at 2014_04_16, former_category MALWARE, updated_at 2014_04_16
+      msg: '"ET TROJAN Backdoor Win32/Zegost.Q CnC traffic (OUTBOUND)"'
+      reference: md5,4f0d365408b439eb9aaf0b2352abb662
+      rev: '1'
+      sid: '2018390'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

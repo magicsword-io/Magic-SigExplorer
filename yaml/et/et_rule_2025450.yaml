@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<!-- saved from url="'
+      - value: '")https://"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_03_30, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_03_30
+      msg: '"ET CURRENT_EVENTS Comcast/Xfinity Phishing Landing 2018-03-30"'
+      pcre: '"/^[^/]+(?:xfinity|comcast)\.(?:com|net)/Ri"'
+      rev: '2'
+      sid: '2025450'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

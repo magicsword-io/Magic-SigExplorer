@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a| Install Stub"'
+      - value: '"stats.norton.com|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2011_11_08, deployment Perimeter, deployment alert_only,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2020_04_22
+      msg: '"ET POLICY Norton Update User-Agent (Install Stub)"'
+      reference: url,threatexpert.com/reports.aspx?find=stats.norton.com
+      rev: '5'
+      sid: '2013882'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

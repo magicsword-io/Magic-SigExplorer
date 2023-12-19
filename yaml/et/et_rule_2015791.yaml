@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"heritrix"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_10_12, deployment Perimeter, deprecation_reason Age,
+        former_category POLICY, performance_impact Low, confidence Medium, signature_severity
+        Informational, updated_at 2020_04_22
+      msg: '"ET POLICY archive.org heritix Crawler User-Agent (Outbound)"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+?heritrix/Hmi"'
+      reference: url,github.com/internetarchive/heritrix3/wiki
+      rev: '6'
+      sid: '2015791'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

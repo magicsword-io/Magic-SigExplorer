@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a|"'
+      - value: '"/upfornow/connect.php"'
+      - value: '"Content-Length|3a| "'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_04, former_category MALWARE, updated_at 2020_09_25
+      msg: '"ET TROJAN Kronos Checkin"'
+      reference: url,securityblog.s21sec.com/2014/08/kronos-is-here.html
+      rev: '1'
+      sid: '2018891'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

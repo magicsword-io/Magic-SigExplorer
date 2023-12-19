@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|2F|cgi|2D|mod|2F|smtp|5F|test|2E|cgi"'
+      - value: '"email|3D|"'
+      - value: '"hostname|3D|"'
+      - value: '"default|5F|domain|3D|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Possible Barracuda IM Firewall smtp_test.cgi Cross-Site
+        Scripting Attempt"'
+      pcre: '"/(script|img|src|alert|onmouse|onkey|onload|ondragdrop|onblur|onfocus|onclick)/Ui"'
+      reference: url,doc.emergingthreats.net/2010462
+      rev: '3'
+      sid: '2010462'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

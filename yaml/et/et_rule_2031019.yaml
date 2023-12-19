@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|11|api.anonfiles.com"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|1a|Let''s Encrypt Authority X3"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_10_14, deployment Perimeter,
+        performance_impact Low, signature_severity Informational, updated_at 2022_04_18
+      msg: '"ET POLICY SSL/TLS Certificate Observed (Free File Hosting Service (api
+        .anonfiles .com))"'
+      reference: md5,74d2206a0f29c6d975cba20028284ca2
+      rev: '3'
+      sid: '2031019'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

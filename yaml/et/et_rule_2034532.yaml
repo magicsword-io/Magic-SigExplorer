@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/PJ3ZQWVJPYCYDCA9A6Q2Y6YA"'
+      flow: established,to_server
+      metadata: created_at 2021_11_23, former_category MALWARE, updated_at 2021_11_23
+      msg: '"ET TROJAN Dridex CnC Request - Spam/Worm Component"'
+      rev: '1'
+      sid: '2034532'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      urilen: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

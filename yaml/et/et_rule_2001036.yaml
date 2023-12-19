@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/morpheus/morpheus_sm.ini"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET P2P Morpheus Install ini Download"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001036
+      rev: '8'
+      sid: '2001036'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

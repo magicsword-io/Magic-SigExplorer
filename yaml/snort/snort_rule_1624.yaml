@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"PWD",nocase'
+      flow: to_server,established
+      isdataat: 190,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP PWD overflow attempt"'
+      pcre: '"/^PWD\s.{190}/ims"'
+      rev: '18'
+      service: ftp
+      sid: '1624'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

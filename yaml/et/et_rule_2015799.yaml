@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ch=1"'
+      - depth: '4'
+        value: '"ch=1"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2012_10_13, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN Win32.Fareit.A/Pony Downloader Checkin (2)"'
+      pcre: '"/ch=1$/U"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=PWS%3aWin32%2fFareit
+      rev: '5'
+      sid: '2015799'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

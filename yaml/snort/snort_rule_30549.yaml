@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '443'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"[masscan/1.0]"'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER OpenSSL Heartbleed masscan access exploitation attempt"'
+      reference: cve,2014-0160
+      rev: '2'
+      service: ssl
+      sid: '30549'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

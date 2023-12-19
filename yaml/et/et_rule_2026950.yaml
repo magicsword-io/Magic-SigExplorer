@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-admin/admin-ajax.php?action=lfb_upload_form"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2019_02_21, deployment Datacenter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Informational, updated_at 2020_08_27
+      msg: '"ET WEB_SPECIFIC_APPS WP Cost Estimator Plugin AFI Vulnerability"'
+      reference: url,www.wordfence.com/blog/2019/02/vulnerabilities-patched-in-wp-cost-estimation-plugin/
+      rev: '1'
+      sid: '2026950'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

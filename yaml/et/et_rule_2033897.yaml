@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|tnskvggujjqfcskwk|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_09_03, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag FIN7, updated_at 2021_09_03
+      msg: '"ET TROJAN FIN7 Related CnC Domain in DNS Lookup (tnskvggujjqfcskwk .com)"'
+      reference: url,twitter.com/JAMESWT_MHT/status/1433706754555138066
+      rev: '2'
+      sid: '2033897'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

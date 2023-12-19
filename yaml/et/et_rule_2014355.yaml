@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Softonic Downloader/"'
+      flow: established,to_server
+      metadata: created_at 2012_03_09, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/SoftonicDownloader.Adware User Agent"'
+      reference: md5,1047b186bb2822dbb5907cd743069261
+      rev: '3'
+      sid: '2014355'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

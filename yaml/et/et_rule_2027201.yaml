@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"explorer.exe|20|"'
+      - value: '"shell|3a 3a 3a 7b|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2019_04_15, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2023_05_25
+      msg: '"ET INFO Explorer Shell CLSID COM Object Call Method Inbound via TCP"'
+      pcre: '"/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]\x7d/Ri"'
+      rev: '3'
+      sid: '2027201'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

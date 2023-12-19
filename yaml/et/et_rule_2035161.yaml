@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|shopapppro|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_02_09, deployment Perimeter,
+        former_category MALWARE, malware_family Lazarus, malware_family DangerousPassword,
+        signature_severity Major, updated_at 2022_02_09
+      msg: '"ET TROJAN DangerousPassword APT Related Domain in DNS Lookup (shopapppro
+        .com)"'
+      reference: url,twitter.com/cyberoverdrive/status/1490839283803951106
+      rev: '2'
+      sid: '2035161'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

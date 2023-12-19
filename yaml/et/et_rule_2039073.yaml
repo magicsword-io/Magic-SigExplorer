@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"X-Havoc|3a 20|"'
+      - value: '"X-Havoc-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_30, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2022_09_30
+      msg: '"ET TROJAN Havoc Framework CnC Request"'
+      reference: url,github.com/HavocFramework/Havoc/blob/main/Teamserver/profiles/havoc.yaotl
+      rev: '1'
+      sid: '2039073'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

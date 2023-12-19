@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/search?q=Google&go=&qs=n&form=",fast_pattern,nocase'
+      - value: '"pq=google&sc=8-1&sp=-1&sk="'
+      - value: '"Cookie|3A 20|SESSIONID=",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC ZoxPNG initial outbound connection"'
+      rev: '3'
+      service: http
+      sid: '42882'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

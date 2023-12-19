@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|vpcpnet|04|mooo|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2019_11_07, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag APT, updated_at 2019_11_07
+      msg: '"ET TROJAN Keyboy CN APT CnC Domain in DNS Lookup"'
+      rev: '2'
+      sid: '2028950'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

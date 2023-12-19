@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      base64_decode: relative
+      classtype: trojan-activity
+      contents:
+      - value: '"GET http|3A 2F 2F|",depth 11'
+      - value: '"clk="'
+      - value: '"&bid=",distance 0'
+      - value: '"&aid=",within 5,distance 40'
+      - value: '"&sid=",distance 0'
+      - value: '"&rd=",distance 0'
+      - value: '"&x86=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC URI request for known malicious URI - base64 encoded"'
+      reference: url,www.damballa.com/tdl4/
+      rev: '6'
+      service: http
+      sid: '21442'
+      special_options:
+      - base64_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

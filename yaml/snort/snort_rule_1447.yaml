@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|03 00 00 0B 06 E0 00 00 00 00 00|",depth 11'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Microsoft Windows Terminal server RDP attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-052
+      rev: '20'
+      service: rdp
+      sid: '1447'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

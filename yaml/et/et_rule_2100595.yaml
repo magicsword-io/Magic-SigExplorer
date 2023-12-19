@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 86 A0|"'
+      - value: '"|00 00 00 03|"'
+      - value: '"|00 05 F7|u"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0331, updated_at 2010_09_23
+      msg: '"GPL RPC portmap espd request TCP"'
+      reference: cve,2001-0331
+      rev: '17'
+      sid: '2100595'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

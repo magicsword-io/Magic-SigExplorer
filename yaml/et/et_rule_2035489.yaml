@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 0e|alfa-toxic.xyz"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_17, former_category MOBILE_MALWARE, updated_at
+        2022_03_17
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Realrat.c (TLS SNI) 3"'
+      reference: md5,2ea18b97e95171afabd9cfafa4813812
+      rev: '1'
+      sid: '2035489'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|page|0d|googledocpage|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_07_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_07_27
+      msg: '"ET TROJAN Lazarus APT Related CnC Domain in DNS Lookup (page .googledocpage
+        .com)"'
+      reference: url,twitter.com/ShadowChasing1/status/1417324113840857092
+      rev: '2'
+      sid: '2033450'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '24'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

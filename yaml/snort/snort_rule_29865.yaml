@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" HTTP/1.1|0D 0A|Accept: */*|0D 0A|Content-Type: application/x-www-form-urlencoded|0D
+          0A|User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| WOW64|3B| rv:25.0) Gecko/20100101
+          Firefox/25.0|0D 0A|Host: ",fast_pattern,nocase'
+      - value: '"POST /",depth 6'
+      - value: '" HTTP/1.1",within 9,distance 42'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluoz outbound connection"'
+      pcre: '"/^POST\x20\x2f[A-F\d]{42}\x20HTTP/"'
+      reference: url,www.virustotal.com/en/file/8b53c46a7dfbe738c558e653f33fccf2004fc294848eee20903daa556bb3af09/analysis/
+      rev: '6'
+      service: http
+      sid: '29865'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

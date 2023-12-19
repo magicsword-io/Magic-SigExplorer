@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '68'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|63 82 53 63|"'
+      - value: '"|27|",distance 0'
+      - value: '"|23|",within 254'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-LINUX Red Hat NetworkManager DHCP client command injection attempt"'
+      pcre: '"/\x63\x82\x53\x63.+?[\x0c-\xfe][\x05-\xff][\x20-\x7f]{0,250}\x27[\x20-\x7f]{3,250}\x23/s"'
+      reference: url,access.redhat.com/security/cve/cve-2018-1111
+      rev: '1'
+      service: dhcp
+      sid: '52022'
+    protocol: udp
+    source:
+      network: any
+      port: '67'

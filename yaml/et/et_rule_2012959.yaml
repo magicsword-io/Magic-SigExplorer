@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|MacShield"'
+      flow: established,to_server
+      metadata: created_at 2011_06_09, former_category TROJAN, updated_at 2020_08_13
+      msg: '"ET USER_AGENTS MacShield User-Agent Likely Malware"'
+      reference: url,blog.spiderlabs.com/2011/06/analysis-and-evolution-of-macdefender-os-x-fake-av-scareware.html
+      rev: '3'
+      sid: '2012959'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"./"'
+      - value: '"filename=|22|"'
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2022_08_29, deployment Perimeter,
+        deployment Internal, former_category ATTACK_RESPONSE, signature_severity Major,
+        tag Exploit, updated_at 2022_08_29, mitre_tactic_id TA0003, mitre_tactic_name
+        Persistence, mitre_technique_id T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET ATTACK_RESPONSE Possible WebShell Upload Attempt via Directory Traversal
+        M1"'
+      pcre: '"/filename=\x22[^\x22]+(\.{1,2}\/)+(\w+\/?)+\.(jsp|aspx?|php)\x22/P"'
+      rev: '1'
+      sid: '2038637'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -19
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"commoncome.online"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_24, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        tag TA444, updated_at 2023_08_24, reviewed_at 2023_10_05, former_sid 2855177
+      msg: '"ET TROJAN Observed TA444 Domain in TLS SNI"'
+      pcre: '"/^(?:\x00\x11|.\x2e)commoncome\.online/R"'
+      rev: '1'
+      sid: '2047746'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

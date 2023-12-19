@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '6783'
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"|00 01 00 08 00 00 00 00 00 02 01 00|"'
+      dsize: '12'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_01_16, updated_at 2019_10_08
+      msg: '"ET POLICY Splashtop Remote Control Checkin"'
+      reference: url,www.splashtop.com
+      rev: '1'
+      sid: '2014127'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

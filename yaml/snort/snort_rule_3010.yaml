@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22222'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"WINDIR",depth 6'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC RUX the Tick get windows directory"'
+      rev: '6'
+      sid: '3010'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

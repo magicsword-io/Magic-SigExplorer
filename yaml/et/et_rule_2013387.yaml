@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|Ryeol HTTP Client Class"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2011_08_10, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2020_04_23
+      msg: '"ET POLICY Ryeol HTTP Client Class "'
+      reference: url,github.com/Leo2016/luaTestTool/tree/master/luaTestTool/3rdTools/ryeolhttpclient_src
+      rev: '4'
+      sid: '2013387'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

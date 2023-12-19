@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"uid="'
+      - value: '" gid="'
+      - value: '" groups="'
+      flow: established
+      metadata: created_at 2014_09_26, updated_at 2014_09_26
+      msg: '"ET ATTACK_RESPONSE Output of id command from HTTP server"'
+      pcre: '"/^\d+[^\r\n\s]+/R"'
+      rev: '1'
+      sid: '2019284'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

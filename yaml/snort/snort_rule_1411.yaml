@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|06|public"'
+      flow: to_server
+      gid: '1'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP public access udp"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-fmcsfr-snmp-access-6gqgtJ4S
+      rev: '21'
+      service: snmp
+      sid: '1411'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

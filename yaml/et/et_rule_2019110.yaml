@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/proc/self/fd/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2014_09_04, former_category WEB_SERVER,
+        updated_at 2022_12_01
+      msg: '"ET WEB_SERVER Likely Malicious Request for /proc/self/fd/"'
+      rev: '2'
+      sid: '2019110'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

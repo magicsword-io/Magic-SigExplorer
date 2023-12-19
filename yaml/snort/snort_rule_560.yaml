@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"RFB 0",depth 5'
+      - value: '".0",depth 2,offset 7'
+      flow: established
+      metadata: ruleset community
+      msg: '"APP-DETECT VNC server response"'
+      rev: '9'
+      sid: '560'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7b 5c 72 74|"'
+      - value: '!"|66|"'
+      - value: '"|5C 6F 62 6A 61 75 74 6C 69 6E 6B|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_19, cve CVE_2017_0199, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Major, updated_at 2017_06_19
+      msg: '"ET CURRENT_EVENTS CVE-2017-0199 Common Obfus Stage 2 DL"'
+      reference: cve,2017-0199
+      rev: '1'
+      sid: '2024413'
+      special_options:
+      - file_data
+      - nocase
+      within: '1'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

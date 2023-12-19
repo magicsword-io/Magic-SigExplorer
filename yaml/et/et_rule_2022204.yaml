@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Accept-"'
+      - value: '"Accept|3a 20|*/*|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '"Cookie|3a 20|"'
+      - value: '!"|0d 0a|"'
+      - value: '"Host|3a 20|8"'
+      fast_pattern: only
+      flow: established,to_server
+      isdataat: 300,relative
+      metadata: created_at 2015_12_02, updated_at 2020_11_03
+      msg: '"ET TROJAN Ponmocup HTTP Request (generic) M8"'
+      pcre: '"/(?:Cache-Control\x3a\x20no-cache\r\n(?:Connection\x3a\x20Close\r\nPragma\x3a\x20no-cache\r\n|Pragma\x3a\x20no-cache\r\nConnection\x3a\x20Close\r\n)|Connection\x3a\x20Close\r\n(?:Cache-Control\x3a\x20no-cache\r\nPragma\x3a\x20no-cache\r\n|Pragma\x3a\x20no-cache\r\nCache-Control\x3a\x20no-cache\r\n)|Pragma\x3a\x20no-cache\r\n(?:Connection\x3a\x20Close\r\nCache-Control\x3a\x20no-cache\r\n|Cache-Control\x3a\x20no-cache\r\nConnection\x3a\x20Close\r\n))/H"'
+      reference: url,blog.Fox-IT.com/2015/12/02/ponmocup-a-giant-hiding-in-the-shadows
+      rev: '1'
+      sid: '2022204'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 600
+      within: '300'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

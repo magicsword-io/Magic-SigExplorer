@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Connection|3A|",nocase'
+      - value: '"X-F5-Auth",distance 0,fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-WEBAPP F5 BIG-IP iControl remote code execution attempt"'
+      pcre: '"/^Connection:[^\r\n]*?X-F5-Auth/im"'
+      reference: cve,2022-1388
+      rev: '2'
+      service: http
+      sid: '300131'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

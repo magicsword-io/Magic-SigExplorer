@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var stopit = BrowserDetect.browser"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_05_02,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY Generic - Redirection to Kit - BrowserDetect
+        with var stopit"'
+      rev: '2'
+      sid: '2014665'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

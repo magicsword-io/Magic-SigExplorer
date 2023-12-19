@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cmd.php?cmd="'
+      - value: '"arq=",distance 0'
+      - value: '"cmd2=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection"'
+      reference: url,www.microsoft.com/security/portal/threat/encyclopedia/entry.aspx?Name=Win32%2fBancos
+      rev: '3'
+      service: http
+      sid: '25766'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

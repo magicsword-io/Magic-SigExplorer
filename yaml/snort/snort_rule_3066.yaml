@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"APPEND",nocase'
+      - value: '!"|0D 0A|",within 256'
+      flow: to_server,established
+      isdataat: 256,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP APPEND overflow attempt"'
+      reference: nessus,15867
+      rev: '17'
+      service: imap
+      sid: '3066'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

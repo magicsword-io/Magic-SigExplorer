@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|21 2a 20 41 72 63 65 75 73|"'
+      dsize: '9'
+      flow: established,from_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2020_04_15, deployment Perimeter, former_category MALWARE, malware_family
+        Mirai, signature_severity Major, updated_at 2020_04_15
+      msg: '"ET TROJAN ELF/Mirai Variant CnC Activity"'
+      reference: md5,8fb3048b2aa6c63f53c031b9abd4879a
+      rev: '1'
+      sid: '2029913'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

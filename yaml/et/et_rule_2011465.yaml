@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/bin/sh"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_10_13, updated_at 2020_04_21
+      msg: '"ET WEB_SERVER /bin/sh In URI Possible Shell Command Execution Attempt"'
+      rev: '6'
+      sid: '2011465'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title></title>"'
+      - value: '"|27|test|27 2c 20 27|rel|27 2c 20 27|open|27 2c 20 27 2e 2f|1|27
+          2c|"'
+      - value: '"var xhttp = new XMLHttpRequest()|3b|"'
+      - value: '"|5b 27|constructor|27 5d 28 27|debu|27|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_09_06, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2023_09_06
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2023-09-05"'
+      rev: '1'
+      sid: '2047930'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|59|",distance 3'
+      - value: '"|55 04 06 13 02|BN"'
+      - value: '"|55 04 07 0C 13|Bandar Seri Begawan",distance 6'
+      - value: '"|55 04 0A 0C 12|Cowchi Aromep LTD.",distance 6'
+      - value: '"|55 04 03 0C 17|tsre131.eollaieefi.jprs",distance 6'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dridex self-signed certificate exchange"'
+      reference: url,www.virustotal.com/en/file/6467418eea0564f77c66844e30a17c8561089f2b8301a7d306a71a34e4fef693/analysis/
+      rev: '2'
+      service: ssl
+      sid: '39163'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

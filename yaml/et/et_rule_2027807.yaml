@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/adm.php"'
+      - depth: '2'
+        value: '"k="'
+      - value: '"Accept-Language|3a 20|en-US|3b|q=0.5,en|3b|q=0.3"'
+      - value: '!"Referer|3a|"'
+      - value: '"Content"'
+      - value: '"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_06, deployment Perimeter, former_category
+        MALWARE, malware_family Onliner, performance_impact Low, signature_severity
+        Major, tag SpamBot, updated_at 2020_09_17
+      msg: '"ET TROJAN Win32/Onliner CnC Checkin"'
+      pcre: '"/^k=\d{5,10}$/P"'
+      reference: url,www.blueliv.com/blog/research/analysis-spam-distribution-botnet-onliner-spambot/
+      rev: '2'
+      sid: '2027807'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

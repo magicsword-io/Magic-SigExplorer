@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"content=|22 48 46 2d 4a 61 63 6b 73 6f 6e 22|"'
+      - value: '"name=|22 48 46 2d 4a 61 63 6b 73 6f 6e 22|"'
+      - value: '"class=|22 48 46 5f 4a 61 63 6b 73 6f 4e 5f|"'
+      - value: '"class=|22 42 79 5f 48 61 73 73 61 6e 5f 46 61 72 74 6f 75 74 22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_05_09, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_05_09
+      msg: '"ET CURRENT_EVENTS Netflix Phishing Landing 2018-05-09"'
+      rev: '2'
+      sid: '2025568'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

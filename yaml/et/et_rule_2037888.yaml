@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|image/png"'
+      - value: '"Content-Length|3a 20|5"'
+      - value: '"|1a 1a 6e 04 29|"'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2022_08_02, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2022_08_02
+      msg: '"ET TROJAN Manjusaka CnC Server Response"'
+      reference: url,blog.talosintelligence.com/2022/08/manjusaka-offensive-framework.html
+      rev: '1'
+      sid: '2037888'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

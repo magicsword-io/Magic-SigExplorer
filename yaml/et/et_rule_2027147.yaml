@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?ID="'
+      - value: '"&GUID="'
+      - value: '"&MAC="'
+      - value: '"&OS=Win"'
+      - value: '"&BIT="'
+      - value: '"&CARD="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_04_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_09_08
+      msg: '"ET TROJAN Win32/Beapy/Lemon_Duck CnC Checkin"'
+      reference: url,s.tencent.com/research/report/680.html
+      rev: '4'
+      sid: '2027147'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

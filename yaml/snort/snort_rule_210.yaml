@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"backdoor",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR attempt"'
+      rev: '7'
+      sid: '210'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

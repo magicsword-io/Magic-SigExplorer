@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|00|"'
+      - value: '"HAMAD"'
+      distance: '0'
+      dsize: <200
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_11_28, deployment Perimeter, former_category
+        TROJAN, malware_family Bladabindi, malware_family njrat, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_19
+      msg: '"ET TROJAN [PTsecurity] Bladabindi/njRAT (HAMAD versions)"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/R"'
+      reference: md5,cc18ad38eccdf096f0ac5840f380ef4f
+      rev: '1'
+      sid: '2025074'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

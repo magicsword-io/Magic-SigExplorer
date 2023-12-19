@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Chase Online - Identification</title>"'
+      fast_pattern: 24,20
+      flow: established,to_client
+      metadata: created_at 2015_12_01, former_category CURRENT_EVENTS, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Possible Chase Phishing Landing - Title over non SSL"'
+      rev: '2'
+      sid: '2025674'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

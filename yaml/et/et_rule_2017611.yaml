@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/WEB-INF/web.xml"'
+      - value: '"|2e 2e 2f|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_10_17, cve CVE_2013_3815, updated_at 2020_09_21
+      msg: '"ET WEB_SPECIFIC_APPS Oracle JSF2 Path Traversal Attempt"'
+      reference: cve,2013-3815
+      rev: '1'
+      sid: '2017611'
+      special_options:
+      - nocase
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

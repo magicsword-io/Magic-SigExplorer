@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/idcontact.php?"'
+      - value: '"&steam=",within 35'
+      - value: '"&origin=",within 10'
+      - value: '"&webnavig=",within 12'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kraken outbound connection"'
+      reference: url,www.virustotal.com/en/file/27fa65a3166def75feb75f8feb25dd9784b8f2518c73defcc4ed3e9f46868e76/analysis/
+      rev: '3'
+      service: http
+      sid: '34292'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

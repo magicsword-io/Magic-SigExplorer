@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3344'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"logged in"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR Matrix 2.0 Server access"'
+      rev: '10'
+      sid: '162'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '3345'

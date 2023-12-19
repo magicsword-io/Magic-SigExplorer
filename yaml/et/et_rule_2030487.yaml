@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[9530,9527,23]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|15 4f 70 65 6e 54 65 6c 6e 65 74 3a 4f 70 65 6e 4f 6e 63 65 00|"'
+      dsize: '21'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target Client_Endpoint, created_at 2020_07_09,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Minor, updated_at
+        2020_07_09
+      msg: '"ET EXPLOIT Attempted HiSilicon DVR/NVR/IPCam RCE (Inbound)"'
+      reference: url,habr.com/en/post/486856/
+      rev: '1'
+      sid: '2030487'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

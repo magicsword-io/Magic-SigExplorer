@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7011'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/consolehelp/console-help.portal"'
+      - value: '"searchQuery="'
+      - value: '"script"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_26
+      msg: '"ET WEB_SERVER Oracle BEA Weblogic Server 10.3 searchQuery XSS attempt"'
+      pcre: '"/<?(java|vb)?script>?.*<.+\/script>?/i"'
+      reference: url,doc.emergingthreats.net/2009644
+      rev: '5'
+      sid: '2009644'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

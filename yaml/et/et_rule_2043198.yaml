@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WORK|0a|"'
+      dsize: '5'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_03, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_01_03
+      msg: '"ET TROJAN Win32/Aurora Stealer WORK Command"'
+      reference: md5,875e34da7d4eaf4b93276025f840780c
+      rev: '1'
+      sid: '2043198'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

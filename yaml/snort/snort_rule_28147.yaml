@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"/search?q=",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/4.0 (compatible|3B| MSIE "'
+      - value: '": no-cache|0D 0A 0D 0A|"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Conficker variant outbound connection"'
+      pcre: '"/^\/search\?q=[0-9]$/im"'
+      reference: url,www.virustotal.com/en/file/57212e057db0d45d94d08cd47dec85f0d85a20a7f4d3824559c81a50999cc2a5/analysis/
+      rev: '5'
+      service: http
+      sid: '28147'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

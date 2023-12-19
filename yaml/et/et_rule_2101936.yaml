@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"AUTH"'
+      flow: to_server,established
+      isdataat: 50,relative
+      metadata: created_at 2010_09_23, cve CVE_1999_0822, updated_at 2010_09_23
+      msg: '"GPL POP3 AUTH overflow attempt"'
+      pcre: '"/^AUTH\s[^\n]{50}/smi"'
+      reference: nessus,10184
+      rev: '9'
+      sid: '2101936'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

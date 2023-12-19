@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ads.cgi",fast_pattern,nocase'
+      - value: '"file=",nocase'
+      - value: '"../../"'
+      - value: '"|7C|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP ads.cgi command execution attempt"'
+      reference: nessus,11464
+      rev: '23'
+      service: http
+      sid: '1053'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

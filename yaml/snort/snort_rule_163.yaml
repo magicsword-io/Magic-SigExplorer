@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|B4 B4|"'
+      flags: AS,12
+      flow: stateless
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR WinCrash 1.0 Server Active"'
+      rev: '14'
+      sid: '163'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '5714'

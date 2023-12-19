@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      byte_test: 1,!&,0xF8,4
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 00 00 00 00 00|",depth 8,offset 6'
+      - value: '"|00 00 FC 00 01|",fast_pattern'
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS dns zone transfer via TCP detected"'
+      reference: nessus,10595
+      rev: '24'
+      service: dns
+      sid: '255'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

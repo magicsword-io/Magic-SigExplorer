@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7C|DIR#0#bin|7C|DIR#0"'
+      flow: established,to_server
+      metadata: created_at 2014_05_13, updated_at 2014_05_13
+      msg: '"ET TROJAN PandoraRat/Refroso.bsp Directory Listing Sent To Server"'
+      reference: md5,9972e686d36f1e98ba9bb82b5528255a
+      rev: '4'
+      sid: '2018468'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

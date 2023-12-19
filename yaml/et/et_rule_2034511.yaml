@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /?query=5 HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_18, deployment Perimeter,
+        former_category MALWARE, malware_family Kimsuky, signature_severity Major,
+        updated_at 2021_11_18
+      msg: '"ET TROJAN TA408 Related Activity (GET)"'
+      pcre: '"/^Accept\x3a\x20[^\r\n]+\r\nAccept-Language\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: md5,e521c68ac280c00b0e27cbd2fed4c9c4
+      rev: '1'
+      sid: '2034511'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

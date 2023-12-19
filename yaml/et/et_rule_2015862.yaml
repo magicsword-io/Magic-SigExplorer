@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/RebateInformerSetup.exe"'
+      - value: '"User-Agent|3a| Inno Setup Downloader"'
+      flow: established,to_server
+      metadata: created_at 2012_11_02, updated_at 2020_04_22
+      msg: '"ET TROJAN Potentially Unwanted Program RebateInformerSetup.exe Download
+        Reporting"'
+      reference: url,www.ripoffreport.com/directory/rebategiant-com.aspx
+      rev: '2'
+      sid: '2015862'
+      special_options:
+      - fast_pattern
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

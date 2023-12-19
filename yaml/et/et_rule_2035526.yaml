@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06 67 6f 6f 67 6c 65 03 63 6f 6d 00 00 00 00 01|"'
+      distance: '1'
+      isdataat: '!1,relative'
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2022_03_18, deployment Perimeter, deployment Internal, former_category MALWARE,
+        malware_family B1txor20, performance_impact Low, signature_severity Major,
+        updated_at 2022_03_18
+      msg: '"ET TROJAN Linux/B1txor20 Backdoor Connectivity Check"'
+      reference: url,blog.netlab.360.com/b1txor20-use-of-dns-tunneling_en/
+      rev: '2'
+      sid: '2035526'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

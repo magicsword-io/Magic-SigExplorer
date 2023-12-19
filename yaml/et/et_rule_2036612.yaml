@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|0d 0a|Expect|3a 20|100-continue|0d 0a|"'
+      - depth: '11'
+        value: '"get_address"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_18, deployment Perimeter, former_category
+        MALWARE, malware_family NetDooka, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2023_04_04, reviewed_at 2023_10_11
+      msg: '"ET TROJAN Win32/NetDooka Framework Related Activity (POST)"'
+      pcre: '"/\.php$/U"'
+      reference: md5,b9ec139e567f88cf9287676ac431c4ab
+      rev: '4'
+      sid: '2036612'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".asp?mac="'
+      - value: '"&ver="'
+      - value: '"&os="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Murlo Trojan Checkin"'
+      pcre: '"/mac=[a-f0-9]/iU"'
+      reference: url,doc.emergingthreats.net/2009442
+      rev: '9'
+      sid: '2009442'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

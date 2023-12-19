@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SITE",nocase'
+      - value: '"ZIPCHK",distance 1,nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP SITE ZIPCHK overflow attempt"'
+      pcre: '"/^SITE\s+ZIPCHK\s[^\n]{100}/ims"'
+      reference: cve,2000-0040
+      rev: '11'
+      service: ftp
+      sid: '1921'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent: Mozilla/5.0 (Windows NT 6.3|3B| WOW64) AppleWebKit/537.36
+          (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36|0D 0A|Host: checkip.dyndns.org|0D
+          0A|",fast_pattern,nocase'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Win.Trojan.Blocker variant outbound connection attempt"'
+      reference: url,www.virustotal.com/en/file/79b75a8564e2e446789e1890f52c025792de919b63719e02630a70d6ae9a3ca4/analysis/1421439683/
+      rev: '2'
+      service: http
+      sid: '33224'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '17'
+        value: '"/imsi.html?phone="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_09_19, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2022_09_19
+      msg: '"ET MOBILE_MALWARE XX-Net VPN Client CnC Checkin"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Android/Hmi"'
+      reference: md5,5faa868d9bbb1f253f9b968ad620604b
+      rev: '1'
+      sid: '2038903'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

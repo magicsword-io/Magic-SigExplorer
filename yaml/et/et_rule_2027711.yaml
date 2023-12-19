@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/secure/ContactAdministrators"'
+      - value: '".jspa"'
+      - value: '"subject="'
+      - value: '"|2e|forName"'
+      - value: '"java.lang.Runtime"'
+      - value: '"|2e|getMethod"'
+      - value: '"getRuntime"'
+      - value: '"|2e|exec"'
+      - value: '"|2e|waitFor"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2019_07_15, deployment Perimeter,
+        former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian JIRA Template Injection RCE (CVE-2019-11581)"'
+      reference: cve,CVE-2019-11581
+      rev: '3'
+      sid: '2027711'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

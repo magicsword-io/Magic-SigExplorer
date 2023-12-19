@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?devicename="'
+      - value: '"&result="'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_10, deployment Perimeter, signature_severity
+        Major, updated_at 2020_10_27
+      msg: '"ET TROJAN [401TRG] PS/PowDesk Checkin (APT34)"'
+      pcre: '"/&result=(?:Sucessful|Failed|Missing\x20CBA8|Missing\x20LANDesk\x20Agent)$/U"'
+      reference: md5,2de2e528991ac2d85aa8f12fce5351ad
+      rev: '2'
+      sid: '2029253'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

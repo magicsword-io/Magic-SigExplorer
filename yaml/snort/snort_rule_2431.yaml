@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '119'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rmgroup",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-NNTP rmgroup overflow attempt"'
+      pcre: '"/^rmgroup\x3a[^\n]{32}/ims"'
+      reference: nessus,11984
+      rev: '15'
+      service: nntp
+      sid: '2431'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

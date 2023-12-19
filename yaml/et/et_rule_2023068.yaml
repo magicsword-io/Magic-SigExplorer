@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<meta http-equiv="'
+      - value: '"refresh"'
+      - value: '"url=sms|3a|"'
+      distance: '1'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2016_08_16, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        tag Phishing, updated_at 2020_10_06
+      msg: '"ET CURRENT_EVENTS Suspicious HTTP Refresh to SMS Aug 16 2016"'
+      pcre: '"/^[^>]+url=sms\x3a/Rsi"'
+      rev: '1'
+      sid: '2023068'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

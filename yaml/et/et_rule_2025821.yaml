@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4070'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"command_blink_on|3b|"'
+      - value: '"|60|"'
+      metadata: attack_target IoT, created_at 2018_07_10, deployment Datacenter, former_category
+        EXPLOIT, updated_at 2018_07_18
+      msg: '"ET EXPLOIT HID VertX and Edge door controllers command_blink_on Remote
+        Command Execution"'
+      reference: url,exploit-db.com/exploits/44992/
+      rev: '2'
+      sid: '2025821'
+      special_options:
+      - fast_pattern
+      within: '44'
+    protocol: udp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/installer_gate_client.php?",fast_pattern,nocase'
+      - value: '"download_id="'
+      - value: '"&mode=prechecking",distance 0'
+      - value: '!"Accept"'
+      - value: '!"Connection"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE InstallMetrix precheck stage outbound connection"'
+      reference: url,www.virustotal.com/en/file/d99db4f7f047cbf672eb19ea2e492a45d948338c0f10ef4761db3b9e372ba90e/analysis/1426449298/
+      rev: '2'
+      service: http
+      sid: '34119'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

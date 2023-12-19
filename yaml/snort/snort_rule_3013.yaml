@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '23432'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"RQS",depth 3'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Asylum 0.1 connection request"'
+      rev: '8'
+      sid: '3013'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

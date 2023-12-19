@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"BENCHMARK("'
+      - value: '")"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER MYSQL Benchmark Command in URI to Consume Server Resources"'
+      pcre: '"/BENCHMARK\x28[0-9].+\x29/Ui"'
+      reference: url,doc.emergingthreats.net/2011041
+      rev: '3'
+      sid: '2011041'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

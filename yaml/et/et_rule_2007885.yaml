@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| downloader|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2022_05_03
+      msg: '"ET MALWARE Suspicious User-Agent (downloader)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2007885
+      rev: '9'
+      sid: '2007885'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

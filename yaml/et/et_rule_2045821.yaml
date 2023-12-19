@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"_And_Netword_Drive_Size|3a|"'
+      - value: '"_Encryption_Mode"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_23, deployment Perimeter, former_category
+        MALWARE, malware_family RUCU64, performance_impact Low, confidence High, signature_severity
+        Critical, tag Ransomware, updated_at 2023_05_23, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN [ANY.RUN] RCRU64 Ransomware Variant CnC Activity"'
+      reference: url,twitter.com/Jane_0sint/status/1660916458447069184
+      rev: '1'
+      sid: '2045821'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      urilen: '>1000'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

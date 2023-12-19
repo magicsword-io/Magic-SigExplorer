@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|listpoints|06|online|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_14, deployment Perimeter,
+        malware_family Remcos, signature_severity Major, tag RAT, updated_at 2023_11_14
+      msg: '"ET TROJAN DNS Query to Remcos Domain (listpoints .online)"'
+      reference: url,twitter.com/JAMESWT_MHT/status/1724401325734027567
+      rev: '1'
+      sid: '2049173'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

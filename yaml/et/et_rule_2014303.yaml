@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ping.php"'
+      - value: '" WinHttp.WinHttpRequest.5|29 0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_03_05, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Koobface Variant Checkin Attempt"'
+      reference: md5,62aa9e798746e586fb1f03459a970104
+      rev: '1'
+      sid: '2014303'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

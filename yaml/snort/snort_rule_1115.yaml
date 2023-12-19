@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '".html/......",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP ICQ webserver DOS"'
+      reference: url,www.securiteam.com/exploits/2ZUQ1QAQOG.html
+      rev: '17'
+      service: http
+      sid: '1115'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

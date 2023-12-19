@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A0|",depth 4,offset 16'
+      - value: '"|00 00 00 03|",within 4,distance 4'
+      - value: '"|00 01 86 BC|",within 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC portmap ypupdated request TCP"'
+      reference: cve,1999-0208
+      rev: '22'
+      service: sunrpc
+      sid: '591'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

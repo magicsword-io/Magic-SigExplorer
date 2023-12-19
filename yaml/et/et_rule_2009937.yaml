@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/mambots/editors/mostlyce/jscripts/tiny_mce/filemanager/connectors/php/connector.php?"'
+      - value: '"Command=FileUpload"'
+      - value: '"/configuration.php"'
+      - value: '"CurrentFolder="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Possible Mambo MOStlyCE Module Image Manager Utility
+        Arbitrary File Upload Attempt"'
+      reference: url,doc.emergingthreats.net/2009937
+      rev: '4'
+      sid: '2009937'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

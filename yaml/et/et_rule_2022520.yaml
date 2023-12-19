@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '".hta"'
+      - value: '!"kaspersky.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.HTA.Download
+      metadata: created_at 2016_02_15, updated_at 2020_10_06
+      msg: '"ET POLICY Possible HTA Application Download"'
+      pcre: '"/\.hta$/Ui"'
+      reference: url,www.trustedsec.com/july-2015/malicious-htas/
+      rev: '3'
+      sid: '2022520'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

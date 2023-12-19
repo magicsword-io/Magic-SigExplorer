@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '10'
+        value: '"machineID="'
+      - value: '"&guid={"'
+      - value: '"&ver="'
+      - value: '"&os=Windows"'
+      - value: '"&platform="'
+      - value: '"&username="'
+      - value: '"&display_resolution="'
+      - value: '"processor="'
+      - value: '"&cpu_count="'
+      - value: '"&install_path="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_28, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_04_28
+      msg: '"ET TROJAN SupremeLogger CnC Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: md5,0f1ab52a8d9c2d23412e0badc4515cb3
+      rev: '1'
+      sid: '2032885'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

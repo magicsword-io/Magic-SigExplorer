@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/top.html?page=main&productboardtype="'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_07_06, cve CVE_2018_8738,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Airties AIR5444TT - Cross-Site Scripting"'
+      pcre: '"/&productboardtype=[^&]+(?:s(?:cript|tyle\x3D)|on(?:mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: cve,2018-8738
+      rev: '2'
+      sid: '2025789'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

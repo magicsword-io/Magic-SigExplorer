@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '22'
+        value: '"GET /kill.bat HTTP/1.1"'
+      - value: '"Connection: Keep-Alive"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_01, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_04_29
+      msg: '"ET TROJAN Win32/WindowsDefender Bypass Download Request"'
+      pcre: '"/Host\x3a\x20(?:[0-9]{1,3}\.){3}[0-9]{1,3}/"'
+      reference: md5,a59277f422139a3c2341eee166eda629
+      rev: '3'
+      sid: '2035696'
+      special_options:
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

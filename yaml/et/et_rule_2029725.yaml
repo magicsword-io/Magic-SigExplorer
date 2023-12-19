@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|69 6e 66 6f 2f 44 44 48 63 6b 2f 2e 44 44 2d 48 63 6b|"'
+      dsize: '18'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_23, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_03_23
+      msg: '"ET TROJAN CoreDDRAT CnC Activity"'
+      reference: url,twitter.com/pmelson/status/1241914864853008384
+      rev: '1'
+      sid: '2029725'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

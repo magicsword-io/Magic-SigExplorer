@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"tp-globa.xyz"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_11_01,
+        reviewed_at 2023_12_13
+      msg: '"ET TROJAN Observed SockRacket/KANDYKORN Domain (tp-globa .xyz in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)tp\-globa\.xyz/R"'
+      reference: url,www.elastic.co/security-labs/elastic-catches-dprk-passing-out-kandykorn
+      rev: '1'
+      sid: '2049015'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

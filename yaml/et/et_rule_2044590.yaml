@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|at|03|ply|02|gg|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_03_14, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2023_03_14, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1572, mitre_technique_name Protocol_Tunneling
+      msg: '"ET INFO playit .gg Tunneling Domain in DNS Lookup"'
+      reference: url,playit.gg/
+      rev: '1'
+      sid: '2044590'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

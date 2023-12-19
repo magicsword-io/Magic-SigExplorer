@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"zxjfcvfvhqfqsrpz."'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_05, former_category TROJAN, updated_at 2022_03_22
+      msg: '"ET TROJAN Zbot .onion Proxy domain in SNI Aug 04 2014"'
+      reference: md5,9c40169371adbee467587ab55a61e883
+      rev: '2'
+      sid: '2018892'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

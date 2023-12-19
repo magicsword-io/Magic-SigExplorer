@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 13|cloud-documents.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_04, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_08_04
+      msg: '"ET TROJAN Observed Maldoc CnC Domain (cloud-documents .com in TLS SNI)"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2021/07/crimea-manifesto-deploys-vba-rat-using-double-attack-vectors/
+      rev: '1'
+      sid: '2033664'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - depth: '34'
+        value: '"<html><head><base target=|22|_blank|22|>"'
+      - value: '"Your report has been received"'
+      - value: '"you will be notified once"'
+      - value: '"problem is resolved"'
+      - value: '"<br>----------------<br>"'
+      distance: '0'
+      fast_pattern: 9,20
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_10_28, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_19, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Email Settings Phish 2016-10-28"'
+      rev: '1'
+      sid: '2032409'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

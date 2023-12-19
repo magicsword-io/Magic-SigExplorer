@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"E9DF30CA-4B30-4235-BF0C-7150F646606C"'
+      - value: '"ShowPropertiesDialog"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_12_21, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Possible Cyme ChartFX client server ActiveX Control ShowPropertiesDialog
+        arbitrary code execution"'
+      reference: url,packetstormsecurity.org/files/117137/Cyme-ChartFX-Client-Server-Array-Indexing.html
+      rev: '2'
+      sid: '2016085'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

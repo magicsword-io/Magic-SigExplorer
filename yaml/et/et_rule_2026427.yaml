@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - value: '"on|20|error|20|resume|20|next"'
+      - value: '".regwrite|20 22|"'
+      - value: '"|5c|software|5c|microsoft|5c|windows|5c|currentversion|5c|run"'
+      distance: '0'
+      fast_pattern: 19,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2018_09_28, deployment Perimeter, deployment
+        alert_only, former_category INFO, performance_impact Low, signature_severity
+        Major, tag VBS, tag Persistence, updated_at 2020_11_18
+      msg: '"ET ATTACK_RESPONSE Possibly Malicious VBS Writing to Persistence Registry
+        Location"'
+      reference: md5,cac1aedbcb417dcba511db5caae4b8c0
+      rev: '3'
+      sid: '2026427'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      within: '80'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

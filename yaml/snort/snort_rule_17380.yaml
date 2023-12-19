@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".png",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY PNG file download request"'
+      pcre: '"/\x2epng([\?\x5c\x2f]|$)/ims"'
+      rev: '23'
+      service: http
+      sid: '17380'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

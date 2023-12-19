@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0f|Superfish, Inc."'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0f|Superfish, Inc."'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_02_20, deployment Perimeter,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_03_23
+      msg: '"ET TROJAN SuperFish Possible SSL Cert Signed By Compromised Root CA"'
+      reference: url,myce.com/news/lenovo-laptops-come-with-preinstalled-advertisement-injecting-adware-74290/
+      rev: '2'
+      sid: '2020493'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

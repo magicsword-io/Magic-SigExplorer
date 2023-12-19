@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"document|2e|writeln|28 22 3c 21|DOCTYPE|20|html|3e 22 29 3b|"'
+      - value: '"document|2e|writeln|28 22 09 3c|script|20|src|3d 5c 22|config|2e|js|5c
+          22 20|charset|3d 5c 22|utf|2d|8|5c 22 3e 3c 2f|script|3e 22 29 3b|"'
+      - value: '"document|2e|writeln|28 22 09 3c|script|20|src|3d 5c 22 2f|js|2f|jquery|2e|js|5c
+          22 20|charset|3d 5c 22|utf|2d|8|5c 22 3e 3c 2f|script|3e 22 29 3b|"'
+      - value: '"document|2e|writeln|28 22 09 3c|script|20|src|3d 5c 22 2f|js|2f|index|2e|js|5c
+          22 20|charset|3d 5c 22|utf|2d|8|5c 22 3e 3c 2f|script|3e 22 29 3b|"'
+      - value: '"document|2e|writeln|28 22 3c 2f|html|3e 22 29 3b|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_05, deployment Perimeter, deployment SSLDecrypt,
+        former_category PHISHING, signature_severity Major, updated_at 2023_12_05
+      msg: '"ET CURRENT_EVENTS USPS Phish Landing Page 2023-12-05"'
+      rev: '1'
+      sid: '2049474'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

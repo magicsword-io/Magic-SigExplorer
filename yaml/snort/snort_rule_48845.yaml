@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?very=",fast_pattern,nocase'
+      - value: '"&xnvk="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Osx.Trojan.WindTail outbound connection"'
+      reference: url,virustotal.com/#/file/ad282e5ba2bc06a128eb20da753350278a2e47ab545fdab808e94a2ff7b4061e
+      rev: '1'
+      service: http
+      sid: '48845'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

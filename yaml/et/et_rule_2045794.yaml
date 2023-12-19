@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -21
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"iptrackeronline.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_22, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_05_22
+      msg: '"ET INFO Observed IP Tracker Domain in TLS SNI"'
+      pcre: '"/^(?:\x00\x13|.\x2e)iptrackeronline\.com/R"'
+      rev: '1'
+      sid: '2045794'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

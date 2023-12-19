@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"/* VODKA */"'
+      - value: '"<form action=|22|--WEBBOT-SELF--"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_15, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_15
+      msg: '"ET CURRENT_EVENTS Square Phishing Landing 2018-02-15"'
+      rev: '2'
+      sid: '2025367'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

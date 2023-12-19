@@ -1,0 +1,16 @@
+- rule:
+    details:
+      $EXTERNAL_NET any <> $HOME_NET any ( msg: '"PROTOCOL-ICMP Stacheldraht handler->agent
+        niggahbitch"'
+      classtype: attempted-dos
+      contents:
+      - value: '"niggahbitch"'
+      icmp_id: '9015'
+      itype: '0'
+      metadata: ruleset community
+      reference: url,staff.washington.edu/dittrich/misc/stacheldraht.analysis
+      rev: '13'
+      sid: '1854'
+      special_options:
+      - )
+    protocol: icmp

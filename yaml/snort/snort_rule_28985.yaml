@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/site2/"'
+      - value: '!"Referer|3A| "'
+      - value: '"60gp="'
+      - value: '"60gpBAK="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Worm.Steckt IRCbot executable download"'
+      reference: url,www.virustotal.com/en/file/411e93206a7750c8df25730349bf9756ddba52c1bc780eaac4bba2b3872bc037/analysis/
+      rev: '4'
+      service: http
+      sid: '28985'
+      special_options:
+      - http_uri
+      - http_header
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

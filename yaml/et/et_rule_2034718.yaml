@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '5'
+        value: '"|4a 52 4d 49 00|"'
+      flow: established,to_server
+      flowbits: isnotset,ET.RMIRequest
+      metadata: attack_target Client_and_Server, created_at 2021_12_14, deployment
+        Perimeter, former_category POLICY, signature_severity Informational, updated_at
+        2021_12_16
+      msg: '"ET POLICY RMI Request Outbound"'
+      pcre: '"/^(?:\x01|\x02)(?:\x4b|\x4c|\x4d)/R"'
+      reference: url,github.com/rapid7/metasploit-framework/blob/04e8752b9b74cbaad7cb0ea6129c90e3172580a2/lib/rex/proto/rmi/model.rb
+      rev: '3'
+      sid: '2034718'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

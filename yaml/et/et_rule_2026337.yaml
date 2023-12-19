@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|3c 25 40|page"'
+      - value: '"String|20|PASS|20|=|20 22|09a0aa1091460d23e5a68550826b359b|22|"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,from_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_09_20, deployment Datacenter, former_category WEB_SERVER,
+        malware_family SJavaWebManage, performance_impact Low, signature_severity
+        Major, tag WebShell, updated_at 2018_09_25
+      msg: '"ET WEB_SERVER JSP.SJavaWebManage WebShell Pass 20-09-2018 1"'
+      reference: md5,91eaca79943c972cb2ca7ee0e462922c
+      rev: '3'
+      sid: '2026337'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

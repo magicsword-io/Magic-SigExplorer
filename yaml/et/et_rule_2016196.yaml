@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/help/sm/en/Output/wwhelp/wwhimpl/js/html/index_main.htm?"'
+      - value: '"topic="'
+      flow: established,to_server
+      metadata: created_at 2013_01_12, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Dell OpenManage Server Administrator topic parameter
+        XSS Attempt"'
+      pcre: '"/topic\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,kb.cert.org/vuls/id/950172
+      rev: '2'
+      sid: '2016196'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

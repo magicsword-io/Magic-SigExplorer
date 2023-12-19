@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 2,<,0x21,0,relative,string,hex
+      classtype: attempted-user
+      contents:
+      - value: '"|5c|u00"'
+      - value: '"javascript|3a|"'
+      - value: '"/store/apps/details?id="'
+      distance: '2'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2015_02_11, cve CVE_2014_6041, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Possible Android RCE via XSS and Play Store XFO"'
+      reference: url,github.com/rapid7/metasploit-framework/commit/7f2add2ce30f33e7787310d7abcb1781e8ea8f43
+      rev: '1'
+      sid: '2020393'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

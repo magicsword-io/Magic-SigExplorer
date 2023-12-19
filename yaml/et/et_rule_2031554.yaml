@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0e|transplugin.io"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_01_26, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2021_01_26
+      msg: '"ET TROJAN Observed Targeted Attack Malicious Domain in TLS SNI (transplugin
+        .io)"'
+      reference: url,blog.google/threat-analysis-group/new-campaign-targeting-security-researchers/
+      rev: '2'
+      sid: '2031554'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

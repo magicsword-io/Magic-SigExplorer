@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Wonk-"'
+      - value: '"|00|#waste|00|"'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Phatbot Control Connection"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000015
+      rev: '6'
+      sid: '2000015'
+      within: '15'
+    protocol: tcp
+    source:
+      network: any
+      port: any

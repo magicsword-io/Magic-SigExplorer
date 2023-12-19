@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>System Virus Alert"'
+      - value: '"|3a|-webkit-full-screen"'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_03_09, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, tag Phishing, updated_at 2020_08_04
+      msg: '"ET WEB_CLIENT Fake Virus Phone Scam Landing Mar 09 2017"'
+      rev: '1'
+      sid: '2024042'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Base/1.0|0d 0a|"'
+      - depth: '5'
+        value: '"hwid="'
+      - value: '"username="'
+      - value: '"compname="'
+      - value: '"osname="'
+      - value: '"&arch=1&av=eyJ"'
+      - value: '"agent="'
+      - value: '"profile="'
+      - value: '"mail="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_02, deployment Perimeter, former_category
+        MALWARE, malware_family WarHawk, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_05_02
+      msg: '"ET TROJAN Win32/WarHawk/Spyder Sending Windows System Information (POST)
+        M2"'
+      pcre: '"/^hwid=[A-Za-z0-9+/=]{48}/P"'
+      reference: md5,87d94635372b874f18acb3af7c340357
+      rev: '1'
+      sid: '2045296'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

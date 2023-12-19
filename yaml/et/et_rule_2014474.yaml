@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"|CA FE BA BE|"'
+      flow: from_server,established
+      flowbits: isset,ET.http.javaclient
+      metadata: attack_target Client_and_Server, created_at 2012_04_04, deployment
+        Perimeter, former_category INFO, signature_severity Informational, updated_at
+        2012_04_04
+      msg: '"ET INFO JAVA - Java Class Download"'
+      rev: '5'
+      sid: '2014474'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

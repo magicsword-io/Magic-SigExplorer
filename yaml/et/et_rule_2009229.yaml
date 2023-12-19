@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/body_default.php?"'
+      - value: '"GOODS[no]="'
+      - value: '"GOODS[gs_input]="'
+      - value: '"shop_this_skin_path="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS TECHNOTE shop_this_skin_path Parameter Remote File
+        Inclusion"'
+      pcre: '"/shop_this_skin_path=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2009229
+      rev: '5'
+      sid: '2009229'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

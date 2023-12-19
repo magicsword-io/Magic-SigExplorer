@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"|6C 6A CD CF B8 41 3F F8 00 00 00 00 00 00 00 00 01 10 04 01 00 00
+          00 00 00 00 00 1C|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER OpenBSD ISAKMP denial of service attempt"'
+      reference: cve,2004-0222
+      rev: '1'
+      sid: '50901'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"vN9VT5yqlOPoT9vXTW5qTIOpaWurKZfV"'
+      - value: '"IHImERWP"'
+      distance: '0'
+      flow: established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_10_11
+      msg: '"ET TROJAN HTML/Qbot Dropper (.zip)"'
+      reference: md5,5544eada611b649776259df7342b4d9a
+      rev: '1'
+      sid: '2039156'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

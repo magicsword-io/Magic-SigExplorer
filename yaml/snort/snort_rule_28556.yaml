@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      byte_test: 2,>,0x7FFF,0,relative
+      classtype: attempted-dos
+      contents:
+      - value: '"|00 01|",depth 2,offset 4'
+      - value: '"|00 01|",within 2,distance 4'
+      - value: '"|00 00 FF 00 01 00 00 29|"'
+      flow: to_server
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS DNS query amplification attempt"'
+      reference: url,www.us-cert.gov/ncas/alerts/TA13-088A
+      rev: '3'
+      service: dns
+      sid: '28556'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

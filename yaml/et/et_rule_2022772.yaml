@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3d 22 5c 78 32|"'
+      - value: '"|3d 22 5c 78 36|"'
+      - value: '"|3d 22 5c 78 37|"'
+      - value: '"</span>"'
+      - value: '!"<span>"'
+      distance: '-500'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_04_28, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Evil Redirector Leading to EK Apr 28 2016"'
+      pcre: '"/^\s*?<script>\s*?(?:[A-Za-z][A-Za-z\d+]+\s*?\+?=\s*(?:[A-Za-z][A-Za-z\d]+|[\x22\x27]\\x[2-7][0-9a-fA-F](?:\\x[2-7][0-9a-fA-F]){0,4}[\x22\x27])\s*?\x3b){20}/Rs"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/03/unit42-campaign-evolution-darkleech-to-pseudo-darkleech-and-beyond/
+      rev: '2'
+      sid: '2022772'
+      special_options:
+      - file_data
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

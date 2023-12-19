@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|IL"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|08|Tel Aviv"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|15|BI Science (2009) Ltd"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|03|WEB"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|*.geosurf.io"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2019_07_26, updated_at 2020_09_17
+      msg: '"ET POLICY SSL/TLS Certificate Observed (Commercial Proxy Provider geosurf
+        .io)"'
+      rev: '2'
+      sid: '2027760'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

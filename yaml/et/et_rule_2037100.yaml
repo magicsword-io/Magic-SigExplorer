@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|ips-ac|02|in|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_23, deployment Perimeter,
+        signature_severity Major, updated_at 2022_06_23
+      msg: '"ET CURRENT_EVENTS Observed DNS Query to Nedbank Phishing Domain"'
+      reference: md5,fea7f8afb1702315f20a90968dc8c191
+      rev: '1'
+      sid: '2037100'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

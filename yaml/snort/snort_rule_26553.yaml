@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/builds/",nocase'
+      - value: '"fflists.txt",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Win.Adware.BProtector browser hijacker dll list download attempt"'
+      rev: '4'
+      service: http
+      sid: '26553'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

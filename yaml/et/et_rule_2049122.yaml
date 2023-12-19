@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|23 20|The|20|list|20|of|20|blacklisted|20|IP|20|addresses|20|and|20|MAC|20|addresses"'
+      - value: '"blackListedIPS|20 3d 20 5b|"'
+      - value: '"blackListedMacs|20 3d 20 5b|"'
+      - value: '"blacklisted|20 5f|users|20 3d 20 5b|"'
+      - value: '"blackListedPCNames|20 3d 20 5b|"'
+      - value: '"blacklisted|20 5f|processes|20 3d 20 5b|"'
+      fast_pattern: 14,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_08, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Bandit_Stealer, confidence High, signature_severity
+        Major, updated_at 2023_11_08, reviewed_at 2023_11_08
+      msg: '"ET TROJAN Bandit Stealer Config Inbound"'
+      reference: url,www.zscaler.com/blogs/security-research/technical-analysis-bandit-stealer
+      rev: '1'
+      sid: '2049122'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

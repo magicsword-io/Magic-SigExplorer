@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '5222'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"chat.facebook.com"'
+      - value: '"jabber|3A|client"'
+      distance: '9'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET CHAT Facebook Chat using XMPP"'
+      reference: url,doc.emergingthreats.net/2010819
+      rev: '4'
+      sid: '2010819'
+      special_options:
+      - nocase
+      - nocase
+      threshold: type limit, track by_src, count 1, seconds 60
+      within: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

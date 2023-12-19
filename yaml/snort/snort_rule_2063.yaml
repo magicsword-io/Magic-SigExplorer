@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/dm/demarc"'
+      - value: '"s_key="'
+      - value: '"''",distance 0'
+      - value: '"''",distance 1'
+      - value: '"''",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Demarc SQL injection attempt"'
+      reference: cve,2002-0539
+      rev: '13'
+      service: http
+      sid: '2063'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

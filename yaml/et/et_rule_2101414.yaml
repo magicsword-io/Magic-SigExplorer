@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"private"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2002_0012, updated_at 2010_09_23
+      msg: '"GPL SNMP private access tcp"'
+      reference: cve,2002-0013
+      rev: '12'
+      sid: '2101414'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

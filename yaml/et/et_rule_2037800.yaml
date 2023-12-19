@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '14'
+        value: '"/api/webhooks/"'
+      - value: '"discord.com"'
+      - depth: '19'
+        value: '"username=Stealerium"'
+      - value: '"&content=%60%60%60%0a%f0%9f%98%b9+*Stealerium+-+Report%3a"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_21, deployment Perimeter, former_category
+        MALWARE, malware_family Stealerium, performance_impact Low, signature_severity
+        Major, updated_at 2022_07_21
+      msg: '"ET TROJAN Win32/Stealerium Stealer Checkin via Discord"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+discord\.com/Hmi"'
+      reference: url,twitter.com/petrovic082/status/1550007840005361664
+      rev: '1'
+      sid: '2037800'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

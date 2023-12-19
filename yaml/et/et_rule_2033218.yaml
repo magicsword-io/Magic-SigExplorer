@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Webmail Login"'
+      - value: '"action|3d 22|process.php|22|"'
+      - value: '"method|3d 22|post|22|"'
+      - value: '"target|3d 22 5f|top|22|"'
+      - value: '"style|3d 22|visibility|3a 22|>"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_01, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2021_09_08, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Observed Possible Phishing 2021-06-29"'
+      reference: url,app.any.run/tasks/5fcdc0a0-7a79-4bcb-b2fb-3d358571d858/
+      rev: '1'
+      sid: '2033218'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

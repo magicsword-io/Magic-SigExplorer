@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"MSG ",depth 4'
+      - value: '"Content-Type|3A| application/x-msnmsgrp2p",distance 0,nocase'
+      - value: '"MSNSLP/1.0 200 OK",distance 0,nocase'
+      flow: established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Microsoft MSN outbound file transfer accept"'
+      rev: '11'
+      sid: '1988'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1863'

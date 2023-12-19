@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '50'
+        value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+          00 00 00 00|"'
+      - value: '"|89 41|"'
+      - value: '"|46 ad 57 90|"'
+      distance: '2'
+      dsize: '100'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_20, deployment Perimeter, former_category
+        MALWARE, malware_family SystemBC, performance_impact Moderate, signature_severity
+        Major, updated_at 2021_05_20
+      msg: '"ET TROJAN Win32/SystemBC CnC Checkin (null key) M2"'
+      reference: md5,b8fb4ba9ef16fcaa442c2857bb045640
+      rev: '2'
+      sid: '2033005'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

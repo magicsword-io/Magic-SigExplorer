@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"Snake Oil CA"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2011_07_21, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, tag SSL_Malicious_Cert,
+        updated_at 2022_03_23
+      msg: '"ET POLICY Self Signed SSL Certificate (Snake Oil CA)"'
+      rev: '3'
+      sid: '2013295'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

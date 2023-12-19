@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".cgi"'
+      - value: '"name|3d 22|upload_file|22 3b 20|filename|3d 22|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"User-Agent|3a 20|IE|0d 0a|Host"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: created_at 2016_10_14, updated_at 2020_07_31
+      msg: '"ET TROJAN Win32/Infostealer.Snifula File Upload"'
+      reference: md5,be16b8d1b85843c89301f189b35c4963
+      rev: '1'
+      sid: '2023337'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

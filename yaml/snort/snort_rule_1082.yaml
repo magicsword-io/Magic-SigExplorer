@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"ref%3Cscript%20language%3D%22Javascript",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP amazon 1-click cookie theft"'
+      reference: cve,2000-0439
+      rev: '15'
+      service: http
+      sid: '1082'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

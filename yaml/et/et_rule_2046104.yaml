@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"|00 01 00 01 02 02 21|net|2e|tcp|3a 2f 2f|"'
+      - value: '"|2f 03 08 0c|"'
+      dsize: <60
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_06, deployment Perimeter, former_category
+        MALWARE, malware_family Redline, confidence High, signature_severity Critical,
+        updated_at 2023_06_06
+      msg: '"ET TROJAN Redline Stealer TCP CnC Activity"'
+      reference: url,twitter.com/crep1x/status/1666132533912776725
+      rev: '1'
+      sid: '2046104'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

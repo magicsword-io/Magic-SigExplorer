@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,0,0,relative,big
+      classtype: bad-unknown
+      contents:
+      - value: '"|81 80|",depth 4,offset 2,fast_pattern'
+      - value: '"|00 00 00 00|",within 4,distance 4'
+      - value: '"|C0 0C 00 01 00 01|",distance 0'
+      flow: to_client
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS SPOOF query response with TTL of 1 min. and no authority"'
+      rev: '16'
+      service: dns
+      sid: '254'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

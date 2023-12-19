@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"varhttp|3A|/"'
+      - value: '"wwwhttp|3A|/"'
+      - value: '"htmlhttp|3A|/"'
+      flow: established,to_server
+      metadata: created_at 2010_10_13, updated_at 2020_09_11
+      msg: '"ET SCAN Inspathx Path Disclosure Scan"'
+      reference: url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/
+      rev: '4'
+      sid: '2011809'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      threshold: type limit, count 1, seconds 30, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

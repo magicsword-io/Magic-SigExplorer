@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?user="'
+      - value: '"&coockieCount="'
+      - value: '"&searche="'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|file|22
+          3b 20|filename|3d 22 28|"'
+      - value: '"|29 5f 5b|"'
+      - value: '"|5d 2e|"'
+      - value: '"|22 0d 0a|Content|2d|Type|3a 20|application|2f|octet|2d|stream|0d
+          0a 0d 0a|PK|03 04|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_03_07
+      msg: '"ET TROJAN MSIL/BlackGuard Stealer Exfil Activity"'
+      reference: md5,bb5f22fc74149158b637a2bac5064ddb
+      rev: '1'
+      sid: '2035398'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '53'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

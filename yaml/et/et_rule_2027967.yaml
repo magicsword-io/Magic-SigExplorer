@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"README.lilocked"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_09_09, deployment Perimeter, former_category MALWARE, malware_family
+        LiLocked, signature_severity Major, tag Ransomware, updated_at 2020_09_17,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN HTTP Request for Possible ELF/LiLocked Ransomware Note"'
+      pcre: '"/README\.lilocked$/U"'
+      reference: url,www.zdnet.com/article/thousands-of-servers-infected-with-new-lilocked-lilu-ransomware/
+      rev: '2'
+      sid: '2027967'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

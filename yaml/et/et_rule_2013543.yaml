@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        offset: '4'
+        value: '"iGrabber Logs"'
+      flow: established,to_server
+      metadata: created_at 2011_09_06, updated_at 2011_09_06
+      msg: '"ET TROJAN W32/iGrabber Info Stealer FTP Upload"'
+      rev: '2'
+      sid: '2013543'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

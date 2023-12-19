@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"BEAVIS"'
+      - value: '"yep yep"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS RFParalyze Attempt"'
+      reference: nessus,10392
+      rev: '14'
+      sid: '1239'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

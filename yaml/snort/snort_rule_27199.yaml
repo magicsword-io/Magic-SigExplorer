@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?",depth 2'
+      - value: '"h=NT",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Meredrop variant outbound connection GET Request"'
+      pcre: '"/\.[A-Z\d]{8}\x2d[A-Z\d]{6}\x2d[A-Z\d]{6}\x2d[A-Z\d]{8}/"'
+      reference: url,www.virustotal.com/en/file/dfb0050cb7fd6c879027cbecda703613b8d9fb2b2a5682478dbcd0518172302c/analysis/1373576492/
+      rev: '2'
+      service: http
+      sid: '27199'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

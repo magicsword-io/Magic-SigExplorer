@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Content-type|3A|",nocase'
+      - value: '"audio/x-mpegurl",within 50,fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-MULTIMEDIA Icecast playlist redirection"'
+      rev: '17'
+      service: http
+      sid: '1440'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

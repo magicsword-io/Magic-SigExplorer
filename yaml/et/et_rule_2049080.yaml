@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"|3c|meta|20|name|3d 22|ajs|2d|version|2d|number|22 20|content|3d
+          22|"'
+      flow: established,to_client
+      metadata: affected_product Atlassian_Confluence, attack_target Web_Server, created_at
+        2023_11_06, cve CVE_2023_22518, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, updated_at 2023_11_06
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian Confluence CVE-2023-22518 Vulnerable Server
+        Detected M1 Version 1.x-6.x"'
+      pcre: '"/^[1-6]\./R"'
+      reference: cve,2023-22518
+      rev: '1'
+      sid: '2049080'
+      special_options:
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 3600, track by_src
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

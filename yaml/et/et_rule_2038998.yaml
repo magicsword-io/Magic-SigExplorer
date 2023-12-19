@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?action=log"'
+      - value: '"type=Reverse"'
+      - value: '"host="'
+      - value: '"port="'
+      - value: '"name="'
+      - value: '"pc="'
+      - value: '"user="'
+      - value: '"ip="'
+      - value: '"version="'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_09_26, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_09_26
+      msg: '"ET TROJAN Win32/Logger RAT CnC Checkin"'
+      reference: md5,c857761fd4e33cfe8ab9b33055ec1d15
+      rev: '1'
+      sid: '2038998'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

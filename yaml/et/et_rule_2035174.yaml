@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|windows-upgraded|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_02_10, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_02_10
+      msg: '"ET TROJAN Redline Stealer Related Domain in DNS Lookup (windows-upgraded
+        .com)"'
+      reference: url,threatresearch.ext.hp.com/redline-stealer-disguised-as-a-windows-11-upgrade/
+      rev: '2'
+      sid: '2035174'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

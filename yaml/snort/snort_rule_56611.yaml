@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/notification"'
+      - value: '"Accept: */*"'
+      - value: '"Accept-Encoding: gzip, deflate, br"'
+      - value: '"Accept-Language: en-US|0D 0A|"'
+      - value: '"{|22|locale|22|:|22|en|22|,|22|channel|22|:|22|prod|22|,|22|addon|22|:|22|",fast_pattern,nocase'
+      - value: '"nid"'
+      - value: '"msg-"'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-OTHER Cobalt Strike beacon outbound connection attempt"'
+      reference: url,fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56611'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

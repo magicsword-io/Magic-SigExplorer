@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '9033'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '200'
+        value: '"req.php"'
+      - depth: '200'
+        value: '"pid="'
+      - depth: '200'
+        value: '"ver="'
+      - depth: '200'
+        value: '"area="'
+      - depth: '200'
+        value: '"insttime="'
+      - depth: '200'
+        value: '"first="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2011_03_10, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_04_19, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android Trojan Fake10086 checkin 2"'
+      reference: url,blog.aegislab.com/index.php?op=ViewArticle&articleId=81&blogId=1
+      rev: '1'
+      sid: '2012455'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|kutti|02|co"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_03_29
+      msg: '"ET INFO URL Shortening Service Domain in DNS Lookup (kutti .co)"'
+      rev: '2'
+      sid: '2035639'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

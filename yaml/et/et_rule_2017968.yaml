@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"System Idle Process"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_01_15, former_category INFO, updated_at 2020_09_22
+      msg: '"ET INFO Suspicious Possible Process Dump in POST body"'
+      reference: url,www.securelist.com/en/blog/208214213/The_Icefog_APT_Hits_US_Targets_With_Java_Backdoor
+      rev: '3'
+      sid: '2017968'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

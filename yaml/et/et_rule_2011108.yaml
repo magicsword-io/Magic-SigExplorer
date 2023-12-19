@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '9090'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/plugins/sip/sipark-log-summary.jsp?"'
+      - value: '"type="'
+      - value: '"SELECT"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2021_04_06
+      msg: '"ET WEB_SPECIFIC_APPS Openfire Jabber-Server type Parameter SELECT FROM
+        SQL Injection Attempt"'
+      pcre: '"/SELECT.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2011108
+      rev: '2'
+      sid: '2011108'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

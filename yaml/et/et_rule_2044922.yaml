@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|chromedistcdn|05|cloud|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_04_11
+      msg: '"ET TROJAN Fake Google Chrome Error Domain in DNS Lookup (chromedistcdn
+        .cloud)"'
+      reference: url,insight-jp.nttsecurity.com/post/102ic6o/webgoogle-chrome
+      rev: '1'
+      sid: '2044922'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

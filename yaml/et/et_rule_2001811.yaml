@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|313030|,111,99,117,109,101,110,116,46,119,114,105,116,101"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT Encoded javascriptdocument.write - usually hostile"'
+      reference: url,doc.emergingthreats.net/2001811
+      rev: '9'
+      sid: '2001811'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

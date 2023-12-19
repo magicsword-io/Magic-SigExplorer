@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3A 20|image/",fast_pattern,nocase'
+      - value: '"MZ",depth 2'
+      - value: '"PE|00 00|",within 4,distance -64'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Content-Type image containing Portable Executable
+        data"'
+      reference: url,www.virustotal.com/en/file/2dc752d12baa8c8441b82dd52abfd51c25abd28ba42344b22869ba7ae5a9a877/analysis/1469197722/
+      rev: '3'
+      service: ftp-data,http,imap,pop3
+      sid: '39729'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

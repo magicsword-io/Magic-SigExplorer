@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: 224.0.0.2
+      port: '1985'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '3'
+        value: '"|00 04|"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY HSRP Active Router Changed"'
+      reference: url,doc.emergingthreats.net/2009243
+      rev: '2'
+      sid: '2009243'
+    protocol: udp
+    source:
+      network: any
+      port: '1985'

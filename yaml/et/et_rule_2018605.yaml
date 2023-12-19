@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '".php"'
+      - value: '"webshot="'
+      - value: '"src="'
+      - value: '"|24 28|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_06_26, updated_at 2020_09_24
+      msg: '"ET WEB_SPECIFIC_APPS TimThumb Remote Command Execution"'
+      pcre: '"/[&?]src=https?[^&]+\x24\x28/U"'
+      reference: url,cxsecurity.com/issue/WLB-2014060134
+      rev: '1'
+      sid: '2018605'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

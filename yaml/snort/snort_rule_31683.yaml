@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get/?data=",depth 11'
+      - value: '"User-Agent: win32|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Badur variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/840b3b76030696b1ce9eccd5ee6d55dd79c0120871094cb9266769c09f03029c/analysis/
+      rev: '2'
+      service: http
+      sid: '31683'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

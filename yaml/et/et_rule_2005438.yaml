@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/plugins/search/categories.php?"'
+      - value: '"text="'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, cve CVE_2007_0373, deployment Datacenter, former_category
+        WEB_SPECIFIC_APPS, signature_severity Major, tag SQL_Injection, updated_at
+        2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla! SQL Injection Attempt -- categories.php
+        text SELECT"'
+      pcre: '"/SELECT.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2005438
+      rev: '6'
+      sid: '2005438'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

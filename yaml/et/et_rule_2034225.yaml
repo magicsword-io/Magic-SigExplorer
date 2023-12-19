@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 00 00 00 00 00 05 00 01 00|"'
+      - value: '"|2e 00 52 00 45 00 41 00 44 00 4d 00 45 00 2e 00 74 00|"'
+      detection_filter: track by_src, count 4, seconds 1
+      distance: '100'
+      metadata: attack_target Client_Endpoint, created_at 2021_10_19, deployment Perimeter,
+        deployment Internal, former_category MALWARE, malware_family BlackMatter,
+        signature_severity Major, tag Ransomware, updated_at 2021_10_19, mitre_tactic_id
+        TA0040, mitre_tactic_name Impact, mitre_technique_id T1486, mitre_technique_name
+        Data_Encrypted_for_Impact
+      msg: '"ET TROJAN [CISA AA21-291A] Possible BlackMatter Ransomware Lateral Movement"'
+      rev: '2'
+      sid: '2034225'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

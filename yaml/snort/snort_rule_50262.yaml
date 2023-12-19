@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/7773/plug/htv/tv.dll",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Downloader.TeamBot additional payload download attempt"'
+      reference: url,www.virustotal.com/#/file/f64792324839f660b9bdfda95501a568c076641cf08ce63c1ddbe29b45623ac0
+      rev: '2'
+      service: http
+      sid: '50262'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

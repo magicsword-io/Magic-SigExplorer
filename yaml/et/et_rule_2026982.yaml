@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"_handle.php?cmd=getupgradinginfo"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2019_02_26, cve CVE_2018_15716, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET EXPLOIT Nuuo NVR RCE Attempt (CVE-2018-15716)"'
+      rev: '2'
+      sid: '2026982'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

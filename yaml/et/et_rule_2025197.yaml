@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Security Warning"'
+      - value: '"background-color:#d70000"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_10, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Minor, tag Tech_Support_Scam, updated_at 2018_01_10
+      msg: '"ET WEB_CLIENT Tech Support Phone Scam Landing 2018-01-10"'
+      rev: '3'
+      sid: '2025197'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

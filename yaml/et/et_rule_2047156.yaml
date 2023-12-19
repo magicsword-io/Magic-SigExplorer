@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|22 f1 6e 63|"'
+      - value: '"|b6 26 09|"'
+      distance: '1'
+      dsize: <300
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_08_09, deployment Perimeter, former_category
+        MALWARE, malware_family Parallax, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_08_09
+      msg: '"ET TROJAN [ANY.RUN] Parallax RAT Check-In"'
+      reference: url,twitter.com/James_inthe_box/status/1689027430668025856
+      rev: '1'
+      sid: '2047156'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

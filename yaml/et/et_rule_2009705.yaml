@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"shortname="'
+      - value: '"os="'
+      - value: '"v="'
+      - value: '"browsers="'
+      - value: '"readable="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W3i Related Adware/Spyware"'
+      reference: url,doc.emergingthreats.net/2009705
+      rev: '5'
+      sid: '2009705'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|C0 F3 AC 2A 40 79 49 0C A3 6E 89 64 73 66 0F 0B|"'
+      - value: '"|5D FC 67 3A 16 DC 00 56 A3 6E 89 64 73 66 0F 0B|"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER NETGEAR TelnetEnable attempt"'
+      rev: '3'
+      sid: '46317'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Webmail account"'
+      - value: '"Webmail Account"'
+      - value: '"for upgrade in your webmail"'
+      - value: '"check the required"'
+      - value: '"Confirm Passw"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2016_07_15,
+        deployment Perimeter, former_category PHISHING, performance_impact Low, signature_severity
+        Major, tag Phishing, updated_at 2020_07_17
+      msg: '"ET CURRENT_EVENTS Webmail Account Upgrade Phishing Landing 2016-07-15"'
+      rev: '1'
+      sid: '2032029'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-admin/admin-ajax.php"'
+      - value: '"_ajax_nonce="'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2013_02_08, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_24
+      msg: '"ET WEB_SPECIFIC_APPS WordPress CommentLuv Plugin _ajax_nonce Parameter
+        XSS Attempt"'
+      pcre: '"/\_ajax\_nonce\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Pi"'
+      reference: url,securityfocus.com/bid/57771/
+      rev: '2'
+      sid: '2016384'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

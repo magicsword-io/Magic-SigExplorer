@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A|uuid: ",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      - value: '"Content-Type|3A| binary/octet-stream|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Mevade variant outbound connection"'
+      pcre: '"/[^\n -~\r]{4}/"'
+      reference: url,www.virustotal.com/en/file/526fe8eee74dc51a23e458115179dcda4027277b696b6a06889ed52751b39f54/analysis/
+      rev: '3'
+      service: http
+      sid: '28148'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

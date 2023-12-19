@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/portal/"'
+      - value: '"softwareUpdate/getSoftwareUpdates"'
+      - value: '"|22|modulus|22 3a|"'
+      - value: '"UNION SELECT"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_04, cve CVE_2020_3984, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_04
+      msg: '"ET EXPLOIT VMware SD-WAN Orchestrator SQL Injection (CVE-2020-3984)"'
+      reference: cve,2020-3984
+      rev: '2'
+      sid: '2035104'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?model="'
+      - value: '"&brand="'
+      - value: '"&osversion="'
+      - value: '"&ip="'
+      - value: '"&voluumdata=BASE64"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2017_03_06, deployment Internet, former_category CURRENT_EVENTS, malware_family
+        Fake_Alert, signature_severity Minor, updated_at 2020_08_04
+      msg: '"ET WEB_CLIENT Android Fake AV Download Landing Mar 06 2017"'
+      rev: '1'
+      sid: '2024033'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

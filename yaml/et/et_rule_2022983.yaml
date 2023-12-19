@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!".exe"'
+      - value: '"|3a 20|Microsoft BITS"'
+      - value: '!".microsoft.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_07_26, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family MalDocGeneric, performance_impact Low, signature_severity
+        Major, tag MalDoc, updated_at 2022_04_18
+      msg: '"ET TROJAN Possible Maldoc Downloading EXE Jul 26 2016"'
+      pcre: '"/\/(?:[a-z0-9]+_){4,}[a-z0-9]+(?:\/[a-f0-9]+)*?\/[a-f0-9]+\.(?![Ee][Xx][Ee])[a-z0-9]+$/U"'
+      reference: md5,82fb5101847e734dd9b36f51f1fc73e3
+      rev: '3'
+      sid: '2022983'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+      - fast_pattern
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

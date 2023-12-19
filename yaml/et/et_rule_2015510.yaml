@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"I_AM|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2012_07_21, updated_at 2012_07_21
+      msg: '"ET TROJAN ProxyBox - ProxyBotCommand - I_AM"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2012-071005-4515-99&tabid=2
+      rev: '2'
+      sid: '2015510'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/timeconfig.py?"'
+      - value: '"|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_03_24, cve CVE_2020_9020, former_category EXPLOIT,
+        updated_at 2021_03_24
+      msg: '"ET EXPLOIT Possible Vantage Velocity Field Unit RCE Inbound (CVE-2020-9020)"'
+      reference: cve,2020-9020
+      rev: '2'
+      sid: '2032314'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

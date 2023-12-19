@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3a| text/css"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,to_client
+      metadata: created_at 2010_07_30, updated_at 2020_11_02
+      msg: '"ET TROJAN Possible Windows executable sent when remote host claims to
+        send HTML/CSS Content"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2009909
+      rev: '6'
+      sid: '2009909'
+      special_options:
+      - nocase
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

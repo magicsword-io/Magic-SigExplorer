@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/dl/"'
+      - value: '".bmp"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2022_08_31, former_category MALWARE, updated_at 2022_09_03
+      msg: '"ET TROJAN PureCrypter Requesting Injector M1"'
+      pcre: '"/\/dl\/\d{4}\/\w{2,8}_\w{8}\.bmp$/U"'
+      reference: url,blog.netlab.360.com/purecrypter/
+      rev: '2'
+      sid: '2038689'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

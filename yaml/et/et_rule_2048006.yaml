@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|auditprovidre|04|site|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_09_11, deployment Perimeter,
+        signature_severity Major, tag TA444, updated_at 2023_09_11, reviewed_at 2023_10_16
+      msg: '"ET TROJAN DNS Query to TA444 Domain (auditprovidre .site)"'
+      reference: url,twitter.com/tiresearch1/status/1701155845608964391
+      rev: '1'
+      sid: '2048006'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '20'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

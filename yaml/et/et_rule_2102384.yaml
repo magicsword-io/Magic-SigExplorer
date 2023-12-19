@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMBs"'
+      - depth: '1'
+        offset: '63'
+        value: '"`"'
+      - value: '"|00 00 00|b|06 83 00 00 06|+|06 01 05 05 02|"'
+      - value: '"|06 0A|+|06 01 04 01 82|7|02 02 0A|"'
+      - value: '"|A3|>0<|A0|0"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0818, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB NTLMSSP invalid mechlistMIC attempt"'
+      reference: nessus,12065
+      rev: '11'
+      sid: '2102384'
+      special_options:
+      - nocase
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

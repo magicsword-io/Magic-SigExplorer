@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/upload.cfm?action=upload"'
+      fast_pattern: 0,20
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: affected_product Adobe_Coldfusion, attack_target Web_Server, created_at
+        2018_11_13, cve CVE_2018_15961, deployment Perimeter, former_category WEB_CLIENT,
+        performance_impact Low, signature_severity Major, tag CVE_2018_15961, updated_at
+        2020_09_16
+      msg: '"ET WEB_CLIENT [Volex] Possible ColdFusion Unauthenticated Upload Attempt
+        (CVE-2018-15961)"'
+      reference: url,volexity.com/blog/2018/11/08/active-exploitation-of-newly-patched-coldfusion-vulnerability-cve-2018-15961/
+      rev: '2'
+      sid: '2026604'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

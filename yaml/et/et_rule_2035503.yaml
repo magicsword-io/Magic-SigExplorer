@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 10|namosan-nakon.tk"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_17, former_category MOBILE_MALWARE, updated_at
+        2022_03_17
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Realrat.c (TLS SNI) 10"'
+      reference: md5,a5e96e480c38e3a2f8df81c1d4eaac1c
+      rev: '1'
+      sid: '2035503'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

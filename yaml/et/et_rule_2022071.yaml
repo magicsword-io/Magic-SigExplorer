@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '25'
+        offset: '4'
+        value: '".php?id=4"'
+      - value: '!"|0d 0a|Cookie|3a|"'
+      - value: '!".hostingcatalog.com|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_11_11, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2020_11_02
+      msg: '"ET CURRENT_EVENTS Possible Evil Redirector Leading to EK Nov 09 2015
+        M2"'
+      pcre: '"/^\/[a-z]{3,20}\.php\?id=4[A-F0-9]{39,200}$/U"'
+      rev: '5'
+      sid: '2022071'
+      special_options:
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

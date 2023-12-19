@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|7C|u0"'
+      - value: '"|7C|u0"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2011_06_09, updated_at 2011_06_09
+      msg: '"ET SHELLCODE Possible Vertical Slash Unicode Heap Spray Attempt"'
+      pcre: '"/\x7Cu0[a-d](\x7Cu0|0)[a-d]/\x7Cu0[a-d](\x7Cu0|0)[a-d]/i"'
+      reference: url,www.darkreading.com/security/vulnerabilities/221901428/index.html
+      rev: '1'
+      sid: '2012969'
+      special_options:
+      - nocase
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

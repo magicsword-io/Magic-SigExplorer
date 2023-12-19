@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '1'
+      itype: '3'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Destination Unreachable Host Unreachable"'
+      rev: '9'
+      sid: '399'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

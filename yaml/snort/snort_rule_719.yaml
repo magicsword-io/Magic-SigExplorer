@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"login|3A| root",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET root login"'
+      rev: '15'
+      service: telnet
+      sid: '719'
+    protocol: tcp
+    source:
+      network: $TELNET_SERVERS
+      port: '23'

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Login - PayPal</title>"'
+      flow: established,to_client
+      metadata: created_at 2014_11_24, former_category CURRENT_EVENTS, updated_at
+        2017_10_05
+      msg: '"ET CURRENT_EVENTS PayPal Phishing Landing Nov 24 2014"'
+      rev: '3'
+      sid: '2019785'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

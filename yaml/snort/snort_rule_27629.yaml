@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/tomcat-docs/index.jsp?/"'
+      - value: '"User-Agent|3A| Mozilla/4.0 |28|compatible|3B| MSIE 5.01|3B| Windows
+          NT 5.0|29|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Aumlib variant outbound connection"'
+      rev: '5'
+      service: http
+      sid: '27629'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

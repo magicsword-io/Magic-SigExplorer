@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a 20|research-scanner/"'
+      - value: '"internetscanningproject.org"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_07_25, updated_at 2020_05_01
+      msg: '"ET SCAN Internet Scanning Project HTTP scan"'
+      reference: url,www.internetscanningproject.org
+      rev: '1'
+      sid: '2018782'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

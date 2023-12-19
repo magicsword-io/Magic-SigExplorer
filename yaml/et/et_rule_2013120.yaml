@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7580'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"CSService"'
+      - value: '!"|0A|"'
+      flow: established,to_server
+      isdataat: 1000,relative
+      metadata: created_at 2011_06_28, former_category SCADA, confidence High, updated_at
+        2011_06_28
+      msg: '"ET SCADA Siemens FactoryLink 8 CSService Logging  Buffer Overflow Vulnerability"'
+      reference: url,packetstormsecurity.org/files/view/102579/factorylink_csservice.rb.txt
+      rev: '1'
+      sid: '2013120'
+      special_options:
+      - nocase
+      within: '1000'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

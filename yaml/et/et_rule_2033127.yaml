@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 13|media-seoengine.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2021_06_09, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_06_09
+      msg: '"ET TROJAN Observed Puzzlemaker Remote Shell Domain (media-seoengine .com
+        in TLS SNI)"'
+      reference: md5,d6b850c950379d5ee0f254f7164833e8
+      rev: '2'
+      sid: '2033127'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

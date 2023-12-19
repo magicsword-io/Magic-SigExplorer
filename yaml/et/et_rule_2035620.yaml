@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Cookie|3a 20|85937=eyJ0e"'
+      - value: '"200"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2022_03_25,
+        deployment Perimeter, deployment SSLDecrypt, former_category WEB_CLIENT, performance_impact
+        Low, signature_severity Major, updated_at 2022_03_25
+      msg: '"ET WEB_CLIENT Evil Keitaro Set-Cookie Inbound (85937)"'
+      pcre: '"/85937=eyJ0e[A-Z0-9_\-.]{20,300}\x3b/Ci"'
+      rev: '2'
+      sid: '2035620'
+      special_options:
+      - http_stat_code
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

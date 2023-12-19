@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|GHOST|0d 0a|"'
+      - value: '"Referer|3a 20|"'
+      - value: '"Referer|3a 20|"'
+      - value: '!"Connection"'
+      - value: '!"Cache"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_06_10, deployment Perimeter, former_category
+        MALWARE, malware_family Buran, signature_severity Major, tag Ransomware, updated_at
+        2022_05_03, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Buran Ransomware Activity M2"'
+      pcre: '"/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\r\n\r\n$/Ri"'
+      rev: '3'
+      sid: '2027445'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

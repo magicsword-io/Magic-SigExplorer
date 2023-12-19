@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|ougreen|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_07_06, deployment Perimeter,
+        former_category MALWARE, malware_family Lazarus, malware_family Stonefly,
+        signature_severity Major, updated_at 2022_07_06
+      msg: '"ET TROJAN Lazarus APT Related Domain in DNS Lookup (ougreen .com)"'
+      reference: url,blogs.jpcert.or.jp/en/2022/07/vsingle.html
+      rev: '1'
+      sid: '2037277'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

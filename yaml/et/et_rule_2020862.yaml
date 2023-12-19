@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/start_apply.htm?"'
+      - value: '"wan_dns1="'
+      - value: '"action_mode=apply"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_04_08, updated_at 2020_05_21
+      msg: '"ET EXPLOIT ASUS RT N56U Router DNS Change GET Request 1"'
+      reference: url,securityevaluators.com/knowledge/case_studies/routers/asus_rtn56u.php
+      rev: '1'
+      sid: '2020862'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

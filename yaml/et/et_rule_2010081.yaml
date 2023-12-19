@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '4'
+        value: '"USER"'
+      - value: '"INTO"'
+      - value: '"OUTFILE"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2016_07_01
+      msg: '"ET FTP Possible FTP Daemon Username INTO OUTFILE SQL Injection Attempt"'
+      pcre: '"/INTO.+OUTFILE/i"'
+      reference: url,doc.emergingthreats.net/2010081
+      rev: '2'
+      sid: '2010081'
+      special_options:
+      - nocase
+      - nocase
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

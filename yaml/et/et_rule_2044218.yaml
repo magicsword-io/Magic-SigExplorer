@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a 20|browser|0d|"'
+      - depth: '300'
+        value: '"|0d 0a|Host|20|Name|3a|"'
+      - value: '"OS|20|Configuration|3a|"'
+      - value: '"|0d 0a|Registered|20|Organization|3a|"'
+      - value: '"Original|20|Install|20|Date|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_04_25, deployment Perimeter, former_category
+        MALWARE, malware_family Zebrocy, performance_impact Low, signature_severity
+        Major, tag APT, updated_at 2020_09_17, former_sid 2836072
+      msg: '"ET TROJAN APT28 Zebrocy/Zekapab CnC Checkin"'
+      reference: md5,d09b5ae50e7ce1eb2db2e5d72292e907
+      rev: '2'
+      sid: '2044218'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

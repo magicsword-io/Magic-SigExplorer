@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".item(0).appendChild(iframe_tag)"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2015_02_24,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY [PwC CTD] -- MultiGroup - ScanBox Watering
+        Hole iframe"'
+      reference: url,pwc.blogs.com/cyber_security_updates/2014/10/scanbox-framework-whosaffected-and-whos-using-it-1.html
+      rev: '2'
+      sid: '2020559'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

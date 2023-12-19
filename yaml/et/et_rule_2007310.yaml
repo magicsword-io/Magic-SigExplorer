@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/forgotpass.asp?"'
+      - value: '"id="'
+      - value: '"ASCII"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Doug Luxem Liberum Help Desk SQL Injection Attempt
+        -- forgotpass.asp id ASCII"'
+      pcre: '"/ASCII\(.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2007310
+      rev: '6'
+      sid: '2007310'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

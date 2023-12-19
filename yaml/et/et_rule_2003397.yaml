@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Seekmo"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Minor, tag Spyware_User_Agent,
+        updated_at 2020_10_12
+      msg: '"ET MALWARE Zango Seekmo Bar Spyware User-Agent (Seekmo Toolbar)"'
+      pcre: '"/User-Agent\:[^\n]+Seekmo/iH"'
+      rev: '14'
+      sid: '2003397'
+      special_options:
+      - http_header
+      threshold: type both, count 1, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

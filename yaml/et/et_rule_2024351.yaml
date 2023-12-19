@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,2525,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '21'
+        value: '"DECRYPT CODE|20 3a 20 20 20 20 20 20 20|"'
+      dsize: <40
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_06, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Executioner, signature_severity
+        Major, tag Ransomware, updated_at 2017_06_06, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Executioner Ransomware Reporting Infection via SMTP"'
+      reference: md5,eec4f84d12139add6d6ebf3b8c72fff7
+      rev: '1'
+      sid: '2024351'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

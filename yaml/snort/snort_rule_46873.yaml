@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '20480'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"+CHANNEL|0B|",fast_pattern,nocase'
+      - value: '"line-client"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CowerSnail initial outbound connection attempt"'
+      reference: url,www.virustotal.com/#/file/3fb8a4d2ed4f662a4cb4270bb5f488b79c8758aa6fc5c8b119c78fba38d6b7d1/detection
+      rev: '1'
+      service: irc
+      sid: '46873'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

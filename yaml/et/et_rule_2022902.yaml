@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '12'
+        value: '"User-Agent|3a 20|"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Referer:"'
+      - value: '!"Cookie|3a|"'
+      - value: '"Youk$$"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_06_15, updated_at 2022_03_24
+      msg: '"ET TROJAN FOX-SRT ShimRat check-in (Yuok)"'
+      pcre: '"/Yuok$/P"'
+      reference: url,blog.fox-it.com/2016/06/15/mofang-a-politically-motivated-information-stealing-adversary/
+      rev: '1'
+      sid: '2022902'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_client_body
+      threshold: type limit, track by_src, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/Vv/"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_03, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2021_11_03
+      msg: '"ET MALWARE Trojan-Dropper.MSIL CnC Traffic - GET"'
+      pcre: '"/\.(dll|exe|zip|json)$/Ui"'
+      reference: md5,f7744662b78e045946678b3aab34f5b5
+      rev: '1'
+      sid: '2034340'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 16|docsenddata.linkpc.net"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_01, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_01, reviewed_at 2023_12_13
+      msg: '"ET TROJAN Observed SockRacket/KANDYKORN Domain (docsenddata .linkpc .net
+        in TLS SNI)"'
+      reference: url,www.elastic.co/security-labs/elastic-catches-dprk-passing-out-kandykorn
+      rev: '1'
+      sid: '2049031'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/solr/admin/info/system"'
+      flow: established,to_server
+      metadata: affected_product Apache_Solr, attack_target Web_Server, created_at
+        2021_01_08, deployment Perimeter, former_category INFO, signature_severity
+        Informational, updated_at 2021_01_08
+      msg: '"ET INFO Apache Solr System Information Request"'
+      reference: url,web.archive.org/web/20190718141548/https://www.agarri.fr/blog/archives/2013/11/27/compromising_an_unreachable_solr_server_with_cve-2013-6397/index.html
+      rev: '4'
+      sid: '2031504'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

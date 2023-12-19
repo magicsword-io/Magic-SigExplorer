@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| DirBuster"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_08_18
+      msg: '"ET SCAN DirBuster Web App Scan in Progress"'
+      reference: url,doc.emergingthreats.net/2008186
+      rev: '5'
+      sid: '2008186'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get"'
+      - value: '".php?c="'
+      - value: '"&d="'
+      flow: established,to_server
+      flowbits: set,ET.Hiloti
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_27
+      msg: '"ET TROJAN Hiloti/Mufanom Downloader Checkin"'
+      pcre: '"/\/get\d*\.php\?c=[A-Z]{8}&d=[0-9A-F]{250,}$/U"'
+      reference: url,blog.fortinet.com/hiloti-the-botmaster-of-disguise/
+      rev: '8'
+      sid: '2010071'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

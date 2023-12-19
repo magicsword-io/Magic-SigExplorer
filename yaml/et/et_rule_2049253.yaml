@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|00|"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|09|privateIP"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|08|StaticIP"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|02|NY"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|NY"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|XX"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_11_17, deployment Perimeter,
+        former_category MALWARE, malware_family Stealc, malware_family VidarStealer,
+        confidence High, signature_severity Major, updated_at 2023_11_17
+      msg: '"ET TROJAN [ANY.RUN] Stealc/Vidar Stealer TLS Certificate"'
+      pcre: '"/^(?:25[0-5]|2[0-4]\d|[0-1]?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|[0-1]?\d{1,2})){3}$/R"'
+      reference: url,app.any.run/tasks/f1d0c5fd-5e4e-49cc-984e-751cf7ea56fc
+      rev: '1'
+      sid: '2049253'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

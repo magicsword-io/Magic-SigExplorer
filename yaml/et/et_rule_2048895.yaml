@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"1|20|0|20|0|20|"'
+      - value: '"|20|/sbin/launchd"'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_10_24, deployment Perimeter, former_category HUNTING, performance_impact
+        Low, confidence High, updated_at 2023_10_24, reviewed_at 2023_10_24
+      msg: '"ET INFO MacOS Process List in HTTP POST Request (/sbin/launchd) M2"'
+      reference: md5,e91559d036be0880ab0ce89eba9fa8d1
+      rev: '1'
+      sid: '2048895'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"OK"'
+      - value: '">404 Not Found<",fast_pattern,nocase'
+      - value: '" requested URL / was not found "'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.GateKeylogger fake 404 response"'
+      reference: url,www.virustotal.com/en/file/77c802db1731fa8dae1b03d978f89b046309adfa1237b1497a69ccb9c2d82c16/analysis/1459520578/
+      rev: '4'
+      service: http
+      sid: '38563'
+      special_options:
+      - http_stat_code
+      - http_stat_msg
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

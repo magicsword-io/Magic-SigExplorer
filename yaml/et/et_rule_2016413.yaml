@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|"'
+      - value: '"|00 04 94 51 6f 6f|"'
+      distance: '4'
+      metadata: created_at 2013_02_15, former_category DNS, updated_at 2022_07_13
+      msg: '"ET DNS Reply Sinkhole - sinkhole.cert.pl 148.81.111.111"'
+      rev: '5'
+      sid: '2016413'
+      within: '6'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

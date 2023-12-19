@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4569'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00|"'
+      - value: '"|06 0D 06 01 30 13 02 07 08|"'
+      distance: '40'
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET SCAN Enumiax Inter-Asterisk Exchange Protocol Username Scan"'
+      reference: url,doc.emergingthreats.net/2008606
+      rev: '6'
+      sid: '2008606'
+      within: '10'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

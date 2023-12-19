@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '52'
+      classtype: trojan-activity
+      contents:
+      - value: '"/s/?k=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ZeroAccess URI and Referer"'
+      pcre: '"/Referer\x3a\s*?http\x3a\x2f{2}[a-z0-9\x2e\x2d]+\x2fs\x2f\x3fk\x3d/i"'
+      rev: '3'
+      service: http
+      sid: '25224'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

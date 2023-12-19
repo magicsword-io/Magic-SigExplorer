@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/Full_Release/include/body_admin.inc.php?"'
+      - value: '"menu="'
+      flow: established,to_server
+      metadata: created_at 2012_07_27, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS phpProfiles menu Parameter Remote File Inclusion
+        Attempt"'
+      pcre: '"/menu=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/114971/phpProfiles-4.5.4-Beta-XSS-RFI-SQL-Injection.html
+      rev: '1'
+      sid: '2015543'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

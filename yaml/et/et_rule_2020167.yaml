@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|1b 5d 30 3b|Bots connected|3a 20|"'
+      - value: '"|7c 20|Clients connected|3a 20|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2015_01_13, updated_at 2015_01_13
+      msg: '"ET TROJAN Linux/DDoS.M Admin console status"'
+      reference: url,github.com/pop-pop-ret/lizkebab
+      rev: '1'
+      sid: '2020167'
+      threshold: type both, count 1, seconds 10, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

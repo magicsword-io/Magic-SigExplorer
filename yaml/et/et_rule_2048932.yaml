@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|application/json"'
+      - depth: '16'
+        value: '"|7b 22|issuer|22 3a 20 22|http"'
+      - value: '!"|22 2c 20 22|authorization_endpoint"'
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2023-4966.LeakAttempt
+      metadata: attack_target Web_Server, created_at 2023_10_29, cve CVE_2023_4966,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Critical, updated_at 2023_10_29,
+        reviewed_at 2023_10_29
+      msg: '"ET EXPLOIT Citrix ADC and NetScaler Gateway Information Disclosure -
+        Successful Response (CVE-2023-4966)"'
+      reference: cve,2023-4966
+      rev: '1'
+      sid: '2048932'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '20000'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

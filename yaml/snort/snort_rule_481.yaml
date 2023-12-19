@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"TJPingPro by Jim",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP TJPingPro1.1Build 2 Windows"'
+      rev: '10'
+      sid: '481'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

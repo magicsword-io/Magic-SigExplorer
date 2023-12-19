@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/cmd.php"'
+      - value: '"User-Agent|3a| Browser|0d 0a|"'
+      - value: '"name=|22|data|22|"'
+      - value: '"{ |22|bad|22 20 3a 20|"'
+      - value: '", |22|bruting|22 20 3a 20|"'
+      - value: '", |22|checked|22 20 3a 20|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_02_14, former_category MALWARE, updated_at 2020_09_23
+      msg: '"ET TROJAN RDP Brute Force Bot Checkin"'
+      reference: url,www.alienvault.com/open-threat-exchange/blog/botnet-bruteforcing-point-of-sale-via-remote-desktop/
+      rev: '2'
+      sid: '2018253'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

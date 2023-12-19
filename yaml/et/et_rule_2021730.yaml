@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '3'
+        value: '"|20|"'
+      - value: '".ico"'
+      - value: '"|20|HTTP/1."'
+      - value: '"User-Agent|3a 20|Mozillar"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_08_31, former_category MALWARE, updated_at 2020_07_14
+      msg: '"ET TROJAN Joanap CnC Checkin"'
+      reference: url,operationblockbuster.com/resources/index.html
+      rev: '2'
+      sid: '2021730'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

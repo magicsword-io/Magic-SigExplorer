@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"|2e|"'
+      - depth: '9'
+        offset: '4'
+        value: '"="'
+      - value: '"Accept|3a 20|application/x-shockwave-flash|2c|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_12_18, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Moderate,
+        confidence Medium, signature_severity Major, updated_at 2023_12_18
+      msg: '"ET TROJAN Qbot Related Activity (POST)"'
+      reference: md5,eab19c465ed16289519fddcc0befe7db
+      rev: '1'
+      sid: '2049717'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

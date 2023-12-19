@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 1,>,64,13
+      classtype: attempted-admin
+      ip_proto: '2'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Ethereal IGMP IGAP message overflow attempt"'
+      reference: cve,2004-0367
+      rev: '10'
+      sid: '2463'
+    protocol: ip
+    source:
+      network: any
+      port: any

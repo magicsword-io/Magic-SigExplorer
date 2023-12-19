@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - depth: '20'
+        value: '"Microsoft Windows "'
+      - value: '"Copyright 1985-20"'
+      - value: '"Microsoft Corp"'
+      - value: '"|0a 0a|"'
+      distance: '0'
+      dsize: <110
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Possible MS CMD Shell opened on local system"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008953
+      rev: '9'
+      sid: '2008953'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

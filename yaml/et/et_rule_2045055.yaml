@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e|Panel|20 2d 20|Login|3c 2f|title|3e|"'
+      - value: '"|22 3e|Welcome|20|to|20|Avatar|3c 2f|h3|3e|"'
+      - value: '"var|20|url|20 3d 20 22|control|2e|php|22 3b|"'
+      fast_pattern: 2,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_19, deployment Perimeter,
+        deployment SSLDecrypt, former_category ATTACK_RESPONSE, signature_severity
+        Major, updated_at 2023_04_19
+      msg: '"ET ATTACK_RESPONSE Nemesis Admin Panel Inbound"'
+      reference: url,twitter.com/Yeti_Sec/status/1648670765116522496
+      rev: '1'
+      sid: '2045055'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

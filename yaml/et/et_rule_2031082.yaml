@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '48'
+        value: '"GET /images/downloader/pixel.gif?action=install&"'
+      - value: '"&lngid="'
+      - value: '"cid="'
+      - value: '"&kt=flvd"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_22, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2020_10_22
+      msg: '"ET MALWARE FLV/Youtube Downloader Install Activity"'
+      reference: md5,3af4b637e16922fdceaff00d64e98f53
+      rev: '2'
+      sid: '2031082'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

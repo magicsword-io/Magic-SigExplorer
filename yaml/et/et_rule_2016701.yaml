@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/smss.exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_02, former_category INFO, updated_at 2020_09_17
+      msg: '"ET INFO Suspicious smss.exe in URI"'
+      pcre: '"/\/smss\.exe$/Ui"'
+      reference: md5,450dbe96d7f4108474071aca5826fc43
+      rev: '12'
+      sid: '2016701'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      urilen: <100
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

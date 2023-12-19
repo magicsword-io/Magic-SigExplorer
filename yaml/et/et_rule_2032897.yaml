@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ews/Exchange.asmx"'
+      - value: '"ProposeOptionsMeeting"'
+      - value: '"&quot|3b|&gt|3b|cmd"'
+      - value: '"Value&gt|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Microsoft_Exchange, attack_target Server, created_at
+        2021_05_04, cve CVE_2021_28482, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, signature_severity Major, updated_at 2021_05_04
+      msg: '"ET EXPLOIT Microsoft Exchange RCE Setup Inbound (CVE-2021-28482)"'
+      reference: cve,2021-28482
+      rev: '2'
+      sid: '2032897'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

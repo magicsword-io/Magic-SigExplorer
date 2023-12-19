@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Optix Pro v"'
+      - value: '"Installed Trojan Port|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Optix Pro Trojan/Keylogger Reporting Installation via Email"'
+      reference: url,en.wikipedia.org/wiki/Optix_Pro
+      rev: '5'
+      sid: '2008212'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

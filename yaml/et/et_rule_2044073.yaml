@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21116'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '4'
+        value: '"|7A 53 0A 09|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|1A 20|"'
+      distance: '12'
+      metadata: attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_02_02
+      msg: '"ET INFO RustDesk Register Public Key"'
+      reference: url,github.com/rustdesk/rustdesk/issues/594
+      rev: '1'
+      sid: '2044073'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '16'
+      classtype: trojan-activity
+      contents:
+      - value: '"/arquivo/vrs.txt",fast_pattern,nocase'
+      - value: '"Accept: text/html, */*|0D 0A|Accept-Encoding: identity|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banload variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/fc2cc624c2357bad23eaff951c4eac3a1f1c1c3ec5133665c7e101f4f4e3bbba/analysis/1430145774/
+      rev: '2'
+      service: http
+      sid: '34367'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

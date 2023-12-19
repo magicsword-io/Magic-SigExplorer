@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/dmp/api/",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|UAC/1.0.0 (Android "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Android.CoolReaper.Trojan outbound connection"'
+      reference: url,www.virustotal.com/en/file/94b3d27488d10ec2dd73f39513a6d7845ab50b395d6b3adb614b94f8a8609f0e/analysis/
+      rev: '3'
+      service: http
+      sid: '32956'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

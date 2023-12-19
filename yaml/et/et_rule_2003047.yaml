@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/prxjdg.cgi"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET POLICY Proxy Judge Discovery/Evasion (prxjdg.cgi)"'
+      reference: url,doc.emergingthreats.net/2003047
+      rev: '4'
+      sid: '2003047'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

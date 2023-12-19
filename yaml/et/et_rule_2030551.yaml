@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0a 27|Stager|20 28|Build Your Own Botnet|29 27 0a|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_07_16, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_16
+      msg: '"ET TROJAN BYOB - Python Backdoor Stager Download"'
+      reference: md5,76117987409f341b5272958e27dd9ac5
+      rev: '2'
+      sid: '2030551'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,1338]'

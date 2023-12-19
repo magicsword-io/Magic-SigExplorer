@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '18'
+        offset: '10'
+        value: '".php/?h="'
+      - value: '"|2a|"'
+      - value: '"User-Agent|3a 20|Windows Installer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_12_02
+      msg: '"ET TROJAN Bitter APT CHM Activity (GET) M3"'
+      reference: md5,1fa66d93db415a90e1ba6b09a53cc694
+      rev: '1'
+      sid: '2041670'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

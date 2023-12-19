@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/crystalreportviewers/crystalimagehandler.aspx?"'
+      - value: '"dynamicimage="'
+      - depth: '200'
+        value: '"../"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS Business Objects Crystal Reports Web Form Viewer
+        Directory Traversal Attempt"'
+      reference: url,doc.emergingthreats.net/2011113
+      rev: '3'
+      sid: '2011113'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

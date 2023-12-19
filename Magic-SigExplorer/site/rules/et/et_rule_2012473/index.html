@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Et rule 2012473 - Magic SigExplorer</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Et rule 2012473";
+        var mkdocs_page_input_path = "rules/et/et_rule_2012473.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/rust.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Magic SigExplorer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../snort/">Snort</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../et/">ET</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Magic SigExplorer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Et rule 2012473</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="et-web_specific_apps-all-in-one-control-panel-sql-injection-attempt-cp_menu_data_filephp-menu-update">"ET WEB_SPECIFIC_APPS All In One Control Panel SQL Injection Attempt -- cp_menu_data_file.php menu UPDATE"</h2>
+<p><strong>SID:</strong> 2012473</p>
+<p><strong>Revision:</strong> 2</p>
+<p><strong>Class Type:</strong> web-application-attack</p>
+<p><strong>Metadata:</strong> affected_product Web_Server_Applications, attack_target Web_Server, created_at 2011_03_11, deployment Datacenter, signature_severity Major, tag SQL_Injection, updated_at 2020_04_19</p>
+<p><strong>Reference:</strong> </p>
+<ul>
+<li><a href="https://securityreason.com/wlb_show/WLB-2011020009">Link</a></li>
+</ul>
+<p><strong>Protocol:</strong> tcp</p>
+<p><strong>Source Network:</strong> $EXTERNAL_NET</p>
+<p><strong>Source Port:</strong> any</p>
+<p><strong>Destination Network:</strong> $HTTP_SERVERS</p>
+<p><strong>Destination Port:</strong> $HTTP_PORTS</p>
+<p><strong>Flow:</strong> established,to_server</p>
+<p><strong>Contents:</strong></p>
+<ul>
+<li>
+<p>Value: "/public/code/cp_menu_data_file.php?"</p>
+</li>
+<li>
+<p>Value: "menu="</p>
+</li>
+<li>
+<p>Value: "UPDATE"</p>
+</li>
+<li>
+<p>Value: "SET"</p>
+</li>
+</ul>
+<p><strong>Within:</strong> </p>
+<p><strong>PCRE:</strong> "/UPDATE.+SET/Ui"</p>
+<p><strong>Special Options:</strong></p>
+<ul>
+<li>
+<p>nocase</p>
+</li>
+<li>
+<p>http_uri</p>
+</li>
+<li>
+<p>nocase</p>
+</li>
+<li>
+<p>http_uri</p>
+</li>
+<li>
+<p>nocase</p>
+</li>
+<li>
+<p>http_uri</p>
+</li>
+<li>
+<p>nocase</p>
+</li>
+<li>
+<p>http_uri</p>
+</li>
+</ul>
+<p><a href="https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/et_rule_2012473.yaml"><em>source</em></a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

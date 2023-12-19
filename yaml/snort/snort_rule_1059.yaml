@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"xp_filelist",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL xp_filelist attempt"'
+      rev: '12'
+      service: http
+      sid: '1059'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

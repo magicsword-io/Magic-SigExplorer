@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"intuit"'
+      - value: '".php"'
+      - value: '"pin"'
+      - value: '"&email="'
+      - value: '"&tel="'
+      - value: '"&SignUp="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_03, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_02_03
+      msg: '"ET CURRENT_EVENTS Successful Intuit Phish 2022-02-03"'
+      reference: md5,c8f50422c90b53d2d1aa253661e5b3df
+      rev: '1'
+      sid: '2035088'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

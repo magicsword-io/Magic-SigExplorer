@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '162'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"08|02 01 00 04 06|public|A4|+|06|",fast_pattern,nocase'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP PROTOS test-suite-trap-app attempt"'
+      reference: url,www.ee.oulu.fi/research/ouspg/protos/testing/c06/snmpv1/index.html
+      rev: '13'
+      service: snmp
+      sid: '1427'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

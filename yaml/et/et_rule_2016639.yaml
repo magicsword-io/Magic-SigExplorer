@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/AppletHigh.jar"'
+      - value: '" Java/1."'
+      flow: established,to_server
+      metadata: created_at 2013_03_22, updated_at 2020_04_24
+      msg: '"ET CURRENT_EVENTS Watering Hole applet name AppletHigh.jar"'
+      reference: url,www.fireeye.com/blog/technical/targeted-attack/2013/03/internet-explorer-8-exploit-found-in-watering-hole-campaign-targeting-chinese-dissidents.html
+      rev: '1'
+      sid: '2016639'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

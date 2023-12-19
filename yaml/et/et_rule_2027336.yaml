@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"=|20|ReadSmbResponse|28|"'
+      - value: '"|20|==|20|0x72|20|&&|20|"'
+      - value: '"|20|==|20|00"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_08, deployment Perimeter, deployment Internal, former_category CURRENT_EVENTS,
+        performance_impact Low, signature_severity Major, updated_at 2020_11_18
+      msg: '"ET CURRENT_EVENTS CSharp SMB Scanner Assembly in PowerShell Inbound M1"'
+      reference: md5,e5a9c413812b5217ef0da962668e9651
+      rev: '2'
+      sid: '2027336'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '400'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

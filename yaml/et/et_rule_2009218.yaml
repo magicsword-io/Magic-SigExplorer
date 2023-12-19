@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/manager/html"'
+      - value: '"Authorization|3a| Basic YWRtaW46"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: set,ET.Tomcat.login.attempt
+      metadata: created_at 2010_07_30, updated_at 2020_04_22
+      msg: '"ET SCAN Tomcat admin-blank login credentials"'
+      reference: url,doc.emergingthreats.net/2009218
+      rev: '8'
+      sid: '2009218'
+      special_options:
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

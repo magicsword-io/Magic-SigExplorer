@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|weekendstrips|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_10, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, tag FruityArmor,
+        updated_at 2020_09_16
+      msg: '"ET TROJAN FruityArmor DNS Lookup (weekendstrips .net)"'
+      reference: url,securelist.com/cve-2018-8453-used-in-targeted-attacks/88151/
+      rev: '2'
+      sid: '2026469'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

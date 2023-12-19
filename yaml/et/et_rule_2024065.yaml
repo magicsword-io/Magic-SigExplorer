@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|6a 02 6a 2a 6a 10 6a 29 6a 01 6a 02|"'
+      - value: '"|48 bf 2f 2f 62 69 6e 2f 73 68|"'
+      fast_pattern: only
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2017_03_16, deployment Perimeter, former_category SHELLCODE, performance_impact
+        Low, signature_severity Critical, updated_at 2019_10_08
+      msg: '"ET SHELLCODE Linux/x86-64 - Reverse Shell Shellcode"'
+      reference: url,exploit-db.com/exploits/41477/
+      rev: '1'
+      sid: '2024065'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

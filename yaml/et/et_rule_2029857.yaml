@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Windows_Official_Support"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_04_10, deployment Perimeter, signature_severity
+        Major, updated_at 2020_04_10
+      msg: '"ET WEB_CLIENT Tech Support Scam 2020-04-10"'
+      rev: '2'
+      sid: '2029857'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

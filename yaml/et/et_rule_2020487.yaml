@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"GET"'
+      - value: '"dnsPrimary="'
+      - value: '"&dnsSecondary="'
+      - value: '"&dnsDynamic="'
+      - value: '"&dnsRefresh="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_02_19, updated_at 2020_09_29
+      msg: '"ET EXPLOIT Generic ADSL Router DNS Change GET Request"'
+      reference: url,packetstormsecurity.com/files/130418/dlink-DSL2640B.txt
+      rev: '1'
+      sid: '2020487'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

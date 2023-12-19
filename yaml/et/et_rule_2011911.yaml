@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|empty"'
+      - value: '"|0C|explorer_exe"'
+      distance: '0'
+      metadata: created_at 2010_11_09, former_category DNS, updated_at 2019_08_29
+      msg: '"ET DNS Hiloti DNS CnC Channel Successful Install Message"'
+      reference: url,blog.fortinet.com/hiloti-the-botmaster-of-disguise/
+      rev: '3'
+      sid: '2011911'
+      special_options:
+      - nocase
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

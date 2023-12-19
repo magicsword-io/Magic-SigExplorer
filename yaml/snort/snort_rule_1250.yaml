@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/level/"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-OTHER Cisco IOS HTTP configuration attempt"'
+      pcre: '"/\x2flevel\x2f\d+\x2f(exec|configure)/i"'
+      reference: nessus,10700
+      rev: '22'
+      service: http
+      sid: '1250'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

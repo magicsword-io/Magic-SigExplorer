@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|07|version",offset 12,nocase'
+      - value: '"|04|bind|00|",offset 12,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS named version attempt"'
+      reference: nessus,10028
+      rev: '18'
+      service: dns
+      sid: '257'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

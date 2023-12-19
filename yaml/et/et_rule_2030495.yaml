@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/myOR?info=LoadFirstError"'
+      - value: '!"Referer"'
+      - value: '!"User-Agent"'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_09
+      msg: '"ET TROJAN FRAT Downloader Error Report POST"'
+      pcre: '"/Host[^\r\n]+\r\nConnection[^\r\n]+\r\n(?:\r\n)?/"'
+      reference: md5,f1638d4cd6286b69cb29d8002478d0c1
+      rev: '2'
+      sid: '2030495'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

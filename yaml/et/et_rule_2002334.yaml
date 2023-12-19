@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '5222'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"gmail.com"'
+      - value: '"jabber.org"'
+      - value: '"version="'
+      flow: to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET CHAT Google IM traffic Jabber client sign-on"'
+      reference: url,doc.emergingthreats.net/2002334
+      rev: '5'
+      sid: '2002334'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

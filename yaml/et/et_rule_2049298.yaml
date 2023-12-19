@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|audiosound-visual|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_11_27
+      msg: '"ET TROJAN DNS Query to SysJoker Domain (audiosound-visual .com)"'
+      reference: url,intezer.com/blog/research/wildcard-evolution-of-sysjoker-cyber-threat
+      rev: '1'
+      sid: '2049298'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

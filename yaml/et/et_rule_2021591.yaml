@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|02 12 85|"'
+      - value: '"|55  04 06|"'
+      - value: '"|02|--"'
+      - value: '"|55 04 07|"'
+      - value: '"|08|SomeCity"'
+      - value: '"|0d 01 09 01|"'
+      - value: '"|1a|root@localhost.localdomain"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_08_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_28
+      msg: '"ET TROJAN APT CozyCar SSL Cert 1"'
+      reference: url,researchcenter.paloaltonetworks.com/2015/07/tracking-minidionis-cozycars-new-ride-is-related-to-seaduke/
+      rev: '2'
+      sid: '2021591'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

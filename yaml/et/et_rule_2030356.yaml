@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"|20|/start.html|20|"'
+      - value: '"Accept|3a 20|text/html,application/xhtml+xml,application/xml|3b|q=0.9,image/webp,image/apng,*/*|3b|q=0.8,application/signed-exchange|3b|v=b3|0d
+          0a|"'
+      fast_pattern: 98,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_06_18, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_06_18,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Operation Interception Beacon"'
+      pcre: '"/Host[^\r\n]+\r\nUpgrade-Insecure-Requests[^\r\n]+\r\nUser-Agent[^\r\n]+\r\nAccept[^\r\n]+\r\nAccept-Encoding[^\r\n]+\r\nAccept-Language[^\r\n]+\r\n(?:\r\n)?/H"'
+      reference: md5,851a4f13928a5edb3859a21a8041908e
+      rev: '2'
+      sid: '2030356'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

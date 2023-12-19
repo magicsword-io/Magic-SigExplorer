@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Sign in to your Microsoft account"'
+      - value: '"<!-- /ko -->"'
+      - value: '"<!-- /ko"'
+      - value: '"<!-- /ko"'
+      - value: '"<!-- /ko"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_04_20, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_04_20
+      msg: '"ET CURRENT_EVENTS Microsoft Account Phishing Landing M1 2018-04-19"'
+      rev: '2'
+      sid: '2025525'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

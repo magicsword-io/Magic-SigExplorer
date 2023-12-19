@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Priv8 Mailer"'
+      - value: '"Priv8 (Mailer Inbox Sender"'
+      - value: '"SMTP SETUP</font>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_07_16, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2020_07_16
+      msg: '"ET WEB_CLIENT Generic Mailer Accessed on External Server"'
+      rev: '2'
+      sid: '2030545'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

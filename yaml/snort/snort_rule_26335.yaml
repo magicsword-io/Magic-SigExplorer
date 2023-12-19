@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/nosignal.jpg?",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC FBI Ransom Trojan variant outbound connection"'
+      pcre: '"/^\x2fnosignal\.jpg\?\d\.\d+$/"'
+      rev: '3'
+      service: http
+      sid: '26335'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

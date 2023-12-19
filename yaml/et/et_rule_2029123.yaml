@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"application/javascript"'
+      - value: '"hasFlash=0x1"'
+      - value: '"flashVersion=parseInt(VSwf"'
+      - value: '"new RegExp(''MSIE|5c|x20(|5c|x5cd+|5c|x5c.|5c|x5cd+)|3b|'')|3b|"'
+      - value: '"))|3b|if(user==''''){setCookie("'
+      - value: '"''data'':{''data1'':chk,''data2'':is64,''data3'':fls"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_12, deployment Perimeter, former_category
+        EXPLOIT_KIT, signature_severity Major, updated_at 2020_10_24
+      msg: '"ET WEB_CLIENT BottleEK Plugin Check JS"'
+      rev: '2'
+      sid: '2029123'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

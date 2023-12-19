@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"A09AE68F-B14D-43ED-B713-BA413F034904"'
+      - value: '"CreateNewFolderFromName"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_07_27, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Possible WinZip FileView ActiveX CreateNewFolderFromName Method
+        Access Buffer Overflow"'
+      reference: url,packetstormsecurity.org/files/83024/WinZip-FileView-WZFILEVIEW.FileViewCtrl.61-ActiveX-Buffer-Overflow.html
+      rev: '2'
+      sid: '2015538'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

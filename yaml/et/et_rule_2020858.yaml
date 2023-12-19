@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/apply.cgi"'
+      - depth: '19'
+        value: '"submit_button=index"'
+      - value: '"&action=Apply"'
+      - value: '"&lan_dns0="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_04_08, updated_at 2020_11_02
+      msg: '"ET EXPLOIT Linksys WRT54GL Router DNS Change POST Request"'
+      reference: url,www.s3cur1ty.de/node/640
+      rev: '1'
+      sid: '2020858'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: any
+      port: any

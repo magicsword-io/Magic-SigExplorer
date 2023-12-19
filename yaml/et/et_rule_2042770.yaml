@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Access-Control-Allow-Origin|3a 20|*"'
+      - value: '"Server|3a 20|Apache/2.4.1|20 0d 0a|"'
+      - value: '"HTTP/1.0 200 OK"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_12_13, deployment Perimeter, deployment
+        SSLDecrypt, former_category MALWARE, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_12_13
+      msg: '"ET TROJAN Villain C2 Framework HTTP Server Response"'
+      rev: '1'
+      sid: '2042770'
+      special_options:
+      - http_header
+      - http_header
+      - fast_pattern
+      threshold: type limit, seconds 120, count 1, track by_dst
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

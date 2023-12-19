@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '19'
+        value: '"/update/v32/default"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.3|3b 20|Trident/7.0|3b
+          20|rv|3a|11.0) like Gecko|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_17, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2022_06_17
+      msg: '"ET TROJAN Unknown CN Related APT Activity (GET)"'
+      reference: md5,8cdd56b2b4e1e901f7e728a984221d10
+      rev: '1'
+      sid: '2037035'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

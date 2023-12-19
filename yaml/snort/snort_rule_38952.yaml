@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/optin.php?",fast_pattern,nocase'
+      - value: '"f="'
+      - value: '"quant="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Win.Adware.OpenSoftwareUpdater variant outbound connection
+        attempt"'
+      reference: url,www.virustotal.com/en/file/829918eb3edb26deccd2d80c7ac8bc8ad58b4fb76a370c11731884b408a21a73/analysis/1463575824/
+      rev: '2'
+      service: http
+      sid: '38952'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

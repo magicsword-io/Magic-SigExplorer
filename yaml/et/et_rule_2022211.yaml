@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 0a|"'
+      - value: '"|27|Agency Protocols Management of Internet"'
+      - value: '"|2a 86 48 86 f7 0d 01 09 01|"'
+      - value: '"|0d|info@apmi.com"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_and_Server, created_at 2015_12_02, deployment
+        Perimeter, former_category MALWARE, malware_family Bancos, malware_family
+        DarkTequila, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        tag Banking_Trojan, updated_at 2022_03_14, mitre_tactic_id TA0042, mitre_tactic_name
+        Resource_Development, mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL certificate detected (Bancos/DarkTequila
+        CnC)"'
+      reference: url,sslbl.abuse.ch
+      rev: '2'
+      sid: '2022211'
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

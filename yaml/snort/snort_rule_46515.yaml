@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/proxy.cgi",fast_pattern,nocase'
+      - value: '"url=",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Belkin N750 F9K1103 wireless router command injection attempt"'
+      pcre: '"/[?&]url=[^&]*?%26/i"'
+      reference: cve,2018-1144
+      rev: '1'
+      service: http
+      sid: '46515'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

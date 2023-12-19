@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/dark/275.htm"'
+      - value: '"|3b 2b|SV1|3b|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_08, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_09_08
+      msg: '"ET TROJAN Win32/Zegost!ml CnC Checkin"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,36b81518c59c0ab6c17e4e750be0c85e
+      rev: '1'
+      sid: '2038778'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

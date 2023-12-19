@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '6379'
+    details:
+      classtype: misc-attack
+      contents:
+      - depth: '1'
+        value: '"*"'
+      - value: '"config"'
+      - value: '"set"'
+      - value: '"dir"'
+      - value: '"/.ssh"'
+      distance: '0'
+      flow: to_server,established
+      isdataat: '!5,relative'
+      metadata: attack_target Client_Endpoint, created_at 2016_07_07, deployment Datacenter,
+        performance_impact Low, signature_severity Minor, tag SCAN_Redis_SSH, updated_at
+        2016_11_15
+      msg: '"ET SCAN Redis SSH Key Overwrite Probing"'
+      reference: url,antirez.com/news/96
+      rev: '2'
+      sid: '2023510'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

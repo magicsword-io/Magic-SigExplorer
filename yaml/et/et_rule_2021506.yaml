@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Host|3a 20|"'
+      - value: '"google."'
+      - value: '!"Referer|3a|"'
+      - value: '!"=http"'
+      - value: '"Content-Length|3A| 0|0D 0A|"'
+      - value: '"/?"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_07_22, former_category MALWARE, updated_at 2020_10_06
+      msg: '"ET TROJAN Sednit Connectivity Check 0 Byte POST"'
+      pcre: '"/^Host\x3a\x20(?:www\.)?google(?:\.[a-z]{2,3})+\r?$/Hm"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/an-in-depth-look-at-how-pawn-storms-java-zero-day-was-used
+      rev: '3'
+      sid: '2021506'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_uri
+      - http_header
+      - http_uri
+      within: '16'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

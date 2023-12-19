@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|magizanqomo|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_25, deployment Perimeter,
+        former_category MALWARE, malware_family IcedID, signature_severity Major,
+        updated_at 2023_07_25, reviewed_at 2023_10_05
+      msg: '"ET TROJAN DNS Query for IcedID Domain (magizanqomo .com)"'
+      reference: url,twitter.com/ian_kenefick/status/1683549956584382486
+      rev: '1'
+      sid: '2046899'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0a|krikam.net"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_06_29, deployment Perimeter,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_06_29
+      msg: '"ET CURRENT_EVENTS Malicious SSL Certificate detected (Alibaba Phishing)"'
+      reference: md5,cdbdc636cca7829fbea7211412eabbd8
+      rev: '1'
+      sid: '2037211'
+      special_options:
+      - fast_pattern
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

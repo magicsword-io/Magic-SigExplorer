@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b 20|Windows
+          NT 5.1|3b 20|Tob 1.1)|0d 0a|"'
+      - value: '!"Referer"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      fast_pattern: 39,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_10_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Latrodectus,
+        performance_impact Low, confidence Medium, signature_severity Major, updated_at
+        2023_10_23, reviewed_at 2023_10_23
+      msg: '"ET TROJAN Latrodectus Loader Related Activity (POST)"'
+      reference: md5,f93f91aca8e20bb97f94c05e5dd839e7
+      rev: '1'
+      sid: '2048735'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

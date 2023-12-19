@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|onlinestockwatch|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_04, deployment Perimeter,
+        former_category MALWARE, malware_family Lazarus, signature_severity Major,
+        updated_at 2022_05_04
+      msg: '"ET TROJAN Lazarus APT Related Domain in DNS Lookup (onlinestockwatch
+        .net)"'
+      reference: url,twitter.com/ESETresearch/status/1521735320852643840
+      rev: '2'
+      sid: '2036459'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

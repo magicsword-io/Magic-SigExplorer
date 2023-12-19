@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3372'
+    details:
+      classtype: attempted-dos
+      flow: to_server,established
+      isdataat: '1023'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER MSDTC attempt"'
+      reference: nessus,10939
+      rev: '17'
+      sid: '1408'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

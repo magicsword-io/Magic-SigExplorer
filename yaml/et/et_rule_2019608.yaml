@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '30'
+        value: '"Content-Type|3a 20|text/html|0d 0a|Host|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      - value: '!"Indy Library"'
+      - value: '"Firefox/12.0"'
+      fast_pattern: 10,20
+      flow: to_server,established
+      metadata: created_at 2014_10_30, updated_at 2020_10_28
+      msg: '"ET TROJAN HB_Banker16 Get"'
+      pcre: '"/^Content-Type\x3a\x20text\/html\r\nHost\x3a\x20[^\r\n]+?\r\nAccept\x3a\x20text\/html,\x20\*\/\*\r\nUser-Agent\x3a\x20[^\r\n]+?\r\n(?:\r\n)?$/H"'
+      rev: '2'
+      sid: '2019608'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

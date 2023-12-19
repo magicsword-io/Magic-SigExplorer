@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|cuturl|03|app|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_11_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_11_22
+      msg: '"ET TROJAN Candiru Related Domain in DNS Lookup (cuturl .app)"'
+      reference: url,www.welivesecurity.com/2021/11/16/strategic-web-compromises-middle-east-pinch-candiru/
+      rev: '2'
+      sid: '2034523'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

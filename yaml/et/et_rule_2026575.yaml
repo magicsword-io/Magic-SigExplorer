@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET|20|"'
+      - value: '".php?anti="'
+      - value: '"&cliname="'
+      - value: '"HTTP/1.1|0d 0a|"'
+      - value: '"|0d 0a|Accept|3a 20|*/*|0d|"'
+      - value: '"Accept-Encoding|3a 20|gzip, deflate|0d|"'
+      - value: '"User-Agent|3a|"'
+      - value: '!"|0d 0a|Cache"'
+      - value: '!"|0d 0a|Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_05, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag APT33, tag
+        CharmingKitten, updated_at 2020_09_16
+      msg: '"ET TROJAN APT33/CharmingKitten JS/HTA Stage 1 CnC Checkin"'
+      reference: md5,e15b3d2c39888fe459dc2d9c8dec331d
+      rev: '2'
+      sid: '2026575'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

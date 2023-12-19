@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '>15'
+      itype: '3'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Destination Unreachable cndefined code"'
+      rev: '10'
+      sid: '407'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

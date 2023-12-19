@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '6'
+        offset: '2'
+        value: '"|80 00 00 01 00 01|"'
+      - value: '"|04|wpad|00 00 01 00 01 04|wpad|00 00 01 00 01|"'
+      distance: '0'
+      isdataat: 7,relative
+      metadata: created_at 2012_10_25, updated_at 2012_10_25
+      msg: '"ET INFO LLNMR query response to wpad"'
+      rev: '2'
+      sid: '2015842'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '5355'

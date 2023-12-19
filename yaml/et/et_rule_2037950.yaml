@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|cloud-avira|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_04, deployment Perimeter, malware_family
+        CHIMNEYSWEEP, performance_impact Low, signature_severity Major, updated_at
+        2022_08_04
+      msg: '"ET TROJAN CHIMNEYSWEEP Backdoor CnC Domain (cloud-avira .com) in DNS
+        Lookup"'
+      reference: url,www.mandiant.com/resources/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against?1
+      rev: '1'
+      sid: '2037950'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

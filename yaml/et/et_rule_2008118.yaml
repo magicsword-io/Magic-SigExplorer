@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '69'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '2'
+        value: '"|00 04|"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TFTP Outbound TFTP ACK"'
+      reference: url,doc.emergingthreats.net/2008118
+      rev: '3'
+      sid: '2008118'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

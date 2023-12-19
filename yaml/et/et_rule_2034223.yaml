@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/api/Values_V2/Getting3210"'
+      - value: '".azurewebsites.net|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_10_18, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2021_10_18
+      msg: '"ET TROJAN Harvester Group Downloader Activity (GET)"'
+      pcre: '"/\x3a\x20[^\r\n]+\r\nMC\x3a\x20[^\r\n]+\r\nAth\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,2578bf48da48c262e4a83e2a9ae47c68
+      rev: '2'
+      sid: '2034223'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '26'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,<,0x3a,-5,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|3f 22 5c 78|"'
+      - value: '"var "'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_12_21, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS Evil Redirector Leading to EK Mon Dec 21 2015 5"'
+      pcre: '"/^\s*?[a-z]+\s*?=\s*?\x28\d+[<>]\d+\?\s*?\x22[^\x22]+\x22\s*?\x3a\s*?\x22[^\x22]+\x22\s*?\x29\s*?[\x3b\x2b].*?(?<=[\x3d\x2b])\x28\d+[<>]\d+\?\s*?\x22[^\x22]+\x22\s*?\x3a\s*?\x22[^\x22]+\x22\s*?\x29\s*?[\x3b\x2b].*?(?<=[\x3d\x2b])\x28\d+[<>]\d+\?\s*?\x22[^\x22]+\x22\s*?\x3a\s*?\x22[^\x22]+\x22\s*?\x29\s*?[\x3b\x2b].*?(?<=[\x3d\x2b])\x28\d+[<>]\d+\?\s*?\x22[^\x22]+\x22\s*?\x3a\s*?\x22[^\x22]+\x22\s*?\x29\s*?[\x3b\x2b]/Rsi"'
+      reference: url,blog.sucuri.net/2015/12/evolution-of-pseudo-darkleech.html
+      rev: '2'
+      sid: '2022290'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

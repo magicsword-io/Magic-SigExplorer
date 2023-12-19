@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?gname="'
+      - value: '"&pid="'
+      - value: '"&m="'
+      - value: '" from|3a| http|3a|//www.bsalsa.com/ EmbeddedWB "'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_09_10, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Minor, updated_at 2020_08_31
+      msg: '"ET MALWARE UBar Trojan/Adware Checkin 1"'
+      reference: md5,81a119f7f47663c03053e76146f54fe9
+      rev: '3'
+      sid: '2013556'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

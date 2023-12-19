@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"content|3d 22|AURORA|20|STEALER|22 3e|"'
+      - value: '"|3c|title|3e|Auth|3c 2f|title|3e|"'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2022_12_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2023_04_04, reviewed_at 2023_10_16
+      msg: '"ET TROJAN Aurora Stealer Admin Console In HTTP Response"'
+      reference: url,twitter.com/0xrb/status/1607255904831037443
+      rev: '2'
+      sid: '2043017'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"Auth"'
+      - value: '" @ "'
+      - value: '"|5C 23 2F|"'
+      - value: '"|5C 23 2F|"'
+      - value: '"|5C 23 2F|"'
+      flow: to_server,established
+      metadata: created_at 2011_05_17, former_category MALWARE, updated_at 2011_05_17
+      msg: '"ET TROJAN Backdoor.Win32.VB.Alsci/Dragon Eye RAT Checkin (sending user
+        info)"'
+      reference: md5,e7d9bc670d69ad8a6ad2784255324eec
+      rev: '5'
+      sid: '2016913'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1023:'

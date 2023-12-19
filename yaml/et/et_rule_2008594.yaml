@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Ezshop"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, tag Spyware_User_Agent, updated_at 2020_08_31,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496,
+        mitre_technique_name Resource_Hijacking
+      msg: '"ET MALWARE ezday.co .kr Related Spyware User-Agent (Ezshop)"'
+      reference: url,doc.emergingthreats.net/2008594
+      rev: '7'
+      sid: '2008594'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"JOIN"'
+      - value: '"Procesor - model name"'
+      - value: '"Numar Procesoare"'
+      - value: '"|3a|uid="'
+      - value: '"gid="'
+      - value: '"groups="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2018_11_05, deployment
+        Perimeter, former_category MALWARE, malware_family Shellbot_SM, performance_impact
+        Low, signature_severity Major, tag Perl, updated_at 2018_11_05
+      msg: '"ET TROJAN Perl/Shellbot.SM IRC CnC Checkin"'
+      reference: md5,ca42fda581175fd85ba7dab8243204e4
+      rev: '1'
+      sid: '2026579'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '14'
+        value: '"|2f|getconfig|3f|id|3d|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_02, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Agniane, confidence High, signature_severity
+        Critical, updated_at 2023_10_02, reviewed_at 2023_10_02
+      msg: '"ET TROJAN Win32/Agniane Stealer CnC Activity (GET) M2"'
+      pcre: '"/\x2fgetconfig\x3fid\x3d(?:[0-9]{1,3})$/U"'
+      reference: url,twitter.com/naumovax/status/1708855368292434374
+      rev: '1'
+      sid: '2048375'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: <18
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

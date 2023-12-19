@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|title|3e 26 23|x45|3b 26 23|x6d|3b 26 23|x69|3b 26 23|x72|3b
+          26 23|x61|3b 26 23|x74|3b 26 23|x65|3b 26 23|x73|3b 26 23|x20|3b 26 23|x4e|3b
+          26 23|x42|3b 26 23|x44|3b 3c 2f|title|3e|"'
+      - value: '"/dist/main.php"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_23, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_06_23
+      msg: '"ET CURRENT_EVENTS Emirates NBD Bank Credential Phish Landing Page 2022-06-23"'
+      rev: '1'
+      sid: '2037098'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

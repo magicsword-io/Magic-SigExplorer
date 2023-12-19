@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '60'
+        value: '"|3b|5"'
+      flow: established,to_server
+      metadata: created_at 2014_11_03, former_category EXPLOIT_KIT, updated_at 2020_05_13
+      msg: '"ET CURRENT_EVENTS Fiesta SilverLight 5.x Exploit URI Struct"'
+      pcre: '"/\/\??[a-f0-9]{60,}\x3b5[0-1]\d{5}$/U"'
+      rev: '1'
+      sid: '2019624'
+      special_options:
+      - http_uri
+      urilen: '>68'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

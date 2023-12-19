@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PRIVMSG "'
+      - value: '"-rw-r--r--"'
+      flow: established,from_client
+      metadata: created_at 2013_08_08, updated_at 2013_08_08
+      msg: '"ET TROJAN ATTACKER IRCBot - PRIVMSG Response - Directory Listing *nix"'
+      rev: '5'
+      sid: '2017303'
+      special_options:
+      - fast_pattern
+      within: '300'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

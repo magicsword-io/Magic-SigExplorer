@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      - value: '"/wp-login.php|0d 0a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2013_08_12, deployment Datacenter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag Wordpress, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS Possible FortDisco Wordpress Brute-force Site list
+        download 10+ wp-login.php"'
+      reference: md5,722a1809bd4fd75743083f3577e1e6a4
+      rev: '2'
+      sid: '2017310'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

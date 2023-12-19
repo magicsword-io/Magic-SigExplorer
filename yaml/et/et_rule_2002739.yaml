@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"iDownloadAgent"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Minor, tag Spyware_User_Agent,
+        updated_at 2020_08_31
+      msg: '"ET MALWARE iDownloadAgent Spyware User-Agent (iDownloadAgent)"'
+      pcre: '"/User-Agent\:[^\n]+iDownloadAgent/H"'
+      reference: url,doc.emergingthreats.net/2002739
+      rev: '14'
+      sid: '2002739'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

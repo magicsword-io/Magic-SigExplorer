@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!80'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/stat/"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.Bicololo.Request
+      metadata: created_at 2013_05_31, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN Possible Win32.Bicololo Checkin"'
+      pcre: '"/^\/stat\/[a-z]{3,4}\/\d{1,4}\sHTTP\/1\./R"'
+      reference: url,www.virusradar.com/Win32_Bicololo.A/description
+      rev: '2'
+      sid: '2016946'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

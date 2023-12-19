@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!--c3284d-->"'
+      - value: '"<!--/c3284d-->"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_07_12, updated_at 2012_07_12
+      msg: '"ET WEB_CLIENT c3284d Malware Network Compromised Redirect (comments 2)"'
+      reference: url,stopmalvertising.com/malware-reports/the-c3284d-malware-network-stats.php.html
+      rev: '2'
+      sid: '2015052'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

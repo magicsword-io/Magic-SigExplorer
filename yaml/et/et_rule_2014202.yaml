@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"processupload.html"'
+      - value: '".sendspace.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_02_07, updated_at 2020_04_21
+      msg: '"ET POLICY File Being Uploaded to SendSpace File Hosting Site"'
+      rev: '1'
+      sid: '2014202'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

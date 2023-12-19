@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"|FF D8 FF E0|"'
+      - value: '"JFIF"'
+      - value: '"<%eval|20|request|28 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2019_07_22, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, signature_severity Major,
+        tag WebShell, updated_at 2020_08_31
+      msg: '"ET EXPLOIT Possible WebShell JPEG Upload"'
+      rev: '2'
+      sid: '2027737'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

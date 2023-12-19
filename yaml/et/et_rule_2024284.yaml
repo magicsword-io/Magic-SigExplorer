@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|handbrake|03|biz|00|"'
+      distance: '0'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2017_05_09, deployment Perimeter, former_category TROJAN, malware_family OSX_Proton,
+        performance_impact Low, updated_at 2020_09_17
+      msg: '"ET TROJAN OSX/Proton.B DNS Lookup"'
+      reference: url,objective-see.com/blog/blog_0x1D.html
+      rev: '3'
+      sid: '2024284'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

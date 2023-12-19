@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/wp-content/plugins/jquery-mega-menu/skin.php?"'
+      - value: '"skin="'
+      - depth: '200'
+        value: '"..%2f"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, affected_product Wordpress,
+        affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2011_03_25,
+        deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        tag Wordpress, updated_at 2020_04_19
+      msg: '"ET WEB_SPECIFIC_APPS jQuery Mega Menu Wordpress Plugin Local File Inclusion
+        Attempt"'
+      reference: url,exploit-db.com/exploits/16250
+      rev: '3'
+      sid: '2012571'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

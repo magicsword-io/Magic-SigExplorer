@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|nowautomation|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_09_02, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2021_09_02, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN BlackMatter CnC Domain in DNS Lookup (nowautomation .com)"'
+      reference: md5,18c7c940bc6a4e778fbdf4a3e28151a8
+      rev: '1'
+      sid: '2033892'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

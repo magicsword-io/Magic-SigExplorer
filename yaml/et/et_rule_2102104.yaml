@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - depth: '17'
+        value: '"username too long"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL RPC rexec username too long response"'
+      reference: bugtraq,7459
+      rev: '6'
+      sid: '2102104'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '512'

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"200"'
+      - value: '"stop|20|"'
+      - value: '"copy|20|TSVIPSrv.dll"'
+      - value: '"|5c|Windows|5c|System32|5c|TSVIPSrv.dll"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2019_04_22, former_category ATTACK_RESPONSE, updated_at
+        2020_08_28
+      msg: '"ET ATTACK_RESPONSE Windows SCM DLL Hijack Command Inbound via HTTP M3"'
+      reference: url,posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
+      rev: '2'
+      sid: '2027236'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/js/jquery-",fast_pattern'
+      - value: '".js?",within 15,distance 1'
+      - value: '"Referer|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Upatre variant outbound connection"'
+      pcre: '"/\x2ejs\x3f[a-zA-Z0-9]{9,20}=Mozilla\x2f/Gi"'
+      reference: url,www.virustotal.com/en/file/7a06565bb9d49aa92084b5bc32cf59d04dc1d60d63827099ca7c14063f54967a/analysis/1421616162/
+      rev: '3'
+      service: http
+      sid: '33282'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

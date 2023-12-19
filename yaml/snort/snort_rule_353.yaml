@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"PASS ddd@|0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP adm scan"'
+      rev: '13'
+      service: ftp
+      sid: '353'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

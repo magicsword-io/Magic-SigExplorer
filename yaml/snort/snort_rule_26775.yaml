@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/index.html"'
+      - value: '".info|0D 0A|Cache-Control: no-cache|0D 0A 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Blocker variant outbound connection HTTP Header
+        Structure"'
+      pcre: '"/HTTP\/1.[01]\r\nUser\x2dAgent\x3a\x20[ -~]+\r\nHost\x3a\x20[a-z0-9\x2d\x2e]+\.info\r\n/"'
+      reference: url,www.virustotal.com/en/file/c157a06965bf9edc101350c6122d108ccb1d99600cbb6967ef41dfed255f2009/analysis/
+      rev: '3'
+      service: http
+      sid: '26775'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

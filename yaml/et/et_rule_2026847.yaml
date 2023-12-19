@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|scradm|02|in|00|"'
+      distance: '0'
+      metadata: created_at 2019_01_22, former_category MOBILE_MALWARE, updated_at
+        2020_09_16
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.Anubis.d (scradm .in in DNS
+        Lookup)"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/google-play-apps-drop-anubis-banking-malware-use-motion-based-evasion-tactics/
+      rev: '1'
+      sid: '2026847'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

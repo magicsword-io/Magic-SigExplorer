@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|smu743glzfrxsqcl"'
+      distance: '0'
+      metadata: created_at 2014_12_13, updated_at 2020_09_01
+      msg: '"ET TROJAN DNS query for Known OphionLocker Domain"'
+      reference: md5,e17da8702b71dfb0ee94dbc9e22eed8d
+      rev: '2'
+      sid: '2019934'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

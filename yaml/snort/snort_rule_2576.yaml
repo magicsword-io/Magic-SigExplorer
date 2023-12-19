@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat.generate_replication_support",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE dbms_repcat.generate_replication_support buffer overflow
+        attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*package_prefix[\r\n\s]*=>[\r\n\s]*\2|package_prefix\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|(\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*procedure_prefix[\r\n\s]*=>[\r\n\s]*\2|procedure_prefix\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*((\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*){3}(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*((\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*){4}(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/is"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck93.html
+      rev: '9'
+      sid: '2576'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

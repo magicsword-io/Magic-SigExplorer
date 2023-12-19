@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '3306'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '4'
+        offset: '3'
+        value: '"|11|"'
+      flow: to_server,established
+      metadata: created_at 2012_12_05, updated_at 2012_12_05
+      msg: '"ET SCAN MYSQL MySQL Remote FAST Account Password Cracking"'
+      reference: url,www.securityfocus.com/archive/1/524927/30/0/threaded
+      rev: '5'
+      sid: '2015986'
+      threshold: type both,track by_src,count 100,seconds 1
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

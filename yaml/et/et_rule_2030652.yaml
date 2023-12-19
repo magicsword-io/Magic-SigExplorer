@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".png?"'
+      - value: '"=e010000127"'
+      - value: '".exe|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_08_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family APT32, malware_family
+        OceanLotus, performance_impact Low, signature_severity Major, updated_at 2020_12_10
+      msg: '"ET TROJAN Suspected APT32/Oceanlotus Maldoc CnC"'
+      pcre: '"/^[^\r\n]+\.exe(?:\x3b)?$/Ui"'
+      reference: url,twitter.com/HONKONE_K/status/1290511333343993856
+      rev: '2'
+      sid: '2030652'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

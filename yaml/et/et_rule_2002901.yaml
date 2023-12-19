@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"CONFIG[PATH]="'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Server, created_at 2010_07_30,
+        deployment Datacenter, signature_severity Major, tag Remote_File_Include,
+        updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS PHP Aardvark Topsites PHP CONFIG PATH Remote File
+        Include Attempt"'
+      pcre: '"/&CONFIG\x5bpath\x5d=(https?|ftps?|php)\:/Ui"'
+      reference: url,doc.emergingthreats.net/2002901
+      rev: '7'
+      sid: '2002901'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

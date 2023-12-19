@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|FF FA|''|00 00|"'
+      flow: to_server,established
+      flowbits: set,ttyprompt
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TELNET login buffer non-evasive overflow attempt "'
+      pcre: '"/T.*?T.*?Y.*?P.*?R.*?O.*?M.*?P.*?T/Ri"'
+      reference: nessus,10827
+      rev: '15'
+      service: telnet
+      sid: '3274'
+      special_options:
+      - raw_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

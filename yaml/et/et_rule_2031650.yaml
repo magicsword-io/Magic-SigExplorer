@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '".php?csrftoken="'
+      - value: '"|22|><font|20|size=4>Cleanup|20|Shell</font>"'
+      - value: '"file_id"'
+      - value: '"path"'
+      - value: '"file_name"'
+      - value: '"uploaded_by"'
+      - value: '"Recipient"'
+      - value: '"Actions"'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2021_02_23, deployment Perimeter,
+        former_category WEB_SERVER, performance_impact Low, signature_severity Major,
+        updated_at 2021_02_23
+      msg: '"ET WEB_SERVER DEWMODE Webshell Observed Outbound"'
+      reference: md5,bdfd11b1b092b7c61ce5f02ffc5ad55a
+      rev: '2'
+      sid: '2031650'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

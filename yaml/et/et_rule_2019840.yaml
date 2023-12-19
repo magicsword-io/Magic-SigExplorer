@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/infect"'
+      - offset: '7'
+        value: '".php"'
+      - value: '"User-Agent|3a 20|Microsoft|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_12_03, former_category MALWARE, updated_at 2020_09_28
+      msg: '"ET TROJAN Trojan/MSIL.bfsx Checkin"'
+      pcre: '"/\/infect(?:-\d)?\.php$/U"'
+      reference: md5,0c39b39ee4a59a8ac5fc1df500da2a88
+      rev: '3'
+      sid: '2019840'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

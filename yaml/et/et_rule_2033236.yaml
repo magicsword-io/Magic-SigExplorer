@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|0a|procCreate|28 22|Archive"'
+      - value: '"procStep|28|"'
+      - value: '"+++SQLCMD|3a 22|+"'
+      - value: '"|22|DELETE|20|FROM"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_07_05, former_category HUNTING, updated_at 2021_07_05
+      msg: '"ET EXPLOIT Possible REvil 0day Exploitation Activity Inbound"'
+      reference: url,blog.truesec.com/2021/07/04/kaseya-supply-chain-attack-targeting-msps-to-deliver-revil-ransomware/
+      rev: '1'
+      sid: '2033236'
+      within: '100'
+    protocol: tcp
+    source:
+      network: any
+      port: any

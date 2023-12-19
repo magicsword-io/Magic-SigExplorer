@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|1b|private.directinvesting.com"'
+      distance: '1'
+      flow: established,from_server
+      metadata: created_at 2017_02_16, former_category MALWARE, malware_family APT29_Cache_DLL,
+        updated_at 2022_03_15
+      msg: '"ET TROJAN APT29 Cache_DLL SSL Cert"'
+      reference: url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+      rev: '2'
+      sid: '2023931'
+      within: '28'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

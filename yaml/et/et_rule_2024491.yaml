@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|v5t5z6a55ksmt3oh|05|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category
+        MALWARE, malware_family Shifr, signature_severity Major, tag Ransomware, updated_at
+        2020_09_17, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Shifr Ransomware CnC DNS Query (v5t5z6a55ksmt3oh)"'
+      reference: md5,7a8c9fbfad9a817c0a10fed926f134c2
+      rev: '2'
+      sid: '2024491'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

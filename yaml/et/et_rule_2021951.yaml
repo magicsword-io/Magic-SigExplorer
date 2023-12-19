@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/magmi-importer/web/"'
+      - value: '"download_file.php?file="'
+      - value: '"|2e 2e 2f|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_10_15, former_category CURRENT_EVENTS, updated_at
+        2020_06_04
+      msg: '"ET CURRENT_EVENTS Possible Magento Directory Traversal Attempt"'
+      reference: url,threatpost.com/zero-day-in-magento-plugin-magmi-under-attack/115026/
+      rev: '1'
+      sid: '2021951'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_raw_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

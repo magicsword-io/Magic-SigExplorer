@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Microsoft Office Existence Discovery|0d 0a|"'
+      fast_pattern: 30,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_30, deployment Perimeter,
+        former_category USER_AGENTS, signature_severity Informational, updated_at
+        2022_11_30
+      msg: '"ET USER_AGENTS Microsoft Office Existence Discovery User-Agent"'
+      rev: '1'
+      sid: '2041131'
+      special_options:
+      - http_header
+      threshold: type both, track by_src, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

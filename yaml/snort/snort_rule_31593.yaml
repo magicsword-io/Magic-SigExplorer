@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"sms"'
+      - value: '".ashx?t=",fast_pattern,nocase'
+      - value: '!"User-Agent|3A 20|"'
+      - value: '!"Accept|3A 20|"'
+      - value: '!"Content-Type|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.SMSSend outbound connection"'
+      reference: url,www.virustotal.com/en/file/a70a62ac920e83bab5e3e38ac8853ca3f45b6022f4d4ca47c9ae5cb9049700bb/analysis/1406724303/
+      rev: '3'
+      service: http
+      sid: '31593'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

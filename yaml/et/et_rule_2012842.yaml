@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|00 00 00 11 C8 00 00 00|"'
+      dsize: '16'
+      flow: to_server,established
+      metadata: created_at 2011_05_25, former_category MALWARE, updated_at 2011_05_25
+      msg: '"ET TROJAN Backdoor.Win32.Xyligan Checkin"'
+      reference: md5,bfbc0b106a440c111a42936906d36643
+      rev: '3'
+      sid: '2012842'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

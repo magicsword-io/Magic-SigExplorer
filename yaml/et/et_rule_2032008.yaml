@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"name=|22|logMetaData|22|"'
+      - value: '"itrLogPath"'
+      - value: '"name=|22|logfile|22 3b|"'
+      - value: '"log_upload_wsgi.py"'
+      - depth: '15'
+        value: '"POST /logupload"'
+      flow: established,to_server
+      metadata: affected_product VMware, attack_target Server, created_at 2021_03_15,
+        cve CVE_2021_21978, deployment Datacenter, deployment SSLDecrypt, former_category
+        EXPLOIT, performance_impact Moderate, signature_severity Informational, updated_at
+        2021_03_15
+      msg: '"ET EXPLOIT VMWare View Planner RCE (CVE-2021-21978) Attempt M2"'
+      reference: cve,2021-21978
+      rev: '2'
+      sid: '2032008'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

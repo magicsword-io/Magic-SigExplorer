@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>|26 23|68|3b 26 23|111|3b 26 23|99|3b 26 23|117|3b 26 23|115|3b
+          26 23|105|3b 26 23|103|3b 26 23|110|3b|"'
+      fast_pattern: 33,20
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_03_08, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_08_04
+      msg: '"ET CURRENT_EVENTS Docusign Phishing Landing Mar 08 2017"'
+      rev: '1'
+      sid: '2025662'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

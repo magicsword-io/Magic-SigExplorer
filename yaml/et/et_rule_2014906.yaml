@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '4'
+        value: '"RETR"'
+      - value: '".exe|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2012_06_15, deployment
+        Perimeter, deployment alert_only, former_category INFO, signature_severity
+        Informational, updated_at 2012_06_15
+      msg: '"ET INFO .exe File requested over FTP"'
+      pcre: '"/^RETR\s+[^\r\n]+?\x2eexe\r?$/m"'
+      rev: '2'
+      sid: '2014906'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

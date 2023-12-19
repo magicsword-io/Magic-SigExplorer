@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,26,465,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|I|20|RECORDED|20|YOU!"'
+      - value: '"there|20|are|20|some|20|bad|20|news"'
+      - value: '"My|20|trojan|20|allows|20|me"'
+      - value: '"All|20|you|20|need|20|is|20|$"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_04, deployment Perimeter,
+        former_category TROJAN, performance_impact Low, signature_severity Major,
+        updated_at 2023_02_06
+      msg: '"ET TROJAN Win32/Phorpiex Template 8 Active - Outbound Malicious Email
+        Spam"'
+      rev: '3'
+      sid: '2044126'
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

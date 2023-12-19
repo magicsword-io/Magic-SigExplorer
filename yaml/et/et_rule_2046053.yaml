@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/moveitisapi/moveitisapi.dll"'
+      - value: '"action="'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_06_02, cve CVE_2023_34362,
+        deployment Perimeter, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence Low, signature_severity Minor, updated_at
+        2023_06_02
+      msg: '"ET WEB_SPECIFIC_APPS MOVEit File Transfer - HTTP POST to /moveitaspi.dll
+        (CVE-2023-34362)"'
+      reference: cve,2023-34362
+      rev: '1'
+      sid: '2046053'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

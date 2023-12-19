@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|10|fjobiwouldli.biz"'
+      distance: '1'
+      flow: from_server,established
+      metadata: affected_product Android, attack_target Client_and_Server, created_at
+        2021_07_21, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2021_07_21,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET MOBILE_MALWARE Observed Malicious SSL Cert (Android/FakeAdBlocker
+        CnC)"'
+      reference: url,www.welivesecurity.com/2021/07/20/url-shortener-services-android-malware-banking-sms-trojans/
+      rev: '1'
+      sid: '2033376'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

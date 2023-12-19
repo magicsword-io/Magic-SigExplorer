@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|17 24 1B 00 00|"'
+      dsize: '5'
+      flow: established,to_client
+      flowbits: isset,ET.teamviewerkeepaliveout
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY TeamViewer Keep-alive inbound"'
+      reference: url,doc.emergingthreats.net/2008795
+      rev: '4'
+      sid: '2008795'
+      threshold: type limit, count 1, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5938'

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '0'
+        value: '"POST /data/collect  HTTP/1.1"'
+      - value: '"HOST|3a 20|"'
+      - value: '"User-Agent|3a 20|data-collect"'
+      - value: '"|22|HostName|22 3a 22|"'
+      - value: '"|22|UserName|22 3a 22|"'
+      - value: '"|22|AdapterDescription|22 3a 22|"'
+      - value: '"|22|DhcpEnabled|22|"'
+      - value: '"|22|IpAddresses|22 3a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_06_10, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_06_10
+      msg: '"ET TROJAN Win32/Agent.Fish Data Exfiltration"'
+      reference: md5,0768fd9a6c0344944a223b28eedff41f
+      rev: '1'
+      sid: '2036959'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

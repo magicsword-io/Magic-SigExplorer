@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0a c2 84 c2 9f|muBoT|c2 84 c2 9f|REMOTE|c2 84 c2 9f|SHELL"'
+      flow: established,from_server
+      metadata: created_at 2015_11_26, updated_at 2015_11_26
+      msg: '"ET TROJAN ELF/muBoT IRC Activity 7 (bindshell)"'
+      reference: url,blog.malwaremustdie.org/2015/11/mmd-0044-2015-source-code-disclosure.html
+      rev: '1'
+      sid: '2022190'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

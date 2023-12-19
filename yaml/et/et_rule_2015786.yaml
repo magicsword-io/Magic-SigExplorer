@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".html"'
+      - depth: '6'
+        value: '"From|3a| "'
+      - value: '"Via|3a| "'
+      - value: '!"1|2e|"'
+      - value: '!"User-Agent|3a| "'
+      flow: established,to_server
+      metadata: created_at 2012_10_10, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Ransom.Win32.Birele.gsg Checkin"'
+      pcre: '"/^From\x3a \d+?\r\n/Hmi"'
+      reference: md5,0ea9b34e9d77b5a4ef5170406ed1aaed
+      rev: '4'
+      sid: '2015786'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

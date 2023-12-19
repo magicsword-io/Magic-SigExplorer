@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"document.write"'
+      - value: '"|25 32 45 25 36 33 25 36 38 25 36 31 25 37 33 25 36 35 25 32 45 25
+          36 33 25 36 46 25 36 44|"'
+      fast_pattern: 10,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2016_03_23, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_08_24
+      msg: '"ET CURRENT_EVENTS Obfuscated Chase Phishing Landing 2016-03-23"'
+      pcre: '"/^\s*?\(\s*?unescape\s*?\(/Rsi"'
+      rev: '4'
+      sid: '2032375'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

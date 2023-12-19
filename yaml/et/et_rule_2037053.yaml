@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '20'
+        value: '"/hive_append.php?id="'
+      - value: '"&obj="'
+      - value: '"&user="'
+      - value: '"Full-FileName|3a 20|%66%69%6C%65"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_21, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_06_21
+      msg: '"ET TROJAN Win64/Agent.BP Checkin"'
+      reference: md5,fc878529af50b87ce71c8c36959f542a
+      rev: '1'
+      sid: '2037053'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

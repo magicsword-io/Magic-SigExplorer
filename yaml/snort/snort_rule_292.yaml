@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|EB|/_|EB|J^|89 FB 89|>|89 F2|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-LINUX x86 Linux samba overflow"'
+      reference: cve,1999-0811
+      rev: '11'
+      sid: '292'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

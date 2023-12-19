@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|dwz|02|mk|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_19, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_05_19,
+        reviewed_at 2023_10_23
+      msg: '"ET INFO Observed URL Shortening Service Domain in DNS Lookup (dwz .mk)"'
+      rev: '1'
+      sid: '2045774'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '8'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

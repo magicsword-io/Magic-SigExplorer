@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c 7c|OK|7c 3e|"'
+      dsize: '6'
+      fast_pattern: only
+      flow: established,from_server
+      flowbits: isset,ET.KLRemote
+      metadata: created_at 2015_01_27, updated_at 2019_10_08
+      msg: '"ET TROJAN KL-Remote / Cryp_Banker14 RAT response"'
+      reference: md5,5e01557b8650616e005a9949cbf5459a
+      rev: '1'
+      sid: '2020316'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

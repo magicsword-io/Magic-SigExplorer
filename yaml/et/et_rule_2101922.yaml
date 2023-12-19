@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 86 A0|"'
+      - value: '"|00 00 00 05|"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL RPC portmap proxy attempt TCP"'
+      rev: '7'
+      sid: '2101922'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|DK"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|VA"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|15|Dingies Predesignates"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|09|Untackled"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|19|Steganophthalmata Project"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|17|gangeticchuting.fashion"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_12_15, deployment Perimeter,
+        signature_severity Major, tag SSL_Malicious_Cert, tag TA577, updated_at 2023_12_15
+      msg: '"ET TROJAN Observed Malicious SSL Cert (TA577)"'
+      reference: url,twitter.com/reecdeep/status/1735649391447302362
+      rev: '1'
+      sid: '2049710'
+      special_options:
+      - fast_pattern
+      within: '24'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

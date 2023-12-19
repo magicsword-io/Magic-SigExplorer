@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '11'
+        value: '"/./RestAPI/"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_09, cve CVE_2021_40539, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_11_09
+      msg: '"ET EXPLOIT ManageEngine AdSelfService Plus - Authentication Bypass Attempt
+        (CVE-2021-40539)"'
+      reference: cve,2021-40539
+      rev: '1'
+      sid: '2034362'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

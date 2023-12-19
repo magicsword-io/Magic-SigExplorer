@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length: 201|0D 0A|"'
+      - value: '"<meta name=|22|token|22| content=|22 A4|",depth 29'
+      - value: '"|A4 22|/>",within 4,distance 168'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Delf variant HTTP Response"'
+      pcre: '"/^\x3cmeta\x20name\x3d\x22token\x22\x20content\x3d\x22\xa4[A-F\d]{168}\xa4\x22\x2f\x3e$/"'
+      reference: url,www.virustotal.com/en/file/59e721000aa38a91ed42799e955f9337482c627e0675520aa54dcad068e6e004/analysis/1409846457/
+      rev: '2'
+      service: http
+      sid: '31826'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"VqiRa2vbXS"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_11, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Raccoon_Stealer, performance_impact
+        Moderate, signature_severity Major, updated_at 2022_02_11
+      msg: '"ET TROJAN Win32.Raccoon Stealer Checkin Response M5"'
+      pcre: '"/^[a-zA-Z0-9+\/]+(?:[a-zA-Z0-9+\/]{2}==|[a-zA-Z0-9+\/]{3}=|[a-zA-Z0-9+\/]{4})$/"'
+      reference: md5,3acb8e439a1bd66a8a42c6bd5d8930b4
+      rev: '2'
+      sid: '2035179'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

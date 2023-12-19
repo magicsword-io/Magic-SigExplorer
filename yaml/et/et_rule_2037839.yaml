@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<form action|3d 22|"'
+      - value: '"|2f|post.php|22|"'
+      - value: '"method|3d 22|post|22 3e|"'
+      - value: '"|3c|h3|20|id|3d 22|title|22 3e|Purchase|20|Order|20|Excel|20|Portal|3c
+          2f|h1|3e|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2022_07_28, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, updated_at 2022_07_28
+      msg: '"ET CURRENT_EVENTS Phishing Landing Page - Excel Purchase Order Form"'
+      reference: url,app.any.run/tasks/cd930ac7-e716-42ac-a6ff-b24caffbcaffbc40d
+      rev: '1'
+      sid: '2037839'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

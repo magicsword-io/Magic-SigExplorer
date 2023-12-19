@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4786'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 00 00 02 00 00 00 01 00 00 00 05|",depth 12'
+      - value: '"tftp://",nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Cisco IOS Smart Install protocol version command attempt"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityResponse/cisco-sr-20170214-smi
+      rev: '4'
+      sid: '41725'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

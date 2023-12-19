@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/web/google_analytics.php",fast_pattern,nocase'
+      - value: '"cmd=set",nocase'
+      - value: '"arg=",nocase'
+      - value: '"isAdmin=1",nocase'
+      - value: '"username=admin",nocase'
+      - value: '"local_login=1",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Western Digital MyCloud command injection attempt"'
+      pcre: '"/(^|&)arg=[^&]*?([\x60\x3b\x7c]|\x24\x28|%60|%3b|%7c|%26|%24%28)/im"'
+      reference: cve,2016-10108
+      rev: '3'
+      service: http
+      sid: '41348'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_cookie
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

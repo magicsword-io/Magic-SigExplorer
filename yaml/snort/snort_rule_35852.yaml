@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|FF D8 FF E1|",depth 4'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY JPEG file upload detected"'
+      rev: '9'
+      service: http
+      sid: '35852'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/_api/web/currentuser"'
+      flow: established,to_server
+      msg: '"Access to SharePoint Current User API"'
+      rev: '1'
+      sid: '1000011'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

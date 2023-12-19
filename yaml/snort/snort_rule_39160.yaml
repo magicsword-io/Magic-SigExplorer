@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03 01|"'
+      - value: '"|02|",distance 2'
+      - value: '"|03 01|",distance 3'
+      - value: '"|55 04 06 13 02|US"'
+      - value: '"|55 04 08 13 0A|California",distance 6'
+      - value: '"|55 04 07 13 0E|Redwood Shores",distance 6'
+      - value: '"|55 04 0A 13 14|Oracle America, Inc.",distance 6'
+      - value: '"|55 04 0B 13 13|Code Signing Bureau",distance 6'
+      - value: '"|55 04 03 13 14|Oracle America, Inc.",distance 6'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.JRat inbound self-signed SSL certificate"'
+      reference: url,www.virustotal.com/en/file/9d54565f8fb7cf50df11bf9745f7efd04a49abb03e85a3aafbf9a5b5fcd065c9/analysis/
+      rev: '2'
+      service: ssl
+      sid: '39160'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

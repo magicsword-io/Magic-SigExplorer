@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Connection|3a|"'
+      - depth: '5'
+        value: '"Host|3a|"'
+      - value: '!".imodules.com|0d 0a|"'
+      - value: '"Accept|3a 20 2a 2f 2a 0d 0a 0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.Anunanak.HTTP.1
+      metadata: created_at 2014_12_23, former_category MALWARE, updated_at 2020_11_17
+      msg: '"ET TROJAN Win32/Spy.Agent.OHT - AnunakAPT HTTP Checkin 1"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+?(?: MSIE |rv\x3a11)/Hmi"'
+      reference: url,fox-it.com/en/files/2014/12/Anunak_APT-against-financial-institutions2.pdf
+      rev: '3'
+      sid: '2020027'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

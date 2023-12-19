@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"abcde12345fghij6789"'
+      dsize: '20'
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Gimmiv Infection Ping Outbound"'
+      reference: url,doc.emergingthreats.net/2008726
+      rev: '3'
+      sid: '2008726'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

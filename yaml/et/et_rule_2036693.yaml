@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|c0 13 c0 27 c0 2f c0 14 c0 28 c0 30 c0 60 c0 61 c0 76 c0 77 cc a8
+          13 05 13 04 13 03 cc 13 c0 11 00 0a 00 2f 00 3c c0 9c c0 a0 00 9c 00 35
+          00 3d c0 9d c0 a1 00 9d 00 41 00 ba 00 84 00 c0 00 07 00 04 00 05|"'
+      - value: '"|08|http/0.9|08|http/1.0|06|spdy/1|06|spdy/2|06|spdy/3|03|h2c|02|hq"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_25, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, signature_severity Informational, updated_at 2022_05_25
+      msg: '"ET INFO Possible JARM Fingerprinting Client Hello via tls1_2_bottom_half"'
+      reference: url,engineering.salesforce.com/easily-identify-malicious-servers-on-the-internet-with-jarm-e095edac525a
+      rev: '1'
+      sid: '2036693'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

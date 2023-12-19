@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '8083'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET %. HTTP/1."'
+      flow: to_server,established
+      metadata: created_at 2016_08_04, updated_at 2016_08_04
+      msg: '"GPL EXPLOIT WEB-MISC JBoss RMI class download service directory listing
+        attempt"'
+      reference: url,marc.theaimsgroup.com/?l=bugtraq&m=111911095424496&w=2
+      rev: '1'
+      sid: '2103461'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

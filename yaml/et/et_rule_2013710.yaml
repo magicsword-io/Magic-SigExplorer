@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/do/SDM"'
+      - value: '"action="'
+      - value: '"User-Agent|3a| AHTTPConnection"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2011_09_28, deployment Perimeter,
+        former_category POLICY, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_07_06
+      msg: '"ET GAMES FreeRide Games"'
+      reference: url,freeridegames.comurl,web.archive.org/web/20140318090458/http://forums.comodo.com:80/av-false-positivenegative-detection-reporting/trojwarewin32trojanagentgen-t55152.0.html
+      rev: '7'
+      sid: '2013710'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

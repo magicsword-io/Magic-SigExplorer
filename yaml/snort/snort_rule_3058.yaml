@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,1024,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"COPY",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP copy literal overflow attempt"'
+      pcre: '"/\sCOPY\s[^\n]*?\{/ims"'
+      reference: nessus,10374
+      rev: '13'
+      service: imap
+      sid: '3058'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

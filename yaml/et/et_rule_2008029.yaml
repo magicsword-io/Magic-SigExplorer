@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1023:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"nxt"'
+      dsize: '3'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C nxt Command (nxt)"'
+      reference: url,doc.emergingthreats.net/2008029
+      rev: '4'
+      sid: '2008029'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

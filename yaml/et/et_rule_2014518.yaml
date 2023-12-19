@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"<plist version="'
+      - value: '"Apple_partition_map"'
+      - value: '"Apple_HFS"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_04_06, updated_at 2012_04_06
+      msg: '"ET INFO EXE - OSX Disk Image Download"'
+      rev: '3'
+      sid: '2014518'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

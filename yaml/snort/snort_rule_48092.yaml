@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/image_download.php?uid=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.MirageFox variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/016948ec7743b09e41b6968b42dfade5480774df3baf915e4c8753f5f90d1734/analysis
+      rev: '1'
+      service: http
+      sid: '48092'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

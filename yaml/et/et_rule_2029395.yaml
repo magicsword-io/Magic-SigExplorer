@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"POST /cnc/register HTTP"'
+      - depth: '20'
+        value: '"|7b 22|host_identifier|22 3a 22|"'
+      - value: '"|22 7d|"'
+      distance: '36'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_06, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Backdoor, performance_impact Low,
+        signature_severity Major, tag Patchwork, updated_at 2020_02_06
+      msg: '"ET TROJAN Patchwork Backdoor Checkin"'
+      reference: url,twitter.com/JAMESWT_MHT/status/1225014535591026688
+      rev: '2'
+      sid: '2029395'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

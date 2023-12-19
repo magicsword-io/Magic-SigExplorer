@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|ff 53 4d 42|"'
+      - value: '"|00 11 22 33 44 55 66 77 88|"'
+      flow: from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Weak Netbios Lanman Auth Challenge Detected"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2006417
+      rev: '10'
+      sid: '2006417'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '139'

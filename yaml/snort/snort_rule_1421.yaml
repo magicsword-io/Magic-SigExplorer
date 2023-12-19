@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '705'
+    details:
+      classtype: attempted-recon
+      flow: stateless
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP AgentX/tcp request"'
+      reference: cve,2002-0013
+      rev: '19'
+      service: snmp
+      sid: '1421'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

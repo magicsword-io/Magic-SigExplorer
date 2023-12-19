@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1024:65535
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|cf 8f 80 9b 9a 9d cf|"'
+      - value: '"|20 26 26 26|"'
+      distance: '50'
+      dsize: <200
+      flow: established,to_server
+      flowbits: set,BE.Bandook1.35
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2019_11_13
+      msg: '"ET TROJAN Bandook v1.35 Initial Connection and Report"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/TrojanBandook
+      rev: '6'
+      sid: '2003555'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

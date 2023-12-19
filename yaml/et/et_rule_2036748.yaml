@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/fuel/pages/select/"'
+      - value: '"filter=|27 2b|"'
+      - value: '"|2b 27|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_06_02, cve CVE_2018_16763,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, tag Exploit, updated_at 2022_06_02
+      msg: '"ET EXPLOIT Fuel CMS 1.4.1 RCE (CVE-2018-16763)"'
+      reference: cve,2018-16763
+      rev: '1'
+      sid: '2036748'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

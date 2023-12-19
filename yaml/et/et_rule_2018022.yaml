@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/444.jpg"'
+      - value: '"postimg.org"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_01_28, updated_at 2020_10_05
+      msg: '"ET TROJAN Possible Win32/Dimegup.A Downloading Image Common URI Struct"'
+      pcre: '"/^Host\x3a[^\r\n]+\.postimg\.org(?:\x3a\d{1,5})?\r?$/Hmi"'
+      reference: md5,914c58df5d868f7c3438921d682f7fe5
+      rev: '4'
+      sid: '2018022'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

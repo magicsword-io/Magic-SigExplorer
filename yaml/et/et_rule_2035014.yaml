@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Action|3a 20|Originate"'
+      - value: '"Data|3a|"'
+      - value: '"|20|/tmp/"'
+      distance: '0'
+      metadata: created_at 2022_01_28, cve CVE_2019_18610, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, signature_severity Major, updated_at 2022_01_28
+      msg: '"ET EXPLOIT Sangoma Asterisk Originate AMI RCE (CVE-2019-18610) (PoC Based)"'
+      reference: cve,2019-18610
+      rev: '1'
+      sid: '2035014'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      within: '45'
+    protocol: tcp
+    source:
+      network: any
+      port: any

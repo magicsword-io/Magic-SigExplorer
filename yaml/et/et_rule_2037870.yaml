@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/mh/upload.php"'
+      - value: '"name|3d 22|filename|22|"'
+      - value: '"apinew.txt"'
+      - value: '"name|3d 22|foldername|22|"'
+      - value: '"Files"'
+      - value: '"name|3d 22|data|22|"'
+      - value: '"name|3d 22|send|22|"'
+      - value: '"Send"'
+      - value: '"/mh/ftp/remote.htm|0d 0a|"'
+      distance: '4'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_29, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_29
+      msg: '"ET TROJAN RKO Remote File Upload Attempt"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+\/mh\/ftp\/remote\.htm/Hmi"'
+      reference: url,twitter.com/James_inthe_box/status/1552756079997513728
+      rev: '1'
+      sid: '2037870'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

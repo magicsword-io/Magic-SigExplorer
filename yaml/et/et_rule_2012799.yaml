@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images2/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_05_10, former_category MALWARE, updated_at 2020_09_25
+      msg: '"ET TROJAN Ponmocup C2 Sending Data to Controller 1"'
+      pcre: '"/\/images2\/[0-9a-fA-F]{500}/U"'
+      reference: url,www9.dyndns-server.com%3a8080/pub/botnet-links.html
+      rev: '6'
+      sid: '2012799'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

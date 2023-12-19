@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".dyndns-"'
+      flow: established,to_server
+      metadata: created_at 2011_06_22, updated_at 2020_08_18
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to a *.dyndns-*.com domain"'
+      pcre: '"/\.dyndns-(at-home|at-work|blog|free|home|ip|mail|office|pics|remote|server|web|wiki|work)\.com\x0d\x0a/iH"'
+      rev: '3'
+      sid: '2013096'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

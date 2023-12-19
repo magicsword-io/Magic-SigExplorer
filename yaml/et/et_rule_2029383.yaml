@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"/upl?ser="'
+      - value: '"Windows|20|Phone|20|OS"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_06, deployment Perimeter, former_category
+        MALWARE, malware_family TONEDEAF, performance_impact Low, signature_severity
+        Major, updated_at 2020_02_06
+      msg: '"ET TROJAN APT34 TONEDEAF 2.0 Uploading to CnC"'
+      pcre: '"/^\/upl\?ser==?[a-z0-9]{6}$/Ui"'
+      reference: md5,a0324fa4f2d9d2f04ea4edad41160da6
+      rev: '2'
+      sid: '2029383'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

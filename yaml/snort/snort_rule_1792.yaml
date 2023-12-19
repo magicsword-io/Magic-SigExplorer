@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"200"'
+      flow: to_client,established
+      isdataat: 256,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-NNTP return code buffer overflow attempt"'
+      pcre: '"/^200\s[^\n]{256}/ims"'
+      reference: cve,2002-0909
+      rev: '16'
+      sid: '1792'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '119'

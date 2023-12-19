@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/poppxr/popi.html",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/6ca7047c377ad26b9db86c4028b59aa2f6600bfbdb74f1af3519ebf10314b3a6/analysis/
+      rev: '2'
+      service: http
+      sid: '34452'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

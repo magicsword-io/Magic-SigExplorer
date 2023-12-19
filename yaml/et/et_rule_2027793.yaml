@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"=eyJHVUlEIjoi"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_04, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2020_08_31, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Covenant Framework HTTP Beacon"'
+      pcre: '"/eyJHVUlEIjoi.+(IlR5cGUiO|JUeXBlIj|iVHlwZSI6)/Psm"'
+      reference: url,posts.specterops.io/entering-a-covenant-net-command-and-control-e11038bcf462
+      rev: '2'
+      sid: '2027793'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

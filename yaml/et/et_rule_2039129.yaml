@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '[$HTTP_PORTS,8098]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '24'
+        value: '"POST /baseOpLog.do HTTP/"'
+      - value: '"|0d 0a 0d 0a|"'
+      - value: '"opTime"'
+      - value: '"|27|"'
+      - value: '"|2f 2a|"'
+      - value: '"|2a 2f|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target IoT, created_at 2022_10_07, cve
+        CVE_2022_36635, deployment Perimeter, deployment Internal, former_category
+        EXPLOIT, performance_impact Moderate, confidence High, signature_severity
+        Major, updated_at 2022_10_07
+      msg: '"ET EXPLOIT ZKBioSecurity SQL Injection Attempt (CVE-2022-36635)"'
+      pcre: '"/^(?:Begin|End)\=/R"'
+      reference: cve,2022-36635
+      rev: '1'
+      sid: '2039129'
+      special_options:
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: any
+      port: any

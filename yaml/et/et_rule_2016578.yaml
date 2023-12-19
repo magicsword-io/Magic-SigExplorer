@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Mozilla/4.0|0D 0A|Host|3a|"'
+      - value: '".exe"'
+      flow: established,to_server
+      metadata: created_at 2013_03_15, updated_at 2020_04_29
+      msg: '"ET TROJAN Dorkbot Loader Payload Request"'
+      reference: md5,3452c20fd0df69ccfdea520a6515208a
+      rev: '3'
+      sid: '2016578'
+      special_options:
+      - http_header
+      - http_uri
+      - fast_pattern
+      urilen: <11
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

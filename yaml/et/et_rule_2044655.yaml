@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|22|a01|22 3a 20 22|"'
+      - value: '"|22|b05|22 3a 20 22|"'
+      - value: '"|22|a07|22 3a 20 22|"'
+      flow: established,to_client
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_03_16, deployment Perimeter, deployment SSLDecrypt, former_category MOBILE_MALWARE,
+        malware_family FakeCalls, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_03_16
+      msg: '"ET MOBILE_MALWARE Android/FakeCalls CnC Server Response"'
+      reference: url,research.checkpoint.com/2023/south-korean-android-banking-menace-fakecalls/
+      rev: '1'
+      sid: '2044655'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

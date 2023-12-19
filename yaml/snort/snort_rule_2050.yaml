@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1434'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|04|",depth 1'
+      dsize: '>100'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-MSSQL version overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS02-039
+      rev: '19'
+      sid: '2050'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

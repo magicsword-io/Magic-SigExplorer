@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|RU"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|14|Kaspersky Laboratory"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0b|Engineering"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|08|server33"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|06|Moscow"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|06|Moscow"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|02|IT"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2023_01_10, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_01_10
+      msg: '"ET TROJAN XDR33 CnC Server SSL Certificate Observed"'
+      reference: url,blog.netlab.360.com/headsup_xdr33_variant_of_ciahive_emeerges/
+      rev: '1'
+      sid: '2043263'
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

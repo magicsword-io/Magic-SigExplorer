@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,100,0,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01 86 B8|",depth 4,offset 12'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC STATD UDP stat mon_name format string exploit attempt"'
+      reference: nessus,10544
+      rev: '20'
+      sid: '1913'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 6666:7000
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|EB|K[S2|E4 83 C3 0B|K|88 23 B8|Pw"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER CHAT IRC topic overflow"'
+      reference: cve,1999-0672
+      rev: '12'
+      sid: '307'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

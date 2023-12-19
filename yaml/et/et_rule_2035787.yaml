@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|linda-gaytan|07|website|00|"'
+      distance: '0'
+      metadata: created_at 2022_04_07, former_category MOBILE_MALWARE, updated_at
+        2022_04_07
+      msg: '"ET MOBILE_MALWARE Android Spy APT-C-23 (linda-gaytan .website in DNS
+        Lookup)"'
+      reference: url,www.cybereason.com/blog/operation-bearded-barbie-apt-c-23-campaign-targeting-israeli-officials
+      rev: '1'
+      sid: '2035787'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

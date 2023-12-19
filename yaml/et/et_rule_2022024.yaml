@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1720'
+    details:
+      byte_jump: 1,0,relative
+      byte_test: 1,!&,0x0F,3,relative
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '4'
+        value: '"|08|"'
+      - value: '"|05 04|"'
+      - value: '"|70|"'
+      - value: '"|7E|"'
+      flow: to_server,established
+      isdataat: '31'
+      metadata: created_at 2015_11_03, updated_at 2015_11_03
+      msg: '"ET VOIP H.323 in Q.931 Call Setup - Inbound"'
+      rev: '1'
+      sid: '2022024'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

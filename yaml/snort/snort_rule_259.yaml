@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"thisissometempspaceforthesockinaddrinyeahyeahiknowthisislamebutanywaywhocareshorizongotitworkingsoalliscool",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Bind Buffer Overflow via NXT records named overflow ADM"'
+      reference: cve,1999-0833
+      rev: '18'
+      service: dns
+      sid: '259'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

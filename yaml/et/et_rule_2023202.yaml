@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3306'
+    details:
+      classtype: attempted-admin
+      contents:
+      - offset: '4'
+        value: '"|03|"'
+      - value: '"global_log_dir"'
+      - value: '".cnf"'
+      - value: '"nmalloc_lib"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product MySQL, attack_target Server, created_at 2016_09_13,
+        cve CVE_2016_6662, deployment Datacenter, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible MySQL cnf overwrite CVE-2016-6662 Attempt"'
+      reference: url,legalhackers.com/advisories/MySQL-Exploit-Remote-Root-Code-Execution-Privesc-CVE-2016-6662.html
+      rev: '1'
+      sid: '2023202'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

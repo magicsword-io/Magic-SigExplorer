@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Cylul007 Webshell V 2.0</title>"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_25, deployment Perimeter, former_category
+        WEB_CLIENT, signature_severity Major, updated_at 2021_10_25
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Compromised Server"'
+      rev: '1'
+      sid: '2034247'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

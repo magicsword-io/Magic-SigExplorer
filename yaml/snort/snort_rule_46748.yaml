@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 05|child|01 00 16|",depth 11'
+      - value: '"|22|magic|22|",within 100'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Qarallax outbound connection"'
+      reference: url,www.virustotal.com/en/file/658f67dbf509fc017ace6db7ed38b3591fe72b9ba950a59054869cd718b4da2b/analysis
+      rev: '1'
+      sid: '46748'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

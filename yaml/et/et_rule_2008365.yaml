@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/client_update_urls.php"'
+      - value: '"User-Agent|3a| Playtech "'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_10_14
+      msg: '"ET TROJAN Playtech Downloader Online Gaming Checkin"'
+      reference: md5,00740d7d15862efb30629ab1fd7b8242
+      rev: '8'
+      sid: '2008365'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

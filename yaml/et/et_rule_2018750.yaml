@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/?ver="'
+      - value: '"&id="'
+      - value: '"&os="'
+      - value: '"&res="'
+      - value: '"Accept-Asterope|3a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_06_23, former_category MALWARE, updated_at 2020_09_24
+      msg: '"ET TROJAN Asterope Checkin"'
+      reference: md5,19190ef53877979191f6889c6a795f31
+      rev: '2'
+      sid: '2018750'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

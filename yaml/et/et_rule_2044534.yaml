@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ubus/"'
+      - value: '"|22|read|22|,|7b 22|path|22 3a 22|"'
+      - value: '"/etc/passwd"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Router, attack_target Networking_Equipment, created_at
+        2023_03_08, deployment Perimeter, deployment Internal, former_category EXPLOIT,
+        signature_severity Major, updated_at 2023_03_08
+      msg: '"ET EXPLOIT Razer Sila Router - LFI Attempt Inbound (passwd) (No CVE)"'
+      reference: url,www.exploit-db.com/exploits/50864
+      rev: '1'
+      sid: '2044534'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/modules/forcedownload/force_download.php?"'
+      - value: '"filename="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2011_11_08, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS 1024 CMS filename Parameter Local File Inclusion
+        Attempt"'
+      reference: url,exploit-db.com/exploits/18000
+      rev: '2'
+      sid: '2013885'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

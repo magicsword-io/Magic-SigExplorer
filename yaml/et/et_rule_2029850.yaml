@@ -1,0 +1,53 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/Billing.php?sslchannel="'
+      - value: '"&sessionid="'
+      - depth: '5'
+        value: '"name="'
+      - value: '"&dob="'
+      - value: '"&email="'
+      - value: '"|25|40"'
+      - value: '"&telephone="'
+      - value: '"&address="'
+      - value: '"&town="'
+      - value: '"&mmn="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_04_06, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2020_04_06
+      msg: '"ET CURRENT_EVENTS GOV UK Possible COVID-19 Phish 2020-04-06"'
+      rev: '2'
+      sid: '2029850'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+      - nocase
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?s1="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established, to_server
+      metadata: created_at 2014_06_02, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Adware.MultiInstaller"'
+      pcre: '"/^\/(?:info|entrance|start|debug)\?s1=[a-f0-9]{100,}$/U"'
+      reference: md5,a74b1602a50b9c7d3262e3f80a6a2e68
+      rev: '5'
+      sid: '2018512'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

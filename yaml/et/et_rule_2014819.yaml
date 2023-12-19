@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"This program "'
+      - value: '"PE|00 00|"'
+      - value: '!"data"'
+      - value: '!"text"'
+      - value: '!"rsrc"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: 100,relative
+      metadata: created_at 2012_05_30, former_category INFO, signature_severity Informational,
+        updated_at 2012_05_30
+      msg: '"ET INFO Packed Executable Download"'
+      rev: '2'
+      sid: '2014819'
+      special_options:
+      - file_data
+      within: '400'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

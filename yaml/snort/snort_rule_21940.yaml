@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|01 00 00 00|",depth 4'
+      - value: '"|20|EMF",within 4,distance 36,fast_pattern'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY EMF file magic detected"'
+      rev: '13'
+      service: ftp-data,http,imap,pop3
+      sid: '21940'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

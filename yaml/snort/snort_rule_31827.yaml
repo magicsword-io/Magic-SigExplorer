@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/token/token.html HTTP/1.1|0D 0A|User-Agent: ",fast_pattern,nocase'
+      - value: '!"Accept"'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Delf variant outbound connection"'
+      pcre: '"/\)\r\nHost\x3a\x20[a-z\d\x2e\x2d]{6,32}\r\nCache\x2dControl\x3a\x20no\x2dcache\r\n\r\n$/"'
+      reference: url,www.virustotal.com/en/file/59e721000aa38a91ed42799e955f9337482c627e0675520aa54dcad068e6e004/analysis/1409846457/
+      rev: '3'
+      service: http
+      sid: '31827'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

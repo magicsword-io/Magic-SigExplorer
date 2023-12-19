@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      base64_decode: offset 0
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Google|20|Chrome|7c|"'
+      - value: '"|5c|User|20|Data|7c|"'
+      flow: established,from_server
+      flowbits: unset,ET.stealc.browsers
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_20, deployment Perimeter, former_category
+        MALWARE, malware_family Stealc, signature_severity Major, tag Stealer, updated_at
+        2023_02_20
+      msg: '"ET TROJAN Win32/Stealc Active C2 Responding with browsers Config"'
+      reference: url,blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+      rev: '1'
+      sid: '2044245'
+      special_options:
+      - http_stat_code
+      - file_data
+      - base64_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

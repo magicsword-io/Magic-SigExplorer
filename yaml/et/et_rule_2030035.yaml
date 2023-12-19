@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a 20|antSword/v"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_28, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_28
+      msg: '"ET TROJAN AntSword Webshell User-Agent Observed"'
+      reference: url,github.com/AntSwordProject/antSword
+      rev: '2'
+      sid: '2030035'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

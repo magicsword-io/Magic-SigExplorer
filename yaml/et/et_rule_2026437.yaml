@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HTTP/1.1|0d 0a|Accept|3a|text/html,application/xhtml+xml,application/xml|3b|q=0.9,*"'
+      - value: '!"Host|3a| yandex.ru"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2018_10_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2018_10_04,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN NCSC XAgent Beacon"'
+      pcre: '"/^(?:GET|POST)\/(?:watch|search|find|results|open|search|close)\/\?(?:text=|from=|aq=|ai=|ags=|oe=|btnG=|oprnd=|utm=|channel=|itwm=)/"'
+      reference: url,www.ncsc.gov.uk/content/files/protected_files/article_files/IOC-APT28-malware-advisory.pdf
+      rev: '1'
+      sid: '2026437'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

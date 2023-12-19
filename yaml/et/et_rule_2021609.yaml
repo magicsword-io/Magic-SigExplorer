@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"eval|28|"'
+      - value: '"Problems in loading internet explorer"'
+      - value: '"Try again after update your systems."'
+      distance: '0'
+      fast_pattern: 16,20
+      flow: to_client,established
+      metadata: created_at 2015_08_11, former_category MALWARE, updated_at 2022_03_17
+      msg: '"ET TROJAN Possible DarkHotel Landing M1"'
+      pcre: '"/^[a-z]\x29/Rsi"'
+      reference: url,securelist.com/blog/research/71713/darkhotels-attacks-in-2015/
+      rev: '1'
+      sid: '2021609'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?os="'
+      - value: '"&user="'
+      - value: '"&av="'
+      - value: '"&fw="'
+      - value: '"&hwid="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ARS VBS loader outbound connection"'
+      reference: url,www.flashpoint-intel.com/blog/meet-ars-vbs-loader/
+      rev: '1'
+      service: http
+      sid: '47338'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

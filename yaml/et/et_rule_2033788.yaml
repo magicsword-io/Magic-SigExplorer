@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"HTTP_X_KEY|3a 20|BM6OAa1XCpH4x4"'
+      - value: '"SEnJYZXmyHhJG8JxC|0d|"'
+      - value: '"HTTP_X_CNT|0d|"'
+      - value: '"HTTP_X_CMD|0d|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2021_08_25, deployment SSLDecrypt, former_category WEB_SERVER,
+        updated_at 2021_08_25
+      msg: '"ET WEB_SERVER SLIGHTPULSE WebShell Access Inbound M1"'
+      rev: '2'
+      sid: '2033788'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '18'
+    protocol: tcp
+    source:
+      network: any
+      port: any

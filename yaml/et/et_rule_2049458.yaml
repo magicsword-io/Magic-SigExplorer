@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -25
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"Xn--MetaSpport-v43e.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_12_04, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Low, signature_severity
+        Major, updated_at 2023_12_04
+      msg: '"ET TROJAN Observed Suspected TA453 Related Domain (xn--metaspport-v43e
+        .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x17|.\x2e)Xn\-\-MetaSpport\-v43e\.com/R"'
+      reference: url,twitter.com/filterbaan
+      rev: '1'
+      sid: '2049458'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

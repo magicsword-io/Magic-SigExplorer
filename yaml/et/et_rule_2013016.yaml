@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|ianxz6zefk72ulzz|05|onion"'
+      distance: '1'
+      fast_pattern: only
+      metadata: created_at 2011_06_13, updated_at 2020_09_01
+      msg: '"ET DNS DNS Query for Illegal Drug Sales Site (SilkRoad)"'
+      rev: '2'
+      sid: '2013016'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"report_login.php"'
+      - depth: '7'
+        value: '"userID="'
+      - value: '"&password="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_14, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_11_14
+      msg: '"ET CURRENT_EVENTS Successful GNCU Credential Phish 2022-11-14"'
+      pcre: '"/report_login\.php$/U"'
+      reference: md5,be3c7c216bc560a8bb21e179f7efb51a
+      rev: '1'
+      sid: '2039779'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

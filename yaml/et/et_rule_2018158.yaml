@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8083'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/cgi-bin/share_editor.cgi"'
+      flow: to_server,established
+      metadata: created_at 2014_02_19, updated_at 2020_04_28
+      msg: '"ET EXPLOIT Linksys Auth Bypass share_editor.cgi"'
+      reference: url,www.securityfocus.com/archive/1/531107
+      rev: '2'
+      sid: '2018158'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

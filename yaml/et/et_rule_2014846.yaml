@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/timthumb.php?"'
+      - value: '!"webshot=1"'
+      - value: '"src="'
+      - value: '"http"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2012_05_30, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_09_13
+      msg: '"ET CURRENT_EVENTS Wordpress timthumb look-alike domain list RFI"'
+      pcre: '"/src\s*=\s*https?\x3A\x2f+[^\x2f]*?(?:(?:(?:(?:static)?flick|blogge)r|p(?:hotobucket|icasa)|wordpress|tinypic)\.com|im(?:g(?:\.youtube|ur)\.com|ageshack\.us)|upload\.wikimedia\.org)[^\x2f]/Ui"'
+      reference: url,code.google.com/p/timthumb/issues/detail?id=212
+      rev: '10'
+      sid: '2014846'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"sip|3a|thisisthecanary@"'
+      - depth: '70'
+        offset: '30'
+        value: '"sip|3a|test@"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN sipscan probe"'
+      reference: url,doc.emergingthreats.net/2008641
+      rev: '4'
+      sid: '2008641'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

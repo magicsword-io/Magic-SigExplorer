@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/+CSCOE+/saml/sp/acs?tgname="'
+      - value: '"=|22|><"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Networking_Equipment,
+        created_at 2021_09_21, cve CVE_2020_3580, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, signature_severity Major, updated_at 2021_09_21
+      msg: '"ET EXPLOIT Cisco ASA XSS Attempt (CVE-2020-3580)"'
+      reference: cve,2020-3580
+      rev: '2'
+      sid: '2033994'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

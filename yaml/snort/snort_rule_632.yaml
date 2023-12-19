@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"expn cybercop",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL expn cybercop attempt"'
+      rev: '15'
+      service: smtp
+      sid: '632'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

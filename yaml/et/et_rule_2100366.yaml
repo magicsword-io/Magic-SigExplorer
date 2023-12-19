@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '32'
+        value: '"|10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F|"'
+      itype: '8'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL ICMP_INFO PING *NIX"'
+      rev: '8'
+      sid: '2100366'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

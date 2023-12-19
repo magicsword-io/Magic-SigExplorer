@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"rotina=UPDATE&tip=stat&nome=",depth 28,fast_pattern'
+      - value: '"&tmp=",distance 0'
+      - value: '"&stat=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zusy variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/6fdd7c0630ea89a58cdc1f3fb74bf5a99732bd5649a39411868bf71e90cfdc84/analysis/1389362066/
+      rev: '2'
+      service: http
+      sid: '29349'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

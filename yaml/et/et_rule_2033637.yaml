@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/options-general.php?page=smartcode"'
+      - depth: '35'
+        value: '"sgcgoogleanalytic="'
+      - value: '"<script"'
+      - value: '"savegooglecode"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, attack_target Web_Server, created_at
+        2021_08_02, cve CVE_2018_3810, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, signature_severity Major, updated_at 2021_08_02
+      msg: '"ET EXPLOIT Smart Google Code Inserter < 3.5 Auth Bypass (CVE-2018-3810)"'
+      reference: cve,2018-3810
+      rev: '2'
+      sid: '2033637'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

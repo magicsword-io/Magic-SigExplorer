@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/module/api.php?mobile/createRaid"'
+      - value: '"raidtype|27 3a 20 27|"'
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2022_03_29, cve CVE_2022_24989, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_29
+      msg: '"ET EXPLOIT TerraMaster TOS Unauthenticated Command Injection Inbound
+        M1 (CVE-2022-24989)"'
+      pcre: '"/raidtype\x27\x3a\x20\x27(?:\x3b|\x0a|\x26|\x60|\x7c|\x24)/U"'
+      reference: cve,2022-24989
+      rev: '1'
+      sid: '2035629'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

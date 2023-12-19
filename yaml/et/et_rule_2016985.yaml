@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '5'
+        value: '"/tmp/"'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_06_07, updated_at 2020_04_24
+      msg: '"ET INFO Executable Served From /tmp/ Directory - Malware Hosting Behaviour"'
+      pcre: '"/^\x2Ftmp\x2F.+\x2Eexe$/U"'
+      rev: '1'
+      sid: '2016985'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

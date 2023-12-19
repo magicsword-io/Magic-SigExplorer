@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"PK"'
+      - value: '",CAFEBABE00000030007A0A002500300A003100320700"'
+      flow: established,from_server
+      flowbits: isset,ET.http.javaclient
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_02_29,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY Java Atomic Exploit Downloaded"'
+      rev: '4'
+      sid: '2014295'
+      special_options:
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

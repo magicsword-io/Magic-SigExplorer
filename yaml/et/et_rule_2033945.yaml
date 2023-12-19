@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&mac="'
+      - value: '"&pcname="'
+      - value: '"&bootid="'
+      - depth: '17'
+        value: '"GET /?opt=put&mq="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_14, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2021_09_14
+      msg: '"ET MALWARE Win32/Eyoorun.D Variant Checkin"'
+      reference: md5,957c7bf090944fb437e1b9f20bbea1ff
+      rev: '1'
+      sid: '2033945'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

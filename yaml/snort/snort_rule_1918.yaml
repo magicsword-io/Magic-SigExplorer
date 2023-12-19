@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"SolarWinds.Net",fast_pattern,nocase'
+      icode: '0'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP SolarWinds IP scan attempt"'
+      rev: '10'
+      sid: '1918'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/updater/"'
+      - value: '"User-Agent|3A 20|UpdaterResponse"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept|3a 20|"'
+      fast_pattern: 12,15
+      flow: established,to_server
+      metadata: created_at 2014_01_28, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/BettrExperience.Adware Initial Checkin"'
+      reference: md5,b2651071fbd14bff5fb39bd90f447d27
+      rev: '2'
+      sid: '2018024'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

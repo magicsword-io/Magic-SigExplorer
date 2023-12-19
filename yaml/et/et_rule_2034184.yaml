@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"%%comspec|3a|"'
+      - value: '"%%programfiles|3a|"'
+      - value: '"%commonprogramfiles|3a|"'
+      flow: established,from_server
+      metadata: created_at 2021_10_13, former_category ATTACK_RESPONSE, signature_severity
+        Major, updated_at 2021_10_13
+      msg: '"ET ATTACK_RESPONSE Obfuscated Batch Script Inbound M2"'
+      reference: md5,abd0a49fda67547639eeaced7955a01a
+      rev: '1'
+      sid: '2034184'
+      special_options:
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"MZ"'
+      - value: '"DICM"'
+      distance: '126'
+      flow: established,to_server
+      flowbits: isset,ET.smb.binary
+      metadata: affected_product Windows_Client_Apps, attack_target Client_Endpoint,
+        created_at 2019_05_31, deployment Internal, former_category MALWARE, signature_severity
+        Major, updated_at 2019_05_31
+      msg: '"ET TROJAN Executable contained in DICOM Medical Image SMB File Transfer"'
+      reference: url,labs.cylera.com/2019/04/16/pe-dicom-medical-malware/
+      rev: '2'
+      sid: '2027402'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: any
+      port: any

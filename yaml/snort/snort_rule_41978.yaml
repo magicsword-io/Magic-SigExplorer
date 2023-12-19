@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_extract: 2,26,TotalDataCount,relative,little
+      byte_test: 2,>,TotalDataCount,20,relative,little
+      classtype: attempted-admin
+      contents:
+      - value: '"|FF|SMB3|00 00 00 00|",depth 9,offset 4'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows SMB remote code execution attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS17-010
+      rev: '5'
+      service: netbios-ssn
+      sid: '41978'
+    protocol: tcp
+    source:
+      network: any
+      port: any

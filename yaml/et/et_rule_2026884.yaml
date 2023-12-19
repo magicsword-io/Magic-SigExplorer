@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|google/dance|0d|"'
+      - value: '"Host|3a 20|www.google.com|0d|"'
+      fast_pattern: 12,13
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_05, deployment Perimeter, former_category
+        TROJAN, malware_family Peppy, malware_family KeeOIL, performance_impact Low,
+        signature_severity Major, tag Connectivity_Check, updated_at 2020_09_16
+      msg: '"ET TROJAN Peppy/KeeOIL Google Connectivity Check"'
+      reference: url,www.malcrawler.com/team-simbaa-targets-indian-government-using-united-nations-military-observers-themed-malware-nicked-named-keeoil/
+      rev: '2'
+      sid: '2026884'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

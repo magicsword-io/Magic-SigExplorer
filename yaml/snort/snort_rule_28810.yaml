@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '1'
+      classtype: trojan-activity
+      contents:
+      - value: '"|2F|"'
+      - value: '!"|0A|Referer|3A|"'
+      - value: '!"|0A|Cookie|3A|"'
+      - value: '"|3B 20|MSIE|20|7.0|3B 20|"'
+      - value: '"|2E|biz|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection - MSIE7 No Referer
+        No Cookie"'
+      pcre: '"/\r\nHost\x3A\s+[^\r\n]*?[bcdfghjklmnpqrstvwxyz]{5,}[^\r\n]*?\x2Ebiz\r\n/i"'
+      reference: url,en.wikipedia.org/wiki/Zeus_(Trojan_horse)
+      rev: '2'
+      service: http
+      sid: '28810'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

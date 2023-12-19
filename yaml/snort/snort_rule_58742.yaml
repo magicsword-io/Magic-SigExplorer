@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"${",fast_pattern,nocase'
+      - value: '"|2F|"'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Apache Log4j logging remote code execution attempt"'
+      pcre: '"/\x24\x7b(jndi|[^\x7d\x80-\xff]*?\x24\x7b[^\x7d\x80-\xff]*?\x3a[^\x7d]*?\x7d)/i"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-meraki-mx-vpn-dos-vnESbgBf
+      rev: '8'
+      service: http
+      sid: '58742'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

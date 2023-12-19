@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2533'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|00 01|C",depth 3'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Alcatel PABX 4400 connection attempt"'
+      reference: nessus,11019
+      rev: '9'
+      sid: '1819'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

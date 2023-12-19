@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '37'
+        value: '"/?dm=6b2280e30391615dcaa18e533ccb99a9"'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2015_04_07, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_05_21
+      msg: '"ET TROJAN Possible Win32/SillyFDC WordPress Traffic"'
+      reference: md5,3c10f65f8c1a84c53d94c331a63cad06
+      rev: '1'
+      sid: '2020845'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

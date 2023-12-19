@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Tryag File Manager"'
+      - value: '"<h1>Tryag File Manager"'
+      - value: '"Upload File|20 3a 20|<input type=|22|file|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_10_22, deployment Perimeter, signature_severity Major, updated_at
+        2020_10_22
+      msg: '"ET WEB_CLIENT Generic File Upload Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2031076'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"accessToFile="'
+      - value: '"&fileAccess="'
+      - value: '"&encryptedCookie="'
+      - value: '"&connecting="'
+      distance: '0'
+      flow: to_server,established
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_06_25, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_25, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS [eSentire] Successful Generic Phish 2018-06-15"'
+      rev: '2'
+      sid: '2025628'
+      special_options:
+      - nocase
+      - http_header
+      - fast_pattern
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

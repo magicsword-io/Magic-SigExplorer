@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,138,1024:]'
+    details:
+      byte_test: 4,>,256,0,dce
+      classtype: attempted-admin
+      dce_iface: uuid 3919286a-b10c-11d0-9ba8-00c04fd92ef5
+      dce_opnum: '"9"'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC NCADG-IP-UDP lsass DsRolerUpgradeDownlevelServer overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-011
+      rev: '22'
+      service: netbios-dgm
+      sid: '2511'
+      special_options:
+      - dce_stub_data
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|compatible|3b 20|MSIE|20|8|2e|0|3b
+          20|Windows|20|NT|20|6|2e|1|3b 20|Trident|2f|5|2e|0|29 0d 0a|"'
+      - depth: '31'
+        value: '"GET /news_indexedimages_autrzd/"'
+      - value: '"&usqp=CAU HTTP/1.1|0d 0a|"'
+      - value: '"Referer|3a 20|http://www.google.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_01, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, performance_impact
+        Low, signature_severity Major, updated_at 2021_06_01, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1001, mitre_technique_name
+        Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike C2 Profile (news_indexedimages)"'
+      reference: md5,8ece22e6b6e564e3cbfb190bcbd5d3b9
+      rev: '2'
+      sid: '2033065'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

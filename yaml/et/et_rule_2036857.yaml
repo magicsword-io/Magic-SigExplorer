@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?zs="'
+      - value: '"&t="'
+      - depth: '17'
+        value: '"Downloading|20|file|20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept-|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_27, deployment Perimeter, former_category
+        MALWARE, malware_family SVCReady, signature_severity Major, updated_at 2021_10_27
+      msg: '"ET TROJAN Win32/SVCReady Loader Requesting Payload"'
+      reference: md5,1036e57d1c8cde25a6680430354aa801
+      rev: '1'
+      sid: '2036857'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

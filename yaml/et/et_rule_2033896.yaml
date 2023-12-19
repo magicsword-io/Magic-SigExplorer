@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"peerid="'
+      - value: '"&userid="'
+      - value: '"referfrom="'
+      - value: '"&OS="'
+      - value: '"&OSversion="'
+      - value: '"productname="'
+      - value: '"productname="'
+      - value: '"User-Agent|2a 20|ThunderUnion|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_03, deployment Perimeter,
+        former_category ADWARE_PUP, updated_at 2021_09_03, mitre_tactic_id TA0040,
+        mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET MALWARE ThunderUnion Install Checkin"'
+      reference: md5,ae4c9b58510bd358745caf3b7ad81003
+      rev: '2'
+      sid: '2033896'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

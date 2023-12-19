@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/load.php?spl="'
+      flow: established,to_server
+      metadata: created_at 2012_01_24, former_category EXPLOIT_KIT, updated_at 2020_04_21
+      msg: '"ET CURRENT_EVENTS Sakura Exploit Kit Binary Load Request"'
+      pcre: '"/\/load\.php\?spl=[-_\w]+$/U"'
+      rev: '1'
+      sid: '2014148'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

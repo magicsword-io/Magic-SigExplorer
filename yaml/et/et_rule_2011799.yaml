@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/task.php?id="'
+      - value: '"&task="'
+      flow: established,to_server
+      metadata: created_at 2010_10_13, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Carberp checkin task"'
+      pcre: '"/\/task.php\?id=[^&]{32,64}&task=\d/U"'
+      reference: url,www.eset.com/threat-center/encyclopedia/threats/win32trojandownloadercarberpb
+      rev: '6'
+      sid: '2011799'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

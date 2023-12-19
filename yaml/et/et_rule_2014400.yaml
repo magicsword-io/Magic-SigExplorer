@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?aff="'
+      - value: '"Host|3A 20|www.gamebound.com"'
+      flow: established,to_server
+      metadata: created_at 2012_03_20, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/LoudMo.Adware Checkin"'
+      reference: md5,fc06c613e83f0d3271beba4fdcda987f
+      rev: '3'
+      sid: '2014400'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '20000'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Gold VIP Club Casino"'
+      dsize: '25'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET GAMES Gold VIP Club Casino Client in Use"'
+      reference: url,doc.emergingthreats.net/2007746
+      rev: '5'
+      sid: '2007746'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

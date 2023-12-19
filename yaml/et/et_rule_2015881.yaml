@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" == -1 {|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0|5c|x5C0"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_11_14, former_category EXPLOIT_KIT, updated_at 2012_11_14
+      msg: '"ET CURRENT_EVENTS KaiXin Exploit Kit Landing Page NOP String"'
+      reference: url,ondailybasis.com/blog/?p=1610
+      rev: '2'
+      sid: '2015881'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

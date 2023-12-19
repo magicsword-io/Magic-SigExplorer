@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".idq?"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_0071, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT ISAPI .idq attempt"'
+      reference: nessus,10115
+      rev: '16'
+      sid: '2101244'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

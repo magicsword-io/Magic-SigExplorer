@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"mstime_malloc"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2013_05_07, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, signature_severity Critical, tag Metasploit, updated_at
+        2016_07_01
+      msg: '"ET EXPLOIT Metasploit mstime_malloc no-spray"'
+      pcre: '"/^[\r\n\s]*?\x28[^\x29]*?shellcode/Ri"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2013/03/04/new-heap-spray-technique-for-metasploit-browser-exploitation
+      rev: '2'
+      sid: '2016824'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

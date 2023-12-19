@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|User-Agent|3a 20|HTTP-Test-Program|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_14, deployment Perimeter, former_category
+        USER_AGENTS, signature_severity Minor, updated_at 2022_03_14
+      msg: '"ET USER_AGENTS Suspicious User-Agent (HTTP-Test-Program)"'
+      reference: md5,6e69e15ae55aee85ace66bb99e6ba885
+      rev: '1'
+      sid: '2035452'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

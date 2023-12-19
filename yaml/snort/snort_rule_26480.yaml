@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Accept: application/xml,application/xhtml+xml,text/html|3B|q=0.9,text/plain|3B|q=0.8,image/png,*/*|3B|q=0.5|0D
+          0A|",fast_pattern,nocase'
+      - value: '!"User-Agent:",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zbot fake PNG config file download without User-Agent"'
+      pcre: '"/\.png$/i"'
+      rev: '4'
+      service: http
+      sid: '26480'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

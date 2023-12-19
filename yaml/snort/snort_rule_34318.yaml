@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <130
+      classtype: trojan-activity
+      contents:
+      - value: '".php?",nocase'
+      - value: '"|3D|",within 1,distance 1'
+      - value: '"Cache-Control: no-cache|0D 0A 0D 0A|",nocase'
+      - value: '!"|0D 0A|Accept-"'
+      - value: '"Content-Type: application/x-www-form-urlencoded|0D 0A|",fast_pattern,nocase'
+      - value: '"|3D|",depth 2,offset 1'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CryptoWall variant outbound connection"'
+      pcre: '"/^[a-z]\x3d[a-f\d]{80,140}$/i"'
+      reference: url,www.virustotal.com/en/file/d14f1d1e07bd116ed0faf5896438177f36a05adacf5af4f32910e313e9c1fd93/analysis/
+      rev: '5'
+      service: http
+      sid: '34318'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

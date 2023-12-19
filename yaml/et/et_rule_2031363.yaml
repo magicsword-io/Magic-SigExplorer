@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -18
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"incomeupdate.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_03_16
+      msg: '"ET TROJAN [Fireeye] Observed Backdoor.SUNBURST CnC Domain (incomeudpate
+        .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x10|.\x2e)incomeupdate\.com/R"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+      rev: '3'
+      sid: '2031363'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 06|"'
+      - value: '"|06|canada"'
+      - value: '"|55 04 08|"'
+      - value: '"|06|quebec"'
+      - value: '"|55 04 07|"'
+      - value: '"|0e|Redwood Shores"'
+      - value: '"|55 04 0a|"'
+      - value: '"|13|Oracle canada, Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|13|Code|20|Signing|20|Bureau"'
+      - value: '"|55 04 03|"'
+      - value: '"|13|Oracle canada, Inc."'
+      - value: '"|55 04 06|"'
+      - value: '"|06|canada"'
+      - value: '"|55 04 08|"'
+      - value: '"|06|quebec"'
+      - value: '"|55 04 07|"'
+      - value: '"|0e|Redwood Shores"'
+      - value: '"|55 04 0a|"'
+      - value: '"|13|Oracle canada, Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|13|Code|20|Signing|20|Bureau"'
+      - value: '"|55 04 03|"'
+      - value: '"|13|Oracle canada, Inc."'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_12, deployment Perimeter, former_category
+        TROJAN, malware_family QRat, performance_impact Low, signature_severity Major,
+        updated_at 2022_05_03
+      msg: '"ET TROJAN [PTsecurity] Fake SSL Certificate Observed (Oracle canada)"'
+      reference: md5,f71d168b5b987d9fde792098ca5cca19
+      rev: '3'
+      sid: '2025415'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

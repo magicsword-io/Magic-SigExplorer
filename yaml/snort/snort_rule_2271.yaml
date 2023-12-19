@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"RemoteNC Control Password|3A|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR FsSniffer connection attempt"'
+      reference: nessus,11854
+      rev: '7'
+      sid: '2271'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

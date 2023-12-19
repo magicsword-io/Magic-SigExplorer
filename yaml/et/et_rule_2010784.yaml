@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"POST"'
+      - value: '"/ajax/chat/send.php"'
+      - value: '"facebook.com"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET CHAT Facebook Chat (send message)"'
+      reference: url,doc.emergingthreats.net/2010784
+      rev: '3'
+      sid: '2010784'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

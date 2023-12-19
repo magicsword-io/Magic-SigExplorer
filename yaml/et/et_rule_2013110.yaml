@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/archiva/admin/networkProxies.action"'
+      - value: '"proxy.id="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_06_22, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS Apache Archive networkProxies script Cross Site
+        Scripting Attempt"'
+      pcre: '"/proxy.id\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect
+        onchange|style\x3D)/Ui"'
+      reference: url,packetstormsecurity.org/files/view/101797/apachearchivapoc-xss.txt
+      rev: '1'
+      sid: '2013110'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

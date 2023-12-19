@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"3c9dff6f-5cb0-422e-9978-d6405d10718f"'
+      - value: '"InternationalSeparator"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_12_29, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Possible Advantech Studio ISSymbol ActiveX Control Multiple
+        Buffer Overflow Attempt"'
+      reference: url,securityfocus.com/bid/47596
+      rev: '2'
+      sid: '2016118'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

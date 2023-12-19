@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|0d 0a|Cache-Control|3a 20|no-cache|0d 0a|"'
+      - value: '"|0d 0a|r="'
+      - value: '"&f="'
+      - value: '"&p="'
+      - value: '"&u="'
+      - value: '"&i="'
+      - value: '"&g="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_28
+      msg: '"ET TROJAN Trojan.MyDNS DNSChanger - HTTP POST"'
+      reference: url,doc.emergingthreats.net/2009813
+      rev: '8'
+      sid: '2009813'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

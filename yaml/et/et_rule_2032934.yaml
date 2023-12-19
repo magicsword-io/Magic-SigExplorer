@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"exep"'
+      dsize: '>787'
+      metadata: attack_target Client_Endpoint, created_at 2021_05_10, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_05_10
+      msg: '"ET TROJAN Pingback Exep Command Issued"'
+      reference: md5,264c2ede235dc7232d673d4748437969
+      rev: '1'
+      sid: '2032934'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

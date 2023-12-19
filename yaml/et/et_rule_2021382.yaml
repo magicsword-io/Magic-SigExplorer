@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_extract: 4,4,config_len,relative,little
+      byte_test: 4,>,100,4,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"|ff fe 3f 10 00 00|"'
+      - value: '!"|00|"'
+      distance: '0'
+      flow: from_server,established
+      flowbits: isset,ET.Zberp
+      metadata: created_at 2015_07_06, updated_at 2016_11_03
+      msg: '"ET TROJAN Zberp/ZeusVM receiving config via image file (steganography)"'
+      pcre: '"/^[^\x00]+(\xff\xd9)?$/R"'
+      reference: url,blog.malwarebytes.org/security-threat/2014/02/hiding-in-plain-sight-a-story-about-a-sneaky-banking-trojan/
+      rev: '12'
+      sid: '2021382'
+      special_options:
+      - file_data
+      within: config_len
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

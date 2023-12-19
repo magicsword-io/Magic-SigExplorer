@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>log in to your paypal"'
+      - value: '"<form action=|22|login.php|22 20|method=|22|post|22 20|class=|22|proceed
+          maskable|22 20|autocomplete=|22|off|22 20|name=|22|login|22|autocomplete=|22|off|22
+          20|novalidate>"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_06_11, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_06_11
+      msg: '"ET CURRENT_EVENTS Common Form POST - Paypal Phishing Landing 2020-06-11"'
+      rev: '2'
+      sid: '2030306'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|26|type|3d|CUSTOM|26|visits|3d|0|26|result|3d|WAITING|26|view|5f|link|3d|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_09, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, confidence Medium, signature_severity
+        Major, updated_at 2023_05_09
+      msg: '"ET TROJAN MrRobot LYON Phish Kit Exfil (POST) M2"'
+      reference: md5,34b0adf610c628bafc2ac2720b259af7
+      rev: '1'
+      sid: '2045626'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

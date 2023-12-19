@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2401'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"Argument"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER CVS non-relative path access attempt"'
+      pcre: '"/^Directory/Rims"'
+      reference: nessus,11947
+      rev: '8'
+      sid: '2318'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

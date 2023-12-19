@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/uploads/"'
+      - value: '".wordpress.20"'
+      - value: '".xml_.txt"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2011_05_15, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS WordPress DB XML dump attempted access"'
+      reference: url,seclists.org/fulldisclosure/2011/May/322
+      rev: '1'
+      sid: '2012808'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

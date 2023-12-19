@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B| filename="'
+      - value: '"Delivery_Information_ID-",fast_pattern,nocase'
+      - value: '"Delivery_Information_ID-"'
+      - value: '".exe",within 50'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Fake delivery information phishing attack"'
+      reference: url,attack.mitre.org/techniques/T1192
+      rev: '3'
+      service: http
+      sid: '26660'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

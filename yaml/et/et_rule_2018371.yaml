@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>zehir3--> powered by zehir"'
+      - value: '"Sistem Bilgileri"'
+      - value: '"color=red>Local Adres</td"'
+      - value: '"zehirhacker"'
+      flow: established,from_server
+      metadata: created_at 2014_04_07, updated_at 2014_04_07
+      msg: '"ET WEB_SERVER ATTACKER WebShell - Zehir4.asp - content"'
+      reference: url,www.fidelissecurity.com/webfm_send/377
+      rev: '1'
+      sid: '2018371'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

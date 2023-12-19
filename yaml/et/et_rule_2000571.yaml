@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"POST"'
+      - value: '"/compose_frame.adp"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2023_11_13
+      msg: '"ET POLICY AOL Webmail Message Send"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000571
+      rev: '8'
+      sid: '2000571'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

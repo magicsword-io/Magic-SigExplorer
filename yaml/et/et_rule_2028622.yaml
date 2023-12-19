@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '10011'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ws?whisky_id|3d|"'
+      - value: '"User-Agent|3a 20|hots|20|scot"'
+      - value: '"Upgrade|3a 20|websocket"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2019_09_25, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Android_Moonshine, signature_severity Critical, tag Android, updated_at 2020_09_02
+      msg: '"ET MOBILE_MALWARE MOONSHINE payload C2 activity"'
+      reference: url,citizenlab.ca/2019/09/poison-carp-tibetan-groups-targeted-with-1-click-mobile-exploits
+      rev: '2'
+      sid: '2028622'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

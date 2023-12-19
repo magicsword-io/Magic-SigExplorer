@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|seetrol|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter,
+        malware_family PUP, confidence High, signature_severity Informational, updated_at
+        2023_11_09
+      msg: '"ET MALWARE DNS Query to Seetrol RAT Domain (seetrol .com)"'
+      rev: '1'
+      sid: '2049133'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type limit,seconds 300,count 1,track by_src
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

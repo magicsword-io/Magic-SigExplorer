@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '8020'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/servlets/DCPluginServelet?"'
+      - value: '"action=addPlugInUser"'
+      - value: '"role="'
+      - value: '"userName="'
+      - value: '"email="'
+      - value: '"password="'
+      - value: '"salt="'
+      - value: '"HTTP/1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_01_05, updated_at 2020_05_14
+      msg: '"ET WEB_SPECIFIC_APPS ManageEngine Desktop Central Administrator Account
+        Creation"'
+      reference: url,seclists.org/fulldisclosure/2015/Jan/2
+      rev: '1'
+      sid: '2020092'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

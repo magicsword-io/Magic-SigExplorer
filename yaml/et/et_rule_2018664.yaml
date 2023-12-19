@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[443,$HTTP_PORTS]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - depth: '7'
+        offset: '4'
+        value: '"/FC001/"'
+      - value: '"User-Agent|3a 20|Microsoft Internet Explorer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_01_22, updated_at 2020_04_30
+      msg: '"ET TROJAN Minirem"'
+      reference: md5,d92075280872b9fe4f541f090bf0076c
+      rev: '4'
+      sid: '2018664'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

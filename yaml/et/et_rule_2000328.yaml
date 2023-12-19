@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: '!$HOME_NET'
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"mail from|3a|"'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Outbound Multiple Non-SMTP Server Emails"'
+      reference: url,doc.emergingthreats.net/2000328
+      rev: '12'
+      sid: '2000328'
+      special_options:
+      - nocase
+      threshold: type threshold, track by_src, count 10, seconds 120
+    protocol: tcp
+    source:
+      network: '!$SMTP_SERVERS'
+      port: any

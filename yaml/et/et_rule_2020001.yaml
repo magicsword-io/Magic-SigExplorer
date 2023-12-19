@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|13 2f 22 35 22 67 26 35 22 29 27 33 67 28 37 22 29 67 37 28 35 33
+          34 69|"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2014_12_23, updated_at 2019_10_08
+      msg: '"ET TROJAN US-CERT TA14-353A Listening Implant 7"'
+      reference: url,www.us-cert.gov/ncas/alerts/TA14-353A
+      rev: '1'
+      sid: '2020001'
+    protocol: tcp
+    source:
+      network: any
+      port: any

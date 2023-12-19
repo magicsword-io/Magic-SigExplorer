@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"|0d 0a|Accept-"'
+      - value: '!"Referer|3a|"'
+      - depth: '1'
+        offset: '1'
+        value: '"="'
+      - value: '" rv|3a|11.0"'
+      - depth: '62'
+        value: '"Accept|3a 20|*/*|0d 0a|Content-Type|3a 20|application/x-www-form-urlencoded|0d
+          0a|"'
+      flow: established,to_server
+      metadata: created_at 2015_04_08, updated_at 2020_05_22
+      msg: '"ET TROJAN CryptoWall Check-in M2"'
+      pcre: '"/^[a-z]=[a-f0-9]{80,}$/P"'
+      reference: md5,3c53c9f7ab32a09de89bb44e5f91f9af
+      rev: '2'
+      sid: '2020855'
+      special_options:
+      - nocase
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: <110
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9090'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET / HTTP/1.1",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER VQServer admin"'
+      reference: url,www.vqsoft.com/vq/server/docs/other/control.html
+      rev: '13'
+      sid: '306'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '2227'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Databases|5c|Adobe|5c|"'
+      - value: '"Databases|5c|Google|5c|Chrome|5c|"'
+      - value: '"Databases|5c|Microsoft|5c|Edge|5c|"'
+      - value: '"Databases|5c|Mozilla|5c|"'
+      distance: '0'
+      fast_pattern: 3,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_07, deployment Perimeter, former_category
+        MALWARE, malware_family PovertyStealer, confidence High, signature_severity
+        Critical, updated_at 2023_08_12
+      msg: '"ET TROJAN [ANY.RUN] PovertyStealer Exfiltration M1"'
+      reference: url,community.emergingthreats.net/t/poverty-stealer/839/4
+      rev: '1'
+      sid: '2047067'
+      stream_size: server, =, 1
+      threshold: type limit,track by_src,seconds 600, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Server|3a 20|Microsoft-IIS|2f 20|10.0|20|Microsoft-HTTPAPI/2.0|0d|"'
+      fast_pattern: 8,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_10_16, deployment Perimeter, former_category MALWARE, malware_family
+        LOWKEY, performance_impact Low, signature_severity Major, tag APT41, updated_at
+        2020_04_16
+      msg: '"ET TROJAN Possible APT 41 Fake Server Response"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2019/10/ESET_Winnti.pdf
+      rev: '2'
+      sid: '2028837'
+      special_options:
+      - http_stat_code
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

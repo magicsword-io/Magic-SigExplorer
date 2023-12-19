@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b|jndi|3a|iiop|3a 2f 2f|"'
+      metadata: attack_target Server, created_at 2021_12_11, cve CVE_2021_44228, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_12_11
+      msg: '"ET EXPLOIT Apache log4j RCE Attempt (udp iiop) (CVE-2021-44228)"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034667'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: udp
+    source:
+      network: any
+      port: any

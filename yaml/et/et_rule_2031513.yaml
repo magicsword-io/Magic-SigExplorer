@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '">EMAIl|3a|"'
+      - value: '"SUBJECT|3a 20|<input name=|22|assunto|22|"'
+      - value: '"type=|22|submit|22 20|name=|22|Enoc|22 20|value=|22|FIRE DOWN|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2021_01_12, deployment Perimeter, signature_severity Major, updated_at
+        2021_01_12
+      msg: '"ET WEB_SERVER Generic Mailer Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2031513'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

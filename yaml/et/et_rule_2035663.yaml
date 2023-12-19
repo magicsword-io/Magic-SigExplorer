@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 13|jonathanhardwick.me"'
+      distance: '0'
+      fast_pattern: 2,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_30, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_03_30
+      msg: '"ET TROJAN Observed Trojan.Verblecon Related Domain (jonathanhardwick
+        .me in TLS SNI)"'
+      reference: url,symantec-enterprise-blogs.security.com/blogs/threat-intelligence/verblecon-sophisticated-malware-cryptocurrency-mining-discord
+      rev: '2'
+      sid: '2035663'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

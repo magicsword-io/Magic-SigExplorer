@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"cHB0L2VtYmVkZGluZ3Mvb2xlT2JqZWN0"'
+      flow: established,to_server
+      metadata: created_at 2014_10_15, former_category SMTP, updated_at 2014_10_15
+      msg: '"ET SMTP SUSPICIOUS SMTP Attachment Inbound PPT attachment with Embedded
+        OLE Object M4"'
+      rev: '1'
+      sid: '2019409'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

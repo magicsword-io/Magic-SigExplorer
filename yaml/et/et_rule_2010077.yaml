@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/docebo/docebo"'
+      - value: '"/index.php?modname="'
+      - value: '"INSERT"'
+      - value: '"INTO"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_13
+      msg: '"ET WEB_SPECIFIC_APPS Possible Docebo INSERT INTO Injection Attempt"'
+      pcre: '"/modname=(?:(?:meta_)?certificate|link).+?\bINSERT\b.*?INTO\b/Ui"'
+      reference: url,doc.emergingthreats.net/2010077
+      rev: '4'
+      sid: '2010077'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

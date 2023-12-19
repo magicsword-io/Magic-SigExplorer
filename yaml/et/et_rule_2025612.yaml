@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>iTunes Connect"'
+      - value: '"|3c 21 2d 2d 20 50 48 4f 45 4e 21 58 20 2d 2d 3e|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_06_21, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_08_25
+      msg: '"ET CURRENT_EVENTS iTunes Connect Phishing Landing"'
+      rev: '2'
+      sid: '2025612'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

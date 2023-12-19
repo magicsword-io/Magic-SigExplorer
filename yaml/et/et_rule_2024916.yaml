@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/setup.cgi?next_file="'
+      - value: '"&todo=syscmd&cmd="'
+      - value: '"currentsetting.htm"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target IoT, created_at 2017_10_25, deployment Perimeter, former_category
+        EXPLOIT, signature_severity Major, updated_at 2020_08_13
+      msg: '"ET EXPLOIT Netgear DGN Remote Command Execution"'
+      reference: url,seclists.org/bugtraq/2013/Jun/8
+      rev: '2'
+      sid: '2024916'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

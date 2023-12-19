@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[137,138,139,445]'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"n|00|e|00|s|00|s|00|u|00|s"'
+      fast_pattern: only
+      metadata: created_at 2012_10_01, updated_at 2019_10_08
+      msg: '"ET SCAN Nessus Netbios Scanning"'
+      reference: url,www.tenable.com/products/nessus/nessus-product-overview
+      rev: '2'
+      sid: '2015754'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

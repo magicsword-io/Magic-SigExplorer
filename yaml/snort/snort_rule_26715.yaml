@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"gate.php|3F|id="'
+      - value: '"User-Agent|3A| Mozilla/4.0 (compatible|3B| SEObot)|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BlackRev rev 3 outbound traffic"'
+      pcre: '"/gate\x2ephp\x3fid=[a-z]{15}/"'
+      reference: url,ddos.arbornetworks.com/2013/05/the-revolution-will-be-written-in-delphi
+      rev: '3'
+      service: http
+      sid: '26715'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

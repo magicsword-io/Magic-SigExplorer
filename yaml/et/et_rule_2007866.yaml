@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/appsvc/appmsg"'
+      - value: '"fmnumber="'
+      - value: '"&version="'
+      - value: '"&fmt="'
+      - value: '"&lastmsg="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_08_20
+      msg: '"ET CHAT Gadu-Gadu Chat Client Checkin via HTTP"'
+      reference: url,doc.emergingthreats.net/2007866
+      rev: '7'
+      sid: '2007866'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

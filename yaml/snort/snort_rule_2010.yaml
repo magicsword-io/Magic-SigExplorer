@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"free|28 29 3A| warning|3A| chunk is already free",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE CVS double free exploit attempt response"'
+      reference: nessus,11385
+      rev: '12'
+      sid: '2010'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

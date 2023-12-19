@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?aid="'
+      - value: '"&uncv="'
+      - value: '"&skey="'
+      flow: established,to_server
+      metadata: created_at 2011_08_02, former_category MALWARE, updated_at 2020_04_20
+      msg: '"ET TROJAN Win32.Pamesg/ArchSMS.HL CnC Checkin"'
+      reference: md5,00068992bc003713058a17d50d9e3e14
+      rev: '1'
+      sid: '2013345'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

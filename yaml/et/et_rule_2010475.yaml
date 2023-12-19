@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/adm/krgourl.php?"'
+      - value: '"DOCUMENT_ROOT="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS KR-Web krgourl.php DOCUMENT_ROOT Parameter Remote
+        File Inclusion Attempt"'
+      pcre: '"/DOCUMENT_ROOT\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010475
+      rev: '3'
+      sid: '2010475'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

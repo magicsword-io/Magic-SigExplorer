@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/config.php?",fast_pattern,nocase'
+      - value: '"version="'
+      - value: '"user="'
+      - value: '"server="'
+      - value: '"id="'
+      - value: '"crc="'
+      - value: '"id="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rovnix malicious download"'
+      reference: url,www.welivesecurity.com/2012/02/22/rovnix-reloaded-new-step-of-evolution/
+      rev: '3'
+      service: http
+      sid: '28940'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

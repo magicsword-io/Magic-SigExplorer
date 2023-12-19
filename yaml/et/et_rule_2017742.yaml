@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a|"'
+      - depth: '2'
+        value: '"v="'
+      - value: '"&u="'
+      - value: '"&w="'
+      - value: '"&c="'
+      flow: established,to_server
+      metadata: created_at 2013_11_22, updated_at 2020_08_17
+      msg: '"ET TROJAN Solarbot Check-in"'
+      pcre: '"/&s=\{?[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}\}?(?:&|$)/Pi"'
+      reference: md5,2c344add2ee6201f4e2cdf604548408b
+      rev: '2'
+      sid: '2017742'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

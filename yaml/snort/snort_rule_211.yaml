@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"r00t"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR MISC r00t attempt"'
+      rev: '7'
+      sid: '211'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

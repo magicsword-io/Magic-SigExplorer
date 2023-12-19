@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '12'
+        value: '"/pma.php?ip="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_14, deployment Perimeter, former_category
+        MALWARE, malware_family Muhstik, performance_impact Low, signature_severity
+        Major, tag DDoS, updated_at 2020_08_27
+      msg: '"ET TROJAN ELF/Muhstik Bot Reporting Vulnerable Server to CnC"'
+      pcre: '"/^\/pma\.php\?ip=(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/U"'
+      reference: url,www.intezer.com/muhstik-botnet-reloaded-new-variants-targeting-phpmyadmin-servers/
+      rev: '3'
+      sid: '2026607'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

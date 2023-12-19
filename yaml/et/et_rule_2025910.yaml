@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Windows Defender"'
+      - value: '"<audio id=|22|play|22 20|loop="'
+      - value: '".mp3|22 20|type=|22|audio/mpeg"'
+      - value: '"Windows Defender Alert"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_07_26, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Minor, tag Tech_Support_Scam, updated_at 2018_07_26
+      msg: '"ET WEB_CLIENT Tech Support Phone Scam Landing 2017-07-26"'
+      rev: '3'
+      sid: '2025910'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

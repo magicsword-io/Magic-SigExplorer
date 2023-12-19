@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: protocol-command-decode
+      dce_iface: uuid 338cd001-2244-31f1-aaaa-900038001003
+      dce_opnum: '"24"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"NETBIOS DCERPC NCACN-IP-TCP winreg InitiateSystemShutdown attempt"'
+      reference: url,msdn.microsoft.com/library/default.asp?url=/library/en-us/shutdown/base/initiatesystemshutdown.asp
+      rev: '14'
+      service: netbios-ssn
+      sid: '2942'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

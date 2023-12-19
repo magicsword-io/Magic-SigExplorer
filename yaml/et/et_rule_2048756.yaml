@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Set-Cookie|3a 20|212bb=eyJ0e"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_10_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category EXPLOIT_KIT, performance_impact Low,
+        confidence High, signature_severity Minor, tag Exploit_Kit, tag TDS, tag RogueRaticate,
+        updated_at 2023_10_23, reviewed_at 2023_10_23
+      msg: '"ET CURRENT_EVENTS Keitaro Set-Cookie Inbound to RogueRaticate (212bb)"'
+      pcre: '"/^[A-Z0-9_\-.]{20,300}\x3b/Ri"'
+      reference: url,www.malwarebytes.com/blog/threat-intelligence/2023/07/socgholish-copycat-delivers-netsupport-rat
+      rev: '1'
+      sid: '2048756'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

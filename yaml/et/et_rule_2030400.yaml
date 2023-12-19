@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '49'
+        value: '"XHhmY1x4ZThceDg5XHgwMFx4MDBceDAwXHg2MFx4ODlceGU1X"'
+      flow: established,to_client
+      isdataat: '!5000,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_06_26, deployment Perimeter, signature_severity
+        Major, updated_at 2020_06_26
+      msg: '"ET TROJAN Possible IndigoDrop/Cobalt Strike Download"'
+      reference: url,blog.talosintelligence.com/2020/06/indigodrop-maldocs-cobalt-strike.html
+      rev: '2'
+      sid: '2030400'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

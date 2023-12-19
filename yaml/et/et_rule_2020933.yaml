@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Type|3a| multipart/form-data|3b| boundary="'
+      - value: '!"Referer|3a|"'
+      - value: '!"|0d 0a|Accept"'
+      - value: '"name=|22|uploaded|22 3b 20|filename=|22|"'
+      - value: '".jpg"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_30,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Dalexis CnC Beacon"'
+      rev: '3'
+      sid: '2020933'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - nocase
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

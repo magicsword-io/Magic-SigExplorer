@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/wget_test.asp?"'
+      - value: '"="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2021_10_09, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_10_09
+      msg: '"ET EXPLOIT RUIJIE NBR/RGNBR Command Injection Attempt Inbound M1"'
+      pcre: '"/=(?:\x3b|\x0a|\x26|\x60|\x7C|\x24)/U"'
+      rev: '1'
+      sid: '2034161'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      within: '5'
+    protocol: tcp
+    source:
+      network: any
+      port: any

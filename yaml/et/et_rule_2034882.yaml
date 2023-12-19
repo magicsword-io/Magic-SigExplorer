@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html|3b|charset=UTF-8"'
+      - value: '"id|3d 22|uid|22 3e 3c 2f|h1|3e 3c|br|3e|"'
+      - value: '"File|20 27|Preview Complaint Report in XLS|27 3c|br|3e|is|20|ready|20|for|20|open"'
+      - value: '"|22 3e|Preview XLS"'
+      - value: '"getElementById|28 27|uid|27 29 2e|innerHTML|20 3d 20 27|Name|3a 20
+          27|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_11, deployment Perimeter, former_category
+        MALWARE, malware_family Emotet, performance_impact Low, signature_severity
+        Major, updated_at 2022_01_11
+      msg: '"ET TROJAN Win32/Emotet HTML Template Response"'
+      rev: '1'
+      sid: '2034882'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

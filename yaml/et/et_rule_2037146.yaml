@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '28'
+        value: '"/api/orders/Log?processorId="'
+      - value: '"%24%24%24"'
+      - value: '"+os%24%24%24"'
+      - value: '"+cpu%24%24%24"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      fast_pattern: 8,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_28, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_06_28
+      msg: '"ET TROJAN Win32/Wacapew.C!ml Checkin"'
+      reference: md5,d8fc1d015461025abd2126dce5d9a758
+      rev: '1'
+      sid: '2037146'
+      special_options:
+      - http_method
+      - http_uri
+      - http_raw_uri
+      - http_raw_uri
+      - http_raw_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

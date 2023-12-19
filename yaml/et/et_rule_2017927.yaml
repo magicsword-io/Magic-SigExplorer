@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"check.torproject.org"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_01_04, updated_at 2020_10_08
+      msg: '"ET POLICY check.torproject.org IP lookup/Tor Usage check over HTTP"'
+      pcre: '"/^Host\x3a\s*?check\.torproject\.org(?:\x3a\d{1,5})?\r?$/Hmi"'
+      reference: md5,e87f0db605517e851d571af2e78c5966
+      rev: '2'
+      sid: '2017927'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

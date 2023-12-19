@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe HTTP/1.0|0D 0A|Host:",fast_pattern,nocase'
+      - value: '"Accept-Encoding: identity, *|3B|q=0|0D 0A|"'
+      - value: '"|3B| MSIE "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/8825abfca1a6d843ce5670858886cb63bb1317ddbb92f91ffd46cfdcaba9ac00/analysis/
+      rev: '3'
+      service: http
+      sid: '27918'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

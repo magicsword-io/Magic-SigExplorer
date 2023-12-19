@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"/1"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '"|0d 0a 0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2013_11_20, updated_at 2020_10_28
+      msg: '"ET CURRENT_EVENTS Possible Styx EK SilverLight Payload"'
+      pcre: '"/^\/1[a-z0-9]{13}\.[a-z]{3}$/U"'
+      rev: '2'
+      sid: '2017731'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '19'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

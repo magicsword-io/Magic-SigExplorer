@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[21115:21116]'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|14 a2 01 02 08 01|"'
+      dsize: '6'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_02_02
+      msg: '"ET INFO RustDesk Check NAT Type"'
+      reference: url,github.com/rustdesk/rustdesk/issues/594
+      rev: '1'
+      sid: '2044069'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

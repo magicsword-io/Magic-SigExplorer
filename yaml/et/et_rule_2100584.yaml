@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '4'
+        offset: '12'
+        value: '"|00 01 86 A0|"'
+      - value: '"|00 00 00 03|"'
+      - value: '"|00 01 86 A2|"'
+      - depth: '4'
+        offset: '4'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      metadata: created_at 2010_09_23, cve CVE_1999_0626, updated_at 2010_09_23
+      msg: '"GPL RPC portmap rusers request UDP"'
+      reference: cve,1999-0626
+      rev: '12'
+      sid: '2100584'
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php HTTP/1.1|0D 0A|Cache-Control: ",fast_pattern,nocase'
+      - value: '".php HTTP/1.1",nocase'
+      - value: '"|0D 0A|Cache-Control: no-cache|0D 0A|Connection: close|0D 0A|Pragma:
+          no-cache|0D 0A|Content-Type: application/x-www-form-urlencoded|0D 0A|",within
+          113'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Yakes Trojan HTTP Header Structure"'
+      pcre: '"/[\x2f\x2b\x3d]/"'
+      reference: url,www.virustotal.com/en/file/980c4ed3dd130c9313a35434e0b102a6b8b038c98735814834334ccc03e4da3c/analysis/
+      rev: '1'
+      service: http
+      sid: '27254'
+      special_options:
+      - http_method
+      - pkt_data
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

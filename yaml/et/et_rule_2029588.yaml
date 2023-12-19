@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/"'
+      - depth: '24'
+        value: '"data=DIajqcc5lVuJpjwvr36"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_09, deployment Perimeter, former_category
+        MALWARE, malware_family LODEINFO, signature_severity Major, updated_at 2020_03_09
+      msg: '"ET TROJAN Win32/LODEINFO CnC Checkin"'
+      reference: url,blogs.jpcert.or.jp/en/2020/02/malware-lodeinfo-targeting-japan.html
+      rev: '2'
+      sid: '2029588'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

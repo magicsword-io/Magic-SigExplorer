@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|5c|x57|5c|x53|5c|x63|5c|x72|5c|x69|5c|x70|5c|x74|5c|x2E|5c|x53|5c|x68|5c|x65|5c|x6C|5c|x6C"'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2018_09_20, deployment Perimeter, former_category
+        TROJAN, malware_family Xbash, performance_impact Low, signature_severity Major,
+        tag Coinminer, tag Worm, tag Destructive, tag FakeRansom, updated_at 2020_08_25
+      msg: '"ET TROJAN HTML/Xbash Hex Encoded WScript.Shell Inbound - Stage 1"'
+      reference: md5,3b5baecd61190e12a526c51d5ecccbbe
+      rev: '2'
+      sid: '2026332'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

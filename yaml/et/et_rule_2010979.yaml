@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/tools/filemanager/skins/mobile/admin1.template.php?"'
+      - value: '"net2ftp_globals[application_skinsdir]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS ispCP Omega admin1.template.php Remote File Inclusion
+        Attempt"'
+      pcre: '"/net2ftp_globals\[application_skinsdir\]\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010979
+      rev: '3'
+      sid: '2010979'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7c|CM01|7c|CM02|7c|CM03|7c|"'
+      - value: '!">"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_09_08, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_09_08,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Boaxxe.BR CnC Beacon"'
+      reference: md5,ec38ae7c35be4d7f8103bf1db692d2f8
+      rev: '4'
+      sid: '2021748'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"<!--"'
+      - value: '"window.top.location=''account/?view=login&appIdKey="'
+      flow: from_server,established
+      isdataat: '!50,relative'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_01_02, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2019_01_02
+      msg: '"ET CURRENT_EVENTS Apple Phishing Redirect 2019-01-02"'
+      rev: '2'
+      sid: '2026748'
+      special_options:
+      - file_data
+      - nocase
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

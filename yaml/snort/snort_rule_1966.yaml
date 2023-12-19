@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: 255.255.255.255
+      port: '27155'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"gstsearch",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER GlobalSunTech Access Point Information Disclosure attempt"'
+      reference: cve,2002-2137
+      rev: '11'
+      sid: '1966'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

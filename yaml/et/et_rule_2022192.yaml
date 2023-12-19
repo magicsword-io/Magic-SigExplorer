@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (compatible MSIE 9.0 Windows NT 6.1
+          WOW64 Trident/5.0)|0d 0a|"'
+      - depth: '6'
+        value: '"tekst="'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: created_at 2015_11_30, updated_at 2020_06_09
+      msg: '"ET TROJAN VBKlip/ClipBanker.P Status Update"'
+      pcre: '"/^tekst=\w+$/Pi"'
+      reference: md5,ef230777f5b34291ea22bfc3c591ce2d
+      rev: '1'
+      sid: '2022192'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

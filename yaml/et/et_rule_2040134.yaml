@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|17 03 03 00 07 21 0d b6 24 b8|"'
+      dsize: '12'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_28, deployment Perimeter,
+        former_category MALWARE, malware_family MustangPanda, signature_severity Major,
+        updated_at 2022_11_28
+      msg: '"ET TROJAN Mustang Panda APT TONESHELL Related Activity"'
+      reference: url,www.trendmicro.com/en_us/research/22/k/earth-preta-spear-phishing-governments-worldwide.html
+      rev: '1'
+      sid: '2040134'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

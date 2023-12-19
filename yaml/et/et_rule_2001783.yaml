@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/MediaPassK.exe"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, tag ActiveX, updated_at 2020_08_31
+      msg: '"ET MALWARE Media Pass ActiveX Install"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001783
+      rev: '7'
+      sid: '2001783'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|29|iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea"'
+      - value: '"|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_12, cve CVE_2017_0144, deployment Perimeter,
+        former_category TROJAN, malware_family wannacry, signature_severity Critical,
+        tag Ransomware, updated_at 2022_08_19
+      msg: '"ET TROJAN Possible WannaCry DNS Lookup 1"'
+      reference: url,www.bleepingcomputer.com/news/security/telefonica-tells-employees-to-shut-down-computers-amid-massive-ransomware-outbreak/
+      rev: '4'
+      sid: '2024291'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

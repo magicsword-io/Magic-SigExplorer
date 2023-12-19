@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03 03|",depth 3'
+      - value: '"ACME Shell Co.0"'
+      - value: '"Z",distance 0'
+      - value: '"ACME Shell Co.0",distance 0'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC MultiOS.Malware.GORAT command and control SSL certificate"'
+      reference: url,fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: ssl
+      sid: '56864'
+      ssl_state: server_hello
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

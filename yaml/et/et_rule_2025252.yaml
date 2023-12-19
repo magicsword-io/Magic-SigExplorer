@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"C|7c|P-UID-"'
+      - value: '"|7c|Microsoft"'
+      - value: '"|7c|["'
+      - value: '"]|7c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_25, deployment Perimeter, former_category
+        MALWARE, malware_family SchwartzSonnne, signature_severity Major, tag c2,
+        updated_at 2018_01_25, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/SchwSonne CnC Beacon M2"'
+      rev: '1'
+      sid: '2025252'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

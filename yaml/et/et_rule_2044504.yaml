@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"vscode/sftp.json"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_07, deployment Perimeter, deployment Internal,
+        former_category INFO, performance_impact Low, confidence Medium, signature_severity
+        Informational, updated_at 2023_03_07
+      msg: '"ET INFO Request for Visual Studio Code sftp.json - Possible Information
+        Leak"'
+      pcre: '"/vscode\/sftp\.json$/U"'
+      reference: url,isc.sans.edu/diary/29610
+      rev: '1'
+      sid: '2044504'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

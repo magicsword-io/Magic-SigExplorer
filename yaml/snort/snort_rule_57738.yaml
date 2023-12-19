@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/adfs/services/policystoretransfer",fast_pattern,nocase'
+      - value: '"POST",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Active Directory Federation Services policy store transfer
+        service request detected"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/abusing-replication-stealing-adfs-secrets-over-the-network.html
+      rev: '1'
+      service: http
+      sid: '57738'
+      special_options:
+      - http_uri
+      - http_method
+    protocol: tcp
+    source:
+      network: any
+      port: any

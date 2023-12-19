@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/check"'
+      - value: '!"Referer|3a| "'
+      - depth: '47'
+        value: '"User-Agent|3a| Microsoft Internet Explorer|0d 0a|Host|3a| "'
+      fast_pattern: 12,34
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_06_01
+      msg: '"ET TROJAN Potential FakeAV HTTP GET Check-IN (/check)"'
+      reference: url,doc.emergingthreats.net/2010597
+      rev: '5'
+      sid: '2010597'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      urilen: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

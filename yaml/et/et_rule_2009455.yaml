@@ -1,0 +1,48 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"action="'
+      - value: '"uid="'
+      - value: '"cnt="'
+      - value: '"lng="'
+      - value: '"type="'
+      - value: '"user_id="'
+      - value: '"pc_id="'
+      - value: '"abbr="'
+      - value: '"User-Agent|3a| Mozilla/3.0 (compatible|3b| TALWinInetHTTPClient)"'
+      fast_pattern: 37,20
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN FAKE AV HTTP CnC Post"'
+      reference: url,doc.emergingthreats.net/2009455
+      rev: '8'
+      sid: '2009455'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

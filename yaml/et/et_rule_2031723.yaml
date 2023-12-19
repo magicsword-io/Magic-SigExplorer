@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>"'
+      - value: '"My Apple ID"'
+      flow: to_client,established
+      metadata: created_at 2015_08_19, former_category PHISHING, updated_at 2017_10_29
+      msg: '"ET CURRENT_EVENTS Apple ID Phishing Landing 2015-08-19"'
+      rev: '2'
+      sid: '2031723'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '35'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

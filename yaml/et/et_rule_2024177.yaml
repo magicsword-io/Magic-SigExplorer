@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/products.php?"'
+      - value: '!"Content-Type|3a|"'
+      - value: '"Referer|3a|"'
+      - value: '"/products.php|0d 0a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_04, deployment Perimeter, former_category
+        MALWARE, malware_family Felismus, signature_severity Major, tag Felismus,
+        tag c2, updated_at 2020_10_13, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Felismus CnC Beacon 2"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/P"'
+      reference: md5,8de3f20d94611e0200c484e42093f447
+      rev: '1'
+      sid: '2024177'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

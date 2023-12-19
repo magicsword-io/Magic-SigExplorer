@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"/system-services.sh?service="'
+      - value: '"&action=stop"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_17, deployment Datacenter,
+        former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Microhard Systems 3G/4G Cellular Ethernet and Serial
+        Gateway - Service Stop"'
+      reference: url,exploit-db.com/exploits/45036/
+      rev: '2'
+      sid: '2025848'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

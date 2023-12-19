@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|4c 00 00 00|"'
+      - value: '"|00|b|00|i|00|t|00|s|00|a|00|d|00|m|00|i|00|n|00|"'
+      - value: '"|00|t|00|r|00|a|00|n|00|s|00|f|00|e|00|r|00|"'
+      flow: established,from_server
+      metadata: created_at 2015_05_13, former_category MALWARE, updated_at 2015_05_13
+      msg: '"ET INFO Download file with BITS via LNK file (Likely Malicious)"'
+      rev: '1'
+      sid: '2021092'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $FTP_PORTS
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"USER|20|images|0D 0A|"'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy security-ips alert,ruleset community
+      msg: '"POLICY-OTHER QLogic Switch 5600/5800 default ftp login attempt"'
+      reference: url,filedownloads.qlogic.com/files/manual/67941/QuickTools_Guide_Sb5600_Series_v74_59235-03_%5BA%5D.pdf
+      rev: '9'
+      service: ftp
+      sid: '31831'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

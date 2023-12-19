@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 05|n9.cl"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_24, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_08_24
+      msg: '"ET INFO Observed URL Shortening Service Domain (n9 .cl in TLS SNI)"'
+      rev: '2'
+      sid: '2038607'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

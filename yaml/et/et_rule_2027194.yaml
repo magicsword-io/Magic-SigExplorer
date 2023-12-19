@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/sysTimeCfgEx"'
+      - depth: '11'
+        value: '"systemdate="'
+      - value: '"&systemtime="'
+      - value: '"&dwTimeZone"'
+      - value: '"&updatemode="'
+      - value: '"&ntpHost="'
+      - value: '"&ntpPort="'
+      - value: '"&timezonecon="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2019_04_12, deployment Perimeter,
+        former_category EXPLOIT, malware_family Mirai, performance_impact Moderate,
+        signature_severity Major, updated_at 2022_05_03
+      msg: '"ET EXPLOIT Unk.IoT IPCamera Exploit Attempt Inbound"'
+      reference: url,twitter.com/zom3y3/status/1115481065701830657/photo/1
+      rev: '3'
+      sid: '2027194'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

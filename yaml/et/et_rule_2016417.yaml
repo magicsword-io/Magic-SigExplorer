@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/js.php?ran="'
+      - value: '"&t="'
+      - value: '"&u="'
+      - value: '"Accept-Language|3A 20|ru-RU"'
+      flow: established,to_server
+      metadata: created_at 2013_02_16, updated_at 2020_04_23
+      msg: '"ET TROJAN W32/Vundo.Downloader Reporting User Website Session Information"'
+      reference: url,www.lavasoft.com/mylavasoft/malware-descriptions/blog/trojandownloaderwin32vundojd
+      rev: '1'
+      sid: '2016417'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|masterofdigital|03|org|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_20, deployment Perimeter, malware_family
+        Cuba_Ransomware, performance_impact Low, signature_severity Major, tag Ransomware,
+        updated_at 2023_04_20, reviewed_at 2023_08_21
+      msg: '"ET TROJAN Cuba Ransomware Related Domain in DNS Lookup (masterofdigital
+        .org)"'
+      reference: url,blog.google/threat-analysis-group/ukraine-remains-russias-biggest-cyber-focus-in-2023/
+      rev: '1'
+      sid: '2045119'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

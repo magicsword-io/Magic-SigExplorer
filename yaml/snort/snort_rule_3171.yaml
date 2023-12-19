@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,1024:]'
+    details:
+      byte_test: 4,>,128,8,dce
+      classtype: attempted-admin
+      dce_iface: uuid 975201b0-59ca-11d0-a8d5-00a0c90d8051
+      dce_opnum: '"4"'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC NCADG-IP-UDP msqueue function 4 overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS05-017
+      rev: '16'
+      service: dcerpc
+      sid: '3171'
+      special_options:
+      - dce_stub_data
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|requestbin|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_07, deployment Perimeter,
+        former_category INFO, confidence High, signature_severity Informational, updated_at
+        2022_06_07
+      msg: '"ET INFO Out-of-Band Interaction Domain in DNS Lookup (requestbin .net)"'
+      reference: md5,887648a50d31ed3f5f2f7bbe0d7eb35a
+      rev: '2'
+      sid: '2036896'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

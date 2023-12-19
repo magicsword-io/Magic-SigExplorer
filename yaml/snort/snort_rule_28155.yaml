@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3B| MSIE 7.2|3B 20|",fast_pattern,nocase'
+      - value: '!"Accept-Language:"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Foreign variant outbound connection - MSIE 7.2"'
+      pcre: '"/[^\r -~\n]{4}/"'
+      reference: url,www.virustotal.com/en/file/5a9cd53f13825e17107d6b9f81ebe4013f3abf23429d9735c7258d43c101b71f/analysis/
+      rev: '3'
+      service: http
+      sid: '28155'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

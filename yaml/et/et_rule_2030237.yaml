@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/index.php?id=88&servicestart="'
+      - value: '"|3b|sudo"'
+      distance: '0'
+      fast_pattern: 10,20
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2020_06_02, cve CVE_2020_13448,
+        deployment Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_06_02
+      msg: '"ET EXPLOIT Authenticated QuickBox CE 2.5.5/Pro 2.1.8 RCE Attempt Inbound
+        M1 (CVE-2020-13448)"'
+      reference: cve,2020-13448
+      rev: '2'
+      sid: '2030237'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

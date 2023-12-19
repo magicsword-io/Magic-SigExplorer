@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 2a 00|"'
+      - value: '"|2a 00|W|00|i|00|n|00|d|00|o|00|w|00|s|00 20 00|"'
+      dsize: <150
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_07_07, deployment Perimeter, former_category
+        MALWARE, malware_family AlmondRAT, performance_impact Low, signature_severity
+        Major, updated_at 2022_07_07
+      msg: '"ET TROJAN Bitter APT AlmondRAT CnC Checkin"'
+      pcre: '"/^(?:[A-F0-9]\x00){12}/R"'
+      reference: url,www.secuinfra.com/en/techtalk/whatever-floats-your-boat-bitter-apt-continues-to-target-bangladesh
+      rev: '1'
+      sid: '2037717'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

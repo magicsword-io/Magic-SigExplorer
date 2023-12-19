@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/buy.php?id="'
+      - value: '"&sub_id="'
+      - value: '"&install_id="'
+      - value: '"&project_id="'
+      - value: '"&serial="'
+      flow: established,to_server
+      metadata: created_at 2014_11_21, updated_at 2020_05_13
+      msg: '"ET TROJAN W32/AntiBreach Possible Activation Attempt"'
+      reference: url,www.malware-traffic-analysis.net/2014/11/21/index.html
+      rev: '1'
+      sid: '2019771'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

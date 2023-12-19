@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<table id=\"filetable\" class=\"filelist\" cellspacing=\"1px\" cellpadding=\"0px\">"'
+      flow: established,to_client
+      metadata: created_at 2013_01_04, updated_at 2013_01_04
+      msg: '"ET WEB_SERVER WebShell - JSP RAT"'
+      rev: '2'
+      sid: '2016151'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"connected. time/date|3A| ",depth 22'
+      - value: '"version|3A| GOLD 2.1",distance 1'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR SubSeven 2.1 Gold server connection response"'
+      reference: nessus,10409
+      rev: '13'
+      sid: '2100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

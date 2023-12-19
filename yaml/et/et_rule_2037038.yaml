@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|UserName|3a 20|"'
+      - value: '"System|3a 20|"'
+      - value: '"GPU|3a 20|"'
+      - value: '"RAM|3a 20|"'
+      - value: '"CPU|3a 20|"'
+      fast_pattern: 2,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_06_17
+      msg: '"ET TROJAN System Information Being Sent in User-Agent"'
+      pcre: '"/User-Agent\x3a\x20UserName\x3a\x20[^\r\n]+(?:\x20\x2f\x20(?:System|RAM|[CG]PU)\x3a\x20){2,}[^\r\n]+(?:\r\n)?/Hm"'
+      reference: md5,64f0fdfbfaa142ae83d8c3f9326e7a94
+      rev: '1'
+      sid: '2037038'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

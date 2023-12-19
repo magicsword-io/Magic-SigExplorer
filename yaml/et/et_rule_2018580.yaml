@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a|"'
+      - value: '"cmd="'
+      - value: '"version="'
+      - value: '"quality="'
+      - value: '"av="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_06_18, former_category MALWARE, updated_at 2020_10_09
+      msg: '"ET TROJAN Win32/Neutrino Checkin"'
+      reference: url,securitykitten.github.io/an-evening-with-n3utrino/
+      rev: '4'
+      sid: '2018580'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"InjectionString"'
+      - value: '"setRequestHeader"'
+      - value: '"onreadystatechange"'
+      - value: '"readyState"'
+      - value: '"status"'
+      - value: '"navigator"'
+      - value: '"document"'
+      - value: '"document"'
+      - value: '"window"'
+      - value: '"document"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browsers, attack_target Client_and_Server, created_at 2017_10_24, deployment
+        Perimeter, former_category CURRENT_EVENTS, signature_severity Major, tag DriveBy,
+        updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS Possible BadRabbit Driveby Download M1 Oct 24 2017"'
+      pcre: '"/^\s*\.\s*cookie/Ri"'
+      reference: url,www.fireeye.com/blog/threat-research/2017/10/backswing-pulling-a-badrabbit-out-of-a-hat.html
+      rev: '5'
+      sid: '2024911'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

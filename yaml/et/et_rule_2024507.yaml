@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|73 29 88 ff e0 d1 0e 74|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_01, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family RIG, signature_severity Major, tag RigEK, updated_at
+        2017_08_01
+      msg: '"ET CURRENT_EVENTS RIG encrypted payload M1 Aug 01 2017"'
+      reference: md5,263a2cf88f340b2a755db749be1371ea
+      rev: '2'
+      sid: '2024507'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

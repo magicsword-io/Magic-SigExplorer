@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|sprl|02|in|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_23, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        tag URL_Shortener_Service, updated_at 2023_08_23, reviewed_at 2023_08_23
+      msg: '"ET INFO URI Shortening Domain in DNS Lookup (sprl .in)"'
+      rev: '1'
+      sid: '2047711'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '9'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

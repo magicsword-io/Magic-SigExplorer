@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| YandexBot"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2011_07_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Informational, tag WebCrawler,
+        updated_at 2020_10_13, mitre_tactic_id TA0043, mitre_tactic_name Reconnaissance,
+        mitre_technique_id T1593, mitre_technique_name Search_Open_Websites
+      msg: '"ET TROJAN Yandexbot Request Outbound"'
+      rev: '1'
+      sid: '2013254'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

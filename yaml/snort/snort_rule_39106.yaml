@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"=P4CK3T=",depth 32'
+      - value: '"8_=_8"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.LuminosityLink RAT variant outbound connection"'
+      reference: url,virustotal.com/en/file/0a6ee066b27f5f8dfeedb8e5f19659e47b70296a49a627e2ce9d3d9456287051/analysis/
+      rev: '3'
+      sid: '39106'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

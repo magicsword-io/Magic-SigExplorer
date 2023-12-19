@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"YWRtaW46YWRtaW4"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Linksys router default username and password login attempt"'
+      pcre: '"/^Authorization\x3a\s*Basic\s+(?-i)YWRtaW46YWRtaW4[=\s]/ims"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '18'
+      service: http
+      sid: '1861'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

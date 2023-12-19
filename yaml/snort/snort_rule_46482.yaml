@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /v1 HTTP/1.1",depth 16,fast_pattern'
+      - value: '"Connection: "'
+      - value: '"User-Agent: "'
+      - value: '"Accept-Encoding: "'
+      - value: '"Accept-Language: "'
+      - value: '"Host: "'
+      detection_filter: track by_src,count 3,seconds 6
+      flow: to_server,established,only_stream
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Installation Keylogger Osx.Trojan.Mokes data exfiltration"'
+      reference: url,www.virustotal.com/en/file/664e0a048f61a76145b55d1f1a5714606953d69edccec5228017eb546049dc8c/analysis/
+      rev: '6'
+      service: http
+      sid: '46482'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

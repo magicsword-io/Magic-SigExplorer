@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/JP-ja/js?",fast_pattern,nocase'
+      - value: '"SessionID:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Deputy Dog implant outbound connection"'
+      rev: '3'
+      service: http
+      sid: '42881'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

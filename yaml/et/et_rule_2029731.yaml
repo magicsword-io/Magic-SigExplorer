@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 8000:9000
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|12 10 00 00 00 00 00 00  00 00 00 00|"'
+      dsize: '12'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_24, deployment Perimeter, former_category
+        MALWARE, malware_family RaaLoader, signature_severity Major, updated_at 2020_03_24
+      msg: '"ET TROJAN Win32/RaaLoader CnC Activity"'
+      reference: md5,16b4b114f6ccfff008de265d535656a2
+      rev: '1'
+      sid: '2029731'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

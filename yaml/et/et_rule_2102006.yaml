@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 86 A0|"'
+      - value: '"|00 00 00 03|"'
+      - value: '"|00 01 87|}"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0027, updated_at 2010_09_23
+      msg: '"GPL RPC portmap kcms_server request TCP"'
+      reference: url,www.kb.cert.org/vuls/id/850785
+      rev: '11'
+      sid: '2102006'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"KeyHelp.KeyScript"'
+      - value: '".LaunchTriPane("'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_01_18, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Possible KeyHelp ActiveX LaunchTriPane Remote Code Execution
+        Vulnerability 2"'
+      reference: url,packetstormsecurity.com/files/117293/KeyHelp-ActiveX-LaunchTriPane-Remote-Code-Execution.html
+      rev: '2'
+      sid: '2016235'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

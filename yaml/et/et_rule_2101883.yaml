@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"uid="'
+      - value: '"|28|nobody|29|"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL ATTACK_RESPONSE id check returned nobody"'
+      rev: '7'
+      sid: '2101883'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

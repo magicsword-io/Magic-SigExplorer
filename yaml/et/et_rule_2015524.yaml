@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/*c3284d*/"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2012_07_25, updated_at 2022_05_03
+      msg: '"ET WEB_CLIENT c3284d Malware Network Compromised Redirect (comments 3)"'
+      reference: url,blog.unmaskparasites.com/2012/06/22/runforestrun-and-pseudo-random-domains/
+      rev: '3'
+      sid: '2015524'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

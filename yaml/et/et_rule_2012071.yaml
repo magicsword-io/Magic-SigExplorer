@@ -1,0 +1,54 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/session.cgi?"'
+      - value: '"sid="'
+      - value: '"app=urchin.cgi"'
+      - value: '"action=prop"'
+      - value: '"rid="'
+      - value: '"n="'
+      - value: '"vid="'
+      - value: '"dtc="'
+      - value: '"cmd="'
+      - value: '"gfid="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_12_18, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Google Urchin session.cgi Local File Inclusion Attempt"'
+      reference: url,exploit-db.com/exploits/15737/
+      rev: '3'
+      sid: '2012071'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

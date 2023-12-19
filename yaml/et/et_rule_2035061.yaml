@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|3a 3a|MAC|3a 3a|"'
+      - value: '"|3a 3a|HOSTNAME/USERNAME|3a 3a|"'
+      - value: '"|3a 3a|U-FILE|3a 3a|"'
+      distance: '0'
+      dsize: <400
+      flow: established,to_server
+      metadata: created_at 2020_01_16, former_category MALWARE, updated_at 2020_08_19
+      msg: '"ET TROJAN Group 21 Payload CnC Checkin"'
+      reference: md5,6a271282fe97322d49e9692891332ad7
+      rev: '1'
+      sid: '2035061'
+      special_options:
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

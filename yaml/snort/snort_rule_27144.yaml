@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?"'
+      - value: '"content-type: application/"'
+      - value: '" Java/1"'
+      flow: to_server,established
+      metadata: policy balanced-ips alert,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Private exploit kit outbound traffic"'
+      pcre: '"/\x2ephp\x3f[a-z]+=[a-fA-Z0-9]+&[a-z]+=[0-9]+$/i"'
+      reference: url,www.malwaresigs.com/2013/07/03/another-unknown-ek
+      rev: '3'
+      service: http
+      sid: '27144'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

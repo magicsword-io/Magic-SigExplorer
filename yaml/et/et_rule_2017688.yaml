@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/cgi/url_redirect.cgi"'
+      - value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: created_at 2013_11_07, updated_at 2020_04_27
+      msg: '"ET WEB_SERVER Possible SUPERMICRO IPMI url_redirect.cgi Directory Traversal
+        Attempt"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2013/11/06/supermicro-ipmi-firmware-vulnerabilities
+      rev: '1'
+      sid: '2017688'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

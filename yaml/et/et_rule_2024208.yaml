@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        offset: '4'
+        value: '"|FF|SMB|25 05 00 00 80|"'
+      - value: '"LSbfLScnLSepLSlfLSmf"'
+      - value: '"LSrfLSsrLSscLSblLSss"'
+      - value: '"LSshLStrLStcLSopLScd"'
+      distance: '0'
+      flow: from_server,established
+      flowbits: set,ETPRO.ETERNALROMANCE
+      metadata: attack_target SMB_Server, created_at 2017_04_17, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2017_04_17
+      msg: '"ET EXPLOIT Possible ETERNALROMANCE MS17-010"'
+      rev: '2'
+      sid: '2024208'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '445'

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"Atlassian|20|Bitbucket|20 3c|span|20|"'
+      - value: '"data|2d|system|2d|build|2d|number|3d 22|"'
+      - value: '"|22 3e 20|v7|2e|"'
+      flow: established,to_client
+      metadata: affected_product Atlassian, attack_target Web_Server, created_at 2023_12_12,
+        cve CVE_2022_1471, deployment Perimeter, deployment Internal, deployment SSLDecrypt,
+        former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_12_12
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian Bitbucket CVE-2022-1471 Vulnerable Server
+        Detected Version 7.17.x - 7.21.15"'
+      pcre: '"/^(?:2(?:1\.(?:[023456789]|1[012345]?)|0\.)|1[789]\.)/R"'
+      reference: cve,2022-1471
+      rev: '1'
+      sid: '2049637'
+      special_options:
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 3600, track by_src
+      within: '50'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

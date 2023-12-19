@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '29'
+        value: '"/Collector/2.0/settings/?qsp="'
+      - value: '"&client-id="'
+      - value: '"sdk-version"'
+      - value: '"Accept|3a 20|json|0d 0a|"'
+      - value: '"Referer|3a 20|https://teams.microsoft.com/_|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_02, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2022_06_02, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Activity (GET)"'
+      reference: url,tarlogic.com/blog/hidding-cobalt-strike-traffic
+      rev: '1'
+      sid: '2036825'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      within: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

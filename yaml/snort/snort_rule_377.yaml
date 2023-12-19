@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"================",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING Network Toolbox 3 Windows"'
+      rev: '11'
+      sid: '377'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

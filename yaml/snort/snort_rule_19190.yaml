@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '445'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00|",offset 1'
+      - value: '"|FF|SMB2",depth 5,offset 4'
+      - value: '"|00 00 00 00|",within 4'
+      - value: '"|10 00|",depth 2,offset 65'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"NETBIOS SMB-DS Trans2 Distributed File System GET_DFS_REFERRAL request"'
+      rev: '9'
+      service: netbios-ssn
+      sid: '19190'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

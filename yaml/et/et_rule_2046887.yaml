@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -11
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"ggjump.ru"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_25, deployment Perimeter,
+        former_category MALWARE, malware_family Glupteba, performance_impact Low,
+        confidence High, signature_severity Major, tag SSL_TLS_SNI, updated_at 2023_07_25,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1573, mitre_technique_name Encrypted_Channel
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (ggjump .ru in TLS SNI)"'
+      pcre: '"/^(?:\x00\x09|.\x2e)ggjump\.ru/R"'
+      reference: md5,724980a41f765dd2a6ac137acd8d5ebb
+      rev: '1'
+      sid: '2046887'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

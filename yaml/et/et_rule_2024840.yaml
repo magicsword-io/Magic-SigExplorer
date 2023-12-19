@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 10 00 01|"'
+      - value: '"H4sIA"'
+      distance: '7'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_13, deployment Perimeter, former_category
+        TROJAN, malware_family DNSMessenger, performance_impact Moderate, signature_severity
+        Major, updated_at 2017_10_13
+      msg: '"ET TROJAN DNSMessenger Payload (TXT base64 gzip header)"'
+      reference: url,blog.talosintelligence.com/2017/10/dnsmessenger-sec-campaign.html
+      rev: '1'
+      sid: '2024840'
+      special_options:
+      - fast_pattern
+      within: '5'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

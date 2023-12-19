@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"invoicetoptables"'
+      - value: '"invoicecontent"'
+      - value: '"displayTextgmail"'
+      - value: '"displayTexthotmail"'
+      - value: '"displayTextaol"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2015_07_27, former_category CURRENT_EVENTS, updated_at
+        2017_10_13
+      msg: '"ET CURRENT_EVENTS Google Drive Phishing Landing M2 July 24 2015"'
+      rev: '2'
+      sid: '2021536'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

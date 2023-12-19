@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"Version_Mapper",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN SSH Version map attempt"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '10'
+      sid: '1638'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

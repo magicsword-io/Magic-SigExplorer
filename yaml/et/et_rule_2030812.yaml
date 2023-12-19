@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,3339]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ReportSpeed HTTP/1.1"'
+      - value: '"|2c 22|GpuDriver|22 3a 22|"'
+      - value: '"|2c 22|OSName|22 3a 22|"'
+      - value: '"|2c 22|DiskSpace|22 3a 22|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_28, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Coinminer, updated_at 2022_04_18, mitre_tactic_id
+        TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name
+        Resource_Hijacking
+      msg: '"ET TROJAN MSIL/CoinMiner Performing System Checkin"'
+      reference: md5,0bdfccd5aab30f98e212abde79d923ef
+      rev: '3'
+      sid: '2030812'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

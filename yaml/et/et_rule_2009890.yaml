@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/classes/class.thcsm_user.php?is_path=http|3a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS MAXcms RFI attempt (3)"'
+      reference: url,doc.emergingthreats.net/2009890
+      rev: '5'
+      sid: '2009890'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

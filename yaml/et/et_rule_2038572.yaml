@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|1a|essentialsmassageanddayspa|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_08_19, deployment Perimeter, malware_family
+        jssLoader, performance_impact Low, signature_severity Major, updated_at 2022_08_19
+      msg: '"ET TROJAN JSSLoader CnC Domain (essentialsmassageanddayspa .com) in DNS
+        Lookup"'
+      reference: url,malwarebytes.app.box.com/s/ym6r7o5hq0rx2nxjbctfv2sw5vx386ni
+      rev: '1'
+      sid: '2038572'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '32'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

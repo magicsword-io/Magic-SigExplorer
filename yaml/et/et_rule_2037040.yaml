@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/Autodiscover/Autodiscover.xml"'
+      - value: '"<!ENTITY|20|"'
+      - value: '"|20|SYSTEM|20 22|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_06_20, cve CVE_2019_9670, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_06_20
+      msg: '"ET EXPLOIT Possible Zimbra Autodiscover Servlet XXE (CVE-2019-9670)"'
+      pcre: '"/^SYSTEM\s*\x22(?:file|https?)\x3a/Pi"'
+      reference: cve,2019-9670
+      rev: '1'
+      sid: '2037040'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

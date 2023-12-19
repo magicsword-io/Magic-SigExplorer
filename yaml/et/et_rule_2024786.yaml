@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|0a e1 e6 bd 51 fb 3d 8f 06 be 0d b5 5e bd e9 df|"'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_09_29, deployment Perimeter, former_category POLICY, signature_severity
+        Minor, updated_at 2020_08_20
+      msg: '"ET POLICY Request for Coinhive Browser Monero Miner M2"'
+      rev: '2'
+      sid: '2024786'
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

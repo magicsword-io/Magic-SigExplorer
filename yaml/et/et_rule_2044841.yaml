@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|27|fun|27 2e 27|ct|27 2e 27|i|27 2e 27|o|27 2e 27|n|5f|exi|27 2e
+          27|s|27 2e 27|ts|27 3b|"'
+      - value: '"|27|e|27 2e 27|v|27 2e 27|a|27 2e 27|l|27 3b|"'
+      - value: '"|27|gzin|27 2e 27|f|27 2e 27|l|27 2e 27|a|27 2e 27|te|27 3b|"'
+      - value: '"|27|subst|27 2e 27|r|27 2e 27 27 3b|"'
+      - value: '"|27|or|27 2e 27|d|27 3b|"'
+      - value: '"|27|s|27 2e 27|tr|27 2e 27|le|27 2e 27|n|27 2e 27 27 3b|"'
+      - value: '"|27|s|27 2e 27|tr|27 2e 27|pos|27 2e 27 27 3b|"'
+      - value: '"|27|i|27 2e 27|mplode|27 2e 27 27 3b|"'
+      - value: '"|27|ch|27 2e 27|r|27 3b|"'
+      - value: '"|27|pr|27 2e 27|eg|27 2e 27 5f|repl|27 2e 27|ace|27 3b|"'
+      - value: '"|27|ba|27 2e 27|s|27 2e 27|e6|27 2e 27|4|27 2e 27 5f 27 2e 27|e|27
+          2e 27|ncod|27 2e 27|e|27 3b|"'
+      - value: '"|27|b|27 2e 27|a|27 2e 27|se6|27 2e 27|4|5f|de|27 2e 27|co|27 2e
+          27|d|27 2e 27|e|27 2e 27 27 3b|"'
+      - value: '"|27|cre|27 2e 27|ate|5f 27 2e 27|func|27 2e 27|t|27 2e 27|ion|27|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_03_30, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2023_03_30
+      msg: '"ET TROJAN ALFA TEaM Shell Landing Page"'
+      reference: url,mandiant.com/resources/blog/apt33-insights-into-iranian-cyber-espionage
+      rev: '1'
+      sid: '2044841'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

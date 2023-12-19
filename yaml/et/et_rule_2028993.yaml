@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?"'
+      - value: '"pipka="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_11_18, deployment Perimeter, former_category MALWARE, malware_family
+        Pipka, performance_impact Low, signature_severity Major, tag CardSkimmer,
+        updated_at 2020_08_19
+      msg: '"ET CURRENT_EVENTS Possible Pipka JS Skimmer CnC Request"'
+      reference: url,usa.visa.com/dam/VCOM/global/support-legal/documents/pfd-identifies-new-javascript-skimmer.pdf
+      rev: '2'
+      sid: '2028993'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

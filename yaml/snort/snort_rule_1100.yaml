@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"User-Agent|3A| Java1.2.1|0D 0A|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN L3retriever HTTP Probe"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '18'
+      service: http
+      sid: '1100'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

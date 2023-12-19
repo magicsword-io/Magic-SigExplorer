@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?uid="'
+      - value: '"&context=",distance 0'
+      - value: '"&mode=text",distance 0,fast_pattern'
+      - value: '"&data=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Turla outbound connection"'
+      reference: url,www.virustotal.com/en/file/1a488c6824bd39f3568346b2aaf3f6666f41b1d4961a2d77360c7c65c7978b5e/analysis/
+      rev: '4'
+      service: http
+      sid: '33547'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

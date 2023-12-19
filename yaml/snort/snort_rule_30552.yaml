@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '20'
+      classtype: trojan-activity
+      contents:
+      - value: '"/aviatic/systema.exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Malicious BitCoiner Miner download - Win.Trojan.Systema"'
+      reference: url,www.virustotal.com/en/file/e8bd297b1f59b7ea11db7d90e81002469a8f054f79638a57332ac448d819fb5d/analysis/
+      rev: '3'
+      service: http
+      sid: '30552'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

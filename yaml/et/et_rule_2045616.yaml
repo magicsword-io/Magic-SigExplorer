@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/json"'
+      - depth: '11'
+        value: '"|7b 22|chat|5f|id|22 3a|"'
+      - value: '"|2c 22|text|22 3a 22|REQ|7c|"'
+      - value: '"|7c|HELLO|7c|0|22 2c 22|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_08, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Ducktail, confidence High, signature_severity
+        Major, updated_at 2023_05_08
+      msg: '"ET TROJAN Win32/Ducktail Exfil Via Telegram (POST)"'
+      pcre: '"/^(?:[A-Z0-9]{8})-(?:[A-Z0-9]{4})-(?:[A-Z0-9]{4})-(?:[A-Z0-9]{4})-(?:[A-Z0-9]{12})/R"'
+      reference: md5,d3ff692d6e816c72693d07f7b5bd4eca
+      rev: '1'
+      sid: '2045616'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

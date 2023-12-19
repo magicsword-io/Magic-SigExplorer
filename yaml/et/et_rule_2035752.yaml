@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '48'
+        offset: '7'
+        value: '"|2e d4 d6 19 57 d4 85 ba 0e 9d e5 56 fa 72 db af e5 17 e8 3e 3b 21
+          b7 26 fc 59 03 db d2 36 32 bb c3 c4 ab 7b 66 74 c4 68 ac 23 5b a3 fc e7
+          82 6a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_05, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_04_05
+      msg: '"ET TROJAN Win32/Agent.USB Variant CnC Activity"'
+      reference: url,twitter.com/0xrb/status/1509396448387153920
+      rev: '2'
+      sid: '2035752'
+      stream_size: server,<,5
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

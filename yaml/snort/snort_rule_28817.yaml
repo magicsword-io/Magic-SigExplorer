@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/is-ready",fast_pattern,nocase'
+      - value: '"User|2D|Agent|3A 20|"'
+      - value: '"|3C 7C 3E|",within 3,distance 8'
+      - value: '"|3C 7C 3E|",within 18'
+      - value: '"|3C 7C 3E|Microsoft Windows",within 84'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Iniduoh variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/be442a5f8be3bf720236f71a613a534b8aa82b16b0daf8ff84a59bcb92e19e7d/analysis/
+      rev: '4'
+      service: http
+      sid: '28817'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>Mailer"'
+      - value: '"<h1>Simple Mailer</h1>"'
+      - value: '"for=|22|Emails|22|>Emails|20 3a|</label>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_10_22, deployment Perimeter, signature_severity Major, updated_at
+        2020_10_22
+      msg: '"ET WEB_SERVER Generic Mailer Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2031077'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

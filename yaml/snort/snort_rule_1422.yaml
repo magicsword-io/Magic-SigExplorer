@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 161:162
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '" |04 82 01 00|",depth 5,offset 7'
+      flow: to_server
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP community string buffer overflow attempt with evasion"'
+      reference: url,www.cert.org/advisories/CA-2002-03.html
+      rev: '21'
+      service: snmp
+      sid: '1422'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

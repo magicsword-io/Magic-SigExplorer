@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Length|3a| 0|0d 0a|"'
+      - value: '"mac="'
+      - value: '"key="'
+      - value: '"ver="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_11_17
+      msg: '"ET TROJAN Generic Downloader - HTTP POST"'
+      reference: url,doc.emergingthreats.net/2009549
+      rev: '6'
+      sid: '2009549'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

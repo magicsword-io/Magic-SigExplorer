@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '11'
+        value: '"HELO|3a|10.3.6"'
+      flow: established,from_server
+      metadata: attack_target Server, created_at 2020_05_08, cve CVE_2020_2551, deployment
+        Perimeter, former_category POLICY, performance_impact Low, signature_severity
+        Informational, updated_at 2020_05_08
+      msg: '"ET POLICY Oracle T3 Response with CVE-2020-2551 Vulnerable Version (10.3.6)"'
+      rev: '2'
+      sid: '2030131'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

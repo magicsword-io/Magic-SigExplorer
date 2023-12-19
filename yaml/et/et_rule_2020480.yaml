@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/9.php?safe="'
+      - value: '"User-Agent|3a 20|NSIS_Inetc (Mozilla|29 0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_02_19, former_category MALWARE, updated_at 2020_09_29
+      msg: '"ET TROJAN Trojan.NSIS.Comame.A Checkin"'
+      reference: md5,6a15f19a3ccd05f74537464e6df64dab
+      rev: '2'
+      sid: '2020480'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

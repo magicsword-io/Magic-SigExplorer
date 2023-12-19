@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|18 00 00 00|"'
+      dsize: '4'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: noalert
+      metadata: attack_target Client_Endpoint, created_at 2015_05_26, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2019_10_08,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Linux/Moose NAT Traversal CnC Beacon set"'
+      reference: url,welivesecurity.com/wp-content/uploads/2015/05/Dissecting-LinuxMoose.pdf
+      rev: '1'
+      sid: '2021150'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

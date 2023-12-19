@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '6'
+      classtype: trojan-activity
+      contents:
+      - value: '".exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"INDICATOR-COMPROMISE potential malware download - single digit .exe file
+        download"'
+      pcre: '"/\/[a-z0-9]\.exe$/i"'
+      reference: url,urlquery.net/search.php?q=%5C%2F%5Ba-zA-Z%5D%5C.%5BEe%5D%5BXx%5D%5BEe%5D%24&type=regexp&start=2013-09-07&end=2013-12-06&max=400
+      rev: '3'
+      service: http
+      sid: '28806'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

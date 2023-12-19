@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/down_indir.asp?"'
+      - value: '"id="'
+      - value: '"UNION"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Fullaspsite GeometriX Download Portal SQL Injection
+        Attempt -- down_indir.asp id UNION SELECT"'
+      pcre: '"/UNION\s+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2005373
+      rev: '6'
+      sid: '2005373'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"%20"'
+      - value: '"&CiRestriction=none",nocase'
+      - value: '"&CiHiliteType=Full",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS ASP contents view"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS00-006
+      rev: '21'
+      service: http
+      sid: '978'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

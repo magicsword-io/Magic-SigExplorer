@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '27'
+        value: '"GET //telemetry.svc?action="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2022_09_28
+      msg: '"ET TROJAN Win32/Sephora Related Activity (GET)"'
+      pcre: '"/User-Agent\x3a\x20[^\r\n]+\r\nDNT\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/Hm"'
+      reference: md5,fc4106f71cdcdf6d6fab5441a6c6d7fb
+      rev: '1'
+      sid: '2039015'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

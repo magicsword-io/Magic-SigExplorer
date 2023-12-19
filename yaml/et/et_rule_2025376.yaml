@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/cli"'
+      - value: '"Side|3a 20|upload"'
+      - value: '"JENKINS REMOTING CAPACITY]===>rO0ABXNyABpodWRzb24ucmVtb3RpbmcuQ2FwYWJ"'
+      flow: to_server,established
+      metadata: created_at 2018_02_21, cve CVE_2017_100035, former_category WEB_SPECIFIC_APPS,
+        updated_at 2020_08_24
+      msg: '"ET WEB_SPECIFIC_APPS Possible Jenkins CLI RCE (CVE-2017-1000353)"'
+      reference: url,research.checkpoint.com/jenkins-miner-one-biggest-mining-operations-ever-discovered/
+      rev: '1'
+      sid: '2025376'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

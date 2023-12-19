@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"POST"'
+      - value: '"0x%5B%5D=androxgh0st"'
+      flow: established,to_server
+      metadata: created_at 2021_11_18, former_category SCAN, updated_at 2021_11_18
+      msg: '"ET SCAN Laravel Debug Mode Information Disclosure Probe Inbound"'
+      reference: url,thedfirreport.com/2021/02/28/laravel-debug-leaking-secrets/
+      rev: '1'
+      sid: '2034508'
+      special_options:
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

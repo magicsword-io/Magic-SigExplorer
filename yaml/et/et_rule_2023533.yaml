@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?id="'
+      - value: '"&hi"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.1)|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_14, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family YafunnLocker, signature_severity
+        Major, tag Ransomware, updated_at 2020_08_03, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN CryptoLuck / YafunnLocker Ransomware CnC Checkin"'
+      reference: md5,59109839de42d2acb44fbd7ff151fe0c
+      rev: '2'
+      sid: '2023533'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

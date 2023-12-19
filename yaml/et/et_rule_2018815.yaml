@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".kwik.to"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_07_30, updated_at 2020_09_25
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to *.kwik.to Domain (Sitelutions)"'
+      pcre: '"/^Host\x3a[^\r\n]+\.kwik\.to(?:\x3a\d{1,5})?\r?$/Hmi"'
+      rev: '1'
+      sid: '2018815'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

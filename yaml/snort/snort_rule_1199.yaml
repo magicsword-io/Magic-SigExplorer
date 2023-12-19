@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2301'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"../"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Compaq Insight directory traversal"'
+      reference: cve,1999-0771
+      rev: '18'
+      service: http
+      sid: '1199'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

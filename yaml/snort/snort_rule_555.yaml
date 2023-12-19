@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"WinGate>"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER WinGate telnet server response"'
+      reference: cve,1999-0657
+      rev: '13'
+      sid: '555'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

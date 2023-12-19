@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/site/iisamples",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS site/iisamples access"'
+      reference: nessus,10370
+      rev: '20'
+      service: http
+      sid: '1046'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

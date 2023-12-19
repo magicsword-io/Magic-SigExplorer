@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/details.php?image="'
+      - value: '".PRJ"'
+      - value: '"|3b 20|ms-office|3b 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_04, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Lazarus, signature_severity
+        Major, updated_at 2022_04_18, reviewed_at 2023_08_22
+      msg: '"ET TROJAN Lazarus Related Maldoc Activity"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x3b\x20ms-office\x3b\x20/Hmi"'
+      reference: md5,606695bae4f0eb5ba0f35b8897b9f57a
+      rev: '2'
+      sid: '2034342'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

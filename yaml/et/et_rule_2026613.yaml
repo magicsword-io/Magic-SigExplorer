@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|00 00 00 00|"'
+      - value: '"|b6 aa aa ae e4 f1 f1|"'
+      - value: '"|de 00 00 00 00|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_11_15, deployment Perimeter,
+        former_category TROJAN, malware_family Mylobot, performance_impact Low, signature_severity
+        Major, updated_at 2018_11_15
+      msg: '"ET TROJAN Mylobot Receiving XOR Encrypted Config (0xde)"'
+      reference: url,www.netformation.com/our-pov/mylobot-continues-global-infections/
+      rev: '1'
+      sid: '2026613'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

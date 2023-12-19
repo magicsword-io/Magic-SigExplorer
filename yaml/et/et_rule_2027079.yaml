@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '9'
+        value: '"|3a 3a|donnn|3a 3a|"'
+      flow: established,from_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_03_13, deployment Perimeter, former_category
+        MALWARE, malware_family Retadup, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_11
+      msg: '"ET TROJAN Win32/Retadup Success Response from CnC"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/monero-mining-retadup-worm-goes-polymorphic-gets-an-autohotkey-variant/
+      rev: '3'
+      sid: '2027079'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

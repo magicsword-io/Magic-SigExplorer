@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_test: 1,&,16,3,relative
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|B8|J|9F|M|1C|}|CF 11 86 1E 00| |AF|n|7C|W"'
+      distance: '29'
+      flow: established,to_server
+      flowbits: set,dce.isystemactivator.bind
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DCERPC IActivation little endian bind attempt"'
+      rev: '3'
+      sid: '2103276'
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

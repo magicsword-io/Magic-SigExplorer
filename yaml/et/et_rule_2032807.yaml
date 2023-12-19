@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|e1 00 00 00|"'
+      - value: '"|00 00 00|Windows|20|"'
+      - value: '"|00 00 00|Client|20|"'
+      distance: '0'
+      dsize: <400
+      flow: established,to_server
+      isdataat: '!4,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_04_23
+      msg: '"ET TROJAN MSIL/MosaiqueRAT CnC Checkin"'
+      reference: url,github.com/thdal/MosaiqueRAT
+      rev: '1'
+      sid: '2032807'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

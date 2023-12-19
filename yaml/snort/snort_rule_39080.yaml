@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 00 00 00 05|",depth 5'
+      flow: to_server,established
+      isdataat: '!64'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.NetWiredRC variant connection setup"'
+      reference: url,www.virustotal.com/en/file/5db3b9ce06e334cb61279dd936a40be75df6732228bb692a7a84b1299eb09071/analysis/1464362377/
+      rev: '2'
+      sid: '39080'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

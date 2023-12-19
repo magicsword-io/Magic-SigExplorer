@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|fleek|02|co|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_22, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2022_12_22
+      msg: '"ET INFO Cloud IPFS Service Domain in DNS Lookup (fleek .co)"'
+      reference: url,docs.fleek.co/
+      rev: '1'
+      sid: '2042997'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

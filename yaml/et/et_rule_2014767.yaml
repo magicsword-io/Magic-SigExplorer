@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/rdc/rnd.php"'
+      flow: established,to_server
+      metadata: created_at 2012_05_18, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Win32.Bublik.B/Birele/Variant.Kazy.66443 Checkin"'
+      reference: md5,48352e3a034a95845864c0f6aad07d39
+      rev: '6'
+      sid: '2014767'
+      special_options:
+      - http_method
+      - http_uri
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

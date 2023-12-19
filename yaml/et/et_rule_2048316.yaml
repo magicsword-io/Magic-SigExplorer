@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|swissborg|04|blog|00|"'
+      distance: '1'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_09_27, deployment Perimeter, malware_family ProcessRequest, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_27, reviewed_at
+        2023_09_27
+      msg: '"ET TROJAN TA444 MacOS/ProcessRequest CnC Domain in DNS Lookup (swissborg
+        .blog)"'
+      reference: md5,9294648d744703cfa0456ec74d014fe4
+      rev: '1'
+      sid: '2048316'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

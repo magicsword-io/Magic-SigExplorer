@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/uplink.php?logo.jpg"'
+      - value: '"token="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_02_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2020_11_10, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Linkup Ransomware check-in"'
+      reference: url,blog.emsisoft.com/2014/02/03/malware-analysis-ransomware-linkup-blocks-dns-and-mines-bitcoins/
+      rev: '2'
+      sid: '2018122'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      urilen: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

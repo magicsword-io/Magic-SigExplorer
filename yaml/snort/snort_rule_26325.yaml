@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?mac=",fast_pattern,nocase'
+      - value: '"|0D 0A|Accept-Language|3A 20|ko|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Scar variant outbound connection"'
+      pcre: '"/\.php\?mac\x3d([a-f0-9]{2}\x3a){5}[a-f0-9]{2}$/"'
+      reference: url,www.virustotal.com/en/file/171a0b12197c1b1b525e2db1a62adb6f6c3f42ccb5704c8174944ee8b901abec/analysis/
+      rev: '2'
+      service: http
+      sid: '26325'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

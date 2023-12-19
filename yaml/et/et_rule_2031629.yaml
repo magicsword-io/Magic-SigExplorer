@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|civilizationidium|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_02_18, deployment Perimeter,
+        former_category MALWARE, malware_family Carbanak, malware_family Carbanak_JScript,
+        performance_impact Low, signature_severity Major, updated_at 2021_02_18
+      msg: '"ET TROJAN FIN7/Carbanak Staging Domain in DNS Lookup (civilizationidium
+        .com)"'
+      reference: md5,17735bdf3f19b51eaa45d6375f943f97
+      rev: '2'
+      sid: '2031629'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

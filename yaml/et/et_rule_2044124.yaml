@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|e5 cf ff 02 b1 69 20 69 75 15 99 45 20 2e 0a 10 e3 10 b3 70 8d 6d
+          ab 54 52 79 f0 1b 78 5e d1 46|"'
+      flow: established,to_client
+      flowbits: isset,ET.nginxspy
+      metadata: attack_target Web_Server, created_at 2023_02_06, deployment Perimeter,
+        former_category MALWARE, confidence High, signature_severity Major, updated_at
+        2023_02_06
+      msg: '"ET TROJAN NginxSpy Magic Bytes M1 (Outbound)"'
+      reference: url,jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_2_4_peter-jr-wei_en.pdf
+      rev: '1'
+      sid: '2044124'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

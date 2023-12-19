@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?dns="'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_29, deployment Perimeter, former_category
+        TROJAN, malware_family TrueBot, malware_family Silence_Downloader, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN TrueBot/Silence.Downloader Keep-Alive"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\n\r\n$/Hmi"'
+      reference: md5,c2a00949ddacfed9ed2ef83a8cb44780
+      rev: '2'
+      sid: '2026560'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

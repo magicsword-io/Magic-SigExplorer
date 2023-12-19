@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|08|!|02 80 08|!|02 80 08|!|02 80 08|!|02 80|"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SHELLCODE HP-UX NOOP"'
+      reference: arachnids,358
+      rev: '8'
+      sid: '2100642'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: $SHELLCODE_PORTS

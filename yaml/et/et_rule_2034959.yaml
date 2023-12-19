@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|22|mac|22 3a 22|"'
+      - value: '"|22|pcname|22 3a 22|"'
+      - depth: '20'
+        value: '"POST /?opt=put&type="'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '14'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_24, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_01_24
+      msg: '"ET TROJAN W32/Witch.3FA0!tr CnC Activity M3"'
+      reference: md5,4e24d219ba1790b93347110fd1bfcb6b
+      rev: '2'
+      sid: '2034959'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

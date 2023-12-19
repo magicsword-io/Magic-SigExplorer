@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/system/apps"'
+      - value: '"Authorization|3a 20|Bearer"'
+      - value: '"User-Agent|3a 20|okhttp/"'
+      - depth: '13'
+        value: '"|7b 22|deviceId|22 3a 22|"'
+      - value: '"|22 2c 22|appInfos|22 3a 5b 7b 22|packageName|22 3a 22|"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2023_09_13, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        MMRAT, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_13, reviewed_at 2023_09_13
+      msg: '"ET MOBILE_MALWARE Android/MMRAT Data Exfiltration Attempt"'
+      pcre: '"/^\x7b\x22deviceId\x22\x3a\x22[a-f0-9]{16}/P"'
+      reference: md5,5b90ee49ed678379f1a8be9683b3fc99
+      rev: '1'
+      sid: '2048084'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

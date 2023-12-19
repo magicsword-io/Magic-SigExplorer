@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/sync"'
+      - value: '"/?ext="'
+      - value: '"&pid="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_03_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_19,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/TrojanProxy.JpiProx.B CnC Beacon 1"'
+      reference: md5,aa9542f02b26a554650a9649d2239181
+      rev: '1'
+      sid: '2020737'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '2'
+        value: '"/?"'
+      - value: '"Trident/5.0|29 0d 0a|"'
+      - value: '"Referer|3A| http|3A|//www.google.com/|0D  0A|"'
+      flow: to_server,established
+      metadata: created_at 2014_09_04, former_category MALWARE, updated_at 2020_05_04
+      msg: '"ET TROJAN HighTide trojan Checkin"'
+      pcre: '"/^\/\?\d(?:[A-Za-z0-9~_]{4})*(?:[A-Za-z0-9~_]{2}--|[A-Za-z0-9~_]{3}-|[A-Za-z0-9~_]{4})$/U"'
+      reference: url,fireeye.com/blog/technical/botnet-activities-research/2014/09/darwins-favorite-apt-group-2.html
+      rev: '1'
+      sid: '2019113'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

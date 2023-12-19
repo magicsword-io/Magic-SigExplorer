@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|appsync-api|09|"'
+      - value: '"|0a|avsvmcloud|03|com|00|"'
+      distance: '9'
+      metadata: attack_target Client_Endpoint, created_at 2020_12_14, deployment Perimeter,
+        deployment Internal, former_category MALWARE, signature_severity Major, updated_at
+        2020_12_16
+      msg: '"ET TROJAN [Fireeye] Observed SUNBURST DGA Request"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+      rev: '2'
+      sid: '2031359'
+      special_options:
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

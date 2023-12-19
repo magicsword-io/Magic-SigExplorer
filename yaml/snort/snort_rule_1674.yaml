@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"connect_data|28|command=version|29|",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE connect_data remote version detection attempt"'
+      rev: '8'
+      sid: '1674'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

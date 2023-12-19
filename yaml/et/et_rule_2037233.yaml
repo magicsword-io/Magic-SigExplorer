@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/id|3f 3d|NT|28|Win"'
+      - value: '"x64|29 5f|AV|28|"'
+      - value: '"|29 7c 7c|QN|28|"'
+      - value: '"|29 7c 7c|WN|28|"'
+      - value: '"|29 7c 7c|HN|28|"'
+      - value: '"|29 7c 7c|MA|28|"'
+      - value: '"|29 7c 7c|WF|28|"'
+      - value: '"|29 7c 7c|VE|28|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_06_30, deployment Perimeter, deployment
+        SSLDecrypt, former_category MALWARE, malware_family Troj_Yahoya, performance_impact
+        Low, signature_severity Major, updated_at 2022_06_30
+      msg: '"ET TROJAN Troj_Yahoya Variant CnC Checkin"'
+      reference: url,research.checkpoint.com/2022/chinese-actor-takes-aim-armed-with-nim-language-and-bizarro-aes/
+      rev: '1'
+      sid: '2037233'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

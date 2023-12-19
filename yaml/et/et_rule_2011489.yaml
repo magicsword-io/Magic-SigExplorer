@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?id="'
+      - value: '"&co="'
+      - value: '"&us="'
+      - value: '"&os="'
+      - value: '"&vr="'
+      - value: '"&dt="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_04_20
+      msg: '"ET TROJAN Meredrop/Nusump Checkin"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Worm%3AWin32%2FNusump&ThreatID=-2147329857
+      rev: '4'
+      sid: '2011489'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

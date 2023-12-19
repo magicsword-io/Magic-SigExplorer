@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/dnstools.php",nocase'
+      - value: '"user_logged_in=true",nocase'
+      - value: '"user_dnstools_administrator=true",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP DNSTools administrator authentication bypass attempt"'
+      reference: cve,2002-0613
+      rev: '15'
+      service: http
+      sid: '1739'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

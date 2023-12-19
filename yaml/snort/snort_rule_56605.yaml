@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"{|22|navgd|22|:|22|<div class=gnt_n_dd_ls_w><div class=gnt_n_dd_nt>ONLY
+          AT USA TODAY:</div><div class=gnt_n_dd_ls><a class=gnt_n_dd_ls_a href=https://supportlocal.usatoday.com/",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Rat.Tool.CSBundleUSATodayServer variant inbound command attempt"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56605'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

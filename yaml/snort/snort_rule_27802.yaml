@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/page/index_htm_files2/",nocase'
+      - value: '".png",within 4,distance 3'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.PRISM variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/417cb84f48d20120b92530c489e9c3ee9a9deab53fddc0dc153f1034d3c52c58/analysis/1377785686/
+      rev: '4'
+      service: http
+      sid: '27802'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

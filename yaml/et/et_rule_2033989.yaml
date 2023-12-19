@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-admin/admin-ajax.php"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|files[]|22 3b
+          20|filename=|22|"'
+      - value: '"<?"'
+      - value: '"download_from_files_617_fileupload"'
+      flow: established,to_server
+      metadata: created_at 2021_09_20, former_category EXPLOIT, updated_at 2023_04_06,
+        reviewed_at 2023_12_11
+      msg: '"ET EXPLOIT WP Download From Files Plugin <= 1.48 Arbitrary File Upload
+        Attempt"'
+      reference: url,cxsecurity.com/issue/WLB-2021090097
+      rev: '2'
+      sid: '2033989'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

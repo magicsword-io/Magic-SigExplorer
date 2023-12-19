@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"zaoshang.ooo"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_28, deployment Perimeter, malware_family
+        Glupteba, performance_impact Low, signature_severity Major, updated_at 2022_12_28,
+        reviewed_at 2023_12_12
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (zaoshang .ooo in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)zaoshang\.ooo/R"'
+      reference: url,www.nozominetworks.com/blog/tracking-malicious-glupteba-activity-through-the-blockchain/
+      rev: '1'
+      sid: '2043031'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|7b 22|id|22 3a 22|"'
+      - value: '"|22 2c 22|k|22 3a 22|"'
+      fast_pattern: only
+      flow: established,to_client
+      flowbits: unset,ET.nimplant
+      metadata: attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_02_27
+      msg: '"ET TROJAN NimPlant Sending Command (Inbound)"'
+      pcre: '"/^(?:[a-zA-Z]{8})\x22\x2c\x22k\x22\x3a\x22/R"'
+      reference: url,github.com/chvancooten/NimPlant
+      rev: '1'
+      sid: '2044348'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

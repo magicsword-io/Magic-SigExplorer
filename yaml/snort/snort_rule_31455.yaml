@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 25<=>32
+      classtype: trojan-activity
+      contents:
+      - value: '".html?0.",depth 11,offset 2'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Rig Exploit Kit Outbound DGA Request"'
+      pcre: '"/\/[a-z]{1,4}\x2ehtml\x3f0\x2e[0-9]{15,}$/"'
+      reference: url,www.symantec.com/connect/blogs/rig-exploit-kit-used-recent-website-compromise
+      rev: '4'
+      service: http
+      sid: '31455'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - depth: '4'
+        value: '"MSCF"'
+      - value: '"../../"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2020_07_10, cve CVE_2020_1300, deployment Perimeter, deployment Datacenter,
+        former_category EXPLOIT, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_10
+      msg: '"ET EXPLOIT Potentially Malicious .cab Inbound (CVE-2020-1300)"'
+      pcre: '"/^[a-z0-9\-_\.\/]+\x00/Ri"'
+      reference: url,www.thezdi.com/blog/2020/7/8/cve-2020-1300-remote-code-execution-through-microsoft-windows-cab-files
+      rev: '2'
+      sid: '2030493'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

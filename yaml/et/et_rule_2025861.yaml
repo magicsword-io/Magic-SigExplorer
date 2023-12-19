@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3333'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"jsonrpc"'
+      - value: '"method"'
+      - value: '"miner_file"'
+      - value: '".bash"'
+      - value: '"5c5c7837665c5c7834355c5c7834635c5c783436"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_17, cve CVE_2018_100004,
+        deployment Datacenter, former_category EXPLOIT, updated_at 2018_07_18
+      msg: '"ET EXPLOIT Nanopool Claymore Dual Miner Remote Code Execution Linux"'
+      reference: cve,2018-1000049
+      rev: '1'
+      sid: '2025861'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|47 4f 44 5a 49 4c 4c 41|"'
+      - depth: '30'
+        value: '"<div style=|22|display|3a|none|22| id=|22|"'
+      - value: '"</div>"'
+      distance: '0'
+      fast_pattern: 10,20
+      flow: from_server,established
+      metadata: created_at 2016_03_05, updated_at 2020_08_19
+      msg: '"ET TROJAN Possible Godzilla Loader Base64 Filename"'
+      pcre: '"/^(?P<id>[a-z])\x22\sname=\x22(?P=id)\x22>[a-zA-Z0-9+/=]{28}/Rsi"'
+      rev: '2'
+      sid: '2022594'
+      special_options:
+      - http_stat_code
+      - http_cookie
+      - file_data
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

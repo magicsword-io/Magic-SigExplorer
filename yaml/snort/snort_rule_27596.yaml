@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&intip=",fast_pattern,nocase'
+      - value: '"?id="'
+      - value: '"&port=",distance 0'
+      - value: '"&bid=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Redyms variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/1c61afd792257cbc72dc3221deb3d0093f0fc1abf2c3f2816e041e37769137a4/analysis/1375189147/
+      rev: '5'
+      service: http
+      sid: '27596'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '12397'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '24'
+        value: '"|14 60 00 00 66 66 07 00 10 00 00 00 19 00 00 00 00 00 04 00 00 00
+          60 00|"'
+      - value: '!"|0d|"'
+      - value: '!"|0a|"'
+      - value: '!"|ff|"'
+      - value: '!"|00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2018_08_21, cve CVE_2013_0657, former_category SCADA, updated_at
+        2018_08_21
+      msg: '"ET SCADA SEIG SYSTEM 9 - Remote Code Execution"'
+      reference: cve,2013-0657
+      rev: '1'
+      sid: '2026003'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wakeup/access.php"'
+      - value: '"User-Agent|3a| UPHTTP"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_05_21, former_category MALWARE, updated_at 2020_09_18
+      msg: '"ET TROJAN Backdoor.Win32.Agent.bjjv Checkin"'
+      reference: url,enterprise.norman.com/resources/files/unveiling_an_indian_cyberattack_infrastructure_appendixes.pdf
+      rev: '1'
+      sid: '2016864'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

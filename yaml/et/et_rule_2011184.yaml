@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Createobject(StrReverse("'
+      - value: '"|22|tcejbOmetsySeliF.gnitpircS|22|))"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2010_07_30, former_category EXPLOIT_KIT, updated_at 2010_07_30
+      msg: '"ET TROJAN Phoenix Exploit Kit VBscript download"'
+      reference: url,doc.emergingthreats.net/2011184
+      rev: '3'
+      sid: '2011184'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

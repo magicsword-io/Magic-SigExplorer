@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        offset: '4'
+        value: '"|1c 70 b6 f8 00 00 00 00 14 00 00 00|"'
+      dsize: '20'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_07_07
+      msg: '"ET TROJAN SuperKillerX Checkin Activity"'
+      reference: md5,83b851067e1331a81e35b29c8a1ff151
+      rev: '1'
+      sid: '2030478'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

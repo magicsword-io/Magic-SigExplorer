@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '[5353,5656,80]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/centralbackup.php?"'
+      - value: '"_v="'
+      - value: '"deleteid="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_06_25, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_10_09
+      msg: '"ET EXPLOIT SolusVM 1.13.03 SQL injection"'
+      rev: '3'
+      sid: '2017060'
+    protocol: tcp
+    source:
+      network: any
+      port: any

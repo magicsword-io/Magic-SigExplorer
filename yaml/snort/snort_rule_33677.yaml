@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/bb/index.php"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| MSI 6.0|3B|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Babar outbound connection"'
+      reference: url,www.virustotal.com/en/file/c72a055b677cd9e5e2b2dcbba520425d023d906e6ee609b79c643d9034938ebf/analysis/
+      rev: '2'
+      service: http
+      sid: '33677'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

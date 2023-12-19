@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"|03 41 40 7e 04 37 24 70|R"'
+      - value: '"total="'
+      - value: '"current="'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_13, deployment Perimeter,
+        former_category MALWARE, malware_family Gallium, signature_severity Major,
+        updated_at 2022_06_13
+      msg: '"ET TROJAN PingPull ICMP Activity (Outbound)"'
+      reference: md5,b4dd22013aefae6f721f0b67be61dc91
+      rev: '1'
+      sid: '2036967'
+      special_options:
+      - fast_pattern
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

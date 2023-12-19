@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '24'
+        value: '"/master/Api/active?uuid="'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target Networking_Equipment, created_at
+        2023_03_07, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence High, updated_at 2023_03_07
+      msg: '"ET TROJAN Hiatus RAT CnC Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nContent-Type\x3a\x20[^\r\n]+\r\nX_UTIME\x3a\x20[^\r\n]+\r\nX_UUID\x3a\x20[^\r\n]+\r\nX_TOKEN\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,blog.lumen.com/new-hiatusrat-router-malware-covertly-spies-on-victims/
+      rev: '1'
+      sid: '2044503'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

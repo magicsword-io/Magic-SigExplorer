@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0c|tp-globa.xyz"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_20, deployment Perimeter, malware_family
+        TA444, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_20, reviewed_at 2023_09_20
+      msg: '"ET TROJAN Observed TA444 Domain (tp-globa .xyz) in TLS SNI"'
+      rev: '1'
+      sid: '2048138'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

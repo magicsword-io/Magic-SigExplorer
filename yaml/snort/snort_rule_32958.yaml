@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<?xml"'
+      - value: '"<soap:Body><GetFileListResponse xmlns=|22|http|3A 2F 2F|",within
+          70,distance 200'
+      - value: '"<GetFileListResult><string>[ALL]__",within 75,fast_pattern'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TinyZBot response connection attempt"'
+      reference: url,www.virustotal.com/en/file/0d1f479842cd5bde4f18ab8c85a099da39e13a4051a7c21334e33d55b6f18d76/analysis/
+      rev: '2'
+      service: http
+      sid: '32958'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

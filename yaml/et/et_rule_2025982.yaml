@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?hwid="'
+      - value: '"&os="'
+      - value: '"&cookie="'
+      - value: '"&pswd="'
+      - value: '"&telegram="'
+      - value: '"&version=v"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_04_17, deployment Perimeter, former_category
+        MALWARE, malware_family Eredel, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET TROJAN MSIL/Eredel Stealer CnC Checkin"'
+      reference: md5,4b5e27e843e1b26aedec66f9e87c9960
+      rev: '4'
+      sid: '2025982'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

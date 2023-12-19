@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '42'
+    details:
+      byte_test: 1,&,8,6
+      classtype: misc-attack
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows WINS overflow attempt"'
+      pcre: '!"/^.{8}(\x05\x37(\x1E[\x90-\xFF]|[\x1F-\x2F].|\x30[\x00-\x70])|\x00\x00\x00[\x00-\x65]|\x02\x68\x05\xC0)/s"'
+      reference: url,www.immunitysec.com/downloads/instantanea.pdf
+      rev: '17'
+      service: wins
+      sid: '3017'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

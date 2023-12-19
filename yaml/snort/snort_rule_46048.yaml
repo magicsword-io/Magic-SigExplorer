@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '6'
+      classtype: trojan-activity
+      contents:
+      - value: '"/A56WY",fast_pattern,nocase'
+      flow: to_server,established
+      gid: '1'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gen variant outbound communication"'
+      reference: url,us-cert.gov/ncas/alerts/TA17-293A
+      rev: '2'
+      service: http
+      sid: '46048'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

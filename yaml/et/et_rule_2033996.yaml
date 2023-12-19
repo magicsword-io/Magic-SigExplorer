@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"200"'
+      - value: '"Your browser is"'
+      - value: '"work well in"'
+      - value: '"browser to view this"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_21, deployment Perimeter, former_category
+        PHISHING, signature_severity Minor, updated_at 2021_09_22
+      msg: '"ET INFO Possible Outdated Browser Landing Page M1"'
+      reference: url,blog.group-ib.com/perswaysion
+      rev: '3'
+      sid: '2033996'
+      special_options:
+      - http_stat_code
+      - nocase
+      - fast_pattern
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

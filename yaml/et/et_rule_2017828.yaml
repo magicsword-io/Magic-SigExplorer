@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PRIVMSG|20|"'
+      - value: '"Scanning"'
+      - value: '"for open ports."'
+      flow: established,to_server
+      metadata: created_at 2013_12_10, updated_at 2013_12_10
+      msg: '"ET WEB_SERVER Perl/Mambo.WebShell Spreader IRC Scanning Message"'
+      rev: '2'
+      sid: '2017828'
+      special_options:
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

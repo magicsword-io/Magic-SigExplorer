@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".ajax?m="'
+      - value: '"&type=Form"'
+      - value: '"&a=addResponse"'
+      - value: '".tripod.com/|0d 0a|"'
+      - depth: '18'
+        value: '"data%5Bresponse%5D"'
+      - value: '"&data%5Bresponse%5D"'
+      - value: '"&data%5Bresponse%5D"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_03_31, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_06_30, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Tripod.com Phish 2016-03-31"'
+      pcre: '"/=[A-Za-z0-9._+-]+%40[A-Za-z0-9.-]+\.[A-Za-z]{2,6}&data/P"'
+      rev: '1'
+      sid: '2031980'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

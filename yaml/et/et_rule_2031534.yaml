@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"NICK|20|[HAX|7c|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2021_01_20, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2021_01_20
+      msg: '"ET TROJAN ELF/Freakout IRC Checkin"'
+      reference: url,research.checkpoint.com/2021/freakout-leveraging-newest-vulnerabilities-for-creating-a-botnet/
+      rev: '2'
+      sid: '2031534'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

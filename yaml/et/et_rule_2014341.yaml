@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|toys|3A 3A|file"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2012_03_09, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2023_05_22
+      msg: '"ET INFO Installshield One Click Install User-Agent Toys File"'
+      reference: url,app.any.run/tasks/c8ad5e7d-ef98-4bb5-ade8-5aff7633ae82/
+      rev: '4'
+      sid: '2014341'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

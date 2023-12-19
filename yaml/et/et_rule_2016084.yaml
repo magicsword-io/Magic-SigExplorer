@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"C3B92104-B5A7-11D0-A37F-00A0248F0AF1"'
+      - value: '".SetShapeNodeType("'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_12_21, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Possible HP ALM XGO.ocx ActiveX Control SetShapeNodeType method
+        Remote Code Execution"'
+      reference: url,packetstormsecurity.org/files/116848/HP-ALM-Remote-Code-Execution.html
+      rev: '2'
+      sid: '2016084'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

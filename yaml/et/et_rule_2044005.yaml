@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"ninhaine.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_27, deployment Perimeter,
+        malware_family Glupteba, performance_impact Low, signature_severity Major,
+        updated_at 2023_01_27
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (ninhaine .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)ninhaine\.com/R"'
+      reference: md5,e6b5cd8af5b71fd54c65413e79cca8aa
+      rev: '1'
+      sid: '2044005'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

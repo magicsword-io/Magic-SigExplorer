@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      byte_jump: 2,30
+      byte_test: 2,>,2043,-2,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|07|",depth 1,offset 28'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ISAKMP second payload certificate request length overflow
+        attempt"'
+      reference: cve,2004-0040
+      rev: '9'
+      sid: '2377'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi/networkDiag.cgi"'
+      - depth: '8'
+        value: '"command="'
+      - value: '"&ipAddr="'
+      - value: '"&dnsAddr=|24 28|"'
+      flow: established,to_server
+      metadata: created_at 2021_07_27, cve CVE_2021_36380, former_category EXPLOIT,
+        updated_at 2021_07_27
+      msg: '"ET EXPLOIT Sunhillo SureLine Unauthenticated OS Command Injection Inbound
+        (CVE-2021-36380)"'
+      reference: cve,2021-36380
+      rev: '1'
+      sid: '2033459'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

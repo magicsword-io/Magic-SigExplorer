@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <31
+      classtype: trojan-activity
+      contents:
+      - value: '"Accept|3A 20|*/*|0D 0A|UA-CPU|3A 20|",fast_pattern,nocase'
+      - value: '"Connection|3A 20|Keep-Alive|0D 0A|"'
+      - value: '"Accept-Encoding|3A 20|gzip, deflate|0D 0A|"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Sinrin initial JS dropper outbound connection"'
+      pcre: '"/\/[a-z0-9]{8,10}\x3f[A-Za-z]{7,10}\x3d[A-Za-z]{6,10}/"'
+      reference: url,www.virustotal.com/en/file/e0f8b6fd78c724b688f6467baf37f08c5ed198ea1b4224f31f50c8acbad49742/analysis/
+      rev: '3'
+      service: http
+      sid: '39064'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

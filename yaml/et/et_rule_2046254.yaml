@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '18'
+        value: '"/remote/logincheck"'
+      flow: established,to_server
+      metadata: affected_product Fortigate, attack_target Networking_Equipment, created_at
+        2023_06_13, cve CVE_2023_27997, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_06_13
+      msg: '"ET EXPLOIT Fortigate VPN - Repeated GET Requests to /remote/logincheck
+        (CVE-2023-27997)"'
+      reference: url,blog.lexfo.fr/xortigate-cve-2023-27997.html
+      rev: '1'
+      sid: '2046254'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 120
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wroot/v3",fast_pattern,nocase'
+      - value: '".do"'
+      - value: '"uuid="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.Agent variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a3a849ef491a40c0fc1cb4c5e4769447da27ca02552a5fd270b9c2b8dbc0ff70/analysis/
+      rev: '3'
+      service: http
+      sid: '42021'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

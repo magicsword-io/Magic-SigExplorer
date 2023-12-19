@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&vs="'
+      - value: '"&ar="'
+      - value: '"&bi="'
+      - value: '"&lv="'
+      - value: '"&os="'
+      - value: '"&av="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Amadey, updated_at 2022_05_03
+      msg: '"ET TROJAN Amadey CnC Check-In"'
+      reference: md5,a83a58cbcd200461b1a80de45e436d9c
+      rev: '3'
+      sid: '2027700'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"TENmanUFactOryPOWER",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET APC SmartSlot default admin account attempt"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '14'
+      service: telnet
+      sid: '2406'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

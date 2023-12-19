@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&affid=",fast_pattern,nocase'
+      - value: '"/api/",nocase'
+      - value: '"?ts=",nocase'
+      - value: '"&token=",nocase'
+      - value: '"&group=",nocase'
+      - value: '"&nid=",nocase'
+      - value: '"&lid=",nocase'
+      - value: '"&ver=",nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"PUA-ADWARE FakeAV runtime detection"'
+      rev: '3'
+      service: http
+      sid: '28324'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

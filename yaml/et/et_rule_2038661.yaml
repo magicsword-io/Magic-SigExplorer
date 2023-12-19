@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|shrtcnl.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_29, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, signature_severity Informational,
+        updated_at 2022_08_29
+      msg: '"ET INFO Observed URL Shortening Service Domain (shrtcnl .com  in TLS
+        SNI)"'
+      rev: '1'
+      sid: '2038661'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

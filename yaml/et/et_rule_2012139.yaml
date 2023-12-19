@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"Host|3a| "'
+      - value: '"Content-Length|3a| "'
+      - value: '".htm HTTP/1.1"'
+      - value: '"|01 02 01 01|"'
+      flow: established,to_server
+      metadata: created_at 2011_01_05, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Storm/Waledac 3.0 Checkin 2"'
+      pcre: '"/Content-Length\x3a [1-9]/"'
+      rev: '6'
+      sid: '2012139'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

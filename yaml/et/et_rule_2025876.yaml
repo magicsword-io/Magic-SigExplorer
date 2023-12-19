@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"class=|22|ie ie6 lte9 lte8 lte7 os-linux|22|>"'
+      - value: '"<title>LinkedIn|26 23|58|3b 20|Log In or Sign Up</title>"'
+      - value: '"action=|22|login.php|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_07_20, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Minor, tag Phish, updated_at 2018_07_20
+      msg: '"ET CURRENT_EVENTS LinkedIn Phishing Landing 2017-07-20"'
+      rev: '2'
+      sid: '2025876'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Script.Encode"'
+      - value: '"<!--"'
+      - value: '"#@~"'
+      flow: established,from_server
+      flowbits: set,SunDown.EK
+      metadata: created_at 2015_05_29, updated_at 2015_05_29
+      msg: '"ET CURRENT_EVENTS suspicious VBE-encoded script (seen in Sundown EK)"'
+      rev: '2'
+      sid: '2021169'
+      special_options:
+      - file_data
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|cctv.mtv|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_27, deployment Perimeter,
+        former_category USER_AGENTS, signature_severity Informational, updated_at
+        2020_07_27
+      msg: '"ET USER_AGENTS Observed Suspicious UA (cctv.mtv)"'
+      reference: md5,deffb804976c0531144d999ded0df8b9
+      rev: '2'
+      sid: '2030598'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|20|wcmbqxzeuopnvyfmhkstaretfciywdrl|04|name|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_27
+      msg: '"ET TROJAN HCRootkit CnC Domain in DNS Lookup (wcmbqxzeuopnvyfmhkstaretfciywdrl
+        .name)"'
+      reference: url,www.lacework.com/blog/hcrootkit-sutersu-linux-rootkit-analysis/
+      rev: '2'
+      sid: '2033824'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '39'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

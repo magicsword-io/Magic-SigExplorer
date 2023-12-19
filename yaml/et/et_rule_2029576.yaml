@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"//?m="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_03_05, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_04_22
+      msg: '"ET TROJAN Kimsuky Related Host Data Exfil"'
+      pcre: '"/&p1=[a-z0-9]{12,14}(?:&p2=(?:[a-z0-9]([\._-])?){1,24}(?:_DROPPER)?)$/Ii"'
+      reference: url,blog.yoroi.company/research/the-north-korean-kimsuky-apt-keeps-threatening-south-korea-evolving-its-ttps/
+      rev: '3'
+      sid: '2029576'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

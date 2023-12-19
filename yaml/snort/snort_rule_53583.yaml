@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"0200000002CE020000000000C000000000000046",fast_pattern,nocase'
+      - value: '"6269747361646d696e",nocase'
+      flow: to_client,established
+      flowbits: isset,file.doc|file.rtf
+      metadata: impact_flag red,ruleset community
+      msg: '"INDICATOR-COMPROMISE RTF document with Equation and BITSAdmin download
+        attempt"'
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '53583'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

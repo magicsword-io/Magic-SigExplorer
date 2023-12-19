@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sys.dbms_repcat_auth.grant_surrogate_repcat",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sys.dbms_repcat_auth.grant_surrogate_repcat buffer overflow
+        attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*userid[\r\n\s]*=>[\r\n\s]*\2|userid\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/is"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck97.html
+      rev: '5'
+      sid: '2615'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

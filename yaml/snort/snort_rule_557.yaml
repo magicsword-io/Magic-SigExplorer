@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GNUTELLA OK",depth 40'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PUA-P2P GNUTella client request"'
+      rev: '11'
+      sid: '557'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

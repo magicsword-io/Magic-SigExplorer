@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"!*.paypal.com"'
+      - value: '"<title></title>"'
+      - value: '"<meta name=|22|application-name|22 20|content=|22|PayPal"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_24, deployment Perimeter, tag Phishing,
+        updated_at 2020_11_17
+      msg: '"ET CURRENT_EVENTS Paypal Phishing Landing Feb 24 2017"'
+      rev: '2'
+      sid: '2024019'
+      special_options:
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

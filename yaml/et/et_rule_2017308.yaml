@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Disposition|3A| form-data|3B| name=|22|cmd|22|"'
+      - value: '"Content-Disposition|3A| form-data|3B| name=|22|botid|22|"'
+      - value: '"Content-Disposition|3A| form-data|3B| name=|22|lid|22|"'
+      fast_pattern: 24,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_08_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2020_04_27, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN W32/DirCrypt.Ransomware CnC Checkin"'
+      reference: url,anubis.iseclab.org/?action=result&task_id=19e3b6cbfdf8d6bd429ecc75ed016fb91
+      rev: '5'
+      sid: '2017308'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

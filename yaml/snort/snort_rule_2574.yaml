@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"RETR",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP RETR format string attempt"'
+      pcre: '"/^RETR\s[^\n]*?%[^\n]*?%/ims"'
+      reference: cve,2004-1883
+      rev: '9'
+      service: ftp
+      sid: '2574'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

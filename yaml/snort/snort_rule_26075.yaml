@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"a=select CAMPO from PAGINA where CODIGO = ",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Bancos variant outbound connection SQL query POST data"'
+      reference: url,www.virustotal.com/en/file/88efcb549a52e3fb6359a3888e72726aac00c730edcd5280e0248d11306a645d/analysis/
+      rev: '3'
+      service: http
+      sid: '26075'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

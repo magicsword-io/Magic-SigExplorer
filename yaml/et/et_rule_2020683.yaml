@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0|0d 0a|"'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: created_at 2015_03_12, updated_at 2022_05_03
+      msg: '"ET TROJAN Gamarue/Andromeda Downloading Payload"'
+      pcre: '"/^\/[a-z]+\/[a-z]+\.exe$/U"'
+      reference: md5,85d925a76909f29c3f370f35faedb9ea
+      rev: '1'
+      sid: '2020683'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

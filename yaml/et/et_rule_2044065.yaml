@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|00 00 00 11 98 01 00 00 00 1e 22 00|"'
+      dsize: '16'
+      flow: established,to_server
+      metadata: created_at 2023_02_02, former_category MALWARE, updated_at 2023_02_02
+      msg: '"ET TROJAN Kakfum/COLDSTEEL CnC Beacon M3"'
+      reference: md5,14c04f88dc97aef3e9b516ef208a2bf5
+      rev: '1'
+      sid: '2044065'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

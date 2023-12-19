@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"function popupwnd(url,"'
+      - value: '"var popupwindow = this.open(url,"'
+      - value: '"href=|22|javascript:popupwnd("'
+      - value: '"href=|22|javascript:popupwnd("'
+      - value: '"href=|22|javascript:popupwnd("'
+      - value: '!".jpg'',no'',''no'',no''"'
+      - value: '!".pdf'',no'',''no'',no''"'
+      - value: '!".SlideMenu1_Folder div"'
+      - value: '!"PhotoGallery"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_08_30, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_12_02
+      msg: '"ET CURRENT_EVENTS Generic Multi-Email Phishing Landing 2018-08-30"'
+      rev: '6'
+      sid: '2026047'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

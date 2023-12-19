@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '".class",fast_pattern,nocase'
+      - value: '"|0D 0A|User-Agent: Java/",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Java User-Agent remote class download attempt"'
+      reference: cve,2021-45105
+      rev: '3'
+      service: http
+      sid: '58814'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

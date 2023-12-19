@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,443]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|9A 02 00 00|",depth 4,fast_pattern'
+      flow: to_server,established
+      isdataat: '!5'
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Reventon variant outbound connection"'
+      reference: url,www.virustotal.com/file/25c690dac0d17f9ba304e5e68c1da2381685b1aa0aa3cd503589bbc59daf81eb/analysis/
+      rev: '6'
+      service: http
+      sid: '25627'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

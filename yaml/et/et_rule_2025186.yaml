@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"{|22|id|22 3A|"'
+      - value: '"|22|method|22 3a 20 22|mining.authorize|22 2c|"'
+      - value: '"|22|params|22|"'
+      - value: '"|5b 22|4AQe5sAFWZKECiaeNTt59LG7kVtqRoSRJMjrmQ6GiMFAeUvoL3MFeTE6zwwHkFPrAyNw2JHDxUSWL82RiZThPpk4SEg7Vqe|22
+          2c 20 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2018_01_04, cve CVE_2017_10271,
+        deployment Perimeter, deployment Datacenter, former_category COINMINER, malware_family
+        CoinMiner, signature_severity Major, tag Coinminer, updated_at 2018_01_04,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1496,
+        mitre_technique_name Resource_Hijacking
+      msg: '"ET CURRENT_EVENTS CoinMiner Malicious Authline Seen After CVE-2017-10271
+        Exploit"'
+      reference: url,otx.alienvault.com/pulse/5a4e1c4993199b299f90a212
+      rev: '1'
+      sid: '2025186'
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

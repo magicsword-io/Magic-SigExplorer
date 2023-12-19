@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|GB"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|HS"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|10|Jifieo Eetcgeqes"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|15|Wijoi Ang Gkmvew Inc."'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0e|ucooezonym.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_10_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_10_11
+      msg: '"ET TROJAN Observed Malicious SSL/TLS Certificate (QakBot)"'
+      reference: url,github.com/pan-unit42/tweets/blob/master/2022-10-10-IOCs-for-Cobalt-Strike-from-Qakbot-infection.txt
+      rev: '1'
+      sid: '2039159'
+      special_options:
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

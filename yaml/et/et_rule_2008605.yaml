@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '25'
+        offset: '100'
+        value: '"Session Stomper"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN Stompy Web Application Session Scan"'
+      reference: url,doc.emergingthreats.net/2008605
+      rev: '4'
+      sid: '2008605'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

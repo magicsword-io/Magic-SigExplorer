@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '5'
+        value: '"|0f 0d 1c 68 67|"'
+      - value: '"|68 00 1c 1c 18 67|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_08_09, deployment
+        Perimeter, performance_impact Low, signature_severity Informational, updated_at
+        2022_08_10
+      msg: '"ET INFO HTTP GET Request XOR Key 48"'
+      rev: '2'
+      sid: '2038036'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

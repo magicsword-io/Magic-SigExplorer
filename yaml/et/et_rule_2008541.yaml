@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?wmid="'
+      - value: '"&l="'
+      - value: '"&it="'
+      - value: '"&s="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Bravix Checkin"'
+      reference: url,doc.emergingthreats.net/2008541
+      rev: '5'
+      sid: '2008541'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

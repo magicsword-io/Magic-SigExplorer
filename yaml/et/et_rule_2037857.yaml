@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|aadcdn-msauth-"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_29, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2023_04_04
+      msg: '"ET CURRENT_EVENTS [TW] EvilProxy AiTM Microsoft HTTP HOST M7"'
+      pcre: '"/Host/x3a/x20aadcdn-msauth-[^/r/n]+[a-f0-9]{8}./H"'
+      rev: '2'
+      sid: '2037857'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 30, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

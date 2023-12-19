@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '35'
+        value: '"/resolve?name=gw.denonia.xyz&type=A"'
+      - depth: '30'
+        value: '"User-Agent|3a 20|GoKit XHTTP Client"'
+      - value: '"Host|3a 20|dns.google.com"'
+      - value: '"Accept|3a 20|application/dns-json"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"X-Http-Gokit-Requestid|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2022_04_11, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        signature_severity Major, updated_at 2022_04_11
+      msg: '"ET TROJAN Linux/Denonia DNS Request Over HTTPS (denonia .xyz) M1"'
+      reference: url,cadosecurity.com/cado-discovers-denonia-the-first-malware-specifically-targeting-lambda
+      rev: '2'
+      sid: '2035891'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

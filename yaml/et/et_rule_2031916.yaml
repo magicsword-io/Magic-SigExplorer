@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?info=MzE4TZT-"'
+      - value: '"upgrade-insecure-requests|3a 20|1|0d 0a|"'
+      - value: '"Accept-Language|3a 20|ko-KR,ko|3b|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_14, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2019_11_14
+      msg: '"ET TROJAN Win32/CopperStealer CnC Activity"'
+      reference: md5,12e9b4bbe894ab0bf357182a11d4c535
+      rev: '2'
+      sid: '2031916'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>175'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

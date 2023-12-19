@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|19|S7-1200 Controller Family"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Siemens_S7_Series, attack_target ICS, created_at
+        2023_10_19, deployment Perimeter, deployment Internal, former_category SCADA,
+        performance_impact Low, confidence High, signature_severity Minor, updated_at
+        2023_10_19, reviewed_at 2023_10_19
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Siemens S7-1200 Default Cert Subject Common
+        Name"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048687'
+      special_options:
+      - fast_pattern
+      within: '26'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '443'

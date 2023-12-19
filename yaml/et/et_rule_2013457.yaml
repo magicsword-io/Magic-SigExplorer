@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"BitCoin"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_08_24,
+        deployment Perimeter, deployment Datacenter, former_category POLICY, signature_severity
+        Informational, tag Bitcoin_Miner, updated_at 2020_09_18
+      msg: '"ET POLICY BitCoin User-Agent Likely Bitcoin Miner"'
+      pcre: '"/User-Agent\x3A[^\r\n]*BitCoin/Hi"'
+      reference: url,isc.sans.edu/diary.html?storyid=11059
+      rev: '2'
+      sid: '2013457'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

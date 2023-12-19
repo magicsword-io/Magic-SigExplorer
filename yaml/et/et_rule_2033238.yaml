@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3e c7 e3 1e 37 47 61 20|"'
+      dsize: '8'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2021_07_05,
+        deployment Perimeter, former_category MALWARE, signature_severity Major, updated_at
+        2021_07_05
+      msg: '"ET TROJAN Mirai pTea Variant - Initial CnC Checkin Inbound"'
+      reference: url,blog.netlab.360.com/mirai_ptea-botnet-is-exploiting-undisclosed-kguard-dvr-vulnerability/
+      rev: '1'
+      sid: '2033238'
+    protocol: tcp
+    source:
+      network: any
+      port: any

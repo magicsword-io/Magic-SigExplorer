@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|"'
+      - value: '"|2E|xxx|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2011_04_20, updated_at 2020_09_15
+      msg: '"ET POLICY request to .xxx TLD"'
+      reference: url,en.wikipedia.org/wiki/.xxx
+      rev: '4'
+      sid: '2012694'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+      within: '100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

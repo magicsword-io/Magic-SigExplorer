@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0a|gojihu.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_10, deployment Perimeter,
+        malware_family Cobalt_Strike, performance_impact Low, signature_severity Major,
+        updated_at 2021_08_10
+      msg: '"ET TROJAN Observed Cobalt Strike CnC Domain (gojihu .com in TLS SNI)"'
+      reference: url,github.com/pan-unit42/tweets/blob/master/2021-08-09-BazarLoader-and-Cobalt-Strike-IOCs.txt
+      rev: '2'
+      sid: '2033700'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

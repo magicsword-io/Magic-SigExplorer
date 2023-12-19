@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/QualityCheck/ni6.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Zusy variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/5dea4247e021eeeb1347ff269a357dee77e8ac1837383b0ef37fb123339639a1/analysis/
+      rev: '2'
+      service: http
+      sid: '44652'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

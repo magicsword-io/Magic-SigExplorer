@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[$HTTP_PORTS,1337,5156]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/uploads/excutbls/h/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.SocketPlayer outbound connection"'
+      reference: url,www.virustotal.com/en/file/de38e74b2cd493d0f014fc6ca5d2834cea213778c2e056a7c84e9547fe275889/analysis/
+      rev: '2'
+      service: http
+      sid: '47006'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

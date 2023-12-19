@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"func="'
+      - value: '"photo"'
+      - value: '"ajaxUploadAvatar"'
+      - value: '"CStringHelper"'
+      - value: '"escape"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_02_11, updated_at 2019_10_08
+      msg: '"ET WEB_SPECIFIC_APPS JoomSocial AvatarUpload RCE"'
+      reference: url,blog.sucuri.net/2014/02/joomla-jomsocial-remote-code-execution-vulnerability.html
+      rev: '8'
+      sid: '2018107'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

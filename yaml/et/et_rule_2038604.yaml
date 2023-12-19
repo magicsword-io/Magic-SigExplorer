@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: successful-user
+      contents:
+      - value: '"POST"'
+      - value: '"User name|20 20 20|"'
+      - value: '"|0d 0a|Full Name|20 20 20|"'
+      - value: '"|0d 0a|Account active|20 20 20|"'
+      - value: '"|0d 0a 0d 0a|Password last set|20 20 20|"'
+      - value: '"|0d 0a|User may change password|20 20 20|"'
+      - value: '"|0d 0a 0d 0a|Workstations allowed|20 20 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_24, deployment Perimeter,
+        former_category ATTACK_RESPONSE, performance_impact Low, signature_severity
+        Major, updated_at 2022_08_24
+      msg: '"ET ATTACK_RESPONSE net user Command Output via HTTP POST"'
+      reference: md5,91dc943c9e8fd0d4de54228823f9f26b
+      rev: '1'
+      sid: '2038604'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

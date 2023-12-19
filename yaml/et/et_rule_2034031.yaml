@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '3'
+        value: '"/t/"'
+      - value: '".php?"'
+      - value: '"Host|3a 20|r.significantbyte.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_09_27
+      msg: '"ET TROJAN Maldoc Sending Windows System Information (POST)"'
+      reference: url,twitter.com/h2jazi/status/1440418522950107140
+      rev: '1'
+      sid: '2034031'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

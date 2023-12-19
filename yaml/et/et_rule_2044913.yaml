@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2e|fromCharCode|28|118|2c|97|2c|114|2c|32|2c|"'
+      - value: '"|2c|46|2c|99|2c|114|2c|101|2c|97|2c|116|2c|101|2c|69|2c|108|2c|101|2c|109|2c|101|2c|110|2c|116|2c|40|2c|39|2c|115|2c|99|2c|114|2c|105|2c|112|2c|116|2c|39|2c|41|2c|59|2c|32|2c|"'
+      - value: '"|2c|46|2c|115|2c|114|2c|99|2c|61|2c|"'
+      - value: '"|2c|46|2c|103|2c|101|2c|116|2c|69|2c|108|2c|101|2c|109|2c|101|2c|110|2c|116|2c|115|2c|66|2c|121|2c|84|2c|97|2c|103|2c|78|2c|97|2c|109|2c|101|2c|40|2c|39|2c|104|2c|101|2c|97|2c|100|2c|39|2c|41|2c|91|2c|48|2c|93|2c|46|2c|97|2c|112|2c|112|2c|101|2c|110|2c|100|2c|67|2c|104|2c|105|2c|108|2c|100|2c|40|2c|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_07, deployment Perimeter,
+        former_category MALWARE, malware_family BALADA, performance_impact Low, confidence
+        Medium, signature_severity Minor, updated_at 2023_04_07
+      msg: '"ET MALWARE Balada Injector Script"'
+      reference: url,blog.sucuri.net/2023/04/balada-injector-synopsis-of-a-massive-ongoing-wordpress-malware-campaign.html
+      rev: '2'
+      sid: '2044913'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

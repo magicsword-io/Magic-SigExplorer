@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|14|"'
+      - value: '"|01|i|05|zhack|02|ca|00|"'
+      distance: '20'
+      metadata: attack_target Client_Endpoint, created_at 2019_09_27, deployment Perimeter,
+        former_category TROJAN, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_10
+      msg: '"ET TROJAN DNSBin Demo - Data Inbound"'
+      reference: url,github.com/ettic-team/dnsbin
+      rev: '2'
+      sid: '2028635'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 180, count 1
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

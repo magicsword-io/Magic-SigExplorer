@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"USER",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER FTP anonymous login attempt"'
+      pcre: '"/^USER\s+(anonymous|ftp)[^\w]*[\r\n]/ims"'
+      rev: '13'
+      service: ftp
+      sid: '553'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

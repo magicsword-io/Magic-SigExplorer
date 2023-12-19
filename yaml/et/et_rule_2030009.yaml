@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[25,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"J1Ls9RWH"'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2020_04_23, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, updated_at 2020_04_23
+      msg: '"ET CURRENT_EVENTS Possible iOS MobileMail OOB Write/Heap Overflow Exploit
+        Email (Inbound)"'
+      pcre: '"/(?:\x0a|\\n)\/s1Caa6/"'
+      reference: url,blog.zecops.com/vulnerabilities/unassisted-ios-attacks-via-mobilemail-maild-in-the-wild/
+      rev: '2'
+      sid: '2030009'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/dl.php?"'
+      - value: '"ps="'
+      - value: '"DELETE"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS SmE FileMailer SQL Injection Attempt -- dl.php ps
+        DELETE"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2005563
+      rev: '6'
+      sid: '2005563'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

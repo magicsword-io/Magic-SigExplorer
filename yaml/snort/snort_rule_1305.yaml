@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/txt2html.cgi",fast_pattern,nocase'
+      - value: '"/../../../../"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP txt2html.cgi directory traversal attempt"'
+      rev: '15'
+      service: http
+      sid: '1305'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a| Mozilla/0"'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: created_at 2013_04_02, updated_at 2020_04_23
+      msg: '"ET INFO SUSPICIOUS UA starting with Mozilla/0"'
+      rev: '1'
+      sid: '2016695'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

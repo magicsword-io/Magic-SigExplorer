@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,139,445,593,1024:]'
+    details:
+      byte_test: 4,>,256,52,dce
+      classtype: attempted-admin
+      dce_iface: uuid 4d9f4ab8-7d1c-11cf-861e-0020af6e7c57
+      dce_opnum: '"0"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC NCACN-IP-TCP IActivation remoteactivation overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-039
+      rev: '18'
+      service: dcerpc,netbios-ssn
+      sid: '3409'
+      special_options:
+      - dce_stub_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

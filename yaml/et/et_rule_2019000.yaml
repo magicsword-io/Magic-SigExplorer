@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Windows IP Configuration|0d|"'
+      - value: '"Ethernet adapter Local Area Connection|3a|"'
+      - value: '"Physical Address"'
+      - value: '"IP Address"'
+      - value: '"Subnet Mask"'
+      - value: '"Default Gateway"'
+      distance: '0'
+      fast_pattern: 8,16
+      flow: established,to_server
+      metadata: created_at 2014_08_26, updated_at 2022_03_17
+      msg: '"ET TROJAN Windows ipconfig Microsoft Windows DOS prompt command exit
+        OUTBOUND"'
+      reference: md5,a22af4fc7fe011069704a15296634ca6
+      rev: '1'
+      sid: '2019000'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

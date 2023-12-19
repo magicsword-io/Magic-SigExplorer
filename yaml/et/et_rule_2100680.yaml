@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - offset: '83'
+        value: '"Login failed for user ''sa''"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_1209, updated_at 2010_09_23
+      msg: '"GPL SQL sa login failed"'
+      reference: cve,2000-1209
+      rev: '10'
+      sid: '2100680'
+    protocol: tcp
+    source:
+      network: $SQL_SERVERS
+      port: '139'

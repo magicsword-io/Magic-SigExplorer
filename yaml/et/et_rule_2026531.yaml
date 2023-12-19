@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<script"'
+      - value: '"CreateElement"'
+      - value: '"cssText"'
+      - value: '"DOMAttrModified"'
+      - value: '"addEventListener"'
+      flow: to_client,established
+      metadata: affected_product Internet_Explorer, attack_target Client_Endpoint,
+        created_at 2018_10_23, cve CVE_2018_8460, deployment Perimeter, former_category
+        WEB_CLIENT, updated_at 2018_10_23
+      msg: '"ET WEB_CLIENT IE Double Free (CVE-2018-8460)"'
+      pcre: '"/(?P<obj>[^\s]{1,25})\s*=\s*document\s*\.\s*createElement.*?(?P<func>[^\s]{1,25})\s*=\s*function\s*\x28\s*e\s*\x29\s*{[^}]*this\s*\.\s*style\s*\.\s*cssText.*?(?P=obj)\s*\.\s*addEventListener\s*\x28\s*[\x22\x27]\s*DOMAttrModified\s*[\x22\x27]\s*\x2c\s*(?P=func)/si"'
+      reference: cve,2018-8460
+      rev: '2'
+      sid: '2026531'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

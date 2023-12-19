@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '8000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|af 7d a7 38 eb f9 f7 47|"'
+      - value: '"|00|"'
+      - value: '"|10 00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_15, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2019_08_19
+      msg: '"ET TROJAN Win32/Dostre CnC Activity"'
+      reference: url,www.fortinet.com/blog/threat-research/chinese-targeted-trojan-analysis.html
+      rev: '3'
+      sid: '2027892'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 60
+      within: '2'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

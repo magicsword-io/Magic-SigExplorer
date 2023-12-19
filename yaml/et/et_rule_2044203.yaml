@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|blogs|0b|tourseasons|03|xyz|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_14, deployment Perimeter, malware_family
+        Donot, performance_impact Low, signature_severity Major, updated_at 2023_02_14
+      msg: '"ET TROJAN Donot APT Related Domain in DNS Lookup (blogs .tourseasons
+        .xyz)"'
+      reference: url,mp.weixin.qq.com/s/rslBGQgTL_jZD73AJqI05Q
+      rev: '1'
+      sid: '2044203'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

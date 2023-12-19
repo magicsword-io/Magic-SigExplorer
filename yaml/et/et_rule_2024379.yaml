@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"X-Requested-With|3a 20|ShockwaveFlash/"'
+      - value: '!"32.0.0.453|0d 0a|"'
+      - value: '!"32.0.0.445|0d 0a|"'
+      fast_pattern: 18,15
+      flow: established,to_server
+      metadata: affected_product Adobe_Flash, created_at 2017_06_13, former_category
+        POLICY, performance_impact Low, signature_severity Informational, updated_at
+        2020_12_07
+      msg: '"ET POLICY Outdated Flash Version M2"'
+      reference: url,www.adobe.com/software/flash/about/
+      rev: '35'
+      sid: '2024379'
+      special_options:
+      - http_header
+      threshold: type limit, count 1, seconds 60, track by_src
+      within: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|bootstrap2|03|xyz|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_12_20, deployment Perimeter,
+        former_category MALWARE, malware_family MageCart, signature_severity Major,
+        updated_at 2021_12_20
+      msg: '"ET TROJAN MageCart Skimmer Domain in DNS Lookup (bootstrap2 .xyz)"'
+      reference: url,twitter.com/MBThreatIntel/status/1472995976507916290
+      rev: '2'
+      sid: '2034779'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

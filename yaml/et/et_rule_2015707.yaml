@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"document.createElement"'
+      - value: '"applet"'
+      flow: established,to_client
+      metadata: created_at 2012_09_18, updated_at 2012_09_18
+      msg: '"ET INFO JAVA - document.createElement applet"'
+      rev: '1'
+      sid: '2015707'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

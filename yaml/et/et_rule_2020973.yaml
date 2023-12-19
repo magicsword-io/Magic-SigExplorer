@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: misc-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      - value: '"|43 6F 6D 70 72 65 73 73 65 64 20 62 79 20 50 65 74 69 74 65 20 28
+          63 29 31 39 39 39 20 49 61 6E 20 4C 75 63 6B 2E 00 00|"'
+      distance: '-44'
+      flow: established,to_client
+      flowbits: isnotset,ET.http.binary
+      metadata: created_at 2015_04_22, deployment Perimeter, former_category POLICY,
+        performance_impact Low, confidence Medium, signature_severity Informational,
+        updated_at 2023_05_08
+      msg: '"ET POLICY Petite Packed Binary Download"'
+      reference: url,un4seen.com/petite/
+      rev: '7'
+      sid: '2020973'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

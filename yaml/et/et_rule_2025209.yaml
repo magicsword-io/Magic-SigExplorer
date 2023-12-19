@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0b|"'
+      - value: '"|04 70 fe e3 2f|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|07|khgvjbk"'
+      distance: '1'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_18, deployment Perimeter, former_category
+        TROJAN, malware_family Adwind, malware_family Qarallex, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN [PTsecurity] Adwind SSL Certificate Observed"'
+      reference: md5,f2bf38a25919e24f0c96d9ec30e4e8d4
+      rev: '2'
+      sid: '2025209'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

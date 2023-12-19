@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2f 09 dd e0 ff 81 b7 6c bf 2f 17 92 0c d8 bd 57|"'
+      - value: '"|55 04 03|"'
+      - value: '"|05|EMAIL"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2013_02_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_21
+      msg: '"ET TROJAN EMAIL SSL Cert APT1"'
+      reference: url,www.mandiant.com/apt1
+      rev: '4'
+      sid: '2016464'
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/webhooks/aws"'
+      - value: '"|22|SubscribeURL|22 20 3a 20 22 7c|"'
+      - value: '"|22|Signature|22 3a|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_10_25, cve CVE_2021_41163, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_10_25
+      msg: '"ET EXPLOIT Discourse SNS Webhook RCE Inbound (CVE-2021-41163)"'
+      reference: cve,2021-41163
+      rev: '1'
+      sid: '2034252'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

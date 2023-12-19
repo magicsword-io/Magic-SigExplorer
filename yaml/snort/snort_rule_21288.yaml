@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Content-Type|3A|",nocase'
+      - value: '"text/xml",within 20,fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,policy security-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XML download detected"'
+      rev: '14'
+      service: http
+      sid: '21288'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

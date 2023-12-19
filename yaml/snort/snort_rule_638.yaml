@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|03 E0 F8|%|03 E0 F8|%|03 E0 F8|%|03 E0 F8|%",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE SGI NOOP"'
+      rev: '11'
+      sid: '638'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title> Enter your Self Assessment Unique Taxpayer Reference|20 2d
+          20|Self|2d|Employment Income Support Scheme|20 2d 20|GOV.UK</title>"'
+      - value: '"width=device-width"'
+      - value: '"initial-scale=1"'
+      - value: '"viewport-fit=cover|22 3e|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_06_01,
+        deployment Perimeter, former_category PHISHING, signature_severity Major,
+        updated_at 2021_06_01
+      msg: '"ET CURRENT_EVENTS Observed UK Gov Support Landing 2021-06-01"'
+      reference: url,app.any.run/tasks/b1fe8d30-2f22-4f84-bcc8-2643562a8765/
+      rev: '2'
+      sid: '2033062'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

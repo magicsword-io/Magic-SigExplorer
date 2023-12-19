@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"|22|id|22 3a|"'
+      - value: '"|22|jsonrpc|22 3a|"'
+      - value: '"|22|method|22 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_10_20, former_category POLICY, updated_at 2015_10_20
+      msg: '"ET POLICY Possible ethereum traffic"'
+      pcre: '"/^[^/s]*(?:eth_(?:g(?:et(?:B(?:lock(?:TransactionCountBy(?:Number|Hash)|By(?:Number|Hash))|alance)|Transaction(?:By(?:Block(?:Number|Hash)AndIndex|Hash)|(?:Receip|Coun)t)|Uncle(?:ByBlock(?:Number|Hash)AndIndex|CountByBlock(?:Number|Hash))|(?:Filter(?:Change|Log)|Log)s|Co(?:mpilers|de)|StorageAt|Work)|asPrice)|(?:(?:new(?:PendingTransaction|Block)?|uninstall)Filt|blockNumb)er|s(?:(?:end(?:Raw)?Transactio|ig)n|ubmit(?:Hashrate|Work)|yncing)|c(?:o(?:mpile(?:S(?:olidity|erpent)|LLL)|inbase)|all)|(?:estimateGa|account)s|protocolVersion|hashrate|mining)|shh_(?:new(?:Identity|Filter|Group)|get(?:FilterChan|Messa)ges|uninstallFilter|hasIdentity|addToGroup|version|post)|db_(?:get(?:String|Hex)|put(?:String|Hex))|net_(?:listening|peerCount|version)|web3_(?:clientVersion|sha3))/R"'
+      reference: url,github.com/ethereum/wiki/wiki/JSON-RPC
+      rev: '1'
+      sid: '2021983'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

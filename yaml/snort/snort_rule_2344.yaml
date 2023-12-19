@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"XCWD",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP XCWD overflow attempt"'
+      pcre: '"/^XCWD(?!\n)\s[^\n]{100}/ims"'
+      reference: cve,2004-2728
+      rev: '12'
+      service: ftp
+      sid: '2344'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

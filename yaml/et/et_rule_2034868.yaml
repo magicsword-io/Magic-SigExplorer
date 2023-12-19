@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"v1.5472"'
+      - value: '"Cache-Control|3a 20|no-cache"'
+      - value: '"Content-Type|3a 20|text/html|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_07, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_12_07, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN NOBELIUM - Cobalt Strike Malleable Profile M1"'
+      pcre: '"/v1\.5472$/U"'
+      reference: url,www.sekoia.io/en/nobeliums-envyscout-infection-chain-goes-in-the-registry-targeting-embassies
+      rev: '2'
+      sid: '2034868'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '>150'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

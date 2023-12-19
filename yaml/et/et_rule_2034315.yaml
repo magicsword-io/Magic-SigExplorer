@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|GRequests/0.10|0d 0a|"'
+      - value: '"|5c 5c 2f|arch|2e|zip|22 0d 0a|Content-Type|3a 20|application/octet-stream|0d
+          0a 0d 0a|PK|03 04|"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_01, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_11_01
+      msg: '"ET TROJAN Go/PSW.Agent_AGen.A Data Exfil"'
+      pcre: '"/^Content-Type\x3a\x20multipart/form-data|3b 20|boundary=[^-]+[\r\n]+"/Hm"'
+      reference: md5,662002d61f1aebd64fc204ce40fd65f2
+      rev: '2'
+      sid: '2034315'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

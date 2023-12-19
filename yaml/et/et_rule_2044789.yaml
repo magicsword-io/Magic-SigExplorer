@@ -1,0 +1,50 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/uploadLog"'
+      - value: '"User-Agent|3a 20|python-requests/"'
+      - value: '"name|3d 22|build_id|22|"'
+      - value: '"name|3d 22|buildname|22|"'
+      - value: '"name|3d 22|name|22|"'
+      - value: '"name|3d 22|wallets|22|"'
+      - value: '"name|3d 22|os|22|"'
+      - value: '"name|3d 22|os_version|22|"'
+      - value: '"name|3d 22|file|22 3b 20|filename|3d 22|"'
+      - value: '".zip|22|"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      - value: '"general_info.txt"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_03_27, deployment Perimeter, former_category MALWARE, malware_family
+        MacStealer, performance_impact Low, confidence High, signature_severity Major,
+        tag MacStealer, updated_at 2023_03_27
+      msg: '"ET TROJAN MacOS/MacStealer Data Exfiltration Attempt"'
+      reference: url,www.uptycs.com/blog/macstealer-command-and-control-c2-malware
+      rev: '1'
+      sid: '2044789'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

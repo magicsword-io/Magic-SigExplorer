@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"9.9.9.9 "'
+      flow: established,from_server
+      metadata: created_at 2014_09_09, updated_at 2014_09_09
+      msg: '"ET TROJAN Win32/Frosparf.B Downloading Hosts File"'
+      pcre: '"/^(?:[a-zA-Z0-9\x2d\x5f]{1,63}\.)+?[a-zA-Z0-9\x2d\x5f]{1,63}[\r\n]*?9\.9\.9\.9\s+?(?:[a-zA-Z0-9\_\-]{1,63}\.)+?[a-zA-Z0-9\x2d\x5f]{1,63}[\r\n]/R"'
+      reference: md5,4ad55877464aa92e49231d913d00eb69
+      rev: '2'
+      sid: '2019142'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

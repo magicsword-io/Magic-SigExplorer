@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".bin?ver="'
+      - value: '"&lip="'
+      - value: '"&mac="'
+      - value: '"User-Agent|3a 20|Mozilla|2f|4|2e|0|20 28|compatible|3b 20|MSIE|20|6|2e|0|3b
+          20|Windows|20|NT|20|5|2e|1|3b 20|SV1|3b 20 2e|NET|20|CLR|20|2|2e|0|2e|50727|3b
+          29 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_20, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag c2, updated_at 2022_04_20, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol
+      msg: '"ET TROJAN Win32/TrojanDownloader.Agent.RFS Variant Checkin"'
+      reference: md5,014d2e1a31ce397e7a5e3ba8edc45344
+      rev: '2'
+      sid: '2036276'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

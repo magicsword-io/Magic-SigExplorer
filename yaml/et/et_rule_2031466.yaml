@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"rawcdn.githack.com|0d 0a|"'
+      - value: '".jpg"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_30, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT_KIT, signature_severity Major, tag Exploit_Kit, updated_at
+        2020_12_30
+      msg: '"ET CURRENT_EVENTS Possible PurpleFox EK Framework URI Struct Jpg Request"'
+      pcre: '"/^\/(?!(?:[a-z]{16}|[0-9]{16}))[a-zA-Z0-9]{16}\/[a-zA-Z0-9]{16}\/[a-f0-9]{40}\/[a-zA-Z0-9]+\.jpg$/U"'
+      rev: '2'
+      sid: '2031466'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_uri
+      urilen: '>60'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

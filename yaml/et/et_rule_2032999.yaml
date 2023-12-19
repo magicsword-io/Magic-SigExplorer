@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"discord.com"'
+      - value: '"**Account Info**"'
+      - value: '"**Token**"'
+      - value: '"NightfallGT"'
+      - depth: '19'
+        value: '"POST /api/webhooks/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_19, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_05_19
+      msg: '"ET TROJAN NightfallGT Discord Token Grabber"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+discord\.com/Hmi"'
+      reference: url,github.com/NightfallGT/Token-Grabber-Builder/
+      rev: '1'
+      sid: '2032999'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

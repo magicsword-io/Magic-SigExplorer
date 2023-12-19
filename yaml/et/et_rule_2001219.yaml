@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: attempted-recon
+      flags: S,12
+      metadata: created_at 2010_07_30, updated_at 2023_10_10
+      msg: '"ET SCAN Potential SSH Scan"'
+      reference: url,doc.emergingthreats.net/2001219
+      rev: '19'
+      sid: '2001219'
+      threshold: type both, track by_src, count 5, seconds 120
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

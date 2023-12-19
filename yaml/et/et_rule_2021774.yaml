@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 8,114,relative,multiplier 2,little,string,hex
+      classtype: trojan-activity
+      contents:
+      - value: '"4D5A"'
+      - value: '"50450000"'
+      distance: '-126'
+      flow: established,from_server
+      metadata: created_at 2015_09_15, updated_at 2015_09_15
+      msg: '"ET TROJAN PE EXE or DLL Windows file download Text"'
+      rev: '1'
+      sid: '2021774'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

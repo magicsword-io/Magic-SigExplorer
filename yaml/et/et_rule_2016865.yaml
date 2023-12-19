@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| EMSFRTCBVD"'
+      fast_pattern: 12,10
+      flow: established,to_server
+      metadata: created_at 2013_05_21, updated_at 2020_04_24
+      msg: '"ET TROJAN TrojanSpy.KeyLogger.acqh User-Agent(EMSFRTCBVD)"'
+      reference: url,enterprise.norman.com/resources/files/unveiling_an_indian_cyberattack_infrastructure_appendixes.pdf
+      rev: '1'
+      sid: '2016865'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

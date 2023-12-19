@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|tinyurl|03|ink|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_10_31, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_10_31,
+        former_sid 2852738
+      msg: '"ET TROJAN TA453 Related Domain in DNS Lookup (tinyurl .ink)"'
+      rev: '1'
+      sid: '2041126'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

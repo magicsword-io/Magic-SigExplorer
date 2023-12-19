@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"icp="'
+      - value: '"&id_site="'
+      - value: '"&dl_tracker"'
+      - value: '"&connection_type="'
+      - value: '"&asked_mdl_id="'
+      - value: '"&dialer="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32 Dialer Variant"'
+      reference: url,doc.emergingthreats.net/2008441
+      rev: '7'
+      sid: '2008441'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

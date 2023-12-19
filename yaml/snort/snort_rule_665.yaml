@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"MAIL FROM|3A| |7C|/usr/ucb/tail",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail 5.6.5 exploit"'
+      reference: cve,1999-0203
+      rev: '17'
+      service: smtp
+      sid: '665'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

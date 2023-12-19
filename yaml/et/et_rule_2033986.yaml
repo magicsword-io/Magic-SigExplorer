@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|olmajhnservice|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_09_20, deployment Perimeter,
+        signature_severity Major, updated_at 2021_09_20
+      msg: '"ET TROJAN APT/Bitter Related CnC Domain in DNS Lookup"'
+      reference: url,twitter.com/ShadowChasing1/status/1439929215919411206
+      rev: '2'
+      sid: '2033986'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

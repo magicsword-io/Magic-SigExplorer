@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '".php?"'
+      - value: '"cmd="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, cve CVE_2002_0953, updated_at 2020_05_19
+      msg: '"ET WEB_SERVER Exploit Suspected PHP Injection Attack (cmd=)"'
+      pcre: '"/[&?]cmd=[^\x26\x28]*(?:cd|\'
+      reference: url,doc.emergingthreats.net/2010920
+      rev: '9'
+      sid: '2010920'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - nocase
+      - '|echo|cat|perl|curl|wget|id|uname|t?ftp)/Ui"'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

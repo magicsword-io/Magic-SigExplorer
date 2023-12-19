@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '1'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".org|0D 0A|Content-Length|3A| 128|0D 0A|Cache-Control|3A| no-cache|0D
+          0A 0D 0A|",fast_pattern,nocase'
+      - value: '!"User-Agent|3A|"'
+      - value: '!"Accept|3A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Ramdo variant outbound connection"'
+      pcre: '"/^Host\x3a\s[a-z]{16}\.org\x0d/m"'
+      reference: url,blogs.technet.com/b/mmpc/archive/2014/04/08/msrt-april-2014-ramdo.aspx
+      rev: '3'
+      service: http
+      sid: '30547'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

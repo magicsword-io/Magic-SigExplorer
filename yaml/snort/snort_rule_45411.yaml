@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/activeupdate/ini_xml.zip",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER TrendMicro ServerProtect server configuration file download
+        detected"'
+      reference: url,www.coresecurity.com/advisories/trend-micro-serverprotect-multiple-vulnerabilities
+      rev: '3'
+      service: http
+      sid: '45411'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

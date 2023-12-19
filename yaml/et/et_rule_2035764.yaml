@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|splashtop|02|eu|00|"'
+      distance: '1'
+      metadata: attack_target Client_and_Server, created_at 2022_04_05, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2022_05_02
+      msg: '"ET INFO Splashtop Domain in DNS Lookup (splashtop .eu)"'
+      reference: url,support-splashtopbusiness.splashtop.com/hc/en-us/articles/115001811966-What-are-the-Firewall-Exceptions-and-IP-addresses-of-Splashtop-servers-Services-
+      rev: '3'
+      sid: '2035764'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WHCC"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_08_19
+      msg: '"ET SCAN WebHack Control Center User-Agent Inbound (WHCC/)"'
+      pcre: '"/^User-Agent\x3a[^\n]+WHCC/Hmi"'
+      reference: url,doc.emergingthreats.net/2003924
+      rev: '13'
+      sid: '2003924'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

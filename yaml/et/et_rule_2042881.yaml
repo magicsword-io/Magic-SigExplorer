@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '31'
+        value: '"/device_api/auth/?shop_api_key="'
+      - value: '"&installer_version="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, malware_family SyncroMSP, performance_impact
+        Low, confidence High, signature_severity Informational, tag RemoteAccessTool,
+        updated_at 2022_12_14
+      msg: '"ET INFO SyncroMSP Remote Remote Management Software Install Registration"'
+      rev: '1'
+      sid: '2042881'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

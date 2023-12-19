@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ld.aspx",nocase'
+      - value: '"User-Agent|3A 20|FWVersionTestAgent|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rovnix malicious download request"'
+      reference: url,blogs.technet.com/b/mmpc/archive/2013/07/25/the-evolution-of-ronvix-private-tcp-ip-stacks.aspx
+      rev: '2'
+      service: http
+      sid: '27567'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

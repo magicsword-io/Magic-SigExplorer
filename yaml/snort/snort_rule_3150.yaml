@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"contenttype="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS SQLXML content type overflow"'
+      pcre: '"/contenttype=[^\r\n\x3b\x38]{100}/ims"'
+      reference: url,www.westpoint.ltd.uk/advisories/wp-02-0007.txt
+      rev: '14'
+      service: http
+      sid: '3150'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

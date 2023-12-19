@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"sEventName=SASRPI_Install&sEventData=tag|3a|SUPERAntiSpyware.exe"'
+      - value: '"User-Agent|3a 20|SUPERSetup|0d 0a|"'
+      fast_pattern: 40,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_06, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2021_05_06
+      msg: '"ET MALWARE SuperAntiSpyware Install Checkin"'
+      reference: md5,05226ffa6102a0b3f9dfb8fa4965d0a2
+      rev: '2'
+      sid: '2032923'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

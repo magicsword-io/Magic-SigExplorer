@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '4'
+        value: '"|30 0c 02 01|"'
+      - value: '"|78 07 0a 01 00 04 00 04 00|"'
+      dsize: '14'
+      flow: established,to_client
+      flowbits: isset,ET.LDAPSBindRequest
+      isdataat: '!1,relative'
+      metadata: attack_target Client_and_Server, created_at 2021_12_14, deployment
+        Perimeter, former_category POLICY, signature_severity Informational, updated_at
+        2023_04_06
+      msg: '"ET POLICY Successful LDAPSv3 LDAPS_START_TLS Request Outbound"'
+      reference: url,ldap.com/ldapv3-wire-protocol-reference-extended/
+      rev: '3'
+      sid: '2034721'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

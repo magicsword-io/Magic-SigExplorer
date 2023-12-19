@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|fuckbc|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter,
+        signature_severity Major, updated_at 2022_06_06
+      msg: '"ET TROJAN Earth Berberoka Domain in DNS Lookup"'
+      reference: url,documents.trendmicro.com/assets/txt/earth-berberoka-windows-iocs-2.txt
+      rev: '1'
+      sid: '2036872'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

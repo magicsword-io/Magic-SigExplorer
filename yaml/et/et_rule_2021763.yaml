@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|69 66 20 28 62 65 66 6f 72 65 53 63 72 69 70 74 53 72 63 20 26 26
+          20 74 79 70 65 6f 66 20 62 65 66 6f 72 65 53 63 72 69 70 74 53 72 63 20
+          3d 3d 3d 20 27 73 74 72 69 6e 67 27 29|"'
+      - value: '"|66 75 6e 63 74 69 6f 6e 20 28 73 72 63 2c 20 61 73 79 6e 63 2c 20
+          62 65 66 6f 72 65 53 63 72 69 70 74 53 72 63 2c 20 63 61 6c 6c 62 61 63
+          6b 29|"'
+      flow: established,from_server
+      metadata: created_at 2015_09_12, updated_at 2016_08_17
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS Grey Advertising Often Leading to EK"'
+      reference: url,www.mysonicwall.com/sonicalert/searchresults.aspx?ev=article&id=854
+      rev: '2'
+      sid: '2021763'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/webauth_operation.php"'
+      - value: '"PHPRC=|2f|var|2f|tmp|2f|"'
+      flow: established,to_server
+      metadata: affected_product JunOS, attack_target Networking_Equipment, created_at
+        2023_09_01, cve CVE_2023_36844_CVE_2023_36845, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2023_09_01, reviewed_at 2023_09_01
+      msg: '"ET EXPLOIT Junos OS - Unauthenticated PHPRC Environmental Variable Modification
+        M1 (CVE-2023-36844 CVE-2023-36845)"'
+      reference: cve,2023-36845
+      rev: '1'
+      sid: '2047869'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>10'
+      classtype: trojan-activity
+      contents:
+      - value: '"/minerd.exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Malicious BitCoiner Miner download - Win.Trojan.Minerd"'
+      reference: url,www.virustotal.com/en/file/583b585078f37f5d399a228f1b8021ca0a9e904a55792281048bae9cfe0e95c1/analysis/
+      rev: '3'
+      service: http
+      sid: '30551'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

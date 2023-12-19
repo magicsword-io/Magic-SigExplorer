@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/iLog.php?dl="'
+      - value: '"&log="'
+      - value: '"User-Agent|3a| IE"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_09_03, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN VirTool.Win32/VBInject.gen!DM Checkin"'
+      reference: url,microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=VirTool%3aWin32/VBInject.gen!DM
+      rev: '8'
+      sid: '2013534'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

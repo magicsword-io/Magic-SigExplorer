@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"New Zealandn Holiday"'
+      - value: '"<applet"'
+      fast_pattern: only
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_09_30, former_category EXPLOIT_KIT, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Sweet Orange Landing with Applet Sep 30 2013"'
+      rev: '5'
+      sid: '2017545'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

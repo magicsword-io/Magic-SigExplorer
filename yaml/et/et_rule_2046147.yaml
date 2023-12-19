@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Server|3a 20|Apache-Coyote"'
+      - value: '"|7b 5c 72 74 66 31 5c 61 6e 73 69 5c 61 6e 73 69 63 70 67 31 32 35
+          32 5c 75 63 30 5c 73 74 73 68 66 64 62 63 68 30 5c|"'
+      flow: established,to_client
+      flowbits: isset,ET.sharppanda.rtf
+      metadata: attack_target Client_Endpoint, created_at 2023_06_07, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_06_07
+      msg: '"ET TROJAN Sharp Panda APT RTF Retrieval (Response)"'
+      reference: md5,ea889308acb4249af92807cc7d70f084
+      rev: '1'
+      sid: '2046147'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

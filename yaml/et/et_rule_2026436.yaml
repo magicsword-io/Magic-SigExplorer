@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/rest/v"'
+      - value: '"/clients/client?"'
+      - value: '"&agent_id="'
+      - value: '!"Mozilla"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_04, deployment Perimeter, former_category
+        MALWARE, malware_family ActiveAgent, signature_severity Major, updated_at
+        2020_09_02
+      msg: '"ET TROJAN Win32.YordanyanActiveAgent Generic CnC Pattern"'
+      reference: md5,d71d1ad067c3d4dc9ca74cca76bc9139
+      rev: '2'
+      sid: '2026436'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

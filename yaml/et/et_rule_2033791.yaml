@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?name="'
+      - value: '"name=|22|fileToUpload|22 3b|"'
+      - value: '"Upload|20|Image|0d 0a|----"'
+      - value: '"|00 00 00 00 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag RAT, updated_at 2023_04_04
+      msg: '"ET TROJAN Konni RAT Exfiltrating Data"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2021/08/new-variant-of-konni-malware-used-in-campaign-targetting-russia/
+      rev: '2'
+      sid: '2033791'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

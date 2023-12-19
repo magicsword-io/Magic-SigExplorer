@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"STAT",nocase'
+      flow: to_server,established
+      isdataat: 190,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP STAT overflow attempt"'
+      pcre: '"/^STAT(?!\n)\s[^\n]{190}/im"'
+      reference: url,labs.defcom.com/adv/2001/def-2001-31.txt
+      rev: '23'
+      service: ftp
+      sid: '1379'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

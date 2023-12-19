@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 1,&,1,0
+      classtype: attempted-dos
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"|00 02 2a|"'
+      metadata: created_at 2014_01_03, updated_at 2014_01_03
+      msg: '"ET DOS Possible NTP DDoS Multiple MON_LIST Seq 0 Response Spanning Multiple
+        Packets IMPL 0x02"'
+      reference: url,www.symantec.com/connect/blogs/hackers-spend-christmas-break-launching-large-scale-ntp-reflection-attacks
+      rev: '2'
+      sid: '2017920'
+      threshold: type both,track by_src,count 2,seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '123'

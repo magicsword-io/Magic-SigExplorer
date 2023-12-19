@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"cable-docsis"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, cve CVE_2004_1776, updated_at 2010_07_30
+      msg: '"ET SNMP Attempted UDP Access Attempt to Cisco IOS 12.1 Hidden Read/Write
+        Community String cable-docsis"'
+      reference: url,doc.emergingthreats.net/2011013
+      rev: '4'
+      sid: '2011013'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

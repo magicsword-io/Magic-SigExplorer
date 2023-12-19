@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".asp?pid="'
+      - value: '"&mac="'
+      - value: '"&upver="'
+      - value: '"&lived="'
+      - value: '"&seldate=20"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_25, deployment Perimeter,
+        former_category ADWARE_PUP, malware_family AccessMembre, performance_impact
+        Low, confidence Medium, signature_severity Minor, tag PUP, updated_at 2023_08_25
+      msg: '"ET MALWARE Suspected Adware/AccessMembre Checkin M2"'
+      pcre: '"/&seldate=20\d{10}/U"'
+      reference: md5,e8d445f362ba21571cdb980d1e05318c
+      rev: '1'
+      sid: '2047752'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

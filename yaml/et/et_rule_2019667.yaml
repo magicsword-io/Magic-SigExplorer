@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|comeinbaby|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2014_11_07, updated_at 2020_09_17
+      msg: '"ET TROJAN OSX/WireLurker DNS Query Domain www.comeinbaby.com"'
+      reference: url,www.paloaltonetworks.com/content/dam/paloaltonetworks-com/en_US/assets/pdf/reports/Unit_42/unit42-wirelurker.pdf
+      rev: '4'
+      sid: '2019667'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

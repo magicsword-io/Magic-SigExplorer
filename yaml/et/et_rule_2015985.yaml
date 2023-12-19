@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Windows NT 9.0|3b|"'
+      flow: established,to_server
+      metadata: created_at 2012_12_05, updated_at 2020_12_10
+      msg: '"ET TROJAN Win32/Kuluoz.B Request"'
+      pcre: '"/^Host\x3a\s*(\d{1,3}\.){3}\d{1,3}(\x3a\d{1,5})?\r?$/Hmi"'
+      reference: md5,0282bc929bae27ef95733cfa390b10e0
+      rev: '2'
+      sid: '2015985'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

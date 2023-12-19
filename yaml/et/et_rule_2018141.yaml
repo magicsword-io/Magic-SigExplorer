@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Set-Cookie|3a 20|snkz="'
+      flow: established,to_client
+      metadata: created_at 2014_02_15, former_category TROJAN, updated_at 2022_08_11
+      msg: '"ET TROJAN Possible Compromised Host AnubisNetworks Sinkhole Cookie Value
+        Snkz"'
+      pcre: '"/^snkz\x3D\d{1,3}\x2E\d{1,3}\x2E\d{1,3}\x2E\d{1,3}/C"'
+      rev: '3'
+      sid: '2018141'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

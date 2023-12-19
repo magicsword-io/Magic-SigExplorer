@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/geturl.aspx?email="'
+      - value: '"&lat="'
+      - value: '"&lon="'
+      - value: '"&mobile="'
+      - value: '"&group="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2013_01_15, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2020_04_23
+      msg: '"ET MOBILE_MALWARE Android/CoolPaperLeak Sending Information To CnC"'
+      reference: url,www.symantec.com/connect/blogs/androidcoolpaperleak-million-download-baby
+      rev: '1'
+      sid: '2016209'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

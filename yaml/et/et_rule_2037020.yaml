@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 |28|compatible|3b 20|MSIE 9.0|3b 20|Windows
+          NT 6.1|3b 20|Trident/5.0|3b 20|NP07|3b 20|NP07|29|"'
+      fast_pattern: 55,20
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_06_15, deployment
+        Perimeter, former_category MALWARE, malware_family CobaltStrike, performance_impact
+        Low, signature_severity Major, updated_at 2022_06_15
+      msg: '"ET TROJAN Suspected Cobalt Strike Beacon User-Agent String"'
+      reference: url,github.com/sophoslabs/IoCs/blob/master/Troj-Miner-AED.csv
+      rev: '1'
+      sid: '2037020'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

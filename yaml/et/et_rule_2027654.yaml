@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|search|07|webstie|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_07_02, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN APT32 CnC in DNS Lookup"'
+      reference: url,threatvector.cylance.com/en_us/home/threat-spotlight-ratsnif-new-network-vermin-from-oceanlotus.html
+      rev: '2'
+      sid: '2027654'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

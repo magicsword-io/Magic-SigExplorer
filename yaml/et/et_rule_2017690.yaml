@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/rssfeed.php?a="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_11_07, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_27,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Citadel.Arx Variant CnC Beacon 1"'
+      pcre: '"/rssfeed\.php\?a=[^&]+?&\d+$/U"'
+      reference: url,www.fireeye.com/blog/technical/cyber-exploits/2013/11/the-dual-use-exploit-cve-2013-3906-used-in-both-targeted-attacks-and-crimeware-campaigns.html
+      rev: '1'
+      sid: '2017690'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

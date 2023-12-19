@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".mdm"'
+      - value: '"|3b 20|ms-office|3b 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_27, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, confidence Medium, signature_severity
+        Major, updated_at 2023_01_27
+      msg: '"ET TROJAN Gamaredon APT Related Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x3b\x20ms-office\x3b\x20/Hmi"'
+      reference: url,blogs.blackberry.com/en/2023/01/gamaredon-abuses-telegram-to-target-ukrainian-organizations
+      rev: '1'
+      sid: '2044006'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FROM\: EgySpy Victim"'
+      - value: '"TO|3a| EgySpy User"'
+      - value: '"SUBJECT|3a| E g y S p y KeyLogger"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Egspy Infection Report Email"'
+      reference: url,doc.emergingthreats.net/2008039
+      rev: '3'
+      sid: '2008039'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

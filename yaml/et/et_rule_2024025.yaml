@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"fid="'
+      - value: '"&versiya="'
+      - value: '"&comp="'
+      - value: '"&id="'
+      - value: '"&sysinfo="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_28, deployment Perimeter, former_category
+        MALWARE, malware_family Gamaredon, signature_severity Minor, updated_at 2020_08_04
+      msg: '"ET TROJAN Pteranodon Variant 2 Backdoor Checkin"'
+      reference: url,researchcenter.paloaltonetworks.com/2017/02/unit-42-title-gamaredon-group-toolset-evolution/
+      rev: '1'
+      sid: '2024025'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '14'
+        value: '"ADDNEW|7C|Stable|7C|"'
+      dsize: <100
+      flow: to_server,established
+      metadata: created_at 2012_11_07, former_category MALWARE, updated_at 2012_11_07
+      msg: '"ET TROJAN Backdoor.ADDNEW (DarKDdoser) CnC 3"'
+      pcre: '"/\x7C(NEW|Awaiting commands)/R"'
+      reference: md5,691305b05ae75389526aa7c15b319c3b
+      rev: '2'
+      sid: '2015870'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

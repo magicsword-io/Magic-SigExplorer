@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e|File Download|3c 2f|title|3e|"'
+      - value: '"|24 2e|getJSON|28 20 22|https|3a 2f 2f|"'
+      - value: '"|2f 22 2c 20|function|28|res|29 20 7b 0d 0a 0d 0a|"'
+      - value: '"|7d 29 2e|done|28|function|28|res|29 20 7b 0d 0a|"'
+      - value: '"params|2e|url|20 3d 20 22|https|3a 2f 2f|"'
+      - value: '"|22 20 2b 20|res|2e|data"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_25, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2021_06_25
+      msg: '"ET MALWARE Malware Delivery Landing Page via JS Redirect (2021-06-24)"'
+      reference: url,app.any.run/tasks/bfa6644a-3d2c-41e0-9a6d-fe9306e8fc85/
+      rev: '2'
+      sid: '2033189'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

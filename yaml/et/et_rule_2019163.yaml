@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Accept|3a 20|application/octet-stream|0d 0a|"'
+      - value: '"User-Agent|3a 20|Mozilla/"'
+      - value: '"|20|InfoPath|2e|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_09_11, former_category MALWARE, updated_at 2020_05_29
+      msg: '"ET TROJAN W32/Alina.POS-Trojan Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: url,trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-pos-ram-scraper-malware.pdf
+      rev: '3'
+      sid: '2019163'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

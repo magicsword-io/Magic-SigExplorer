@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject: HawkEye Keylogger |7C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.HawkEye keylogger exfiltration attempt"'
+      reference: url,www.virustotal.com/en/file/f4499928a6fee5d37fb711ed6d68708bf116cfc7f284d3295dd30ded7ecf64b2/analysis/
+      rev: '3'
+      service: smtp
+      sid: '39911'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

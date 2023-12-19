@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/modules.php",nocase'
+      - value: '"name=Forums"'
+      - value: '"file=viewtopic",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PHPNuke Forum viewtopic SQL insertion attempt"'
+      pcre: '"/forum=.*''/"'
+      reference: bugtraq,7193
+      rev: '10'
+      service: http
+      sid: '2654'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

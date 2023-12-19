@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '15'
+        value: '"HTTP/1.1 200 OK"'
+      - value: '"Server|3a 20|nginx"'
+      - value: '"toNumbers"'
+      - value: '"d.replace"'
+      - value: '"e.push(parseInt"'
+      - value: '"toHex"'
+      - value: '"e.toLowerCase"'
+      - value: '"toNumbers"'
+      - value: '"toNumbers"'
+      - value: '"toNumbers"'
+      - value: '"toHex(slowAES.decrypt"'
+      - value: '"<noscript>This site requires Javascript to work, please enable Javascript
+          in your browser or use a browser with Javascript support</noscript>"'
+      distance: '100'
+      fast_pattern: 0,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_21, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2022_03_21
+      msg: '"ET INFO Observed testcookie-nginx-module"'
+      reference: url,github.com/kyprizel/testcookie-nginx-module
+      rev: '3'
+      sid: '2035554'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

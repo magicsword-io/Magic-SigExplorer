@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"(Acunetix Web Vulnerability Scanner"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Acunetix Version 6 (Free Edition) Scan Detected"'
+      reference: url,doc.emergingthreats.net/2009646
+      rev: '6'
+      sid: '2009646'
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

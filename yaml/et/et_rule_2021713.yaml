@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|3c 66 6f 72 6d 3e 3c 73 74 79 6c 65 3e 66 6f 72 6d 7b 2d 6d 73 2d
+          62 65 68 61 76 69 6f 72 3a 75 72 6c 28 22 63 22 29 3b 7d 3c 2f 73 74 79
+          6c 65 3e 3c 2f 66 6f 72 6d 3e|"'
+      fast_pattern: 13,20
+      flow: from_server,established
+      metadata: created_at 2015_08_25, cve CVE_2015_2444, former_category EXPLOIT,
+        confidence Medium, updated_at 2022_03_17
+      msg: '"ET EXPLOIT Possible Internet Explorer Memory Corruption Vulnerability
+        (CVE-2015-2444)"'
+      reference: cve,2015-2444
+      rev: '2'
+      sid: '2021713'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - offset: '12'
+        value: '"d1|3a|ad2|3a|id20|3a|"'
+      - value: '"9|3a|info_hash20|3a|"'
+      - value: '"e1|3a|q9|3a|get_peers1|3a|"'
+      distance: '20'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P BitTorrent DHT get_peers request"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008584
+      rev: '5'
+      sid: '2008584'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      threshold: type both, count 1, seconds 300, track by_src
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

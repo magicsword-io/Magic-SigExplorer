@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '6'
+        value: '"|00 01 00 01 02 02|"'
+      - value: '"net.tcp|3a 2f 2f|"'
+      - value: '"|3a|"'
+      - value: '"|2f 03 08 0c|"'
+      distance: '0'
+      dsize: <50
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_22, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2023_05_31, former_sid
+        2850027
+      msg: '"ET INFO Microsoft net.tcp Connection Initialization Activity"'
+      reference: md5,6b5c7d46224b4d7c38ec620c817867ad
+      rev: '6'
+      sid: '2043233'
+      special_options:
+      - fast_pattern
+      within: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

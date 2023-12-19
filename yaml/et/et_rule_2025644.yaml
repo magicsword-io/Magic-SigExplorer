@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|60 89 e5 31|"'
+      - value: '"|64 8b|"'
+      - value: '"|30 8b|"'
+      - value: '"|0c 8b 52 14 8b 72 28 0f b7 4a 26 31 ff|"'
+      - value: '"|ac 3c 61 7c 02 2c 20 c1 cf 0d 01 c7 e2|"'
+      - value: '"|52 57 8b 52 10|"'
+      distance: '1'
+      flow: from_server,established
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2016_05_16, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, former_category TROJAN, signature_severity Critical,
+        tag Metasploit, updated_at 2018_07_10
+      msg: '"ET TROJAN Possible Metasploit Payload Common Construct Bind_API (from
+        server)"'
+      rev: '1'
+      sid: '2025644'
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

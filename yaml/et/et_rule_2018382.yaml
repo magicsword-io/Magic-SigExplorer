@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 2,<,17000,3
+      classtype: bad-unknown
+      contents:
+      - depth: '2'
+        value: '"|18 03|"'
+      flow: established,to_client
+      metadata: created_at 2014_04_11, cve CVE_2014_0160, former_category CURRENT_EVENTS,
+        updated_at 2014_04_11
+      msg: '"ET EXPLOIT Possible OpenSSL HeartBleed Large HeartBeat Response from
+        Common SSL Port (Outbound from Server)"'
+      reference: url,blog.fox-it.com/2014/04/08/openssl-heartbleed-bug-live-blog/
+      rev: '9'
+      sid: '2018382'
+      threshold: type limit,track by_dst,count 1,seconds 120
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '[21,25,110,143,443,465,587,636,989:995,5061,5222]'

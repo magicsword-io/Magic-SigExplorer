@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/sendmail.php"'
+      - depth: '10'
+        value: '"postemail="'
+      - value: '"&postpaswrd="'
+      - value: '"&postdomain="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_11, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_10_11
+      msg: '"ET CURRENT_EVENTS Generic Successful Phish 2022-10-11"'
+      pcre: '"/\/sendmail\.php$/U"'
+      reference: md5,62941fb63773db263af6b9cc6fb328f4
+      rev: '1'
+      sid: '2039166'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

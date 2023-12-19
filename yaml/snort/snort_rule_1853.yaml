@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '35555'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"png []..Ks l44",depth 14'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR win-trin00 connection attempt"'
+      reference: nessus,10307
+      rev: '12'
+      sid: '1853'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

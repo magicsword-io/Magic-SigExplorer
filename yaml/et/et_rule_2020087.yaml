@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"netsh firewall|22| is deprecated|3b|"'
+      - value: '"use |22|netsh advfirewall"'
+      - value: '"Ok."'
+      distance: '0'
+      flow: established
+      metadata: created_at 2015_01_05, updated_at 2015_01_05
+      msg: '"ET ATTACK_RESPONSE Microsoft Netsh Firewall Disable Output Outbound"'
+      rev: '1'
+      sid: '2020087'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

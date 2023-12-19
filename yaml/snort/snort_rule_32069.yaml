@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"PASS ",depth 5'
+      - value: '"() {",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"OS-OTHER Bash environment variable injection attempt"'
+      reference: cve,2014-7169
+      rev: '3'
+      service: ftp
+      sid: '32069'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

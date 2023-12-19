@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 48 00 00 FF|",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.jpeg
+      metadata: ruleset community
+      msg: '"FILE-IMAGE JPEG parser multipacket heap overflow attempt"'
+      pcre: '"/\x00\x48\x00\x00\xFF[\xE1\xE2\xED\xFE]\x00[\x00\x01]/"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-028
+      rev: '14'
+      service: ftp-data,http,imap,pop3
+      sid: '2707'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

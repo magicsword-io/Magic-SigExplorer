@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"[^8]&&&",fast_pattern,nocase'
+      - value: '"[^8]&&&"'
+      flow: to_server,established
+      isdataat: '!0,relative'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CrossRAT outbound connection attempt"'
+      reference: url,www.virustotal.com/#/file/da81aec00b563123d2fbd14fb6a76619c90f81e83c5bd8aa0676922cae96b9ad/detection
+      rev: '1'
+      sid: '46050'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

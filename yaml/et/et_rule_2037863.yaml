@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '30'
+        offset: '55'
+        value: '"|3c|p|3e|Password is"'
+      - value: '"|3c|iframe src|3d 22|data|3a|application|2f|x|2d|zip|2d|compressed|3b|base64|2c|"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_29, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_03, reviewed_at
+        2023_10_04
+      msg: '"ET TROJAN Trojan.Dropper.HTML.Agent Payload"'
+      reference: url,twitter.com/phage_nz/status/1552779565663387653
+      rev: '3'
+      sid: '2037863'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

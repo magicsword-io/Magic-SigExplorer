@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/whereami.cgi?",nocase'
+      - value: '"g=",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP CCBill whereami.cgi arbitrary command execution attempt"'
+      reference: url,secunia.com/advisories/9191/
+      rev: '16'
+      service: http
+      sid: '2396'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

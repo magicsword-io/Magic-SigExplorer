@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images/",fast_pattern,nocase'
+      - value: '".rar"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| Synapse)|0D 0A|"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dexter Banker variant second stage download attempt"'
+      reference: url,www.virustotal.com/en/file/25657a5b4e65add11d42c59aa854834977ddb3fe969f10efa2fa637b0329b3bb/analysis/1477407128/
+      rev: '2'
+      service: http
+      sid: '40550'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

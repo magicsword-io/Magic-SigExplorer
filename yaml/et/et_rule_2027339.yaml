@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '52869'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"SOAPAction|3a 20|urn|3a|schemas-upnp-org|3a|service|3a|WANIPConnection|3a|"'
+      - value: '"|3c|u|3a|AddPortMapping"'
+      - value: '"|3c|NewRemoteHost|3e|"'
+      - value: '"|3c|NewInternalClient"'
+      - value: '"|3c 2f|NewInternalClient|3e|"'
+      - value: '"NewEnabled|3e|1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_05_08, cve CVE_2014_8361, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_31
+      msg: '"ET EXPLOIT Realtek SDK Miniigd UPnP SOAP Command Execution CVE-2014-8361
+        - Outbound"'
+      rev: '3'
+      sid: '2027339'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

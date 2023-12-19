@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"wmic|3a|root|5c|cli>"'
+      flow: established
+      metadata: created_at 2015_01_05, updated_at 2015_01_05
+      msg: '"ET ATTACK_RESPONSE Microsoft WMIC Prompt Outbound"'
+      rev: '1'
+      sid: '2020086'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

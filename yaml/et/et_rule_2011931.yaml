@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/site_info.php?"'
+      - value: '"siid="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_11_19, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS Interactive Web Solutions site_info.php DELETE FROM
+        SQL Injection Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,inj3ct0r.com/exploits/14090
+      rev: '2'
+      sid: '2011931'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

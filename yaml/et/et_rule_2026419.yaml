@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"content=|22|@importmrxjokercss|22|"'
+      - value: '"name=|22|mrxjokercard|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_09_27, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, updated_at 2018_09_27
+      msg: '"ET CURRENT_EVENTS Generic MRxJoker Phishing Landing 2018-09-27"'
+      rev: '2'
+      sid: '2026419'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

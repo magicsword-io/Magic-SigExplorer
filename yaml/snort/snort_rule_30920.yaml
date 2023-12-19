@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '72'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?q=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Multiple exploit kit redirection gate"'
+      pcre: '"/^\/[a-f0-9]{32}\.php\?q=[a-f0-9]{32}$/"'
+      rev: '2'
+      service: http
+      sid: '30920'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

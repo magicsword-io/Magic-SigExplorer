@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/logpost.php"'
+      - depth: '6'
+        value: '"botid="'
+      - value: '"&text="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_09_14, former_category MOBILE_MALWARE, updated_at
+        2023_03_11, reviewed_at 2023_11_14
+      msg: '"ET MOBILE_MALWARE Android/SOVA Banking Trojan Activity (log post)"'
+      reference: md5,03f51334546586d0b56ee81d3df9fd7a
+      rev: '2'
+      sid: '2033944'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

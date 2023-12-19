@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"[$ne]"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_10_17, updated_at 2020_09_25
+      msg: '"ET WEB_SERVER MongoDB Negated Parameter Server Side JavaScript Injection
+        Attempt"'
+      reference: url,docs.mongodb.org/manual/reference/operator/query/ne/
+      rev: '1'
+      sid: '2019460'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

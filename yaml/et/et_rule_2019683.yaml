@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '2'
+        offset: '2'
+        value: '"bB"'
+      - value: '"MqrU"'
+      - value: '"VAMU"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: created_at 2014_11_08, former_category MALWARE, updated_at 2020_05_13
+      msg: '"ET TROJAN Miuref/Boaxxe Checkin"'
+      reference: md5,a42797315c50e335f3de87f6cea61b77
+      rev: '5'
+      sid: '2019683'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      within: '29'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

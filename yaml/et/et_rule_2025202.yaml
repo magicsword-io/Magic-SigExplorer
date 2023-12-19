@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '300'
+        value: '"(Chr((((asc(Mid("'
+      - value: '",1,1))-65))*25+(asc(Mid("'
+      - value: '",2,1))-65)-"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_16, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN [PTsecurity] Trojan.Downloader VBA Script obfuscation (binary_getter)"'
+      reference: md5,bad07f85a7baaeaa8aeb72997712aa98
+      rev: '2'
+      sid: '2025202'
+      special_options:
+      - http_stat_code
+      - file_data
+      threshold: type limit, track by_src, count 1, seconds 30
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

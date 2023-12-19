@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 86 A5|",depth 4,offset 16'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC mountd TCP mount request"'
+      reference: cve,1999-0210
+      rev: '11'
+      sid: '1951'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

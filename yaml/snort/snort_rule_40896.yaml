@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '".pauseAnimations",fast_pattern,nocase'
+      - value: '"svg",nocase'
+      - value: '"animate",nocase'
+      - value: '"begin",within 50,nocase'
+      - value: '"end",within 50,nocase'
+      - value: '".end",within 30,nocase'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"BROWSER-FIREFOX Mozilla Firefox ESR NotifyTimeChange use after free attempt"'
+      reference: url,www.mozilla.org/en-US/security/advisories/mfsa2016-92/
+      rev: '3'
+      service: http
+      sid: '40896'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

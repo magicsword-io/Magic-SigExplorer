@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        value: '"BDAT"'
+      flow: established,to_server
+      metadata: attack_target SMTP_Server, created_at 2017_11_27, deployment Internal,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Moderate,
+        signature_severity Major, updated_at 2017_11_28
+      msg: '"ET EXPLOIT Exim4 UAF Attempt (BDAT with non-printable chars)"'
+      pcre: '"/^\s*\d*[^\x20-\x7e\r\n\t]/R"'
+      reference: url,lists.exim.org/lurker/message/20171125.034842.d1d75cac.en.html
+      rev: '3'
+      sid: '2025063'
+    protocol: tcp
+    source:
+      network: any
+      port: any

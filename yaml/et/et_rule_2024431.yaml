@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"REMOTE_URL"'
+      - value: '"C_TIMEOUT"'
+      - value: '"apply_payload"'
+      - value: '"execute_request"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2017_06_28, deployment Perimeter, former_category CURRENT_EVENTS,
+        performance_impact Low, signature_severity Major, updated_at 2017_06_28
+      msg: '"ET CURRENT_EVENTS Watering Hole Redirect Inject Jun 28 2017"'
+      rev: '1'
+      sid: '2024431'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

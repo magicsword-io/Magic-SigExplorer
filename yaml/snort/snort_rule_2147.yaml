@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/objects.inc.php4"'
+      - value: '"Server[path]="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP BLNews objects.inc.php4 remote file include attempt"'
+      pcre: '"/Server\x5bpath\x5d=(https?|ftps?|php)/"'
+      reference: nessus,11647
+      rev: '15'
+      service: http
+      sid: '2147'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

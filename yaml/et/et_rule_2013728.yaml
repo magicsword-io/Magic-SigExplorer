@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '82'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".asp?ID="'
+      - value: '"&Action=GetMyIP"'
+      flow: established,to_server
+      metadata: created_at 2011_10_01, former_category MALWARE, updated_at 2020_04_20
+      msg: '"ET TROJAN Win32/OnLineGames GetMyIP Style Checkin"'
+      rev: '1'
+      sid: '2013728'
+      within: '40'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

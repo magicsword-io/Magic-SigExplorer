@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"9002"'
+      flow: to_server,established
+      metadata: created_at 2013_11_20, former_category MALWARE, updated_at 2013_11_20
+      msg: '"ET TROJAN Trojan.Dropper.Win32.Dapato.braa.AMN CnC traffic"'
+      reference: md5,6ef66c2336b2b5aaa697c2d0ab2b66e2
+      rev: '2'
+      sid: '2017728'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

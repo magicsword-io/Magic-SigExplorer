@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '33'
+        value: '"GET /shell?cd+/tmp|3b|rm+-rf+*|3b|wget+"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Web_Server, created_at 2020_05_04,
+        deployment Perimeter, signature_severity Minor, updated_at 2020_05_04
+      msg: '"ET SCAN JAWS Webserver Unauthenticated Shell Command Execution"'
+      reference: md5,fea9e4132fc9d30bda5eb6b1d9d0b9b9
+      rev: '2'
+      sid: '2030093'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

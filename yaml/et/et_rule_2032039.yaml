@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"background-color|3a 20|#EAEAEA"'
+      - value: '"#pdf_holder"'
+      - value: '"background-color|3a 20|#DADADA"'
+      - value: '"background-color|3a 20|#069"'
+      - value: '"#errfnn"'
+      - value: '"background-color|3a 20|#A51505"'
+      distance: '0'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_08_10, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        tag Phishing, updated_at 2020_07_27
+      msg: '"ET CURRENT_EVENTS Adobe Shared Document Phishing Landing Common CSS 2016-08-10"'
+      rev: '1'
+      sid: '2032039'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

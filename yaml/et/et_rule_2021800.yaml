@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?m="'
+      - value: '"&v="'
+      - value: '"&os="'
+      - value: '"&c="'
+      - value: '"&u="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_09_18, former_category MALWARE, updated_at 2020_06_01
+      msg: '"ET TROJAN Win32/Spy.Odlanor CnC Checkin"'
+      pcre: '"/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/Pi"'
+      reference: url,welivesecurity.com/2015/09/17/the-trojan-games-odlanor-malware-cheats-at-poker/
+      rev: '1'
+      sid: '2021800'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

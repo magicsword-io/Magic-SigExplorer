@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|29 f5 98 f5|"'
+      - value: '"|65 b3 b3|"'
+      distance: '1'
+      flow: established,to_client
+      flowbits: isset,ET.Parallax-10
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_18, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_05_18
+      msg: '"ET TROJAN Parallax CnC Response Activity M10"'
+      reference: md5,9d60d8928bc0478b3029e59024b5f407
+      rev: '2'
+      sid: '2030181'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

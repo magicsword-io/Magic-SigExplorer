@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"svcid"'
+      - value: '"|5b|CDATA"'
+      - value: '"requester|3d|"'
+      - value: '"POST /oam/server/opensso/sessionservice HTTP/1.1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_03_10, cve CVE_2021_35587, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_10
+      msg: '"ET EXPLOIT Possible Oracle Access Manager RCE Attempt (CVE-2021-35587)"'
+      reference: cve,2021-35587
+      rev: '1'
+      sid: '2035429'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

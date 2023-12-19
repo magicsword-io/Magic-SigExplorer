@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '41170'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|01 02 00 14|",depth 4,offset 16'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"PUA-P2P Manolito Search Query"'
+      reference: url,www.blubster.com
+      rev: '9'
+      sid: '3459'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

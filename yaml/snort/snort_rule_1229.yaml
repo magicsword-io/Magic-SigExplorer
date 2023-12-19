@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"CWD",nocase'
+      - value: '"...",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP CWD ..."'
+      pcre: '"/^CWD\s[^\n]*?\.\.\./ims"'
+      reference: bugtraq,9237
+      rev: '13'
+      service: ftp
+      sid: '1229'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

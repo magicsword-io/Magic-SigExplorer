@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 03|"'
+      - value: '"|09|upaste.me"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_11_10, deployment Perimeter, former_category POLICY, signature_severity
+        Informational, updated_at 2020_11_10
+      msg: '"ET POLICY SSL/TLS Certificate Observed (Upaste)"'
+      rev: '2'
+      sid: '2031196'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

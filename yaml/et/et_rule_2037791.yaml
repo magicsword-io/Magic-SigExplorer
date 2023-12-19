@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/roundcube/result.php"'
+      - depth: '7'
+        value: '"_token="'
+      - value: '"&email="'
+      - value: '"&password="'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_19, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_19
+      msg: '"ET CURRENT_EVENTS Successful RoundCube Phish 2022-07-18"'
+      reference: md5,02f3fe49fef32e6644d0434c26503878
+      rev: '1'
+      sid: '2037791'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '21'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

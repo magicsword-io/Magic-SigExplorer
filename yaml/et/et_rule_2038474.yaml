@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '5'
+        value: '"|a3 a1 b0 c4 cb|"'
+      - value: '"|c4 ac b0 b0 cb|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_08_09, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, signature_severity
+        Informational, updated_at 2022_08_09
+      msg: '"ET INFO HTTP GET Request XOR e4"'
+      rev: '1'
+      sid: '2038474'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

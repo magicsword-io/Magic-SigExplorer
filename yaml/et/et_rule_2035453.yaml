@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"username|3a 20|this|2e|email"'
+      - value: '"password|3a 20|this|2e|password"'
+      - value: '"from|3a 20 22|Microsoft|20|Login|22|"'
+      - value: '"this|2e|error|20 3d 20 22|An|20|error|20|occured|2c 20|please|20|check|20|input|20|and|20|try|20|again|22
+          3b|"'
+      - value: '"this|2e|submitCount"'
+      - value: '"window|2e|location|2e|replace|28|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_04, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_03_04
+      msg: '"ET CURRENT_EVENTS Microsoft Credential Phish 2022-03-14"'
+      rev: '1'
+      sid: '2035453'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

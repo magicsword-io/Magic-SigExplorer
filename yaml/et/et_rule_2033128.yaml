@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/analytics"'
+      - value: '"Win64|3b|"'
+      - value: '"Chrome/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_09, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, tag RAT, updated_at 2021_06_09
+      msg: '"ET TROJAN Possible Puzzlemaker Remote Shell Activity (GET)"'
+      pcre: '"/^Connection\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,securelist.com/puzzlemaker-chrome-zero-day-exploit-chain/102771/
+      rev: '1'
+      sid: '2033128'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

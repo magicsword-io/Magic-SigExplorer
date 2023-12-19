@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4321'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"-soa %p"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0838, updated_at 2010_09_23
+      msg: '"GPL MISC rwhoisd format string attempt"'
+      reference: cve,2001-0838
+      rev: '7'
+      sid: '2101323'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

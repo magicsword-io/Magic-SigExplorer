@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/select_soft_post.php"'
+      - value: '"cfg_basedir"'
+      - value: '"uploadfile"'
+      - value: '"upload"'
+      - value: '"multipart/form-data"'
+      flow: established,to_server
+      metadata: created_at 2021_01_19, cve CVE_2010_1097, former_category EXPLOIT,
+        updated_at 2021_01_19
+      msg: '"ET EXPLOIT [401TRG] DeDeCMS RFI Attempt"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+multipart\/form-data/Hmi"'
+      reference: url,www.exploit-db.com/exploits/33685
+      rev: '2'
+      sid: '2031527'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

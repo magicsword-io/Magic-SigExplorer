@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '16'
+        offset: '4'
+        value: '"|01 14 02 00 00 00 00 00 c0 00 00 00 00 00 00 46|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_10_10, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, performance_impact Low, confidence
+        High, signature_severity Informational, updated_at 2023_10_10, reviewed_at
+        2023_10_10
+      msg: '"ET INFO LNK File Downloaded via HTTP"'
+      reference: url,learn.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/c3376b21-0931-45e4-b2fc-a48ac0e60d15
+      rev: '1'
+      sid: '2048508'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

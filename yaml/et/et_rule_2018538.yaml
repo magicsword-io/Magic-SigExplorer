@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"*.tor2www."'
+      distance: '2'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2014_06_06, deployment Perimeter,
+        former_category INFO, confidence High, signature_severity Informational, tag
+        TOR_Proxy, updated_at 2016_07_01
+      msg: '"ET INFO tor2www .onion Proxy SSL cert"'
+      rev: '3'
+      sid: '2018538'
+      special_options:
+      - nocase
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,$HTTP_PORTS]'

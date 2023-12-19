@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - depth: '41'
+        value: '"User-Agent|3a 20|Microsoft Internet Explorer|0d 0a|"'
+      - value: '!"Accept"'
+      - value: '!"Cache-|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_12, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_08_31
+      msg: '"ET TROJAN Win32/Vodkagats Loader Requesting Payload"'
+      pcre: '"/\.exe$/U"'
+      reference: md5,29feb71dc6e5eeb6dbeeaebee647a5b3
+      rev: '2'
+      sid: '2036333'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: <50
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

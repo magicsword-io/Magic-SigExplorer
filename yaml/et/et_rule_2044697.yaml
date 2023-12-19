@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '7'
+        value: '"|7b 22|id|22 3a 22|"'
+      - value: '"|22 2c 22|computername|22 3a 22|"'
+      - value: '"|22 2c 22|username|22 3a 22|"'
+      - value: '"|22 2c 22|gpu|22 3a 22|"'
+      - value: '"|22 2c 22|activewindow|22 3a 22|"'
+      - value: '"|2c 22|type|22 3a 22|xmrig|22 2c 22|status|22 3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_20, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_03_20
+      msg: '"ET TROJAN Win32/Amadey Host Fingerprint Exfil (POST) M3"'
+      pcre: '"/\.php$/U"'
+      reference: url,twitter.com/James_inthe_box/status/1637793067502817281
+      rev: '1'
+      sid: '2044697'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

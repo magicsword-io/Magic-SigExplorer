@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2e 20|HTTP/1."'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_16, updated_at 2020_12_10
+      msg: '"ET CURRENT_EVENTS Possible Astrum EK URI Struct"'
+      pcre: '"/^\/(?=[A-Za-z_-]*?\d)(?=[a-z0-9_-]*?[A-Z])(?:[A-Za-z0-9_-]{4}){15,}(?:[[A-Za-z0-9_-]{2}\x2e?\x2e|[A-Za-z0-9_-]{3}\x2e)$/U"'
+      rev: '2'
+      sid: '2019176'
+      urilen: 60<>100
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

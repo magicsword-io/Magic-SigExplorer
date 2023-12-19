@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|cryptopro-download|03|one|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_16, deployment Perimeter, former_category
+        PHISHING, malware_family DarkWatchman, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_16
+      msg: '"ET CURRENT_EVENTS DarkWatchman Phish Domain in DNS Lookup (cryptopro-download
+        .one)"'
+      reference: url,blog.cyble.com/2023/05/05/sophisticated-darkwatchman-rat-spreads-through-phishing-sites/
+      rev: '1'
+      sid: '2045738'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

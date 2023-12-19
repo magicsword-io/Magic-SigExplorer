@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: system-call-detect
+      contents:
+      - value: '"|B0 17 CD 80|",fast_pattern,nocase'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SHELLCODE x86 setuid 0"'
+      rev: '15'
+      sid: '650'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

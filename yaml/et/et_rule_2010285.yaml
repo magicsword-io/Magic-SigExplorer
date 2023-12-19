@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"SELECT"'
+      - value: '"SUBSTR"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, former_category WEB_SERVER,
+        signature_severity Major, tag SQL_Injection, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER SELECT SUBSTR/ING in URI Possible Blind SQL Injection Attempt"'
+      pcre: '"/SELECT.+SUBSTR/Ui"'
+      reference: url,doc.emergingthreats.net/2010285
+      rev: '4'
+      sid: '2010285'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

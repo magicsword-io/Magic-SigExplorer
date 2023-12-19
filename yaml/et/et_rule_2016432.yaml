@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3b|Trident/4.0 "'
+      flow: established,to_server
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Likseput.B Checkin"'
+      pcre: '"/User-Agent\x3a[^\r\n]+[^\x20]\x3bTrident\/4\.0\x29\s\d{2}\x3a\d{2}\s\r$/Hmi"'
+      reference: md5,95d85aa629a786bb67439a064c4349ec
+      rev: '2'
+      sid: '2016432'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

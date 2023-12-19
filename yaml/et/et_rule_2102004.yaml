@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1434'
+    details:
+      classtype: misc-attack
+      contents:
+      - depth: '1'
+        value: '"|04|"'
+      - value: '"|81 F1 03 01 04 9B 81 F1|"'
+      - value: '"sock"'
+      - value: '"send"'
+      metadata: created_at 2010_09_23, cve CVE_2002_0649, updated_at 2010_09_23
+      msg: '"GPL WORM Slammer Worm propagation attempt OUTBOUND"'
+      reference: url,vil.nai.com/vil/content/v_99992.htm
+      rev: '8'
+      sid: '2102004'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| AskTb"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2012_10_04, deployment Perimeter,
+        signature_severity Minor, tag Spyware_User_Agent, updated_at 2020_04_22
+      msg: '"ET POLICY AskSearch Toolbar Spyware User-Agent (AskTBar) 2"'
+      rev: '1'
+      sid: '2015757'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

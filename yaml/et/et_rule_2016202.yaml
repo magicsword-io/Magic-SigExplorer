@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/js/tiny_mce/plugins/tinybrowser/upload.php?"'
+      - value: '"type="'
+      flow: established,to_server
+      metadata: created_at 2013_01_12, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS TinyBrowser upload.php file Script Execution Attempt"'
+      reference: url,securityfocus.com/bid/57230/
+      rev: '1'
+      sid: '2016202'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".asp|3B 2E|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2009_4444, updated_at 2020_08_20
+      msg: '"ET WEB_SERVER Possible Microsoft Internet Information Services (IIS)
+        .asp Filename Extension Parsing File Upload Security Bypass Attempt (asp)"'
+      reference: cve,2009-4444
+      rev: '8'
+      sid: '2010592'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

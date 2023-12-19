@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"Content-Type|3a 20|multipart|2f|form-data"'
+      dsize: '>0'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2015_11_12, updated_at 2019_10_08
+      msg: '"ET INFO form-data flowbit set (noalert)"'
+      rev: '1'
+      sid: '2022080'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"|3b|Windows"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_08_01, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN Comfoo Checkin"'
+      pcre: '"/^User-Agent\x3a[^\r\n]*?\x3bWindows/mi"'
+      reference: url,www.secureworks.com/cyber-threat-intelligence/threats/secrets-of-the-comfoo-masters/
+      rev: '2'
+      sid: '2017262'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

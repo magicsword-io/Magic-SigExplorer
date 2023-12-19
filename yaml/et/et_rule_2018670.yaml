@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/default.asp?act="'
+      - value: '"&id="'
+      - value: '"&item="'
+      - value: '"&cln="'
+      - value: '"&flt="'
+      - value: '"&serv="'
+      - value: '"&t="'
+      - value: '"&mode="'
+      - value: '"&lang="'
+      - value: '"&date="'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_07_12, former_category MALWARE, updated_at 2020_09_24
+      msg: '"ET TROJAN Uroburos/Turla CnC (OUTBOUND) 2"'
+      reference: url,circl.lu/pub/tr-25/
+      rev: '2'
+      sid: '2018670'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

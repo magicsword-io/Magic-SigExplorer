@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"all_tab_columns",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE all_tab_columns access"'
+      rev: '7'
+      sid: '1684'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

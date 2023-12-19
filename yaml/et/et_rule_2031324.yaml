@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|appsync-api"'
+      - value: '"|0a|avsvmcloud|03|com"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_03_24
+      msg: '"ET TROJAN [Fireeye] SUNBURST Related DNS Lookup to avsvmcloud .com"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+      rev: '3'
+      sid: '2031324'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

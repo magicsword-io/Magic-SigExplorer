@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/js/data/encryptedtest.dll"'
+      flow: established,to_server
+      metadata: created_at 2012_06_26, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Nutiliers.A Downloader CnC Checkin - Request Encrypted
+        Response"'
+      reference: md5,7b2bfb9d270a5f446f32502d2ed34d67
+      rev: '1'
+      sid: '2014962'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

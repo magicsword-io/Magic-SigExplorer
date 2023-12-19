@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"base64decode"'
+      - value: '"xxtea_decrypt"'
+      - value: '"long2str"'
+      - value: '"str2long"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_06_09, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Likely Evil JS used in Unknown EK Landing"'
+      rev: '2'
+      sid: '2021218'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

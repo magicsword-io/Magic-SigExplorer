@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|24 0F 12|4|24 0F 12|4|24 0F 12|4|24 0F 12|4"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SHELLCODE SGI NOOP"'
+      reference: arachnids,357
+      rev: '7'
+      sid: '2100639'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: $SHELLCODE_PORTS

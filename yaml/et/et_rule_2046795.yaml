@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -19
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"paste.bingner.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter,
+        signature_severity Informational, updated_at 2023_07_11
+      msg: '"ET INFO Observed Pastebin-like Service Domain (paste .bingner .com in
+        TLS SNI)"'
+      pcre: '"/^(?:\x00\x11|.\x2e)paste\.bingner\.com/R"'
+      reference: url,paste.bingner.com/about
+      rev: '1'
+      sid: '2046795'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

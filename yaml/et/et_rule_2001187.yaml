@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|09 00 00 00 78|"'
+      flow: from_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Soulseek Filesearch Results"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001187
+      rev: '6'
+      sid: '2001187'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '2234'

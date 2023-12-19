@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"4D|60|5A|60|"'
+      - value: '"|60|50|60|45|60|00|60|00|60|"'
+      - value: '"|60|21|60|54|60|68|60|69|60|73|60|20|60|70|60|72|60|6f|60|67|60|72|60|61|60|6d|60|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_02_28, deployment Perimeter,
+        former_category HUNTING, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_02_28, mitre_tactic_id TA0005, mitre_tactic_name
+        Defense_Evasion, mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information
+      msg: '"ET INFO Likely Hex Encoded Executable as String - Backtick Separated"'
+      reference: url,threatmon.io/apt-sidecopy-targeting-indian-government-entities/
+      rev: '1'
+      sid: '2044377'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

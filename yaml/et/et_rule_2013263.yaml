@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"pass nessus@"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2011_07_13, updated_at 2011_07_13
+      msg: '"ET SCAN Nessus FTP Scan detected (ftp_anonymous.nasl)"'
+      reference: url,osvdb.org/show/osvdb/69
+      rev: '2'
+      sid: '2013263'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

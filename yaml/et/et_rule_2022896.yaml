@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe"'
+      - value: '!"Referer|3a|"'
+      - value: '!"|0d 0a|Cookie|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_06_14, former_category CURRENT_EVENTS, updated_at
+        2022_05_03
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS Firesale gTLD EXE DL with no Referer June
+        13 2016"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.(?:s(?:(?:(?:cien|pa)c|it)e|tream)|c(?:l(?:ick|ub)|ountry|ricket)|m(?:(?:aiso|e)n|o(?:bi|m))|p(?:r(?:ess|o)|arty|ink|w)|r(?:e(?:[dn]|view)|acing)|w(?:eb(?:site|cam)|in)|b(?:(?:outiq|l)ue|id)|d(?:ownload|ate|esi)|(?:accountan|hos)t|l(?:o(?:an|l)|ink)|t(?:rade|ech|op)|v(?:oyage|ip)|g(?:dn|b)|online|faith|kim|xyz)(?:\x3a\d{1,5})?\r?\n/Hmi"'
+      rev: '4'
+      sid: '2022896'
+      special_options:
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

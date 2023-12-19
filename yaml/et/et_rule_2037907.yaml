@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '30'
+        offset: '20'
+        value: '"|7c 3d 3d 5b|Chrome|20|Passwords|5d 3d 3d|"'
+      - value: '"|5b|PASSWORD|5d 0d 0a|Hostname|3a 20|"'
+      distance: '0'
+      flow: established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_03, deployment Perimeter, former_category
+        ATTACK_RESPONSE, malware_family AveMaria, signature_severity Major, updated_at
+        2022_08_03
+      msg: '"ET TROJAN Ave Maria/Warzone RAT Credential Exfil"'
+      reference: url,fortinet.com/blog/threat-research/phishing-campaign-delivering-fileless-malware-part-two
+      rev: '1'
+      sid: '2037907'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

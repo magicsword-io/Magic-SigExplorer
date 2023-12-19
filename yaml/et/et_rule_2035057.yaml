@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|6c 69 73 74|"'
+      dsize: '4'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_22, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2019_03_22
+      msg: '"ET TROJAN Win32/Spy.Agent.POX Variant CnC"'
+      reference: md5,bb15e442a527a83939d9ff1b835f99dd
+      rev: '2'
+      sid: '2035057'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[19400:19500]'

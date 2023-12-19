@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '11'
+        value: '"/2.gif?x22="'
+      - value: '"&x12=&x21="'
+      - value: '"&x9=&x16=0&x1="'
+      distance: '32'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_02_25, deployment Perimeter,
+        former_category ADWARE_PUP, performance_impact Low, signature_severity Minor,
+        updated_at 2020_02_25
+      msg: '"ET MALWARE Win32/Adware.Bang5mai.BB CnC Activity M3"'
+      reference: md5,6b540ba2fc2e606e9e2c8b72818caa28
+      rev: '2'
+      sid: '2029531'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '14'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

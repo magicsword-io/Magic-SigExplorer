@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: system-call-detect
+      contents:
+      - value: '"EXECUTE_SYSTEM",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE EXECUTE_SYSTEM attempt"'
+      rev: '6'
+      sid: '1673'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

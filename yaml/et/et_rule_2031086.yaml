@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var str =  ''Sign in to Outlook''|3b|"'
+      - value: '"$(|22|#add_pass|22|).show()|3b|"'
+      - value: '"$(''#email'').val('''')|3b|"'
+      - value: '"function set_brand("'
+      - value: '"function true_email("'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_10_23, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS Outlook Phishing Landing 2020-10-23"'
+      rev: '3'
+      sid: '2031086'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

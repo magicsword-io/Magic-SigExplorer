@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"ianxz6zefk72ulzz.onion|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2011_06_13, updated_at 2020_05_06
+      msg: '"ET POLICY HTTP Request to Illegal Drug Sales Site (SilkRoad)"'
+      rev: '2'
+      sid: '2013015'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

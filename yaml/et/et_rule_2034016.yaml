@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|credits|11|offices-analytics|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_09_23, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_09_23
+      msg: '"ET TROJAN APT/FamousSparrow CnC Domain in DNS Lookup (credits.offices-analytics
+        .com)"'
+      reference: url,www.welivesecurity.com/2021/09/23/famoussparrow-suspicious-hotel-guest/
+      rev: '2'
+      sid: '2034016'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '31'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

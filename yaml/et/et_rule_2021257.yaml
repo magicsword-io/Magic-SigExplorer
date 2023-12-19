@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '3'
+        value: '"/s?"'
+      - value: '"|3b|"'
+      - value: '"|3b|"'
+      - value: '"."'
+      - value: '"_"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_06_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Agent.WVW CnC Beacon 1"'
+      pcre: '"/^\/s\?\d+\x3b\d+\x3b\d{1,2}\.\d_(?:32|64)_\d+(?:\x3b\d+){4}$/U"'
+      reference: md5,1de834aca8905124e1abcd4f71dea062
+      rev: '1'
+      sid: '2021257'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

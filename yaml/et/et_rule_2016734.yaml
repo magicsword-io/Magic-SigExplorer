@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"applet"'
+      - value: '"8ss&299"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_04_09, former_category EXPLOIT_KIT, updated_at 2013_04_09
+      msg: '"ET CURRENT_EVENTS RedKit applet + obfuscated URL Apr 7 2013"'
+      rev: '1'
+      sid: '2016734'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

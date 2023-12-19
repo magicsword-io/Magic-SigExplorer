@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|techxim.com|00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2019_10_07, deployment
+        Perimeter, former_category MALWARE, malware_family AZORult, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2019_10_07,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (AZORult CnC Server) in SNI 2019-09-27"'
+      reference: md5,5c4e395fc545b5e0c03f960a4145f4ea
+      rev: '2'
+      sid: '2028659'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

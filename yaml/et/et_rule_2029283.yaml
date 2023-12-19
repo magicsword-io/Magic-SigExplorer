@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"ggin|0b 00 00 00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_16, deployment Perimeter, former_category
+        MALWARE, malware_family MillionLoader, signature_severity Major, updated_at
+        2020_01_16
+      msg: '"ET TROJAN Win32/MillionLoader CnC Activity (Outbound)"'
+      reference: md5,957f3749d062e76f9cb1f05edf929168
+      rev: '2'
+      sid: '2029283'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

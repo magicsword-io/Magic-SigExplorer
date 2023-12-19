@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '8081'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/submit_net_debug.cgi"'
+      - value: '"cmd_param="'
+      - value: '!"|0A|"'
+      flow: to_server,established
+      isdataat: 500,relative
+      metadata: created_at 2015_08_18, cve CVE_2015_5718, former_category EXPLOIT,
+        confidence High, updated_at 2020_05_29
+      msg: '"ET EXPLOIT Websense Content Gateway submit_net_debug.cgi cmd_param Param
+        Buffer Overflow Attempt"'
+      pcre: '"/[\?\&]cmd_param=[^\&\r\n]{500}/si"'
+      reference: url,seclists.org/fulldisclosure/2015/Aug/8
+      rev: '1'
+      sid: '2021644'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

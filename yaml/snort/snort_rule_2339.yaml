@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '69'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|00 00|",depth 2'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP NULL command attempt"'
+      reference: bugtraq,7575
+      rev: '9'
+      sid: '2339'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

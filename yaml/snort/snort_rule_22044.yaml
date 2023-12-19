@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".xm",fast_pattern,nocase'
+      - value: '"Content-Disposition: attachment|3B|"'
+      - value: '"filename=",nocase'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XM file attachment detected"'
+      pcre: '"/filename=[^\n]*\x2exm/i"'
+      rev: '9'
+      service: imap,pop3
+      sid: '22044'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[110,143]'

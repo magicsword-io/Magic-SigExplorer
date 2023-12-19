@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/readme.eml",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER readme.eml download attempt"'
+      reference: url,www.cert.org/advisories/CA-2001-26.html
+      rev: '17'
+      service: http
+      sid: '1284'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[6892,6893]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"b"'
+      dsize: 13<>32
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_12, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware_Cerber, signature_severity Major, tag Ransomware,
+        tag Ransomware_Cerber, updated_at 2017_04_14, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Ransomware/Cerber Checkin M3 (12)"'
+      pcre: '"/^[a-f0-9]{13,30}$/Ri"'
+      reference: md5,d8b2d2a5f6da2872e147011d2ea85d71
+      rev: '3'
+      sid: '2023623'
+      special_options:
+      - nocase
+      threshold: type both, track by_src, count 1, seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

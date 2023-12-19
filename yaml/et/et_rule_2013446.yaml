@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '882'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|my_check_data"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_08_22, updated_at 2020_04_20
+      msg: '"ET TROJAN Win32/TrojanDownloader.Chekafe.D User-Agent my_check_data On
+        Off HTTP Port"'
+      rev: '1'
+      sid: '2013446'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

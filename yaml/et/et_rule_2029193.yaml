@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"_aWQ9"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_22, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2020_12_10
+      msg: '"ET TROJAN Win32/Valak <v9 - Stage 2 - Request"'
+      pcre: '"/_aWQ9[a-zA-Z0-9\/]{43,46}(JmdpZD|Z2lkP|ZnaWQ9)[a-zA-Z0-9\/]+\.html$/U"'
+      reference: url,medium.com/@prsecurity_/casual-analysis-of-valak-c2-3497fdb79bf7
+      rev: '3'
+      sid: '2029193'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '>60'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

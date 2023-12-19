@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"ID|3a|"'
+      - value: '"|5f|"'
+      - value: '"C|3a 5c|"'
+      - value: '"|5c|Local|5c|Temp|5c|7ZipSfx|2e|000|00|Virtual|2e|exe"'
+      distance: '0'
+      fast_pattern: 11,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_01_13
+      msg: '"ET TROJAN Win32/Gamaredon CnC Activity"'
+      reference: url,twitter.com/RedDrip7/status/1613806512211910657
+      rev: '1'
+      sid: '2043298'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

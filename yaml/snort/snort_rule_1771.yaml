@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 10 02 00 00 00 00 00
+          00 00 00 88 0D 00 00 5C 00 00 00 01 00 00 00 01 00 00 00|P|01 01 00 02 03
+          00 00 24 01 01 00 00 80 01 00 06 80 02 00 02 80 03 00 03 80 04 00 05 80
+          0B 00 01 00 0C 00 04 00 01|Q|80 00 00 00 24 02 01 00 00 80 01 00 05 80 02
+          00 01 80 03 00 03 80 04 00 02 80 0B 00 01 00 0C 00 04 00 01|Q|80 00 00 00
+          10|",fast_pattern,nocase'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"POLICY-OTHER IPSec PGPNet connection attempt"'
+      rev: '13'
+      sid: '1771'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

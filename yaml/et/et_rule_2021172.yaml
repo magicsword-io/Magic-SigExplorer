@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5093'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|7a 00 00 00 00 00|"'
+      dsize: '6'
+      metadata: created_at 2015_05_29, updated_at 2015_05_29
+      msg: '"ET DOS Possible Sentinal LM Amplification attack (Request) Inbound"'
+      rev: '1'
+      sid: '2021172'
+      threshold: type both,track by_dst,count 10,seconds 60
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

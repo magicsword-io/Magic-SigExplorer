@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!".php"'
+      - depth: '6'
+        value: '"arch=x"'
+      - value: '"&computer%5fname="'
+      - value: '"&guid="'
+      - value: '"&ip="'
+      - value: '"&os="'
+      - value: '"&tracking%5ftoken="'
+      - value: '"&version="'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_04_16, deployment Perimeter, former_category
+        TROJAN, malware_family CONFUCIUS_B, signature_severity Major, updated_at 2022_05_03
+      msg: '"ET TROJAN Win32/CONFUCIUS_B CnC Checkin"'
+      reference: md5,2d2fe787b2728332341166938a25fa26
+      rev: '3'
+      sid: '2029924'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

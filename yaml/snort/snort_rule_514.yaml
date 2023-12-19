@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '27374'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET ",depth 8,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER ramen worm"'
+      rev: '9'
+      sid: '514'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

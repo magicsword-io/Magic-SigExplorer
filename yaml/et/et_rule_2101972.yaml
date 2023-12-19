@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"PASS"'
+      flow: to_server,established,no_stream
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_1999_1519, updated_at 2010_09_23
+      msg: '"GPL FTP PASS overflow attempt"'
+      pcre: '"/^PASS\s[^\n]{100}/smi"'
+      reference: cve,2002-0895
+      rev: '17'
+      sid: '2101972'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

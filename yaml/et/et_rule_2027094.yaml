@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - depth: '14'
+        value: '"/dnslookup.cgi"'
+      - value: '"DIAG_diag.htm|0d 0a|"'
+      - depth: '10'
+        value: '"host_name="'
+      - value: '"|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_03_18, cve CVE_2017_6334, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET EXPLOIT Possible Netgear DGN2200 RCE (CVE-2017-6334)"'
+      pcre: '"/^\/dnslookup\.cgi$/U"'
+      reference: cve,2017-6334
+      rev: '2'
+      sid: '2027094'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

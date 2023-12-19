@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>ANTIBOT</title>"'
+      - value: '"DASHBOARD"'
+      - value: '"Real Visitor Detection Manager"'
+      - value: '"Check Configuration & STATUS SERVER"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_05, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_04_05
+      msg: '"ET CURRENT_EVENTS Generic Antibot Phish Landing Page 2023-04-05"'
+      rev: '1'
+      sid: '2044910'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

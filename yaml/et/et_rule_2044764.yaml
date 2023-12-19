@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/accept.php"'
+      - value: '"name|3d 22|ip|22|"'
+      - value: '"name|3d 22|country|22|"'
+      - value: '"name|3d 22|date|22|"'
+      - value: '"name|3d 22|passCount|22|"'
+      - value: '"name|3d 22|cookieCount|22|"'
+      - value: '"name|3d 22|cardCount|22|"'
+      - value: '"name|3d 22|file|22 3b 20|filename|3d 22|"'
+      - value: '"|5c|AppData|5c|Local|5c|Temp|5c 5c|result.zip|22|"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      - value: '"LogStih"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_24, deployment Perimeter, former_category
+        MALWARE, malware_family LogStih_Stealer, performance_impact Low, confidence
+        High, signature_severity Major, tag LogStih_Stealer, updated_at 2023_03_24
+      msg: '"ET TROJAN LogStih Stealer Data Exfiltration Attempt"'
+      reference: md5,8cc77ab1ed572bca0d9b5aef722f7802
+      rev: '1'
+      sid: '2044764'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      urilen: '11'
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

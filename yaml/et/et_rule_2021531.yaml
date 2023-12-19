@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".txt"'
+      - value: '"WinHttp.WinHttpRequest"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2015_07_24, updated_at 2020_05_29
+      msg: '"ET TROJAN W2KM_BARTALEX Downloading Payload M2 (set)"'
+      rev: '1'
+      sid: '2021531'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

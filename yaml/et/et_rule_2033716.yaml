@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"|7e 5c 77 6f 72 6d 73 5c 2e 42 6c 61 63 6b 20 48 61 74 20 57 6f 72
+          6d|"'
+      - value: '"|62 6c 61 63 6b 20 68 61 74|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_12, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag RAT, updated_at
+        2021_09_13
+      msg: '"ET TROJAN MSIL/Black Hat Worm Checkin"'
+      reference: md5,bfa67c998ebedf8ab17e2d8898d0067d
+      rev: '2'
+      sid: '2033716'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

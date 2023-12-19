@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 14|cpanel.gtiyeshua.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_09_20, deployment Perimeter, malware_family SocGholish, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_20, reviewed_at
+        2023_11_30
+      msg: '"ET TROJAN SocGholish Domain in TLS SNI (cpanel .gtiyeshua .com)"'
+      reference: url,community.emergingthreats.net/t/et-socgholish-rules-response-guidance/335
+      rev: '1'
+      sid: '2048140'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

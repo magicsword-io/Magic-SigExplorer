@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ubus/"'
+      - value: '"|22|exec|22|,|7b 22|command|22 3a 22|wget"'
+      flow: to_server,established
+      metadata: affected_product Router, attack_target Networking_Equipment, created_at
+        2023_03_08, deployment Perimeter, deployment Internal, former_category EXPLOIT,
+        signature_severity Major, updated_at 2023_03_08
+      msg: '"ET EXPLOIT Razer Sila Router - Command Injection Attempt Inbound (wget)
+        (No CVE)"'
+      reference: url,www.exploit-db.com/exploits/50865
+      rev: '1'
+      sid: '2044530'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

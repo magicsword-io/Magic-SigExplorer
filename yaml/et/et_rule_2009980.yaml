@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"id_menu="'
+      - value: '"SELECT"'
+      - value: '"FROM"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_13
+      msg: '"ET WEB_SPECIFIC_APPS CMScontrol 7.x (index.php id_menu) SQL Injection
+        Vulnerability"'
+      reference: url,doc.emergingthreats.net/2009980
+      rev: '6'
+      sid: '2009980'
+      special_options:
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

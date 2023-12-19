@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 7<=>8
+      classtype: trojan-activity
+      contents:
+      - value: '".php"'
+      - value: '"boundary=Xu02=$",fast_pattern,nocase'
+      - value: '!"User-Agent"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Engr variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/54f6600db99fdab31453f3e23e8fb080438cd1ec36b6fc2868ff86cf88f14bb0/analysis/
+      rev: '2'
+      service: http
+      sid: '37552'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

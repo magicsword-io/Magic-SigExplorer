@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '6'
+        offset: '2'
+        value: '"|01 00 00 01 00 01|"'
+      - value: '"|00 f9|"'
+      - value: '!"|00 f9|"'
+      metadata: created_at 2015_08_01, cve CVE_2015_5477, former_category EXPLOIT,
+        updated_at 2015_08_01
+      msg: '"ET EXPLOIT Possible BIND9 DoS CVE-2015-5477 M1"'
+      pcre: '"/^..[^\x00]+\x00/Rs"'
+      reference: cve,2015-5477
+      rev: '3'
+      sid: '2021572'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 60, count 1
+      within: '2'
+    protocol: udp
+    source:
+      network: any
+      port: any

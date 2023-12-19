@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"."'
+      - value: '!"&"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (compatible|3b 20|Googlebot/2.1|3b 20|+http|3a
+          2f 2f|www.google|2e|com/bot.html)|0d 0a|"'
+      - depth: '25'
+        value: '"="'
+      - value: '"&"'
+      - value: '"="'
+      - value: '"=V2luZG93cy"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_12_14
+      msg: '"ET TROJAN MICROPSIA CnC Checkin"'
+      reference: url,unit42.paloaltonetworks.com/pymicropsia/
+      rev: '2'
+      sid: '2031371'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

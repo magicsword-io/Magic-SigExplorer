@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"xp_regwrite",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP xp_regwrite attempt"'
+      rev: '8'
+      service: http
+      sid: '1977'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

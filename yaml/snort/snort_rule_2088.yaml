@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 86 BC|",depth 4,offset 12'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|7C|",distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC ypupdated arbitrary command attempt UDP"'
+      reference: cve,1999-0208
+      rev: '17'
+      sid: '2088'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (compatible|3b| BLEXBot/"'
+      fast_pattern: 25,20
+      flow: established,to_server
+      metadata: created_at 2016_05_02, former_category MALWARE, updated_at 2020_07_07
+      msg: '"ET USER_AGENTS BLEXBot User-Agent"'
+      reference: url,webmeup.com/about.html
+      rev: '1'
+      sid: '2022775'
+      special_options:
+      - http_header
+      threshold: type limit, track by_dst, count 1, seconds 300
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

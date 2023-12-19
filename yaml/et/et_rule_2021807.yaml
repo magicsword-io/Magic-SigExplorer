@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|init|12|icloud-diagnostics|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2015_09_22, updated_at 2020_09_17
+      msg: '"ET TROJAN XCodeGhost DNS Lookup"'
+      reference: url,researchcenter.paloaltonetworks.com/2015/09/novel-malware-xcodeghost-modifies-xcode-infects-apple-ios-apps-and-hits-app-store
+      rev: '2'
+      sid: '2021807'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

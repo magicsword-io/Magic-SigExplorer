@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[445,139]'
+    details:
+      byte_test: 1,!&,0x80,6,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB|A2|"'
+      - value: '"|24|RECYCLE|2E|BIN|2E 7B|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_09_01, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2016_09_01,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Zlader Ransomware Worm Propagating Over SMB v1 ASCII"'
+      pcre: '"/\x24RECYCLE\.BIN\.\x7B[0-9A-F]{8}\x2D(?:[0-9A-F]{4}\x2D){3}[0-9A-F]{12}\x7D\x5C\x7B[0-9A-F]{8}\x2D(?:[0-9A-F]{4}\x2D){3}[0-9A-F]{12}\x7D\.(?:scr|pif|cmd)/i"'
+      reference: url,www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/worm_zlader.b
+      rev: '3'
+      sid: '2023149'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type limit, track by_src, count 10, seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

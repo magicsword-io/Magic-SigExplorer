@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/bb-hostsvc.sh?",fast_pattern,nocase'
+      - value: '"HOSTSVC",nocase'
+      - value: '"../..",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP bb-hostscv.sh attempt"'
+      reference: nessus,10460
+      rev: '21'
+      service: http
+      sid: '1532'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

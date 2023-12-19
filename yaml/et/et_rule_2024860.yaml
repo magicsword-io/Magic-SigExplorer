@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|microsoftsec|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2017_10_18, updated_at 2020_09_17
+      msg: '"ET TROJAN Possible Winnti-related DNS Lookup"'
+      reference: url,401trg.pw/an-update-on-winnti/
+      rev: '2'
+      sid: '2024860'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

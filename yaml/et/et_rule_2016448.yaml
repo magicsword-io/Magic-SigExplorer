@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!---HEADER ADSPACE style=|22|"'
+      - value: '"|5c|text $-->"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2013_02_20
+      msg: '"ET TROJAN WEBC2-ADSPACE Server Response"'
+      reference: url,www.mandiant.com/apt1
+      rev: '1'
+      sid: '2016448'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

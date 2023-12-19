@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SIP_SERVERS
+      port: $SIP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"SIP/2.0",fast_pattern,nocase'
+      detection_filter: track by_src,count 100,seconds 25
+      flow: to_server,established,only_stream
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-VOIP Possible SIP OPTIONS service information gathering attempt"'
+      reference: url,blog.sipvicious.org/2008/02/detecting-sip-attacks-with-snort.html
+      rev: '3'
+      service: sip
+      sid: '27902'
+      sip_method: options
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

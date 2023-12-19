@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|office360-expert|06|online"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_13, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2021_08_13
+      msg: '"ET TROJAN Gamaredon CnC Domain in DNS Lookup (office360-expert .online)"'
+      reference: url,twitter.com/NinjaOperator/status/1354526362627936258
+      rev: '1'
+      sid: '2033722'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

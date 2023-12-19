@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/iissamples/sdk/asp/docs/codebrws.asp",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS codebrowser SDK access"'
+      reference: cve,1999-0736
+      rev: '23'
+      service: http
+      sid: '1005'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"|05 00|"'
+      - value: '"|00 2E 00|p|00|s|00|1|00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        SMB_Client, created_at 2018_07_16, deployment Internal, former_category POLICY,
+        signature_severity Minor, updated_at 2018_07_16
+      msg: '"ET POLICY SMB2 NT Create AndX Request For a Powershell .ps1 File"'
+      rev: '2'
+      sid: '2025705'
+      special_options:
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: any
+      port: any

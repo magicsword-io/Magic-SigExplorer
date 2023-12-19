@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - depth: '11'
+        offset: '5'
+        value: '"/result?hl="'
+      - value: '"&meta="'
+      - value: '"|0d 0a 0d 0a|Mjtdkj"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2012_09_19, former_category TROJAN, updated_at 2012_09_19
+      msg: '"ET TROJAN Mirage Campaign checkin (port 443)"'
+      reference: url,secureworks.com/research/threats/the-mirage-campaign/
+      rev: '3'
+      sid: '2015715'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

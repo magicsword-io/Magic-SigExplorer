@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|nsn1|0e|winodwsupdates|02|me|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_11_27, deployment Perimeter, former_category
+        TROJAN, malware_family Patchwork, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_15
+      msg: '"ET TROJAN Patchwork DNS Tunneling (nsn1.winodwsupdates .me)"'
+      reference: url,docs.google.com/document/d/1oYX3uN6KxIX_StzTH0s0yFNNoHDnV8VgmVqU5WoeErc
+      rev: '2'
+      sid: '2025072'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

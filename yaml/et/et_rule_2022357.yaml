@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/crond"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.1|3b 20|WOW64|3b 20|rv|3a|18.0)
+          Gecko/20100101 Firefox/18.0|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_01_13, updated_at 2020_11_05
+      msg: '"ET TROJAN Linux/Torte Downloading Binary"'
+      pcre: '"/^\/crond(?:32|64)$/U"'
+      reference: url,blog.malwaremustdie.org/2016/01/mmd-0050-2016-incident-report-elf.html
+      rev: '1'
+      sid: '2022357'
+      special_options:
+      - http_uri
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

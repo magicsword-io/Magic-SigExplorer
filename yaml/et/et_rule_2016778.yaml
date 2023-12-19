@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|pw|00|"'
+      - value: '!"|01|u|02|pw|00|"'
+      distance: '0'
+      metadata: created_at 2013_04_20, updated_at 2022_05_03
+      msg: '"ET DNS Query to a *.pw domain - Likely Hostile"'
+      rev: '5'
+      sid: '2016778'
+      special_options:
+      - fast_pattern
+      - nocase
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

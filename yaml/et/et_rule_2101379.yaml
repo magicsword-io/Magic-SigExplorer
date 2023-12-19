@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"STAT"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2001_0325, updated_at 2010_09_23
+      msg: '"GPL FTP STAT overflow attempt"'
+      pcre: '"/^STAT\s[^\n]{100}/smi"'
+      reference: url,labs.defcom.com/adv/2001/def-2001-31.txt
+      rev: '13'
+      sid: '2101379'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

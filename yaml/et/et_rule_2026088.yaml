@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"unlink("'
+      - value: '"|2E|bindnow"'
+      - value: '"stopped"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target SMTP_Server, created_at 2018_09_05, deployment Datacenter,
+        former_category EXPLOIT, signature_severity Informational, updated_at 2018_09_05
+      msg: '"ET EXPLOIT Ghostscript illegal delete bindnow attempt (SMTP)"'
+      pcre: '"/\x2Ebindnow[^\x7D]*\x7D\s*stopped/smi"'
+      reference: url,seclists.org/oss-sec/2018/q3/142
+      rev: '1'
+      sid: '2026088'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/lang_check",nocase'
+      - value: '"hidden_lang_avi=",nocase'
+      - value: '!"&",within 36'
+      flow: to_server,established
+      isdataat: 36,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear WNR2000 hidden_lang_avi stack buffer overflow attempt"'
+      reference: url,seclists.org/fulldisclosure/2016/Dec/72
+      rev: '4'
+      service: http
+      sid: '41096'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

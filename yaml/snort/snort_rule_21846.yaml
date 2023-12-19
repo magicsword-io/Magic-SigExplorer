@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/in.cgi?"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC TDS Sutra - request in.cgi"'
+      pcre: '"/\x2Fin\.cgi\?(\d{1,2}|default)$/i"'
+      reference: url,xylibox.blogspot.com/2011/12/sutra-tds-v34.html
+      rev: '9'
+      service: http
+      sid: '21846'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

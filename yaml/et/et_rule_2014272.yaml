@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|00 00 00 00 FF FF FF FF 3F 57|"'
+      - value: '"|FE FF FF FF FF FF FF FF FF FF FF|"'
+      distance: '3'
+      dsize: '32'
+      flow: established,from_client
+      metadata: created_at 2012_02_22, former_category MALWARE, updated_at 2012_02_22
+      msg: '"ET TROJAN Win32/Cutwail.BE Checkin 2"'
+      reference: md5,8f17e2a9e7c6cbec772ae56dfffb13cb
+      rev: '3'
+      sid: '2014272'
+      threshold: type limit, track by_src, seconds 60, count 1
+      within: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

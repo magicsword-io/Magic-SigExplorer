@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|3e 00 20 00 5c 00 5c 00 31 00 32 00 37 00 2e 00 30 00 2e 00 30 00
+          2e 00 31 00 5c 00 41 00 44 00 4d 00 49 00 4e 00 24 00 5c 00 5f 00 5f 00|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_26, deployment Internal,
+        former_category INFO, confidence Low, signature_severity Informational, updated_at
+        2023_01_26
+      msg: '"ET INFO Suspected Impacket WMIExec Activity"'
+      reference: url,github.com/fortra/impacket/blob/8799a1a2c42ad74423841d21ed5f4193ea54f3d5/examples/wmiexec.py
+      rev: '1'
+      sid: '2043996'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

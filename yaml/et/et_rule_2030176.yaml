@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?vol="'
+      - value: '"&q="'
+      - value: '"&guid=|7b|"'
+      - value: '"|7d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_18, deployment Perimeter, former_category
+        MALWARE, malware_family Ramsay, performance_impact Low, signature_severity
+        Major, updated_at 2020_05_18
+      msg: '"ET TROJAN Win32/Ramsay CnC Checkin"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,13}[^\x20-\x7e\r\n]/Psi"'
+      reference: url,github.com/eset/malware-ioc/blob/master/ramsay/samples.sha256
+      rev: '2'
+      sid: '2030176'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

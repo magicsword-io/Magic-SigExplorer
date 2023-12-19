@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST /b/req/",depth 12'
+      - value: '" HTTP/1.1|0D 0A|Accept: */*|0D 0A|Content-Type: application/octet-stream|0D
+          0A|Connection: Close|0D 0A|User-Agent: Mozilla/",within 103,distance 24'
+      - value: '")|0D 0A|Host: ",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.Cidox variant outbound connection attempt"'
+      rev: '2'
+      sid: '46137'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

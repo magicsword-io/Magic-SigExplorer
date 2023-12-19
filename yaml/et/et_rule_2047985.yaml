@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|tdnmouse|07|atspace|02|eu|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_08, deployment Perimeter, performance_impact
+        Low, confidence High, signature_severity Major, tag Red_Wolf, tag RedCurl,
+        updated_at 2023_09_08, reviewed_at 2023_09_08
+      msg: '"ET TROJAN Red Wolf/RedCurl Domain in DNS Lookup (tdnmouse .atspace .eu)"'
+      reference: url,www.facct.ru/blog/redcurl-2023/
+      rev: '1'
+      sid: '2047985'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

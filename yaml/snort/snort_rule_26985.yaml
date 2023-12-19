@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"rawin.php?b="'
+      - value: '"&v=1.",distance 0'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Rawin exploit kit outbound java retrieval"'
+      pcre: '"/\.php\?b=[A-F0-9]+&v=1\./"'
+      rev: '3'
+      service: http
+      sid: '26985'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

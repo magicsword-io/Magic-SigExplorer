@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>13'
+      classtype: attempted-admin
+      contents:
+      - value: '"/shell?",fast_pattern,nocase'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP MVPower DVR Shell arbitrary command execution attempt"'
+      reference: url,www.pentestpartners.com/blog/pwning-cctv-cameras/
+      rev: '4'
+      service: http
+      sid: '42857'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Subject|3A 20|"'
+      - value: '"C|3A 5C|"'
+      - value: '".exe"'
+      flow: established,to_server
+      metadata: created_at 2012_03_09, updated_at 2012_03_09
+      msg: '"ET TROJAN SMTP Subject Line Contains C Path and EXE Possible Trojan Reporting
+        Execution Path/Binary Name"'
+      pcre: '"/Subject\x3A\x20[^\r\n]*C\x3A\x5C[^\r\n]*\x2Eexe/i"'
+      reference: md5,24e937b9f3fd6a04dde46a2bc75d4b18
+      rev: '2'
+      sid: '2014343'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

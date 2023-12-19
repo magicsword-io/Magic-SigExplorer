@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|eroeroou.com"'
+      flow: to_server,established
+      metadata: created_at 2015_06_05, updated_at 2020_05_22
+      msg: '"ET TROJAN IOS.Oneclickfraud HTTP Host"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2015-060111-2757-99&tabid=2
+      rev: '1'
+      sid: '2021187'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

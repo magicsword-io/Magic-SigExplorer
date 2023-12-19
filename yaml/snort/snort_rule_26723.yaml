@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".lavaibrasilok.com|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '"|3B| MSIE "'
+      - value: '!"Accept-Language:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Trojan Downloader7"'
+      reference: url,www.drwebhk.com/en/virus_techinfo/Trojan.DownLoader7.25647.html
+      rev: '2'
+      service: http
+      sid: '26723'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

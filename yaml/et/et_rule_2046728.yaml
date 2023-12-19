@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|ideolot|02|ru|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_05, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2023_07_05
+      msg: '"ET TROJAN Gamaredon Domain in DNS Lookup (ideolot .ru)"'
+      reference: url,twitter.com/Cyber0verload/status/1675954349745270784
+      rev: '1'
+      sid: '2046728'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

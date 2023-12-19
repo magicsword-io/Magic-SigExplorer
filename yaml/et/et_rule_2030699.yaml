@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?chatid="'
+      - value: '"&username="'
+      - value: '"&machineName="'
+      - value: '"&Country="'
+      - value: '"&HWID="'
+      - value: '"&ip="'
+      - value: '".zip|22 0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_18, deployment Perimeter, former_category
+        MALWARE, malware_family DarkStealer, malware_family EchelonStealer, signature_severity
+        Major, updated_at 2020_08_18
+      msg: '"ET TROJAN Echelon/DarkStealer Variant CnC Exfil M2"'
+      reference: md5,fed2a8736c84eda9dcc8533b5019f7d8
+      rev: '2'
+      sid: '2030699'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Swizz03r Download Agent"'
+      flow: established,to_server
+      metadata: created_at 2013_06_04, updated_at 2020_04_30
+      msg: '"ET TROJAN Win32/Swizzor User-Agent (Swizz03r)"'
+      reference: md5,5d232faca6d2b082b450b8ee4e238483
+      rev: '2'
+      sid: '2018765'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

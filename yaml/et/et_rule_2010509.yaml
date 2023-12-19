@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/servlet/dea/register?"'
+      - value: '"pwd="'
+      - value: '"fwReg="'
+      - value: '"sn="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Sonicwall NSA E7500 XSS attempt (fwReg parameter)"'
+      pcre: '"/\/servlet\/dea\/register\?fwReg=[>\"]/iU"'
+      reference: url,doc.emergingthreats.net/2010509
+      rev: '6'
+      sid: '2010509'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

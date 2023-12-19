@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"privacysign.org"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_22, deployment Perimeter, signature_severity
+        Major, updated_at 2022_09_22
+      msg: '"ET TROJAN Observed TA444 Domain (privacysign .org in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)privacysign\.org/R"'
+      rev: '1'
+      sid: '2038943'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

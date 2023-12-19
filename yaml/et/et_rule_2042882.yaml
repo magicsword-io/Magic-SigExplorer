@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - depth: '18'
+        value: '"/device_api/device"'
+      - value: '"|22|shop_api_key|22|"'
+      - value: '"|22|customer_name|22|"'
+      - value: '"|22|applications|22|"'
+      - value: '"Content-Type|3a 20|application/json|3b 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_14, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, malware_family SyncroMSP, performance_impact
+        Low, confidence High, signature_severity Informational, tag RemoteAccessTool,
+        updated_at 2022_12_14
+      msg: '"ET INFO SyncroMSP Remote Remote Management Software Install Checkin"'
+      rev: '1'
+      sid: '2042882'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

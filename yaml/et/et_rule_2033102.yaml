@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"T3BlblZBU1ZUIFJDRSBUZXN0"'
+      flow: established,to_server
+      metadata: created_at 2021_06_07, former_category ATTACK_RESPONSE, updated_at
+        2021_08_11
+      msg: '"ET SCAN OpenVASVT RCE Test String in HTTP Request Outbound"'
+      reference: url,github.com/greenbone/openvas-scanner/blob/622e205327ea374d1ccbb3b0e8dcb3fe5c1bb87d/nasl/nasl_http.c#L120
+      rev: '2'
+      sid: '2033102'
+      threshold: type limit, track by_src, count 1, seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

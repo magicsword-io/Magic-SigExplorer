@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"|53 00 4f 00 46 00 54 00 57 00 41 00 52 00 45 00 5c 00 45 00 62 00
+          69 00 7a 00 5c 00 68 00 61 00 73 00 68|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT Pwdump3e Session Established Reg-Entry port 139"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000565
+      rev: '9'
+      sid: '2000565'
+    protocol: tcp
+    source:
+      network: any
+      port: any

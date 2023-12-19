@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|31|"'
+      dsize: 26<>35
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2016_01_05, updated_at 2016_01_05
+      msg: '"ET TROJAN NanoLocker Check-in (ICMP) M1"'
+      pcre: '"/^(?=[A-F1-9]*?[a-km-zGHJ-NP-Z])[a-km-zA-HJ-NP-Z1-9]{25,34}(?:64)?$/R"'
+      reference: url,blog.emsisoft.com/2016/01/01/meet-ransom32-the-first-javascript-ransomware/
+      rev: '3'
+      sid: '2022331'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

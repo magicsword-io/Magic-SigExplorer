@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|c2kgw8jt5869nspr4|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_09_05, deployment Perimeter, former_category
+        MALWARE, malware_family CoinMiner, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET TROJAN Suspected Monero Miner CnC Channel TXT Lookup"'
+      reference: md5,2a2219f1dbb6039f52a5792a87cf760a
+      rev: '4'
+      sid: '2026097'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

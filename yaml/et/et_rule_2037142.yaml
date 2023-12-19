@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/api/docs/share/"'
+      - value: '"doc_slug="'
+      - value: '"from="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family ZuoRAT, performance_impact
+        Low, signature_severity Major, updated_at 2022_06_28
+      msg: '"ET TROJAN ZuoRAT Windows Loader Shellcode Retrieval"'
+      pcre: '"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/U"'
+      reference: url,github.com/blacklotuslabs/IOCs/blob/main/ZuoRAT_IoCs.txt
+      rev: '1'
+      sid: '2037142'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

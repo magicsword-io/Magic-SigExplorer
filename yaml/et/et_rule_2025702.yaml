@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '9'
+        value: '"SMB|A2|"'
+      - value: '"temp|5c|"'
+      - value: '"|2E|exe|00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        SMB_Client, created_at 2018_07_16, deployment Internal, former_category POLICY,
+        signature_severity Minor, updated_at 2022_04_13
+      msg: '"ET POLICY SMB NT Create AndX Request For an Executable File In a Temp
+        Directory"'
+      rev: '3'
+      sid: '2025702'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '9999'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"POST /webviewAdReq"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_07_11, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_04_30, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android Spyware Dowgin Checkin"'
+      reference: md5,45bf9f6e19649d3e1642854ecd82623c
+      rev: '1'
+      sid: '2018663'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

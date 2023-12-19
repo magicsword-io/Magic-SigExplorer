@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"|2f|sendPhoto|3f|chat|5f|id|3d|"'
+      - value: '"caption|3d e2 9d 95 20|User|20|connected|20 e2 9d 95|"'
+      - value: '"|e2 80 a2 20|ID|3a 20|"'
+      - value: '"|0a e2 80 a2 20|Comment|3a 20|"'
+      - value: '"|0a 0a e2 80 a2 20|User|20|Name|3a 20|"'
+      - value: '"|0a e2 80 a2 20|PC|20|Name|3a 20|"'
+      - value: '"|0a e2 80 a2 20|OS|20|Info|3a 20|"'
+      - value: '"|0a e2 80 a2 20|IP|3a 20|"'
+      - value: '"|0a e2 80 a2 20|GEO|3a 20|"'
+      - value: '"|e2 80 a2 20|Working|20|Directory|3a 20|"'
+      - value: '"api.telegram.org"'
+      distance: '7'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_12, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family DCRat, performance_impact
+        Low, signature_severity Major, updated_at 2023_01_12
+      msg: '"ET TROJAN DCRAT Checkin via Telegram"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+api\.telegram\.org/Hmi"'
+      reference: url,tria.ge/230107-eynj2acf87/behavioral2
+      rev: '1'
+      sid: '2043288'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      within: '100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

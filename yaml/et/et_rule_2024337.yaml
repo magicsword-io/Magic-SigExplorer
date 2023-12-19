@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"file://"'
+      - value: '"/$MFT/"'
+      - value: '"src"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_30, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Moderate, signature_severity Major, updated_at
+        2017_05_30
+      msg: '"ET EXPLOIT Possible $MFT NTFS Device Access in HTTP Response"'
+      pcre: '"/^\s*=\s*[^>]*file\x3a[^>]*\/\x24MFT\//Ris"'
+      reference: url,www.securitytracker.com/id/1038575
+      rev: '1'
+      sid: '2024337'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

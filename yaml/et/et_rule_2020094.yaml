@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"dumpgrab="'
+      - value: '"track_type="'
+      - value: '"track_data="'
+      - value: '"process_name="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_01_05, former_category TROJAN, updated_at 2020_10_09
+      msg: '"ET TROJAN Win32/Neutrino CC dump"'
+      reference: url,securitykitten.github.io/an-evening-with-n3utrino/
+      rev: '2'
+      sid: '2020094'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

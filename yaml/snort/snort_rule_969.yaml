@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"LOCK ",depth 5'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS WebDAV file lock attempt"'
+      reference: nessus,10732
+      rev: '13'
+      service: http
+      sid: '969'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|2no.co|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_01_22,
+        deployment Perimeter, former_category POLICY, signature_severity Informational,
+        updated_at 2020_01_22
+      msg: '"ET POLICY HTTP Request to IP Logging Service (2no .co)"'
+      rev: '2'
+      sid: '2029299'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

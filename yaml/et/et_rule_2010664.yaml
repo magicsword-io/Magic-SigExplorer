@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '300'
+        value: '"%FDF-"'
+      - value: '"/F(JavaScript|3a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_07_30, cve CVE_2009_3956, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT Possible Adobe Reader and Acrobat Forms Data Format Remote
+        Security Bypass Attempt"'
+      reference: url,www.stratsec.net/files/SS-2010-001_Stratsec_Acrobat_Script_Injection_Security_Advisory_v1.0.pdf
+      rev: '8'
+      sid: '2010664'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

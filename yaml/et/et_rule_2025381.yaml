@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Key|3a 20|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_11_24, former_category MALWARE, updated_at 2020_10_10
+      msg: '"ET TROJAN LokiBot Checkin"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nContent-Type\x3a\x20/Hi"'
+      reference: md5,5ba6cf36f57697a1eb5ac8deaa377b4b
+      rev: '3'
+      sid: '2025381'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

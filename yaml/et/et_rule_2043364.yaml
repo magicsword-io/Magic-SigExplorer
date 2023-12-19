@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|us"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|ny"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|02|ny"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|07|netgate"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|07|netgate"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|2f|www.netgate.com, emailAddress=email@netgate.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_01_19, deployment Perimeter, malware_family
+        PlayfulTaurus, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2023_01_19
+      msg: '"ET TROJAN Playful Taurus Observe malicious SSL Cert (self-signed www
+        .netgate .com)"'
+      reference: url,unit42.paloaltonetworks.com/playful-taurus/
+      rev: '1'
+      sid: '2043364'
+      special_options:
+      - fast_pattern
+      within: '48'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

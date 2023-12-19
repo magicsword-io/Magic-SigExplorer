@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"</script><!DOCTYPE",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE script before DOCTYPE possible malicious redirect
+        attempt"'
+      rev: '5'
+      service: http
+      sid: '23179'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

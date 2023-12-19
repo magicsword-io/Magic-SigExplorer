@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/details_view.php?"'
+      - value: '"event_id="'
+      - value: '"date="'
+      - value: '"view="'
+      - value: '"loc="'
+      - value: '"page_info_message="'
+      flow: established,to_server
+      metadata: created_at 2012_01_02, former_category WEB_SPECIFIC_APPS, updated_at
+        2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS PHP Booking Calendar page_info_message parameter
+        Cross-Site Scripting Vulnerability"'
+      pcre: '"/page_info_message\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,packetstormsecurity.org/files/107995
+      rev: '2'
+      sid: '2014067'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

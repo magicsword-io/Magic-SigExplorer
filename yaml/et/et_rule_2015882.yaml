@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" = parseInt("'
+      - value: '".replace(|2F 5C 2E 7C 5C 5F 2F|g, ''''))|3B|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_11_14, former_category EXPLOIT_KIT, updated_at 2012_11_14
+      msg: '"ET CURRENT_EVENTS KaiXin Exploit Kit Landing Page parseInt Javascript
+        Replace"'
+      reference: url,ondailybasis.com/blog/?p=1610
+      rev: '1'
+      sid: '2015882'
+      special_options:
+      - file_data
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"jnlp_embedded"'
+      - value: '"6u27.jar"'
+      - value: '"6u41.jar"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2013_06_13, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Unknown EK Landing (Payload Downloaded Via Dropbox)"'
+      rev: '1'
+      sid: '2017014'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"=Ghc7XJ5OVyh_"'
+      - depth: '78'
+        value: '"POST|20|/|20|HTTP/1.1|0d 0a|Content-Type|3a 20|application/x-www-form-urlencoded|0d
+          0a|User-Agent|3a 20|"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_19, deployment Perimeter, former_category
+        MALWARE, malware_family LODEINFO, signature_severity Major, updated_at 2021_02_19
+      msg: '"ET TROJAN Win32/LODEINFO v0.4.x CnC Checkin"'
+      reference: md5,7831a9eebbb485ab4850460e33185cb3
+      rev: '2'
+      sid: '2031641'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

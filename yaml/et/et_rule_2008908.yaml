@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"|7c|OnConnect|7c|"'
+      dsize: <500
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Trojan.Delf-5496 New Infection Report"'
+      pcre: '"/^\d+?\x7cOnConnect\x7c/"'
+      reference: md5,3a7f11fbaf815cd2338d633de175e252
+      rev: '5'
+      sid: '2008908'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

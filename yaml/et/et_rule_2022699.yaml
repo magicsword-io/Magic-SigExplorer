@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '39889'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"HELODBG"'
+      flow: to_server
+      metadata: created_at 2016_04_05, updated_at 2016_04_05
+      msg: '"ET EXPLOIT Quanta LTE Router UDP Backdoor Activation Attempt"'
+      reference: url,pierrekim.github.io/blog/2016-04-04-quanta-lte-routers-vulnerabilities.html
+      rev: '1'
+      sid: '2022699'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

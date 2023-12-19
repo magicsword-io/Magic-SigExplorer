@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|22|pid|22 3a|"'
+      - value: '"|22|host|22 3a|"'
+      - value: '"|22|type|22 3a|"'
+      - value: '"|22|username|22 3a|"'
+      - value: '"POST /news HTTP/1.1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2022_04_12, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Snatch Ransomware Checkin (POST)"'
+      reference: md5,5a9ae5f51c41f2de4f3eca94ddb4ccfd
+      rev: '1'
+      sid: '2035898'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

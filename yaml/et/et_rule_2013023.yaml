@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0E|gongfu-android|03|com"'
+      distance: '0'
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2011_06_13, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2020_09_17
+      msg: '"ET MOBILE_MALWARE DNS Query for gongfu-android.com DroidKungFu CnC Server"'
+      reference: url,www.fortiguard.com/encyclopedia/virus/android_droidkungfu.a!tr.html
+      rev: '3'
+      sid: '2013023'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

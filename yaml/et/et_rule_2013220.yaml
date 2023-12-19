@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"8866.org|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_07_06, updated_at 2020_09_17
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to a 3322.net Domain *.8866.org"'
+      pcre: '"/^Host\x3a[^\r\n]*\.8866\.org$/Hmi"'
+      reference: url,www.mywot.com/en/scorecard/8866.org
+      rev: '4'
+      sid: '2013220'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

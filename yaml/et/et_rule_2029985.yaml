@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '36'
+        value: '"/albatross/restAPI/v2/nmap/run/scan/"'
+      - value: '"form-data|3b 20|name=|22|ipAddress|22 0d 0a 0d 0a|--script="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2020_04_21, deployment Perimeter,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_04_21
+      msg: '"ET EXPLOIT IBM Data Risk Manager Remote Code Execution via NMAP Scan"'
+      pcre: '"/^\/(?:home\/a3user|root)\/agile3\/patches\//R"'
+      reference: url,github.com/pedrib/PoC/blob/master/advisories/IBM/ibm_drm/ibm_drm_rce.md
+      rev: '3'
+      sid: '2029985'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

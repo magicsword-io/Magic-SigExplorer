@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Index of /cgi-bin/",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE index of /cgi-bin/ response"'
+      reference: nessus,10039
+      rev: '11'
+      service: http
+      sid: '1666'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

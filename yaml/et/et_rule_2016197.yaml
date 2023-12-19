@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"E01DF79C-BE0C-4999-9B13-B5F7B2306E9B"'
+      - value: '".DownloadFromURL"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_01_12, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Possible Honeywell Tema Remote Installer ActiveX DownloadFromURL
+        method Remote Code Execution"'
+      reference: url,packetstormsecurity.com/files/119427/Honeywell-Tema-Remote-Installer-ActiveX-Remote-Code-Execution.html
+      rev: '2'
+      sid: '2016197'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

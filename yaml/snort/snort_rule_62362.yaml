@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"/log.php"'
+      - value: '"Expect: 100-continue"'
+      - value: '"i",depth 1'
+      flow: to_server,established
+      gid: '1'
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Dropper.Gamaredon command and control beacon attempt"'
+      pcre: '"/^i[\w-]{2,20}=[\w-]{2,50}_\d{2,20}$/"'
+      reference: url,www.virustotal.com/gui/file/726e91a882b9c70893cbc4ac2cdfb0ffb80a8b6f58d4cc5bfdd59d60486673fe
+      rev: '1'
+      service: http
+      sid: '62362'
+      special_options:
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

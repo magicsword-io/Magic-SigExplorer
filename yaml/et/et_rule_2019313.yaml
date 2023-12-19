@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|0a c0|"'
+      dsize: 1300<>1500
+      flow: established,from_server
+      flowbits: isset,ET.TROJAN.Sourtoff
+      metadata: created_at 2014_09_29, former_category TROJAN, updated_at 2018_01_08
+      msg: '"ET TROJAN Sourtoff Receiving Simda Payload"'
+      reference: md5,5469af0daa10f8acbe552cd2f1f6a6bb
+      rev: '3'
+      sid: '2019313'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '20000:'

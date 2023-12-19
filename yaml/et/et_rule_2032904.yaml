@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '7'
+        value: '"/dana"'
+      - value: '!"welcome.cgi"'
+      flow: established,to_server
+      metadata: affected_product Pulse_Secure, attack_target Server, created_at 2021_05_05,
+        cve CVE_2021_22893, deployment Perimeter, deployment SSLDecrypt, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2021_05_05
+      msg: '"ET EXPLOIT [FIREEYE] Suspicious Pulse Secure HTTP Request (CVE-2021-22893)
+        M1"'
+      pcre: '"/\/dana\S{0,7}\/(?:meeting|fb\/smb|namedusers|metric)/Ui"'
+      reference: cve,2021-22893
+      rev: '1'
+      sid: '2032904'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

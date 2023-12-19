@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '300'
+        value: '"%PDF-"'
+      - value: '"|3C 3C 0D 0A 20 2f|type|20 2F|action|0D 0A 20 2F|s|20 2F|launch|0D
+          0A 20 2F|win"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT PDF Containing Windows Commands Downloaded"'
+      reference: url,doc.emergingthreats.net/2011245
+      rev: '7'
+      sid: '2011245'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

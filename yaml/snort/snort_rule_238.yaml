@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"shell bound"'
+      icmp_id: '123'
+      itype: '0'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP TFN server response"'
+      reference: cve,2000-0138
+      rev: '14'
+      sid: '238'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

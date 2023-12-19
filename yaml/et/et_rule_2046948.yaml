@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|07|Pupy CA"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|ZZ"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2023_07_27, deployment
+        Perimeter, former_category MALWARE, malware_family PupyRat, performance_impact
+        Low, confidence High, signature_severity Critical, updated_at 2023_07_27
+      msg: '"ET TROJAN Pupy RAT Default TLS Proxy Certificate"'
+      reference: url,github.com/n1nj4sec/pupy/blob/a5d766ea81fdfe3bc2c38c9bdaf10e9b75af3b39/services/proxy/generate.go#L97
+      rev: '1'
+      sid: '2046948'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,9876]'

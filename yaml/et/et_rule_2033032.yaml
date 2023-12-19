@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - offset: '25'
+        value: '"/files-"'
+      - value: '"/data?d="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_05_25, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_05_25
+      msg: '"ET TROJAN Suspected Sidewinder Activity (GET)"'
+      reference: url,twitter.com/ShadowChasing1/status/1396809305194590211
+      rev: '1'
+      sid: '2033032'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

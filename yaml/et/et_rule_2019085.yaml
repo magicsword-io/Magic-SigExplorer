@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".atob(String.fromCharCode("'
+      flow: from_server,established
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2014_08_29, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, signature_severity Critical, tag Metasploit, updated_at
+        2016_07_01
+      msg: '"ET EXPLOIT Metasploit FireFox WebIDL Privileged Javascript Injection"'
+      pcre: '"/^(?:90|0x5a|0+?132)\s*?,\s*?(?:71|0x47|0+?107)\s*?,\s*?(?:70|0x46|0+?106)\s*?,\s*?(?:48|0x30|0+?60)\s*?,\s*?(?:89|0x59|0+?131)\s*?,\s*?(?:84|0x54|0+?124)\s*?,\s*?(?:112|0x70|0+?160)/Rsi"'
+      reference: url,www.exploit-db.com/exploits/34448/
+      rev: '4'
+      sid: '2019085'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|cdn-in|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_04_24, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag APT, tag Sidewinder,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN APT SideWinder CnC Domain in DNS Lookup (cdn-in. net)"'
+      reference: url,blog.group-ib.com/sidewinder-antibot
+      rev: '2'
+      sid: '2036746'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

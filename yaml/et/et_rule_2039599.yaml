@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"POST|20|/Upload.php|20|"'
+      - value: '"fileName"'
+      - value: '"|5c 2e 2e 5c 2e 2e 5c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_28, cve CVE_2022_22245,
+        deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET TROJAN Potential Juniper Path Traversal RCE Attempt (CVE-2022-22245)"'
+      reference: cve,2022-22245
+      rev: '1'
+      sid: '2039599'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

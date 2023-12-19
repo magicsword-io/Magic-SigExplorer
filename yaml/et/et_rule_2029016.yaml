@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"User-Agent|3a 20|Hakai"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_11_21,
+        deployment Perimeter, former_category MALWARE, signature_severity Minor, updated_at
+        2020_10_23
+      msg: '"ET SCAN Mirai Variant User-Agent (Inbound)"'
+      pcre: '"/^User\-Agent\x3a\x20Hakai(?:(?:\/|\s)[0-9]\.0)?$/Hmi"'
+      rev: '2'
+      sid: '2029016'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

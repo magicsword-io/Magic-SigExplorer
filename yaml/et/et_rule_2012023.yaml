@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/Forms/home_1?"'
+      - value: '"HomeCurrent_Date="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_12_11, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS ZyXEL P-660R-T1 HomeCurrent_Date Parameter Cross
+        Site Scripting Attempt"'
+      pcre: '"/HomeCurrent_Date\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,archives.neohapsis.com/archives/bugtraq/2010-11/0190.html
+      rev: '1'
+      sid: '2012023'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

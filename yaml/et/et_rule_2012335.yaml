@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/index.php?"'
+      - value: '"page=viewbus"'
+      - value: '"bus="'
+      - value: '"and"'
+      - value: '"substring"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_02_25, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Coupon Script bus parameter Blind SQL Injection
+        Attempt"'
+      pcre: '"/and.*substring\(/Ui"'
+      reference: url,exploit-db.com/exploits/16034/
+      rev: '2'
+      sid: '2012335'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

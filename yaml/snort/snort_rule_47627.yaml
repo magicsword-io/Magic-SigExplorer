@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7B 22|line1|22 3A 22|",depth 10,fast_pattern'
+      - value: '"|22|line2|22 3A 22|",within 30,distance 30'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.KeyPass variant inbound connection attempt"'
+      reference: url,virustotal.com/#/file/901d893f665c6f9741aa940e5f275952/detection
+      rev: '1'
+      service: http
+      sid: '47627'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

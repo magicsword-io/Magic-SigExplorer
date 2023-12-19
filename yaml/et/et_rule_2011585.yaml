@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '49'
+        value: '"GET ^&&%$%$^%$#^&**(*((&*^%$##$%^&*(*&^%$%^&*.htm"'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, updated_at 2019_09_27
+      msg: '"ET TROJAN Avzhan DDOS Bot Outbound Hardcoded Malformed GET Request Denial
+        Of Service Attack Detected"'
+      reference: url,asert.arbornetworks.com/2010/09/another-family-of-ddos-bots-avzhan/
+      rev: '2'
+      sid: '2011585'
+      special_options:
+      - nocase
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

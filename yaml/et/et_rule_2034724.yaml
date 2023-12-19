@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"data_version="'
+      - value: '"&client_data="'
+      - value: '"POST /dmdt/dmdt_data.php HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_14, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Major, updated_at 2021_12_14
+      msg: '"ET MALWARE Win32/2345.H Variant Activity (POST)"'
+      reference: md5,0b1f16f067ba71f5b8ec87c9f1a544c6
+      rev: '1'
+      sid: '2034724'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

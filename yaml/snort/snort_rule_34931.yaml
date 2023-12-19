@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ID_MAQUINA=",fast_pattern,nocase'
+      - value: '"&VERSAO=",nocase'
+      - value: '"&WIN=",within 50,nocase'
+      - value: '"&NAVEGADOR=",within 200,nocase'
+      - value: '"&PLUGIN=",within 50,nocase'
+      - value: '"&AV=",within 50,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/7816d2b6507950177cf1af596744abe523cad492f4d78e230962602b1b269044/analysis/
+      rev: '2'
+      service: http
+      sid: '34931'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

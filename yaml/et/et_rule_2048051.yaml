@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '16'
+        value: '"|87 1C 10 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      dsize: <600
+      metadata: attack_target Client_Endpoint, created_at 2023_09_13, deployment Perimeter,
+        deployment Internal, former_category POLICY, performance_impact Low, signature_severity
+        Informational, tag RemoteAccessTool, updated_at 2023_09_13
+      msg: '"ET INFO ScreenConnect/ConnectWise Initial Checkin Packet M2"'
+      reference: url,community.emergingthreats.net/t/update-new-rule-needed-for-screenconnect-sid-2036627/938
+      rev: '3'
+      sid: '2048051'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

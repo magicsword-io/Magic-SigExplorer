@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1024:'
+    details:
+      classtype: not-suspicious
+      contents:
+      - depth: '2'
+        offset: '2'
+        value: '"|31 00|"'
+      dsize: '4'
+      flow: established,from_server
+      metadata: created_at 2012_01_16, updated_at 2012_01_16
+      msg: '"ET POLICY Splashtop Remote Control Session Keepalive Response"'
+      reference: url,www.splashtop.com
+      rev: '2'
+      sid: '2014130'
+    protocol: tcp
+    source:
+      network: any
+      port: '6784'

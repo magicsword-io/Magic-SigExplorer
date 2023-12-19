@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"blobheadername2=Refresh",fast_pattern,nocase'
+      - value: '"blobheadervalue2=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-ORACLE Oracle WebCenter FatWire Satellite Server header injection
+        on blobheadername2 attempt"'
+      reference: url,www.oracle.com/technetwork/topics/security/cpuapr2013-1899555.html
+      rev: '5'
+      service: http
+      sid: '26469'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|BA|I|FE FF FF F7 D2 B9 BF FF FF FF F7 D1|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP strings overflow"'
+      reference: bugtraq,802
+      rev: '15'
+      service: http
+      sid: '1085'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

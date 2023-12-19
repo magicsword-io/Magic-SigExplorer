@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?t="'
+      - value: '"&o="'
+      - value: '"&i="'
+      - value: '"&task_id="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2014_08_05, updated_at 2020_05_01
+      msg: '"ET TROJAN Ddex Loader Check-in"'
+      reference: url,securelist.com/files/2014/07/Kaspersky_Lab_crouching_yeti_appendixes_eng_final.pdf
+      rev: '1'
+      sid: '2018895'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

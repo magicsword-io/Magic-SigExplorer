@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|86 19 00 00 04 01 00 00|",depth 8'
+      flow: to_server,established
+      isdataat: '!16'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.ZxShell connection outgoing attempt"'
+      reference: url,virustotal.com/en/file/438ed90e1f69b5dcae2d30d241159aaed74f9d3125c60f1003915b2237978f7d/analysis/
+      rev: '4'
+      sid: '32181'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,1024:]'
+    details:
+      byte_test: 4,>,256,-8,relative,dce
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|01 10 08 00 CC CC CC CC|"'
+      - value: '"|5C 00 5C 00|",distance 0'
+      dce_iface: uuid 000001a0-0000-0000-c000-000000000046
+      dce_opnum: '"4"'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC NCADG-IP-UDP ISystemActivator RemoteCreateInstance
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-039
+      rev: '17'
+      service: dcerpc
+      sid: '3398'
+      special_options:
+      - dce_stub_data
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

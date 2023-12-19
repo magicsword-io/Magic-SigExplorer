@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '7'
+        value: '"j.js?v="'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Client_Endpoint, created_at 2023_01_03, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_01_03
+      msg: '"ET TROJAN linux.backdoor.wordpressexploit.2 JS backdoor retrieval"'
+      reference: url,vms.drweb.com/virus/?i=25604745
+      rev: '1'
+      sid: '2043196'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

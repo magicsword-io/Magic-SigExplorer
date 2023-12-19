@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|7F|ELF"'
+      flow: established
+      flowbits: set,ET.ELFDownload
+      metadata: created_at 2014_09_25, former_category POLICY, updated_at 2017_02_03
+      msg: '"ET POLICY Executable and linking format (ELF) file download Over HTTP"'
+      reference: url,www.itee.uq.edu.au/~cristina/students/david/honoursThesis96/bff.htm
+      rev: '13'
+      sid: '2019240'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/newinventario.php?"'
+      - value: '"sn="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2012_12_08, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Inventory newinventario.php Cross Site Scripting
+        Attempt"'
+      pcre: '"/sn\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.org/files/117683/Inventory-1.0-Cross-Site-Scripting.html
+      rev: '1'
+      sid: '2016009'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

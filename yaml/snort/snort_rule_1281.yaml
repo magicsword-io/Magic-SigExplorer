@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '32771'
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A0|",depth 4,offset 12'
+      - value: '"|00 00 00 04|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC portmap listing UDP 32771"'
+      rev: '15'
+      sid: '1281'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

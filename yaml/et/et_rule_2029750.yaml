@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|KtulhuBrowser|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_03_27, deployment Perimeter,
+        former_category USER_AGENTS, signature_severity Informational, updated_at
+        2020_08_19
+      msg: '"ET USER_AGENTS Suspicious User Agent (KtulhuBrowser)"'
+      rev: '2'
+      sid: '2029750'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

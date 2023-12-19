@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"s|00|p|00|_|00|a|00|d|00|d|00|u|00|s|00|e|00|r|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL sp_adduser - database user creation"'
+      rev: '9'
+      sid: '685'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

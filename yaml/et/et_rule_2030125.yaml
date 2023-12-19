@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/register.php"'
+      - depth: '3'
+        value: '"av="'
+      - value: '"&cpu-name="'
+      - value: '"&ref="'
+      - value: '"&user="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_07, deployment Perimeter, signature_severity
+        Major, updated_at 2020_11_17
+      msg: '"ET TROJAN EVILNUM CnC Host Checkin"'
+      reference: url,blog.prevailion.com/2020/05/phantom-in-command-shell5.html
+      rev: '2'
+      sid: '2030125'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

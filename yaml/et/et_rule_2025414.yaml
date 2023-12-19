@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|07|Florida"'
+      - value: '"|55 04 07|"'
+      - value: '"|05|Tampa"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0c|Google,|20|Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|10|Google Corp, Inc"'
+      - value: '"|55 04 03|"'
+      - value: '"|0c|Google,|20|Inc."'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|07|Florida"'
+      - value: '"|55 04 07|"'
+      - value: '"|05|Tampa"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0c|Google,|20|Inc."'
+      - value: '"|55 04 0b|"'
+      - value: '"|10|Google Corp, Inc"'
+      - value: '"|55 04 03|"'
+      - value: '"|0c|Google,|20|Inc."'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_12, deployment Perimeter, former_category
+        TROJAN, malware_family QRat, performance_impact Low, signature_severity Major,
+        updated_at 2022_05_03
+      msg: '"ET TROJAN [PTsecurity] Fake SSL Certificate Observed (Google)"'
+      reference: md5,8c7722acb2f7400df1027fa6741e37d5
+      rev: '3'
+      sid: '2025414'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

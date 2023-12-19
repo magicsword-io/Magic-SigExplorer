@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Content-Type|3A|",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"FILE-IDENTIFY Microsoft Windows Media download detected"'
+      pcre: '"/^Content-Type\x3a\s*(?=[av])(video\/x\-ms\-(w[vm]x|asf)|a(udio\/x\-ms\-w(m[av]|ax)|pplication\/x\-ms\-wm[zd]))/ims"'
+      rev: '27'
+      service: ftp-data,http,imap,pop3
+      sid: '1437'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

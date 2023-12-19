@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Testing"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_09_25,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Major,
+        tag User_Agent, updated_at 2020_08_17
+      msg: '"ET TROJAN Suspicious User-Agent (Testing)"'
+      rev: '1'
+      sid: '2038726'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

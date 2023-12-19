@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Server Message"'
+      - value: '"logo.png"'
+      - value: '"Enter account password"'
+      distance: '0'
+      fast_pattern: 1,20
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_12_15, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2020_08_03
+      msg: '"ET CURRENT_EVENTS Mailbox Deactivation Phishing Landing 2016-12-15"'
+      rev: '1'
+      sid: '2032210'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

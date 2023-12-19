@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '29'
+        value: '"/ctrl.cgi?language=ie&sntpip="'
+      - value: '"uname"'
+      - value: '"telnet"'
+      - value: '"&timezone="'
+      - value: '"&timezone=13&setdaylight=0&timeformat=2&tstampformat=2"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_11_17, former_category EXPLOIT, updated_at 2021_11_17
+      msg: '"ET EXPLOIT Attempted IDSVSE IP Camera RCE"'
+      reference: url,en.0day.today/exploit/27569
+      rev: '1'
+      sid: '2034480'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

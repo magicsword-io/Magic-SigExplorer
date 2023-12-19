@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?f=a"'
+      - value: '"&k=",distance 0'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.jar
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT DotkaChef/Rmayana/DotCache exploit kit Zeroaccess download
+        attempt"'
+      pcre: '"/\&k=\d+($|\&h=)/"'
+      reference: url,www.malwaresigs.com/2013/06/14/dotcachef/
+      rev: '5'
+      service: http
+      sid: '27113'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

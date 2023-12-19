@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"|01|rlogind|3A| Permission denied.",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES rlogin login failure"'
+      rev: '14'
+      sid: '611'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '513'

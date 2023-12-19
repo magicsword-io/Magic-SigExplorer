@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"apply.cgi",fast_pattern,nocase'
+      - value: '"next_page=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Linksys E-Series apply.cgi directory traversal attempt"'
+      pcre: '"/(^|&)next_page=[^&]*?(\x2e|%2e){2}([\x2f\x5c]|%2f|%5c)/im"'
+      reference: url,s3cur1ty.de/m1adv2013-004
+      rev: '3'
+      service: http
+      sid: '46083'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

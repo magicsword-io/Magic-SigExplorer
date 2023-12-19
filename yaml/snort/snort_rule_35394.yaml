@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?user_code="'
+      - value: '"&user_pass=",fast_pattern,nocase'
+      - value: '"Referer|3A|"'
+      - value: '"tor",within 30,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TorrentLocker/Teerac payment page request"'
+      reference: url,www.virustotal.com/en/file/4072beeaf09fe6fef48365f1c14fd800e21b32cfa2af561f515bc45372dd590d/analysis/
+      rev: '2'
+      service: http
+      sid: '35394'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

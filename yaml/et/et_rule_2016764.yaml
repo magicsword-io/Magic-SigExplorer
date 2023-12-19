@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|http|3a|//"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_04_17, former_category CURRENT_EVENTS, updated_at
+        2020_11_05
+      msg: '"ET CURRENT_EVENTS GrandSoft PDF Payload Download"'
+      pcre: '"/^GET (?P<uri>(\/[A-Za-z0-9]+)?\/\d+\/\d+)\sHTTP\/1\.1\r\nUser-Agent\x3a\x20http\x3a\/\/(?P<host>[^\r\n]+)(?P=uri)\r\nHost\x3a\x20(?P=host)\r\n(\r\n)?$/"'
+      rev: '15'
+      sid: '2016764'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

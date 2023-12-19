@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/system_log.cgi"'
+      - value: '"&pingIpAddr="'
+      flow: to_server,established
+      metadata: created_at 2022_04_14, cve CVE_2020_17456, updated_at 2022_04_14
+      msg: '"ET EXPLOIT SEOWON INTECH SLC-130/SLR-120S RCE Inbound M2 (CVE-2020-17456)"'
+      pcre: '"/&pingIpAddr=(?:\x3b|\x0a|\x26|\x60|\x7C|\x24)/P"'
+      reference: cve,2020-17456
+      rev: '2'
+      sid: '2035951'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

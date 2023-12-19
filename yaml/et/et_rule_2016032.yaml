@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| BOT/0.1 (BOT for JCE)"'
+      flow: established,to_server
+      metadata: created_at 2012_12_14, updated_at 2020_10_14
+      msg: '"ET SCAN JCE Joomla Scanner"'
+      rev: '2'
+      sid: '2016032'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

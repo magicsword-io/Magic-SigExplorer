@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|sv|3A|"'
+      - value: '"|3B 20|id|3A|",within 5,distance 1'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC OSX.Trojan.Flashfake variant outbound connection"'
+      pcre: '"/^User\x2dAgent\x3a\s[^\r\n]*?\x3b\x20id\x3a[A-F0-9]{8}\x2d([A-F0-9]{4}\x2d){3}[A-F0-9]{12}\)[^\r\n]*?\r\n/m"'
+      rev: '3'
+      service: http
+      sid: '26327'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

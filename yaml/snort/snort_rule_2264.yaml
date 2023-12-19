@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"SAML FROM|3A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail SAML FROM prescan too long addresses overflow"'
+      pcre: '"/^SAML FROM\x3a\s+[\w\s@\.]{200,}\x3b[\w\s@\.]{200,}\x3b[\w\s@\.]{200}/ims"'
+      reference: nessus,11499
+      rev: '16'
+      service: smtp
+      sid: '2264'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

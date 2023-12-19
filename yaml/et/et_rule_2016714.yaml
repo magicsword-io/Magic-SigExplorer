@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|5C|0c|5C|0c"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2013_04_04, updated_at 2013_04_04
+      msg: '"ET SHELLCODE Possible Backslash Escaped UTF-8 0c0c Heap Spray"'
+      rev: '1'
+      sid: '2016714'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

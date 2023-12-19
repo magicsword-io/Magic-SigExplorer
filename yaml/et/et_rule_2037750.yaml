@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"861gLc"'
+      - value: '"AnK"'
+      - value: '"AnK"'
+      - value: '"AnK1.2901AnK0901AnK"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_12, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_11_02
+      msg: '"ET TROJAN MSIL/Agent.CTK Checkin"'
+      reference: md5,8b964c81520445c89f337bab7afe5329
+      rev: '2'
+      sid: '2037750'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

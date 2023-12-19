@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '9'
+      classtype: trojan-activity
+      contents:
+      - value: '"/tmps.exe",fast_pattern,nocase'
+      - value: '"Proxy-Authorization: Basic |0D 0A|"'
+      - value: '"__cfduid=",depth 9'
+      - value: '") Chrome/"'
+      - value: '!"Accept-"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Badur download attempt"'
+      reference: url,www.virustotal.com/en/file/840b3b76030696b1ce9eccd5ee6d55dd79c0120871094cb9266769c09f03029c/analysis/
+      rev: '2'
+      service: http
+      sid: '31682'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

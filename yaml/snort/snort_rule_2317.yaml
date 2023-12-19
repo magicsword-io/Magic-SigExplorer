@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"E cvs server|3A| warning|3A| cannot make directory CVS in /",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE CVS non-relative path error response"'
+      reference: nessus,11947
+      rev: '10'
+      sid: '2317'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

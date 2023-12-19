@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"do.php"'
+      - value: '"gaia_loginform"'
+      - value: '"name|3d 27|UserName|27|"'
+      - value: '"name|3d 27|Password|27|"'
+      - value: '"sin.png"'
+      - value: '"value|3d 22|sign|20|in|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_10, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_03_10
+      msg: '"ET CURRENT_EVENTS Possible Credential Phish Landing Page 2023-03-10"'
+      rev: '1'
+      sid: '2044558'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

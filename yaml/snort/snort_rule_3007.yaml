@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"LOGIN"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP command overflow attempt"'
+      pcre: '"/\s(APPEND|CHECK|CLOSE|CREATE|DELETE|EXAMINE|EXPUNGE|FETCH|LIST|RENAME|SEARCH|SELECT|STATUS|SUBSCRIBE|UNSUBSCRIBE)\s[^\n]{100}/ims"'
+      reference: nessus,15771
+      rev: '22'
+      service: imap
+      sid: '3007'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

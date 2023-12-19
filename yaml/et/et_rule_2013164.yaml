@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/ecat/cms_view.php?"'
+      - value: '"lang="'
+      - value: '"web_id="'
+      - value: '"and"'
+      - value: '"substring"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_07_01, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS Webcat web_id Parameter Blind SQL Injection Vulnerability"'
+      pcre: '"/and.*substring\(/Ui"'
+      reference: url,exploit-db.com/exploits/17444
+      rev: '2'
+      sid: '2013164'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

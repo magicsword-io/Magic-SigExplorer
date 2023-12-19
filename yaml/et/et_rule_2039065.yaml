@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS,$SMTP_SERVERS]'
+      port: '[$HTTP_PORTS,444]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        value: '"POST"'
+      - value: '"autodiscover.json"'
+      - value: '"Powershell"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Microsoft_Exchange, attack_target Server, created_at
+        2022_09_30, cve CVE_2022_41040, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category EXPLOIT, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2022_10_03
+      msg: '"ET EXPLOIT Microsoft Exchange Remote Code Execution Attempt (CVE-2022-41040,
+        CVE-2022-41082)"'
+      reference: url,msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server/
+      rev: '2'
+      sid: '2039065'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/getip.aspx"'
+      - value: '"User-Agent|3a 20|sjd32DSKJF9Ssf|0d|"'
+      - value: '"Host|3a 20|up.jkc8.com|0d|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_09_19, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Minor, tag IP_address_lookup_website,
+        updated_at 2020_09_16
+      msg: '"ET POLICY External IP Lookup Domain (up .jkc8 .com)"'
+      pcre: '"/\/getip\.aspx$/Ui"'
+      reference: md5,5a7526db56f812e62302912a1c20edd2
+      rev: '3'
+      sid: '2026216'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

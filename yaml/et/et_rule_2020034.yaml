@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"update.php?"'
+      - value: '"&key="'
+      - value: '"&dummy="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_12_23, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN Trojan.Nurjax Checkin"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2014-121000-1027-99&tabid=2
+      rev: '1'
+      sid: '2020034'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

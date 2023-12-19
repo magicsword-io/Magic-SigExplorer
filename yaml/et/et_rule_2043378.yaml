@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|1c|sdjsskfdksfksdkfjkkshkfhkshk|0b|firebaseapp|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_01_20, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2023_01_20
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.Rewardsteal.e CnC Domain in
+        DNS Lookup"'
+      reference: md5,0a8d221c182d6a96bd08ac7d59680e75
+      rev: '1'
+      sid: '2043378'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '46'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

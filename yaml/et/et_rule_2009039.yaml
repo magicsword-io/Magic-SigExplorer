@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"?param=a"'
+      - value: '"exec%20master%2E%2Exp%5Fcmdshell"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN SQLNinja MSSQL XPCmdShell Scan"'
+      reference: url,sqlninja.sourceforge.net/index.html
+      rev: '3'
+      sid: '2009039'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

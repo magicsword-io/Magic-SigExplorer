@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/explorer.exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_02, former_category INFO, updated_at 2020_09_17
+      msg: '"ET INFO Suspicious explorer.exe in URI"'
+      pcre: '"/\/explorer\.exe$/Ui"'
+      reference: md5,de1bc32ad135b14ad3a5cf72566a63ff
+      rev: '12'
+      sid: '2016700'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      urilen: <100
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

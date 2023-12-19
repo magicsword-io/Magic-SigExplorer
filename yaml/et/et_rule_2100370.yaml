@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '32'
+        value: '"|00 00 00 00 00 00 00 00 00 00 00 00 08 09 0A 0B|"'
+      itype: '8'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL ICMP_INFO PING BeOS4.x"'
+      reference: arachnids,151
+      rev: '8'
+      sid: '2100370'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

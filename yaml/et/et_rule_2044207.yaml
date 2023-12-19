@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla FireFox 61.00|0d 0a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_15, deployment Perimeter,
+        deployment SSLDecrypt, former_category USER_AGENTS, malware_family DonotGroup,
+        signature_severity Major, updated_at 2023_02_15
+      msg: '"ET USER_AGENTS Observed Donot Group UA (Mozilla FireFox)"'
+      reference: md5,8f2829a963c3b6f247ac77e0bf992bf1
+      rev: '1'
+      sid: '2044207'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

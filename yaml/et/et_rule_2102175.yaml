@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_test: 1,&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB|A2|"'
+      - value: '"|5C 00|w|00|i|00|n|00|r|00|e|00|g|00 00 00|"'
+      distance: '78'
+      flow: established,to_server
+      flowbits: set,smb.tree.create.winreg
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB winreg unicode create tree attempt"'
+      rev: '10'
+      sid: '2102175'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

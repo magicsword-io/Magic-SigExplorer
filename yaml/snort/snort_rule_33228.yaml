@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/form2.php",fast_pattern,nocase'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kovter variant outbound connection"'
+      pcre: '"/[a-z\d\x2f\x2b\x3d]{100,300}/i"'
+      reference: url,www.virustotal.com/en/file/599dc4c4dae2d12f8c8ea00114c1cbddecbc171c552e7fbe5aba516ef11b08f0/analysis/
+      rev: '4'
+      service: http
+      sid: '33228'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

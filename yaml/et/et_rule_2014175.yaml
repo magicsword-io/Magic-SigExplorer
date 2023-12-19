@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".aspx?ID="'
+      - value: '"para1="'
+      - value: '"para2="'
+      - value: '"para3="'
+      distance: '0'
+      flow: from_client,established
+      metadata: created_at 2012_01_31, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32.MSUpdater C&C traffic GET"'
+      reference: url,blog.seculert.com/2012/01/msupdater-trojan-and-conference-invite.html
+      rev: '1'
+      sid: '2014175'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

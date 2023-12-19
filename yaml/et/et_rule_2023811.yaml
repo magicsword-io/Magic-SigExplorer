@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"."'
+      - value: '!"?"'
+      - value: '!"="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - depth: '46'
+        value: '"Content-Type|3a 20|text/plain|3b|charset=UTF-8|0d 0a|Host|3a 20|"'
+      - value: '"Expect|3a 20|100-continue|0d 0a|"'
+      distance: '0'
+      fast_pattern: 26,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_01_31, deployment Perimeter, former_category
+        MALWARE, malware_family DustSky_related_Implant, signature_severity Major,
+        tag c2, updated_at 2020_08_04, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Downeks Variant CnC Beacon"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})+$/P"'
+      reference: url,researchcenter.paloaltonetworks.com/2017/01/unit42-downeks-and-quasar-rat-used-in-recent-targeted-attacks-against-governments/
+      rev: '1'
+      sid: '2023811'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

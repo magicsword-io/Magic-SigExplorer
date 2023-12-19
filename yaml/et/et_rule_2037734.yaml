@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '2'
+        value: '"|5b 50 61 73 73 77|"'
+      dsize: <300
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_11, deployment Perimeter, former_category
+        MALWARE, malware_family FirebirdRAT, signature_severity Major, updated_at
+        2022_07_11
+      msg: '"ET TROJAN HiveRAT CnC Activity M2"'
+      reference: md5,4ae4ab4a84a78e5b00b5edf0941d4354
+      rev: '1'
+      sid: '2037734'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 10, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

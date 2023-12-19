@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"instantiate_offline"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2010_09_23
+      msg: '"GPL SQL instantiate_offline ordered refresh_template_name buffer overflow
+        attempt"'
+      pcre: '"/\(\s*((\x27[^\x27]{1000})|(\x22[^\x22]{1000}))/Rmsi"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck630.html
+      rev: '3'
+      sid: '2102646'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Mozi1la/4.0|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gamarue - Mozi1la User-Agent"'
+      reference: url,www.virustotal.com/en/file/03103b40b95070e4d14803e949dc754ca02bcea25e8b3a4194f7d248f15ca515/analysis/
+      rev: '4'
+      service: http
+      sid: '27248'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

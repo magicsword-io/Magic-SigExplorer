@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,593,1024:]'
+    details:
+      byte_jump: 4,-4,relative,dce,align
+      byte_test: 4,>,1024,0,relative,dce
+      classtype: attempted-admin
+      dce_iface: uuid b9e79e60-3d52-11ce-aaa1-00006901293f
+      dce_opnum: '"1-2"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS DCERPC NCACN-IP-TCP irot IrotIsRunning/Revoke overflow attempt"'
+      pcre: '"/^(\x00\x00\x00\x00|.{12})/s"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms03-010
+      rev: '15'
+      sid: '3238'
+      special_options:
+      - dce_stub_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

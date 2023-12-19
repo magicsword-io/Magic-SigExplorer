@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/load_module.php?e="'
+      flow: to_server,established
+      metadata: created_at 2012_05_04, updated_at 2020_04_30
+      msg: '"ET CURRENT_EVENTS Bleeding Life 2 GPLed Exploit Pack exploit request"'
+      rev: '3'
+      sid: '2014705'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

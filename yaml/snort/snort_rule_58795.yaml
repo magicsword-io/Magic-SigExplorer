@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      base64_decode: relative
+      classtype: attempted-user
+      contents:
+      - value: '"Authorization: Basic JH",fast_pattern,nocase'
+      - value: '"Authorization: Basic "'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Apache Log4j logging remote code execution attempt"'
+      pcre: '"/\x24\x7b(jndi|lower|upper|.{0,200}\x24\x7b.{0,200}\x3a[\x27\x22\x2d\x5c]*[jndi\x7d\x3a\x2d]{1,4}[\x22\x27]?[\x3a\x7djndi])/i"'
+      reference: cve,2021-45105
+      rev: '4'
+      service: http
+      sid: '58795'
+      special_options:
+      - http_header
+      - base64_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id=1"'
+      - value: '"Intel Mac OS X"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      flowbits: set,ET.wikiloader
+      metadata: attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Significant,
+        confidence High, signature_severity Major, updated_at 2023_07_31
+      msg: '"ET TROJAN WikiLoader Activity M1 (GET)"'
+      pcre: '"/^Accept[^\r\n]+\r\nCookie[^\r\n]+\r\n/Hm"'
+      reference: md5,f69b31ef39887d6e04d4e972d69bd450
+      rev: '1'
+      sid: '2046966'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

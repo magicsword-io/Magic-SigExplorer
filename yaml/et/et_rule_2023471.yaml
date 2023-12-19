@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/tor/"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_01, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, updated_at
+        2020_10_07
+      msg: '"ET TROJAN Possible Malicious Tor Module Download"'
+      pcre: '"/\/tor\/[^\x2f\x2e]+(?:32|64)\.dll$/Ui"'
+      reference: md5,dacbf4c26c5642c29e69e336e0f111f7
+      rev: '1'
+      sid: '2023471'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

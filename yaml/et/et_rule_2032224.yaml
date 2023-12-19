@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CONNECT|20|/_controlPath/|20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_19, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_03_19
+      msg: '"ET TROJAN Netbounce Proxy Activity"'
+      reference: md5,1b4b013948c9af0260409ce7cb7d107b
+      rev: '2'
+      sid: '2032224'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

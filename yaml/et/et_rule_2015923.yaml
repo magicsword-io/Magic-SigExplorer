@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|29 20|Java/"'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_11_24, updated_at 2020_04_22
+      msg: '"ET CURRENT_EVENTS Possible Glazunov Java payload request /5-digit"'
+      pcre: '"/^\/\d{5}$/U"'
+      rev: '1'
+      sid: '2015923'
+      special_options:
+      - http_header
+      urilen: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

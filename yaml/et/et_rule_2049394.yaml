@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 15 00 00 00 3c 0a 01 d1 de 72 00 18 01 07 05 32 35 35 36 35|"'
+      dsize: '21'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_11_29, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_11_29
+      msg: '"ET TROJAN Marai Variant Activity (Inbound)"'
+      reference: url,www.akamai.com/blog/security-research/new-rce-botnet-spreads-mirai-via-zero-days
+      rev: '1'
+      sid: '2049394'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

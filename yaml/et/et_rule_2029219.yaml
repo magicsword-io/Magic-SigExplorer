@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '50'
+        value: '"|7b 22 54 79 70 65 22 3a 22 53 65 73 73 69 6f 6e 49 44 22 2c 22 53
+          65 73 73 69 6f 6e 49 44 22 3a 22|"'
+      - value: '"|7d|"'
+      distance: '0'
+      dsize: <100
+      flow: established,from_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_02, deployment Perimeter, former_category
+        MALWARE, malware_family Arechclient2, signature_severity Major, updated_at
+        2022_03_24
+      msg: '"ET TROJAN Arechclient2 Backdoor CnC Keep-Alive"'
+      reference: md5,4ccba79d95dfd7d87b43643058e1cdd0
+      rev: '2'
+      sid: '2029219'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

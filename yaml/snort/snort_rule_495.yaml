@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Bad command or filename",nocase'
+      flow: established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE command error"'
+      rev: '14'
+      service: http
+      sid: '495'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

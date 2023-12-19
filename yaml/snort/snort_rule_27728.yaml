@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/update/param.php?",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Orbit Downloader denial of service update"'
+      reference: url,www.welivesecurity.com/2013/08/21/orbital-decay-the-dark-side-of-a-popular-file-downloading-tool
+      rev: '3'
+      service: http
+      sid: '27728'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

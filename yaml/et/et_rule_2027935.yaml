@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"var|20|_0x"'
+      - value: '"=|20 5b 27|Mobile|27 5d 3b|"'
+      - value: '"|2f 2f 20|All|20 7c 20|Mobile|20 7c 20|Desktop"'
+      - value: '"|2f 2f 20|1|20|-|20|Browser|20|Update|20 7c 20|2|20|-|20|Font"'
+      - value: '"var|20|_0x"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2019_08_30, deployment Perimeter,
+        former_category MALWARE, malware_family SocEng, malware_family Domen, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_01
+      msg: '"ET CURRENT_EVENTS Domen SocEng Redirect - Landing Page Observed"'
+      rev: '2'
+      sid: '2027935'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

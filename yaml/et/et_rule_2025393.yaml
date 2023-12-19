@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!$HTTP_PORTS'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '2'
+        value: '"|7b 22 6d 61 67 69 63 22 3a 22|"'
+      - value: '"|22 2c 22 69 6e 64 65 78 22 3a 22|"'
+      - value: '"|22 68 61 73 2d 72 65 71 75 65 73 74 65 72 22 3a|"'
+      - value: '"|2c 22 68 61 73 2d 61 63 63 65 70 74 65 72 22 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_26, deployment Perimeter, former_category
+        MALWARE, malware_family QRat, signature_severity Major, tag Qrat, updated_at
+        2018_03_06
+      msg: '"ET TROJAN QRat.Java.RAT Post-Checkin Request"'
+      reference: url,www.trustwave.com/Resources/SpiderLabs-Blog/Quaverse-RAT--Remote-Access-as-a-Service/
+      rev: '2'
+      sid: '2025393'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

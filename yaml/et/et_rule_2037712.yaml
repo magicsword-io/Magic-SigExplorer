@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|bitsbfree|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_07_07, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_07_07
+      msg: '"ET TROJAN Gamaredon APT Related Domain in DNS Lookup (bitsbfree .com)"'
+      reference: url,twitter.com/h2jazi/status/1545043931238346752
+      rev: '1'
+      sid: '2037712'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

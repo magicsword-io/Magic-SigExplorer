@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|0a|The|20|Command completed"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2010_09_23, former_category ATTACK_RESPONSE, updated_at
+        2022_06_23
+      msg: '"GPL ATTACK_RESPONSE command completed"'
+      reference: bugtraq,1806
+      rev: '13'
+      sid: '2100494'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

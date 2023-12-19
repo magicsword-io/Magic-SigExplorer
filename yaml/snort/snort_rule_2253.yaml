@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"XEXCH50",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-MAIL XEXCH50 overflow attempt"'
+      pcre: '"/^XEXCH50\s+-\d/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-046
+      rev: '20'
+      service: smtp
+      sid: '2253'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

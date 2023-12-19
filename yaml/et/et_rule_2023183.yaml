@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Connection|3a 20|close|0d 0a|"'
+      - value: '"Content-Encoding|3a 20|gzip|0d 0a|"'
+      dsize: <300
+      flow: established,to_client
+      flowbits: isset,ET.OSX.Mokes
+      metadata: affected_product Mac_OSX, created_at 2016_09_08, deployment Perimeter,
+        former_category MALWARE, tag OSX_Malware, updated_at 2016_09_08
+      msg: '"ET TROJAN OSX/Mokes.A CnC Heartbeat"'
+      reference: url,securelist.com/blog/research/75990/the-missing-piece-sophisticated-os-x-backdoor-discovered
+      rev: '1'
+      sid: '2023183'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

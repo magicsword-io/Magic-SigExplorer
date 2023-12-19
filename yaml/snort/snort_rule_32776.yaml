@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/report.php?msg=",fast_pattern,nocase'
+      - value: '"&uname="'
+      - value: '"&pword="'
+      - value: '"Content-Length|3A 20|0|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC FIN4 VBA Macro credentials upload attempt"'
+      reference: url,www.virustotal.com/en/url/536ed7236769b9a5f09b2a31ab138fbad7331108cb65e1f4c77d129df7fb7764/analysis/
+      rev: '2'
+      service: http
+      sid: '32776'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

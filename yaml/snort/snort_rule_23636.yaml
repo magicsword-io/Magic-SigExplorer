@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|5B 27|parse|27 2B 27|Int|27 5D 28|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION JavaScript built-in function parseInt appears obfuscated
+        - likely packer or encoder"'
+      reference: url,snort.org/rule_docs/1-23636
+      rev: '11'
+      service: ftp-data,http,imap,pop3
+      sid: '23636'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

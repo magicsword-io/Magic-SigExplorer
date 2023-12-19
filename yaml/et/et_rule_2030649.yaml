@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Hi we see you!"'
+      dsize: '14'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_05, deployment Perimeter, former_category
+        MALWARE, malware_family Autoit, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_05
+      msg: '"ET TROJAN Unknown AutoIt Bot - Initial Server Response"'
+      reference: md5,79c018b6e7fccef4d014721b5fd99088
+      rev: '1'
+      sid: '2030649'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

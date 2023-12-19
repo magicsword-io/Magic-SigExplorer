@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/ftp"'
+      - value: '"User-Agent|3A| Mozilla/4.0 (compatible|3B| Win32|3B| WinHttp.WinHttpRequest"'
+      - value: '!"www.trendmicro.com"'
+      flow: established,to_server
+      flowbits: set,ET.GOOTKIT
+      metadata: created_at 2010_09_28, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Gootkit Website Infection Request for FTP Credentials from
+        Control Server"'
+      reference: url,doc.emergingthreats.net/2011286
+      rev: '7'
+      sid: '2011290'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

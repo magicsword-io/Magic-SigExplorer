@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c 21 2d 2d 20 7c 20 20 20 20 5c 20 20 5c 20 42 59 20 58 42 41 4c
+          54 49 20 2f 20 2d 2d 3e|"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_09_09, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2019_09_09
+      msg: '"ET CURRENT_EVENTS Generic XBALTI Phishing Landing"'
+      rev: '2'
+      sid: '2027966'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

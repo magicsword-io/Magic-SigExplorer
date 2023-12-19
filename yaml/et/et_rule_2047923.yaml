@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9001'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '37'
+        value: '"POST /minio/bootstrap/v1/verify HTTP/"'
+      flow: established, to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_09_05, cve CVE_2023_28432, deployment Perimeter, deployment
+        SSLDecrypt, former_category WEB_SPECIFIC_APPS, confidence High, signature_severity
+        Major, updated_at 2023_09_05, reviewed_at 2023_09_05
+      msg: '"ET WEB_SPECIFIC_APPS MinIO Information Disclosure Attempt (CVE-2023-28432)"'
+      reference: cve,2023-28432
+      rev: '1'
+      sid: '2047923'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NEGOCIO_ONLINE|2e|"'
+      - value: '"|0d 0a|Content-Disposition|3a| attachment"'
+      - value: '"filename|3d|"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_12_15, updated_at 2019_10_08
+      msg: '"ET TROJAN SpamBanker message"'
+      pcre: '"/^[\x22\x27]NEGOCIO_ONLINE(\.(?:zip|exe))[\x27\x22]\x0d\x0a/Ri"'
+      reference: url,tools.cisco.com/security/center/viewThreatOutbreakAlert.x?alertId=36677
+      rev: '3'
+      sid: '2019937'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

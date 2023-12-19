@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"title|3e|Authorization|3c 2f|title|3e|"'
+      - value: '"background|3d 22|Images|5c|bg|5f|1|2e|png|22 3e|"'
+      - value: '"class|3d|task|20|value|3d 22 22 20|name|3d 22|login|22 3e 3c 2f|td|3e|"'
+      - value: '"value|3d 22 22 20|name|3d 22|password|22 3e 3c 2f|td|3e|"'
+      - value: '"class|3d 22|button|22 20|value|3d 22|Unlock|22 3e|"'
+      fast_pattern: 9,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter,
+        former_category ATTACK_RESPONSE, confidence Medium, signature_severity Major,
+        updated_at 2023_05_15
+      msg: '"ET ATTACK_RESPONSE Amadey CnC Panel Inbound"'
+      reference: url,twitter.com/Gi7w0rm/status/1658060675770351616
+      rev: '1'
+      sid: '2045694'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

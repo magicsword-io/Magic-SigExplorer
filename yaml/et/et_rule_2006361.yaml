@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Huai_Huai|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2020_10_19
+      msg: '"ET MALWARE Suspicious User-Agent (Huai_Huai)"'
+      reference: md5,1051f7176fe0a50414649d369e752e98
+      rev: '9'
+      sid: '2006361'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

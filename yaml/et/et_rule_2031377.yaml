@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|nhansudaihoi13|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2020_12_14, deployment Perimeter,
+        former_category MALWARE, malware_family APT32, malware_family OceanLotus,
+        signature_severity Major, updated_at 2020_12_14
+      msg: '"ET TROJAN APT32/OceanLotus Associated Domain in DNS Lookup (nhansudaihoi13
+        .org)"'
+      reference: url,about.fb.com/news/2020/12/taking-action-against-hackers-in-bangladesh-and-vietnam/
+      rev: '2'
+      sid: '2031377'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

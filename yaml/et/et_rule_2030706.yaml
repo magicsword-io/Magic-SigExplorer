@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|image/jpeg|0d 0a|"'
+      - value: '"|24|X1=|27|GEX|27 2e|replace|28 27|G|27 2c 27|I|27 29 3b|sal|20|g|20
+          24|X1|3b|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_08_19, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_19
+      msg: '"ET TROJAN GORGON APT Download Activity M2"'
+      reference: md5,1cc6e550e2e414d143e835b0f5f53f41
+      rev: '2'
+      sid: '2030706'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

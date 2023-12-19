@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"php?type=stats&affid="'
+      - value: '"&subid="'
+      - value: '"&version="'
+      - value: '"&adwareok"'
+      flow: established,to_server
+      metadata: created_at 2011_06_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE RogueAntiSpyware.AntiVirusPro Checkin"'
+      reference: md5,8d1b47452307259f1e191e16ed23cd35
+      rev: '2'
+      sid: '2013149'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

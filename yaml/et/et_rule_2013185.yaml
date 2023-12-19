@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3A| Mozilla/4.0 (compatible|3B| ICS)"'
+      - depth: '5'
+        value: '"para="'
+      - value: '"&subject="'
+      - value: '"&dados="'
+      fast_pattern: 20,20
+      flow: established,to_server
+      metadata: created_at 2011_07_05, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Trojan-Banker.Win32.Agent Checkin"'
+      reference: url,www.sunbeltsecurity.com/partnerresources/cwsandbox/md5.aspx?id=1bcc87209703cf73c80f9772935e47b0
+      rev: '5'
+      sid: '2013185'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

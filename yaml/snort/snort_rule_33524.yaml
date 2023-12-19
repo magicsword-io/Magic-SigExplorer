@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/updateb.xml?",fast_pattern,nocase'
+      - value: '"rnd="'
+      - value: '"&spfail=",within 20'
+      - value: '"&guid=",within 15'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.DNSChanger variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/e5cbca1c1cca4ce5ef8beddca38869bdb18e089b969171e5ba337aa756371c36/analysis/
+      rev: '2'
+      service: http
+      sid: '33524'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

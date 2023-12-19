@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"CLSID"'
+      - value: '"125C3F0B-1073-4783-9A7B-D33E54269CA5"'
+      - value: '"InitLicenKeys"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_10_13, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2019_09_27
+      msg: '"ET ACTIVEX AoA Audio Extractor ActiveX Control Buffer Overflow Attempt"'
+      reference: url,packetstormsecurity.org/1010-exploits/aoaae-rop.txt
+      rev: '1'
+      sid: '2011801'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

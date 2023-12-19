@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,1,relative, post_offset -13
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"alekberg.net"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_10_18, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag DoH, updated_at
+        2022_10_18
+      msg: '"ET INFO Alekberg DNS Over HTTPS Certificate Inbound"'
+      pcre: '"/^dns\w{2}(?:\x0c|\x2e)alekberg.net/R"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2039436'
+      threshold: type both, count 1, seconds 600, track by_src
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

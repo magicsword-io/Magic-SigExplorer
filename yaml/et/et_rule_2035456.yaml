@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".html?m="'
+      - value: '"&c="'
+      - value: '"&v="'
+      - value: '"&myID="'
+      - value: '"/"'
+      - value: '"/"'
+      - value: '"User-Agent|3a 20|Catalyst|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_15, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_03_15
+      msg: '"ET TROJAN Win32/Webdor.NAC Variant CnC Activity"'
+      reference: md5,1e2a28d5f4f03420df7a6766e0e4277c
+      rev: '2'
+      sid: '2035456'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

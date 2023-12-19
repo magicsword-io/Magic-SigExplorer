@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"gate"'
+      - value: '".php"'
+      - depth: '28'
+        value: '"text=%0D%0A%3C%2Ftextarea%3E"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_09_26, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_09_26
+      msg: '"ET TROJAN Win32/Spy.Delf.QTL Data Exfiltration Attempt"'
+      pcre: '"/\.php$/U"'
+      reference: md5,d7186f603cb439c86bf5f9ee767a62a0
+      rev: '1'
+      sid: '2038999'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

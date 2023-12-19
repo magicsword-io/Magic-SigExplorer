@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -19
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"servicehost.click"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_07, reviewed_at 2023_09_07
+      msg: '"ET TROJAN Red Wolf/RedCurl Domain (servicehost .click) in TLS SNI"'
+      pcre: '"/^(?:\x00\x11|.\x2e)servicehost\.click/R"'
+      reference: url,www.facct.ru/blog/redcurl-2023/
+      rev: '1'
+      sid: '2047965'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

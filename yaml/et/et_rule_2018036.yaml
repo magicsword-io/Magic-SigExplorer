@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"SOLAR|00|"'
+      - value: '"MZP"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2014_01_30, updated_at 2014_01_30
+      msg: '"ET TROJAN SolarBot Plugin Download Server Response"'
+      rev: '4'
+      sid: '2018036'
+      special_options:
+      - file_data
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

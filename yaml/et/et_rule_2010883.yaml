@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"PDF-"'
+      - value: '"arguments.callee"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY PDF File Containing arguments.callee in Cleartext - Likely
+        Hostile"'
+      reference: url,doc.emergingthreats.net/2010883
+      rev: '6'
+      sid: '2010883'
+      special_options:
+      - file_data
+      - nocase
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

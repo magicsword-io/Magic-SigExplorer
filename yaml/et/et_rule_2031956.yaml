@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Sign In</title>"'
+      - value: '"value=|22|Account Summary|22|"'
+      - value: '"value=|22|Transfer|22|"'
+      - value: '"value=|22|Brokerage|22|"'
+      - value: '"value=|22|Trade|22|"'
+      - value: '"value=|22|MessageAlerts|22|"'
+      distance: '0'
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2016_01_08, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_06_17
+      msg: '"ET CURRENT_EVENTS Wells Fargo Phishing Landing 2016-01-07"'
+      rev: '1'
+      sid: '2031956'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

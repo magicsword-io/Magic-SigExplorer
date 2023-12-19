@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,-10,relative,from_beginning
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C|PIPE|5C 00|"'
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|01 D0 8C|3D|22 F1|1|AA AA 90 00|8|00 10 03|"'
+      distance: '29'
+      flow: established,to_server
+      flowbits: set,smb.tree.bind.winreg
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS winreg bind attempt"'
+      rev: '9'
+      sid: '2102478'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

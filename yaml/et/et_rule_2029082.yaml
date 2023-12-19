@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/?"'
+      - value: '"=A1f"'
+      - value: '"|28|Windows|20|NT|20|6.1|3b 20|WOW64|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag TickGroup,
+        updated_at 2022_03_24
+      msg: '"ET TROJAN Tick Group Payload - Submitting Encrypted Data to CnC"'
+      pcre: '"/^[a-z0-9/=\+]$/Pi"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/operation-endtrade-finding-multi-stage-backdoors-that-tick/
+      rev: '2'
+      sid: '2029082'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

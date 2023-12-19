@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '"function"'
+      - value: '"|20|= |7b|__proto__|3a|"'
+      - value: '"eval|28|"'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_25, cve CVE_2019_0567,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2021_08_25
+      msg: '"ET EXPLOIT Microsoft Edge Chakra - NewScObjectNoCtor InitProtoType Confusion
+        Inbound (CVE-2019-0567)"'
+      pcre: '"/^\s*(?P<func_a>[\w-]{1,20})\((?P<obj1>[\w-]{1,20})\s*,\s*(?P<tmp_obj>[\w-]{1,20})\s*,\s*(?P<value>[\w-]{1,20})\).{1,300}(?P=obj1)\.\w+\s*=\s*\d+\.\d+\x3b\s*var\s*\w+\s*=\s*\{__proto__:\s*(?P=tmp_obj)\}\x3b\s*(?P=obj1)\.\w+\s*=\s*(?P=value)\x3b.{1,300}var\s*(?P=obj1)\s*=\s*\{\w+:\s*\d+\.\d+\s*,\s*\w+:\s*\d+\.\d+\}\x3b\s*for\s*\(\s*var\s*(?P<counter>[\w-]{1,20})\s*=\s*\d{1,8}\s*\x3b\s*(?P=counter)\s*(?:<|>)\s*(?:0x)?\d{2,}\s*\x3b\s*(?P=counter)(?:\+{2}|-{2})\)\s*\{\s*(?P=func_a)\((?P=obj1)\s*,\s*(\x22{2}|\x27{2})\s*,\s*(\x22{2}|\x27{2})\)\x3b.{1,300}(?P=func_a)\((?P=obj1)\s*,\s*(?P=obj1)\s*,\s*\d+\.\d{8,}.{1,300}eval\((?P=obj1)\./Rs"'
+      reference: cve,2019-0567
+      rev: '2'
+      sid: '2033783'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

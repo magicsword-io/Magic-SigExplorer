@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"databases/Microsoft|20|Edge_cookies_chrome.db"'
+      fast_pattern: 20,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_01_24, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_01_24
+      msg: '"ET TROJAN Win32/Obsidium Stealer Data Exfiltration Attempt M7"'
+      reference: md5,fbde689446a216b919faf588f3b01801
+      rev: '1'
+      sid: '2043672'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

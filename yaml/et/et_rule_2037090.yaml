@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '143'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"|24 20|APPEND|20|INBOX|20 7b|"'
+      - value: '"M_report|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_22, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_06_22
+      msg: '"ET TROJAN Win32/APT28 Host Fingerprint Exfiltration via IMAP"'
+      pcre: '"/Subject\x3a[0-9]{1,2}\x2f[0-9]{1,2}\x2f[0-9]{4}\x20[0-9]{1,2}\x3a[0-9]{1,2}\x3a[0-9]{2}\x20[AP]/R"'
+      reference: md5,d3bddb5de864afd7e4f5e56027f4e5ea
+      rev: '1'
+      sid: '2037090'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

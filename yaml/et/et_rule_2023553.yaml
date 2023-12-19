@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/get.php|20|HTTP/1."'
+      - value: '!"Referer|3a 20|"'
+      - value: '"info"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_04_18, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Android_Hqwar, tag Android, updated_at 2020_11_03, mitre_tactic_id TA0037,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.Marcher.a Checkin"'
+      pcre: '"/(?:^|&|\x22|\{\x22)id(?:=|\x22\x3a\x22)(?:[a-f0-9]{32}|[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})(?:&|\x22|$)/P"'
+      reference: md5,f48cd0c0e5362142c0c15316fa2635dd
+      rev: '6'
+      sid: '2023553'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

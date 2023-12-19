@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"403"'
+      - value: '"BitNinja Captcha Server"'
+      - value: '"<title>Waiting for the redirectiron..."'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_08_17, deployment Perimeter, former_category INFO, signature_severity
+        Informational, updated_at 2020_08_17
+      msg: '"ET INFO BitNinja IO Security Check"'
+      rev: '2'
+      sid: '2030694'
+      special_options:
+      - http_stat_code
+      - http_header
+      - fast_pattern
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

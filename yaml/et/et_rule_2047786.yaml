@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"data|3a|"'
+      - value: '"base64,UmFyIRoHA"'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: attack_target Client_Endpoint, created_at 2023_08_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, performance_impact Low, confidence
+        High, signature_severity Informational, tag HTML_Smuggling, updated_at 2023_08_28,
+        reviewed_at 2023_08_28, mitre_tactic_id TA0005, mitre_tactic_name Defense_Evasion,
+        mitre_technique_id T1027, mitre_technique_name Obfuscated_Files_or_Information
+      msg: '"ET INFO Base64 Encoded RAR File in HTML Body (Magic Bytes)"'
+      reference: url,urlscan.io/result/98d7e72b-67b8-4d7c-9735-c27525b0a550/#transactions
+      rev: '1'
+      sid: '2047786'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '65'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"data-title=|22|Need a new Password?|22|>"'
+      - value: '"We|27|ll contact your admin to reset the password for|3a|"'
+      - value: '"We notified your admin to reset your password."'
+      - value: '"Now you''ll need to wait until they do"'
+      - value: '"(or go ask them nicely, yourself)."'
+      - value: '"Once your admin resets your password"'
+      - value: '"you should receive an email with steps to login."'
+      distance: '0'
+      fast_pattern: 14,20
+      flow: established,from_server
+      metadata: created_at 2015_11_05, former_category PHISHING, updated_at 2022_03_17
+      msg: '"ET CURRENT_EVENTS Outlook WebApp Phish Landing 2015-11-05"'
+      rev: '3'
+      sid: '2031690'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

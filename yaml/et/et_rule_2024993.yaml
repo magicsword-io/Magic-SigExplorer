@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"[1.1, 2.2"'
+      - value: '"Array(100)"'
+      - value: '"i = 0|3b| i < 100"'
+      - value: '"function opt("'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_11_15, cve CVE_2017_11873, deployment Perimeter, former_category WEB_CLIENT,
+        performance_impact Significant, signature_severity Major, updated_at 2017_11_15
+      msg: '"ET WEB_CLIENT Type Confusion Microsoft Edge (CVE-2017-11873)"'
+      pcre: '"/^(?:\]|, 3\.3\])\x3b/R"'
+      reference: cve,2017-11873
+      rev: '2'
+      sid: '2024993'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

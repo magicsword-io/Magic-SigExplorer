@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '43'
+      classtype: trojan-activity
+      contents:
+      - value: '"/imagens/nacional/new/1/2/3/br/contador.php",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| WOW64|3B| rv:12.0) Gecko/20100101
+          Firefox/12.0"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banbra variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/078f4f7bbd0a7fc3f1934a4988997e9f3b69ca8b9dc1bfd37a6c85b44fb50b48/analysis/
+      rev: '2'
+      service: http
+      sid: '34994'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

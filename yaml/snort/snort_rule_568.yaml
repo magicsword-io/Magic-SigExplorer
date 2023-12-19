@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9100'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"@PJL RDYMSG DISPLAY ="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER HP JetDirect LCD modification attempt"'
+      reference: bugtraq,2245
+      rev: '11'
+      sid: '568'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

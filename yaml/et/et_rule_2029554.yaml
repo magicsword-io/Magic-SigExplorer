@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|0d 0a|User-Agent|3a 20 a4 0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_03_02,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Minor,
+        updated_at 2020_03_02
+      msg: '"ET USER_AGENTS Observed Suspicious UA (\xa4)"'
+      rev: '2'
+      sid: '2029554'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".file|0d 0a|"'
+      - value: '"Content-Description|3a 20|File Transfer|0d 0a|"'
+      - value: '"Content-Transfer-Encoding|3a 20|binary|0d 0a|"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2013_11_09, updated_at 2020_09_22
+      msg: '"ET TROJAN Possible Stitur Secondary Download"'
+      pcre: '"/filename=[a-f0-9]{13}\.file\r\n/H"'
+      rev: '2'
+      sid: '2017700'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/.ni|67 67|ers/bin"'
+      - value: '".sh"'
+      - value: '"User-Agent|3a 20|Wget/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_11_19, updated_at 2020_08_19
+      msg: '"ET TROJAN ELF_BASHLITE.SMB Dropping Files"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/bashlite-affects-devices-running-on-busybox/
+      rev: '1'
+      sid: '2019747'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

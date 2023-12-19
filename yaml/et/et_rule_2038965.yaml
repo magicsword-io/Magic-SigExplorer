@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/php/git-update.php"'
+      - value: '"branch|3d 2e 2e 2f 2e 2e 2f 2e 2e 2f|"'
+      - value: '"token|3d 26|"'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target Networking_Equipment, created_at
+        2022_09_23, cve CVE_2022_3184, deployment Perimeter, deployment Internal,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2022_09_23
+      msg: '"ET EXPLOIT Dataprobe iBoot-PDU Pre-Auth Remote Code Execution Attempt
+        via git-update.php (CVE-2022-3184) M1"'
+      reference: cve,2022-3184
+      rev: '1'
+      sid: '2038965'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      urilen: '19'
+    protocol: tcp
+    source:
+      network: any
+      port: any

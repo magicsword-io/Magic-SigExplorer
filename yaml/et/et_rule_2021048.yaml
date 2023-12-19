@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FlashVars"'
+      - value: '"sh=cG93ZXJzaGVsbC5leGUg"'
+      flow: from_server,established
+      metadata: created_at 2015_05_02, updated_at 2015_05_02
+      msg: '"ET CURRENT_EVENTS Unknown EK Secondary Landing Page May 01 2015 M2"'
+      rev: '1'
+      sid: '2021048'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

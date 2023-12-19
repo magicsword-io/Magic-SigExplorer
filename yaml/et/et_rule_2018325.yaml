@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '1'
+        value: '"|00 00 00|"'
+      - value: '"|00 7C 00|"'
+      - value: '"|00 7C 00|"'
+      - value: '"|00 7C 00|"'
+      - value: '"|00 7C 00|"'
+      - value: '"|00 7C 00|"'
+      - value: '"|00 7C 00|0|00 7c 00|2|00|"'
+      flow: to_server
+      metadata: created_at 2014_03_26, former_category MALWARE, updated_at 2014_03_26
+      msg: '"ET TROJAN Bozok.RAT checkin"'
+      reference: url,www.fireeye.com/blog/technical/2013/10/know-your-enemy-tracking-a-rapidly-evolving-apt-actor.html
+      rev: '3'
+      sid: '2018325'
+      within: '32'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

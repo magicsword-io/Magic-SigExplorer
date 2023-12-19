@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| xSock Config"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2020_10_19
+      msg: '"ET TROJAN Win32.Small.qh/xSock User-Agent Detected"'
+      reference: url,doc.emergingthreats.net/2007609
+      rev: '5'
+      sid: '2007609'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

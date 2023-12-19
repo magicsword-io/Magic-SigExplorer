@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '1'
+        value: '"/"'
+      - value: '"|5f 28|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|Uploaded file|22
+          3b|"'
+      - value: '"filename|3d 22|imapmigtool.log|22|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_09_02
+      msg: '"ET TROJAN Win32.Stealer.alwu Data Exfiltration Attempt"'
+      reference: md5,0c8139896b1bb0679940985b9a88087c
+      rev: '1'
+      sid: '2038732'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

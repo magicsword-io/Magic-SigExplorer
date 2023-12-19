@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/uploadFile"'
+      - value: '".gofile.io|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|file|22 3b 20|"'
+      - value: '"filename|3d 22|diagnostics.zip|22 0d 0a|Content-Type|3a 20|application/zip|0d
+          0a 0d 0a|PK"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_19, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family DeltaStealer, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_05_19
+      msg: '"ET TROJAN DeltaStealer Exfiltrating Data to gofile .io"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.gofile\.io/Hmi"'
+      reference: url,www.trendmicro.com/zh_hk/research/23/e/rust-based-info-stealers-abuse-github-codespaces.html
+      rev: '1'
+      sid: '2045790'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

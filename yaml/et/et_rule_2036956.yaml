@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|record"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_06_09, former_category HUNTING, updated_at 2022_06_09
+      msg: '"ET INFO Suspicious User-Agent (record)"'
+      reference: md5,c00ee58c2ec98724a1e865cb91703ff1
+      rev: '1'
+      sid: '2036956'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

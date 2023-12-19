@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|tordomain|03|org"'
+      distance: '0'
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2015_03_18,
+        deployment Perimeter, signature_severity Informational, tag DNS_Onion_Query,
+        updated_at 2020_09_17
+      msg: '"ET POLICY DNS Query to .onion proxy Domain (tordomain.org)"'
+      reference: url,en.wikipedia.org/wiki/Tor_(anonymity_network)
+      rev: '3'
+      sid: '2020703'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

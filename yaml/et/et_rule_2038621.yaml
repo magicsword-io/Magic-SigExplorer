@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '31'
+        value: '"/pyp/resp.php?live=Installation"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_25, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2022_08_25
+      msg: '"ET CURRENT_EVENTS PyPI Successful Credential Harvesting Attempt"'
+      reference: url,twitter.com/pypi/status/1562442207079976966
+      rev: '1'
+      sid: '2038621'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

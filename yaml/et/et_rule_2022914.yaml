@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '137'
+    details:
+      byte_test: 1,=,0x00,3
+      classtype: protocol-command-decode
+      contents:
+      - depth: '2'
+        offset: '4'
+        value: '"|00 00|"'
+      - value: '"|46 48 46 41 45 42 45|"'
+      fast_pattern: only
+      metadata: created_at 2016_06_23, updated_at 2019_10_08
+      msg: '"ET INFO NBNS Name Query Response Possible WPAD Spoof BadTunnel"'
+      reference: url,ietf.org/rfc/rfc1002.txt
+      rev: '1'
+      sid: '2022914'
+    protocol: udp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendDocument?chat_id="'
+      - value: '"&caption="'
+      - value: '"DC-KL|3a 3a 3a|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|document|22
+          3b 20|filename|3d 22|KeyData"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_02, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family DarkCloud, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_05_02
+      msg: '"ET TROJAN DarkCloud Stealer Key Logger Function Exfiltrating Data via
+        Telegram"'
+      reference: md5,1475ae99116f934716ec683954fe29fd
+      rev: '1'
+      sid: '2045300'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

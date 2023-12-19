@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Content-Length",nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP server negative Content-Length attempt"'
+      pcre: '"/^Content-Length\s*\x3a\s*-\d+/im"'
+      reference: url,www.guninski.com/modproxy1.html
+      rev: '12'
+      service: http
+      sid: '2580'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

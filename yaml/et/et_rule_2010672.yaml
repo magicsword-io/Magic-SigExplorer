@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/zport/dmd/Events/getJSONEventsInfo"'
+      - value: '"severity="'
+      - value: '"INSERT"'
+      - value: '"INTO"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_11_07
+      msg: '"ET WEB_SPECIFIC_APPS Possible Zenoss Network Monitoring Application INSERT
+        INTO SQL Injection Attempt"'
+      pcre: '"/INSERT.+INTO/Ui"'
+      reference: url,doc.emergingthreats.net/2010672
+      rev: '3'
+      sid: '2010672'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

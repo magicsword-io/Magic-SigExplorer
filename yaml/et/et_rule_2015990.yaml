@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".html"'
+      - value: '" Java/1"'
+      flow: established,to_server
+      metadata: created_at 2012_12_06, former_category EXPLOIT_KIT, updated_at 2020_04_22
+      msg: '"ET CURRENT_EVENTS RedKit - Potential Payload Requested - /2Digit.html"'
+      pcre: '"/\/[0-9]{2}\.html$/U"'
+      rev: '1'
+      sid: '2015990'
+      special_options:
+      - http_uri
+      - http_header
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

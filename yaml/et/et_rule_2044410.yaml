@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3b|if|28|ndsj|3d 3d 3d|undefined|29 7b|function"'
+      - value: '"parseInt"'
+      - value: '"HttpClient|3d|function|28 29|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_02_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category EXPLOIT_KIT, performance_impact Low,
+        signature_severity Major, updated_at 2023_02_28
+      msg: '"ET TROJAN NDSW/NDSX Javascript Inject"'
+      reference: url,blog.sucuri.net/2022/06/analysis-massive-ndsw-ndsx-malware-campaign.html
+      rev: '1'
+      sid: '2044410'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

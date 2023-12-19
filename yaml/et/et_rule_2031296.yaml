@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User32LogonProcesss"'
+      flow: to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_08, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, updated_at 2020_12_08
+      msg: '"ET CURRENT_EVENTS [Fireeye] POSSIBLE HackTool.TCP.Rubeus.[User32LogonProcesss]"'
+      reference: url,github.com/fireeye/red_team_tool_countermeasures
+      rev: '2'
+      sid: '2031296'
+    protocol: tcp
+    source:
+      network: any
+      port: any

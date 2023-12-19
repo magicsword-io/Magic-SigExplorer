@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        offset: '3'
+        value: '"|00 93 2d 95 a9 6e fb 6c fb e0 02 ba 4b 2a a9 d9 e5|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_07_15, deployment Perimeter, former_category
+        MALWARE, malware_family MargulasRAT, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2021_07_15
+      msg: '"ET TROJAN MargulasRAT Checkin M2"'
+      reference: url,blog.talosintelligence.com/2021/07/sidecopy.html
+      rev: '2'
+      sid: '2033335'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

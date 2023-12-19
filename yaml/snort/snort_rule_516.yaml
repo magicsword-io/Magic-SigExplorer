@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"+|06 10|@|14 D1 02 19|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP NT UserList"'
+      reference: nessus,10546
+      rev: '13'
+      service: snmp
+      sid: '516'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

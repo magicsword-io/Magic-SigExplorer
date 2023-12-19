@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?a=dw",fast_pattern,nocase'
+      - value: '" Java/1."'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Hello/LightsOut exploit kit payload download attempt"'
+      pcre: '"/\?a=dw[a-z]$/"'
+      reference: url,jsunpack.jeek.org/?report=977b49ea5dc5ef85d8f50d1f1222befee8bf3581
+      rev: '6'
+      service: http
+      sid: '30003'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

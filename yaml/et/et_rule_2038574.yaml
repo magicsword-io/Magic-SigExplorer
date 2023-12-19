@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '5'
+        value: '"/?id="'
+      - value: '"&type="'
+      - value: '"AAAAAA=="'
+      - value: '"AAAAAA=="'
+      - value: '"eyJob3N0Ijoi"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_08_19, deployment
+        SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2022_08_19
+      msg: '"ET TROJAN JSSLoader Initial Checkin"'
+      reference: url,malwarebytes.app.box.com/s/ym6r7o5hq0rx2nxjbctfv2sw5vx386ni
+      rev: '1'
+      sid: '2038574'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

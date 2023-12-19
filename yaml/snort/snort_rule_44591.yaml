@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|30 82|",within 2,distance 13'
+      - value: '"Let''s Encrypt"'
+      - value: '"gloverkentok.us",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.PandaZeus malicious certificate exchange"'
+      reference: url,virustotal.com/#/file/220a2b2d7353a697496abcabf1b4c1990b8c9b7143e6dada17782ddd9ee2c232
+      rev: '2'
+      service: ssl
+      sid: '44591'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

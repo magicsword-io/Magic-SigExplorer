@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        offset: '2'
+        value: '"gAAAA"'
+      - value: '"AAAAAAAAAAAAAAMjAx"'
+      - value: '"MiR"'
+      - value: '!"Referer|3a|"'
+      distance: '4'
+      flow: established,to_server
+      metadata: created_at 2014_11_03, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN Cohhoc RAT CnC Request"'
+      reference: url,public.gdatasoftware.com/Presse/Publikationen/Whitepaper/EN/GDATA_TooHash_CaseStudy_102014_EN_v1.pdf
+      rev: '2'
+      sid: '2019625'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 13|info-getting-eu.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2022_03_25,
+        deployment Perimeter, former_category PHISHING, performance_impact Low, updated_at
+        2022_03_25
+      msg: '"ET CURRENT_EVENTS Generic Phishing domain observed in TLS SNI (info-getting-eu.
+        com)"'
+      rev: '1'
+      sid: '2035619'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/Default.aspx?INDEX="'
+      - value: '!"User-Agent|3a| Mozilla "'
+      flow: to_server,established
+      metadata: created_at 2011_10_06, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN WEBC2-CSON Checkin - APT1 Related"'
+      pcre: '"/\?INDEX=[A-Z]{10}$/U"'
+      reference: url,intelreport.mandiant.com/
+      rev: '8'
+      sid: '2016460'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

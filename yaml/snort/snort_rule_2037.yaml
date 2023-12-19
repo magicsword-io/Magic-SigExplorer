@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 03 0D|p",depth 4,offset 12'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC network-status-monitor mon-callback request UDP"'
+      rev: '12'
+      sid: '2037'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

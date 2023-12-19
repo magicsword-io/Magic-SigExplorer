@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/images/view.php"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_11_11, former_category MALWARE, updated_at 2020_09_27
+      msg: '"ET TROJAN Win32/Roficor.A (Darkhotel) Checkin 1"'
+      pcre: '"/\/images\/view\.php$/U"'
+      reference: url,securelist.com/blog/research/66779/the-darkhotel-apt/
+      rev: '1'
+      sid: '2019687'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

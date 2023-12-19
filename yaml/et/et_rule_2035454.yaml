@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<!-- template name: html.form.login.template.html -->"'
+      - value: '"<!-- Configurable default behavior for the Remember Username checkbox
+          -->"'
+      - value: '"<!-- set the checkbox to unchecked -->"'
+      - value: '"<title>Log in</title>"'
+      - value: '"|24 2e|ajax"'
+      - value: '"type|20 3a 20 27|POST|27 2c|"'
+      - value: '"url|20 3a 20 27|files|2f|action|2e|php|3f|type|3d|login|27 2c|"'
+      - value: '"data|20 3a 20 24 28 27 23|loginForm|27 29 2e|serialize|28 29 2c|"'
+      - value: '"location|2e|href|20 3d 20 22|Loading|2e|php|22|"'
+      - value: '"Ping Identity Corporation"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_14, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_03_14
+      msg: '"ET CURRENT_EVENTS Ping Identity Landing Page 2022-03-14"'
+      reference: md5,391dd3f15f5520a3bbfc654dbb3a4ac6
+      rev: '2'
+      sid: '2035454'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

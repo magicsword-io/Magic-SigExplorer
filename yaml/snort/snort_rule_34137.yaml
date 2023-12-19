@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|SearchProtect|3B|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE SearchProtect user-agent detection"'
+      reference: url,www.virustotal.com/en/file/cbddccb934d302497ac60f924088034a1852c378cc51df20c2e53b401ffc4651/analysis/
+      rev: '3'
+      service: http
+      sid: '34137'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

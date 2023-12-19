@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '8'
+        value: '"|89 50 4E 47 0D 0A 1A 0A|"'
+      - value: '"sPLT"'
+      - value: '!"|00|"'
+      distance: '0'
+      flow: established
+      isdataat: 80,relative
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT libPNG - Possible integer overflow in allocation in png_handle_sPLT"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001195
+      rev: '9'
+      sid: '2001195'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

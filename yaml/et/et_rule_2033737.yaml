@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '65535'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|1f 8b 08 00 00 00 00 00 04 00|"'
+      - value: '"|00 00|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_17, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_08_17
+      msg: '"ET TROJAN DarkWay Client Checkin"'
+      reference: url,twitter.com/_jsoo_/status/1423975922164633601
+      rev: '2'
+      sid: '2033737'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

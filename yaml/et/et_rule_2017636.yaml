@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".pdf"'
+      - value: '"/1"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_10_28, deployment Perimeter, malware_family
+        Nuclear, signature_severity Critical, tag Exploit_Kit, tag Nuclear, updated_at
+        2022_05_03
+      msg: '"ET CURRENT_EVENTS Nuclear EK PDF URI Struct"'
+      pcre: '"/^Referer\x3a[^\r\n]+?\/[a-z0-9A-Z\_\-]{26,}\.html(?:\x3a\d{1,5})?\r$/Hm"'
+      rev: '12'
+      sid: '2017636'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

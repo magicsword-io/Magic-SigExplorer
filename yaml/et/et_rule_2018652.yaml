@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '9002'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/wlevs/visualizer/upload"'
+      - value: '"filename"'
+      flow: established,to_server
+      metadata: created_at 2014_07_08, cve CVE_2014_2424, updated_at 2020_04_30
+      msg: '"ET WEB_SPECIFIC_APPS Oracle Event Processing FileUploadServlet Arbitrary
+        File Upload"'
+      pcre: '"/^\s*?=\s*?[\x22\x27]?[^&]*?(?:%(?:25)?2e(?:%(?:(?:25)?2e(?:%(?:25)?5c|\/|\\)|2e(?:25)?%(?:25)?2f)|\.(?:%(?:25)?(?:2f|5c)|\/|\\))|\.(?:%(?:25)?2e(?:%(?:25)?(?:2f|5c)|\/|\\)|\.(?:%(?:25)?(?:2f|5c)|\/|\\)))/Ri"'
+      reference: cve,2014-2424
+      rev: '1'
+      sid: '2018652'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|ordns.he.net"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2022_04_07, deployment Perimeter, former_category INFO,
+        signature_severity Minor, updated_at 2022_04_07
+      msg: '"ET INFO Ordns DNS Over HTTPS Certificate Inbound"'
+      reference: url,developers.cloudflare.com/1.1.1.1/dns-over-https/request-structure/
+      rev: '1'
+      sid: '2035859'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 13|amanda-hart.website"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_04_07, updated_at 2022_04_07
+      msg: '"ET MOBILE_MALWARE Android Spy APT-C-23 (amanda-hart .website in TLS SNI)"'
+      reference: url,www.cybereason.com/blog/operation-bearded-barbie-apt-c-23-campaign-targeting-israeli-officials
+      rev: '1'
+      sid: '2035792'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/20",depth 3'
+      - value: '"|0D 0A|Accept: text/html, */*|0D 0A|Accept-Encoding: identity|0D
+          0A|User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '".inf",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Strictor variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/143756537dfb4964c04d874fd16366ef384bdb4f64a739db019fa9b947b821a1/analysis/1395684118/
+      rev: '5'
+      service: http
+      sid: '30259'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

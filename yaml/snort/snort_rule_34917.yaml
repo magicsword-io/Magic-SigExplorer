@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 D3 62 47 DA 62 4A A1 34|"'
+      - value: '"|3B 02 49 86 4B DF D7 D7 6C E2 2F 36 81 01 24 3F|",within 400'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Critroni certificate exchange"'
+      reference: url,www.virustotal.com/en/file/af7a9f581653394955bec5cf10a7dbafbf64f42d09918807274b5d25849a1251/analysis/
+      rev: '2'
+      service: ssl
+      sid: '34917'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '21'

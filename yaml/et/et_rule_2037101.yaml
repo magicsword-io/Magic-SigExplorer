@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Access-Control-Allow-Origin|3a 20|"'
+      - value: '"Access-Control-Allow-Methods|3a 20|"'
+      - value: '"Access-Control-Allow-Headers|3a 20|"'
+      - depth: '77'
+        value: '"|3c 21|DOCTYPE html|3e 0d 0a 3c 21 2d 2d 20|saved from url|3d 28|0042|29|https|3a
+          2f 2f|secured|2e|nedbank|2e|co|2e|za|2f 20 2d 2d 3e|"'
+      - value: '"|3c 21 2d 2d 20|base|20|href|3d 22|https|3a 2f 2f|secured|2e|nedbank|2e|co|2e|za|2f
+          22 20 2d 2d 3e|"'
+      distance: '0'
+      fast_pattern: 57,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_06_23, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2022_06_23
+      msg: '"ET CURRENT_EVENTS Nedbank Phishing Landing Page 2022-06-22"'
+      reference: md5,fea7f8afb1702315f20a90968dc8c191
+      rev: '1'
+      sid: '2037101'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

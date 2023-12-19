@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/login.cgi"'
+      - depth: '9'
+        value: '"GO=&jump="'
+      flow: established,to_server
+      isdataat: 1380,relative
+      metadata: created_at 2014_11_11, former_category EXPLOIT, confidence High, updated_at
+        2020_05_13
+      msg: '"ET EXPLOIT Belkin N750 Buffer Overflow Attempt"'
+      reference: url,labs.integrity.pt/advisories/cve-2014-1635/
+      rev: '2'
+      sid: '2019686'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

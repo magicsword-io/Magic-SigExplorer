@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - value: '"esreveRrtS"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_03_18, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2020_11_09
+      msg: '"ET INFO Observed Suspicious Reversed String Inbound (StrReverse)"'
+      rev: '2'
+      sid: '2036336'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

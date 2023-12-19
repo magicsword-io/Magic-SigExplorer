@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/log?"'
+      - value: '"|7c|aid="'
+      - value: '"|7c|version="'
+      - value: '"|7c|id="'
+      - value: '"|7c|os="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_03_04, former_category MALWARE, updated_at 2020_09_23
+      msg: '"ET TROJAN Win32/Kryptik.BSYO Checkin"'
+      pcre: '"/\/log\?(start|install)\x7caid=/U"'
+      reference: url,www.virusradar.com/en/Win32_Kryptik.BSYO/description
+      rev: '4'
+      sid: '2018205'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

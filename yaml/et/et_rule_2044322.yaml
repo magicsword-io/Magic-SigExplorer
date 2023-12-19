@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/host|3a 2d|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_24, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, confidence Medium, signature_severity
+        Major, updated_at 2023_02_24
+      msg: '"ET CURRENT_EVENTS HiYu - Request for User Specific Landing Page"'
+      pcre: '"/\/host\x3a\x2d.*\x3a\d{4}\?/U"'
+      reference: url,urlscan.io/result/26b88d69-0fea-4c63-9f29-3c53350c098e/
+      rev: '1'
+      sid: '2044322'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

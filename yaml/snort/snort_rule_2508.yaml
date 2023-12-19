@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,139,445,593,1024:]'
+    details:
+      byte_test: 4,>,256,0,dce
+      classtype: attempted-admin
+      dce_iface: uuid 3919286a-b10c-11d0-9ba8-00c04fd92ef5
+      dce_opnum: '"9"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC NCACN-IP-TCP lsass DsRolerUpgradeDownlevelServer overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-011
+      rev: '24'
+      service: netbios-ssn
+      sid: '2508'
+      special_options:
+      - dce_stub_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

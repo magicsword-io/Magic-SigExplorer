@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"robloxcdneu.net"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2023_07_18, updated_at 2023_07_18
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (robloxcdneu .net in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)robloxcdneu\.net/R"'
+      reference: md5,d52a5f6d591ea015b18fe22d2dcd92f8
+      rev: '1'
+      sid: '2046839'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

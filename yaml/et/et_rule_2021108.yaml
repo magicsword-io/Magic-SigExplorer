@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /lib/common.asp?action="'
+      - value: '"&uid="'
+      - value: '"&lan="'
+      - value: '"&hname="'
+      - value: '"&uname="'
+      - value: '"&os="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_05_15, former_category MALWARE, updated_at 2020_05_22
+      msg: '"ET TROJAN APT Hellsing Proxy Checker Checkin"'
+      reference: url,securelist.com/analysis/publications/69567/the-chronicles-of-the-hellsing-apt-the-empire-strikes-back/
+      rev: '1'
+      sid: '2021108'
+      special_options:
+      - fast_pattern
+      within: '22'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

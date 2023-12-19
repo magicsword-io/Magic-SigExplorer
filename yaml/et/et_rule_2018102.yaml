@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/client/config.ini"'
+      - value: '"|3B 29 0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2014_02_10, updated_at 2022_03_24
+      msg: '"ET TROJAN W32/Woai.Dropper Config Request"'
+      pcre: '"/User\x2DAgent\x3A\x20[^\r\n]*MSIE[^\r\n]*\x3B\x29\x0D\x0A/H"'
+      reference: md5,0425a66e3b268ef8cbdd481d8e44b227
+      rev: '4'
+      sid: '2018102'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

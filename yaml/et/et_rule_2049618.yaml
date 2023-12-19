@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"xmlns|3a|oc|3d 22|http|3a 2f 2f|owncloud|2e|org|2f|ns|22 3e|"'
+      - value: '"|3c|d|3a|href|3e 2f|remote|2e|php|2f|"'
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2023-49105.request
+      metadata: attack_target Server, created_at 2023_12_07, cve CVE_2023_49105, deployment
+        Perimeter, deployment Internal, deployment SSLDecrypt, former_category EXPLOIT,
+        performance_impact Low, confidence High, signature_severity Critical, tag
+        Exploit, updated_at 2023_12_07
+      msg: '"ET EXPLOIT Successful ownCloud Remote Improper Authentication Attempt
+        (CVE-2023-49105)"'
+      reference: cve,2023-49105
+      rev: '1'
+      sid: '2049618'
+      special_options:
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 600, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

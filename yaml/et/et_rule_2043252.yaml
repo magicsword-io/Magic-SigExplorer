@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|delivrto|02|me|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_01_10, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_01_10,
+        reviewed_at 2023_09_01
+      msg: '"ET INFO Delivr .to Phishing/Security Simulation Service Domain in DNS
+        Lookup (delivrto .me)"'
+      reference: url,delivr.to/
+      rev: '1'
+      sid: '2043252'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

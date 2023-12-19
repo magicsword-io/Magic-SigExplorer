@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Authorization|3a 20|Basic"'
+      - value: '!"Authorization|3a 20|Digest"'
+      - depth: '15'
+        value: '"GET / HTTP/1.1"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|20|NT|20|6|2e|1|3b
+          20|WOW64|29 20|AppleWebKit|2f|537|2e|36|20 28|KHTML|2c 20|like|20|Gecko|29
+          20|Chrome|2f|54|2e|0|2e|2840|2e|71|20|Safari|2f|537|2e|36"'
+      fast_pattern: 87,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_15, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2022_12_15
+      msg: '"ET TROJAN Win32/Goofy Guineapig CnC Activity (GET) M1"'
+      pcre: '"/Authorization\x3a\x20[a-zA-Z0-9\x2f\+=]{90,120}/H"'
+      reference: md5,a21dec89611368313e138480b3c94835
+      rev: '1'
+      sid: '2042947'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

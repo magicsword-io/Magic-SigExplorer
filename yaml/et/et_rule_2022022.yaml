@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1720'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|22 c0 09 00 7a b7 07|MERA RTU|08|"'
+      flow: to_server,established
+      metadata: created_at 2015_11_03, updated_at 2015_11_03
+      msg: '"ET VOIP Possible Misuse Call from MERA RTU"'
+      rev: '1'
+      sid: '2022022'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

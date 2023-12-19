@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/dana/home.php"'
+      - value: '"Accept|3a 20|*/*|0d 0a|Accept-Encoding|3a 20|gzip, deflate|0d 0a|"'
+      - value: '"MSIE 7.0"'
+      - value: '!"Referer|3a 20|"'
+      flow: to_server,established
+      metadata: created_at 2016_03_24, former_category CURRENT_EVENTS, updated_at
+        2020_09_01
+      msg: '"ET TROJAN W32/Dridex Binary Download Mar 23 2016"'
+      pcre: '"/\/home\.php$/U"'
+      reference: md5,2f32bf996e093d5a4107d6daa6c51ec4
+      rev: '3'
+      sid: '2022650'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

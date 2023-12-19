@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/shared/code/cp_authorization.php?"'
+      - value: '"xuser_name="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS All In One Control Panel (AIOCP) SQL Injection Attempt
+        -- cp_authorization.php xuser_name UPDATE"'
+      pcre: '"/UPDATE.+SET/Ui"'
+      reference: url,doc.emergingthreats.net/2005578
+      rev: '5'
+      sid: '2005578'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

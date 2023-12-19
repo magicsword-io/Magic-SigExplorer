@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/set.html?"'
+      - value: '"Accept|3a 20|*/*|0d|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_20, deployment Perimeter, former_category
+        MALWARE, malware_family Datper, performance_impact Low, signature_severity
+        Major, tag TickGroup, updated_at 2020_08_27
+      msg: '"ET TROJAN TickGroup Datper CnC Checkin M2"'
+      pcre: '"/\/set\.html\?[a-z]{3,10}=[a-z0-9]+$/U"'
+      reference: url,blogs.jpcert.or.jp/ja/2019/02/tick-activity.html
+      rev: '2'
+      sid: '2026948'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

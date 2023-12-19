@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '518'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|01 03 00 00 00 00 00 01 00 02 02 E8|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-LINUX ntalkd x86 Linux overflow"'
+      reference: bugtraq,210
+      rev: '10'
+      sid: '313'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

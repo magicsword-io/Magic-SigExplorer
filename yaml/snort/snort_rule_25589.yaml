@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"M-SEARCH ",depth 9'
+      - value: '"|3A|device|3A|"'
+      - value: '!"|3A|",within 180'
+      flow: to_server
+      isdataat: 180,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER libupnp command buffer overflow attempt"'
+      reference: cve,2012-5962
+      rev: '6'
+      service: ssdp
+      sid: '25589'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?email="'
+      - value: '"&lici="'
+      - value: '"&ver="'
+      - value: '"HTTP/1.0"'
+      - value: '!"User-Agent|3A|"'
+      flow: established,to_server
+      metadata: created_at 2012_01_12, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN W32/Lici Initial Checkin"'
+      reference: md5,2f4d35e797249e837159ff60b827c601
+      rev: '3'
+      sid: '2014119'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

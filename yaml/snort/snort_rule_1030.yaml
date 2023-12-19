@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/search97.vts"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS search97.vts access"'
+      reference: bugtraq,162
+      rev: '15'
+      service: http
+      sid: '1030'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

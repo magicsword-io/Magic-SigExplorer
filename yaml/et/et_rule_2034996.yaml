@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|api|0b|beijing2022|02|cn|00|"'
+      distance: '0'
+      metadata: created_at 2022_01_28, former_category POLICY, updated_at 2022_01_28
+      msg: '"ET POLICY My2022/Beijing2022 App (DNS Lookup) 2"'
+      reference: url,citizenlab.ca/2022/01/cross-country-exposure-analysis-my2022-olympics-app/
+      rev: '1'
+      sid: '2034996'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

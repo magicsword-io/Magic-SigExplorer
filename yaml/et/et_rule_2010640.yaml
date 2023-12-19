@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/index.php?option=com_jphoto&"'
+      - value: '"view=category&"'
+      - value: '"Id="'
+      - value: '"UPDATE"'
+      - value: '"SET"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_jphoto Component Id Parameter UPDATE
+        SET SQL Injection Attempt"'
+      pcre: '"/UPDATE.+SET/Ui"'
+      reference: url,doc.emergingthreats.net/2010640
+      rev: '4'
+      sid: '2010640'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

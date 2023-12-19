@@ -1,0 +1,59 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      byte_test: 1,<=,20,0,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"/stealer/"'
+      - value: '"pwds="'
+      - value: '"cards="'
+      - value: '"wlts="'
+      - value: '"files="'
+      - value: '"user="'
+      - value: '"comp="'
+      - value: '"ip="'
+      - value: '"country="'
+      - value: '"city="'
+      - value: '"tag="'
+      - value: '"domains="'
+      - value: '"ad="'
+      - value: '".onion|0d 0a|"'
+      - value: '"PK|03 04|"'
+      - value: '"Information.txt"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter,
+        former_category MALWARE, malware_family Eternity_Stealer, performance_impact
+        Low, signature_severity Major, updated_at 2023_04_04, reviewed_at 2023_08_21
+      msg: '"ET TROJAN Eternity Stealer Data Exfiltration Activity"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nExpect\x3a\x20[^\r\n]+\r\nProxy-Connection\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,c4b46a2d0898e9ba438366f878cd74bd
+      rev: '4'
+      sid: '2036542'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

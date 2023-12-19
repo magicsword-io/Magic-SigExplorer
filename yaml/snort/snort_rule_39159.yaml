@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03 01|"'
+      - value: '"|02|",distance 2'
+      - value: '"|03 01|",distance 3'
+      - value: '"|55 04 06 13 02|FR"'
+      - value: '"|55 04 0A 13 0C|assylias.Inc",distance 6'
+      - value: '"|55 04 03 13 08|assylias",distance 6'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.JRat inbound self-signed SSL certificate"'
+      reference: url,www.virustotal.com/en/file/45e8df88b177cec3972f36284290eab652fb21806ef7e9575be853fb30528f28/analysis/
+      rev: '2'
+      service: ssl
+      sid: '39159'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"MMcS",depth 4'
+      flow: to_client,established
+      isdataat: '6'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-OTHER use of undocumented ScMM test interface in Cisco small
+        business devices detected"'
+      reference: cve,2014-0659
+      rev: '3'
+      sid: '46121'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '32764'

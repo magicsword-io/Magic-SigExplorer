@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '49'
+        value: '"|7b 22|code|22 3a 22|console|2e|log|28 5c 22|it|27|ll|20|be|20|backend|20|script|5c
+          22 29|"'
+      - value: '"var|20|botID|20 3d 20|"'
+      - value: '"var|20|injection|20 3d 20|"'
+      - value: '"var|20|KEYLOGGER|20 3d 20|"'
+      fast_pattern: 29,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_18, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_18
+      msg: '"ET TROJAN Win32/LeftHook Stealer Payload Inbound"'
+      reference: md5,61bb691f0c875d3d82521a6fa878e402
+      rev: '2'
+      sid: '2045005'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

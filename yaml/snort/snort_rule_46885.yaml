@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"TO: Joana <xiake722@gmail.com>",fast_pattern,nocase'
+      - value: '"SUBJECT: |5B|T|5D|"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Joanap variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/4c5b8c3e0369eb738686c8a111dfe460e26eb3700837c941ea2e9afd3255981e/detection
+      rev: '1'
+      service: smtp
+      sid: '46885'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

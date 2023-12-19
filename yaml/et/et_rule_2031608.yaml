@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,26,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|Virus Infection Monitor|0d 0a|"'
+      - value: '"Content|2d|type|3a 20|multipart|2f|mixed|3b 20|boundary|3d 22 23|BOUNDARY|23
+          22 0d 0a|"'
+      fast_pattern: 9,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_08, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_02_08
+      msg: '"ET TROJAN Win32/Detplock Checkin via SMTP"'
+      reference: md5,6ac14ccd294d75e340d48d19aa74be09
+      rev: '2'
+      sid: '2031608'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

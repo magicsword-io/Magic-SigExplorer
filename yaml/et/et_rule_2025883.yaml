@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '7'
+        value: '"/shell?"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2018_07_23,
+        deployment Perimeter, former_category EXPLOIT, malware_family Mirai, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET EXPLOIT MVPower DVR Shell UCE"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/07/unit42-finds-new-mirai-gafgyt-iotlinux-botnet-campaigns/
+      rev: '2'
+      sid: '2025883'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

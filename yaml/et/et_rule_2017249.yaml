@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|25|61|25|70|25|70|25|6c|25|65|25|74"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_07_30, updated_at 2016_10_21
+      msg: '"ET CURRENT_EVENTS %Hex Encoded Applet (Observed in Sakura)"'
+      rev: '1'
+      sid: '2017249'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

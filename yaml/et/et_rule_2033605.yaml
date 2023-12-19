@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/monitor/messagebroker/amf"'
+      - value: '"|00 03 00 00 00 01 00 00 00 00 00 00 00 01 11 0A 07 47 6F 72 67 2E
+          61 70 61 63 68 65 2E 61 78 69 73 32 2E 75 74 69 6C 2E 4D 65 74 61 44 61
+          74 61 45 6E 74 72 79 7C 99 8B D2 C6 4F B4 E3 00 00 00 02 01 00 00 00|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_07_28, cve CVE_2016_2510, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_07_28
+      msg: '"ET EXPLOIT TIBCO Data Virtualization <= 8.3 RCE Attempt (CVE-2016-2510)"'
+      reference: cve,2016-2510
+      rev: '1'
+      sid: '2033605'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

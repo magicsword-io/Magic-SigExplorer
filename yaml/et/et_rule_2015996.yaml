@@ -1,0 +1,48 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '3306'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '4'
+        offset: '3'
+        value: '"|03|"'
+      - value: '"INSERT INTO"'
+      - value: '"#pragma namespace("'
+      - value: '"|5c 5c 5c|.|5c 5c 5c 5c|root|5c 5c 5c 5c|"'
+      - value: '"__EventFilter"'
+      - value: '" __InstanceModificationEvent"'
+      - value: '"TargetInstance"'
+      - value: '"Win32_LocalTime"'
+      - value: '"ActiveScriptEventConsumer"'
+      - value: '"JScript"'
+      - value: '"WScript.Shell"'
+      - value: '"WSH.run"'
+      - value: '".exe"'
+      - value: '"__FilterToConsumerBinding"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_12_06, updated_at 2012_12_06
+      msg: '"ET EXPLOIT MySQL Server for Windows Remote SYSTEM Level Exploit (Stuxnet
+        Technique)"'
+      pcre: '"/WSH\.run\x28\x5c+?[\x22\x27][a-z0-9_-]+?\.exe/"'
+      reference: url,seclists.org/fulldisclosure/2012/Dec/att-13/
+      rev: '3'
+      sid: '2015996'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

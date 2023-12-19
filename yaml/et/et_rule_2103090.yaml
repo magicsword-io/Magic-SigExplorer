@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB|A2|"'
+      - value: '"|5C|llsrpc|00|"'
+      distance: '78'
+      flow: established,to_server
+      flowbits: isset,smb.tree.connect.ipc
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB llsrpc create tree attempt"'
+      rev: '5'
+      sid: '2103090'
+      special_options:
+      - nocase
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

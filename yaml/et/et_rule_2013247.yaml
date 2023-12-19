@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"KCIK |7b|"'
+      flow: established,to_server
+      metadata: created_at 2011_07_11, updated_at 2011_07_11
+      msg: '"ET TROJAN Ruskill/Palevo KCIK IRC Command"'
+      reference: url,sebdraven.tumblr.com/post/6769853139/palevo-analysises
+      rev: '5'
+      sid: '2013247'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

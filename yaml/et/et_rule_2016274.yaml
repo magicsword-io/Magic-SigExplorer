@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/viruslist/?uid="'
+      flow: established,to_server
+      metadata: created_at 2013_01_25, updated_at 2020_04_23
+      msg: '"ET TROJAN W32/Bilakip.A Downloader Viruslist Download For Populating
+        FakeAV"'
+      reference: url,about-threats.trendmicro.com/Malware.aspx?id=50100&name=TROJ_DLOADR.BKM&language=au
+      rev: '1'
+      sid: '2016274'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,256,-8,relative,big
+      classtype: attempted-user
+      contents:
+      - value: '"|89|PNG|0D 0A 1A 0A|"'
+      - value: '"IHDR",within 4,distance 4'
+      - value: '"tRNS",distance 0'
+      flow: to_client,established
+      flowbits: isset,file.png
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"FILE-IMAGE libpng tRNS overflow attempt"'
+      pcre: '"/IHDR(?!.*?PLTE).*?tRNS/s"'
+      reference: cve,2004-0597
+      rev: '13'
+      service: ftp-data,http,imap,pop3
+      sid: '2673'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

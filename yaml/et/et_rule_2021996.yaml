@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ENDSNAP"'
+      dsize: '7'
+      flow: established,to_server
+      metadata: created_at 2015_10_23, updated_at 2015_10_23
+      msg: '"ET TROJAN Backdoor.Win32.DarkComet Screenshot Upload Successful"'
+      reference: md5,38abba51bdf98347fc4f91642b21b041
+      rev: '1'
+      sid: '2021996'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|linda-gaytan|07|website"'
+      distance: '1'
+      metadata: attack_target Mobile_Client, created_at 2021_09_17, deployment Perimeter,
+        former_category MOBILE_MALWARE, signature_severity Major, updated_at 2021_09_17
+      msg: '"ET MOBILE_MALWARE APT-C-23 Related CnC Domain in DNS Lookup (linda-gaytan
+        .website)"'
+      reference: url,twitter.com/malwrhunterteam/status/1437498154501480451
+      rev: '1'
+      sid: '2033979'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

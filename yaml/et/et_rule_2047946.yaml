@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|66 61 6c 63 6f 6e 22|"'
+      dsize: 100<>200
+      flow: established,to_server
+      flowbits: isset,et.bumblebee
+      metadata: attack_target Client_Endpoint, created_at 2023_09_07, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_09_07, reviewed_at 2023_09_07
+      msg: '"ET TROJAN Win32/Bumblebee Loader Checkin Activity"'
+      reference: md5,270103c51888a8e98972283c825d84cd
+      rev: '1'
+      sid: '2047946'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

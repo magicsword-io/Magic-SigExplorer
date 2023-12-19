@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        offset: '2'
+        value: '"|00 01|"'
+      - depth: '10'
+        offset: '8'
+        value: '"|00 02|"'
+      - depth: '13'
+        offset: '12'
+        value: '"|04|"'
+      flow: to_client,established,no_stream
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY PPTP Requester is not authorized to establish a command channel"'
+      reference: url,lists.emergingthreats.net/pipermail/emerging-sigs/2009-June/002705.html
+      rev: '4'
+      sid: '2009387'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1723'

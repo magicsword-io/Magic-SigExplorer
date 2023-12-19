@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Gator/"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2023_11_13
+      msg: '"ET MALWARE Gator Agent Traffic"'
+      reference: url,doc.emergingthreats.net/2000026
+      rev: '37'
+      sid: '2000026'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

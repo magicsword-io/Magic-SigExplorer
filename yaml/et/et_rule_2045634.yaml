@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/remkus"'
+      - value: '"&isok="'
+      - depth: '5'
+        value: '"pass="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_10, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_05_10
+      msg: '"ET CURRENT_EVENTS Successful W3LL STORE Credential Phish 2023-05-10"'
+      rev: '1'
+      sid: '2045634'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

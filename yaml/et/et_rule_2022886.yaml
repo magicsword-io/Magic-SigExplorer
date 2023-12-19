@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|7b 22|method|22 3a|"'
+      - value: '"|22|login|22 2c|"'
+      - value: '"|22|params|22 3a|"'
+      - value: '"|7b 22|login"'
+      - value: '"agent|22 3a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2016_06_09,
+        deployment Perimeter, former_category COINMINER, malware_family CoinMiner,
+        performance_impact Low, signature_severity Informational, tag Bitcoin_Miner,
+        updated_at 2020_08_19
+      msg: '"ET POLICY Crypto Coin Miner Login"'
+      reference: md5,ebe1aeb5dd692b222f8cf964e7785a55
+      rev: '3'
+      sid: '2022886'
+      special_options:
+      - fast_pattern
+      - nocase
+      - nocase
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

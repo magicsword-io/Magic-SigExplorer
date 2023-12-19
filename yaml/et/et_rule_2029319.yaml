@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"NICK|20|"'
+      - value: '"|0d|USER|20|muhstik"'
+      - value: '"|20 3a|muhstik-"'
+      distance: '0'
+      dsize: <250
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2020_01_23, deployment
+        Perimeter, former_category MALWARE, malware_family Muhstik, performance_impact
+        Low, signature_severity Major, tag IRC, updated_at 2020_01_23
+      msg: '"ET TROJAN ELF/Muhstik - IRC CnC Checkin"'
+      pcre: '"/^\d+\x0a$/R"'
+      reference: url,unit42.paloaltonetworks.com/muhstik-botnet-attacks-tomato-routers-to-harvest-new-iot-devices/
+      rev: '2'
+      sid: '2029319'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

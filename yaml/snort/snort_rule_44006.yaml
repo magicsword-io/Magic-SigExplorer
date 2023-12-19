@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"waitPingqry",fast_pattern,nocase'
+      - value: '"pingAddr=",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Cisco DDR2200 ADSL gateway command injection attempt"'
+      pcre: '"/[?&]pingAddr=[^&]*?%26/i"'
+      reference: url,seclists.org/fulldisclosure/2017/Jul/26
+      rev: '3'
+      service: http
+      sid: '44006'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

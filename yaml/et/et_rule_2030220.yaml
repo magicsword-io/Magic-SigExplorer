@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '10'
+        value: '"MhyTiDJJJJ"'
+      - value: '"JJJJJJJLeJJJJJJJJJJeI4"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_26, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag Konni, updated_at
+        2020_08_19
+      msg: '"ET TROJAN Possible Konni Encrypted Stage 2 Payload Inbound via HTTP"'
+      reference: md5,d41b09aa32633d77a8856dae33b3d7b9
+      rev: '2'
+      sid: '2030220'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

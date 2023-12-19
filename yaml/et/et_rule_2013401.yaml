@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|WinShow Installer"'
+      flow: established,to_server
+      metadata: created_at 2011_08_11, updated_at 2020_04_20
+      msg: '"ET TROJAN Win32/Winshow User Agent"'
+      rev: '1'
+      sid: '2013401'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

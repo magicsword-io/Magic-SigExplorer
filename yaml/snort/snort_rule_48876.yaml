@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/purchase61dfdusfdsu/costnbenifit8889.php?p=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BitterRAT variant outbound connection"'
+      reference: url,virustotal.com/#/file/705487b3deaf5f2ffa3240208044015e836cf4b32ef817154e23cb9f5859993f
+      rev: '1'
+      service: http
+      sid: '48876'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

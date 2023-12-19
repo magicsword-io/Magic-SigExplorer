@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PAB0AGUAeAB0ADEAMAA+ACQA"'
+      flow: established,from_server
+      metadata: created_at 2015_04_15, former_category CURRENT_EVENTS, updated_at
+        2015_04_15
+      msg: '"ET CURRENT_EVENTS Likely Trojan Multi-part Macro Download M1"'
+      rev: '3'
+      sid: '2020911'
+      special_options:
+      - file_data
+      within: '24'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

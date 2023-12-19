@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"{|22|i|22|:|22|%s|22|,|22|l|22|:[",fast_pattern,nocase'
+      - value: '"RES_OK"'
+      flow: to_server,established
+      flowbits: isset,file.exe
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kraens delivery attempt"'
+      reference: url,www.virustotal.com/#/file/426d7bb2f4b362c6ff6b982565aa2bdb47e70320da0f60ba6c9bf04049e08829
+      rev: '1'
+      service: smtp
+      sid: '46422'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

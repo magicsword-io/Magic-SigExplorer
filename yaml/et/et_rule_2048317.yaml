@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/WtmApiService.asmx/GetFileSubTree"'
+      - value: '"|22|subFolderPath|22 3a 22 7b 7b|"'
+      flow: established,to_server
+      metadata: affected_product WS_FTP, attack_target Server, created_at 2023_09_28,
+        cve CVE_2022_27665, deployment Perimeter, deployment Internal, former_category
+        EXPLOIT, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_28, reviewed_at 2023_09_28
+      msg: '"ET EXPLOIT WS_FTP Reflected XSS Payload Observed M1 (CVE-2022-27665)"'
+      reference: url,github.com/dievus/CVE-2022-27665
+      rev: '1'
+      sid: '2048317'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

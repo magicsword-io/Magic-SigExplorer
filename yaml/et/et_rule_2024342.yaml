@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".php?"'
+      - value: '"option="'
+      - value: '"view="'
+      - value: '"layout="'
+      - value: '"&list[fullordering]="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Joomla, attack_target Web_Server, created_at 2017_06_01,
+        cve CVE_2017_8917, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, signature_severity Major, updated_at 2020_10_09
+      msg: '"ET WEB_SPECIFIC_APPS Joomla 3.7.0 - Sql Injection (CVE-2017-8917)"'
+      pcre: '"/&list\[fullordering\]=(?:[a-zA-Z0-9])*[\x22\x27\x28]/Ui"'
+      reference: cve,2017-8917
+      rev: '2'
+      sid: '2024342'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/kbcat.cgi?"'
+      - value: '"cid="'
+      - value: '"or"'
+      - value: '"substring"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_07_08, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS ActivDesk cid Parameter Blind SQL Injection Attempt"'
+      pcre: '"/or.*substring\(/Ui"'
+      reference: url,packetstormsecurity.org/files/view/102537/activdesk-sqlxss.txt
+      rev: '1'
+      sid: '2013234'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

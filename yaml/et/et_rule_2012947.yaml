@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/telecharger.php?"'
+      - value: '"Fichier_a_telecharger="'
+      flow: established,to_server
+      metadata: created_at 2011_06_07, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS WebC.be Fichier_a_telecharger Parameter Local File
+        Disclosure Attempt"'
+      pcre: '"/Fichier_a_telecharger=\w/Ui"'
+      reference: url,1337day.com/exploits/16237
+      rev: '2'
+      sid: '2012947'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

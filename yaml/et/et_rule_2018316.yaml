@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,&,2,3
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '4'
+        value: '"|00 01 00 00 00 01|"'
+      metadata: created_at 2014_03_25, former_category MALWARE, updated_at 2014_03_25
+      msg: '"ET TROJAN Possible Zeus GameOver/FluBot Related DGA NXDOMAIN Responses"'
+      pcre: '"/^..[\x0d-\x20][a-z]{13,32}(?:\x03(?:biz|com|net|org)|\x04info|\x02ru)\x00\x00\x01\x00\x01/Rs"'
+      reference: url,vrt-blog.snort.org/2014/03/decoding-domain-generation-algorithms.html
+      rev: '4'
+      sid: '2018316'
+      threshold: type both, track by_dst, count 12, seconds 120
+    protocol: udp
+    source:
+      network: any
+      port: '53'

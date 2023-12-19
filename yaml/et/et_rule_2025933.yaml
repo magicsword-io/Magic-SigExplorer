@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|banca-movil|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Android, affected_product iOS, attack_target Mobile_Client,
+        created_at 2018_08_02, deployment Perimeter, former_category MOBILE_MALWARE,
+        signature_severity Critical, updated_at 2020_09_16
+      msg: '"ET MOBILE_MALWARE NSO Related Domain 1"'
+      reference: url,www.amnesty.org/en/latest/research/2018/08/amnesty-international-among-targets-of-nso-powered-campaign/
+      rev: '1'
+      sid: '2025933'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

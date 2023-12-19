@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|E5 AA C0 31|"'
+      - value: '"|5B 74 08 4D 9B 39 C1|"'
+      distance: '5'
+      dsize: '20'
+      flow: established,to_server
+      metadata: created_at 2011_11_11, former_category MALWARE, updated_at 2011_11_11
+      msg: '"ET TROJAN P2P Zeus or ZeroAccess Request To CnC"'
+      reference: url,www.kindsight.net/sites/default/files/Kindsight_Malware_Analysis-ZeroAcess-Botnet-final.pdf
+      rev: '9'
+      sid: '2013911'
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

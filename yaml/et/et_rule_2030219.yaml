@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?client_id="'
+      - value: '"name=|22|fileToUpload|22 3b|"'
+      - value: '"Upload|20|Image|0d 0a|----"'
+      - value: '"|00 00 00 00 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_26, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Konni, updated_at 2020_05_26
+      msg: '"ET TROJAN Konni Stage 2 Payload Exfiltrating Data"'
+      reference: md5,d41b09aa32633d77a8856dae33b3d7b9
+      rev: '2'
+      sid: '2030219'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

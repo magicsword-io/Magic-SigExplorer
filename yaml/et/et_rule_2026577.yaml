@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '23'
+        value: '"/images/static/content/"'
+      - value: '!"Cache"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      flowbits: set,ET.APT33CharmingKitten.1
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_05, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag APT33, tag
+        CharmingKitten, updated_at 2020_09_16
+      msg: '"ET TROJAN APT33/CharmingKitten Retrieving New Payload (flowbit set)"'
+      pcre: '"/^\/images\/static\/content\/$/U"'
+      reference: md5,9881bccf12fd8ae71a03247d2ad61a06
+      rev: '3'
+      sid: '2026577'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

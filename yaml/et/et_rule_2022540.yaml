@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|75 7a 76 7e 1a 1b 1b 1b 1b 1b 11 1b 1b 1b|"'
+      dsize: '14'
+      flow: to_client,established
+      metadata: created_at 2016_02_18, former_category MALWARE, updated_at 2016_02_18
+      msg: '"ET TROJAN Possible OceanLotus CnC Heartbeat"'
+      reference: url,www.alienvault.com/open-threat-exchange/blog/oceanlotus-for-os-x-an-application-bundle-pretending-to-be-an-adobe-flash-update
+      rev: '1'
+      sid: '2022540'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, track by_src, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

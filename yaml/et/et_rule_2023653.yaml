@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0|3b 0d 0a|"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_15, deployment Perimeter, former_category
+        TROJAN, malware_family TeleBots_payload, signature_severity Major, updated_at
+        2020_08_04
+      msg: '"ET TROJAN TeleBots BCS-server User-Agent"'
+      reference: url,www.welivesecurity.com/2016/12/13/rise-telebots-analyzing-disruptive-killdisk-attacks/
+      rev: '1'
+      sid: '2023653'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

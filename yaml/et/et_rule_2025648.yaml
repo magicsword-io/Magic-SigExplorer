@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>PDF Online"'
+      - value: '"Please Enter Your receiving Email Address"'
+      - value: '"method=|22|post|22|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_07_10, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact
+        Moderate, signature_severity Minor, updated_at 2018_07_10
+      msg: '"ET CURRENT_EVENTS [eSentire] Adobe Phishing Landing 2018-07-04"'
+      rev: '3'
+      sid: '2025648'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

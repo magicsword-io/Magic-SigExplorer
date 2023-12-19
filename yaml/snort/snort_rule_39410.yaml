@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"=0D=0A",fast_pattern,nocase'
+      - value: '"iSpy Keylogger"'
+      - value: '"=0D=0ABrowser"'
+      - value: '"=0D=0AWebsite",within 70'
+      - value: '"=0D=0AUsername",within 70'
+      - value: '"=0D=0APassword",within 70'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.iSpy variant exfiltration outbound connection"'
+      reference: url,www.virustotal.com/en/file/f4e902c1c2647e79167262bf948fe41368bab4d3876255eb3d9edb5ae02097b7/analysis/
+      rev: '3'
+      service: smtp
+      sid: '39410'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

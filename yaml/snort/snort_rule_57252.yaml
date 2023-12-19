@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/DDIService.svc/SetObject",fast_pattern,nocase'
+      - value: '"VirtualDirectory",nocase'
+      - value: '"ExternalUrl",nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-MAIL Microsoft Exchange Server arbitrary file write attempt"'
+      reference: url,portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2021-27065
+      rev: '1'
+      service: http
+      sid: '57252'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

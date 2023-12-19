@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"EXEC"'
+      - value: '"sp_adduser"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Attempt To Access MSSQL sp_adduser Stored Procedure Via
+        URI to Create New Database User"'
+      reference: url,doc.emergingthreats.net/2009817
+      rev: '5'
+      sid: '2009817'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

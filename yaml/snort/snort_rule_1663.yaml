@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '" .pl",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP *%20.pl access"'
+      pcre: '"/\/[^\r\n]*\x20.pl/i"'
+      reference: url,www.securityfocus.com/archive/1/149482
+      rev: '17'
+      service: http
+      sid: '1663'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

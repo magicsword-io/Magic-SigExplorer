@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|nl|02|ai"'
+      distance: '0'
+      metadata: created_at 2011_11_07, former_category HUNTING, updated_at 2020_09_17
+      msg: '"ET DNS Query for Suspicious .nl.ai Domain"'
+      rev: '2'
+      sid: '2013861'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

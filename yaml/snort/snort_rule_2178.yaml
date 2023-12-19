@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"USER",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP USER format string attempt"'
+      pcre: '"/^USER\s[^\n]*?%[^\n]*?%/ims"'
+      reference: nessus,11687
+      rev: '23'
+      service: ftp
+      sid: '2178'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

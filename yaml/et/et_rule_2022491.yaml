@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"crypted.exe"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: created_at 2016_02_04, former_category MALWARE, updated_at 2020_06_23
+      msg: '"ET TROJAN Download Request Containing Suspicious Filename - Crypted"'
+      pcre: '"/crypted\.exe$/Ui"'
+      reference: md5,1e2fa2e401cd2295a03ba8d8d3d3698b
+      rev: '1'
+      sid: '2022491'
+      special_options:
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

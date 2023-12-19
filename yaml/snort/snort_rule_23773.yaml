@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Extended Module:",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XM file magic detected"'
+      rev: '9'
+      service: smtp
+      sid: '23773'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

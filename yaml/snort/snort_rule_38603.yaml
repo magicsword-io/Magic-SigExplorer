@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '10'
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.asp",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| MSIE 7.0|3B| Windows
+          NT 5.1|3B|)"'
+      - value: '"Accept-Language|3A 20|en-us|0D 0A|"'
+      - value: '"UP007"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.UP007 variant outbound connection"'
+      reference: url,citizenlab.org/2016/04/between-hong-kong-and-burma/
+      rev: '2'
+      service: http
+      sid: '38603'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

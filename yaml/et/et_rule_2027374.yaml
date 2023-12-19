@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"powershell"'
+      - value: '"-e"'
+      - value: '".Get|28 22|Win32_ProcessStartup|22 29|"'
+      - value: '"Process.Create|28|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2019_05_23, former_category CURRENT_EVENTS, tag Loader,
+        updated_at 2020_11_18
+      msg: '"ET CURRENT_EVENTS Unknown VBScript Loader with Encoded PowerShell Execution
+        Inbound"'
+      reference: md5,f17e15a9d28a85bd41d74233859d4df4
+      rev: '2'
+      sid: '2027374'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

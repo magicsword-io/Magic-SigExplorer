@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - offset: '100'
+        value: '"antibot.php"'
+      - value: '"settings.php"'
+      - value: '"reset.php?page=home"'
+      - value: '"logout.php"'
+      - offset: '10000'
+        value: '", not for redistribution"'
+      - value: '"t.me/"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_28, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, tag Phishing, updated_at 2023_10_28
+      msg: '"ET CURRENT_EVENTS Generic Phish Landing Page (2023-10-30)"'
+      rev: '1'
+      sid: '2048946'
+      special_options:
+      - http_stat_code
+      - file_data
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

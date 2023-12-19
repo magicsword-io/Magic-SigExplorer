@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"POST|20|/t4|20|HTTP/1.1"'
+      - value: '"Accept|3a 20|Accept: application/x-shockwave-flash, image/gif, image/jpeg,
+          image/pjpeg, */*|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_09, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Qbot, performance_impact Low, signature_severity
+        Major, updated_at 2020_12_09
+      msg: '"ET TROJAN Win32/Qbot CnC Activity M2"'
+      pcre: '"/^[A-Za-z0-9]{3,20}=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/Psi"'
+      reference: md5,3ceb36fc3607df3d67d9eb0f1d00fea0
+      rev: '2'
+      sid: '2035525'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

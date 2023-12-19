@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/file.php?"'
+      - value: '"eintrag="'
+      - value: '"filecat="'
+      - value: '"id="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2012_02_21, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS pfile file.php id Parameter DELETE FROM SQL Injection
+        Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,packetstormsecurity.org/files/109670/Pfile-1.02-Cross-Site-Scripting-SQL-Injection.html
+      rev: '2'
+      sid: '2014254'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

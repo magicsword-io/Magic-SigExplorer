@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/trace/Start HTTP/1.1|0D 0A|Host: ",fast_pattern,nocase'
+      - value: '"/debug/Version/",depth 15'
+      - value: '!"Accept"'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.DomaIQ variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/59795540fc058979c6be02351507330fce8a8d3c6f10cbcd4ee21ab0144b9a7f/analysis/1390421409/
+      rev: '3'
+      service: http
+      sid: '29664'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

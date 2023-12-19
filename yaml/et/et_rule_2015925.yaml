@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"<a href=|22|?x=selfremove|22|>[Self-Kill]</a>"'
+      flow: established,to_client
+      metadata: created_at 2012_11_24, updated_at 2012_11_24
+      msg: '"ET WEB_SERVER WebShell - Unknown - self-kill"'
+      rev: '1'
+      sid: '2015925'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

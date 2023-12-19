@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/cgi-bin/cgi.cgi",fast_pattern,nocase'
+      - value: '"u=",nocase'
+      flow: to_server,established
+      isdataat: 35,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP NVR/NAS Heap/Stack Overflow attempt"'
+      pcre: '"/[?&]u=[^&\s]{35}/ims"'
+      rev: '2'
+      service: http
+      sid: '46310'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

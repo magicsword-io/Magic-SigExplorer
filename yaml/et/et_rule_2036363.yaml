@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"windows11-upgrade"'
+      - value: '"|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_04_25, deployment Perimeter,
+        former_category MALWARE, malware_family Innostealer, performance_impact Low,
+        signature_severity Major, updated_at 2022_04_25
+      msg: '"ET TROJAN Innostealer Domain in DNS Lookup (windows11-upgrade .com)"'
+      pcre: '"/[0-9]{1,2}/R"'
+      reference: url,www.bleepingcomputer.com/news/security/unofficial-windows-11-upgrade-installs-info-stealing-malware/
+      rev: '2'
+      sid: '2036363'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

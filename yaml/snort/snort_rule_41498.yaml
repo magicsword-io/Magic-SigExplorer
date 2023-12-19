@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Set-Cookie|3A 20|mediaplanBAK|3D|",fast_pattern,nocase'
+      - value: '"Set-Cookie|3A 20|mediaplan|3D|"'
+      - value: '"Content-Type|3A 20|text/plain"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|",within 4,distance -64'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.CryptoLocker binary download response attempt"'
+      reference: url,virustotal.com/en/file/571a7014d1ee4e359e7eb5d2c7b3e6c527f4fcef322781f1c56a1b5bf28c8eb2/analysis/1485884599/
+      rev: '2'
+      service: http
+      sid: '41498'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

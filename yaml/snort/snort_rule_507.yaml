@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5631'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ADMINISTRATOR"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PUA-OTHER PCAnywhere Attempted Administrator Login"'
+      rev: '7'
+      sid: '507'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

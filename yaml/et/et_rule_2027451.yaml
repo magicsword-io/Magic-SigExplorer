@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/file_transfer.cgi"'
+      - depth: '14'
+        value: '"file_transfer="'
+      - value: '"&dir=|27|Pa_Note"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target IoT, created_at 2019_06_11, cve CVE_2019_3929, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET EXPLOIT Attempted Remote Command Injection Inbound (CVE-2019-3929)"'
+      reference: url,unit42.paloaltonetworks.com/new-mirai-variant-adds-8-new-exploits-targets-additional-iot-devices/
+      rev: '2'
+      sid: '2027451'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

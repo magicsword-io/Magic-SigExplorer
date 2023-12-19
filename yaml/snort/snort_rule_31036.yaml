@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php HTTP/1.0|0D 0A|Connection: keep-alive|0D 0A|Content-Type: application/x-www-form-urlencoded|0D
+          0A|Content-Length: 0|0D 0A|Host: "'
+      - value: '"|0D 0A|Accept: text/html,application/xhtml+xml,application/xml|3B|q=0.9,*/*|3B|q=0.8|0D
+          0A|Accept-Encoding: identity|0D 0A|User-Agent: Mozilla/3.0 (compatible|3B|
+          Indy Library)|0D 0A 0D 0A|",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SpyBanker variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/af56f8f97c8872d043a4002daa6331f3b3be296427b0e5d0560fd174e9f59e78/analysis/
+      rev: '2'
+      service: http
+      sid: '31036'
+      special_options:
+      - http_method
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

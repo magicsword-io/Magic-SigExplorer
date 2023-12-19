@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Encoding|3a 20|gzip"'
+      - value: '"language|3d|javascript|3e|document|2e|write|28|unescape|28 27|"'
+      - value: '"%47%65%74%4F%62%6A%65%63%74%28%22%22%6E%65%77%3A"'
+      - value: '"%2E%76%62%73%20%26%40%65%63%68%6F%20%55%52%4C%20%3D%20%22%22"'
+      - value: '"%73%65%6C%66%2E%63%6C%6F%73%65"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_04_04
+      msg: '"ET TROJAN Possible Kimsuky Related Malicious VBScript"'
+      reference: md5,d74f268b986fecfa03b81029dd134811
+      rev: '3'
+      sid: '2034697'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '285'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

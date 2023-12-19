@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"kie|3a 20|auInfo=YWRtaW46"'
+      - value: '"POST"'
+      - value: '"auInfo|3d|YWRtaW46"'
+      - value: '!"|3b|"'
+      - depth: '6'
+        value: '"|3c 3f|xml|20|"'
+      - value: '"clientType|3d 22|WEB|22|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product DVR, attack_target Networking_Equipment, created_at
+        2022_04_19, deployment Perimeter, deployment Internal, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, updated_at 2022_04_19
+      msg: '"ET EXPLOIT Shenzhen TVT DVR/NVR/IPC Stack Overflow in Base64 Authorization
+        Mechanism M2"'
+      reference: url,github.com/mcw0/PoC/blob/master/TVT_and_OEM_IPC_NVR_DVR_RCE_Backdoor_and_Information_Disclosure.txt
+      rev: '2'
+      sid: '2036256'
+      special_options:
+      - http_method
+      - http_cookie
+      - http_cookie
+      - http_client_body
+      - http_client_body
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

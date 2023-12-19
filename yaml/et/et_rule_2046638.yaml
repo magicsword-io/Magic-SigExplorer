@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"ipfs"'
+      - value: '"|09|translate|04|goog|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_06_23, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2023_06_23
+      msg: '"ET CURRENT_EVENTS Suspicious IPFS Domain Rewritten with Google Translate"'
+      reference: url,vadesecure.com/en/blog/new-phishing-attack-leverages-google-translate-and-ipfs-decentralized-network
+      rev: '1'
+      sid: '2046638'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

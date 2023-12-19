@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"file_manager_",depth 13,offset 4'
+      flow: to_client,established
+      isdataat: '!23'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Houdini variant file enumeration inbound init/root/faf
+        command attempt"'
+      pcre: '"/file_manager_(init|root|faf)\x0d\x0a/"'
+      rev: '4'
+      sid: '40836'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,67 @@
+## {{ rule.details.msg }}
+
+**SID:** {{ rule.details.sid }}
+
+**Revision:** {{ rule.details.rev }}
+
+**Class Type:** {{ rule.details.classtype }}
+
+**Metadata:** {{ rule.details.metadata }}
+
+**Reference:** 
+{% if rule.details.reference is defined %}
+{% if 'url,' in rule.details.reference %}
+- [Link]({{ 'https://' if 'http://' not in rule.details.reference and 'https://' not in rule.details.reference else '' }}{{ rule.details.reference.replace('url,', '') }})
+{% else %}
+{% for ref in rule.details.reference.split(',') %}
+- {{ ref }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+**Protocol:** {{ rule.protocol }}
+
+**Source Network:** {% if rule.source %}{{ rule.source.network }}{% endif %}
+
+**Source Port:** {% if rule.source %}{{ rule.source.port }}{% endif %}
+
+**Destination Network:** {% if rule.destination %}{{ rule.destination.network }}{% endif %}
+
+**Destination Port:** {% if rule.destination %}{{ rule.destination.port }}{% endif %}
+
+**Flow:** {{ rule.details.flow }}
+
+{% if rule.details.itype is defined %}
+**ICMP Type:** {{ rule.details.itype }}
+{% endif %}
+
+{% if rule.details.icode is defined %}
+**ICMP Code:** {{ rule.details.icode }}
+{% endif %}
+
+**Contents:**
+{% if rule.details.contents %}
+{% for content in rule.details.contents %}
+- Value: {{ content.value }}
+  {% if content.depth is defined %}Depth: {{ content.depth }}{% endif %}
+  {% if content.offset is defined %}Offset: {{ content.offset }}{% endif %}
+{% endfor %}
+{% elif rule.details.content %}
+- {{ rule.details.content }}
+{% endif %}
+
+**Within:** {{ rule.details.within }}
+
+**PCRE:** {{ rule.details.pcre }}
+
+**Special Options:**
+{% for option in rule.details.special_options %}
+- {{ option }}
+{% endfor %}
+
+{% set sid = rule.details.sid|int %}
+{% if 141 <= sid <= 300600 %}
+[*source*](https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/snort/snort_rule_{{ rule.details.sid }}.yaml)
+{% else %}
+[*source*](https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/et/et_rule_{{ rule.details.sid }}.yaml)
+{% endif %}

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <10
+      classtype: trojan-activity
+      contents:
+      - value: '"/update"'
+      - value: '"POST"'
+      - value: '"|0D 0A|Accept-Encoding:|0D 0A|Connection: close|0D 0A|Content-Length:
+          ",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.GameOverZeus variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/d866214d1f921028f9001ae399e9f8dec32ec8998c84d20d60a992164888a6fc/analysis
+      rev: '3'
+      service: http
+      sid: '32367'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

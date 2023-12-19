@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3A 20|UpdaterResponse"'
+      fast_pattern: 12,15
+      flow: established,to_server
+      metadata: created_at 2014_01_28, former_category ADWARE_PUP, updated_at 2020_10_28
+      msg: '"ET MALWARE W32/BettrExperience.Adware POST Checkin"'
+      pcre: '"/^\x2F[A-F0-9]{25,40}$/U"'
+      reference: md5,b2651071fbd14bff5fb39bd90f447d27
+      rev: '2'
+      sid: '2018025'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

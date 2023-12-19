@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"is_bot|22 3a|"'
+      - value: '"|2c 22|username|22 3a 22|nitronotification_bot|22|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_04_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_04_02
+      msg: '"ET TROJAN Nitro Stealer Exfil Activity (Response)"'
+      reference: md5,95b98ecb440a23daefc5c12d0edfa048
+      rev: '2'
+      sid: '2032418'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

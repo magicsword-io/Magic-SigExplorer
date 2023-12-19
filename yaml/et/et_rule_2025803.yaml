@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"maWxlX3B1dF9jb250ZW50c"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, affected_product PHP, attack_target
+        Web_Server, created_at 2018_07_09, deployment Datacenter, former_category
+        EXPLOIT, updated_at 2018_07_18
+      msg: '"ET EXPLOIT file_put_contents php base64 encoded Remote Code Execution
+        3"'
+      rev: '2'
+      sid: '2025803'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

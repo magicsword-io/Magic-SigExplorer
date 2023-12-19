@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -11
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"ipify.org"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2023_08_22, deployment Perimeter, former_category INFO, performance_impact
+        Low, confidence High, signature_severity Informational, tag External_IP_Lookup,
+        updated_at 2023_08_22, reviewed_at 2023_08_22
+      msg: '"ET INFO External IP Address Lookup Domain (ipify .org) in TLS SNI"'
+      pcre: '"/^(?:\x00\x09|.\x2e)ipify\.org/R"'
+      rev: '1'
+      sid: '2047703'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

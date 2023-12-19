@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"/Check.ashx?"'
+      - value: '"&e="'
+      - value: '"&n="'
+      - value: '"&mv="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2014_01_28, former_category ADWARE_PUP, updated_at 2020_10_28
+      msg: '"ET MALWARE W32/BettrExperience.Adware Update Checkin"'
+      reference: md5,b2651071fbd14bff5fb39bd90f447d27
+      rev: '2'
+      sid: '2018026'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".swf"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_29, former_category EXPLOIT_KIT, updated_at 2020_09_21
+      msg: '"ET CURRENT_EVENTS Magnitude EK (formerly Popads) Flash Exploit Requested"'
+      pcre: '"/^\/[a-f0-9]{32}\/[a-f0-9]{32}\.swf$/Ui"'
+      rev: '2'
+      sid: '2016799'
+      special_options:
+      - http_uri
+      urilen: '70'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

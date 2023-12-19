@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| MyAgent"'
+      - value: '!"Host|3a 20|driverdl.lenovo.com.cn|0d 0a|"'
+      - value: '!"www.google-analytics.com"'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2021_06_15
+      msg: '"ET USER_AGENTS Suspicious User-Agent (MyAgent)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2005320
+      rev: '13'
+      sid: '2005320'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, count 2, track by_src, seconds 300
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '58455'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".zollard/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Zollard variant outbound connection attempt"'
+      reference: url,www.deependresearch.org/2013/12/hey-zollard-leave-my-internet-of-things.html
+      rev: '3'
+      service: telnet
+      sid: '28913'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

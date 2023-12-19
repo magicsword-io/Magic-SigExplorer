@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"java.lang.ProcessBuilder("'
+      flow: to_server,established
+      metadata: created_at 2013_07_24, updated_at 2020_04_24
+      msg: '"ET EXPLOIT Apache Struts Possible OGNL Java ProcessBuilder in client
+        body"'
+      reference: url,struts.apache.org/development/2.x/docs/s2-013.html
+      rev: '3'
+      sid: '2017173'
+      special_options:
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

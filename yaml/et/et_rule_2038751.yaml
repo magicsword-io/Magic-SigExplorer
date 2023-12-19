@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '33'
+        value: '"/v1/disk/resources/download?path="'
+      - value: '"/a.psd"'
+      - value: '"Host|3a 20|cloud-api.yandex.net|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_07, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family TontoTeam,
+        signature_severity Major, updated_at 2022_09_07
+      msg: '"ET TROJAN Suspected Chinese Based APT Malware Retrieving File (GET)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nAuthorization\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,www.ptsecurity.com/ww-en/analytics/pt-esc-threat-intelligence/apt31-cloud-attacks/
+      rev: '1'
+      sid: '2038751'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|00 10 00 01 00 00 00 00 01 00 FF|",fast_pattern,nocase'
+      detection_filter: track by_src,count 25,seconds 1
+      dsize: '>300'
+      flow: to_client
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION DNS TXT response record tunneling"'
+      reference: url,attack.mitre.org/techniques/T1048
+      rev: '3'
+      service: dns
+      sid: '47639'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

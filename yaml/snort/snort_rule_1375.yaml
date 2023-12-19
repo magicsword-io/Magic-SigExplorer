@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET x HTTP/1.0",depth 15'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP sadmind worm access"'
+      reference: url,www.cert.org/advisories/CA-2001-11.html
+      rev: '12'
+      service: http
+      sid: '1375'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

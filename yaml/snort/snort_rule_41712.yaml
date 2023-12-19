@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ChromeSetup.bat",fast_pattern,nocase'
+      - value: '"User-Agent|3A| Microsoft BITS"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Houdini backdoor file download request"'
+      reference: url,virustotal.com/en/file/8d75e47c04bb2cc0f4c2e973475d4ff1fc8f32039794e3ea5ca2494c66d80d3f/analysis/
+      rev: '3'
+      service: http
+      sid: '41712'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

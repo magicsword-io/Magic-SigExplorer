@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/listpics.asp?"'
+      - value: '"ID="'
+      - value: '"ASCII"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS ASP ListPics SQL Injection Attempt -- listpics.asp
+        ID ASCII"'
+      pcre: '"/ASCII\(.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2007004
+      rev: '6'
+      sid: '2007004'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

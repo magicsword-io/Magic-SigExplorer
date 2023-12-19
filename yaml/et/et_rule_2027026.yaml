@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|2ip|02|ua|00|"'
+      distance: '0'
+      metadata: created_at 2019_03_04, former_category POLICY, performance_impact
+        Low, signature_severity Minor, tag IP_address_lookup_website, updated_at 2020_09_16
+      msg: '"ET POLICY External IP Address Lookup DNS Query (2ip .ua)"'
+      reference: md5,81bfa5fe9d0147c8df47a51a1cd4b7c4
+      rev: '2'
+      sid: '2027026'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

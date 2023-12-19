@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php?"'
+      - value: '"-dsafe_mode",distance 0'
+      - value: '"-ddisable_functions",distance 0'
+      - value: '"-dallow_url_fopen",distance 0'
+      - value: '"-dallow_url_include",distance 0'
+      - value: '"-dauto_prepend_file",distance 0'
+      - value: '"echo.txt"'
+      detection_filter: track by_src,count 20,seconds 60
+      flow: to_server,established,only_stream
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluoz outbound command"'
+      reference: url,www.virustotal.com/en/file/2d134b69c41fadc5d3a28c90e452323f1c54dd1aa20ac5f5e897feac8d86755a/analysis/
+      rev: '4'
+      service: http
+      sid: '28005'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

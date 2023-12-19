@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"id=|22|js-lotto|22|"'
+      - value: '"gift-zone.js"'
+      - value: '"Are you sure to collect this rewards?"'
+      - value: '"action=|22|email.php|22|"'
+      - value: '"name=|22|email|22|"'
+      - value: '"type=|22|password"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_02, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_06_02
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-06-02"'
+      reference: md5,6cea149c8f2231dbe1643489dddff6ba
+      rev: '1'
+      sid: '2036763'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

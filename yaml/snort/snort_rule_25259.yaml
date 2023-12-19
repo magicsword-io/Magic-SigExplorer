@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".gif"'
+      - value: '"|0D 0A|Accept|2D|Encoding|3A 20|gzip|2C|deflateidentity|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BancosBanload variant outbound connection"'
+      reference: url,www.virustotal.com/file/098fa9dbc519669a50fc6f3cdc8d9e4b05a6f0c32d154f515e403b54d72efff6/analysis/1357138873/
+      rev: '5'
+      service: http
+      sid: '25259'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename=|22|full__setup.zip|22 0D 0A|",fast_pattern,nocase'
+      - value: '"full__setup.exe",depth 200'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Pirminay variant outbout connection"'
+      reference: url,www.virustotal.com/en/file/5e1a615ddf73b27390d7a3c87a28932761fc1c843e01cd68253e873270bef69d/analysis/1392222514/
+      rev: '2'
+      service: http
+      sid: '29862'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

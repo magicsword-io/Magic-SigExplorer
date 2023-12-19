@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php?id="'
+      - value: '"(compatible|3b| Synapse)"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2013_05_22, updated_at 2020_04_24
+      msg: '"ET TROJAN Trojan.BlackRev Registration Rev3"'
+      pcre: '"/\/gate\.php\?id=[a-z]{15}$/U"'
+      reference: url,ddos.arbornetworks.com/2013/05/the-revolution-will-be-written-in-delphi/
+      rev: '1'
+      sid: '2016909'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

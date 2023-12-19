@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/send"'
+      - value: '"User-Agent|3a 20|Go-http-client/1.1|0d 0a|"'
+      - value: '"|22|clientid|22|"'
+      - value: '"|22|packetid|22|"'
+      - value: '"|22|packetType|22|"'
+      - value: '"downstreamId"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Antinum, performance_impact
+        Low, signature_severity Major, updated_at 2022_12_27
+      msg: '"ET TROJAN Antinum HTTP Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20Go-http-client\/1\.1\r\nContent-Length\x3a\x20[^\r\n]+\r\nX-Session-Token\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,github.com/dobin/antnium
+      rev: '1'
+      sid: '2043013'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      threshold: type limit, count 1, seconds 300, track by_src
+      urilen: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

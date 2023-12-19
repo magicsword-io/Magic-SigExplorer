@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/setup.cgi",nocase'
+      - value: '"currentsetting.htm",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear DGN1000 series routers authentication bypass attempt"'
+      reference: url,www.exploit-db.com/exploits/25978/
+      rev: '3'
+      service: http
+      sid: '44687'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/+vADGAwAABQBzAHIAAAARAGoAYQB2AGEALgB1AHQAaQBsAC4ASABhAHMAaABTAGUAdABRJUQA4ADyAPsAVSVWJTQAAwAAA"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_07_28, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, malware_family ysoserial, signature_severity
+        Major, tag Exploit, tag possible_exploitation, updated_at 2021_07_28
+      msg: '"ET EXPLOIT ysoserial Payload in HTTP URI (CommonsCollections6) M2"'
+      rev: '1'
+      sid: '2033477'
+      special_options:
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

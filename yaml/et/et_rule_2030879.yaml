@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0f|ecigroup-tw.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_09_14, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag SSL_Malicious_Cert, updated_at 2020_09_14
+      msg: '"ET TROJAN Observed MassLogger Domain in TLS SNI (ecigroup-tw .com)"'
+      reference: md5,0a838f0ecff085eb611e41acf78a9682
+      rev: '2'
+      sid: '2030879'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

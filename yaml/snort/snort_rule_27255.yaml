@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe HTTP/1.1|0D 0A|Cache-Control: ",fast_pattern,nocase'
+      - value: '".exe HTTP/1.1",nocase'
+      - value: '"|0D 0A|Cache-Control: no-cache|0D 0A|Connection: close|0D 0A|Pragma:
+          no-cache|0D 0A|User-Agent: ",within 76'
+      - value: '"|3A 20|",distance 0'
+      - value: '!"|3A 20|",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE All Numbers .EXE file name from abnormally ordered
+        HTTP headers - Potential Yakes Trojan Download"'
+      pcre: '"/\x2f\d+\.exe$/i"'
+      reference: url,www.virustotal.com/en/file/980c4ed3dd130c9313a35434e0b102a6b8b038c98735814834334ccc03e4da3c/analysis/
+      rev: '2'
+      service: http
+      sid: '27255'
+      special_options:
+      - http_method
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

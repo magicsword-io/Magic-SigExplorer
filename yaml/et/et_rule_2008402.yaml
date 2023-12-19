@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '20000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|43 01 00|"'
+      - value: '"Casino"'
+      dsize: <30
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2010_07_30
+      msg: '"ET MALWARE Realtimegaming.com Online Casino Spyware Gaming Checkin"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008402
+      rev: '4'
+      sid: '2008402'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

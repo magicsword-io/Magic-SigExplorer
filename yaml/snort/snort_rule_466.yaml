@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"ABCDEFGHIJKLMNOPQRSTUVWABCDEFGHI",depth 32'
+      icode: '0'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP L3retriever Ping"'
+      rev: '9'
+      sid: '466'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

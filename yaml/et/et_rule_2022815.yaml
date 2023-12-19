@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|"'
+      - value: '"select"'
+      - value: '"from"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2016_05_17, deployment Perimeter, former_category POLICY,
+        performance_impact Moderate, confidence Low, signature_severity Minor, updated_at
+        2023_05_25
+      msg: '"ET INFO Possible SQLi Attempt in User Agent (Outbound)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]*select[^\r\n]+from/Hmi"'
+      reference: url,blog.cloudflare.com/the-sleepy-user-agent/
+      rev: '2'
+      sid: '2022815'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

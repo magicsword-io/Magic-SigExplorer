@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '146'
+        value: '"|2f|InteractiveLogin|3f|continue|3d|https|3a 2f 2f|www|2e|youtube|2e|com|2f|getAccountSwitcherEndpoint|26|followup|3d|https|3a
+          2f 2f|www|2e|youtube|2e|com|2f|getAccountSwitcherEndpoint|26|passive|3d|"'
+      - value: '"&service=youtube&"'
+      - value: '"Host|3a 20|accounts.google.com|0d 0a|"'
+      - depth: '4'
+        value: '"NID="'
+      - value: '"OGPC="'
+      - value: '"|3a 3b 20|AEC|3d|A"'
+      - value: '"VISITOR_INFO1_LIVE="'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      fast_pattern: 51,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_30, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, malware_family Raccoon_Stealer,
+        performance_impact Moderate, signature_severity Informational, updated_at
+        2023_03_30
+      msg: '"ET INFO Possible Racoon Stealer Retrieving Google Account Details (GET)"'
+      reference: url,twitter.com/Gi7w0rm/status/1641488122302148635
+      rev: '1'
+      sid: '2044835'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

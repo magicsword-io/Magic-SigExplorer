@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"3|C9 B1 10|?|E9 06|Q<|FA|G3|C0|P|F7 D0|P"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"BROWSER-OTHER Netscape 4.7 unsucessful overflow"'
+      reference: cve,2000-1187
+      rev: '15'
+      sid: '311'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

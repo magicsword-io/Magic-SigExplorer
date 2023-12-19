@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/login.cgi?cli="'
+      - value: '"?cli="'
+      - value: '"%27"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product D_Link, attack_target Networking_Equipment, created_at
+        2023_11_08, cve CVE_2016_20017, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_11_08
+      msg: '"ET EXPLOIT D-Link DSL-2750B Command Injection Attempt (CVE-2016-20017)"'
+      reference: cve,2016-20017
+      rev: '1'
+      sid: '2049119'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_raw_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

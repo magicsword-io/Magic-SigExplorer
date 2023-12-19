@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '13'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/12/index.php",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| Trident/7.0|3B| rv:11.0)
+          like Gecko|0D 0A|"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kovter variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/db8952943708f4eefa72ad04ff01bdf9acb33fdd89a5ad98b0ec2649fb116a52/analysis/1422981882/
+      rev: '3'
+      service: http
+      sid: '33453'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

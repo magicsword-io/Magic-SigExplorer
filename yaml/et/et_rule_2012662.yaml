@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/cchatbox.php?"'
+      - value: '"do="'
+      - value: '"messageid="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_04_11, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_19
+      msg: '"ET WEB_SPECIFIC_APPS vBulletin cChatBox messageid Parameter DELETE FROM
+        SQL Injection Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: bugtraq,46635
+      rev: '2'
+      sid: '2012662'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

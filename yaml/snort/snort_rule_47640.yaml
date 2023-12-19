@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|30 07 06 03 55 04 06 13 00 31 09 30 07 06 03 55 04 08 13 00 31 09
+          30 07 06 03 55 04 07 13 00 31 09 30 07 06 03 55 04 0A 13 00 31 09 30 07
+          06 03 55 04 0B 13 00 31 09 30 07 06 03 55 04 03 13 00|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP SSL certificate with null issuer rdnSequence fields detected"'
+      rev: '2'
+      service: ssl
+      sid: '47640'
+      ssl_state: server_hello
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

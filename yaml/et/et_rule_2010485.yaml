@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/assets/plugins/mp3_id/mp3_id.php?"'
+      - value: '"GLOBALS[BASE]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS phptraverse mp3_id.php GLOBALS Parameter Remote
+        File Inclusion Attempt"'
+      pcre: '"/GLOBALS\[BASE\]\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010485
+      rev: '3'
+      sid: '2010485'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

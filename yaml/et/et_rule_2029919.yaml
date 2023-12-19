@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<meta name=|22|description|22 20|content=|22|This Mini Shell"'
+      - value: '"<meta name=|22|author|22 20|content=|22|An0n 3xPloiTeR"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_15, deployment Perimeter, former_category WEB_SERVER, signature_severity
+        Critical, updated_at 2020_04_15
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2029919'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

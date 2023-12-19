@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/stat?"'
+      - value: '"uptime="'
+      - value: '"&downlink=",distance 0'
+      - value: '"&uplink=",distance 0'
+      - value: '"&id=",distance 0'
+      - value: '"&statpass=bpass",distance 0,fast_pattern'
+      - value: '"&version=",distance 0'
+      - value: '"&features=",distance 0'
+      - value: '"&guid=",distance 0'
+      - value: '"&comment=",distance 0'
+      - value: '"&p=",distance 0'
+      - value: '"&s=",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Glupteba.M initial outbound connection"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2014/03/operation_windigo.pdf
+      rev: '3'
+      service: http
+      sid: '30288'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

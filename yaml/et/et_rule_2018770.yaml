@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"tfardci_session="'
+      - depth: '16'
+        value: '"tfardci_session="'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2014_07_24, updated_at 2020_05_01
+      msg: '"ET TROJAN Dridex/Bugat/Feodo Cookie"'
+      reference: md5,2ddb6cb347eb7939545a1801c72f1f3f
+      rev: '1'
+      sid: '2018770'
+      special_options:
+      - http_header
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

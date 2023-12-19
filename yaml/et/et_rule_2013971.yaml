@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|dyndns-at-home|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2011_11_28, former_category INFO, updated_at 2020_09_17
+      msg: '"ET INFO DYNAMIC_DNS Query for Suspicious .dyndns-at-home.com Domain"'
+      reference: url,help.dyn.com/list-of-dyn-dns-pro-remote-access-domain-names/
+      rev: '4'
+      sid: '2013971'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

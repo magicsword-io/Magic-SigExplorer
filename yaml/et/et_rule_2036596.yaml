@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/ztp/cgi-bin/handler"'
+      - value: '"setWanPortSt"'
+      - value: '"mtu"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_05_16, cve CVE_2022_30525,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2022_05_16
+      msg: '"ET EXPLOIT [Rapid7] Zyxel ZTP setWanPortSt mtu Parameter Exploit Attempt
+        (CVE-2022-30525)"'
+      pcre: '"/^["'']\s*:\s*["'']\s*[^0-9]+/Ri"'
+      reference: url,www.rapid7.com/blog/post/2022/05/12/cve-2022-30525-fixed-zyxel-firewall-unauthenticated-remote-command-injection/
+      rev: '2'
+      sid: '2036596'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

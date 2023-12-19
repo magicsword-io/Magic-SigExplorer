@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,&,2,3
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '4'
+        value: '"|00 01 00 00 00 01|"'
+      - value: '"|02|so|00|"'
+      - value: '"|22|"'
+      distance: '-39'
+      metadata: created_at 2014_12_08, updated_at 2014_12_08
+      msg: '"ET TROJAN Possible Dyre DGA NXDOMAIN Responses (.so)"'
+      pcre: '"/^[a-z][a-f0-9]{33}/Ri"'
+      reference: md5,c5d2a2287424ab9508ae15261020e48d
+      rev: '1'
+      sid: '2019889'
+      special_options:
+      - fast_pattern
+      threshold: type both, track by_src, count 12, seconds 120
+      within: '1'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

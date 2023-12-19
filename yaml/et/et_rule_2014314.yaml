@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Content-Disposition|3a| inline"'
+      - value: '".exe"'
+      - value: '"load/"'
+      - value: '"MZ"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_03_06,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2020_06_09
+      msg: '"ET CURRENT_EVENTS DRIVEBY Incognito Payload Download /load/*exe"'
+      rev: '4'
+      sid: '2014314'
+      special_options:
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

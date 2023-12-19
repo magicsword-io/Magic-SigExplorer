@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|0b 00 00 00|"'
+      - value: '"|57 69 6e 64 6f 77 73 20|"'
+      - value: '"|00 00 00 cc ec b7 a3 20 56 65 72 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_15, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_10_15
+      msg: '"ET TROJAN Win32/Agent.RTQ CnC Activity"'
+      reference: md5,1f2d30b383d332972d8a36b23d1d726e
+      rev: '1'
+      sid: '2034193'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

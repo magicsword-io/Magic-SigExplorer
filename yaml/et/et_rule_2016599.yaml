@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/1234.functions HTTP"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2012_10_26, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN Backdoor.Win32.Xtrat Checkin 2"'
+      pcre: '"/^[^\r\n]+\/1234\.functions HTTP/R"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Backdoor%3aWin32%2fXtrat.A
+      rev: '4'
+      sid: '2016599'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

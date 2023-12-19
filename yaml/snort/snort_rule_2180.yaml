@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/announce"'
+      - value: '"info_hash="'
+      - value: '"peer_id="'
+      - value: '"event="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PUA-P2P BitTorrent announce request"'
+      rev: '10'
+      service: http
+      sid: '2180'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"KrisR",depth 5'
+      - value: '"|00 00 00|",within 3,distance 1'
+      - value: '"|00 00 78 9C|",within 4,distance 2'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gh0st variant outbound connection"'
+      reference: url,virustotal.com/en/file/a4fd37b8b9eabd0bfda7293acbb1b6c9f97f8cc3042f3f78ad2b11816e1f9a59/analysis/1425053730/
+      rev: '2'
+      sid: '33885'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

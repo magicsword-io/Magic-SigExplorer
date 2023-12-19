@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!=,0x26,-6,relative
+      classtype: misc-activity
+      contents:
+      - value: '"read|3a|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2017_03_06, former_category
+        WEB_CLIENT, malware_family BrokenBrowser, signature_severity Major, updated_at
+        2017_03_06
+      msg: '"ET WEB_CLIENT SUSPICIOUS Local file read using read protocol"'
+      pcre: '"/^\s*,\s*[a-zA-Z]\x3a[\x2f\x5c]/Ri"'
+      reference: url,www.brokenbrowser.com/abusing-of-protocols/
+      rev: '1'
+      sid: '2024031'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/support.html"'
+      - value: '"Host|3a 20|www.7-zip.org"'
+      - depth: '13'
+        value: '"Cache-Control"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_14, deployment Perimeter, former_category
+        TROJAN, malware_family Sharik, malware_family SmokeLoader, signature_severity
+        Major, updated_at 2020_08_27
+      msg: '"ET TROJAN Possible Sharik/Smoke Loader 7zip Connectivity Check"'
+      reference: md5,9bea24aadc1061d39ec15707a1f9b87b
+      rev: '1'
+      sid: '2026805'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

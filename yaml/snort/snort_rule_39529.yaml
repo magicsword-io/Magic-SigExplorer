@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"WRAssembly",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: isset,file.rtf
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"FILE-OFFICE Microsoft Office RTF WRAssembly ASLR bypass download attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms15-033
+      rev: '4'
+      service: smtp
+      sid: '39529'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

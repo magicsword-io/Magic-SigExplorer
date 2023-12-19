@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"sys.all_users",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sys.all_users access"'
+      rev: '7'
+      sid: '1689'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

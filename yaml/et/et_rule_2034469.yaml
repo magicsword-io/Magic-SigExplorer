@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,44413]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST|20|"'
+      - value: '".php HTTP/1"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '"|0d 0a 0d 0a|"'
+      - value: '"=eyIzbTd4Ijoi"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_11_16, updated_at 2022_05_03
+      msg: '"ET MALWARE Matanbuchus Loader CnC M4"'
+      pcre: '"/(?:IiwiYXU1byI6I|IsImF1NW8iOi|iLCJhdTVvIjoi)/R"'
+      reference: url,twitter.com/fr0s7_/status/1458823504925798408
+      rev: '2'
+      sid: '2034469'
+      special_options:
+      - fast_pattern
+      within: '55'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

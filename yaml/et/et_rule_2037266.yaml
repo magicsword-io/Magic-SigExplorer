@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"action|3d 22|Crax|2f|Mail|2f|Mail1|22|"'
+      - value: '"spox_b00T"'
+      - value: '"name|3d 22|spox|22 20|value|3d 22|fuck|5f|you|5f|bot|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_05, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_07_05
+      msg: '"ET CURRENT_EVENTS Spox Phish Kit Landing Page 2022-07-05"'
+      rev: '1'
+      sid: '2037266'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

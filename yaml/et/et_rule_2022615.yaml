@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"chase.com"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"chase.com|0d 0a|"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_03_15, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, tag Phishing, updated_at
+        2020_08_17
+      msg: '"ET CURRENT_EVENTS Possible Chase Phishing Domain Mar 14 2016"'
+      pcre: '"/^Host\x3a[^\r\n]+chase\.com[^\r\n]{20,}\r\n/Hmi"'
+      rev: '3'
+      sid: '2022615'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      threshold: type limit, count 1, track by_src, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

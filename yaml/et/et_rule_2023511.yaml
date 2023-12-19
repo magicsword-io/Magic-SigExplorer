@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '6379'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"*"'
+      - value: '"config"'
+      - value: '"set"'
+      - value: '"|0D 0A|dbfilename|0D 0A|"'
+      - value: '"|0D 0A|authorized_keys|0D 0A|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_11_15, deployment Datacenter,
+        signature_severity Major, tag SCAN_Redis_SSH, updated_at 2016_11_15
+      msg: '"ET EXPLOIT REDIS Attemted SSH Authorized Key Writing Attempt"'
+      reference: url,antirez.com/news/96
+      rev: '1'
+      sid: '2023511'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

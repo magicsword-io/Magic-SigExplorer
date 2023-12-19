@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>145'
+      classtype: trojan-activity
+      contents:
+      - value: '".html"'
+      - value: '"|0D 0A|User-Agent|3A| Mozilla/5.0 |28|compatible|3B| MSIE 9.0|3B|
+          Windows NT 6.1|3B| Trident/5.0",fast_pattern,nocase'
+      - value: '!"Cookie:"'
+      - value: '!"X-BlueCoat-Via:"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.Urausy outbound connection"'
+      pcre: '"/\x2f[a-z-_]{80,}\x2ehtml$/"'
+      reference: url,www.virustotal.com/en/file/f53a483befed8d1494827a3f2444cfe638d3f7e595d72b722eab92d1aca9ede3/analysis/1376847283/
+      rev: '8'
+      service: http
+      sid: '27708'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

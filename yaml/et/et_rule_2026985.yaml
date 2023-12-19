@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"dwnack.php?cId="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_26, deployment Perimeter, former_category
+        MALWARE, malware_family ArtraDownloader, performance_impact Low, signature_severity
+        Major, tag Patchwork, tag DonotGroup, updated_at 2020_08_27
+      msg: '"ET TROJAN ArtraDownloader CnC Checkin"'
+      reference: url,unit42.paloaltonetworks.com/multiple-artradownloader-variants-used-by-bitter-to-target-pakistan/
+      rev: '2'
+      sid: '2026985'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '39'
+        value: '"GET /admin/count.php?isOnline=1 HTTP/1."'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_01_30, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_23,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/DownloaderAgent.fajk Successful Infection CnC Beacon"'
+      reference: url,www.securelist.com/en/descriptions/15316120/Trojan.Win32.Agent.fajk
+      rev: '1'
+      sid: '2016312'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

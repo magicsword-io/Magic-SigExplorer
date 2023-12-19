@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '15'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/admin/host.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Rootkit.Necurs possible URI with encrypted POST"'
+      pcre: '"/[^\x0d\x0a\x09\x20-\x7e]{4}/"'
+      reference: url,www.virustotal.com/file/98fb9778208cb74c11a71afd065ae64e562ded1ae477ad42e392fe3711170319/analysis/
+      rev: '4'
+      service: http
+      sid: '25577'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

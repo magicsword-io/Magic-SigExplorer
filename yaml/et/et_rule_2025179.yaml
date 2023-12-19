@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|datapeople-cn|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_02, deployment Perimeter, former_category
+        TROJAN, malware_family Qasar_Rat, performance_impact Moderate, signature_severity
+        Major, tag Patchwork, updated_at 2020_09_16
+      msg: '"ET TROJAN Qasar Variant Domain (datapeople-cn .com in DNS Lookup)"'
+      reference: url,twitter.com/blu3_team/status/947858470816112640
+      rev: '2'
+      sid: '2025179'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

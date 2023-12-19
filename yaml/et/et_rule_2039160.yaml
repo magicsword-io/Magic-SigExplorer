@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Verifed Account"'
+      - value: '"Account Restrictions"'
+      - value: '"We detected unusual activity on your account. Someone may have reported
+          you in non-compliance with our"'
+      - value: '"We have already reviewed this decision and the decision cannot be
+          changed."'
+      - value: '"To avoid having your account"'
+      - value: '"please verify your account."'
+      - value: '"type|3d 22|password|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_11, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_10_11
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page M1 2022-10-11"'
+      reference: md5,862465391f5c2c3d8791792e9a21fb1f
+      rev: '1'
+      sid: '2039160'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

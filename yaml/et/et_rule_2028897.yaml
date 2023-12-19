@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,2525,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|Orion Logger - System Details - "'
+      - value: '"PT09PT09PT09PXwgT3Jpb24gTG9nZ2VyIC0gU3lzdGVtIERldGFpbHMgfD09PT09PT09"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_24, deployment Perimeter, former_category
+        MALWARE, malware_family Orion_Logger, signature_severity Major, updated_at
+        2019_10_24
+      msg: '"ET TROJAN Win32/Orion Logger SMTP Base64 Exfil"'
+      reference: md5,a96e8c201599af678926ac84020c87e0
+      rev: '2'
+      sid: '2028897'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

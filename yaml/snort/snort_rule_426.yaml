@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '1'
+      itype: '12'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Parameter Problem Missing a Required Option"'
+      rev: '10'
+      sid: '426'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

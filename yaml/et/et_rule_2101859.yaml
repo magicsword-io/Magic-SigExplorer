@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9090'
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"/servlet/admin"'
+      - value: '"ae9f86d6beaa3f9ecb9a5b7e072a4138"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0508, updated_at 2020_04_20
+      msg: '"GPL POLICY Sun JavaServer default password login attempt"'
+      reference: nessus,10995
+      rev: '6'
+      sid: '2101859'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

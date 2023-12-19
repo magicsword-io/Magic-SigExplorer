@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| webshag"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET SCAN WebShag Web Application Scan Detected"'
+      reference: url,www.scrt.ch/pages_en/outils.html
+      rev: '5'
+      sid: '2009158'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

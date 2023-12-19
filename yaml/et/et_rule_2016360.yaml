@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"8AD9C840-044E-11D1-B3E9-00805F499D93"'
+      flow: established,to_client
+      metadata: created_at 2013_02_07, updated_at 2013_02_07
+      msg: '"ET INFO JAVA - ClassID"'
+      rev: '1'
+      sid: '2016360'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

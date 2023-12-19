@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|22|first|5f|name|22 3a 22|Blacklegion|22 2c 22|username|22 3a 22|blacklegion|5f|support"'
+      - value: '"|22|text|22 3a 22|Unique|20|ID|3a|"'
+      - value: '"Personal|20|ID|3a|"'
+      fast_pattern: 9,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_18, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Significant, confidence High,
+        signature_severity Critical, updated_at 2023_12_18
+      msg: '"ET TROJAN Win32/Blacklegion Ransomware CnC Response"'
+      reference: url,twitter.com/suyog41/status/1736713012747419681
+      rev: '1'
+      sid: '2049719'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

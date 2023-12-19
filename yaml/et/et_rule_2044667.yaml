@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '50'
+        value: '"|5e 57 26 61 37 72 25 38 67 50 33 71 38 49 6e 6d 70 42 52 63 25 73
+          67 43 64 6f 7a 54 74 32 34 72 66 69 32 58 35 45 38 54 6b 75 48 23 5a 30
+          4d 35 57 45|"'
+      dsize: 200<>260
+      flow: established,to_server
+      metadata: attack_target Linux_Unix, created_at 2023_03_17, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_03_17
+      msg: '"ET TROJAN Golang/Linux Kaiji Variant Activity"'
+      reference: url,twitter.com/suyog41/status/1636329384947720196
+      rev: '1'
+      sid: '2044667'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|0a|California"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|09|Microsoft"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|08|Security"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|09|localhost"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_07_07, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_07_07
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Microsoft Security localhost)"'
+      reference: url,unit42.paloaltonetworks.com/brute-ratel-c4-tool
+      rev: '1'
+      sid: '2037710'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

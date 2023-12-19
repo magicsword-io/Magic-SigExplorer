@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '21'
+        value: '"/cgi-bin/test?iperf=|3b|"'
+      - value: '"http"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_12_16,
+        deployment Perimeter, signature_severity Minor, updated_at 2020_10_26
+      msg: '"ET EXPLOIT ACTi ASOC 2200 Web Configurators versions <2.6 RCE (Inbound)"'
+      reference: url,unit42.paloaltonetworks.com/mirai-variant-echobot-resurfaces-with-13-previously-unexploited-vulnerabilities/
+      rev: '2'
+      sid: '2029169'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

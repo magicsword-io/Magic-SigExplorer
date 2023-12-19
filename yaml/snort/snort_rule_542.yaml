@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"NICK ",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!139'
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL IRC nick change"'
+      rev: '21'
+      sid: '542'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

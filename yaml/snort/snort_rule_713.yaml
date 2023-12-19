@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|FF F3 FF F3 FF F3 FF F3 FF F3|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET livingston DOS"'
+      reference: cve,1999-0218
+      rev: '18'
+      service: telnet
+      sid: '713'
+      special_options:
+      - raw_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

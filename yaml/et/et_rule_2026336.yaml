@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|3c 25 40|page"'
+      - value: '"|22|os.name|22|"'
+      - value: '"|22|/bin/sh|22|"'
+      - value: '"getRuntime|28 29|.exec|28|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_09_20, deployment Datacenter, former_category WEB_SERVER,
+        malware_family SJavaWebManage, performance_impact Low, signature_severity
+        Major, tag WebShell, updated_at 2018_09_25
+      msg: '"ET WEB_SERVER JSP.SJavaWebManage WebShell Access"'
+      reference: md5,91eaca79943c972cb2ca7ee0e462922c
+      rev: '3'
+      sid: '2026336'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

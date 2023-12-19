@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|l9explore"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2022_02_28,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Minor,
+        updated_at 2022_02_28
+      msg: '"ET USER_AGENTS Suspcious LeakIX User-Agent (l9explore)"'
+      reference: url,ithub.com/LeakIX/l9format
+      rev: '1'
+      sid: '2035314'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

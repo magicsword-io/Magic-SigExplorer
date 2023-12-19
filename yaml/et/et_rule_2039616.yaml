@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Microsoft Internet Explorer"'
+      - value: '"|7b 22|token|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|installid|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|ver|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|agent|22 3a 20 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_01, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_11_01
+      msg: '"ET TROJAN Win32/Agent.AETZ CnC Checkin"'
+      pcre: '"/User-Agent\x3a\x20Microsoft Internet Explorer/i"'
+      reference: md5,e4ca9c56bb6c3e7d68049ceca5d96f09
+      rev: '1'
+      sid: '2039616'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 180, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

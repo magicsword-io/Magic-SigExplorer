@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cd/un2.php?id="'
+      - value: '"&ver="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Piptea.a Related Trojan Checkin (2)"'
+      pcre: '"/\/cd\/un2\.php.id=[A-F0-9\-]+&ver=/U"'
+      reference: url,doc.emergingthreats.net/2008383
+      rev: '5'
+      sid: '2008383'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

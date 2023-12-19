@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<span>Uname:<br>User:<br>Php:<br>Hdd:<br>Cwd:</span></td><td><nobr>"'
+      - value: '"<span>Group:</span>"'
+      - value: '"<span>Safe mode:</span>"'
+      - value: '"<span>Datetime:</span>"'
+      - value: '"<span>Free:</span>"'
+      - value: '"<span>Server IP:</span>"'
+      - value: '"<span>Client IP:</span>"'
+      - value: '">Self remove</a>"'
+      - value: '"<h1>File manager</h1>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_10, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2020_04_10
+      msg: '"ET WEB_CLIENT Generic WSO Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2029873'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

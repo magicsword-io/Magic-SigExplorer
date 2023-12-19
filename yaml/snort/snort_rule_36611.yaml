@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_extract: 1,0,string_size,relative
+      classtype: misc-activity
+      contents:
+      - value: '"|16 03 01|"'
+      - value: '"|0B|",within 1,distance 2'
+      - value: '"|30 82|",within 2,distance 9'
+      - value: '"|30 82|",within 2,distance 2'
+      - value: '"|A0 03 02 01 02 02|",within 6,distance 2'
+      - value: '"|30 0D 06 09 2A 86 48 86 F7 0D 01 01|",within 22'
+      - value: '"|31|",within 1,distance 5'
+      - value: '"|30|",within 1,distance 1'
+      - value: '"|06 03 55 04 03 0C|",within 6,distance 1'
+      - value: '"|30|",within 1,distance string_size'
+      - value: '"|17 0D|",within 2,distance 1'
+      - value: '"Z|17 0D|",within 3,distance 12'
+      - value: '"Z|30|",within 2,distance 12'
+      - value: '"|31|",within 1,distance 1'
+      - value: '"|30|",within 1,distance 1'
+      - value: '"|06 03 55 04 03 0C|",within 6,distance 1'
+      - value: '"|30 82|",within 2,distance string_size'
+      - value: '"|30 0D 06 09 2A 86 48 86 F7 0D 01 01 01 05 00 03 82|",within 17,distance
+          2'
+      - value: '"|30 82|",within 2,distance 3'
+      - value: '"|02 82|",within 2,distance 2'
+      - value: '"|02 03 01 00 01 A3 0D 30 0B 30 09 06 03 55 1D 13 04 02 30 00 30 0D
+          06 09 2A 86 48 86 F7 0D 01 01 0B 05 00|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Metasploit Meterpreter reverse HTTPS certificate"'
+      reference: url,blog.didierstevens.com
+      rev: '4'
+      service: ssl
+      sid: '36611'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

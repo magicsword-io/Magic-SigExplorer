@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0e|dwn-files.shop"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_12_12,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1583, mitre_technique_name Acquire_Infrastructure
+      msg: '"ET TROJAN Observed Gamaredon APT Related Domain (dwn-files .shop in TLS
+        SNI)"'
+      reference: md5,1ffb409a8d8e395d969193e93b66419e
+      rev: '1'
+      sid: '2042657'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

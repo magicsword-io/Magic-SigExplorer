@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0c|swordoke.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_29, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_29
+      msg: '"ET TROJAN Observed Win32/Backdoor Related Domain (swordoke .com in TLS
+        SNI)"'
+      reference: md5,341610a5a0cc430f99f9f9bd694b04a9
+      rev: '2'
+      sid: '2035645'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

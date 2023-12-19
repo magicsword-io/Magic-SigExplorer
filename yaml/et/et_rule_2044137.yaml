@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '587'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|DC-FirefoxCookies.json|3a 3a 3a|"'
+      - value: '"Content-Type|3a 20|application/json|3b 0d 0a|"'
+      - value: '"name|3d 22|FirefoxCookies.json|22 0d 0a|"'
+      - value: '"Content-Transfer-Encoding|3a 20|quoted-printable|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|attachment|3b 0d 0a|"'
+      - value: '"filename|3d 22|FirefoxCookies.json|22 0d 0a 0d 0a|"'
+      distance: '0'
+      fast_pattern: 9,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_02_06
+      msg: '"ET TROJAN Win32/DarkCloud Variant Exfil over SMTP (FirefoxCookies.json)"'
+      reference: md5,1d9be2dfd54bf4a986c6cd1b7b630750
+      rev: '1'
+      sid: '2044137'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

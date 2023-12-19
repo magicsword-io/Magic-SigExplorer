@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1024:65535
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"Windows "'
+      - value: '"|20|MHZ|00|"'
+      - value: '"|00|Win"'
+      - value: '"|00|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: created_at 2015_01_20, former_category MALWARE, updated_at 2015_01_20
+      msg: '"ET TROJAN Win32.ChinaZ.DDoSClient Checkin"'
+      reference: md5,8643a44febdf73159b2d5c437dc40cd3
+      rev: '2'
+      sid: '2020209'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

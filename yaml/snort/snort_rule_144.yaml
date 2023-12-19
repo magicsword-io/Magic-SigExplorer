@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"USER",nocase'
+      - value: '"w0rm",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP ADMw0rm ftp login attempt"'
+      pcre: '"/^USER\s+w0rm/ims"'
+      rev: '16'
+      service: ftp
+      sid: '144'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|D0 CF 11 E0 A1 B1 1A E1|"'
+      flow: established,from_server
+      flowbits: noalert
+      metadata: created_at 2014_12_02, updated_at 2014_12_02
+      msg: '"ET INFO Microsoft Compact Office Document Format File Download"'
+      rev: '1'
+      sid: '2019834'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

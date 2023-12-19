@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|gsa-crawler|0d 0a|"'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: created_at 2014_01_08, updated_at 2020_04_29
+      msg: '"ET TROJAN Fake/Short Google Search Appliance UA Win32/Ranbyus and Others"'
+      reference: md5,c07a6035e9c7fed2467afab1a9dbcf40
+      rev: '1'
+      sid: '2017937'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

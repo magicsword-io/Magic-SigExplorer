@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8338'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '11'
+        value: '"POST /login"'
+      - value: '"|0d 0a 0d 0a|username|3d 3b 60|"'
+      - value: '"|60|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_08_18, deployment Perimeter, deployment Internal, deployment
+        SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_08_18, reviewed_at 2023_08_18
+      msg: '"ET WEB_SPECIFIC_APPS Mailtrail v0.53 Command Injection Attempt"'
+      reference: url,www.exploit-db.com/exploits/51676
+      rev: '1'
+      sid: '2047673'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

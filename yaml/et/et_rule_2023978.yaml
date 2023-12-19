@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|ns1|04|xssr|03|org|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_17, deployment Perimeter, former_category
+        MALWARE, malware_family APT_ShellCrew, malware_family StreamEx, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN ShellCrew.APT StreamEx DNS Lookup 11"'
+      reference: url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+      rev: '2'
+      sid: '2023978'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?q=KT"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '!"Accept"'
+      - depth: '20'
+        value: '"User-Agent|3a 20|Mozilla/"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_12_09, deployment Perimeter,
+        malware_family Trojan_Kwampirs, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_04
+      msg: '"ET TROJAN Trojan.Kwampirs Outbound GET request"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a/H"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2016-081923-2700-99&tabid=2
+      rev: '3'
+      sid: '2023595'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>21'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

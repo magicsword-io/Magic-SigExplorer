@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '!"/404."'
+      - value: '"Java/1."'
+      flow: established,to_server
+      metadata: created_at 2013_07_26, former_category CURRENT_EVENTS, updated_at
+        2020_04_24
+      msg: '"ET CURRENT_EVENTS Java UA Requesting Numeric.ext From Base Dir (Observed
+        in Redkit/Sakura)"'
+      pcre: '"/^\/\d{2,}\.[a-z0-9]+$/Ui"'
+      rev: '2'
+      sid: '2017199'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

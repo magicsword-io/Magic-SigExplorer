@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '!"<html"'
+      - value: '"127.0.0.1"'
+      - value: '"localhost|0a|"'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_30, deployment Perimeter,
+        former_category ATTACK_RESPONSE, performance_impact Low, confidence Low, signature_severity
+        Major, tag WebShell, updated_at 2023_11_30, mitre_tactic_id TA0003, mitre_tactic_name
+        Persistence, mitre_technique_id T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET ATTACK_RESPONSE Possible hosts File Output via HTTP (Linux Style)"'
+      pcre: '"/^127\.0\.0\.1\s+localhost[\r\n]+/m"'
+      rev: '1'
+      sid: '2049404'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

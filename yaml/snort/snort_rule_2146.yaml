@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/admin.php"'
+      - value: '"op=admin_enter"'
+      - value: '"password=12345",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP TextPortal admin.php default password 12345 attempt"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '12'
+      service: http
+      sid: '2146'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

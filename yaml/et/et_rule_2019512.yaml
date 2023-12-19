@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|0d|api.ipify.org"'
+      distance: '1'
+      flow: established,from_server
+      metadata: created_at 2014_10_27, updated_at 2020_08_20
+      msg: '"ET POLICY Possible IP Check api.ipify.org"'
+      rev: '1'
+      sid: '2019512'
+      within: '14'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

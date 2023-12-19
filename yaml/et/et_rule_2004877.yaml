@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/inc_listnews.asp?"'
+      - value: '"CAT_ID="'
+      - value: '"INSERT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS CodeAvalanche News SQL Injection Attempt -- inc_listnews.asp
+        CAT_ID INSERT"'
+      pcre: '"/INSERT.+INTO/Ui"'
+      reference: url,doc.emergingthreats.net/2004877
+      rev: '6'
+      sid: '2004877'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|7b 22|ok|22 3a|"'
+      - value: '"|2c 22|result|22 3a 7b 22|message|5f|id|22 3a|"'
+      - value: '"DevilCat|20 2d 20|Report|3a|"'
+      - value: '"|5c|nSystem|3a 20|"'
+      - value: '"|5c|nAntivirus|3a 20|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family StormKitty, confidence High, signature_severity
+        Major, updated_at 2023_04_17
+      msg: '"ET TROJAN Win32/StormKitty CnC Telegram Notification M2"'
+      reference: md5,9bec6e35675d3581a3fa59af2533cb13
+      rev: '2'
+      sid: '2044964'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

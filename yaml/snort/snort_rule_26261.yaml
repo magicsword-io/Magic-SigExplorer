@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|filename=Postal-Receipt.zip|0D 0A|",fast_pattern,nocase'
+      - value: '"Postal-Receipt.exe"'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Fake postal receipt HTTP Response phishing attack"'
+      reference: url,www.urlquery.net/search.php?q=receipt&type=string&start=2013-01-03&end=2013-01-18&max=50
+      rev: '3'
+      service: http
+      sid: '26261'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/post.php?type="'
+      - value: '"&machinename="'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_07_20, updated_at 2020_05_29
+      msg: '"ET TROJAN KeyBase Keylogger HTTP Pattern"'
+      pcre: '"/^Host\x3a[^\r\n]+\r\n(?:Connection\x3a\x20Keep-Alive\r\n)?(?:\r\n)?/H"'
+      reference: url,researchcenter.paloaltonetworks.com/2015/06/keybase-keylogger-malware-family-exposed/
+      rev: '3'
+      sid: '2021440'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

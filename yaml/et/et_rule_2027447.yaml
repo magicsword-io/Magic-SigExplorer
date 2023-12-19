@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|WSHRAT|7c|"'
+      - value: '"|20|-|20|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.WSHRAT.1
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_06_10, former_category MALWARE, malware_family WSHRAT, performance_impact
+        Low, signature_severity Major, tag RAT, updated_at 2020_08_31
+      msg: '"ET TROJAN WSHRAT CnC Checkin"'
+      rev: '2'
+      sid: '2027447'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

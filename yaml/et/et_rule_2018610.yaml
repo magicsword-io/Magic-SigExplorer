@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"kpai7ycr7jxqkilp."'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_06_27, former_category MALWARE, updated_at 2022_03_21
+      msg: '"ET TROJAN Likely CryptoWall .onion Proxy domain in SNI"'
+      rev: '1'
+      sid: '2018610'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

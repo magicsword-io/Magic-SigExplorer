@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"220|20|",depth 4'
+      - value: '"0wns j0",distance 0,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER known malicious FTP login banner - 0wns j0"'
+      reference: url,www.cyber-ta.org/releases/malware-analysis/public/SOURCES/CLUSTERS-NEW/behavior-summary.html
+      rev: '6'
+      service: ftp
+      sid: '21255'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '21'

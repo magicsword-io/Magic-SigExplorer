@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '200'
+        value: '"echo C3Pool mining setup script v%VERSION%."'
+      fast_pattern: 5,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_28, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Coinminer, updated_at 2020_08_28, mitre_tactic_id
+        TA0040, mitre_tactic_name Impact, mitre_technique_id T1496, mitre_technique_name
+        Resource_Hijacking
+      msg: '"ET TROJAN C3Pool CoinMiner Setup Script Download"'
+      reference: md5,57d01da1ecf73b6ac9564c180e1363c6
+      rev: '2'
+      sid: '2030813'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

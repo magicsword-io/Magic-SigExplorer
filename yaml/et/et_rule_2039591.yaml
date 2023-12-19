@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filepath|3d|phar|3a|"'
+      - depth: '35'
+        value: '"POST|20|/jsdm/ajax/logging_browse.php|20|"'
+      fast_pattern: 15,20
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_10_28, cve CVE_2022_22241,
+        deployment Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET TROJAN Potential Juniper Phar Deserialization RCE Attempt (CVE-2022-22241)"'
+      reference: cve,2022-22241
+      rev: '1'
+      sid: '2039591'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

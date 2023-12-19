@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Amazon Sign In</title>"'
+      - value: '"account is connected with Amazon"'
+      - value: '"name=|22|signin|22 20|method=|22|post|22 20|novalidate action=|22
+          22|"'
+      - value: '"type=|22|password|22 20|id=|22|ap_password"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_23, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Moderate, signature_severity Major, updated_at
+        2020_08_25
+      msg: '"ET CURRENT_EVENTS Amazon Phish Landing Jun 22 2017"'
+      rev: '5'
+      sid: '2024422'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

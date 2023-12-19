@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/include/timesheet.php?"'
+      - value: '"config[include_dir]="'
+      - depth: '200'
+        value: '"../"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_07_30, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Ultrize TimeSheet timesheet.php include_dir Parameter
+        Local File Inclusion"'
+      reference: url,doc.emergingthreats.net/2010127
+      rev: '3'
+      sid: '2010127'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

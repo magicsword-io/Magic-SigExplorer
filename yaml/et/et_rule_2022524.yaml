@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"opener"'
+      flow: from_server,established
+      metadata: created_at 2016_02_16, cve CVE_2016_0061, updated_at 2016_02_16
+      msg: '"ET EXPLOIT MS16-009 IE MSHTML Form Element Type Confusion (CVE-2016-0061)"'
+      pcre: '"/^\s*\[\s*[\x22\x27]\\u[a-f0-9]{4}\\u[a-f0-9]{4}/Rsi"'
+      reference: cve,2016-0061
+      rev: '2'
+      sid: '2022524'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

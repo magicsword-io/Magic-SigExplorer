@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      byte_jump: 1,0,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|30|"'
+      - value: '"|04 0d|javaClassName"'
+      - value: '"|04|"'
+      - value: '"|04 12|javaSerializedData"'
+      - value: '"|ac ed|"'
+      - value: '"|2e|exec"'
+      - value: '"FromCharCode"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2021_12_20, cve CVE_2021_44228, former_category ATTACK_RESPONSE,
+        updated_at 2021_12_20
+      msg: '"ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response
+        M2"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034769'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

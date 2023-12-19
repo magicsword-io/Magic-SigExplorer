@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '38'
+        value: '"/mbilling/lib/icepay/icepay.php?democ|3d|"'
+      - value: '"|3b|"'
+      - value: '"|3b 23|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2023_11_16, cve CVE_2023_30258, deployment Perimeter, deployment Internal,
+        former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_11_16
+      msg: '"ET WEB_SPECIFIC_APPS MagnusBilling icepay.php democ Parameter Command
+        Inject Attempt (CVE-2023-30258)"'
+      reference: cve,2023-30258
+      rev: '1'
+      sid: '2049247'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

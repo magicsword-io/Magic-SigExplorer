@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/chkisg.htm"'
+      - value: '"%3FSip%"'
+      - value: '"%7C"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Networking_Equipment, created_at 2022_04_14, cve CVE_2018_10823,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_04_14
+      msg: '"ET EXPLOIT D-Link DWR Command Injection Inbound (CVE-2018-10823)"'
+      reference: cve,2018-10823
+      rev: '2'
+      sid: '2035953'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

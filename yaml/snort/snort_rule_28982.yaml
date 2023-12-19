@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"JOIN |3A|#"'
+      - value: '"!dl http://",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Worm.Steckt IRCbot requesting URL through IRC"'
+      reference: url,www.virustotal.com/en/file/411e93206a7750c8df25730349bf9756ddba52c1bc780eaac4bba2b3872bc037/analysis/
+      rev: '2'
+      service: irc
+      sid: '28982'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

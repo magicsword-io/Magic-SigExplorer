@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|08|",depth 1,offset 16'
+      - value: '"|0C|",depth 1,offset 28'
+      - value: '"|00 04|",depth 2,offset 30'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ISAKMP delete hash with empty hash attempt"'
+      reference: cve,2004-0164
+      rev: '16'
+      sid: '2413'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Outlook Web App</title>"'
+      - value: '"<form action|3d 22|save.php|22|"'
+      - value: '"method|3d 22|POST|22|"'
+      - value: '"name|3d 22|logonForm|22|"'
+      - value: '"id|3d 22|logonForm|22|"'
+      - value: '"enctype|3d 22|application/x-www-form-urlencoded|22|"'
+      - value: '"autocomplete|3d 22|off|22 3e|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_08_20, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET CURRENT_EVENTS Observed OWA Phishing Landing Page 2021-08-20"'
+      reference: url,app.any.run/tasks/40a14763-96a6-4897-86c4-2b4693a0034b/
+      rev: '2'
+      sid: '2033748'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

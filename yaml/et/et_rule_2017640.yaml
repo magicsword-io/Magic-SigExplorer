@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"eval"'
+      - value: '"mcrypt_decrypt"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2013_10_28,
+        deployment Datacenter, performance_impact Low, signature_severity Major, updated_at
+        2020_08_19
+      msg: '"ET WEB_SERVER Possible Encrypted Webshell Download"'
+      reference: url,blog.sucuri.net/2013/10/backdoor-evasion-using-encrypted-content.html
+      rev: '2'
+      sid: '2017640'
+      special_options:
+      - file_data
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

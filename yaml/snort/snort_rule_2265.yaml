@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SOML FROM|3A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail SOML FROM prescan too many addresses overflow"'
+      pcre: '"/^SOML FROM\x3a\s*[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?<[^\n]*?</ims"'
+      reference: cve,2002-1337
+      rev: '14'
+      service: smtp
+      sid: '2265'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

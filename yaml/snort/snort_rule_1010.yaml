@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"%1u",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS encoding access"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS99-061
+      rev: '21'
+      service: http
+      sid: '1010'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '4'
+        value: '"|D5 20 08 80|"'
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2013_01_03, updated_at 2013_01_03
+      msg: '"ET INFO PTUNNEL OUTBOUND"'
+      reference: url,cs.uit.no/~daniels/PingTunnel/#protocol
+      rev: '2'
+      sid: '2016145'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

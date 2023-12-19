@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".gif?"'
+      - depth: '12'
+        value: '"User-Agent|3a| "'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_06_07, former_category MALWARE, updated_at 2020_08_17
+      msg: '"ET TROJAN Win32.Sality-GR Checkin"'
+      pcre: '"/\.gif\x3f[0-9a-f]{4,8}\x3d\x2d?\d+(?:&id\x3d\d+)?$/U"'
+      reference: md5,3a03a20bfefe3fdd01659d47d2ed76c8
+      rev: '5'
+      sid: '2018340'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '20'
+        value: '"/api/task/update?id="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_02_27
+      msg: '"ET TROJAN Win32/S1deload Stealer CnC Checkin - Get Tasking"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,www.bitdefender.com/files/News/CaseStudies/study/428/Bitdefender-PR-Whitepaper-S1deloadStealer-creat6669-en-EN.pdf
+      rev: '1'
+      sid: '2044360'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

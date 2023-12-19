@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/d.php?na="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_13, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Kimsuky, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_06_13
+      msg: '"ET TROJAN Kimsuky ReconShark Payload Retrieval Request M2"'
+      reference: url,www.sentinelone.com/labs/kimsuky-evolves-reconnaissance-capabilities-in-new-global-campaign/
+      rev: '1'
+      sid: '2046258'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

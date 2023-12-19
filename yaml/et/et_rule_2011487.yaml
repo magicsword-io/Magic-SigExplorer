@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '5'
+        value: '"USER "'
+      - value: '!"|0d 0a|"'
+      - value: '"%"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, former_category FTP, updated_at 2010_09_29
+      msg: '"ET FTP Suspicious Percentage Symbol Usage in FTP Username"'
+      reference: url,www.checkpoint.com/defense/advisories/public/2010/sbp-16-Aug.html
+      rev: '2'
+      sid: '2011487'
+      special_options:
+      - nocase
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

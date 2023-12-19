@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Accept: */*|0D 0A|"'
+      - value: '"Accept-Language: en-US|0D 0A|"'
+      - value: '"Accept-Encoding: gzip, deflate|0D 0A|"'
+      - value: '"{|22|locale|22|:|22|en|22|,|22|channel|22|:|22|prod|22|,|22|addon|22|:|22|"'
+      - value: '"ses-"'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.CSBundle_Original outbound connection attempt"'
+      pcre: '"/(\/check|\/v1\/stats|\/gql|\/1.5\/95648064|\/u\/0\/_\/og\/botguard\/get|\/ev\/\w{3}001001)/i"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56600'
+      special_options:
+      - http_header
+      - http_uri
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

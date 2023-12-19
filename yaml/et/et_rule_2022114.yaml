@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"rO0ABXNyA"'
+      - value: '"jb21tb25zLmNvbGxlY3Rpb25z"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_11_17, updated_at 2015_11_17
+      msg: '"ET EXPLOIT Serialized Java Object Calling Common Collection Function"'
+      reference: url,github.com/foxglovesec/JavaUnserializeExploits
+      rev: '1'
+      sid: '2022114'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

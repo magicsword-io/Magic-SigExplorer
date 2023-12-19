@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '5938'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|17 24 1B 00 00|"'
+      dsize: '5'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY TeamViewer Keep-alive outbound"'
+      reference: url,doc.emergingthreats.net/2008794
+      rev: '3'
+      sid: '2008794'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|20|SIP|2f|"'
+      - value: '"m=audio|20|"'
+      metadata: created_at 2022_08_30, cve CVE_2022_27255, former_category EXPLOIT,
+        confidence High, updated_at 2022_08_30
+      msg: '"ET EXPLOIT Realtek eCos RSDK/MSDK Stack-based Buffer Overflow Attempt
+        Inbound (CVE-2022-27255)"'
+      pcre: '"/^\d+\s*[^\r\n]{50,}/R"'
+      reference: cve,2022-27255
+      rev: '1'
+      sid: '2038669'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '513'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"-froot|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES Unix rlogin froot parameter root access attempt"'
+      reference: cve,1999-0113
+      rev: '15'
+      sid: '604'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

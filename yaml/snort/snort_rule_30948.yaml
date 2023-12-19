@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|5D 00 20 00|h|00|i|00|k|00|i|00|t|00|>|00|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Win.Backdoor.Hikit outbound banner response"'
+      reference: url,www.virustotal.com/en/file/aa4b2b448a5e246888304be51ef9a65a11a53bab7899bc1b56e4fc20e1b1fd9f/analysis/
+      rev: '3'
+      service: http,ssl
+      sid: '30948'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

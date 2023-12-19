@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"did="'
+      - value: '"/update/upfolder/updatefun.php",fast_pattern,nocase'
+      - value: '"Dalvik/"'
+      - value: '"Android",within 25'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.Femas variant outbound connection"'
+      reference: url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+      rev: '2'
+      service: http
+      sid: '43981'
+      special_options:
+      - http_client_body
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wp-content/plugins/WPSecurity/load.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Dropper.Clipbanker variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/2922662802eed0d2300c3646a7a9ae73209f71b37ab94b25e6df57f6aed7f23e/analysis/
+      rev: '1'
+      service: http
+      sid: '50989'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '100'
+        value: '"/socket.io/?EIO=3&transport=polling"'
+      - value: '"finger|3a 20|eyJhcGlWZXJzaW9uIjo"'
+      - value: '"okhttp/"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Mobile_Client, created_at 2023_05_02,
+        deployment Perimeter, former_category MOBILE_MALWARE, signature_severity Major,
+        updated_at 2023_05_02
+      msg: '"ET MOBILE_MALWARE Trojan-Ransom.AndroidOS.CryCrypt.c Checkin"'
+      reference: url,www.lookout.com/blog/iranian-spyware-bouldspy
+      rev: '1'
+      sid: '2045287'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

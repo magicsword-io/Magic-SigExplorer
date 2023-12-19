@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|0d 0a|X-Ipfs-"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_15, deployment Perimeter, former_category
+        POLICY, signature_severity Informational, updated_at 2022_04_15
+      msg: '"ET POLICY [TW] IPFS Protocol HTTP Headers Observed"'
+      rev: '2'
+      sid: '2036229'
+      special_options:
+      - http_header
+      threshold: type threshold, track by_src, count 10, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

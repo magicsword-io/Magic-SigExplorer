@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/052F"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_09_30, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2020_06_02
+      msg: '"ET CURRENT_EVENTS Evil Redirector Leading To EK Sep 30 2015"'
+      rev: '1'
+      sid: '2021870'
+      special_options:
+      - http_uri
+      urilen: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/sa"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: attack_target IoT, created_at 2017_10_25, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2020_08_13
+      msg: '"ET TROJAN Possible IoT_reaper ELF Binary Request M1 (set)"'
+      reference: url,blog.netlab.360.com/iot_reaper-a-rappid-spreading-new-iot-botnet-en/
+      rev: '2'
+      sid: '2024924'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      urilen: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

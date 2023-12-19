@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"sysin="'
+      - value: '"?user="'
+      - value: '"&type="'
+      - value: '"&id="'
+      - value: '!"Referer|3A|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_05_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Coinminer, updated_at
+        2020_04_30, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN W32/Zeus.BitcoinMiner Variant CnC Beacon"'
+      reference: url,community.emc.com/community/connect/rsaxchange/netwitness/blog/2014/05/16/zeuscoiner-detection-zeus-variant-engages-in-bitcoining
+      rev: '1'
+      sid: '2018504'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

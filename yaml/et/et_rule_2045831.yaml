@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|net-certificate|08|services|00|"'
+      distance: '1'
+      metadata: created_at 2023_05_23, former_category MALWARE, updated_at 2023_05_23
+      msg: '"ET TROJAN UAC-0063 Domain in DNS Lookup (net-certificate .services)"'
+      reference: url,therecord.media/cyber-espionage-ukraine-uac-0063-cert-ua
+      rev: '1'
+      sid: '2045831'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

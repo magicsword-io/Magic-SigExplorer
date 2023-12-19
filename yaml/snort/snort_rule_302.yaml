@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '515'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"XXXX%.172u%300|24|n"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-LINUX Redhat 7.0 lprd overflow"'
+      reference: cve,2000-0917
+      rev: '14'
+      sid: '302'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

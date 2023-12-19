@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"! LOLNOGTFO|0A|"'
+      dsize: '12'
+      flow: established,to_client
+      metadata: created_at 2014_09_29, cve CVE_2014_6271, former_category MALWARE,
+        updated_at 2014_09_29
+      msg: '"ET TROJAN Linux/ShellshockCampaign.DDOSBot Terminate Process CnC Server
+        Message"'
+      reference: cve,2014-6271
+      rev: '2'
+      sid: '2019304'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

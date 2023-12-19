@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3A| WhatWeb/"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN WhatWeb Web Application Fingerprint Scanner Default User-Agent
+        Detected"'
+      reference: url,doc.emergingthreats.net/2010960
+      rev: '4'
+      sid: '2010960'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

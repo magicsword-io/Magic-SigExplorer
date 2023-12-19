@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Content-Type",nocase'
+      - value: '"image/",nocase'
+      - value: '"|FF D8|",within 2,fast_pattern'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"FILE-IMAGE Microsoft Multiple Products JPEG parser heap overflow attempt"'
+      pcre: '"/^.{0,100}\xFF[\xE1\xE2\xED\xFE]\x00[\x00\x01]/Rs"'
+      reference: url,www.microsoft.com/security/bulletins/200409_jpeg.mspx
+      rev: '18'
+      service: http
+      sid: '2705'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

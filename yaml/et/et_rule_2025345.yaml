@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|57 69 6e 64 6f 77 73 20 44 65 66 65 6e 64 65 72 20 41 6c 65 72 74
+          20 3a 20 5a 65 75 73 20 56 69 72 75 73 20 44 65 74 65 63 74 65 64 20 49
+          6e 20 59 6f 75 72 20 43 6f 6d 70 75 74 65 72 20 21 21 3c 2f 68 31 3e|"'
+      - value: '"|3e 50 6c 65 61 73 65 20 44 6f 20 4e 6f 74 20 53 68 75 74 20 44 6f
+          77 6e 20 6f 72 20 52 65 73 65 74 20 59 6f 75 72 20 43 6f 6d 70 75 74 65
+          72 2e 3c 2f 68 33 3e|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2018_02_12, former_category WEB_CLIENT, updated_at 2018_02_12
+      msg: '"ET WEB_CLIENT Fake AV Phone Scam Landing Feb 12"'
+      rev: '2'
+      sid: '2025345'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

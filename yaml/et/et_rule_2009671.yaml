@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/users/payment.php?"'
+      - value: '"order_id="'
+      - value: '"<script>"'
+      - value: '"</script>"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS millionpixel payment.php order_id XSS attempt"'
+      reference: url,doc.emergingthreats.net/2009671
+      rev: '4'
+      sid: '2009671'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

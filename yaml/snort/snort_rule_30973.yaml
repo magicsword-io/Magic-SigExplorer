@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/load"'
+      - value: '".php",distance 0'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT CritX exploit kit payload request"'
+      pcre: '"/\/load(?:(?:db|rh|silver|msie|flash|fla[0-9]{4,5}))\.php/"'
+      reference: url,malware-traffic-analysis.net/2014/05/29/index.html
+      rev: '7'
+      service: http
+      sid: '30973'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

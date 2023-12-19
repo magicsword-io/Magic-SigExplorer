@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"PowerSploit File|3a|PowerView.ps1"'
+      - value: '"function New-InMemoryModule"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: 5000,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_01_14
+      msg: '"ET TROJAN Observed Possible PowerSploit/PowerView .ps1 Inbound"'
+      rev: '2'
+      sid: '2029275'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

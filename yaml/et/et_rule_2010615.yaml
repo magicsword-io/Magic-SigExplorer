@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/modules/bms/invoices_discount_ajax.php?"'
+      - value: '"id="'
+      - value: '"SELECT"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS phpBMS invoices_discount_ajax.php id Parameter SELECT
+        FROM SQL Injection Attempt"'
+      pcre: '"/SELECT.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2010615
+      rev: '3'
+      sid: '2010615'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

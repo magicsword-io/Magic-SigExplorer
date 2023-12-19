@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/a.Test"'
+      flow: established,to_server
+      metadata: created_at 2012_11_14, updated_at 2012_11_14
+      msg: '"ET CURRENT_EVENTS CirtXPack - No Java URI - /a.Test"'
+      rev: '1'
+      sid: '2015886'
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

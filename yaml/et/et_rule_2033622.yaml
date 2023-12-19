@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|17|104-168-237-21.sslip.io"'
+      distance: '1'
+      flow: from_server,established
+      metadata: attack_target Client_and_Server, created_at 2021_07_30, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_07_30
+      msg: '"ET TROJAN Observed Malicious SSL Cert (FIN8 Staging CnC)"'
+      rev: '2'
+      sid: '2033622'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '24'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

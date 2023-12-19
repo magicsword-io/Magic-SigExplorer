@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"Tunna v1.1g"'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_01, deployment Perimeter,
+        former_category WEB_SERVER, confidence High, signature_severity Major, tag
+        WebShell, updated_at 2023_11_01, reviewed_at 2023_11_01, mitre_tactic_id TA0003,
+        mitre_tactic_name Persistence, mitre_technique_id T1505, mitre_technique_name
+        Server_Software_Component
+      msg: '"ET WEB_SERVER Tunna Variant Webshell Activity"'
+      reference: url,research.checkpoint.com/2023/from-albania-to-the-middle-east-the-scarred-manticore-is-listening/
+      rev: '2'
+      sid: '2049010'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

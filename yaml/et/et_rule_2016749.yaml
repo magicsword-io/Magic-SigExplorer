@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /lnd/template="'
+      - value: '"MSIE 7.0|3b| Windows NT 5.1|3b|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2013_04_10, updated_at 2020_04_23
+      msg: '"ET TROJAN RansomCrypt Getting Template"'
+      pcre: '"/^[^\r\n]*\/[a-z0-9]+\sHTTP/Ui"'
+      rev: '1'
+      sid: '2016749'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

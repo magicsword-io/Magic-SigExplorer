@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&filename=Flash Player "'
+      - value: '".exe"'
+      flow: established,to_server
+      metadata: created_at 2013_07_09, former_category CURRENT_EVENTS, updated_at
+        2020_09_01
+      msg: '"ET WEB_CLIENT Fake Adobe Flash Player malware binary requested"'
+      rev: '3'
+      sid: '2017123'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

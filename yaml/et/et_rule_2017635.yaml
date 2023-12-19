@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"fromCharCode"'
+      - value: '"+0+0+3-1-1"'
+      - value: '"substr"'
+      - value: '"(3-1)"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_10_25, updated_at 2013_10_25
+      msg: '"ET CURRENT_EVENTS Styx Landing Page Oct 25 2013"'
+      rev: '1'
+      sid: '2017635'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

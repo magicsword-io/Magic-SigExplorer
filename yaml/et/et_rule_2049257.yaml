@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|22|password|22|"'
+      - value: '"PATCH"'
+      - depth: '19'
+        value: '"/mgmt/tm/auth/user/"'
+      flow: established,to_server
+      flowbits: set,ET.CVE-2023-46747.pw.request
+      metadata: affected_product F5, attack_target Networking_Equipment, created_at
+        2023_11_20, deployment Perimeter, deployment SSLDecrypt, former_category INFO,
+        performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2023_11_20
+      msg: '"ET INFO F5 BIG-IP - Password Reset Attempt - Observed Post CVE-2023-46747
+        Activity"'
+      reference: url,packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html
+      rev: '1'
+      sid: '2049257'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

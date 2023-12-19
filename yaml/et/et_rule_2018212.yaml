@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".servehttp.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2014_03_05, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2020_09_23, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1568, mitre_technique_name Dynamic_Resolution
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to a *.servehttp .com Domain"'
+      pcre: '"/Host\x3A[^\r\n]*\x2Eservehttp.com/H"'
+      reference: url,labs.umbrella.com/2013/04/15/on-the-trail-of-malicious-dynamic-dns-domains/
+      rev: '3'
+      sid: '2018212'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

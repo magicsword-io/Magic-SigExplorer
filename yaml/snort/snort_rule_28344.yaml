@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"CHR(",nocase'
+      - value: '"CHR(",distance 0,nocase'
+      - value: '"CHR(",distance 0,nocase'
+      - value: '"CHR(",distance 0,nocase'
+      - value: '"CHR(",distance 0,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION large number of calls to chr function - possible
+        sql injection obfuscation"'
+      reference: url,isc.sans.org/diary.html?storyid=3823
+      rev: '4'
+      service: http
+      sid: '28344'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

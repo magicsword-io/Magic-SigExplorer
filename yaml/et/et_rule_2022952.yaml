@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/_dispatch.php"'
+      - value: '"www-form-urlencoded|0d 0a|"'
+      - value: '"|0d 0a|x-requested-with|3a 20|XMLHttpRequest|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_07_06, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Locky, tag c2, updated_at
+        2020_10_30, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Ransomware Locky CnC Beacon 21 May"'
+      pcre: '"/^[0-9a-zA-Z=%-]{0,48}(?:%[A-F0-9]{2}){4}/Psi"'
+      reference: md5,6f8987e28fed878d08858a943e7c6e7c
+      rev: '1'
+      sid: '2022952'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

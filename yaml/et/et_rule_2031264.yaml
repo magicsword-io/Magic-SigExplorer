@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '"Accept: */*|0d 0a|"'
+      - value: '"Accept-Language: en-US|0d 0a|"'
+      - value: '"Accept-Encoding: gzip, deflate|0d 0a|"'
+      - value: '"Cookie:"'
+      - value: '"display-culture=en\'
+      - value: '"\'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_08, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag c2, updated_at 2020_12_09, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle Original GET]"'
+      pcre: '"/^GET\s(?:\/api2\/json\/access\/ticket|\/api2\/json\/cluster\/resources|\/api2\/json\/cluster\/tasks|\/en-us\/p\/onerf\/MeSilentPassport|\/en-us\/p\/book-2\/8MCPZJJCC98C|\/en-us\/store\/api\/checkproductinwishlist|\/gp\/cerberus\/gv|\/gp\/aj\/private\/reviewsGallery\/get-application-resources|\/gp\/aj\/private\/reviewsGallery\/get-image-gallery-assets|\/v1\/buckets\/default\/ext-5dkJ19tFufpMZjVJbsWCiqDcclDw\/records|\/v3\/links\/ping-centre|\/v4\/links\/activity-stream|\/wp-content\/themes\/am43-6\/dist\/records|\/wp-content\/themes\/am43-6\/dist\/records|\/wp-includes\/js\/script\/indigo-migrate)/"'
+      reference: url,github.com/fireeye/red_team_tool_countermeasures
+      rev: '2'
+      sid: '2031264'
+      special_options:
+      - check=true\
+      - lbcs=0\
+      - sess-id="
+      - SIDCC=AN0-TY21iJHH32j2m\
+      - FHBv3=B"
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

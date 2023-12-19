@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 11 D0 00 00 00|",depth 8'
+      flow: to_server,established
+      isdataat: '!16'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Wekby Torn variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/1D6BCF409C85887861D587C8AABFC8C8393EA692FE93C0A6836BE507A7F75985/analysis/
+      rev: '3'
+      sid: '34501'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

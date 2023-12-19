@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 1a|6bbsjnrzv2uvp7bp.onion.pet|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_15, deployment Perimeter, former_category
+        MALWARE, malware_family TrumpHeadRansomware, signature_severity Major, tag
+        Ransomware, updated_at 2020_09_16, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed TrumpHead Ransomware CnC Domain (6bbsjnrzv2uvp7bp
+        .onion .pet in TLS SNI)"'
+      reference: md5,49fdb7e267c00249e736aad5258788d2
+      rev: '2'
+      sid: '2026807'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

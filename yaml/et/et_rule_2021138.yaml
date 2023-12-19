@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[9200,9292]'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '11'
+        offset: '3'
+        value: '"|20|/_plugin/"'
+      flow: to_server,established
+      metadata: created_at 2015_05_22, cve CVE_2015_3337, updated_at 2020_05_22
+      msg: '"ET WEB_SERVER ElasticSearch Directory Traversal Attempt (CVE-2015-3337)"'
+      pcre: '"/(?:%2(?:52e(?:%2(?:52e(?:%(?:(?:25)?2|c0%a)f|\/)|e(?:%(?:(?:25)?2|c0%a)f|\/))|\.(?:%(?:(?:25)?2|c0%a)f|\/))|e(?:%2(?:52e(?:%(?:(?:25)?2|c0%a)f|\/)|e(?:%(?:(?:25)?2|c0%a)f|\/))|\.(?:%(?:(?:25)?2|c0%a)f|\/)))|\.(?:%2(?:52e(?:%(?:(?:25)?2|c0%a)f|\/)|e(?:%(?:(?:25)?2|c0%a)f|\/))|\.(?:%(?:(?:25)?2|c0%a)f|\/)))/Ri"'
+      reference: cve,2015-3337
+      rev: '3'
+      sid: '2021138'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

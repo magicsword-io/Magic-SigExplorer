@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|aa|07|hostasa|03|org"'
+      distance: '0'
+      metadata: created_at 2015_06_24, former_category CURRENT_EVENTS, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Likely Linux/Xorddos.F DDoS Attack Participation (aa.hostasa.org)"'
+      reference: md5,3c49b5160b981f06bd5242662f8d0a54
+      rev: '3'
+      sid: '2021326'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type limit,track by_src,count 3,seconds 60
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

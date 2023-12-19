@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '".php?i="'
+      - value: '"&o="'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_22
+      msg: '"ET TROJAN Zbot/Beomok/PSW - HTTP POST"'
+      reference: url,doc.emergingthreats.net/2009448
+      rev: '4'
+      sid: '2009448'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|Installed OK"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_09_15, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Informational,
+        updated_at 2020_09_15
+      msg: '"ET USER_AGENTS Suspicious User-Agent (Installed OK)"'
+      reference: md5,16035440878ec6e93d82c2aeea508630
+      rev: '2'
+      sid: '2030880'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

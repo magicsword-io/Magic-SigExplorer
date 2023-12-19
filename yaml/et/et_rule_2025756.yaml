@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/login.cgi?cli="'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2018_06_27, deployment Datacenter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET EXPLOIT D-Link DSL-2750B - OS Command Injection"'
+      pcre: '"/\/login\.cgi\?cli=[ a-zA-Z0-9+_]*[\x27\x3b]/Ui"'
+      reference: url,exploit-db.com/exploits/44760/
+      rev: '2'
+      sid: '2025756'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

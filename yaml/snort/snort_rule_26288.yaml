@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Brontok.A8 Browser|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Brontok Worm variant outbound connection"'
+      reference: url,www.securelist.com/en/descriptions/10286064/Email-Worm.Win32.Brontok.rf?print_mode=1
+      rev: '3'
+      service: http
+      sid: '26288'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

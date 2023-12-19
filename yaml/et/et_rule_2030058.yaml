@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|h55u4u4u5uii5|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_04_29, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Major,
+        updated_at 2020_04_29
+      msg: '"ET USER_AGENTS Observed Suspicious UA (h55u4u4u5uii5)"'
+      reference: url,www.welivesecurity.com/2020/04/28/grandoreiro-how-engorged-can-exe-get/
+      rev: '2'
+      sid: '2030058'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

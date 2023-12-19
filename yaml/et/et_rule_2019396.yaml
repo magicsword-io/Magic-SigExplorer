@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|server4love|02|ru|00|"'
+      distance: '1'
+      fast_pattern: only
+      metadata: created_at 2014_10_14, updated_at 2020_09_01
+      msg: '"ET TROJAN TorrentLocker DNS Lookup"'
+      reference: md5,8d2e901583b60631dc333d4b396e158b
+      rev: '3'
+      sid: '2019396'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

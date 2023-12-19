@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,2147480000,8,relative,little
+      classtype: attempted-user
+      contents:
+      - value: '"BM"'
+      flow: to_client,established
+      flowbits: isset,file.bmp
+      metadata: ruleset community
+      msg: '"BROWSER-IE Microsoft Internet Explorer bitmap BitmapOffset integer overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms04-025
+      rev: '18'
+      service: ftp-data,http,imap,pop3
+      sid: '2671'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

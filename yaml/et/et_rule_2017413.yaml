@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7c 28|"'
+      - value: '"|29 7c|"'
+      - value: '"|7c|Win"'
+      flow: to_server,established
+      metadata: created_at 2013_09_04, former_category MALWARE, updated_at 2013_09_04
+      msg: '"ET TROJAN EvilGrab/Vidgrab Checkin"'
+      pcre: '"/^\d{1,5}/R"'
+      reference: url,contagiodump.blogspot.com.br/2013/09/sandbox-miming-cve-2012-0158-in-mhtml.html
+      rev: '3'
+      sid: '2017413'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

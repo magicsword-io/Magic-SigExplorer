@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0f|fiberswatch.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_11, deployment Perimeter, former_category
+        EXPLOIT_KIT, malware_family KeitaroTDS, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, tag TDS, updated_at 2021_02_11
+      msg: '"ET CURRENT_EVENTS Observed Evil Keitaro TDS Redirection Domain (fiberswatch
+        .com in TLS SNI)"'
+      rev: '3'
+      sid: '2031615'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

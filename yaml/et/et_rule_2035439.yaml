@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|statscodicefiscale|03|xyz"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_11, deployment Perimeter,
+        former_category MOBILE_MALWARE, signature_severity Major, updated_at 2022_03_11
+      msg: '"ET MOBILE_MALWARE Android/SharkBot Related Domain in DNS Lookup"'
+      reference: url,research.nccgroup.com/2022/03/03/sharkbot-a-new-generation-android-banking-trojan-being-distributed-on-google-play-store/
+      rev: '1'
+      sid: '2035439'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

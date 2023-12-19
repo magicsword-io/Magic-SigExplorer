@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>x3x3x3x_5h3ll"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2021_04_16, deployment Perimeter, signature_severity Major, updated_at
+        2021_04_16
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2032774'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

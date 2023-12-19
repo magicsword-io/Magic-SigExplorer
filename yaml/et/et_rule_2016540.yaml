@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!".jar"'
+      - value: '"PK"'
+      - value: '".class"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: unset,ET.JavaNotJar
+      metadata: created_at 2013_03_06, updated_at 2020_04_23
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS JAR Download by Java UA with non JAR EXT
+        matches various EKs"'
+      rev: '2'
+      sid: '2016540'
+      special_options:
+      - http_header
+      - nocase
+      - file_data
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

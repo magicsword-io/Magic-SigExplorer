@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/forum.php",depth 10'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|0D 0A|",fast_pattern,nocase'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Andromeda initial outbound connection"'
+      reference: url,malware.dontneedcoffee.com/2015/07/a-fileless-ursnif-doing-some-pos.html
+      rev: '3'
+      service: http
+      sid: '35387'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

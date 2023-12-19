@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Gd1NWZ4VEbsVGaT"'
+      flow: established,from_server
+      metadata: created_at 2015_02_16, updated_at 2015_02_16
+      msg: '"ET CURRENT_EVENTS Unknown EK Landing Feb 16 2015 b64 3 M1"'
+      rev: '1'
+      sid: '2020425'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[2375,2376]'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/swarm/join"'
+      - depth: '15'
+        value: '"|7b 22|ListenAddr|22 3a 22|"'
+      - value: '"|22|RemoteAddrs|22 3a 5b 22|"'
+      - value: '"|2c 22|JoinToken|22 3a 22|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_01_28, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        tag Docker, updated_at 2021_01_28
+      msg: '"ET INFO External Host Sending Docker Swarm Join Command"'
+      pcre: '"/\/swarm\/join$/U"'
+      reference: url,github.com/Caprico1/Docker-Botnets/commit/bbfd65fce31d74bfa798e00a2c918022a45d211a
+      rev: '3'
+      sid: '2031587'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

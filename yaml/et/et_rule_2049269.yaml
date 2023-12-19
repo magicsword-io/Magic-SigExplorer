@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|forumsecrets|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_11_20, deployment Perimeter, former_category EXPLOIT_KIT, performance_impact
+        Low, confidence High, signature_severity Minor, tag Exploit_Kit, updated_at
+        2023_11_20
+      msg: '"ET CURRENT_EVENTS ZPHP Domain in DNS Lookup (forumsecrets .com)"'
+      reference: url,infosec.exchange/@monitorsg/111442806557991840
+      rev: '1'
+      sid: '2049269'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

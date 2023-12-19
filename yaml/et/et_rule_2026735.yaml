@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/en"'
+      - value: '"/reader/download/?installer=Reader_DC_20"'
+      - value: '!"get.adobe.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_17, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2020_08_31
+      msg: '"ET MALWARE Fake Adobe Update Request"'
+      pcre: '"/\d{2}\.0\d{2}\.200\d{2}_English(?:_for)?_Windows/R"'
+      rev: '3'
+      sid: '2026735'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+      within: '45'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

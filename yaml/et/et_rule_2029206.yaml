@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/vpns/"'
+      - value: '"/../"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2019_12_30, cve CVE_2019_19781, deployment
+        Perimeter, deployment Internal, deployment SSLDecrypt, former_category EXPLOIT,
+        signature_severity Major, tag Exploit, updated_at 2022_02_05
+      msg: '"ET EXPLOIT Possible Citrix Application Delivery Controller Arbitrary
+        Code Execution Attempt (CVE-2019-19781)"'
+      reference: cve,2019-19781
+      rev: '4'
+      sid: '2029206'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

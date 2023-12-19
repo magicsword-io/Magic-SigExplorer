@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|ankarex|03|net|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_03, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2023_07_03
+      msg: '"ET CURRENT_EVENTS Ankarex Smishing as a Service Domain in DNS Lookup
+        (ankarex .net)"'
+      reference: url,www.sentinelone.com/blog/neo_net-the-kingpin-of-spanish-ecrime/
+      rev: '1'
+      sid: '2046722'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php",fast_pattern,nocase'
+      - value: '"WebKitFormBoundary"'
+      - value: '"name=|22|getconfig|22|"'
+      - value: '"Referer|3A 20|"'
+      - value: '"Connection|3A 20|close|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fareit variant outbound connection"'
+      reference: url,virustotal.com/#/file/01092ea6b5eb749254cf61a58c7c8fe5f6700197643271202fe420ac7cc68d1f/detection
+      rev: '2'
+      service: http
+      sid: '43972'
+      special_options:
+      - http_uri
+      - http_header
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

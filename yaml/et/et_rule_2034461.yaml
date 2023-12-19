@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Host|3a 20|textbin.net|0d 0a|"'
+      - depth: '9'
+        value: '"GET /raw/"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_15, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, signature_severity Informational,
+        updated_at 2021_11_15
+      msg: '"ET INFO Suspicious Terse HTTP Request to textbin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      rev: '1'
+      sid: '2034461'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

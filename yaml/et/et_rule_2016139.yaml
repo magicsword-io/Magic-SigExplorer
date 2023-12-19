@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".asp?imageid="'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2013_01_03, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_08_18,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Sakula/Mivast RAT CnC Beacon 1"'
+      reference: md5,3cd598e8e2fd033134d8784251eff59e
+      rev: '4'
+      sid: '2016139'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

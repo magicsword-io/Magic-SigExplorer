@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '15'
+        value: '"/b?sysinfoother"'
+      - value: '"uid="'
+      - value: '"version="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_11, deployment Perimeter, former_category
+        MALWARE, malware_family NoMercy_Stealer, performance_impact Low, signature_severity
+        Major, updated_at 2022_07_11
+      msg: '"ET TROJAN NoMercy Data Exfiltration M2"'
+      reference: url,blog.cyble.com/2022/07/07/nomercy-stealer-adding-new-features
+      rev: '1'
+      sid: '2037740'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

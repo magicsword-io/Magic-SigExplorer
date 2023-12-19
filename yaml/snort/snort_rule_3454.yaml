@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '617'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"ARKFS|00|root|00|root",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Arkeia client backup generic info probe"'
+      reference: cve,2005-0491
+      rev: '9'
+      sid: '3454'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

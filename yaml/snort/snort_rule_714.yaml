@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"resolv_host_conf",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET resolv_host_conf"'
+      reference: cve,2001-0170
+      rev: '15'
+      service: telnet
+      sid: '714'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4848'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '6'
+        value: '"TRACE "'
+      - value: '".jsf"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_06_09, cve CVE_2011_1511, updated_at 2020_06_02
+      msg: '"ET WEB_SPECIFIC_APPS Possible Oracle GlassFish Server Administration
+        Console Authentication Bypass Attempt"'
+      reference: cve,2011-1511
+      rev: '1'
+      sid: '2012977'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

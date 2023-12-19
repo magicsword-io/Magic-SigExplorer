@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Z"'
+      - value: '"PWh0dHA"'
+      distance: '2'
+      flow: from_server,established
+      metadata: created_at 2013_11_27, updated_at 2013_11_27
+      msg: '"ET TROJAN Darkness DDoS HTTP Target/EXE"'
+      pcre: '"/^[a-z0-9\+\/]+={0,2}$/Rsi"'
+      rev: '6'
+      sid: '2017775'
+      special_options:
+      - file_data
+      within: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 06|"'
+      - value: '"|05|Earth"'
+      - value: '"|55 04 07|"'
+      - value: '"|09|Somewhere"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0c|cobaltstrike"'
+      - value: '"|55 04 0b|"'
+      - value: '"|12|AdvancedPenTesting"'
+      - value: '"|55 04 03|"'
+      - value: '"|13|Major Cobalt Strike"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_05_06, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_08_26
+      msg: '"ET TROJAN Observed Default CobaltStrike SSL Certificate"'
+      reference: url,fireeye.com/blog/threat-research/2020/03/the-cycle-of-adversary-pursuit.html
+      rev: '2'
+      sid: '2030111'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

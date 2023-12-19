@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/gate.php",fast_pattern,nocase'
+      - value: '"|3B 20|MSIE|20|"'
+      - value: '!"Accept-Language:"'
+      - value: '!"Referer:"'
+      - value: '!"Accept-Encoding:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      rev: '2'
+      service: http
+      sid: '29884'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

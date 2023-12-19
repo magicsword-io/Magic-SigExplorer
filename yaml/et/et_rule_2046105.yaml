@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '22'
+        offset: '3'
+        value: '"|24|http://tempuri.org/"'
+      - value: '"/MSValue"'
+      - value: '"|08|MSValue"'
+      - value: '"|01 01 01|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_06, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, updated_at 2023_06_06
+      msg: '"ET TROJAN Redline Stealer Family TCP CnC Activity - MSValue (Outbound)"'
+      reference: url,twitter.com/crep1x/status/16661325339127767255
+      rev: '1'
+      sid: '2046105'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 12|neurotonix--buy.us"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_10_23, deployment Perimeter, performance_impact Low, confidence High,
+        signature_severity Minor, tag Exploit_Kit, updated_at 2023_10_23, reviewed_at
+        2023_10_23
+      msg: '"ET CURRENT_EVENTS RogueRaticate Domain in TLS SNI (neurotonix--buy .us)"'
+      reference: url,twitter.com/AnFam17/status/1671789322259800064
+      rev: '1'
+      sid: '2048755'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

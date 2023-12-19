@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,465,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        value: '"EHLO "'
+      - value: '!"|0a|"'
+      flow: established,to_server
+      isdataat: 5000,relative
+      metadata: attack_target SMTP_Server, created_at 2019_09_30, cve CVE_2019_16928,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Critical, updated_at 2019_10_01
+      msg: '"ET EXPLOIT Possible EXIM DoS (CVE-2019-16928)"'
+      reference: url,git.exim.org/exim.git/patch/478effbfd9c3cc5a627fc671d4bf94d13670d65f
+      rev: '3'
+      sid: '2028636'
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

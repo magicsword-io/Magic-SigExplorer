@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HEAD"'
+      - value: '".dotm?q=6"'
+      - value: '"Office"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_28, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_28
+      msg: '"ET TROJAN Kimsuky Related Maldoc Activity (HEAD)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Office/Hmi"'
+      reference: url,mp.weixin.qq.com/s/og8mfnqoKZsHlOJdIDKYgQ
+      rev: '1'
+      sid: '2033598'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

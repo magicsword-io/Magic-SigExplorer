@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"mdsys.md2.validate_geom",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE mdsys.md2.validate_geom buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{128,}\x27|\x22[^\x22]{128,}\x22)[\r\n\s]*\x3b.*layer[\r\n\s]*=>[\r\n\s]*\2|layer\s*=>\s*(\x27[^\x27]{128,}|\x22[^\x22]{128,})|\(\s*(\x27[^\x27]{128,}|\x22[^\x22]{128,}))/is"'
+      rev: '4'
+      sid: '2682'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|24 7b|jndi|3a|"'
+      - value: '"|24 7b|lower|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_18, cve CVE_2021_44228, deployment
+        Perimeter, deployment Internal, former_category HUNTING, signature_severity
+        Major, tag Exploit, updated_at 2021_12_18
+      msg: '"ET INFO Possible Apache log4j RCE Attempt - Any Protocol (lower TCP Bypass)
+        (Outbound) (CVE-2021-44228)"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034802'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

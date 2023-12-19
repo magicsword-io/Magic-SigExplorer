@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '63'
+        value: '"|3b|"'
+      - value: '!"="'
+      - value: '!"&"'
+      flow: established,to_server
+      flowbits: set,ET.Fiesta.Exploit.URI
+      metadata: created_at 2014_04_23, former_category EXPLOIT_KIT, updated_at 2020_05_13
+      msg: '"ET CURRENT_EVENTS Fiesta URI Struct"'
+      pcre: '"/^\/[^\x2f]+?\/\??[a-f0-9]{60,66}(?:\x3b\d+){1,4}$/U"'
+      rev: '9'
+      sid: '2018407'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      urilen: '>64'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

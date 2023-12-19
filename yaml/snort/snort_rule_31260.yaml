@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function FindProxyForURL(url, host)",depth 35'
+      - value: '"yx0=0|3B|yx1=1|3B|yx2=2|3B|yx3=3|3B|yx4=4|3B|yx5=5|3B|yx6=6|3B|yx7=7|3B|yx8=8|3B|yx9=9|3B|lit=|22
+          22|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Andromeda HTTP proxy response attempt"'
+      reference: url,www.exposedbotnets.com/2013/06/localmworg-andromeda-http-botnet-hosted.html
+      rev: '2'
+      service: http
+      sid: '31260'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

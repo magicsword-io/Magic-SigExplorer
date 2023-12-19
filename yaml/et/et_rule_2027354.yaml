@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"MS|20|Web|20|Services|20|Client|20|Protocol"'
+      - depth: '5'
+        value: '"<?xml"'
+      - value: '"<Message>X1|20|is|20|running|20|in|20|PC"'
+      - value: '"<|2f|Message>"'
+      - value: '"SOAPAction|3a|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_05_13, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, tag Backdoor, updated_at
+        2020_08_28
+      msg: '"ET TROJAN MSIL/Almashreq Executing New Processes"'
+      rev: '2'
+      sid: '2027354'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sysdbms_repcat_rgt.check_ddl_text",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sysdbms_repcat_rgt.check_ddl_text buffer overflow attempt"'
+      pcre: '"/\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})/is"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck97.html
+      rev: '7'
+      sid: '2608'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

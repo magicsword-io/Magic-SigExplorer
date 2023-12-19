@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/private/",fast_pattern'
+      - value: '".php",distance 0'
+      - value: '"p="'
+      - value: '"User-Agent:"'
+      - value: '"Android",within 100'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.AnubisCrypt variant outbound post detected"'
+      reference: url,www.virustotal.com/#/file/d27034b9f58aa71f08f3c57d893fe07cdd395c9b4e494fbcca2a1d1ca3dce88e/detection
+      rev: '1'
+      service: http
+      sid: '47876'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

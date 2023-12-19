@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8291'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"|12 02|",depth 2'
+      - value: '"|FF ED 00 00 00 00|",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Mikrotik RouterOS denial of service attempt"'
+      reference: cve,2012-6050
+      rev: '3'
+      sid: '44643'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

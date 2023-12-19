@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 06|dwz.mk"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_19, deployment Perimeter,
+        signature_severity Informational, updated_at 2023_05_19, reviewed_at 2023_10_23
+      msg: '"ET INFO Observed URL Shortening Service Domain (dwz .mk in TLS SNI)"'
+      rev: '1'
+      sid: '2045775'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

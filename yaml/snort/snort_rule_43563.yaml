@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/TeleoptiWFM/Administration/Users",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Teleopti WFM administrative user credentials request detected"'
+      reference: url,seclists.org/fulldisclosure/2017/Feb/13
+      rev: '3'
+      service: http
+      sid: '43563'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

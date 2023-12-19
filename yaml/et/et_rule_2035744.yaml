@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/cstecgi.cgi"'
+      - value: '"setUpgradeFW"'
+      - value: '"FileName|3a 20 3a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Networking_Equipment, created_at 2022_04_05, cve CVE_2022_26210,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_04_05
+      msg: '"ET EXPLOIT Totolink - Command Injection Attempt Inbound (CVE-2022-26210)"'
+      pcre: '"/FileName\x3a\x20\x3a(?:\x3b|\x0a|\x26|\x60|\x7c|\x24)/U"'
+      reference: cve,2022-26210
+      rev: '2'
+      sid: '2035744'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

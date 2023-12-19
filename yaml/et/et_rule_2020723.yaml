@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"oprat="'
+      - value: '"&uid="'
+      - value: '"&uinfo="'
+      - value: '"&win="'
+      - value: '"&vers="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_03_21, former_category MALWARE, updated_at 2020_09_29
+      msg: '"ET TROJAN FindPOS Checkin"'
+      reference: md5,fe0f997d81d88bc11cc03e4d1fd61ebe
+      rev: '2'
+      sid: '2020723'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

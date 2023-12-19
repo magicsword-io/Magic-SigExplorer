@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|sunjaydut|04|ddns|03|net"'
+      distance: '1'
+      metadata: created_at 2022_03_08, updated_at 2022_03_08
+      msg: '"ET TROJAN TransparentTribe CnC Domain in DNS Lookup"'
+      reference: url,twitter.com/0xrb/status/1501061897604730881
+      rev: '1'
+      sid: '2035411'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

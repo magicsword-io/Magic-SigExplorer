@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '32'
+        value: '"Pinging from Del"'
+      itype: '8'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SCAN PING Delphi-Piette Windows"'
+      reference: arachnids,155
+      rev: '8'
+      sid: '2100372'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

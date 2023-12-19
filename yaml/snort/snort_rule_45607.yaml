@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"fp_vs=",fast_pattern,nocase'
+      - value: '"os_vs="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rokrat variant outbound connection detected"'
+      reference: url,www.virustotal.com/#/file/3004196da6055c6f062c94a9aae8dc357fa19b953b071049083e69e840083cf9/detection
+      rev: '2'
+      service: http
+      sid: '45607'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

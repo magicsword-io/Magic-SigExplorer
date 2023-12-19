@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '6'
+        value: '"|9e 98|"'
+      dsize: '20'
+      metadata: created_at 2012_07_14, updated_at 2012_07_14
+      msg: '"ET TROJAN ZeroAccess udp traffic detected"'
+      rev: '2'
+      sid: '2015474'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|loaderclientarea15|02|ru|00|"'
+      distance: '0'
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2017_11_22, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_09_14
+      msg: '"ET MOBILE_MALWARE Android/TrojanDropper.Agent.BKY DNS Lookup 4"'
+      reference: url,www.welivesecurity.com/2017/11/15/multi-stage-malware-sneaks-google-play/
+      rev: '1'
+      sid: '2025017'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

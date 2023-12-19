@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2301'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<!",depth 75'
+      - value: '">",within 50'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Compaq web-based management agent denial of service attempt"'
+      reference: bugtraq,8014
+      rev: '8'
+      sid: '2394'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

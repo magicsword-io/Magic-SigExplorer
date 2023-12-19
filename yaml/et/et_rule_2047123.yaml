@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"argotunnel.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_09, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_08_09
+      msg: '"ET INFO Observed Cloudflare Tunneling Domain (argotunnel .com in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x0e|.\x2e)argotunnel\.com/R"'
+      reference: url,www.guidepointsecurity.com/blog/tunnel-vision-cloudflared-abused-in-the-wild/
+      rev: '2'
+      sid: '2047123'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

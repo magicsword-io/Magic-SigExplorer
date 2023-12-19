@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|drive|09|cloudplus|03|one"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_27, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, updated_at 2022_01_27
+      msg: '"ET POLICY Suspicious File Sharing Domain in DNS Lookup (drive .cloudplus
+        .one)"'
+      reference: url,twitter.com/malwrhunterteam/status/1483853345924255745
+      rev: '1'
+      sid: '2034987'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

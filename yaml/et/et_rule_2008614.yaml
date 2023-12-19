@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/show.php?catid="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_08
+      msg: '"ET WEB_SPECIFIC_APPS PHP-Lance show.php catid SQL Injection"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2008614
+      rev: '4'
+      sid: '2008614'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

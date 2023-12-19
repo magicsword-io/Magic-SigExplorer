@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|VersionDwl|0d 0a|"'
+      fast_pattern: 12,12
+      flow: established,to_server
+      metadata: created_at 2015_01_22, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE PUP.Win32.BoBrowser User-Agent (VersionDwl)"'
+      reference: url,malwareprotectioncenter.com/2015/01/20/bobrowser
+      rev: '2'
+      sid: '2020239'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

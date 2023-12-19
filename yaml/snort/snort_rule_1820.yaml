@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/ncommerce3/ExecMacro/orderdspc.d2w"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP IBM Net.Commerce orderdspc.d2w access"'
+      reference: nessus,11020
+      rev: '15'
+      service: http
+      sid: '1820'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

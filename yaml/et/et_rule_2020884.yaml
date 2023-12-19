@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,465,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|PC|3a 20|"'
+      - value: '"|0d 0a|Text|3a 20|"'
+      - value: '"|0d 0a|IP|3a 20|"'
+      - value: '"|0d 0a|TS|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_04_09, updated_at 2015_04_09
+      msg: '"ET TROJAN Kriptovor SMTP Traffic"'
+      reference: md5,c3ab87f85ca07a7d026d3cbd54029bbe
+      rev: '1'
+      sid: '2020884'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

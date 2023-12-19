@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"LOGIN"'
+      flow: established,to_server
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_1999_0005, former_category IMAP, confidence
+        High, updated_at 2010_09_23
+      msg: '"GPL IMAP login buffer overflow attempt"'
+      pcre: '"/\sLOGIN\s[^\n]{100}/smi"'
+      reference: nessus,10125
+      rev: '16'
+      sid: '2101842'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

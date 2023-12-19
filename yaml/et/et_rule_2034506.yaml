@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -22
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"burpcollaborator.net"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2021_11_18, former_category POLICY, updated_at 2022_03_16
+      msg: '"ET POLICY Burp Collaborator Domain in TLS SNI"'
+      pcre: '"/^(?:\x00\x14|.\x2e)burpcollaborator\.net/R"'
+      rev: '3'
+      sid: '2034506'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

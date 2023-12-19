@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '55'
+        value: '"|7b 22|status|22 3a|200|2c 22|message|22 3a 22|success|22 2c 22|response|22
+          3a 7b 22|result|22 3a|"'
+      - value: '"|22|user|5f|token|5f|id|22 3a 22|"'
+      - value: '"|22|message|22 3a 22|PCFET0NUWVBFIGh0bWw"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_11_16, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Critical, updated_at 2023_11_16
+      msg: '"ET TROJAN QuickBooks Pop-Up Scam - Pop-Up Details Response"'
+      reference: url,www.esentire.com/blog/threat-actors-using-fake-quickbooks-software-to-scam-organizations
+      rev: '1'
+      sid: '2049225'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

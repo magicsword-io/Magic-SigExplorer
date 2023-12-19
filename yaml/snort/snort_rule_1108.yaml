@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/jsp/snp/"'
+      - value: '".snp"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-APACHE Apache Tomcat server snoop access"'
+      reference: nessus,10478
+      rev: '19'
+      service: http
+      sid: '1108'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

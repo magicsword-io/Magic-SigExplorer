@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - value: '"new-object System.Net.WebClient"'
+      - value: '".DownloadFile("'
+      - value: '"Start-Process"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_29, deployment Perimeter, former_category
+        HUNTING, signature_severity Informational, updated_at 2020_08_19
+      msg: '"ET INFO Powershell Downloader with Start-Process Inbound M1"'
+      reference: md5,b510f48b9ac735a197093ad5fb99b0ee
+      rev: '3'
+      sid: '2029339'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

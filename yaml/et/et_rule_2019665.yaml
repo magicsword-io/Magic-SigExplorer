@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/mac/update.zip"'
+      flow: established,to_server
+      metadata: created_at 2014_11_07, former_category MALWARE, updated_at 2020_05_13
+      msg: '"ET TROJAN OSX/WireLurker checkin"'
+      reference: url,www.paloaltonetworks.com/content/dam/paloaltonetworks-com/en_US/assets/pdf/reports/Unit_42/unit42-wirelurker.pdf
+      rev: '1'
+      sid: '2019665'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

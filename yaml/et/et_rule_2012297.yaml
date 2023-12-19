@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|0d 0a|User-Agent|3A| Zoiper"'
+      fast_pattern: only
+      metadata: created_at 2011_02_07, updated_at 2011_02_07
+      msg: '"ET VOIP Possible Inbound VOIP Scan/Misuse With User-Agent Zoiper"'
+      reference: url,blog.sipvicious.org/2010/12/11-million-euro-loss-in-voip-fraud-and.html
+      rev: '1'
+      sid: '2012297'
+      special_options:
+      - nocase
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

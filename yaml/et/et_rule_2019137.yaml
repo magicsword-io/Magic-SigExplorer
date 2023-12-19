@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-admin/admin-ajax.php"'
+      - value: '"action=revslider_show_image"'
+      - value: '"img=|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: created_at 2014_09_08, updated_at 2020_05_04
+      msg: '"ET WEB_SPECIFIC_APPS Possible WP CuckooTap Arbitrary File Download"'
+      reference: url,exploit-db.com/exploits/34511/
+      rev: '1'
+      sid: '2019137'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

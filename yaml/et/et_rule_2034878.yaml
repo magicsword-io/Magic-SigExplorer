@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|soundedge|04|live|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_10, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_01_04
+      msg: '"ET TROJAN APT/Donot Group CnC Domain in DNS Lookup (request .soundedge
+        .live)"'
+      reference: md5,7be9832a01b3004f02ff5bc0691d1700
+      rev: '3'
+      sid: '2034878'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

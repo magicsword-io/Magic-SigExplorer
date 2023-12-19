@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Et rule 2025534 - Magic SigExplorer</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Et rule 2025534";
+        var mkdocs_page_input_path = "rules/et/et_rule_2025534.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/rust.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Magic SigExplorer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../snort/">Snort</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../et/">ET</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Magic SigExplorer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Et rule 2025534</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="et-web_specific_apps-drupalgeddon2-839-846-851-rce-through-registration-form-cve-2018-7600">"ET WEB_SPECIFIC_APPS Drupalgeddon2 &lt;8.3.9 &lt;8.4.6 &lt;8.5.1 RCE Through Registration Form (CVE-2018-7600)"</h2>
+<p><strong>SID:</strong> 2025534</p>
+<p><strong>Revision:</strong> 2</p>
+<p><strong>Class Type:</strong> attempted-admin</p>
+<p><strong>Metadata:</strong> affected_product Drupal_Server, attack_target Web_Server, created_at 2018_04_26, deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity Minor, tag drupalgeddon, updated_at 2020_08_25</p>
+<p><strong>Reference:</strong> </p>
+<ul>
+<li><a href="https://research.checkpoint.com/uncovering-drupalgeddon-2">Link</a></li>
+</ul>
+<p><strong>Protocol:</strong> tcp</p>
+<p><strong>Source Network:</strong> any</p>
+<p><strong>Source Port:</strong> any</p>
+<p><strong>Destination Network:</strong> $HTTP_SERVERS</p>
+<p><strong>Destination Port:</strong> $HTTP_PORTS</p>
+<p><strong>Flow:</strong> established,to_server</p>
+<p><strong>Contents:</strong></p>
+<ul>
+<li>
+<p>Value: "user/password"</p>
+</li>
+<li>
+<p>Value: "POST"</p>
+</li>
+<li>
+<p>Value: "_triggering_element_name"</p>
+</li>
+</ul>
+<p><strong>Within:</strong> </p>
+<p><strong>PCRE:</strong> "/(?:%(?:25)?23|#)\s*(access_callback|pre_render|post_render|lazy_builder)/U"</p>
+<p><strong>Special Options:</strong></p>
+<ul>
+<li>
+<p>http_uri</p>
+</li>
+<li>
+<p>http_method</p>
+</li>
+<li>
+<p>http_client_body</p>
+</li>
+</ul>
+<p><a href="https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/et_rule_2025534.yaml"><em>source</em></a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

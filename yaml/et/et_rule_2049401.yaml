@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/etc/hosts"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Web_Server, created_at 2023_11_29,
+        deployment Perimeter, deployment SSLDecrypt, former_category WEB_SERVER, performance_impact
+        Low, confidence High, signature_severity Informational, updated_at 2023_11_29
+      msg: '"ET WEB_SERVER /etc/hosts Detected in URI"'
+      rev: '1'
+      sid: '2049401'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

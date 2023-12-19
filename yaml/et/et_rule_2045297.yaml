@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Base/1.0|0d 0a|"'
+      - depth: '5'
+        value: '"hwid="'
+      - value: '"deploy=1"'
+      - value: '"Content-Length|3a 20|62|0d 0a|"'
+      - value: '"Base/1.0|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_02, deployment Perimeter,
+        former_category MALWARE, malware_family WarHawk, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_02
+      msg: '"ET TROJAN WarHawk/Spyder Activity (Deploy)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Base\/1\.0/Hmi"'
+      reference: md5,87d94635372b874f18acb3af7c340357
+      rev: '1'
+      sid: '2045297'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, seconds 300, count 1, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

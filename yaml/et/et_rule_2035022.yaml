@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|title|3e|Messages|20 7c 20|Linkedln|20 7c 20|Welcome|20|back|2e
+          2e 2e 3c 2f|title|3e|"'
+      fast_pattern: 18,8
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_31, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_01_31
+      msg: '"ET CURRENT_EVENTS LinkedIn Phish Landing Page 2022-01-31"'
+      reference: md5,05376d1db31ee300b1d567a91bcc22d5
+      rev: '2'
+      sid: '2035022'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

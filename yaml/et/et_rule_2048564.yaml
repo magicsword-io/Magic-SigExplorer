@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 10.0|3b 20|WOW64|3b 20|Trident/7.0|3b
+          20|rv:11.1) like Gecko|0d 0a|"'
+      fast_pattern: 49,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_13, deployment Perimeter, former_category
+        USER_AGENTS, malware_family DarkWatchman, signature_severity Major, updated_at
+        2023_10_13, reviewed_at 2023_10_13
+      msg: '"ET TROJAN Possible Win32/DarkWatchMan User Agent M2"'
+      reference: url,securityintelligence.com/x-force/new-hive0117-phishing-campaign-imitates-conscription-summons-deliver-darkwatchman-malware/
+      rev: '2'
+      sid: '2048564'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

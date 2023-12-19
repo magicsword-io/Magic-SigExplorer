@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -11
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"frocdn.ch"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_20, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_06_20
+      msg: '"ET INFO Observered File Sharing Service in TLS SNI (frocdn .ch)"'
+      pcre: '"/^(?:\x00\x09|.\x2e)frocdn\.ch/R"'
+      rev: '1'
+      sid: '2046304'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

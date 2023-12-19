@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,4646]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"POST /contacts|20|"'
+      - value: '"User-Agent|3a| Apache-HttpClient/"'
+      - value: '"|0d 0a 0d 0a|contact|25|26="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2015_02_03, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2022_05_03, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android Syria-Twitter Checkin"'
+      reference: url,www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/rpt-behind-the-syria-conflict.pdf
+      rev: '1'
+      sid: '2020343'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

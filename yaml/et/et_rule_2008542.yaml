@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '20222'
+    details:
+      byte_test: 4,>,399,0
+      classtype: attempted-user
+      dsize: '4'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2008_2639, updated_at 2016_06_07
+      msg: '"ET SCADA CitectSCADA ODBC Overflow Attempt"'
+      reference: url,digitalbond.com/tools/quickdraw/vulnerability-rules
+      rev: '8'
+      sid: '2008542'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

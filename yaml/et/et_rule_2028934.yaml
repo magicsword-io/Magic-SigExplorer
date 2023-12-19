@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '20'
+        value: '"/file/start?session="'
+      - value: '"&imsi="'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_04, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_03_24
+      msg: '"ET TROJAN Possible Darkhotel Higasia Downloader Requesting Module"'
+      pcre: '"/\.exe$/Ui"'
+      reference: url,github.com/blackorbird/APT_REPORT/blob/master/Darkhotel/higaisa/higaisa_apt_report.pdf
+      rev: '2'
+      sid: '2028934'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

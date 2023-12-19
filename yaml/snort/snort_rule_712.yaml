@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ld_library_path",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET ld_library_path"'
+      reference: cve,1999-0073
+      rev: '16'
+      service: telnet
+      sid: '712'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

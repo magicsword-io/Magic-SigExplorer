@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"^|0E|1|C0 B0 3B 8D|~|0E 89 FA 89 F9|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-POP EXPLOIT x86 BSD overflow"'
+      reference: nessus,10196
+      rev: '18'
+      service: pop3
+      sid: '286'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

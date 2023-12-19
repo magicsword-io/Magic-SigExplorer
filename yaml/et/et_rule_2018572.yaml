@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: from_server,established
+      flowbits: isset,ET.Suspicious.Domain.Fake.Browser
+      metadata: created_at 2014_06_17, former_category HUNTING, updated_at 2014_06_17
+      msg: '"ET TROJAN HTTP Executable Download from suspicious domain with direct
+        request/fake browser (multiple families)"'
+      rev: '1'
+      sid: '2018572'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        offset: '16'
+        value: '"c|00|h|00|i|00|n|00|a|00 00 00|"'
+      - value: '"|20|MB|00|"'
+      - value: '"/proc/stat|00|cpu|00|"'
+      flow: established,to_server
+      metadata: created_at 2015_12_04, former_category MALWARE, updated_at 2015_12_04
+      msg: '"ET TROJAN Linux/KDefend Checkin"'
+      reference: url,blog.malwaremustdie.org/2015/12/mmd-0045-2015-kdefend-new-elf-threat.html
+      rev: '3'
+      sid: '2022219'
+      special_options:
+      - fast_pattern
+      within: '21'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

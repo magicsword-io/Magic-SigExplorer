@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|0d 0a|Max-Downloads|3a 20|"'
+      - value: '"|0d 0a|Max-Days|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_12, deployment Perimeter, former_category
+        MALWARE, malware_family PoetRat, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_10_12
+      msg: '"ET TROJAN PoetRAT Upload via HTTP"'
+      reference: url,blog.talosintelligence.com/2020/04/poetrat-covid-19-lures.html
+      rev: '2'
+      sid: '2031002'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

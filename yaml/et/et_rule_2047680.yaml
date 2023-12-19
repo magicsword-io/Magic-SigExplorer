@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0a|kekwltd.ru"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_21, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_08_21,
+        reviewed_at 2023_11_20
+      msg: '"ET TROJAN Observed Python Stealer/Clipper Related Domain (kekwltd .ru
+        in TLS SNI)"'
+      reference: url,cyble.com/blog/new-kekw-malware-variant-identified-in-pypi-package-distribution/
+      rev: '1'
+      sid: '2047680'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

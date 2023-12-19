@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/fwlink/?LinkId="'
+      - value: '"Host|3a 20|go.microsoft.com"'
+      - value: '!"MICROSOFT_DEVICE_METADATA_RETRIEVAL_CLIENT"'
+      - value: '!"SOAPAction|3a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_11_20, updated_at 2020_10_07
+      msg: '"ET TROJAN Sharik/Smoke Loader Microsoft Connectivity Check"'
+      reference: md5,467b786f7c645c73d5c29347d35cae11
+      rev: '5'
+      sid: '2022124'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

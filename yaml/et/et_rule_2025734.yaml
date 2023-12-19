@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"db_sql.php"'
+      - value: '"|2e 2e 2f|"'
+      flow: to_server,established
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2018_06_22,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET EXPLOIT phpMyAdmin 4.8.1 - Local File Inclusion"'
+      rev: '2'
+      sid: '2025734'
+      special_options:
+      - http_uri
+      - nocase
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"microsoftonline.com"'
+      - depth: '46'
+        value: '"client_id=62272a08-fe9d-4825-bc65-203842ff92bc"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family APT28, malware_family
+        Fancy_Bear, signature_severity Major, updated_at 2022_09_23
+      msg: '"ET TROJAN APT28/FancyBear Related Activity (POST)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+microsoftonline\.com/Hmi"'
+      reference: md5,2ff3e6c9244ef965295aa60879d1aa6b
+      rev: '1'
+      sid: '2038958'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

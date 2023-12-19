@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"client?mac_address="'
+      - value: '"&agent_id="'
+      - value: '"agent_file_version"'
+      - value: '"-Agent|3a 20|cpprestsdk/"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_04, deployment Perimeter, former_category
+        MALWARE, malware_family ActiveAgent, signature_severity Major, updated_at
+        2022_05_03
+      msg: '"ET TROJAN Win32.YordanyanActiveAgent CnC Reporting"'
+      reference: md5,d71d1ad067c3d4dc9ca74cca76bc9139
+      rev: '2'
+      sid: '2026435'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

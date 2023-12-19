@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 1,!&,0x80,7,relative
+      classtype: attempted-user
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"SMB"'
+      - value: '"puiframeworkproresenu|2E|dll"'
+      distance: '0'
+      flow: from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_07_06, cve CVE_2018_12589,
+        deployment Perimeter, former_category NETBIOS, updated_at 2021_09_09
+      msg: '"ET NETBIOS PolarisOffice Insecure Library Loading - SMB ASCII"'
+      reference: url,exploit-db.com/exploits/44985
+      rev: '2'
+      sid: '2025790'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '[445,139]'

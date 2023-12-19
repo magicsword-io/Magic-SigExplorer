@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '10'
+        value: '"/ip.htm?v="'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"RAM|3a|"'
+      - value: '"CPU|3a|"'
+      - value: '"HW|3a|"'
+      - value: '"SysUp|3A|"'
+      - value: '"Idle|3a|"'
+      - value: '"AppUp"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_04, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_11_04
+      msg: '"ET TROJAN Win32/DataStealer.P CnC Checkin"'
+      pcre: '"/HW\:[A-F0-9]{12}\,/H"'
+      reference: md5,6bd7c7c29e2f6989f48c35ec86980b72
+      rev: '1'
+      sid: '2039718'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

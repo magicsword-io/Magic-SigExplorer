@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"lfstream|26|",depth 9,offset 8'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      pcre: '"/^POST\x20\x2fg[ao]lfstream\x26/"'
+      reference: url,www.virustotal.com/file/f4c44b5331c30b62beacae5d343d591584715c2d9d6d65848216b61efd916ec1/analysis/
+      rev: '4'
+      service: http
+      sid: '25511'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

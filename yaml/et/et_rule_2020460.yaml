@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"102,117,110,99,116,105,111,110,32,114,117,110,109,117,109,97,97"'
+      flow: established,from_server
+      metadata: created_at 2015_02_18, cve CVE_2014_6332, former_category CURRENT_EVENTS,
+        updated_at 2015_02_18
+      msg: '"ET CURRENT_EVENTS Possible CVE-2014-6332 DECS2"'
+      rev: '2'
+      sid: '2020460'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

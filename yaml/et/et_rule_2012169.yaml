@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".php?f="'
+      - value: '"&e="'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a|"'
+      - value: '"Host|3a|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_01_07, deployment Perimeter, malware_family
+        Blackhole, signature_severity Critical, tag Blackhole, tag Exploit_Kit, updated_at
+        2020_04_21
+      msg: '"ET TROJAN Potential Blackhole Exploit Pack Binary Load Request"'
+      pcre: '"/^[^?#]+?\.php\?f=\w+&e=\d+$/U"'
+      reference: url,krebsonsecurity.com/2010/10/java-a-gift-to-exploit-pack-makers/
+      rev: '10'
+      sid: '2012169'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

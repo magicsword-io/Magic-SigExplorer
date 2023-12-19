@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '6969'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/announce"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P BitTorrent Announce"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000369
+      rev: '6'
+      sid: '2000369'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

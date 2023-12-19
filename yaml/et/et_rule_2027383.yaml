@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id="'
+      - value: '"-"'
+      - value: '"-"'
+      - value: '"-"'
+      - value: '"-"'
+      - value: '"&clip=get"'
+      - value: '"Proton Browser"'
+      - value: '!"Referer|3a|"'
+      distance: '12'
+      flow: established,to_server
+      metadata: created_at 2019_05_28, former_category TROJAN, malware_family ProtonBot,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN Win32/ProtonBot Stealer Activity"'
+      reference: md5,efb1db340e78f6799d9fbc5ee08f40fe
+      rev: '2'
+      sid: '2027383'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      within: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

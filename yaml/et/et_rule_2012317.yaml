@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[137,138,139,445]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|42 4F 00|"'
+      - value: '"BROWSER"'
+      - value: '"|08 09 A8 0F 01 20|"'
+      - value: '!"|0A|"'
+      distance: '0'
+      isdataat: 65,relative
+      metadata: created_at 2011_02_18, updated_at 2011_02_18
+      msg: '"ET NETBIOS Microsoft Windows Server 2003 Active Directory Pre-Auth BROWSER
+        ELECTION Heap Overflow Attempt"'
+      reference: bid,46360
+      rev: '2'
+      sid: '2012317'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '65'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

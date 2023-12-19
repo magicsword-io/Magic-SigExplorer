@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '10'
+        value: '"GET|20 01 10 8f e2 11 ff|"'
+      - value: '"aaaaaaaa"'
+      - value: '"HTTP"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product DVR, attack_target IoT, created_at 2019_09_09, deployment
+        Perimeter, former_category EXPLOIT, confidence High, signature_severity Major,
+        updated_at 2020_09_03
+      msg: '"ET EXPLOIT HiSilicon DVR - Buffer Overflow in Builtin Web Server"'
+      reference: url,github.com/tothi/pwn-hisilicon-dvr/blob/master/pwn_hisilicon_dvr.py
+      rev: '2'
+      sid: '2027972'
+      special_options:
+      - fast_pattern
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

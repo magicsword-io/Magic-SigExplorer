@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 13|www.minzdravros.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_05_23, deployment Perimeter,
+        malware_family TwistedPanda, performance_impact Low, signature_severity Major,
+        tag SSL_Malicious_Cert, updated_at 2022_05_23
+      msg: '"ET TROJAN Observed TWISTEDPANDA Domain in TLS SNI (www .minzdravros .com)"'
+      reference: url,research.checkpoint.com/2022/twisted-panda-chinese-apt-espionage-operation-against-russians-state-owned-defense-institutes/
+      rev: '1'
+      sid: '2036661'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

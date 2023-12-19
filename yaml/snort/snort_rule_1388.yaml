@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"Location",fast_pattern,nocase'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows UPnP Location overflow attempt"'
+      pcre: '"/^Location\s*\x3a\s*\w+\x3a\/\/([^\n]*\x3a)?[^\n]{128}/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-059
+      rev: '23'
+      sid: '1388'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 7777:7778
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Oracle Web Cache GET overflow attempt"'
+      pcre: '"/^GET[^s]{432}/ms"'
+      reference: nessus,12126
+      rev: '8'
+      sid: '2551'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

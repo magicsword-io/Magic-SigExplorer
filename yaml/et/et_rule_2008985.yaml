@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/automation/n09230945.asp"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category POLICY, updated_at 2020_08_25
+      msg: '"ET POLICY IP Check whatismyip.com Automation Page"'
+      reference: url,doc.emergingthreats.net/2008985
+      rev: '4'
+      sid: '2008985'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

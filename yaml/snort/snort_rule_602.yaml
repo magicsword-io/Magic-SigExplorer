@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '513'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"bin|00|bin|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES rlogin bin"'
+      rev: '11'
+      sid: '602'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

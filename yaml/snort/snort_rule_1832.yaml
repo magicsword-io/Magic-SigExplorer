@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Content-Type|3A| application/x-icq",fast_pattern,nocase'
+      - value: '"[ICQ User]"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL ICQ forced user addition"'
+      reference: cve,2001-1305
+      rev: '13'
+      sid: '1832'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '80'

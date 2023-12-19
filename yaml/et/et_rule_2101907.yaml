@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,1024,0,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        offset: '12'
+        value: '"|00 01 86 E4|"'
+      - value: '"|00 00 00 15|"'
+      - depth: '4'
+        offset: '4'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      metadata: created_at 2010_09_23, cve CVE_1999_0696, former_category RPC, confidence
+        High, updated_at 2010_09_23
+      msg: '"GPL RPC CMSD UDP CMSD_CREATE buffer overflow attempt"'
+      reference: cve,1999-0696
+      rev: '11'
+      sid: '2101907'
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

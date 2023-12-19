@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|5e 52 4a 3b|"'
+      - value: '"|11 7f b6|"'
+      distance: '1'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2020_02_14, former_category MALWARE, malware_family Parallax, updated_at 2020_02_14
+      msg: '"ET TROJAN Parallax CnC Activity M7 (set)"'
+      reference: url,twitter.com/malwrhunterteam/status/1227196799997431809
+      rev: '1'
+      sid: '2029455'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

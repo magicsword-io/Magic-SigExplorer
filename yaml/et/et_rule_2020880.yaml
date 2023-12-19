@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/userRpm/WanStaticIpCfgRpm.htm"'
+      - value: '"&dnsserver="'
+      - value: '"&Save=Save"'
+      flow: to_server,established
+      metadata: created_at 2015_04_09, updated_at 2020_05_21
+      msg: '"ET EXPLOIT TP-LINK TL-WR750N DNS Change GET Request"'
+      reference: url,www.xexexe.cz/2015/02/bruteforcing-tp-link-routers-with.html
+      rev: '1'
+      sid: '2020880'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|16|*.burpcollaborator.net"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2021_11_18, former_category POLICY, updated_at 2021_11_18
+      msg: '"ET POLICY Burp Collaborator Certificate Inbound"'
+      rev: '2'
+      sid: '2034507'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"PASS ddd@|0A|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SCAN adm scan"'
+      reference: arachnids,332
+      rev: '7'
+      sid: '2100353'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

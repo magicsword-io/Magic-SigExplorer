@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        offset: '7'
+        value: '"D|3a 00 00 00|"'
+      dsize: '200'
+      flow: to_server,established
+      metadata: created_at 2015_01_23, former_category MALWARE, updated_at 2015_01_23
+      msg: '"ET TROJAN W32/AGENT.NXNX Checkin 2"'
+      pcre: '"/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}D\x3a\x00+?$/"'
+      reference: url,global.ahnlab.com/global/upload/download/asecreport/ASEC%20Report_Vol.58_Eng.pdf
+      rev: '2'
+      sid: '2020303'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0f|xipxesip.design"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_04_13, former_category MOBILE_MALWARE, updated_at
+        2022_04_13
+      msg: '"ET MOBILE_MALWARE Observed Android ExobotCompact.D/Octo Domain (xipxesip
+        .design in TLS SNI)"'
+      reference: url,www.threatfabric.com/blogs/octo-new-odf-banking-trojan.html
+      rev: '1'
+      sid: '2035908'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

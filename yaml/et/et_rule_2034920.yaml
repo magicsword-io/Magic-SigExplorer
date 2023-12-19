@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|informados24h|2e|com"'
+      distance: '1'
+      metadata: attack_target Client_and_Server, created_at 2022_01_13, deployment
+        Perimeter, former_category MALWARE, malware_family Pegasus, signature_severity
+        Major, tag Targeted, tag APT, updated_at 2022_01_13
+      msg: '"ET TROJAN Observed DNS Query to Pegasus Domain"'
+      reference: url,citizenlab.ca/2022/01/project-torogoz-extensive-hacking-media-civil-society-el-salvador-pegasus-spyware/
+      rev: '2'
+      sid: '2034920'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

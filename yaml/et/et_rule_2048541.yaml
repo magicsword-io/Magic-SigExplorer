@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/server-info.action?"'
+      - value: '"bootstrapStatusProvider.applicationConfig.setupComplete=false"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.CVE-2023-22515.step1.request
+      metadata: created_at 2023_10_12, cve CVE_2023_22515, former_category WEB_SPECIFIC_APPS,
+        updated_at 2023_10_12, reviewed_at 2023_10_12
+      msg: '"ET WEB_SPECIFIC_APPS Atlassian Confluence CVE-2023-22515 Step 1/2 Attempt"'
+      reference: cve,2023-22515
+      rev: '1'
+      sid: '2048541'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

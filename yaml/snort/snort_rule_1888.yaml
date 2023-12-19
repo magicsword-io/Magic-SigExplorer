@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"SITE",nocase'
+      - value: '"CPWD",distance 0,nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP SITE CPWD overflow attempt"'
+      pcre: '"/^SITE\s+CPWD\s[^\n]{100}/ims"'
+      reference: cve,2002-0826
+      rev: '14'
+      service: ftp
+      sid: '1888'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

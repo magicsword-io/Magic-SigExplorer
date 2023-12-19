@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/saas./resttosaasservlet"'
+      - value: '"createSupportBundle"'
+      - value: '"|7b 22|str|22 3a 22 60|"'
+      - value: '"|60|"'
+      - value: '"Content-Type|3a 20|application/x-thrift|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product VMware, attack_target Client_Endpoint, created_at
+        2023_06_21, cve CVE_2023_20887, deployment Perimeter, former_category EXPLOIT,
+        confidence High, signature_severity Major, tag CVE_2023_20887, tag CVE_2023_20888,
+        tag CVE_2023_20889, updated_at 2023_06_21
+      msg: '"ET EXPLOIT VMware Aria Operations for Networks RCE Attempt (CVE-2023-20887)"'
+      pcre: '"/\/saas\.\/resttosaasservlet$/U"'
+      reference: cve,2023-20889
+      rev: '1'
+      sid: '2046500'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

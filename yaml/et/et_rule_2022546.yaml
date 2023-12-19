@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      byte_test: 1,!&,8,4
+      classtype: attempted-user
+      contents:
+      - depth: '8'
+        offset: '6'
+        value: '"|00 01 00 00 00 00 00 00|"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2016_02_18, cve CVE_2015_7547, updated_at 2016_02_18
+      msg: '"ET EXPLOIT Possible CVE-2015-7547 A/AAAA Record Lookup Possible Forced
+        FallBack(fb set)"'
+      pcre: '"/^(?:.[a-z0-9-]{2,}){2,}\x00\x00(?:\x01|\x1c)/Ri"'
+      reference: cve,2015-7547
+      rev: '1'
+      sid: '2022546'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

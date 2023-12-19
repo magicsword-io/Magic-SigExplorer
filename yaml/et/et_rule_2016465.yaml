@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0e 97 88 1c 6c a1 37 96 42 03 bc 45 42 24 75 6c|"'
+      - value: '"|55 04 03|"'
+      - value: '"|0F|LM-68AB71FBD8F5"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2013_02_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_21
+      msg: '"ET TROJAN LAME SSL Cert APT1"'
+      reference: url,www.mandiant.com/apt1
+      rev: '4'
+      sid: '2016465'
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

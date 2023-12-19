@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '25'
+        value: '"POST /root/processor.php|20|"'
+      - depth: '5'
+        value: '"user="'
+      - value: '"&pass="'
+      - value: '"&type=1"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_19, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_04_05, reviewed_at 2023_11_02
+      msg: '"ET CURRENT_EVENTS Successful o365 Credential Phish 2022-12-19"'
+      reference: md5,528c8ebb18fc275dd8d738f2f571d3b0
+      rev: '2'
+      sid: '2042967'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

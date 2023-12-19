@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|HTTP|0d 0a|"'
+      - value: '!".realptt.com"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_17, deployment Perimeter, signature_severity
+        Major, updated_at 2022_06_30
+      msg: '"ET TROJAN Possible KONNI CnC Activity"'
+      reference: url,us-cert.cisa.gov/ncas/alerts/aa20-227a
+      rev: '3'
+      sid: '2030691'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

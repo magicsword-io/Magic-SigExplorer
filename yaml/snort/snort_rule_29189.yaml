@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '34'
+      classtype: trojan-activity
+      contents:
+      - value: '"/?",depth 2,fast_pattern'
+      - value: '" MSIE "'
+      - value: '!"Referer|3A|"'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT Magnitude exploit kit Microsoft Internet Explorer Payload
+        request"'
+      pcre: '"/^\/\?[a-f0-9]{32}$/"'
+      rev: '5'
+      service: http
+      sid: '29189'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

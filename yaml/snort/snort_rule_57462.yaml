@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Results of |27|"'
+      - value: '"|27| execution:|0A 0A|",within 260'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-BACKDOOR Perl.Backdoor.STEADYPULSE webshell variant access"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day.html
+      rev: '1'
+      service: http
+      sid: '57462'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

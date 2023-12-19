@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '10'
+        value: '"MZ"'
+      - value: '"!This program"'
+      - value: '"www.vulnwatch.org/netcat/"'
+      - value: '"nc [-options]"'
+      - value: '"nc -l -p port"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_02, deployment Perimeter, former_category
+        POLICY, signature_severity Informational, updated_at 2022_05_03
+      msg: '"ET POLICY Observed nc (netcat) EXE Inbound"'
+      reference: md5,e0db1d3d47e312ef62e5b0c74dceafe5
+      rev: '1'
+      sid: '2033890'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

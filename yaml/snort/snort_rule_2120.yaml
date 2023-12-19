@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,256,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"CREATE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP create literal buffer overflow attempt"'
+      pcre: '"/\sCREATE\s*\{/ims"'
+      reference: cve,2003-1470
+      rev: '12'
+      service: imap
+      sid: '2120'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

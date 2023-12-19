@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '".php"'
+      - value: '"useRawIMoutput"'
+      - value: '"IMresizedData"'
+      - value: '"config_prefer_imagemagick"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_08_01, cve CVE_2018_100020,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS Modx Revolution RCE (CVE-2018-1000207)"'
+      reference: url,www.exploit-db.com/exploits/45055
+      rev: '1'
+      sid: '2025930'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

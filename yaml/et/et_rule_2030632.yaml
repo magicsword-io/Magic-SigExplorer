@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '18'
+        value: '"GET /ff/inst_stat?"'
+      - value: '"Host|3a 20|server.pcfreetime.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_31, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2020_07_31
+      msg: '"ET MALWARE FormatFactory Install Checkin"'
+      reference: md5,3efa61c1ad1bc3a700563f54870676c3
+      rev: '2'
+      sid: '2030632'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

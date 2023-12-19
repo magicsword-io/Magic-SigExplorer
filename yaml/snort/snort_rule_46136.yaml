@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)"'
+      - value: '"remetente=",depth 10,fast_pattern'
+      - value: '"&destinatario",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.Banbra variant outbound connection"'
+      rev: '1'
+      service: http
+      sid: '46136'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

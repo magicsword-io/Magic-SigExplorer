@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/1/dg/3"'
+      - value: '"Content-Type|3a| application/json"'
+      - value: '!"Referer|3a|"'
+      - value: '"{|22|BuildId|22 3a|"'
+      - value: '"|22|Campaign|22|"'
+      - value: '"|22|TrackBackUrl|22|"'
+      flow: established, to_server
+      metadata: created_at 2014_06_02, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE PUP Win32/DownloadGuide.A"'
+      reference: md5,37b91123a58a48975770241445392aeb
+      rev: '3'
+      sid: '2018513'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

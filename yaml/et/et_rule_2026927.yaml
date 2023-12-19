@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!"v=DKIM"'
+      - value: '"|00 00 10 00 01 c0 0c 00 10 00 01|"'
+      - value: '"RhcnQtUHJ"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2019_02_19, deployment Perimeter,
+        former_category CURRENT_EVENTS, malware_family DNSlivery, signature_severity
+        Major, updated_at 2023_01_24
+      msg: '"ET ATTACK_RESPONSE PowerShell Execution String Base64 Encoded Start-Process
+        (RhcnQtUHJ) in DNS TXT Reponse"'
+      reference: url,github.com/no0be/DNSlivery
+      rev: '4'
+      sid: '2026927'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: any
+      port: '53'

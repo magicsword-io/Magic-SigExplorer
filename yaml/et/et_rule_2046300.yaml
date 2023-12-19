@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|sikhforjustice|03|org|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_06_19, deployment Perimeter, signature_severity Minor, updated_at 2023_06_19
+      msg: '"ET MOBILE_MALWARE Android/Spy.Bahamut.I CnC Domain in DNS Lookup"'
+      reference: md5,4f2cce408fc858fb7464ac0c903fdc56
+      rev: '1'
+      sid: '2046300'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

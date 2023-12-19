@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"HTTP/",nocase'
+      - value: '".asa",fast_pattern,nocase'
+      - value: '"|3A|"'
+      - value: '"|0A|"'
+      - value: '"|00|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS .asa HTTP header buffer overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS02-018
+      rev: '20'
+      service: http
+      sid: '1802'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

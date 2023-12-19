@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/portbased_basic.htm"'
+      - value: '"submitId="'
+      - value: '"&bPortBasedVLAN="'
+      - value: '"&groupId=-"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2021_03_11, cve CVE_2020_35230,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_03_11
+      msg: '"ET EXPLOIT Netgear ProSAFE Plus Possible Integer Overflow Attempt Inbound
+        M1 (CVE-2020-35230)"'
+      reference: cve,2020-35230
+      rev: '2'
+      sid: '2031941'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?computerName="'
+      - value: '"&userName="'
+      - value: '"&key="'
+      - value: '"&id="'
+      - value: '"&time="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_05, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family NewHT, signature_severity
+        Major, tag Ransomware, updated_at 2020_08_05, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN MSIL/NewHT Ransomware CnC Checkin"'
+      reference: md5,2e0ebb7a21d16ab6fa908f74bee260d6
+      rev: '1'
+      sid: '2024280'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

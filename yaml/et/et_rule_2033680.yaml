@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/css/css/b/l/i2.php"'
+      - value: '"Accept-Encoding|3a 20|gzip,|20|deflate|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_08_05
+      msg: '"ET TROJAN SideCopy Group Activity (GET)"'
+      reference: md5,8e07953b96ffa7ee7f5d0fa6fea71a6a
+      rev: '1'
+      sid: '2033680'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '19'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

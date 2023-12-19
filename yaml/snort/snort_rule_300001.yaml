@@ -1,0 +1,16 @@
+- rule:
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/vpns/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Citrix ADC and Gateway arbitrary code execution attempt"'
+      pcre: '"/vpn.*?(\x2e|%(25)?2e){2}(\x2f|%(25)?2f).*?vpns/i"'
+      reference: url,support.citrix.com/article/CTX267027
+      rev: '1'
+      sid: '300001'
+      special_options:
+      - http_raw_uri
+    protocol: http

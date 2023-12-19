@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '9'
+      classtype: trojan-activity
+      contents:
+      - value: '"/load.exe HTTP/1.1|0D 0A|User-Agent: Mozilla/",fast_pattern,nocase'
+      - value: '"|3B 20|MSIE|20|"'
+      - value: '")|0D 0A|Host: ",distance 0'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Injector variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/032572ea1f34a060ecac98a8e2899dc0f2a41dff199e879050481ddd3818b4d0/analysis/
+      rev: '3'
+      service: http
+      sid: '28807'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

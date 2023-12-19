@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?"'
+      - value: '"co"'
+      - value: '"untry="'
+      - value: '"phone="'
+      - value: '"&op="'
+      - value: '"imei="'
+      - value: '"User-Agent|3a| Apache-HttpClient/"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2013_10_14, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, tag Android, tag c2, updated_at 2020_10_06, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/Opfake.A Country CnC Beacon"'
+      reference: url,quequero.org/2013/09/android-opfake-malware-analysis/
+      rev: '4'
+      sid: '2017588'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

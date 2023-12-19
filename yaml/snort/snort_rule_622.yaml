@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      flags: S
+      flow: stateless
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN ipEye SYN scan"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '12'
+      seq: '1958810375'
+      sid: '622'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

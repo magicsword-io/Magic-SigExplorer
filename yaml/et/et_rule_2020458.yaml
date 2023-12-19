@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|ukzo73z4inzpenmq"'
+      distance: '0'
+      metadata: created_at 2015_02_17, updated_at 2020_09_01
+      msg: '"ET TROJAN Chanitor Variant .onion Proxy Domain"'
+      reference: md5,53752a41ed21172343f678423d6c9a44
+      rev: '2'
+      sid: '2020458'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: non-standard-protocol
+      contents:
+      - value: '" HTTP/",depth 300,nocase'
+      - value: '!"0.9",within 3'
+      - value: '!"1.0",within 3'
+      - value: '!"1.1",within 3'
+      flow: to_server,established
+      isdataat: 5,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP invalid HTTP version string"'
+      pcre: '!"/^[^\n]* HTTP\x2f(0\.9|1\.[01])\s*\n/i"'
+      reference: nessus,11593
+      rev: '25'
+      service: http
+      sid: '2570'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

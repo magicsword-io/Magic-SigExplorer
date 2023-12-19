@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"iSpyKelogger",fast_pattern,nocase'
+      - value: '"gate="'
+      - value: '"token=",distance 0'
+      - value: '"name=",distance 0'
+      - value: '!"User-Agent"'
+      - value: '!"Connection"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.iSpy variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/11e611585bfb6ff1f823e3c035ef6cfae39dfe2209e15ed01a8db8b3f9526519/analysis/1477417828/
+      rev: '3'
+      service: http
+      sid: '40559'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

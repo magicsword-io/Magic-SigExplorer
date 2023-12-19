@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>sign in</title>"'
+      - value: '"action|3d 22 2f 2f|www|2e|weebly|2e|com|2f|weebly|2f|apps|2f|formSubmit|2e|php|22|"'
+      - value: '"BT ID or Email address"'
+      - value: '"Passw|2a 2a 2a|d"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_01, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_07_01
+      msg: '"ET CURRENT_EVENTS BT Group Credential Phish Landing Page 2022-07-01"'
+      reference: md5,263a4cf0a25e8aa49386fb7b941e95f3
+      rev: '1'
+      sid: '2037254'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

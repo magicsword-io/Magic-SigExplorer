@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"M-SEARCH * HTTP/1.1"'
+      - value: '"ST|3a 20|ssdp|3a|all|0d 0a|"'
+      distance: '0'
+      metadata: created_at 2014_09_03, updated_at 2014_09_03
+      msg: '"ET DOS Possible SSDP Amplification Scan in Progress"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2014/08/29/weekly-metasploit-update
+      rev: '1'
+      sid: '2019102'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type both,track by_src,count 2,seconds 60
+    protocol: udp
+    source:
+      network: any
+      port: any

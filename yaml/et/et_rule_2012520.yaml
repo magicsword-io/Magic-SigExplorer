@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|d0 cf 11 e0 a1 b1 1a e1|"'
+      - value: '!".msi"'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_12_15, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Microsoft OLE Compound File Magic Bytes Flowbit Set"'
+      rev: '7'
+      sid: '2012520'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

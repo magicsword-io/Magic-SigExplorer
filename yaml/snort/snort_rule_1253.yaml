@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"|FF F6 FF F6 FF FB 08 FF F6|",depth 50,offset 200'
+      flow: to_server,established
+      isdataat: '200'
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET bsd exploit client finishing"'
+      reference: nessus,10709
+      rev: '24'
+      service: telnet
+      sid: '1253'
+      special_options:
+      - raw_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

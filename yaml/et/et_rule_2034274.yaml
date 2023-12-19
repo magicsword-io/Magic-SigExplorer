@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/session-error-active/"'
+      - value: '"/config/connect.php?id="'
+      - value: '"&ath="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_10_27, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2021_10_27
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish Activity POST"'
+      reference: md5,3a95182c1461c1f396795b328e879e4b
+      rev: '2'
+      sid: '2034274'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

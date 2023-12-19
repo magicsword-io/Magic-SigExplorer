@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - value: '"=system|28 27|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2022_05_18,
+        deployment Perimeter, deployment SSLDecrypt, former_category HUNTING, performance_impact
+        Low, signature_severity Major, updated_at 2022_05_18
+      msg: '"ET INFO Possible PHP Backdoor Command Execution"'
+      reference: url,www.ic3.gov/Media/News/2022/220516.pdf
+      rev: '2'
+      sid: '2036626'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/jadro/libs/adodb/adodb.inc.php?"'
+      - value: '"path="'
+      flow: established,to_server
+      metadata: created_at 2012_04_13, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Free PHP photo gallery script path parameter Remote
+        File inclusion Attempt"'
+      pcre: '"/path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/92079/Free-PHP-Photo-Gallery-Script-Remote-File-Inclusion.html
+      rev: '2'
+      sid: '2014559'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

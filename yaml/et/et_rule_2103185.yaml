@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,-17,relative,from_beginning,little
+      byte_test: 4,>,128,20,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C|PIPE|5C 00|"'
+      - value: '"|05|"'
+      - value: '"|00|"'
+      - value: '"|01 00|"'
+      distance: '19'
+      flow: established,to_server
+      flowbits: isset,smb.tree.bind.msqueue
+      metadata: created_at 2010_09_23, cve CVE_2003_0995, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS CoGetInstanceFromFile little endian overflow attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-026.mspx
+      rev: '4'
+      sid: '2103185'
+      special_options:
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

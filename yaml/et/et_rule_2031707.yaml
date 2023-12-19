@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"UPLOADED FILE"'
+      - value: '"Sign in with your existing Email Service"'
+      - value: '"Email Service Provider"'
+      - value: '"select.com"'
+      - value: '"VIEW DOCUMENT"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_07_13, deployment Perimeter, former_category PHISHING, signature_severity
+        Minor, tag Phishing, updated_at 2017_08_17
+      msg: '"ET CURRENT_EVENTS Possible Google Drive Phishing Landing 2015-07-13"'
+      rev: '2'
+      sid: '2031707'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

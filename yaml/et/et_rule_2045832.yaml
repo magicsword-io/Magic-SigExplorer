@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|13|diagnostic-resolver|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_05_23
+      msg: '"ET TROJAN UAC-0063 Domain in DNS Lookup (diagnostic-resolver .com)"'
+      reference: url,therecord.media/cyber-espionage-ukraine-uac-0063-cert-ua
+      rev: '1'
+      sid: '2045832'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Revolution"'
+      flow: established,to_server
+      metadata: created_at 2011_09_06, updated_at 2020_04_20
+      msg: '"ET USER_AGENTS Win32/OnLineGames User-Agent (Revolution Win32)"'
+      reference: md5,1431f4ab4bbe3ad1087eb14cf4d7dff9
+      rev: '1'
+      sid: '2013542'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/sacc/sacc.cfg.php?"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE SurfAccuracy.com Spyware Updating"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003390
+      rev: '5'
+      sid: '2003390'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

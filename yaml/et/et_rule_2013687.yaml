@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"id="'
+      - value: '"&bid="'
+      - value: '"&query="'
+      - value: '"&data="'
+      flow: established,to_server
+      metadata: created_at 2011_09_22, updated_at 2020_04_22
+      msg: '"ET TROJAN Shylock Module Data POST"'
+      pcre: '"/id=\d+&bid=[^&]+&query=\w+&data=\w/P"'
+      reference: url,anubis.iseclab.org/index.php?action=result&task_id=86c6da9437e65c94990ddd85d87299f1
+      rev: '3'
+      sid: '2013687'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

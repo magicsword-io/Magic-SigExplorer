@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"numtoyminterval"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2010_09_23
+      msg: '"GPL SQL numtoyminterval buffer overflow attempt"'
+      pcre: '"/numtoyminterval\s*\(\s*\d+\s*,\s*(\x27[^\x27]{32}|\x22[^\x22]{32})/smi"'
+      rev: '4'
+      sid: '2102700'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

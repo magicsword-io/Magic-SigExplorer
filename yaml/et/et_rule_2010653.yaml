@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/ossim/repository/repository_attachment.php?"'
+      - value: '"id_document="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS OSSIM repository_attachment.php DELETE FROM SQL
+        Injection Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2010653
+      rev: '3'
+      sid: '2010653'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

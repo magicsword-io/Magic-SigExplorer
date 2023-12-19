@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"pccsmysqladm/incs/dbconnect.inc",depth 36,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PCCS mysql database admin tool access"'
+      reference: nessus,10783
+      rev: '18'
+      service: http
+      sid: '509'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

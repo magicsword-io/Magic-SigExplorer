@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '9'
+        value: '"/fmicode/"'
+      - value: '".php"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_21, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_05_03
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-06-21"'
+      reference: md5,6e58fc761e676b4bbf1d23eb73a43d2a
+      rev: '1'
+      sid: '2037048'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

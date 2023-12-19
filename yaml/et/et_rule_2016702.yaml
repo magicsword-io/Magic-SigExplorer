@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/csrss.exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_02, former_category INFO, updated_at 2020_09_17
+      msg: '"ET INFO Suspicious csrss.exe in URI"'
+      pcre: '"/\/csrss\.exe$/Ui"'
+      reference: md5,21a069667a6dba38f06765e414e48824
+      rev: '11'
+      sid: '2016702'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      urilen: <100
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

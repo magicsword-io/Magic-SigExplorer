@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|29 3B 28|b|3A|3790|3B|c|3A|INT|2D|6760|3B|l|3A|09|29 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Trojan Agent YEH variant outbound connection"'
+      pcre: '"/\x2f\?ts\x3d[a-f0-9]{40}\x26/i"'
+      reference: url,www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~Agent-YEH/detailed-analysis.aspx
+      rev: '5'
+      service: http
+      sid: '25765'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

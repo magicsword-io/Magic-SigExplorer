@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"|01 00 00 00 FF FF FF FF 01|"'
+      - value: '"Svr|7c 2d 7c|"'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_01, deployment Perimeter, former_category
+        MALWARE, malware_family CobianRAT, performance_impact Low, signature_severity
+        Major, updated_at 2017_09_01
+      msg: '"ET TROJAN CobianRAT Receiving Config Commands from CnC"'
+      pcre: '"/^(?:\x40|\x21|\x23|\x7e|\x24)/R"'
+      reference: url,www.zscaler.com/blogs/research/cobian-rat-backdoored-rat
+      rev: '2'
+      sid: '2024654'
+      special_options:
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

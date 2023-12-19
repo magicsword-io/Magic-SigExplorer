@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|0d 0a|Content-Type|3a 20|multipart|2f|mixed|3b|"'
+      - value: '"|0d 0a 2d 2d|"'
+      distance: '0'
+      fast_pattern: 12,20
+      flow: to_server,established
+      metadata: attack_target SMTP_Server, created_at 2016_09_22, deployment Datacenter,
+        performance_impact Low, signature_severity Major, updated_at 2022_03_17
+      msg: '"ET SMTP Incoming SMTP Message with Possibly Malicious MIME Epilogue 2016-05-13
+        (BadEpilogue)"'
+      pcre: '"/^(?P<boundary>[\x20\x27-\x29\x2b-\x2f0-9\x3a\x3d\x3fA-Z\x5fa-z]{0,69}?[^\x2d])--(?:\x0d\x0a(?!--|\x2e|RSET)[^\r\n]*?)*\x0d\x0a--(?P=boundary)\x0d\x0a/R"'
+      reference: url,www.certego.local/en/news/badepilogue-the-perfect-evasion/
+      rev: '1'
+      sid: '2023255'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/access.php"'
+      - value: '"User-Agent|3a| sendfile"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_05_21, former_category MALWARE, updated_at 2020_04_29
+      msg: '"ET TROJAN Hangover Campaign Keylogger 2 checkin"'
+      reference: url,enterprise.norman.com/resources/files/unveiling_an_indian_cyberattack_infrastructure_appendixes.pdf
+      rev: '2'
+      sid: '2016862'
+      special_options:
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

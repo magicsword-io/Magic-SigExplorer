@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php?"'
+      - value: '"action=add",fast_pattern'
+      - value: '"&username=",distance 0'
+      - value: '"&password=",distance 0'
+      - value: '"&app=",distance 0'
+      - value: '"&pcname=",distance 0'
+      - value: '"&sitename=",distance 0'
+      - value: '!"Accept"'
+      - value: '!"Connection"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.VBPasswordStealer variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/4f0988ac590d52b97b1a162f5ee098c38f6e640be783a511049d8e5006cac011/analysis/
+      rev: '2'
+      service: http
+      sid: '34047'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

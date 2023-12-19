@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!80'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"GET /"'
+      - value: '"?=1"'
+      - value: '"|0d 0a|Accept|3a 20 2a 2f 2a 0d 0a|"'
+      - value: '"|0d 0a|Accept-Encoding|3a 20|gzip|2c 20|deflate|0d 0a|User-Agent|3a
+          20|"'
+      - value: '"|0d 0a|Host|3a 20|"'
+      - value: '"Connection|3a 20|Keep-Alive|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_05, deployment Perimeter, former_category
+        MALWARE, malware_family PurpleFox, performance_impact Moderate, signature_severity
+        Major, updated_at 2022_01_06
+      msg: '"ET TROJAN PurpleFox Backdoor/Rootkit Download Request M1"'
+      pcre: '"/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\x3a\d{1,5}\x0d\x0a/R"'
+      reference: md5,c398b504f74500d6a1a47f72bb45bc83
+      rev: '2'
+      sid: '2034859'
+      special_options:
+      - fast_pattern
+      within: '24'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

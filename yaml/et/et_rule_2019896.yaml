@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"__we_are_happy__"'
+      - value: '"__TREX__STOP__STRING__"'
+      - value: '"/dev/random"'
+      distance: '1'
+      flow: from_server,established
+      flowbits: isset,ET.ELFDownload
+      metadata: created_at 2014_12_09, updated_at 2014_12_09
+      msg: '"ET TROJAN Backdoor.Linux.Turla Download"'
+      reference: md5,19fbd8cbfb12482e8020a887d6427315
+      rev: '2'
+      sid: '2019896'
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

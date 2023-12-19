@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|solevisible|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2021_06_04, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_06_04
+      msg: '"ET TROJAN ALFA Shell APT33 DNS Lookup (solevisible .com)"'
+      reference: url,fireeye.com/blog/threat-research/2017/09/apt33-insights-into-iranian-cyber-espionage.html
+      rev: '2'
+      sid: '2033095'
+      special_options:
+      - nocase
+      threshold: type limit,count 1,track by_src,seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

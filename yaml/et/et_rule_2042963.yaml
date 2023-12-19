@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|title|3e|Credit|20|Unions|20|in|20|Florida|20 7c 20|Suncoast|20|Credit|20|Union|3c
+          2f|title|3e|"'
+      - value: '"mainnet.php"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_19, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_12_19
+      msg: '"ET CURRENT_EVENTS Suncoast Credit Union Credential Phish Landing Page
+        2022-12-19"'
+      reference: md5,722d836f344c3212f74004c44626e745
+      rev: '1'
+      sid: '2042963'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

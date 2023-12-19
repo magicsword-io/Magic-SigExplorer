@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/topstories"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0|20 28|Windows NT 6.1|29 20|Gecko/14.0|20|Firefox/14.0"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_13, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Cobalt_Strike,
+        signature_severity Major, updated_at 2021_09_13, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Beacon Activity (GET)"'
+      pcre: '"/^__cfduid=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/C"'
+      reference: url,documents.trendmicro.com/assets/white_papers/wp-earth-baku-an-apt-group-targeting-indo-pacific-countries.pdf
+      rev: '2'
+      sid: '2033927'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

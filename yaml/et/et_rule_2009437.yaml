@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/viewsource.php?"'
+      - value: '"dirn="'
+      - value: '"../"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_07_30, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS Mole viewsource.php dirn Parameter Local File Inclusion"'
+      reference: url,doc.emergingthreats.net/2009437
+      rev: '4'
+      sid: '2009437'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

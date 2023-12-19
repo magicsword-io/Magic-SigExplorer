@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|40 E8 D4 F1 FF 33|"'
+      fast_pattern: only
+      flow: established,to_client
+      flowbits: isset,ET.flash.pdf
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_29, cve CVE_2010_2168, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT Adobe Acrobat newfunction Remote Code Execution Attempt"'
+      reference: cve,2010-2168
+      rev: '2'
+      sid: '2011575'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

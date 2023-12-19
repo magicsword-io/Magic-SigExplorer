@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|roughted|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_05, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family Malvertising, malware_family RoughTed, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS DNS Request for Grey Advertising Often Leading
+        to EK"'
+      reference: url,blog.malwarebytes.com/cybercrime/2017/05/roughted-the-anti-ad-blocker-malvertiser
+      rev: '3'
+      sid: '2024349'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

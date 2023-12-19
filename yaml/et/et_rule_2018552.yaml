@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/home/index.asp?typeid="'
+      - value: '"Referer|3a| http|3a|//www.google.com/|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_06_09, updated_at 2020_09_24
+      msg: '"ET TROJAN Backdoor.Win32/Etumbot.B Requesting RC4 Key"'
+      pcre: '"/^\/home\/index\.asp\?typeid=(?:1[13]?|[3579])$/Ui"'
+      reference: url,arbornetworks.com/asert/wp-content/uploads/2014/06/ASERT-Threat-Intelligence-Brief-2014-07-Illuminating-Etumbot-APT.pdf
+      rev: '2'
+      sid: '2018552'
+      special_options:
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

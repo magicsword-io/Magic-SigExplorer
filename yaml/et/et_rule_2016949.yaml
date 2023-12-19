@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/4.75 [en] (X11|3b| U|3b| Linux 2.2.16-3
+          i686)|0d 0a|"'
+      - value: '"|3a|80|0d 0a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: created_at 2013_05_31, updated_at 2022_05_03
+      msg: '"ET TROJAN Possible Backdoor.Linux.Tsunami Outbound HTTP request"'
+      reference: url,malwaremustdie.blogspot.jp/2013/05/story-of-unix-trojan-tsunami-ircbot-w.html
+      rev: '1'
+      sid: '2016949'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

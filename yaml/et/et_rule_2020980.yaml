@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>some"'
+      - value: '"<style>"'
+      - value: '"|5c 3a|*{display|3a|inline-block|3b|behavior|3a|url(#default#VML)|3b|}</style>"'
+      distance: '3'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_04_23, former_category EXPLOIT_KIT, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Fiesta EK IE Exploit Apr 23 2015"'
+      rev: '2'
+      sid: '2020980'
+      special_options:
+      - file_data
+      within: '65'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

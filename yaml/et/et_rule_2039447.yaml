@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|10|dns.brahma.world"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_10_18, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag DoH, updated_at
+        2022_10_18
+      msg: '"ET INFO Brahma World DNS Over HTTPS Certificate Inbound"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2039447'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 1, seconds 600, track by_src
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

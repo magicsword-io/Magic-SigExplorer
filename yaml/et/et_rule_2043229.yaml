@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/flow.html?_flowId=sampleFlow&"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_01_05, cve CVE_2018_5430, deployment Perimeter, deployment
+        Datacenter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_01_05
+      msg: '"ET EXPLOIT TIBCO JasperReports Authenticated Arbitrary File Read Attempt
+        (CVE-2018-5430)"'
+      pcre: '"/\/flow\.html\?_flowId=sampleFlow&page=\.\..+/Ui"'
+      reference: url,rhinosecuritylabs.com/application-security/authenticated-file-read-vulnerability-in-jasperreports/
+      rev: '1'
+      sid: '2043229'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

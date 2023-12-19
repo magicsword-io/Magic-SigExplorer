@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WARNING|21| You should update your Flash Player Immediately"'
+      flow: established,from_server
+      metadata: created_at 2013_07_09, former_category CURRENT_EVENTS, updated_at
+        2013_07_09
+      msg: '"ET WEB_CLIENT Fake Adobe Flash Player update warning enticing clicks
+        to malware payload"'
+      rev: '3'
+      sid: '2017122'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

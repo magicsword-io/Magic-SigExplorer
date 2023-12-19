@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index_inc.php?"'
+      - value: '"inc_ordner="'
+      - value: '"../"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_07_30, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS ea-gBook index_inc.php inc_ordner parameter local
+        file inclusion"'
+      reference: url,doc.emergingthreats.net/2009224
+      rev: '4'
+      sid: '2009224'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A 0D 0A|&nome=",fast_pattern,nocase'
+      - value: '"conteudo=",depth 9'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Injector outbound connection"'
+      reference: url,www.virustotal.com/en/file/253b2cb7f6eacaaaca5053f73445defce5df2cd4a5564ebc0721e0323a6c3557/analysis/1383139183/
+      rev: '4'
+      service: http
+      sid: '28804'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

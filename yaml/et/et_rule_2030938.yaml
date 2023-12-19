@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '19'
+        offset: '8'
+        value: '"|8f 98 45 59 08 12 b2 aa ea 9d 7b 27 15 96 5f 00 2b b5 00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_01, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_10_01
+      msg: '"ET TROJAN TA428 Tmanger Checkin"'
+      reference: url,vblocalhost.com/uploads/VB2020-20.pdf
+      rev: '1'
+      sid: '2030938'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

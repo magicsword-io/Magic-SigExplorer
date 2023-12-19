@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".ct8.pl|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_30, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2022_08_30
+      msg: '"ET INFO HTTP Request to Free Hosting Domain (*.ct8 .pl)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.ct8\.pl/Hmi"'
+      reference: url,www.ct8.pl/offer
+      rev: '1'
+      sid: '2038670'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

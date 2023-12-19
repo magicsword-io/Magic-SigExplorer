@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/requestimpression.aspx?ver="'
+      - value: '"host="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_02_20
+      msg: '"ET MALWARE SurfSidekick Download"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001992
+      rev: '8'
+      sid: '2001992'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

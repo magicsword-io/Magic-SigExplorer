@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cmd.php"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| Synapse)",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Fort Disco Registration variant outbound connection"'
+      reference: url,www.net-security.org/secworld.php?id=15370
+      rev: '3'
+      service: http
+      sid: '27599'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

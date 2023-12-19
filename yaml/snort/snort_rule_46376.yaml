@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      byte_test: 1,>,128,16,relative
+      classtype: web-application-attack
+      contents:
+      - value: '"gd2|00 00 02|",fast_pattern'
+      - value: '"|02|",within 1,distance 7'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER libgd heap-overflow attempt"'
+      reference: cve,2016-3074
+      rev: '2'
+      service: http
+      sid: '46376'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

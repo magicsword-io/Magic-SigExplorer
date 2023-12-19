@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '29'
+        value: '"/portals/office/log.php?Data="'
+      - value: '!"Referer"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_25
+      msg: '"ET TROJAN Maldoc Activity (GET)"'
+      reference: md5,2ee3ae478e7d1f2f473b191b1be5e14f
+      rev: '2'
+      sid: '2034969'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

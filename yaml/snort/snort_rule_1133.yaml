@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      ack: '0'
+      classtype: attempted-recon
+      contents:
+      - value: '"AAAAAAAAAAAAAAAA",depth 16'
+      flags: FPS
+      flow: stateless
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN cybercop os probe"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '18'
+      service: http
+      sid: '1133'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

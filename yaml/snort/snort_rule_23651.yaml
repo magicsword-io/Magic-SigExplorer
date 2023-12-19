@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"PK|03 04|",depth 4'
+      - value: '!"|14 00 06 00|",within 4'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy connectivity-ips alert,policy max-detect-ips
+        alert,policy security-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY JAR/ZIP file magic detected"'
+      rev: '15'
+      service: smtp
+      sid: '23651'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

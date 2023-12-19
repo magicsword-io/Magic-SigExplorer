@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,1,relative, post_offset -17
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"dns.hanahira.dev"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_05_23, deployment Perimeter,
+        signature_severity Informational, updated_at 2023_05_23
+      msg: '"ET INFO DNS Over HTTPS Certificate Inbound (dns .hanahira .dev)"'
+      pcre: '"/^(?:\x10|\x2e)dns.hanahira.dev/R"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2045826'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

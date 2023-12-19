@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '"?worker=php_b"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"Ubuntu|3b 20|Linux|20|x86_64"'
+      - value: '"Accept-Encoding|3a 20|gzip|0d|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.PhpMyAdminBrute.1
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_14, deployment Perimeter, former_category
+        MALWARE, malware_family PhpMyAdminBrute, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN GoBrut/StealthWorker Requesting Brute Force List (flowbit set)"'
+      reference: url,blog.yoroi.company/research/new-gobrut-version-in-the-wild/
+      rev: '3'
+      sid: '2033717'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

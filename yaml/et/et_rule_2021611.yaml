@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HTA|3a|APPLICATION"'
+      - value: '"|22|&#x"'
+      - value: '"classid"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2015_08_11, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Possible DarkHotel Landing M2"'
+      pcre: '"/^\s*?=\s*?[\x22\x27](?:c|&#(?:x[64]3|99|67)\x3b)(?:l|&#(?:x[64]c|108|76)\x3b)(?:s|&#(?:x[75]3|115|83)\x3b)(?:i|&#(?:x[64]9|105|73)\x3b)(?:d|&#(?:x[64]4|100|68)\x3b)(?:\x3a|&#(?:x3a|58)\x3b)(?![a-fA-F0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})[^\x22\x27]+(?:(?:\x5c|&#)(?:5[01234567]|10[012]|6[5678]|4[589]|9[789]|7[09])|(?:\x25|&#x)(?:4[123456]|6[123456]|3\d|2D))/Rsi"'
+      reference: url,securelist.com/blog/research/71713/darkhotels-attacks-in-2015/
+      rev: '2'
+      sid: '2021611'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

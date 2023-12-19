@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"about:",fast_pattern,nocase'
+      - value: '"?",within 15'
+      - value: '"<",within 100'
+      - value: '"location",nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-FIREFOX Mozilla Firefox about field spoofing attempt"'
+      pcre: '"/\babout:[a-z]+?\?[^\n]+?\</i"'
+      reference: url,www.mozilla.org/en-US/security/advisories/mfsa2016-83/
+      rev: '2'
+      service: http
+      sid: '40015'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

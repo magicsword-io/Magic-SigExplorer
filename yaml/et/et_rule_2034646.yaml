@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/static-directory/bn.png"'
+      - value: '"Linux|3b 20|Android|20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_09, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family CobaltStrike,
+        signature_severity Major, tag c2, updated_at 2022_04_18, reviewed_at 2023_08_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Beacon Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Linux\x3b\x20Android\x20/Hmi"'
+      reference: md5,f3e31cd5f0972e4dbc789807ad2d129b
+      rev: '2'
+      sid: '2034646'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '24'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

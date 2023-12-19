@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        value: '"/c2sock"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|file|22 3b 20|filename|3d
+          22|file|22 0d 0a|Content-Type|3a 20|attachment/x-object|0d 0a 0d 0a|PK"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|hwid|22 0d 0a
+          0d 0a 7b|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|pid|22|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|lid|22|"'
+      fast_pattern: 78,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_04, deployment Perimeter, former_category
+        MALWARE, malware_family lumma, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_02_03
+      msg: '"ET TROJAN Win32/Lumma Stealer Data Exfiltration Attempt M2"'
+      pcre: '"/^Content-Disposition\x3a\x20|form-data\x3b\x20name\x3d\x22hwid\x22\x0d\x0a\x0d\x0a\x7b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\x7d/Pm"'
+      reference: md5,b3b025b8445dcbd9b7aca560ad752b74
+      rev: '2'
+      sid: '2043206'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

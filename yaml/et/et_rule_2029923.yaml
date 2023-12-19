@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|ip.jsontest.com|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_04_16,
+        deployment Perimeter, former_category POLICY, signature_severity Informational,
+        updated_at 2020_04_16
+      msg: '"ET POLICY IP Check (ip. jsontest .com)"'
+      rev: '2'
+      sid: '2029923'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

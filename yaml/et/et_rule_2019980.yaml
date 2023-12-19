@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|myexternalip.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2014_12_20, former_category POLICY, updated_at 2020_09_17
+      msg: '"ET POLICY External IP Check myexternalip.com"'
+      rev: '2'
+      sid: '2019980'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

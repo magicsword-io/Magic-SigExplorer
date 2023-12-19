@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/?e="'
+      - value: '"&&t="'
+      - value: '"&&k="'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 8.0|3b 20|Windows
+          NT 6.1|3b 20|Trident/4.0|3b 20|SLCC2|3b 20|.NET CLR 2.0.50727|3b 20|.NET
+          CLR 3.5.30729|3b 20|.NET CLR 3.0.30729|3b 20|Media Center PC 6.0|3b 20|InfoPath.2)"'
+      - depth: '3'
+        value: '"id="'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_06_06, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN HAWKBALL CnC Sending System Information"'
+      reference: url,www.fireeye.com/blog/threat-research/2019/06/government-in-central-asia-targeted-with-hawkball-backdoor.html
+      rev: '2'
+      sid: '2027441'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_cookie
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

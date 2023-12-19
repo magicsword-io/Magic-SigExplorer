@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"GET /in/3/"'
+      - value: '"?d56tdrf2z="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_09_09
+      msg: '"ET TROJAN Win32/PSW.WOW.NLZ CnC Activity"'
+      reference: md5,2bf730c712910a18f09e4d53750594d2
+      rev: '2'
+      sid: '2033918'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

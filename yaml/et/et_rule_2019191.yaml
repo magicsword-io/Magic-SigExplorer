@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FindProxyForURL"'
+      - value: '"return |22|PROXY"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2014_09_18, updated_at 2014_09_18
+      msg: '"ET TROJAN Infostealer.Banprox Proxy.pac Download 3"'
+      pcre: '"/^[^\x3b]+\\x(?:[57][0-9a]|4[0-9a-f]|6[1-9a-f]|3[0-9])/Ri"'
+      reference: md5,6f2dc4ba05774f3e5ebf6c502db48a71
+      rev: '12'
+      sid: '2019191'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

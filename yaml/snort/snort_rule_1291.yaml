@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/graphics/sml3com"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP sml3com access"'
+      reference: cve,2001-0740
+      rev: '15'
+      service: http
+      sid: '1291'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

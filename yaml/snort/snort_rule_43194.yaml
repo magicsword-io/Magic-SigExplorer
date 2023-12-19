@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|1B 17 E9 E9 E9 E9|",depth 6'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.HiddenCobra variant outbound connection"'
+      reference: url,www.us-cert.gov/ncas/alerts/TA17-164A
+      rev: '2'
+      sid: '43194'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

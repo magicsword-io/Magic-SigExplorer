@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|26|file=SenderClient.conf",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gamut configuration download"'
+      reference: url,www.virustotal.com/en/file/dcb60900fcfd4ec83930177b7055fbdbba37f8e217409874be130f9c2e5b78fb/analysis/
+      rev: '2'
+      service: http
+      sid: '30087'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

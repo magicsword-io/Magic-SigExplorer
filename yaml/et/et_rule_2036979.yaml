@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"GET /"'
+      - value: '!"Accept"'
+      - value: '!"Content-"'
+      - value: '!"Referer|3a|"'
+      - value: '"|20|HTTP/1."'
+      - value: '"|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b|MSIE 6.0|3b|Windows
+          NT 5.1)|0d 0a|"'
+      distance: '1'
+      fast_pattern: 32,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_02_12, deployment Perimeter,
+        former_category MALWARE, malware_family Mongall, malware_family Loxes, malware_family
+        AoqinDragon, signature_severity Major, tag c2, updated_at 2022_06_14, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Loxes/Mongall Related CnC Beacon (GET)"'
+      pcre: '"/^GET \/(?:[a-zA-Z0-9+/]{4})*(?:[a-zA-Z0-9+/]{2}==|[a-zA-Z0-9+/]{3}=|[a-zA-Z0-9+/]{4})(?:[a-zA-Z=]{4})?(?:\x20?)\x20HTTP\/1\./"'
+      reference: url,www.sentinelone.com/labs/aoqin-dragon-newly-discovered-chinese-linked-apt-has-been-quietly-spying-on-organizations-for-10-years/
+      rev: '2'
+      sid: '2036979'
+      within: '64'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

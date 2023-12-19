@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/log4jAdmin.jsp"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_04, former_category WEB_SERVER, updated_at 2020_09_23
+      msg: '"ET WEB_SERVER log4jAdmin access from non-local network (can modify logging
+        levels)"'
+      reference: url,gist.github.com/iamkristian/943918
+      rev: '1'
+      sid: '2018202'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

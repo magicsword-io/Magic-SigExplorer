@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|25|24|25|28nc+"'
+      - value: '"+-e+|25|2Fbin|25|2Fsh|25|29"'
+      flow: from_server,established
+      flowbits: isset,ET.armwget
+      metadata: attack_target IoT, created_at 2017_04_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2017_04_25
+      msg: '"ET TROJAN ARM Binary Downloaded via WGET Containing Suspicious Netcat
+        Command - Possible IoT Malware"'
+      reference: url,blog.netlab.360.com/a-new-threat-an-iot-botnet-scanning-internet-on-port-81-en/
+      rev: '1'
+      sid: '2024241'
+      special_options:
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

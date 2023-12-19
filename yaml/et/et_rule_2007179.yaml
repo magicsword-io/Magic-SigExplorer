@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/modules/News/index.php?"'
+      - value: '"sid="'
+      - value: '"DELETE"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Francisco Burzi PHP-Nuke SQL Injection Attempt --
+        index.php sid DELETE"'
+      pcre: '"/.+DELETE.+FROM/Ui"'
+      reference: url,doc.emergingthreats.net/2007179
+      rev: '5'
+      sid: '2007179'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

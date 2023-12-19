@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat.add_grouped_column",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE dbms_repcat.add_grouped_column buffer overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*sname[\r\n\s]*=>[\r\n\s]*\2|sname\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|(\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*oname[\r\n\s]*=>[\r\n\s]*\2|oname\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/is"'
+      rev: '7'
+      sid: '2599'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?cId="'
+      - value: '"&hos"'
+      - value: '"Name="'
+      - value: '"Info="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_24, deployment Perimeter, former_category
+        MALWARE, malware_family Bitter_implant, signature_severity Major, tag c2,
+        updated_at 2020_09_02, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Bitter RAT HTTP CnC Beacon"'
+      reference: md5,2b07e054a1abb2941e5e70fba652a211
+      rev: '1'
+      sid: '2023400'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      threshold: type both, count 1, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

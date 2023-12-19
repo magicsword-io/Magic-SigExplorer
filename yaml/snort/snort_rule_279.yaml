@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-dos
+      dsize: '0'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Bay/Nortel Nautica Marlin"'
+      reference: cve,2000-0221
+      rev: '11'
+      sid: '279'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

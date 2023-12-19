@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php|3f|from=USB"'
+      - value: '"&user="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_10, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, updated_at 2023_07_10
+      msg: '"ET TROJAN Win32/zgRAT CnC Activity (GET)"'
+      reference: url,twitter.com/Tac_Mangusta/status/1678185981344731137
+      rev: '1'
+      sid: '2046760'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

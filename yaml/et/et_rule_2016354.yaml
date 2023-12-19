@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '" name=|22|c|22|"'
+      - value: '"name=|22|p1|22|"'
+      flow: established,to_server
+      metadata: created_at 2013_02_05, updated_at 2020_04_23
+      msg: '"ET WEB_SERVER WSO WebShell Activity POST structure 2"'
+      pcre: '"/name=(?P<q>[\x22\x27])a(?P=q)[^\r\n]*\r\n[\r\n\s]+(?:S(?:e(?:lfRemove|cInfo)|tringTools|afeMode|ql)|(?:Bruteforc|Consol)e|FilesMan|Network|Logout|Php)/Pi"'
+      rev: '2'
+      sid: '2016354'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

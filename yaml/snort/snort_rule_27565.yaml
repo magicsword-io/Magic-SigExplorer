@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<div id=|22|HideMeBetter|22|>",fast_pattern,nocase'
+      - value: '"if(document|2E|getElementById(|22|HideMeBetter|22|)|20 21 3D 20|null)"'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER HideMeBetter spam injection variant"'
+      reference: url,blog.sucuri.net/2013/07/hidemebetter-spam-injection-variant.html
+      rev: '2'
+      service: http
+      sid: '27565'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,53 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"metawallet"'
+      - value: '".php"'
+      - value: '"WoRd1="'
+      - value: '"WoRd2="'
+      - value: '"WoRd3="'
+      - value: '"WoRd4="'
+      - value: '"WoRd5="'
+      - value: '"WoRd6="'
+      - value: '"WoRd7="'
+      - value: '"WoRd8="'
+      - value: '"WoRd9="'
+      - value: '"WoRd10="'
+      - value: '"WoRd11="'
+      - value: '"WoRd12="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_13, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET CURRENT_EVENTS Successful Metawallet Phish 2022-01-13"'
+      pcre: '"/\.php$/U"'
+      reference: md5,7ddee3930807ab2a21afe8c5760b2b13
+      rev: '1'
+      sid: '2034915'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

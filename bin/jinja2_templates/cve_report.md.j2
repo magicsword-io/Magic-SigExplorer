@@ -1,0 +1,9 @@
+# CVE Report
+
+{% for cve, rules in cves.items() %}
+## {{ cve }}
+
+{% for rule in rules %}
+- [{{ rule.details.msg }}](/rules/{{ rule.rule_type }}/{{ rule.rule_type }}_rule_{{ rule.details.sid }})
+{% endfor %}
+{% endfor %}

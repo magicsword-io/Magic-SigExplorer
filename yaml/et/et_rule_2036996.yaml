@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '1'
+        value: '"|00|"'
+      - value: '"|00|"'
+      - value: '"XXXXXXXXX"'
+      distance: '1'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_15, deployment Perimeter, former_category
+        MALWARE, malware_family Bitter, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_10_16
+      msg: '"ET TROJAN APT/Bitter CnC Exfiltration via TCP"'
+      pcre: '"/(?:([a-zA-Z0-9]\0){10,})/R"'
+      reference: url,twitter.com/RedDrip7/status/1536989979229835265
+      rev: '2'
+      sid: '2036996'
+      special_options:
+      - fast_pattern
+      stream_size: client,<,200
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

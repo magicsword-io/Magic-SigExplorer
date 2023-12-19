@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"commandId=",fast_pattern,nocase'
+      - value: '"/Home/",depth 6'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Ismdoor variant outbound connection"'
+      reference: url,blog.vectranetworks.com/blog/an-analysis-of-the-shamoon-2-malware-attack
+      rev: '2'
+      service: http
+      sid: '42129'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

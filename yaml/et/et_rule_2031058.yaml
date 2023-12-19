@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/cgi-bin/qcmap_web_cgi?"'
+      flow: established,to_server
+      metadata: created_at 2020_10_19, cve CVE_2020_25858, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_10_19
+      msg: '"ET EXPLOIT Qualcomm QCMAP NULL Pointer Dereference Attempt Inbound (CVE-2020-25858)"'
+      pcre: '"/^\/cgi-bin\/qcmap_web_cgi\?[^=]{1,}$/Ui"'
+      reference: cve,2020-25858
+      rev: '2'
+      sid: '2031058'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

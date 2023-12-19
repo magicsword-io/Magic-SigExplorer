@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '7'
+        value: '"/d1833/"'
+      - value: '"/?software="'
+      - value: '"&title="'
+      - value: '"&clickid="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2019_02_27, deployment Perimeter, former_category TROJAN, malware_family Shlayer,
+        performance_impact Low, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN OSX/Shlayer Malicious Download Request"'
+      reference: url,www.carbonblack.com/2019/02/12/tau-threat-intelligence-notification-new-macos-malware-variant-of-shlayer-osx-discovered/
+      rev: '2'
+      sid: '2026986'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

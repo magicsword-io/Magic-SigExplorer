@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/GO/"'
+      - value: '".php"'
+      - value: '"Accept-Encoding|3a 20|*|0d|"'
+      - value: '"Content-Length|3a 20|0|0d|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Backdoor, updated_at 2023_03_10
+      msg: '"ET TROJAN Lyceum Golang HTTP Backdoor Connectivity Check"'
+      reference: url,research.checkpoint.com/2022/state-sponsored-attack-groups-capitalise-on-russia-ukraine-war-for-cyber-espionage/
+      rev: '2'
+      sid: '2035957'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

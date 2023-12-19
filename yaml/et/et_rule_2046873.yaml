@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".eyJhdXRob3JpemVkIj"'
+      - value: '"/health"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - depth: '4'
+        value: '"jwt="'
+      - value: '".eyJhdXRob3JpemVkIj"'
+      - value: '!"|3b|"'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_07_20, deployment
+        Perimeter, former_category MALWARE, malware_family CHAOS, performance_impact
+        Low, confidence Medium, signature_severity Critical, tag RemoteAccessTool,
+        updated_at 2023_07_20
+      msg: '"ET TROJAN CHAOS RAT/AlfaC2 CnC Server Status Check"'
+      reference: url,github.com/tiagorlampert/CHAOS
+      rev: '1'
+      sid: '2046873'
+      special_options:
+      - http_uri
+      - http_header
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

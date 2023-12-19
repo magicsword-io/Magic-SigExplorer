@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <50
+      classtype: trojan-activity
+      contents:
+      - value: '"/indox.php?v=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SectorA05 outbound connection attempt"'
+      pcre: '"/\/indox\.php\x3fv=(pp|pe|s)/"'
+      reference: url,threatrecon.nshc.net/2019/01/30/operation-kitty-phishing/
+      rev: '1'
+      service: http
+      sid: '49593'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

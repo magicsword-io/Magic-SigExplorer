@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/...."'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP /.... access"'
+      rev: '11'
+      service: http
+      sid: '1142'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendMessage?chat_id="'
+      - value: '"|26|text|3d|"'
+      - value: '"Beacon"'
+      - value: '"OS|3a|"'
+      - value: '"Country|3a|"'
+      - value: '"Username|3a|"'
+      - value: '"Compname|3a|"'
+      - value: '"|26|reply|5f|markup|3d|"'
+      - value: '"Download|22 2c 22|url|22 3a|"'
+      - value: '"api.telegram.org"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_25, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Gurcu, malware_family
+        WhiteSnake, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_05_25
+      msg: '"ET TROJAN WhiteSnake Stealer Telegram Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+api\.telegram\.org/Hmi"'
+      reference: md5,fdb8081ac26d8de3f7582b2616bcf3e8
+      rev: '1'
+      sid: '2045869'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

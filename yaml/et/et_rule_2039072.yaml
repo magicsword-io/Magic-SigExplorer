@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 1a|market.contradecapital.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter,
+        signature_severity Major, updated_at 2022_09_30
+      msg: '"ET TROJAN Observed Lazarus Domain (market .contradecapital .com in TLS
+        SNI)"'
+      reference: url,www.sentinelone.com/blog/lazarus-operation-interception-targets-macos-users-dreaming-of-jobs-in-crypto/
+      rev: '1'
+      sid: '2039072'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

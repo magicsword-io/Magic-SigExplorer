@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FeintedEscalator",fast_pattern,nocase'
+      - value: '"InkingGrange"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dridex file download attempt"'
+      reference: url,www.virustotal.com/en/file/f4bf52759270fa4fc4e5745d51dd8d73b49feae9de5bedfd8f4e0a865e8047c4/analysis/1459264179/
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '38379'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

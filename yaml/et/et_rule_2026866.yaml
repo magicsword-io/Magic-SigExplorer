@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/lib.asp?search="'
+      - value: '"Accept|3a 20|*/*|0d|"'
+      - value: '"Accept-Encoding|3a 20|gzip, deflate|0d|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cache"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_31, deployment Perimeter, former_category
+        MALWARE, malware_family CoreDn, performance_impact Low, signature_severity
+        Major, tag APT, updated_at 2020_08_27
+      msg: '"ET TROJAN CoreDn CnC Checkin M2"'
+      pcre: '"/\/lib\.asp\?search=[a-z0-9]{5,30}$/Ui"'
+      reference: url,blog.talosintelligence.com/2019/01/fake-korean-job-posting.html
+      rev: '2'
+      sid: '2026866'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

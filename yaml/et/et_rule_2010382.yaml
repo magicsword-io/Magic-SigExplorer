@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?type="'
+      - value: '"&affid="'
+      - value: '"&subid="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Fake AV GET"'
+      reference: md5,8d1b47452307259f1e191e16ed23cd35
+      rev: '7'
+      sid: '2010382'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

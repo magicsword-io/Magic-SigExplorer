@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!".aspx"'
+      - value: '!"Accept"'
+      - depth: '47'
+        value: '"Content-Type|3a 20|application/x-www-form-urlencoded"'
+      - value: '!"id1="'
+      - value: '"1="'
+      - value: '"2="'
+      - value: '"3="'
+      - value: '"4="'
+      - value: '!"Zerto.ZVM"'
+      - value: '!"Referer"'
+      - value: '!"lavasoft.com|0d 0a|"'
+      - value: '!"User-Agent|3a 20|SmadavStat"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2014_07_25, deployment Perimeter, former_category
+        TROJAN, malware_family Neurevt, performance_impact Low, signature_severity
+        Major, updated_at 2022_04_18
+      msg: '"ET TROJAN Win32/Neurevt.A/Betabot Check-in 4"'
+      pcre: '"/&(?P<vname>[a-z]+)1=[A-F0-9]+&(?P=vname)2=[A-F0-9]+&(?P=vname)3=[A-F0-9]+&(?P=vname)4=[A-F0-9]/P"'
+      reference: md5,5eada3ed47d7557df375d8798d2e0a8b
+      rev: '7'
+      sid: '2018784'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

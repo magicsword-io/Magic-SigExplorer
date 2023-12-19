@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"QDAwMD",depth 6,fast_pattern'
+      - value: '"&&&",within 200'
+      flow: to_server,established
+      isdataat: '!0,relative'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bandook/Anbacas outbound connection attempt"'
+      reference: url,www.virustotal.com/#/file/bf600e7b27bdd9e396e5c396aba7f079c244bfb92ee45c721c2294aa36586206/detection
+      rev: '1'
+      sid: '46051'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

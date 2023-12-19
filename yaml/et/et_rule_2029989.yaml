@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '21'
+        value: '"/albatross/user/login"'
+      - value: '"name=|22|username|22 0d 0a|"'
+      - value: '"name=|22|clientDetails|22 0d 0a|"'
+      - value: '"name=|22|password|22 0d 0a|"'
+      - value: '"name=|22|sessionId|22 0d 0a|"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2020_04_21, deployment Perimeter,
+        deployment Datacenter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2020_04_21
+      msg: '"ET EXPLOIT Possible IBM Data Risk Manager Authentication Bypass - Password
+        Retrieval"'
+      reference: url,github.com/pedrib/PoC/blob/master/advisories/IBM/ibm_drm/ibm_drm_rce.md
+      rev: '2'
+      sid: '2029989'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

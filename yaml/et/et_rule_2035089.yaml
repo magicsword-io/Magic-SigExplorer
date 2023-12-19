@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"pin="'
+      flow: established,to_server
+      metadata: created_at 2022_02_03, updated_at 2022_02_03
+      msg: '"ET POLICY Http Client Body contains pin= in cleartext"'
+      rev: '1'
+      sid: '2035089'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

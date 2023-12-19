@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Colors 1073741838"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2011_07_01, cve CVE_2009_3459, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Adobe Acrobat Reader FlateDecode Stream Predictor Exploit
+        Attempt"'
+      pcre: '"/<<[^>]*\x2FPredictor[^>]*\x2FColors\x201073741838/smi"'
+      reference: cve,2009-3459
+      rev: '1'
+      sid: '2013153'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

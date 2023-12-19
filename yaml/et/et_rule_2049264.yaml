@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"AspNet.Cookies=MTY5NzM5ZTcyMTEyOTUxNDZhNjFkMzAwYzBmZWYwMmQ="'
+      - value: '"MTY5NzM5ZTcyMTEyOTUxNDZhNjFkMzAwYzBmZWYwMmQ="'
+      - depth: '1'
+        value: '"|3c|"'
+      - value: '"|3e 3c|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_20, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, tag Turla, updated_at
+        2023_11_20
+      msg: '"ET TROJAN Turla APT/Kazuar Backdoor CnC Activity (POST)"'
+      pcre: '"/\.php$/U"'
+      reference: url,unit42.paloaltonetworks.com/pensive-ursa-uses-upgraded-kazuar-backdoor
+      rev: '1'
+      sid: '2049264'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

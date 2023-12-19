@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HttpSendRequest"'
+      - depth: '44'
+        value: '"|2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d 2d
+          2d 2d 2d 2d 2d 2d 2d 2d 2d|1234567890123"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|file|22
+          3b 20|filename|3d 22|"'
+      - value: '"|2e|"'
+      - value: '"|2e|jpg|22 0d 0a|"'
+      - depth: '13'
+        value: '"POST|20|/upfile|20|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '14'
+      fast_pattern: 24,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_04, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_08_04
+      msg: '"ET TROJAN Win32.ClipBanker.uhn Exfil"'
+      pcre: '"/^User-Agent\x3a\x20HttpSendRequest/Hmi"'
+      reference: md5,ded2b49dbb947c0fc031919158447d46
+      rev: '1'
+      sid: '2037954'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Packed by exe32pack"'
+      - value: '"SteelBytes All rights reserved"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2015_04_15, updated_at 2015_04_15
+      msg: '"ET POLICY Exe32Pack Packed Executable Download"'
+      reference: md5,93be88ad3816c19d74155f8cd3aae1d2
+      rev: '1'
+      sid: '2020914'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

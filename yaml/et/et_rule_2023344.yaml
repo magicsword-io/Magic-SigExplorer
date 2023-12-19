@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|appexsrv|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_18, deployment Perimeter, former_category
+        MALWARE, malware_family APT28, malware_family DealersChoice_B, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN APT28 DealersChoice.B DNS Lookup (appexsrv .net)"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/12/unit42-let-ride-sofacy-groups-dealerschoice-attacks-continue/
+      rev: '3'
+      sid: '2023344'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '513'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"root|00|root|00|",depth 10'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES rlogin root"'
+      rev: '12'
+      sid: '606'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

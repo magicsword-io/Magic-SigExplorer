@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '40'
+        offset: '80'
+        value: '"<sip|3a|smap@"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Smap VOIP Device Scan"'
+      reference: url,doc.emergingthreats.net/2008526
+      rev: '7'
+      sid: '2008526'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

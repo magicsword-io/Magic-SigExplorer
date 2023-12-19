@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '16'
+        value: '"/descent.php?id="'
+      - value: '!"Referer"'
+      - depth: '5'
+        value: '"name="'
+      - value: '"_"'
+      - value: '"&count="'
+      distance: '8'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_03, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Gamaredon,
+        signature_severity Major, updated_at 2022_03_03
+      msg: '"ET TROJAN Win32/Pterodo Activity (POST)"'
+      reference: md5,8184d72f1ce59bba32afc7a2b5953d52
+      rev: '2'
+      sid: '2035390'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

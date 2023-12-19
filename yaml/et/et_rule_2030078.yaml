@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>alexusMailer 2.0</title>"'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_05_01, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_05_01
+      msg: '"ET WEB_SERVER Generic Mailer Accessed on Internal Server"'
+      rev: '2'
+      sid: '2030078'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|mirohost|04|site|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_28, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_02_28
+      msg: '"ET CURRENT_EVENTS Suspected TA445 Spearphishing Related Domain in DNS
+        Lookup (mirohost .site)"'
+      reference: url,otx.alienvault.com/pulse/621cce4e2752128dbfe537ed
+      rev: '2'
+      sid: '2035335'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<body><title>FILE MANAGER v.1.0</title>"'
+      - value: '"<h1>Green Dinosaur</h1>"'
+      - value: '"|61 63 74 69 6f 6e 3d 27 3f 66 70 61 74 68 3d|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2023_04_10, deployment Perimeter,
+        former_category WEB_SERVER, confidence High, signature_severity Major, updated_at
+        2023_04_10
+      msg: '"ET WEB_SERVER Generic Webshell Activity (Response)"'
+      reference: md5,9cdda333432f403b408b9fe717163861
+      rev: '1'
+      sid: '2044914'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

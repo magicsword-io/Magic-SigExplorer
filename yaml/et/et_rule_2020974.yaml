@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|02 5f 31|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|--"'
+      - value: '"|55 04 07|"'
+      - value: '"|08|SomeCity"'
+      - value: '"|0d 01 09 01|"'
+      - value: '"|1a|root@localhost.localdomain"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_24
+      msg: '"ET TROJAN CozyDuke APT Possible SSL Cert 8"'
+      reference: url,securelist.com/blog/69731/the-cozyduke-apt/
+      rev: '3'
+      sid: '2020974'
+      special_options:
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

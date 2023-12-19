@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"IO.Compression.CompressionMode]|3a 3a|Decompress"'
+      - value: '".Value.Write("'
+      - value: '"Reflection.Assembly]|3a 3a|Load("'
+      - value: '".EntryPoint.Invoke("'
+      - value: '"Out-Null"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_04, deployment Perimeter, signature_severity
+        Major, updated_at 2019_08_04
+      msg: '"ET TROJAN Possible Covenant Framework Grunt PowerShell Stager HTTP Download"'
+      reference: url,posts.specterops.io/entering-a-covenant-net-command-and-control-e11038bcf462
+      rev: '2'
+      sid: '2027797'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

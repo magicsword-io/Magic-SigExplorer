@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"@!MyID|3a|"'
+      - value: '"IMEI|3a|"'
+      - value: '"Mobile|20|ID|3a|"'
+      - value: '"SIM|3a|"'
+      - value: '"IMSI|3a|"'
+      - value: '"Android|20|version|3a|"'
+      - value: '"Model|3a|"'
+      - value: '"All|20|SD|20|Size|3a|"'
+      - value: '"Free|20|SD|20|Size|3a|"'
+      - value: '"Network|20|type|3a|"'
+      distance: '0'
+      dsize: <500
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2017_10_23, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Android_JadeRAT, signature_severity Major, tag Android, tag c2, updated_at
+        2019_10_08, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android JadeRAT CnC Beacon"'
+      reference: url,blog.lookout.com/mobile-threat-jaderat
+      rev: '1'
+      sid: '2024895'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

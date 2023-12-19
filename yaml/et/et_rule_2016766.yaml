@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"var PDFObject="'
+      flow: established,to_client
+      metadata: created_at 2013_04_18, updated_at 2013_04_18
+      msg: '"ET INFO PDF - Acrobat Enumeration - var PDFObject"'
+      rev: '1'
+      sid: '2016766'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

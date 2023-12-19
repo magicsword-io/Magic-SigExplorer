@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '3'
+        value: '"JNB"'
+      - value: '".exec|28|"'
+      flow: established,to_server
+      metadata: created_at 2021_08_31, former_category EXPLOIT, updated_at 2021_08_31
+      msg: '"ET EXPLOIT Possible JNBridge Java Deserialization Attempt M3"'
+      pcre: '"/^\d[012345]/R"'
+      rev: '1'
+      sid: '2033855'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

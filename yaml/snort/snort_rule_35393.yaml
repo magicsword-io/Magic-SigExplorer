@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03 01 00 51 02|"'
+      - value: '"|55 04 06 13 02|XX",fast_pattern,nocase'
+      - value: '"|55 04 07 0C 0C|Default City"'
+      - value: '"|55 04 0A 0C 13|Default Company Ltd",distance 6'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TorrentLocker/Teerac self-signed certificate"'
+      reference: url,www.virustotal.com/en/file/4072beeaf09fe6fef48365f1c14fd800e21b32cfa2af561f515bc45372dd590d/analysis/
+      rev: '2'
+      service: ssl
+      sid: '35393'
+      ssl_state: server_hello
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

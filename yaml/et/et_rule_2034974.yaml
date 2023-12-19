@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|5b|"'
+      - value: '"POST /casa/nodes/thumbprints HTTP/1.1"'
+      - value: '"Content-Type|3a 20|application/json|3b|charset=UTF-8|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_25, cve CVE_2021_21975, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_01_25
+      msg: '"ET EXPLOIT Possible vRealize Operations Manager API SSRF Attempt (CVE-2021-21975)"'
+      reference: cve,2021-21975
+      rev: '1'
+      sid: '2034974'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

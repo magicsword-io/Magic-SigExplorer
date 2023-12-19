@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3A 20|NSIS_Inetc (Mozilla)|0D 0A|",fast_pattern,nocase'
+      - value: '"|22|event_type|22|",offset 1'
+      - value: '"|22|environment|22|",distance 0'
+      - value: '"|22|machine_ID|22|",distance 0'
+      - value: '"|22|result|22|",distance 0'
+      - value: '"|22|failure_reason|22|",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE InstallMetrix reporting binary installation stage status"'
+      reference: url,www.virustotal.com/en/file/d99db4f7f047cbf672eb19ea2e492a45d948338c0f10ef4761db3b9e372ba90e/analysis/1426449298/
+      rev: '2'
+      service: http
+      sid: '34121'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

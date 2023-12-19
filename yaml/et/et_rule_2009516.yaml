@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"cbID="'
+      - value: '"cbVer="'
+      - value: '"cbTit="'
+      - value: '!"User-Agent|3a|"'
+      - value: '"cbBody="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_28
+      msg: '"ET TROJAN Generic Win32.Autorun HTTP Post"'
+      reference: url,doc.emergingthreats.net/2009516
+      rev: '6'
+      sid: '2009516'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

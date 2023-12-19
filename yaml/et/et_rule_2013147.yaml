@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"%u4141%u4141"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2011_06_30, updated_at 2019_10_08
+      msg: '"ET SHELLCODE Possible %u4141%u4141 UTF-16 Heap Spray Attempt"'
+      rev: '1'
+      sid: '2013147'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

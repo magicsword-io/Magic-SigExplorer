@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '"Mozilla/4.0|20|(compatible|3b|)"'
+      - value: '"Accept|3a 20|*/*|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_05_19, former_category CURRENT_EVENTS, updated_at
+        2020_10_06
+      msg: '"ET TROJAN Possible Malicious Macro DL EXE May 2016 (Mozilla compatible)"'
+      pcre: '"/(?:\/(?:(?:p(?:lugins\/content\/vote\/\.ssl\/[a-z0-9]|a(?:nel\/includes\/[^\x2f]+|tric)|osts?\/[a-z0-9]+|rogcicicic)|s(?:ystem\/(?:logs|engine)\/[^\x2f]+?|e(?:rv(?:au|er)|ct)|gau\/.*?|alam|ucks|can|ke)|(?=[a-z]*[0-9])(?=[0-9]*[a-z])(?!setup\d+\.exe$)[a-z0-9]{5,10}|a(?:d(?:min\/images\/\w+|obe)|salam|live|us)|m(?:edia\/files\/\w+|a(?:cros?|rch)|soffice)|d(?:o(?:c(?:\/[a-z0-9]+)?|ne)|bust)|(?:~.+?\/\.[^\x2f]+|\.css)\/.+?|in(?:voice\/[^\x2f]+|fos?)|c(?:onfig|hris|alc)|u(?:swinz\w+|pdate)|xml\/load\/[^\x2f]+|(?:[Dd]ocumen|ve)t|Ozonecrytedserver|w(?:or[dk]|insys)|t(?:mp\/.+?|est)|fa(?:cture|soo)|n(?:otepad|ach)|k(?:be|ey|is)|ArfBtxz|office|yhaooo|[a-z]|etna|link|\d+)\.exe$|(?:(?=[a-z0-9]*?[3456789][a-z0-9]*?[3456789])(?=[a-z0-9]*?[h-z])[a-z0-9]{3,31}\+|PasswordRecovery|RemoveWAT|Dejdisc|Host\d+|Msword)\.exe)|(?:^\/(?:image\/.+?\/[^\x2f]+|x\/setup)|keem)\.exe$)/Ui"'
+      reference: md5,f29a3564b386e7899f45ed5155d16a96
+      rev: '1'
+      sid: '2022830'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0f|shopweblive.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_10, deployment Perimeter,
+        malware_family Maldoc, performance_impact Low, signature_severity Major, updated_at
+        2021_06_10
+      msg: '"ET TROJAN Observed Lazarus Maldoc CnC Domain (shopweblive .com in TLS
+        SNI)"'
+      reference: md5,b7dbb3bef80d04e4b8981ab4011f4bfe
+      rev: '2'
+      sid: '2033135'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

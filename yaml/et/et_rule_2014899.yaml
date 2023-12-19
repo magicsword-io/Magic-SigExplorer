@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/plugins/tinymce-thumbnail-gallery/php/download-image.php?"'
+      - value: '"href="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      fast_pattern: 19,20
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2012_06_15, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress Plugin Tinymce Thumbnail Gallery href
+        parameter Remote File Disclosure Attempt"'
+      reference: url,packetstormsecurity.org/files/113417/WordPress-Tinymce-Thumbnail-Gallery-1.0.7-File-Disclosure.html
+      rev: '5'
+      sid: '2014899'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '113'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"VERSION|0A|",depth 16'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN ident version request"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '9'
+      sid: '616'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '20256'
+    details:
+      byte_test: 1,=,101,2
+      classtype: attempted-dos
+      contents:
+      - value: '"CCI",depth 3,offset 9'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SCADA PCOM Init Device ASCII request "'
+      reference: url,unitronicsplc.com
+      rev: '2'
+      sid: '48985'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

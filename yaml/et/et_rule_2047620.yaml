@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '20'
+        value: '"filez=K0%2bqdI9kOlia"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_08_11
+      msg: '"ET TROJAN Filez Downloader Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: md5,b4ebe61a7e0eff941669d74aedf44448
+      rev: '1'
+      sid: '2047620'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

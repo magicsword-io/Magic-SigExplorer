@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$SMTP_SERVERS]'
+      port: '[25,465,587,2525]'
+    details:
+      base64_decode: offset 0,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"SQBQAE0ALgBNAGkAYwByAG8AcwBvAGYAdAAgAE0AYQBpAGwALgBOAG8AdABlA"'
+      - value: '"|0d 0a 0d 0a|"'
+      - depth: '4'
+        value: '"|78 9f 3e 22|"'
+      - value: '"I|00|P|00|M|00|.|00|M|00|i|00|c|00|r|00|o|00|s|00|o|00|f|00|t|00
+          20 00|M|00|a|00|i|00|l|00|.|00|N|00|o|00|t|00|e"'
+      - value: '"|5c|"'
+      metadata: created_at 2023_03_16, cve CVE_2023_23397, former_category EXPLOIT,
+        signature_severity Major, updated_at 2023_03_21, reviewed_at 2023_10_11, former_sid
+        2853729
+      msg: '"ET EXPLOIT Possible Microsoft Outlook Elevation of Privilege Payload
+        Observed M4 (CVE-2023-23397)"'
+      pcre: '"/^\x00?\\\x00?[\w\.\-\x00]+\\/R"'
+      reference: cve,2023-23397
+      rev: '3'
+      sid: '2044683'
+      special_options:
+      - fast_pattern
+      - base64_data
+    protocol: tcp
+    source:
+      network: any
+      port: any

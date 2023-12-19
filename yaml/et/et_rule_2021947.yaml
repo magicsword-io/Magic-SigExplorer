@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        offset: '4'
+        value: '"|6c 55 55 45 03 10 48 40|"'
+      dsize: '164'
+      flow: to_server,established
+      metadata: created_at 2015_10_13, former_category MALWARE, updated_at 2015_10_13
+      msg: '"ET TROJAN Win32/Kelihos.F Checkin"'
+      reference: md5,dadee91e0b82fc91a25a66b61bb2f2dc
+      rev: '3'
+      sid: '2021947'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

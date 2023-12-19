@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Google Docs</title>"'
+      - value: '"input[type=email]"'
+      - value: '"input[type=number]"'
+      - value: '"input[type=password]"'
+      - value: '"input[type=tel]"'
+      - value: '"signin-card #Email"'
+      - value: '"signin-card #Pass"'
+      distance: '0'
+      fast_pattern: 6,20
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_11_06, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, tag Phishing, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Google Drive Phishing Landing Nov 6 2015 M1"'
+      rev: '2'
+      sid: '2025681'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

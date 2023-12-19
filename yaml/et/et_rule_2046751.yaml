@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '14'
+        value: '"|10 61 62 16 03 01 00 ee 01 00 00 ea 03 03|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_07, deployment Perimeter, former_category
+        MALWARE, malware_family hydrochasma, confidence Medium, signature_severity
+        Critical, updated_at 2023_07_10, reviewed_at 2023_09_19
+      msg: '"ET TROJAN [ANY.RUN] Hydrochasma Fast Reverse Proxy M2"'
+      reference: url,community.emergingthreats.net/t/hydrochasma-fast-reverse-proxy/727/3
+      rev: '1'
+      sid: '2046751'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

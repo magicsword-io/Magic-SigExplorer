@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/update.logmein.com/"'
+      - value: '!"Host|3a| "'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_11_02
+      msg: '"ET POLICY Logmein.com Update Activity"'
+      reference: url,doc.emergingthreats.net/2007766
+      rev: '5'
+      sid: '2007766'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

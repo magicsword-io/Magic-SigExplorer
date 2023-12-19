@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0B|m|00|a|00|c|00|a|00|v|00|e|00|r|00|d|00|e|00|m|00|2|00 06|m|00|a|00|s|00|t|00|e|00|r|00|",fast_pattern,nocase'
+      - value: '"|08|D|00|B|00|S|00|Q|00|0|00|0|00|1|00|7|00|"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banload variant MSSQL response"'
+      reference: url,www.virustotal.com/en/file/22ccd94c7e99a17753218708cea1abe162d289b7a0105c3be9620bf224f36f3f/analysis/
+      rev: '2'
+      sid: '34136'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1433'

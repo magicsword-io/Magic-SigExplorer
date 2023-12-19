@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Encoding|3a 20|gzip|0d 0a|"'
+      - value: '"<script "'
+      - value: '"new Date()).getTime()|3b|"'
+      - value: '".php?JBOSSESSION="'
+      - value: '"window.location.href="'
+      - value: '"<script "'
+      - value: '"</script>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_07_26, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET CURRENT_EVENTS Possible Malvertising Redirect to EK M1"'
+      pcre: '"/^\s*type\s*=\s*[\x22\x27]\s*text\/javascript\s*[\x22\x27]\s*>\s+var\s*(?P<timestamp>[A-Za-z0-9]{1,25})\s*=\s*\(new\sDate\(\)\)\.getTime\(\)\'
+      rev: '2'
+      sid: '2025912'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - \s+(?P<url>[A-Za-z0-9]{1,25})\s*=\s*[\x22\x27]\s*[^\r\n]+\.php\?JBOSSESSION=\s*[\x22\x27]\s+(?P<urlvar2>[A-Za-z0-9]{1,25})\s*=\s*(?P=url)\s*\+\s*(?P=timestamp)\s+window\.location\.href\s*=\s*(?P=urlvar2)\s+/Rsi"
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

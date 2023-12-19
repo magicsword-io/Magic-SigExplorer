@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".Php?UserName="'
+      - value: '"&Bank="'
+      - value: '"&Money="'
+      - value: '"Accept-Language|3A 20|zh-cn"'
+      flow: established,to_server
+      metadata: created_at 2012_03_05, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Backdoor.BlackMonay Checkin"'
+      reference: md5,4a203e37caa2e04671388341419bda69
+      rev: '2'
+      sid: '2014306'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

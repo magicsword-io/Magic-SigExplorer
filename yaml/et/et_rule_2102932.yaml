@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_jump: 2,-10,relative,from_beginning
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C|PIPE|5C 00|"'
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '" 2_/&|C1|v|10 B5|I|07|M|07 86 19 DA|"'
+      distance: '29'
+      flow: established,to_server
+      flowbits: set,smb.tree.bind.nddeapi
+      metadata: created_at 2010_09_23, cve CVE_2004_0206, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB nddeapi bind attempt"'
+      reference: cve,2004-0206
+      rev: '6'
+      sid: '2102932'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

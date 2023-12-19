@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<meta name=|22|Description|22 20|content=|22|Mr.Rm19"'
+      - value: '">Time On Server : <font color="'
+      - value: '">Server IP : <font color="'
+      - value: '">Current Dir : </font><a href="'
+      - value: '">Mass Deface</a>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_17, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_17
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2029938'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

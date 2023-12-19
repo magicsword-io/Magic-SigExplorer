@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|2F 70 6F 63|"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE malicious file download attempt"'
+      pcre: '"/\x2f\x70\x6f\x63(\d*|\x5f[\x61-\x7a]+)\x2e(\x68\x74\x6d\x6c|\x78(\x6c\x73|\x73\x6c|\x6d\x6c)|\x6a(\x73|\x61\x76a)|\x61\x73\x70|\x70(\x64f|\x70\x74|\x48\x70|\x73\x64)|\x66\x6c\x76|\x73\x77\x66|\x64\x6fc|\x74\x74\x66|\x62\x6d\x70|\x6d(\x70\x33|\x33\x75))/i"'
+      rev: '3'
+      service: http
+      sid: '37963'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

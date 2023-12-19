@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,<,0x94,0,relative
+      classtype: bad-unknown
+      contents:
+      - value: '"stream"'
+      - value: '"|00 00 00 0c 6a 50 20 20 0d 0a 87 0a|"'
+      - value: '"|00 00 00 00 6a 70 32 63 ff 4f|"'
+      - value: '"|ff 51|"'
+      - value: '"|00 00 ff|"'
+      distance: '36'
+      flow: from_server,established
+      flowbits: isset,ET.pdf.in.http
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2016_06_13, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Google Chrome Pdfium JPEG2000 Heap Overflow"'
+      pcre: '"/^[\x52\x5c\x64\x65\x90\x93]/R"'
+      rev: '1'
+      sid: '2022890'
+      special_options:
+      - file_data
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

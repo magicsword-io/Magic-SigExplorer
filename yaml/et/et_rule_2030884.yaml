@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '27'
+        value: '"/122002/assets/js/widget.js"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2020_09_15, former_category MALWARE, performance_impact
+        Low, updated_at 2020_11_12
+      msg: '"ET TROJAN MageCart JS Retrieval"'
+      pcre: '"/Host[^\r\n]+mcdnn\.(?:me|net)$/H"'
+      reference: url,sansec.io/research/largest-magento-hack-to-date
+      rev: '3'
+      sid: '2030884'
+      special_options:
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

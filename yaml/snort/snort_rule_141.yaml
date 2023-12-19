@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"host"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR HackAttack 1.20 Connect"'
+      rev: '10'
+      sid: '141'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '31785'

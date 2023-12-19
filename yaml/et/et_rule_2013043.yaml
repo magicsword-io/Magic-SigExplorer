@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '25'
+        value: '"action=get&applicationID="'
+      - value: '"&developerId="'
+      - value: '"&deviceId="'
+      - value: '"android.permission"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_06_16, updated_at 2020_10_28
+      msg: '"ET POLICY Android.Plankton/Tonclank Successful Installation Device Information
+        POST Message Body"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2011-060910-5804-99&tabid=2
+      rev: '3'
+      sid: '2013043'
+      special_options:
+      - http_method
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

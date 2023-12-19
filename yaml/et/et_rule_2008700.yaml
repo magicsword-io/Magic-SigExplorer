@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 2e 00 2e 00 2f 00 2e 00 2e 00 2f 00 30 30 30 30 30 30 30 30 30
+          30 30 30 30 30 30 30 30 30 87|"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, cve CVE_2008_4250, updated_at 2010_07_30
+      msg: '"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067
+        - Known Exploit Instance"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008700
+      rev: '6'
+      sid: '2008700'
+    protocol: udp
+    source:
+      network: any
+      port: any

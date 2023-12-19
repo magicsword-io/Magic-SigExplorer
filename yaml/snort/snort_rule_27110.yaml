@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"php?sf="'
+      - value: '"&Ze=",distance 0'
+      - value: '"&m=",distance 0'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"EXPLOIT-KIT Blackholev2/Cool exploit kit outbound portable executable
+        request"'
+      pcre: '"/php\?sf=\d+\&Ze=\d+\&m=\d+/"'
+      rev: '7'
+      service: http
+      sid: '27110'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

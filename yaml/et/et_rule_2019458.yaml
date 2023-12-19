@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/catalog/"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      - value: '!"nap.edu|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_10_17, updated_at 2020_10_07
+      msg: '"ET TROJAN Win32/Zemot URI Struct"'
+      pcre: '"/\/catalog\/\d{3,}$/U"'
+      reference: md5,b8e0b97c8e9faa6e5daa8f0cac845516
+      rev: '2'
+      sid: '2019458'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

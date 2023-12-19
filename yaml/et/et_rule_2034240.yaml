@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"#ConvitRC#<#>"'
+      - value: '"<#>"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_25, deployment Perimeter, former_category
+        MALWARE, malware_family Ousaban, signature_severity Major, tag Banker, updated_at
+        2021_10_25
+      msg: '"ET TROJAN Ousaban Banker Checkin M2"'
+      reference: url,twitter.com/James_inthe_box/status/1452631575976288261
+      rev: '2'
+      sid: '2034240'
+      stream_size: server,<,40
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

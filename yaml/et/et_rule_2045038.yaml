@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"href|3d 22|Nemmisis|5f|login|5f|files|2f|"'
+      - value: '"|3c|title|3e|Log|20|in|3c 2f|title|3e|"'
+      - value: '"|20|placeholder|3d 22|Username|22|"'
+      - value: '"placeholder|3d 22|Password|22|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_18, deployment Perimeter,
+        deployment SSLDecrypt, former_category ATTACK_RESPONSE, signature_severity
+        Major, tag Nemesis, updated_at 2023_04_18
+      msg: '"ET ATTACK_RESPONSE Nemesis Admin Panel Inbound"'
+      reference: url,twitter.com/TLP_R3D/status/1647632354926534657
+      rev: '1'
+      sid: '2045038'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

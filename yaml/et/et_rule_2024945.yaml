@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"addDownloadHint"'
+      - value: '"doDownload(force)"'
+      - value: '"userConversion(true)"'
+      - value: '"trigger_dl"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2017_11_03, former_category CURRENT_EVENTS, updated_at
+        2017_11_03
+      msg: '"ET CURRENT_EVENTS Fake Update/Installer ForceDL Template Nov 03 2017"'
+      pcre: '"/^\s*\(\s*force\s*\?\s*true\s*\x3a\s*false\s*,\s*\d+\s*,\s*\d+\s*,\s*[\x22\x27][^\x22\x27]+\.exe[\x22\x27]/Ri"'
+      rev: '2'
+      sid: '2024945'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

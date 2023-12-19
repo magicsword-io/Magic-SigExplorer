@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title"'
+      - value: '"Halkbank|20 c4 b0 6e 74 65 72 6e 65 74 20 c5 9e 75 62 65 73 69|"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_29, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_29
+      msg: '"ET CURRENT_EVENTS Possible Halkbank (TK) Phishing Landing - Title over
+        non SSL"'
+      rev: '2'
+      sid: '2025258'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

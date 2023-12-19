@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '873'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ssh-rsa"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: isset,ET.F5.key
+      metadata: created_at 2014_08_29, updated_at 2019_10_08
+      msg: '"ET EXPLOIT F5 BIG-IP rsync cmi authorized_keys successful upload"'
+      reference: url,www.security-assessment.com/files/documents/advisory/F5_Unauthenticated_rsync_access_to_Remote_Root_Code_Execution.pdf
+      rev: '2'
+      sid: '2019090'
+    protocol: tcp
+    source:
+      network: any
+      port: any

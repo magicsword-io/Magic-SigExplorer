@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?v="'
+      - value: '"&rs="'
+      - value: '"&n="'
+      - value: '"Windows NT 5."'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2011_10_19, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN Win32/Emold.C Checkin"'
+      pcre: '"/\.php\?v\x3d\d+?\x26rs\x3d(?:(?:\d+?\x2d){3})?\d+?\x26n\x3d\d/Ui"'
+      reference: md5,49205774f0ff7605c226828e080238f3
+      rev: '4'
+      sid: '2016251'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

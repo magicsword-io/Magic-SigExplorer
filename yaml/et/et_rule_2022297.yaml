@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '".apk"'
+      - value: '"appvv.com"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_12_22, updated_at 2020_10_05
+      msg: '"ET POLICY Android Download from Vshare Marketplace (Possible DarkSideLoading)"'
+      pcre: '"/Host\x3a\x20(?:[^\r\n]*?\.)?appvv.com(?:\x3a\d{1,5})?\r\n/Hi"'
+      rev: '1'
+      sid: '2022297'
+      special_options:
+      - nocase
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

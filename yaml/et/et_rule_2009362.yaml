@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/system32/"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_08_20
+      msg: '"ET WEB_SERVER /system32/ in Uri - Possible Protected Directory Access
+        Attempt"'
+      reference: url,doc.emergingthreats.net/2009362
+      rev: '6'
+      sid: '2009362'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

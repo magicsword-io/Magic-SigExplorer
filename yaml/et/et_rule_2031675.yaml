@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"PUT"'
+      - value: '"v1/agent/service/register"'
+      - value: '"|22|sh|22|"'
+      - value: '"|22|-c|22|"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2021_02_26, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, signature_severity Major, updated_at
+        2021_02_26
+      msg: '"ET EXPLOIT Inbound Hashicorp Consul RCE via Services API"'
+      reference: url,www.exploit-db.com/exploits/46074
+      rev: '2'
+      sid: '2031675'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

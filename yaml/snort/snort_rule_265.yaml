@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|89 F7 29 C7 89 F3 89 F9 89 F2 AC|<|FE|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-LINUX x86 Linux overflow attempt ADMv2"'
+      rev: '16'
+      service: dns
+      sid: '265'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/crystalimagehandler",fast_pattern,nocase'
+      - value: '"dynamicimage=../",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS SAP Crystal Reports crystalImageHandler.asp directory traversal
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms04-017
+      rev: '18'
+      service: http
+      sid: '2582'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

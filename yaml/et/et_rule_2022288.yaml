@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"{|22|"'
+      - value: '",|22|model|22 3a|"'
+      - value: '",|22|apps|22 3a 5b 22|"'
+      - value: '",|22|imei|22 3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2015_12_21, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2022_05_03, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.SmForw/SlemBunk/SLocker Checkin"'
+      pcre: '"/^(?:os|type)\x22\x3a/R"'
+      reference: url,www.fireeye.com/blog/threat-research/2015/12/slembunk_an_evolvin.html
+      rev: '7'
+      sid: '2022288'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

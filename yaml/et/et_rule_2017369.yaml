@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"|0d 0a|Referer"'
+      - value: '"/register_slave.php"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_08_23, former_category MALWARE, updated_at 2020_09_20
+      msg: '"ET TROJAN Bitcoin variant Checkin"'
+      reference: url,blog.avast.com/2013/08/01/malicious-bitcoin-miners-target-czech-republic/
+      rev: '1'
+      sid: '2017369'
+      special_options:
+      - nocase
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

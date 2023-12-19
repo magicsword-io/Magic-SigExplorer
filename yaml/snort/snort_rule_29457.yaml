@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '"abcdefghijklmnopqrstuvwabcdefghi",depth 32'
+      dsize: '>32'
+      icode: '0'
+      itype: '8'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-ICMP Unusual Microsoft Windows 7 Ping detected"'
+      reference: url,krebsonsecurity.com/2014/01/a-first-look-at-the-target-intrusion-malware/
+      rev: '2'
+      sid: '29457'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

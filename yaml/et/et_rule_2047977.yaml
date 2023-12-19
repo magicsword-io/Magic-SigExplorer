@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"JSESSIONID_11880="'
+      - value: '"JSESSIONID_11880="'
+      - value: '"MFTCSX="'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2023_09_08, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2023_09_08, reviewed_at 2023_09_08
+      msg: '"ET INFO JSCAPE MFT - HTTP Management Service Detected via Set-Cookie"'
+      reference: url,www.jscape.com/blog/binary-management-service-patch-cve-2023-4528
+      rev: '1'
+      sid: '2047977'
+      special_options:
+      - http_cookie
+      - http_cookie
+      threshold: type limit, count 1, seconds 600, track by_src
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

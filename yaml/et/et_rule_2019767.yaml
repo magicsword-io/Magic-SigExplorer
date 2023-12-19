@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/?0="'
+      - value: '"=i"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2014_11_21, former_category MALWARE, updated_at 2020_05_13
+      msg: '"ET TROJAN Rogue.Win32/FakePAV Checkin"'
+      pcre: '"/^\/\?0=(?:[^&]+?&\d+?=)+?[^=&]+?$/Ui"'
+      reference: md5,6829306e92cfa811b12d9b028eb56a2d
+      rev: '3'
+      sid: '2019767'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

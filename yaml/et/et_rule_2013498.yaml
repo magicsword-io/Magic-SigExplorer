@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/WiPlayer?movieid="'
+      - value: '"Host|3a| movies.netflix.com|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2011_08_30, updated_at 2020_04_20
+      msg: '"ET POLICY Netflix Streaming Player Access"'
+      reference: url,netflix.com
+      rev: '1'
+      sid: '2013498'
+      special_options:
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

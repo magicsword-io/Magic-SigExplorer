@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"/statistics/gscsetup.xml"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2018_08_22, cve CVE_2018_15534, deployment
+        Datacenter, former_category SCAN, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET SCAN Geutebrueck re_porter 7.8.974.20 Information Disclosure"'
+      reference: url,exploit-db.com/exploits/45240/
+      rev: '2'
+      sid: '2026008'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

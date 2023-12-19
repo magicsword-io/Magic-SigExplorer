@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[135,139,445,1024:2048]'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|05|"'
+      - value: '"|80 bd a8 af 8a 7d c9 11 be f4 08 00 2b 10 29 89|"'
+      distance: '31'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN DCERPC rpcmgmt ifids Unauthenticated BIND"'
+      reference: url,doc.emergingthreats.net/2009832
+      rev: '6'
+      sid: '2009832'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

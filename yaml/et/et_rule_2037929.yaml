@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|14 4d 5b 93 d5 0f d5 2f c2 9c 9f 66 4b 62 64 dc 52 d6 e0 b7 d5|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_08_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_08_04
+      msg: '"ET TROJAN SSL/TLS Certificate Observed (Link Implant Default)"'
+      reference: url,github.com/postrequest/link
+      rev: '1'
+      sid: '2037929'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

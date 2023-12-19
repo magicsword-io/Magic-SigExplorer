@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?b="'
+      - value: '"&v="'
+      - value: '"&psver="'
+      - value: '"Connection|3a 20|Keep-Alive|0d|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Cache"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2019_03_19, deployment Perimeter,
+        former_category MALWARE, malware_family JasperLoader, performance_impact Low,
+        signature_severity Major, tag Downloader, tag JavaScript, updated_at 2020_09_17
+      msg: '"ET TROJAN JasperLoader CnC Checkin"'
+      rev: '3'
+      sid: '2027100'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

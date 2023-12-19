@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/vbulletin/post.php?qu=",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rovnix variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a184775757cf30f9593977ee0344cd6c54deb4b14a012a7af8e3a2cdbb85a749/analysis/
+      rev: '2'
+      service: http
+      sid: '34868'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

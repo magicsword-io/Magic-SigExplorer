@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?a="'
+      - value: '"&b="'
+      - value: '"&c="'
+      - value: '"Windows|20|"'
+      - value: '"&d="'
+      - value: '"&e="'
+      - value: '!"User-Agent"'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_21, deployment Perimeter, former_category
+        MALWARE, malware_family RAT, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN ArtraDownloader/TeleRAT Checkin"'
+      reference: md5,a1bdb1889d960e424920e57366662a59
+      rev: '3'
+      sid: '2026641'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

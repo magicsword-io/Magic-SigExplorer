@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Hewlett-Packard FTP Print Server Version"'
+      - depth: '190'
+        offset: '40'
+        value: '"To print a file, use the command|3a| put <filename> [portx]"'
+      flow: to_client,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY External FTP Connection TO Local HP JetDirect Printer"'
+      reference: url,doc.emergingthreats.net/2009536
+      rev: '4'
+      sid: '2009536'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '21'

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"|2f 00 00 00|"'
+      - value: '"_"'
+      - value: '"202020202020|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept|3a|"'
+      - value: '!"User-Agent|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_20, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2022_03_24
+      msg: '"ET TROJAN GanDownloader CnC Checkin"'
+      pcre: '"/^\x2f\x00{3}[A-Z0-9]{6}_[a-f0-9]+\x00{16}$/Ps"'
+      reference: md5,8f0017ed89c2f6639cc2a08bc1e83f1e
+      rev: '2'
+      sid: '2026946'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

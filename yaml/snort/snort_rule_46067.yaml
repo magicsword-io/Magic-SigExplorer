@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Expect: 100-continue",fast_pattern,nocase'
+      - value: '"pc="'
+      - value: '"pc_data="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.yty plugin downloader initial outbound connection"'
+      reference: url,www.arbornetworks.com/blog/asert/donot-team-leverages-new-modular-malware-framework-south-asia/
+      rev: '2'
+      service: http
+      sid: '46067'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

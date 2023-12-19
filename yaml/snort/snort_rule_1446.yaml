@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"vrfy",nocase'
+      - value: '"root",distance 1,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-MAIL vrfy root"'
+      pcre: '"/^vrfy\s+root/ims"'
+      rev: '15'
+      service: smtp
+      sid: '1446'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

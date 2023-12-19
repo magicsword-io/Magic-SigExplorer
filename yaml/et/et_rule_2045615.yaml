@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"|3a|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.generictelegram
+      metadata: created_at 2023_05_08, former_category HUNTING, updated_at 2023_05_08
+      msg: '"ET INFO Telegram API Request (GET)"'
+      rev: '1'
+      sid: '2045615'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

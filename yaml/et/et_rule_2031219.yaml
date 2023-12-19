@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"condition|22 3a|"'
+      - value: '"|22|script|3a 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Apache_HTTP_server, attack_target Server, created_at
+        2020_11_19, cve CVE_2020_13942, deployment Perimeter, deployment Internal,
+        former_category WEB_SPECIFIC_APPS, signature_severity Major, updated_at 2020_11_19
+      msg: '"ET WEB_SPECIFIC_APPS Possible Apache Unomi MVEL Eval RCE Inbound M1 (CVE-2020-13942)"'
+      reference: cve,2020-13942
+      rev: '2'
+      sid: '2031219'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

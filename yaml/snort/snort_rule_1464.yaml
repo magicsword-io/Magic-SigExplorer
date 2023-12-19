@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Oracle Applications One-Hour Install"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE oracle one hour install"'
+      reference: nessus,10737
+      rev: '10'
+      sid: '1464'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '8002'

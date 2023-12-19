@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".aspx"'
+      - value: '"Cookie|3a 20|EX_TOKEN|3d|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Microsoft_IIS, attack_target Web_Server, created_at
+        2022_07_28, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_07_28
+      msg: '"ET TROJAN IIS Backdoor CnC Command Inbound"'
+      pcre: '"/\.aspx$/U"'
+      reference: url,www.microsoft.com/security/blog/2022/07/26/malicious-iis-extensions-quietly-open-persistent-backdoors-into-servers/
+      rev: '1'
+      sid: '2037845'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

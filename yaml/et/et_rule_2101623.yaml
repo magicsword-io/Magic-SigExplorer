@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"MODE"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL FTP invalid MODE"'
+      pcre: '"/^MODE\s+[^ABSC]{1}/msi"'
+      rev: '8'
+      sid: '2101623'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

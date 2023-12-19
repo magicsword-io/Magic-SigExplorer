@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 1,0, from_beginning
+      classtype: trojan-activity
+      contents:
+      - offset: '1'
+        value: '"|01 10 03 22 10|"'
+      - value: '"|13|20"'
+      flow: established,to_server
+      isdataat: '!3,relative'
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2023_09_13, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        MMRAT, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_13, reviewed_at 2023_09_13
+      msg: '"ET TROJAN Android/MMRAT CnC Checkin M1"'
+      reference: md5,5b90ee49ed678379f1a8be9683b3fc99
+      rev: '1'
+      sid: '2048085'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

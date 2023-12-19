@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"@|E9 03 00 00 00 00 00 00 00 00 64|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kabob outbound connection"'
+      pcre: '"/\/\d{8}\/\w{4}\/[A-F0-9]{4}\/[A-F0-9]{4}\/[A-Z0-9\-_~]{12}\.[aj]sp/i"'
+      rev: '3'
+      service: http
+      sid: '43063'
+      special_options:
+      - http_client_body
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

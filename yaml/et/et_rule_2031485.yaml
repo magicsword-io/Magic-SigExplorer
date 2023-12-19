@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/dow_"'
+      - value: '".txt"'
+      - value: '"User-Agent|3a 20|Java/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_01_06, deployment Perimeter, former_category
+        MALWARE, malware_family IceRAT, signature_severity Major, updated_at 2021_09_09
+      msg: '"ET TROJAN Possible IceRat CnC Acitivty"'
+      pcre: '"/\.txt$/U"'
+      reference: url,www.gdatasoftware.com/blog/icerat-evades-antivirus-by-using-jphp
+      rev: '2'
+      sid: '2031485'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

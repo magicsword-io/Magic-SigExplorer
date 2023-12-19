@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"id=''captcha_image'' name=''captcha_image'' src=''captcha.php?rand="'
+      - value: '"placeholder=''Enter Code'' style=''text-align:center|3b|'' class=''input''
+          name=''captcha''"'
+      - value: '"function refreshCaptcha(){"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_06, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2021_04_06
+      msg: '"ET CURRENT_EVENTS Generic Bank Captcha Phishing Landing"'
+      rev: '2'
+      sid: '2032511'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

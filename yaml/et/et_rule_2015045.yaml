@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"for("'
+      - value: '"|3B|"'
+      - value: '">=0|3B|"'
+      - value: '"--)"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_07_07, updated_at 2012_07_07
+      msg: '"ET INFO Potential Common Malicious JavaScript Loop"'
+      pcre: '"/for\x28[^\x3D\r\n]*[0-9]{1,6}\x2D[0-9]{1,5}\x3B[^\x3D\r\n]\x3E\x3D0\x3B[^\x29\r\n]\x2D\x2D\x29/"'
+      rev: '2'
+      sid: '2015045'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

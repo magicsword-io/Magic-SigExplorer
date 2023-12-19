@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/calendar_admin.pl?",nocase'
+      - value: '"config=|7C|",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP calendar_admin.pl arbitrary command execution attempt"'
+      reference: nessus,10506
+      rev: '19'
+      service: http
+      sid: '1536'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

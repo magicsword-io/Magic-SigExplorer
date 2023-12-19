@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ipecs-cm/download",fast_pattern,nocase'
+      - value: '"Content-Disposition",nocase'
+      - value: '"filename",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP LG-Ericsson iPECS NMS 30M directory traversal attempt"'
+      pcre: '"/filename\s*=\s*[^\r\n]*?(\x2e|%(25)?2e){2}([\x2f\x5c]|%(25)?(2f|5c))/i"'
+      reference: url,www.exploit-db.com/exploits/45167
+      rev: '1'
+      service: http
+      sid: '49841'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>25'
+      classtype: trojan-activity
+      contents:
+      - value: '".swf?"'
+      - value: '"styleid=",distance 0'
+      - value: '"&langid=",distance 0'
+      - value: '"&sid=",distance 0'
+      - value: '"&d=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Wild Neutron potential exploit attempt"'
+      reference: url,securelist.com/blog/research/71275/wild-neutron-economic-espionage-threat-actor-returns-with-new-tricks/
+      rev: '2'
+      service: http
+      sid: '35745'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"x|00|p|00|_|00|c|00|m|00|d|00|s|00|h|00|e|00|l|00|l|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL xp_cmdshell - program execution"'
+      reference: bugtraq,5309
+      rev: '10'
+      sid: '687'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

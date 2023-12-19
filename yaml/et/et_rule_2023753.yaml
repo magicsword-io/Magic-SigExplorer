@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '!3389'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '3'
+        value: '"|03 00 00|"'
+      - depth: '6'
+        offset: '5'
+        value: '"|e0 00 00 00 00 00|"'
+      - value: '"Cookie|3a 20|mstshash="'
+      flow: to_server,established
+      metadata: affected_product Microsoft_Terminal_Server_RDP, attack_target Server,
+        created_at 2017_01_23, deployment Perimeter, former_category SCAN, performance_impact
+        Moderate, signature_severity Major, updated_at 2022_09_14
+      msg: '"ET SCAN MS Terminal Server Traffic on Non-standard Port"'
+      rev: '3'
+      sid: '2023753'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

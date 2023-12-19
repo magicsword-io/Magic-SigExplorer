@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"LOGIN",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP login literal format string attempt"'
+      pcre: '"/\sLOGIN\s\w+\s\{\d+\}[\r]?\n[^\n]*?%/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS07-026
+      rev: '13'
+      service: imap
+      sid: '2665'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

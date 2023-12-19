@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|simplexoj|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2019_03_25, deployment Perimeter,
+        former_category TROJAN, malware_family ShadowHammer, performance_impact Low,
+        signature_severity Critical, updated_at 2020_09_17
+      msg: '"ET TROJAN Possible ShadowHammer DNS Lookup"'
+      reference: url,motherboard.vice.com/en_us/article/pan9wn/hackers-hijacked-asus-software-updates-to-install-backdoors-on-thousands-of-computers
+      rev: '2'
+      sid: '2027111'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

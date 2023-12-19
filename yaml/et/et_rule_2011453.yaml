@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/maincore.php?"'
+      - value: '"folder_level="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_09_29, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS PHP-Fusion maincore.php folder_level Parameter Local
+        File Inclusion Attempt"'
+      reference: url,inj3ct0r.com/exploits/13709
+      rev: '2'
+      sid: '2011453'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

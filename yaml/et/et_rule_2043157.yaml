@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"-a"'
+      - value: '"1.msi"'
+      distance: '5'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_30, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_12_30
+      msg: '"ET TROJAN TA444 Related CnC Payload Request"'
+      pcre: '"/-a[0-9]{5}1.msi$/U"'
+      reference: url,securelist.com/bluenoroff-methods-bypass-motw/108383/
+      rev: '1'
+      sid: '2043157'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

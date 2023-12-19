@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|4d 5a|"'
+      - value: '"https://www.chiark.greenend.org.uk/~sgtatham/putty/"'
+      - value: '"IsDebuggerPresent"'
+      fast_pattern: 31,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_06_23, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_06_23
+      msg: '"ET TROJAN SluttyPutty isDebuggerPresent in Fake Putty Executable"'
+      reference: md5,b0dd930c652d1b9350b7c8a29e798cd5
+      rev: '2'
+      sid: '2030382'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

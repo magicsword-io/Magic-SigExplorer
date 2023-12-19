@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '5'
+        value: '"|51 ca fe ba be|"'
+      flow: established,to_client
+      flowbits: isset,ET.RMIRequest
+      metadata: attack_target Client_Endpoint, created_at 2021_12_17, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, updated_at 2021_12_17
+      msg: '"ET POLICY Unserialized Java Payload via RMI Response"'
+      reference: url,blogs.juniper.net/en-us/threat-research/log4j-vulnerability-attackers-shift-focus-from-ldap-to-rmi
+      rev: '2'
+      sid: '2034749'
+      stream_size: client,<,100
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

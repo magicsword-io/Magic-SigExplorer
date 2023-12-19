@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '12'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/w1/feed.php",fast_pattern,nocase'
+      - value: '!"Connection|3A 20|"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluos variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/48936d3242ccd9decedf1057b08eacf5f952efeb1b7bb2f354bb02028a361ac2/analysis/
+      rev: '3'
+      service: http
+      sid: '32976'
+      special_options:
+      - http_method
+      - http_uri
+      - http_raw_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

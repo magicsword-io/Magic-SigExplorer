@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host Name|3a|"'
+      - value: '"OS Name|3a|"'
+      - value: '"OS Version|3a|"'
+      - value: '"OS Manufacturer|3a|"'
+      - value: '"Microsoft Corporation"'
+      - value: '"OS Configuration|3a|"'
+      - value: '"OS Build Type|3a|"'
+      - value: '"Registered Owner|3a|"'
+      - value: '"Registered Organization|3a|"'
+      - value: '"Product ID|3a|"'
+      - value: '"Original Install Date|3a|"'
+      - value: '"System Up Time|3a|"'
+      - value: '"System Manufacturer|3a|"'
+      - value: '"System Model|3a|"'
+      - value: '"System type|3a|"'
+      - value: '"Processor|28|s|29 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_08_26, updated_at 2014_08_26
+      msg: '"ET TROJAN Windows systeminfo Microsoft Windows DOS prompt command exit
+        OUTBOUND"'
+      reference: md5,a22af4fc7fe011069704a15296634ca6
+      rev: '1'
+      sid: '2019002'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

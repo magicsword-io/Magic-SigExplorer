@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"HTTP/"'
+      - value: '"2A2A75706C6F61642073756363657373"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_03_06, deployment Perimeter, former_category
+        MALWARE, malware_family MechaFlounder, performance_impact Low, signature_severity
+        Major, tag APT, tag Chafer, tag Python, updated_at 2019_03_06
+      msg: '"ET TROJAN Py/MechaFlounder CnC Activity - Reporting Upload Command Success"'
+      reference: url,unit42.paloaltonetworks.com/new-python-based-payload-mechaflounder-used-by-chafer/
+      rev: '2'
+      sid: '2027051'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

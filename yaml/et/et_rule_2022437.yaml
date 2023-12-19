@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|liumingzhen|05|myftp|03|org|00|"'
+      distance: '0'
+      metadata: created_at 2016_01_27, updated_at 2020_09_17
+      msg: '"ET TROJAN Scarlet Mimic DNS Lookup 27"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/01/scarlet-mimic-years-long-espionage-targets-minority-activists/
+      rev: '2'
+      sid: '2022437'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

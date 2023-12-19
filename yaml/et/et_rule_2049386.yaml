@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/EnjoyRMIS_WS/WS/APS/CWSFinanceCommon.asmx"'
+      - value: '"|3c|GetOSpById"'
+      - value: '"|3c|sId|3e|"'
+      - value: '"|3b|"'
+      - value: '"|3c2f|sId|3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_11_29, deployment Perimeter,
+        deployment Internal, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Major, tag Exploit, updated_at 2023_11_29
+      msg: '"ET WEB_SPECIFIC_APPS Jiecheng Management Information System CWSFinanceCommon
+        SQL injection"'
+      reference: url,www.wevul.com/3806.html
+      rev: '1'
+      sid: '2049386'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

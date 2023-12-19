@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"JOIN|20|#vnc|0A|",depth 10'
+      - value: '"PRIVMSG|20|#vnc|20 3A|",within 14'
+      - value: '"status checking program online",within 30,distance 7,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Linux.Backdoor.Shellbot outbound connection"'
+      reference: url,www.virustotal.com/en/file/8eb6c4a844cbfe98db78aef08a634c460c7c9f7d576b62444114306effb4023d/analysis/1390763713/
+      rev: '3'
+      service: irc
+      sid: '29569'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

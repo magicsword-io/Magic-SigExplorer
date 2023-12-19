@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|0d 0a|Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|fileToUpload|22
+          3b 20|filename|3d 22|"'
+      - value: '"Content|2d|Type|3a 20|application|2f|octet|2d|stream|0d 0a 0d 0a
+          89 50 4e 47 0d 0a 1a 0a|"'
+      distance: '0'
+      fast_pattern: 33,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_07, deployment Perimeter,
+        former_category MALWARE, malware_family TrueBot, signature_severity Major,
+        updated_at 2022_10_07
+      msg: '"ET TROJAN TrueBot/Silence.Downlaoder Screenshot Post M1"'
+      pcre: '"/fileToUpload\x22\x3b\x20filename\x3d\x22[a-f0-9]{8}\-[a-f0-9]{8}\x22\x0d\x0a/P"'
+      reference: url,tria.ge/221006-rxe8gshhep
+      rev: '1'
+      sid: '2039120'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

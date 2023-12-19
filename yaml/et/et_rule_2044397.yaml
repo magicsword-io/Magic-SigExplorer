@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|openai-pc-pro|06|online|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_28, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_02_28
+      msg: '"ET TROJAN Fake ChatGPT  Domain in DNS Lookup (openai-pc-pro .online)"'
+      reference: url,blog.cyble.com/2023/02/22/the-growing-threat-of-chatgpt-based-phishing-attacks/
+      rev: '1'
+      sid: '2044397'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

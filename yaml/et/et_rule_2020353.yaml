@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/input_data_get_contact.asp?user="'
+      - value: '"&pwd="'
+      - value: '"&addr="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2015_02_03, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, tag Android, tag c2, updated_at 2020_05_15, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/SMSThief.F Banker CnC Beacon"'
+      reference: md5,ff081c1400a948f2bcc4952fed2c818b
+      rev: '1'
+      sid: '2020353'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

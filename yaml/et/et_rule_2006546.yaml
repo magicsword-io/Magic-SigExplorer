@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SSH-"'
+      - value: '"libssh"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack"'
+      reference: url,doc.emergingthreats.net/2006546
+      rev: '6'
+      sid: '2006546'
+      threshold: type both, count 5, seconds 30, track by_src
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

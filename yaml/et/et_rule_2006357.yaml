@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| TEST|0d 0a|"'
+      - value: '!"Host|3a 20|messagecenter.comodo.com"'
+      - value: '!"symantec.com|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_11_02
+      msg: '"ET MALWARE User Agent (TEST) - Likely Webhancer Related Spyware"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2006357
+      rev: '10'
+      sid: '2006357'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

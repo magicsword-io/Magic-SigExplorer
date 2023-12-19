@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<script"'
+      - value: '"|3c 20|simpleByteArray.length|29|"'
+      - value: '"simpleByteArray|5b|"'
+      - value: '"|2a 20|TABLE1_STRIDE|29 7c 30 29 20 26 20 28|TABLE1_BYTES-1|29|"'
+      - value: '"|5e 3d 20|probeTable|5b|"'
+      - value: '"|7c 30 5d 7c 30 3b|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_04, cve CVE_2017_5753, deployment Perimeter,
+        former_category WEB_CLIENT, signature_severity Major, updated_at 2018_02_06
+      msg: '"ET WEB_CLIENT Spectre Kernel Memory Leakage JavaScript (POC Based)"'
+      reference: url,spectreattack.com/spectre.pdf
+      rev: '4'
+      sid: '2025184'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

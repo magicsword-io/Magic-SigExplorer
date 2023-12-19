@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/index.php?"'
+      - value: '"option=com_noticeboard"'
+      - value: '"controller="'
+      - depth: '200'
+        value: '"../"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_09_28, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_02
+      msg: '"ET WEB_SPECIFIC_APPS Joomla NoticeBoard Component controller Parameter
+        Local File Inclusion Attempt"'
+      reference: url,exploit-db.com/exploits/12427
+      rev: '3'
+      sid: '2011385'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

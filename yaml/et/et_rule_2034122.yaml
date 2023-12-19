@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|manholi.xyz"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_10_05, former_category MALWARE, updated_at 2021_10_05
+      msg: '"ET TROJAN Observed Elysium Stealer Domain in TLS SNI (manholi .xyz)"'
+      reference: md5,03a80daa82c29b55aa02a276ff58e22e
+      rev: '1'
+      sid: '2034122'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

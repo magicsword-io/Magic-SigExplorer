@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"POST / HTTP/1.1|0d 0a|Host|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '!"Content-Type|3a|"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_01_25, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Sage, signature_severity
+        Major, tag Ransomware, updated_at 2022_04_18, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Sage Ransomware Checkin Primer"'
+      pcre: '"/^.{0,15}[\x00-\x09\x80-\xff]/Ps"'
+      reference: url,isc.sans.edu/forums/diary/Sage+20+Ransomware/21959
+      rev: '2'
+      sid: '2023766'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

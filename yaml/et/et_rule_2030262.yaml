@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/actionHandler/ajax_network_diagnostic_tools.php"'
+      - depth: '62'
+        value: '"test_connectivity=true&destination_address=www.comcast.net|20 7c
+          7c 20|"'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2020_06_08,
+        deployment Perimeter, signature_severity Major, updated_at 2020_06_08
+      msg: '"ET EXPLOIT Xfinity Gateway - Remote Code Execution"'
+      reference: url,www.exploit-db.com/exploits/40856
+      rev: '2'
+      sid: '2030262'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      urilen: '48'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

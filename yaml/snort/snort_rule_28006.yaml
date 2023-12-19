@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?message=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-OTHER Win.Trojan.Kuluoz outbound download request"'
+      pcre: '"/(info|app)\x2ephp\x3fmessage\x3d/"'
+      reference: url,malwaremustdie.blogspot.com/2013/09/302-redirector-new-cushion-attempt-to.html
+      rev: '2'
+      service: http
+      sid: '28006'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

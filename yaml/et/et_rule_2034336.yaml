@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<head><title>PHP UnZIP"'
+      - value: '"<div class=|22|header|22|>PHP UnZIP!!!</div>"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_03, deployment Perimeter, former_category
+        WEB_CLIENT, signature_severity Major, updated_at 2021_11_03
+      msg: '"ET WEB_CLIENT Suspicious PHP UNZIP Tool Accessed on External Possibly
+        Compromised Server"'
+      rev: '1'
+      sid: '2034336'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

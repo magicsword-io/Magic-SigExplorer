@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -18
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"forumsecrets.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_11_20, deployment Perimeter, former_category EXPLOIT_KIT, performance_impact
+        Low, confidence High, signature_severity Minor, tag Exploit_Kit, updated_at
+        2023_11_20
+      msg: '"ET CURRENT_EVENTS ZPHP Domain in TLS SNI (forumsecrets .com)"'
+      pcre: '"/^(?:\x00\x10|.\x2e)forumsecrets\.com/R"'
+      reference: url,infosec.exchange/@monitorsg/111442806557991840
+      rev: '1'
+      sid: '2049271'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

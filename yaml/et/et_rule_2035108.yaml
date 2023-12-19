@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?type=update&uid="'
+      - value: '!"Mozilla"'
+      - value: '!"Opera"'
+      - value: '!"Safari"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_05, deployment Perimeter, former_category
+        MALWARE, malware_family Colibri, signature_severity Major, updated_at 2022_02_05
+      msg: '"ET TROJAN Win32/Colibri Loader Activity M3"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: url,twitter.com/3xp0rtblog/status/1489245446883069954
+      rev: '2'
+      sid: '2035108'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

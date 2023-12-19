@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/apply.cgi",fast_pattern,nocase'
+      - value: '!"Authorization:",nocase'
+      - value: '"action=Apply",nocase'
+      - value: '"PasswdModify=1",nocase'
+      - value: '"http_passwd=",nocase'
+      - value: '"http_passwdConfirm=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Linksys E1500/E2500 apply.cgi unauthenticated password
+        reset attempt"'
+      reference: url,www.s3cur1ty.de/m1adv2013-004
+      rev: '4'
+      service: http
+      sid: '26278'
+      special_options:
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

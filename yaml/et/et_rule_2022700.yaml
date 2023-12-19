@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/webpost.cgi"'
+      - value: '"|7b 22 43 66 67 54 79 70 65 22 3a 22 70 69 6e 67 22 2c 22 63 6d 64
+          22 3a 22 70 69 6e 67 22 2c 22 75 72 6c 22 3a 22|"'
+      flow: to_server,established
+      metadata: created_at 2016_04_05, updated_at 2020_06_30
+      msg: '"ET EXPLOIT Quanta LTE Router RDE Exploit Attempt 1 (ping)"'
+      pcre: '"/^[^\x22]*[\x24\x60]+/Ri"'
+      reference: url,pierrekim.github.io/blog/2016-04-04-quanta-lte-routers-vulnerabilities.html
+      rev: '1'
+      sid: '2022700'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

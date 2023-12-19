@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/stat/locker|20|HTTP/1."'
+      - value: '"User-Agent|3A| Apache-HttpClient/"'
+      - value: '!"Referer|3a 20|"'
+      - depth: '5'
+        value: '"type="'
+      - value: '"&version="'
+      - value: '"&lid="'
+      - value: '"&c="'
+      - value: '"&i="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2017_03_31, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, tag Android, tag c2, updated_at 2020_11_04, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android.C2P.Qd!c Ransomware CnC Beacon"'
+      reference: url,www.zscaler.com/blogs/research/new-android-ransomware-bypasses-all-antivirus-programs
+      rev: '1'
+      sid: '2024123'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

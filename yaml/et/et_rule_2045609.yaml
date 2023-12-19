@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<script>"'
+      - value: '"var|20|hash|20 3d 20|location|2e|hash|2e|substr|28|1|29 3b|"'
+      - value: '"window.location.replace(''"'
+      - value: '"/index#''"'
+      - value: '"|2b 20|hash|29 3b|"'
+      - value: '"window.location.replace(''https://href.li"'
+      - value: '"</script>"'
+      distance: '0'
+      fast_pattern: 25,15
+      metadata: created_at 2023_05_05, updated_at 2023_05_05
+      msg: '"ET CURRENT_EVENTS W3LL STORE Credential Phish Landing Page (Index) 2023-05-05"'
+      rev: '2'
+      sid: '2045609'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

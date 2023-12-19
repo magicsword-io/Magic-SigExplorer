@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/saveInstallation.action"'
+      - value: '"&installation.varValue="'
+      - value: '"|25|60"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2016_06_22, updated_at 2020_10_06
+      msg: '"ET WEB_SERVER Apache Continuum Arbitrary Command Execution"'
+      rev: '2'
+      sid: '2022912'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

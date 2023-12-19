@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|updatemain|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_12_11, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, tag APT38, updated_at 2020_10_24
+      msg: '"ET TROJAN Possible APT38 CnC Domain Observed in DNS Query"'
+      rev: '2'
+      sid: '2029115'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

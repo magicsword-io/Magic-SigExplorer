@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"GET /users.php?"'
+      - value: '"|3a|windows|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_01_06, deployment Perimeter, former_category
+        MALWARE, malware_family IceRAT, signature_severity Major, updated_at 2021_01_06
+      msg: '"ET TROJAN IceRat Backdoor Checkin"'
+      pcre: '"/^(?:resp|onl|pr)=/R"'
+      reference: md5,dae90ae7fe103fc7e1866b4e13389101
+      rev: '2'
+      sid: '2031486'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

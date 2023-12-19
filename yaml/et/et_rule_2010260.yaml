@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/components/com_ajaxchat/tests/ajcuser.php?"'
+      - value: '"GLOBALS[mosConfig_absolute_path]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla AjaxChat Component ajcuser.php GLOBALS Parameter
+        Remote File Inclusion Attempt"'
+      pcre: '"/GLOBALS\[mosConfig_absolute_path\]\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010260
+      rev: '3'
+      sid: '2010260'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

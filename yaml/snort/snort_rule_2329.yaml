@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: any
+    details:
+      byte_test: 2,>,512,1
+      classtype: attempted-user
+      contents:
+      - value: '"|05|",depth 1'
+      - value: '"|3B|",distance 0'
+      - value: '!"|3B|",within 512'
+      flow: to_server
+      isdataat: 512,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-MSSQL probe response overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-003
+      rev: '15'
+      sid: '2329'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

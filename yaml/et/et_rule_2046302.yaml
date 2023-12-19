@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|schseels|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_06_20, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_06_20, reviewed_at 2023_11_28
+      msg: '"ET CURRENT_EVENTS Known Phishing Related Domain in DNS Lookup (schseels
+        .com)"'
+      rev: '1'
+      sid: '2046302'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

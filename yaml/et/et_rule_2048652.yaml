@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -19
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"statsexplorer.org"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_19, deployment Perimeter, former_category
+        MALWARE, malware_family Glupteba, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_10_19, reviewed_at 2023_10_19
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (statsexplorer .org in TLS SNI)"'
+      pcre: '"/^(?:\x00\x11|.\x2e)statsexplorer\.org/R"'
+      reference: md5,cb956b4175e9412c8f7f98e600791041
+      rev: '1'
+      sid: '2048652'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      base64_decode: bytes 150,offset 10,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"0aW1lP",fast_pattern'
+      - value: '"/index.php?",distance -50'
+      - value: '"time="'
+      - value: '"&src=",distance 0'
+      - value: '"&surl=",distance 0'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Unix.Backdoor.Cdorked redirect attempt"'
+      reference: url,virustotal.com/en/file/7b3cd8c1bd0249df458084f28d91648ad14e1baf455fdd53b174481d540070c6/analysis/
+      rev: '4'
+      service: http
+      sid: '26528'
+      special_options:
+      - http_header
+      - base64_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|jssestaew3e7ao3q"'
+      distance: '0'
+      metadata: created_at 2015_02_04, updated_at 2020_09_01
+      msg: '"ET TROJAN Critroni Variant .onion Proxy Domain"'
+      rev: '2'
+      sid: '2020360'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".online|0d 0a|Conne"'
+      - depth: '5'
+        value: '"Host|3a|"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_16, deployment Perimeter, former_category
+        TROJAN, malware_family MalDocGeneric, malware_family Maldoc, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN XLS.Unk DDE rar Drop Attempt (.online)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nConnection[^\r\n]+[\r\n]+$/H"'
+      reference: md5,63b070b222d170ef4cc35ad94d42a088
+      rev: '2'
+      sid: '2026489'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

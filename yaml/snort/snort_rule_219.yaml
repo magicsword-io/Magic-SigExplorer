@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"StoogR"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR HidePak backdoor attempt"'
+      rev: '10'
+      sid: '219'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

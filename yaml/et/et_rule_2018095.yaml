@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/launch/?c="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"&m="'
+      - value: '"&l="'
+      - value: '"&b="'
+      - value: '"&sid="'
+      - value: '"&os="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_01_14, former_category ADWARE_PUP, updated_at 2020_11_05
+      msg: '"ET MALWARE Potentially Unwanted Application AirInstaller"'
+      reference: md5,ac030896aad1b6b0eeb00952dee24c3f
+      rev: '4'
+      sid: '2018095'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      urilen: '>31'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

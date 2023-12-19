@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"INDEX ",depth 6'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Netscape Enterprise directory listing attempt"'
+      reference: nessus,10691
+      rev: '16'
+      service: http
+      sid: '1048'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

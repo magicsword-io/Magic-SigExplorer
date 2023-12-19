@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|image/jpeg|0d 0a|"'
+      - value: '"set OMYORANTICATO = createobject(|22|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_08_18, deployment Perimeter,
+        former_category MALWARE, malware_family GORGON, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_18
+      msg: '"ET TROJAN GORGON APT Download Activity"'
+      reference: md5,08828db7a600e573d5dd61315e3e2af1
+      rev: '2'
+      sid: '2030701'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

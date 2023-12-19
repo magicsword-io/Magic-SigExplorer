@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Mail Settings"'
+      - value: '"Password Reset"'
+      - value: '"<meta http-equiv="'
+      - value: '"REFRESH"'
+      - value: '"Your account is safe"'
+      distance: '0'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_05_16, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_08_13, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Mailbox Shutdown Phish M3 2016-05-16"'
+      rev: '2'
+      sid: '2032384'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

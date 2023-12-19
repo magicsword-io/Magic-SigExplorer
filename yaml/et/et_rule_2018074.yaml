@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?a1="'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_02_05, updated_at 2020_09_22
+      msg: '"ET TROJAN Win32/StoredBt.A Activity"'
+      pcre: '"/\.php\?a1=\d+&a2=(?:[0-9A-Fa-f]{2}-[0-9A-Fa-f]{2}-[0-9A-Fa-f]{2}-[0-9A-Fa-f]{2}-[0-9A-Fa-f]{2}-[0-9A-Fa-f]{2}|(?:[A-Za-z0-9\+\/]{4})*(?:[A-Za-z0-9\+\/]{2}==|[A-Za-z0-9\+\/]{3}=|[A-Za-z0-9\+\/]{4}))(?:&a\d+=[^&]+)+$/U"'
+      reference: md5,e8e9eb1cd4be7ab27743887be2aa28e9
+      rev: '1'
+      sid: '2018074'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

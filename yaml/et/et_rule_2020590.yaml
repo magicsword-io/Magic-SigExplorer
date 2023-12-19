@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ping.ccp"'
+      - depth: '26'
+        value: '"ccp_act=ping_v6&ping_addr="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_03_03, updated_at 2020_09_29
+      msg: '"ET EXPLOIT D-Link and TRENDnet ncc2 Service Vulnerability (ping.ccp)
+        2015-1187"'
+      pcre: '"/ping_addr=[\d.]*[^\d.]/P"'
+      reference: url,github.com/darkarnium/secpub/tree/master/Multivendor/ncc2
+      rev: '1'
+      sid: '2020590'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

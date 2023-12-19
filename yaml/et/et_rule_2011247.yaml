@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Forthgoer"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE Likely Hostile User-Agent (Forthgoer)"'
+      reference: url,doc.emergingthreats.net/2011247
+      rev: '5'
+      sid: '2011247'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

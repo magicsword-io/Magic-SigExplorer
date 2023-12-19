@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<font><font>file Manager</font></font>"'
+      - value: '"<font><font>Back Connect"'
+      - value: '"<font><font>CgiShell</font></font>"'
+      - value: '"<font><font>Symlink</font></font>"'
+      - value: '"Mailer</font></font>"'
+      - value: '"<font><font>Auto r00t</font></font>"'
+      - value: '"<font><font>Upload</font></font>"'
+      - value: '"Exploiter & scan Tools</font></font>"'
+      - value: '"<font><font>Self remove</font></font>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_15, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_04_15
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2029917'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

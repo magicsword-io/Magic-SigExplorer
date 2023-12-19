@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -12
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"jaicvc.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        tag TA444, updated_at 2023_06_28, former_sid 2854701
+      msg: '"ET TROJAN Observed TA444 Domain in TLS SNI (jaicvc .com)"'
+      pcre: '"/^(?:\x00\x0a|.\x2e)jaicvc\.com/R"'
+      reference: url,www.elastic.co/security-labs/DPRK-strikes-using-a-new-variant-of-rustbucket
+      rev: '1'
+      sid: '2046707'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

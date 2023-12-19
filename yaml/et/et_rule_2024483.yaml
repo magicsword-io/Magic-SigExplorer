@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a|"'
+      - value: '"name=|22|banner|22 0d 0a|"'
+      - value: '"name=|22|jpg|22 0d 0a|"'
+      - value: '"name=|22|userfile|22 3b 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_20, deployment Perimeter, former_category
+        MALWARE, malware_family DarkHotel, signature_severity Major, tag Targeted,
+        tag APT, tag DarkHotel, tag c2, updated_at 2020_08_10, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN DarkHotel Downloader CnC Beacon 2"'
+      reference: url,labs.bitdefender.com/2017/07/inexsmar-an-unusual-darkhotel-campaign/
+      rev: '1'
+      sid: '2024483'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

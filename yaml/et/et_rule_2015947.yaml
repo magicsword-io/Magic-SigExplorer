@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/core/Loader.php?"'
+      - value: '"g="'
+      - value: '"s="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_11_28, updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Piwik Backdoor Access"'
+      reference: url,blog.sucuri.net/2012/11/piwik-org-webserver-hacked-and-backdoor-added-to-piwik.html
+      rev: '2'
+      sid: '2015947'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

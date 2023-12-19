@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/533L"'
+      flow: to_server,established
+      metadata: created_at 2015_10_29, updated_at 2015_10_29
+      msg: '"ET CURRENT_EVENTS Possible Malicious Redirect Leading to EK Oct 29"'
+      rev: '2'
+      sid: '2022009'
+      urilen: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

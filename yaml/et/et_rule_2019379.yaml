@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"name|3d 22|upload_file|22 3b 20|filename|3d 22|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: created_at 2014_10_09, updated_at 2020_05_12
+      msg: '"ET TROJAN Win32/PSW.Papras.CK file upload"'
+      pcre: '"/^\x2f[a-zA-Z]{4,}\x2ephp\x3f[a-zA-Z]{2,10}\x3d(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})+/U"'
+      reference: url,csis.dk/en/csis/news/4472/
+      rev: '2'
+      sid: '2019379'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

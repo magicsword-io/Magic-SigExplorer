@@ -1,0 +1,19 @@
+site_name: Magic-SigExplorer
+nav:
+    - Home: index.md
+    - CVE Report: cve_report.md
+    - Snort Community: snort.md
+    - ET Community: et.md
+    - Custom: custom.md
+    #- ET Suricata: suricata.md
+plugins:
+  - search:
+      prebuild_index: true
+      indexing: 'full'
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust

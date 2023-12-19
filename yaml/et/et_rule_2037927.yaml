@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 10.0|3b 20|Win64|3b 20|x64)
+          AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36|0d
+          0a|"'
+      fast_pattern: 86,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_04, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family RedGuard, signature_severity
+        Major, updated_at 2022_08_04
+      msg: '"ET TROJAN RedGuard Framework Related Request Activity"'
+      pcre: '"/User-Agent[^\r\n]+\r\nAccept[^\r\n]+\r\nRedGuard[^\r\n]+\r\ncharset[^\r\n]+\r\n/Hm"'
+      reference: url,github.com/wikiZ/RedGuard
+      rev: '1'
+      sid: '2037927'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

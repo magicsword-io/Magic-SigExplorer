@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/img/script.php?",fast_pattern,nocase'
+      - value: '"Accept|3A 20|*/*|0D 0A|"'
+      - value: '"UA-CPU|3A 20|"'
+      - value: '!"Referer"'
+      - value: '!"Accept-Language"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.DFSCook variant JS dropper outbound connection"'
+      pcre: '"/\/img\/script\.php\x3f.*\.mov$/i"'
+      reference: url,www.virustotal.com/en/file/7a32e9d01e66f68461e410a29e38e147fb8a3d3695f1e55f4cf0d2ad789d5b2d/analysis/1460564508/
+      rev: '2'
+      service: http
+      sid: '38584'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

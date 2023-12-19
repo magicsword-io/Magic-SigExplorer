@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '"<Information>"'
+      - value: '"<id>"'
+      - value: '"<Version>"'
+      - value: '"<profile>"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_04_13, updated_at 2020_05_22
+      msg: '"ET TROJAN Emotet v2 Exfiltrating Outlook information"'
+      reference: url,securelist.com/analysis/69560/the-banking-trojan-emotet-detailed-analysis/
+      rev: '2'
+      sid: '2020900'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

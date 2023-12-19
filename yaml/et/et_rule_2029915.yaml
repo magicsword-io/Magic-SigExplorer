@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>16SHOP"'
+      - value: '"<label>Public Key"'
+      - value: '"<label>Password"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_15, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_09_01
+      msg: '"ET WEB_SERVER 16Shop Phishing Kit Accessed on Internal Compromised Server"'
+      rev: '3'
+      sid: '2029915'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

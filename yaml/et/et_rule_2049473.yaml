@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '".cfc?"'
+      - value: '"method="'
+      - value: '"_cfclient=true"'
+      - value: '"_variables="'
+      - value: '"cffile"'
+      - value: '"action"'
+      - value: '"write"'
+      flow: established,to_server
+      metadata: affected_product Adobe_Coldfusion, attack_target Web_Server, created_at
+        2023_12_05, cve CVE_2023_26360, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, tag Exploit, updated_at 2023_12_05
+      msg: '"ET EXPLOIT Adobe ColdFusion Deserialization of Untrusted Data (CVE-2023-26360)
+        M3"'
+      reference: url,attackerkb.com/topics/F36ClHTTIQ/cve-2023-26360/rapid7-analysis
+      rev: '1'
+      sid: '2049473'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      within: '20'
+    protocol: tcp
+    source:
+      network: any
+      port: any

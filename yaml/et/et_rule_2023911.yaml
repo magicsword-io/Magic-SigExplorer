@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"USER "'
+      flow: to_server,established
+      metadata: created_at 2014_07_03, former_category MALWARE, updated_at 2017_02_16
+      msg: '"ET TROJAN Miniduke variant FTP upload"'
+      pcre: '"/^(?:(?:menelao|ho[mr]u)s|adair|johan|kweku)\r\n/R"'
+      reference: url,www.f-secure.com/static/doc/labs_global/Whitepapers/cosmicduke_whitepaper.pdf
+      rev: '3'
+      sid: '2023911'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

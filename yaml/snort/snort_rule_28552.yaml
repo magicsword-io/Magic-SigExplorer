@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2425'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"iptux",depth 5,offset 2'
+      - value: '"lws|3A|lws",within 7,distance 9'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN inbound probing for IPTUX messenger port "'
+      reference: url,github.com/iptux-src/iptux
+      rev: '3'
+      sid: '28552'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '2425'

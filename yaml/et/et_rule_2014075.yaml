@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/jbshop/jbshop.php?"'
+      - value: '"item_details="'
+      - value: '"item_id="'
+      - value: '"DELETE"'
+      - value: '"FROM"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2012_01_02, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS jbShop e107 CMS plugin item_id parameter DELETE
+        FROM SQL Injection Attempt"'
+      pcre: '"/DELETE.+FROM/Ui"'
+      reference: url,exploit-db.com/exploits/18056/
+      rev: '2'
+      sid: '2014075'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

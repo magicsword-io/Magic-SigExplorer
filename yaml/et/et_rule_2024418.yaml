@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".DAT,K1|22 0d 0a|fso"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_20, deployment Perimeter, former_category
+        TROJAN, malware_family DragonOK, malware_family KHRAT, performance_impact
+        Low, signature_severity Major, tag Targeted, tag APT, tag CNAPT, updated_at
+        2017_06_20
+      msg: '"ET TROJAN DragonOK KHRAT Downloader Receiving Payload"'
+      reference: md5,404518f469a0ca85017136b6b5166ae3
+      rev: '1'
+      sid: '2024418'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

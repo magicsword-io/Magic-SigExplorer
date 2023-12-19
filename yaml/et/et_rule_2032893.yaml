@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|13|officewestunionbank|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_04_30, deployment Perimeter,
+        former_category MALWARE, malware_family Buer, signature_severity Major, updated_at
+        2022_05_02
+      msg: '"ET TROJAN Observed DNS Query to Buer - DomainInfo Domain"'
+      reference: md5,0731679c5f99e8ee65d8b29a3cabfc6b
+      rev: '2'
+      sid: '2032893'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length: 16"'
+      - value: '"STATUS-IMPORT-OK",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Pony HTTP response connection"'
+      reference: url,www.virustotal.com/en/file/58762cf6aa8eea5744716986773a2c22ae7412eae634be7bed648c96465bc8ef/analysis/
+      rev: '3'
+      service: http
+      sid: '29870'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

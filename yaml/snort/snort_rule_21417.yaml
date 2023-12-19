@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%PDF-1."'
+      - value: '") /CreationDate (D:20110405234628)>>",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.pdf
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"FILE-PDF hostile PDF associated with Laik exploit kit"'
+      rev: '10'
+      service: ftp-data,http,imap,pop3
+      sid: '21417'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

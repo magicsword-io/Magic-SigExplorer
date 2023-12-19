@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,465,587,691]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20 20|Recovered From|3a 20|"'
+      - value: '"Content-Type|3a 20|text/plain|3b 20|name|3d|RecoveredPassword.txt"'
+      - value: '"Content-Disposition|3a 20|attachment|0d 0a 0d 0a|"'
+      - value: '"IAB8AFMAeQBzAHQAZQBtACAASQBuAGYAbwB8AA0ACg"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_23, deployment Perimeter, former_category
+        MALWARE, malware_family Kraken_Stealer, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_23
+      msg: '"ET TROJAN Kraken Stealer SMTP Data Exfiltration Attempt"'
+      reference: md5,5bc9ee4bec5e31f4ed64fefa92ef5f2b
+      rev: '1'
+      sid: '2045841'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

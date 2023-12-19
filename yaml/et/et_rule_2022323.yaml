@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0a|infosec.jp"'
+      - value: '"|55 04 03|"'
+      - value: '"|0e|www.infosec.jp"'
+      - value: '"snowyowl@jpnsec.com"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2016_01_01, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2022_03_24, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Malicious SSL certificate detected (Possible Sinkhole)"'
+      reference: md5,ef5fa2378307338d4e75dece88158d77
+      rev: '2'
+      sid: '2022323'
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

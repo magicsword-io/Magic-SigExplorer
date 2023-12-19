@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/OvCgi/Toolbar.exe"'
+      - value: '"Accept-Language|3A|"'
+      - value: '!"|0A|"'
+      flow: established,to_server
+      isdataat: 1350,relative
+      metadata: created_at 2010_07_30, cve CVE_2009_0921, former_category WEB_SERVER,
+        confidence High, updated_at 2020_11_02
+      msg: '"ET WEB_SERVER HP OpenView /OvCgi/Toolbar.exe Accept Language Heap Buffer
+        Overflow Attempt"'
+      reference: url,doc.emergingthreats.net/2010864
+      rev: '9'
+      sid: '2010864'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      within: '1350'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

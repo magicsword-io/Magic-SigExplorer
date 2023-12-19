@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"USER onthelinux"'
+      flow: established,to_server
+      metadata: created_at 2012_02_18, updated_at 2012_02_18
+      msg: '"ET TROJAN W32.Duptwux/Ganelp FTP Username - onthelinux"'
+      rev: '1'
+      sid: '2014239'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

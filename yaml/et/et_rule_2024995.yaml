@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"parent-tab://"'
+      - value: '"open"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: affected_product Safari, attack_target Client_Endpoint, created_at
+        2017_11_15, cve CVE_2017_7089, deployment Perimeter, former_category WEB_CLIENT,
+        performance_impact Low, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Apple Safari UXSS (CVE-2017-7089)"'
+      pcre: '"/\b(?P<varname>[^\s\x3d]+)\s*\x3d\s*open\s*\x28\s*[^\x29]+parent-tab:\/\/.+(?P=varname)\s*\.\s*document\s*\.\s*body\s*.\s*innerHTML\s*=/si"'
+      reference: cve,2017-7089
+      rev: '2'
+      sid: '2024995'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

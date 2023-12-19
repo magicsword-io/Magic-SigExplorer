@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"LSUB"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP lsub overflow attempt"'
+      pcre: '"/\sLSUB\s[^\n]{100}/ims"'
+      reference: nessus,10374
+      rev: '17'
+      service: imap
+      sid: '2106'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

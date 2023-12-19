@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"op=IncluirAvisos&",fast_pattern,nocase'
+      - value: '"HostBD=",depth 7,offset 17'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC RDN Banker POST variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/1a23f27b046af92b7dd2c4a8f8349c9fd9582ad91b5a61556470c58b15af3b26/analysis/1369251144/
+      rev: '3'
+      service: http
+      sid: '26835'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

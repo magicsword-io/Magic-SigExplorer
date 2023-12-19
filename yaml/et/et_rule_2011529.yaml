@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"PDF-"'
+      - value: '"/"'
+      - value: '!"Action"'
+      - value: '"#"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_27, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT PDF Name Representation Obfuscation of Action"'
+      pcre: '"/\x2F(?!Action)(A|#41)(c|#63)(t|#74)(i|#69)(o|#6F)(n|#6E)/"'
+      reference: url,blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/
+      rev: '4'
+      sid: '2011529'
+      special_options:
+      - file_data
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[443,$HTTP_PORTS]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"GET /"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"."'
+      - value: '"sp?"'
+      - value: '"HTTP/1."'
+      - value: '" MSIE 5.01|3b| Windows NT 5.0|29|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2011_04_26, former_category MALWARE, updated_at 2020_08_17
+      msg: '"ET TROJAN Ixeshe/Mecklow Checkin"'
+      pcre: '"/^GET (?:\/[^\x2f]+)*?\/[A-Z0-9]+\.[aj]sp\?[a-zA-Z0-9+/\x20=]+\x20HTTP\/1\./"'
+      reference: url,www.kahusecurity.com/2011/apec-spearphish-2/
+      rev: '8'
+      sid: '2018379'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

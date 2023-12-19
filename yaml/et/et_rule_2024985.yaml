@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|63 6c 69 63 6b 5f 75 70 64|"'
+      - value: '"|46 6f 6e 74 20 50 61 63 6b|"'
+      - value: '"|2e 6a 73 20 66 69 6c 65 20 74 6f 20 73 74 61 72 74 20 74 68 65 20
+          69 6e 73 74 61 6c 6c 61 74 69 6f 6e 20 70 72 6f 63 65 73 73 2e|"'
+      flow: established,from_server
+      metadata: affected_product Web_Browser_Plugins, attack_target Client_Endpoint,
+        created_at 2017_11_14, deployment Perimeter, former_category CURRENT_EVENTS,
+        malware_family SocEng, performance_impact Low, signature_severity Major, updated_at
+        2017_11_14
+      msg: '"ET WEB_CLIENT SocEng Fake Font Download Template Nov 14 2017"'
+      reference: url,malware-traffic-analysis.net/2017/11/12/index.html
+      rev: '1'
+      sid: '2024985'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

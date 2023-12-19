@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"/ss?t=f&"'
+      flow: established,to_server
+      metadata: created_at 2013_07_05, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN VBulletin Backdoor C2 URI Structure"'
+      reference: url,blog.sucuri.net/2013/07/vbulletin-infections-from-adabeupdate.html
+      rev: '3'
+      sid: '2017112'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

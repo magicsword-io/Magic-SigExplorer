@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - depth: '10'
+        value: '"PHPSESSID|3d|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|module|22
+          0d 0a 0d 0a|EmailTemplates|0d 0a|"'
+      - value: '"|0d 0a|Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|action|22
+          0d 0a 0d 0a|AttachFiles|0d 0a|"'
+      - value: '"|89 50 4e 47 0d 0a 1a 0a|"'
+      - value: '"<?php"'
+      distance: '0'
+      fast_pattern: 38,20
+      flow: established,to_server
+      metadata: affected_product SugarCRM, attack_target Server, created_at 2023_01_11,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, tag Exploit, updated_at 2023_01_11
+      msg: '"ET EXPLOIT SugarCRM PHP Shell Upload Attempt"'
+      pcre: '"/^PHPSESSID\x3d[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/C"'
+      reference: url,sugarclub.sugarcrm.com/dev-club/f/questions-answers/6123/exploit-for-sugarcrm-shell-upload
+      rev: '1'
+      sid: '2043273'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

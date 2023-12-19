@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/Photos/Query.cgi?loginid="'
+      flow: established,to_server
+      metadata: created_at 2013_05_04, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN DEEP PANDA Checkin 2"'
+      reference: url,crowdstrike.com/sites/default/files/AdversaryIntelligenceReport_DeepPanda_0.pdf
+      rev: '3'
+      sid: '2016820'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

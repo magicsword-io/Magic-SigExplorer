@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|sammitng.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_09_20, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_09_20, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (CobaltStrike CnC)"'
+      reference: url,thedfirreport.com/2021/09/13/bazarloader-to-conti-ransomware-in-32-hours/
+      rev: '1'
+      sid: '2033988'
+      special_options:
+      - nocase
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

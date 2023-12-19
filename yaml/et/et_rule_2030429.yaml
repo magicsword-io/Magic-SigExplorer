@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 15|secure-upd21-app2.com|00|"'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, created_at 2020_07_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag StrongPity, tag SSL_TLS_SNI, updated_at 2020_11_17
+      msg: '"ET TROJAN Observed StrongPity CnC Domain in TLS SNI"'
+      reference: url,blog.talosintelligence.com/2020/06/promethium-extends-with-strongpity3.html
+      rev: '2'
+      sid: '2030429'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

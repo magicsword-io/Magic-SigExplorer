@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/jtfwcpnt.jsp?"'
+      - value: '"query="'
+      - value: '"UPDATE"'
+      - value: '"SET"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_04
+      msg: '"ET WEB_SPECIFIC_APPS Oracle E-Business Suite Financials jtfwcpnt.jsp
+        UPDATE SET SQL Injection Attempt"'
+      pcre: '"/UPDATE.+SET/Ui"'
+      reference: url,doc.emergingthreats.net/2011061
+      rev: '3'
+      sid: '2011061'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

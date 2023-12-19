@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 1d|endpsbn1u6m8f.x.pipedream.net"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_09_14, deployment Perimeter,
+        former_category MALWARE, malware_family CoinMiner, signature_severity Major,
+        tag Coinminer, updated_at 2020_09_14, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN Observed CoinMiner CnC Domain (endpsbn1u6m8f .x .pipedream
+        .net in TLS SNI)"'
+      reference: md5,0789fc10c0b2e34b4d780b147ae98759
+      rev: '2'
+      sid: '2030874'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

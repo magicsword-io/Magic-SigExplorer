@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '80'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"<SNAPQUOTE>",nocase'
+      - value: '!"</SNAPQUOTE>",within 1052,nocase'
+      flow: to_server,established
+      isdataat: 1024,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER esignal SNAPQUOTE buffer overflow attempt"'
+      reference: cve,2004-1868
+      rev: '7'
+      sid: '2490'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

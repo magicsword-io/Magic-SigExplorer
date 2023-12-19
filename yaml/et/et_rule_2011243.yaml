@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| plaNETWORK Bot Search"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SERVER, updated_at 2020_08_06
+      msg: '"ET WEB_SERVER Bot Search RFI Scan (ByroeNet/Casper-Like planetwork)"'
+      reference: url,doc.emergingthreats.net/2011243
+      rev: '6'
+      sid: '2011243'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

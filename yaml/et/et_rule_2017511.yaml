@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"|0d 0a|Agtid|3a| "'
+      flow: established,to_server
+      metadata: created_at 2013_09_24, former_category MALWARE, updated_at 2020_04_27
+      msg: '"ET TROJAN APT.Agtid callback"'
+      reference: url,www.fireeye.com/blog/technical/cyber-exploits/2013/09/operation-deputydog-zero-day-cve-2013-3893-attack-against-japanese-targets.html
+      rev: '1'
+      sid: '2017511'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/software_install?sid="'
+      - value: '"&sub_id="'
+      - value: '"&hash="'
+      - value: '"&mid="'
+      - value: '"&fname="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      flowbits: set,ETPTadmoney
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_02, deployment Perimeter, former_category
+        ADWARE_PUP, malware_family Loadmoney, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_31
+      msg: '"ET MALWARE Win32/LoadMoney Adware Activity M2"'
+      reference: md5,844e53381099d572c3864c7a42ddbbf1
+      rev: '2'
+      sid: '2025303'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

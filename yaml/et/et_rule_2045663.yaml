@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|forumpatners|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag TA444, updated_at 2023_05_11,
+        reviewed_at 2023_09_19
+      msg: '"ET TROJAN DNS Query to TA444 Domain (forumpatners .com)"'
+      rev: '1'
+      sid: '2045663'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

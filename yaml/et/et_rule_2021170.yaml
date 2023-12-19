@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '12'
+        value: '"|7a 00 00 00 00 00 00 00 00 00 00 00|"'
+      dsize: '>1390'
+      metadata: created_at 2015_05_29, updated_at 2015_05_29
+      msg: '"ET DOS Possible Sentinal LM  Application attack in progress Outbound
+        (Response)"'
+      rev: '1'
+      sid: '2021170'
+      threshold: type both,track by_src,count 10,seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '5093'

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|wevx|03|xyz|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_10_17, deployment Perimeter, signature_severity Major, updated_at 2022_10_17
+      msg: '"ET MOBILE_MALWARE Trojan-Ransom.AndroidOS.Agent.bi CnC Domain in DNS
+        Lookup"'
+      reference: md5,57d941c6c2b1425ff9b9679024b8738f
+      rev: '1'
+      sid: '2039428'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '10'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

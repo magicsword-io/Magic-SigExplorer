@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|A6 4D AA E1 65 52 A5 E1 E3 58 76 E1 81 4D A5 E1 CE 48 9C E1 BB 4D
+          A5 E1 CE 48 A9 E1 A1 4D A5 E1|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant dropper download connection"'
+      reference: url,www.virustotal.com/en/file/881bb1538b4d077976cd9b27523cd5af9bd86c0ae3bce4edf453e74bba9f4c1b/analysis/
+      rev: '2'
+      service: http
+      sid: '37646'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

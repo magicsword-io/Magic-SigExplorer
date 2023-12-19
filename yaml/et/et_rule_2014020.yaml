@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/wp-login.php"'
+      - value: '"POST"'
+      - value: '"log|3d|"'
+      - value: '"pwd|3d|"'
+      flow: to_server,established
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2011_12_13, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_22
+      msg: '"ET WEB_SERVER Wordpress Login Bruteforcing Detected"'
+      rev: '3'
+      sid: '2014020'
+      special_options:
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_method
+      - http_client_body
+      - http_client_body
+      threshold: type both, track by_src, count 5, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '36'
+        value: '"ewogICAgImNocm9taXVtX2Jyb3dzZXJzIjog"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_20, deployment Perimeter, former_category
+        MALWARE, malware_family Meduza, confidence High, signature_severity Critical,
+        updated_at 2023_06_20
+      msg: '"ET TROJAN [ANY.RUN] Meduza Stealer Exfiltration"'
+      reference: url,app.any.run/tasks/cf27f0ec-1be0-4353-82fc-d392eaa8b24b
+      rev: '1'
+      sid: '2046303'
+      special_options:
+      - fast_pattern
+      stream_size: server,=,1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

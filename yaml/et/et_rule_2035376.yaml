@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '30'
+        value: '"/jquery-3.3.2.min.js?__cfduid="'
+      - value: '"Referer|3a 20|http|3a|//code.jquery.com/|0d 0a|"'
+      - value: '"Mozilla/5.0 (Windows NT 6.3|3b 20|Trident/7.0|3b 20|rv:11.0) like
+          Gecko"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_02, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2022_04_18, reviewed_at 2023_09_19, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Activity (POST)"'
+      pcre: '"/^User-Agent\x3a\x20Mozilla\/5\.0 \(Windows NT 6\.3\x3b\x20Trident\/7\.0\x3b\x20rv:11\.0\)
+        like Gecko/Hmi"'
+      reference: url,twitter.com/Unit42_Intel/status/1498802280992227330?s=20&t=iDY6vP8NF3muXpkS4ERenw
+      rev: '3'
+      sid: '2035376'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

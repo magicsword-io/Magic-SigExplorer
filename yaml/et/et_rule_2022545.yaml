@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!&,8,3
+      classtype: attempted-user
+      contents:
+      - depth: '10'
+        offset: '4'
+        value: '"|00 01 00 00 00 00 00 00|"'
+      flow: from_server
+      isdataat: '2049'
+      metadata: created_at 2016_02_18, cve CVE_2015_7547, updated_at 2016_02_18
+      msg: '"ET EXPLOIT Possible CVE-2015-7547 Malformed Server Response A/AAAA"'
+      pcre: '"/^(?:.[a-z0-9-]{2,}){2,}\x00\x00(?:\x01|\x1c)/Ri"'
+      reference: cve,2015-7547
+      rev: '1'
+      sid: '2022545'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

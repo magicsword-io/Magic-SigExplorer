@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/nessus_is_probing_you_"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_09_04
+      msg: '"GPL SCAN nessus 1.X 404 probe"'
+      reference: arachnids,301
+      rev: '10'
+      sid: '2101102'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

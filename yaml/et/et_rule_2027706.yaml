@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"form-data|3b 20|name=|22|cp_appbooking_pform_process|22|"'
+      - value: '"form-data|3b 20|name=|22|email_1|22 0d 0a 0d 0a 3c|script|3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, attack_target Web_Server, created_at
+        2019_07_12, deployment Internet, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_31
+      msg: '"ET WEB_SPECIFIC_APPS Appointment Hour Booking - WordPress Plugin - Stored
+        XSS (CVE-2019-13505)"'
+      reference: url,github.com/ivoschyk-cs/CVE-s/blob/master/Appointment%20Hour%20Booking%20%E2%80%93%20WordPress%20Booking%20Plugin%20--%20stored%20XSS
+      rev: '2'
+      sid: '2027706'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

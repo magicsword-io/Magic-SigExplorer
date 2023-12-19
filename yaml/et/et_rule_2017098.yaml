@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"JTc1JTY3JTY5JTZlJTQ0JTY1JTc0JTY1JTYzJTc0JTJlJTY3JTY1JTc0JTU2JTY1JTcyJTcz"'
+      flow: established,from_server
+      metadata: created_at 2013_07_04, former_category EXPLOIT_KIT, updated_at 2013_07_04
+      msg: '"ET CURRENT_EVENTS Lucky7 EK Landing Encoded Plugin-Detect"'
+      rev: '1'
+      sid: '2017098'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

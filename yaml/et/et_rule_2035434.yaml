@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 19|panel.anuka1.a2hosted.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_11, former_category MOBILE_MALWARE, updated_at
+        2022_03_11
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.Anubis.t (TLS SNI)"'
+      reference: md5,451d41b60db0fc16f16c8cef92a8a97d
+      rev: '1'
+      sid: '2035434'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

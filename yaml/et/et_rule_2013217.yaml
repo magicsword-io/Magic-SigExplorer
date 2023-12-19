@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"myip.ozymo.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_07_06, updated_at 2020_09_17
+      msg: '"ET POLICY Internal Host Retrieving External IP Via myip.ozymo.com"'
+      rev: '1'
+      sid: '2013217'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

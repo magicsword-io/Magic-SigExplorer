@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php?email=libpurple_XMPP",fast_pattern,nocase'
+      - value: '"&method=post"'
+      - value: '" HTTP/1.0|0D 0A|Accept: */*|0D 0A|Connection: close|0D 0A|Host: "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/b2b7571ffc6ee27fc716f308d72a3268ffa5f32330ca6349aacc92e6cecb2582/analysis/1406043461/
+      rev: '2'
+      service: http
+      sid: '31530'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

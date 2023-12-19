@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"|2d 2d 2d 2d 2d 2d|WebKitFormBoundary"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|file|22
+          3b 20|filename|3d 22|blob|22|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|blob|5f|num|22|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|total|5f|blob|5f|num|22|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|hashCode|22|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|file|5f|name|22|"'
+      - value: '"POST|20|/upload.php|20|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_11, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_08_11
+      msg: '"ET TROJAN Win32/Packed.BlackMoon.A CnC Checkin"'
+      reference: md5,68149a86246195327250b78c5564f2b8
+      rev: '1'
+      sid: '2038500'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

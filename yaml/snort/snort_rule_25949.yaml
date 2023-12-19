@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User|2D|Agent|3A 20|Mozilla|2F|3.0|20 28|compatible|3B 20|Indy Library|29
+          0D 0A|"'
+      - value: '"form-data|3B| name=|22|userfile|22 3B| filename=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zebrocy outbound data connection"'
+      reference: url,www.virustotal.com/en/file/04edf40eaf652dfab4e8dc2ca21fbf2e99d361746995767071789cc3fa24d2cc/analysis/1361822708/
+      rev: '3'
+      service: http
+      sid: '25949'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

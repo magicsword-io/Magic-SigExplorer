@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0e|fingerpin.cyou"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_11_03, deployment Perimeter,
+        malware_family ursnif, signature_severity Major, tag SSL_Malicious_Cert, updated_at
+        2022_11_03
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Ursnif CnC)"'
+      reference: url,www.mandiant.com/resources/blog/rm3-ldr4-ursnif-banking-fraud
+      rev: '1'
+      sid: '2039704'
+      special_options:
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

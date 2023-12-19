@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,2525,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|DC|3a|"'
+      - value: '"|20|PC|3a|"'
+      - value: '"|20|SRV|3a|"'
+      - value: '"|20|DA|3a|"'
+      - value: '"|20|AV|3a|"'
+      - value: '"Full report"'
+      - value: '"Domain"'
+      - value: '"Domain Admins"'
+      - value: '"Antivirus Software"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_08_19
+      msg: '"ET TROJAN PowerSploit/PowerView SMTP Data Exfil"'
+      rev: '2'
+      sid: '2029276'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

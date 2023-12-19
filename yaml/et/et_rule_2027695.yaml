@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -20
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"cloudflare-dns.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2019_07_09,
+        deployment Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, tag DoH, updated_at 2023_10_05, reviewed_at 2023_10_05
+      msg: '"ET INFO Observed Cloudflare DNS over HTTPS Domain (cloudflare-dns .com
+        in TLS SNI)"'
+      pcre: '"/^(?:\x00\x12|.\x2e)cloudflare\-dns\.com/R"'
+      reference: url,developers.cloudflare.com/1.1.1.1/dns-over-https/json-format
+      rev: '4'
+      sid: '2027695'
+      threshold: type both, track by_src, count 1, seconds 600
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      base64_decode: bytes 60, offset 0
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"SFdJRDoge"'
+      - value: '"HWID|3a 20 7b|"'
+      dsize: '60'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_03_09
+      msg: '"ET TROJAN Win32/I''m_Better Stealer CnC Checkin"'
+      pcre: '"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}\x7d/R"'
+      reference: url,www.bridewell.com/insights/news/detail/threat-advisory-bridewell-malware-impersonating-online-tools-and-video-games
+      rev: '1'
+      sid: '2044552'
+      special_options:
+      - fast_pattern
+      - base64_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

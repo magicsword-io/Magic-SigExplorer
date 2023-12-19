@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"caixa-vbvfinal"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_05, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_07_05
+      msg: '"ET CURRENT_EVENTS Caixa Credential Phish Landing Page 2022-07-05"'
+      reference: md5,a77df3e0e5974e81682880ba1c17c8d8
+      rev: '1'
+      sid: '2037271'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

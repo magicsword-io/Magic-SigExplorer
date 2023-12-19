@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/updates"'
+      - value: '"Cookie|3a 20|user="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_09, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        tag c2, updated_at 2021_07_09, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Beacon Activity (GET)"'
+      pcre: '"/^user=[A-P]{256}$/C"'
+      reference: url,www.recordedfuture.com/chinese-group-tag-22-targets-nepal-philippines-taiwan/
+      rev: '2'
+      sid: '2033290'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"op=",depth 3'
+      - value: '"&nmpc=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection - op POST"'
+      reference: url,www.virustotal.com/en/file/d8870137f7f761055a2ac83b03eb3f8fe26015fa0ba99f41551ca59374c6a3ec/analysis/1365436849/
+      rev: '2'
+      service: http
+      sid: '26371'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

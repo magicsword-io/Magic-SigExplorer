@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '".php?"'
+      - value: '"wmid="'
+      - value: '"|26|l="'
+      - value: '"|26|it="'
+      - value: '"|26|s="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_02
+      msg: '"ET TROJAN xpsecuritycenter.com Fake AntiVirus GET-Install Checkin"'
+      reference: url,doc.emergingthreats.net/2008329
+      rev: '4'
+      sid: '2008329'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - nocase
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

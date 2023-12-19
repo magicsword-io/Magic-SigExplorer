@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"BlackRAT.Data",fast_pattern,nocase'
+      - value: '"|2C 20|Version=",nocase'
+      - value: '"data|05|bytes",nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BlackRAT variant inbound connection"'
+      reference: url,www.virustotal.com/gui/file/6610e632758a0ae2ab9b259fe1f83236aff6b5bd485c3d4e3fd4995be68535bf/detection
+      rev: '1'
+      sid: '51533'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

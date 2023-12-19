@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3A 20|multipart/form-data|3B| boundary=MS_D0wnl0ad3r",fast_pattern,fast_pattern_offset
+          44,fast_pattern_length 13'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.MSDownloader variant download"'
+      reference: url,www.virustotal.com/#/file/c3c5d7961381c202c98badc7ff0739b4f381c10b4e76d153ad2a978118a4b505/detection
+      rev: '1'
+      service: ftp-data,http,imap,pop3
+      sid: '47935'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

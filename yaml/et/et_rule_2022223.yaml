@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"{|0a 20 20 22|id|22 3a 20 22|"'
+      - value: '"|22 0a|}|00|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2015_12_07, former_category MALWARE, updated_at 2020_08_19
+      msg: '"ET TROJAN Linux/MayhemBruter Checkin"'
+      reference: url,www.kernelmode.info/forum/viewtopic.php?f=16&t=3405&p=27363
+      rev: '1'
+      sid: '2022223'
+      special_options:
+      - fast_pattern
+      within: '36'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

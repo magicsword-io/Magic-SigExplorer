@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"HTTP/1.1 200 OK|0d 0a|Server|3a|"'
+      - value: '"Content-Type|3a 20|text/html|3b 20|charset=UTF-8|0d 0a|Content-Length|3a
+          20|132|0d 0a|"'
+      - value: '"|78 63 e0 c7 31 a5 dd f1 f4 55 30 e4 67 f7 ab f2 c6 68 a2 26|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_15, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Emotet, updated_at 2020_08_28
+      msg: '"ET TROJAN Win32/Emotet CnC Checkin Response"'
+      reference: md5,4ca520895d86beb6f8cab93639f26f50
+      rev: '4'
+      sid: '2035054'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[7080,8080,443,80,4143,995,21,50000,20,8090,8443,990,22]'

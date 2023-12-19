@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c 21 2d 2d 20|Mirrored|20|from"'
+      - value: '"|3c 21 2d 2d 20|Added|20|by|20|HTTrack|20 2d 2d 3e|"'
+      - value: '"|3c|title|3e|Socios|2e|com|20 7c 20|Be|20|more|20|than|20|a|20|fan|3c
+          2f|title|3e|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_22, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_12_22
+      msg: '"ET CURRENT_EVENTS Socios Credential Phish Landing Page 2022-12-22"'
+      rev: '1'
+      sid: '2042996'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

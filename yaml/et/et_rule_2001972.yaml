@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      classtype: network-scan
+      flags: S,12
+      metadata: created_at 2010_07_30, former_category SCAN, updated_at 2023_11_14
+      msg: '"ET SCAN Behavioral Unusually fast Terminal Server Traffic Potential Scan
+        or Infection (Inbound)"'
+      reference: url,doc.emergingthreats.net/2001972
+      rev: '19'
+      sid: '2001972'
+      threshold: type both, track by_src, count 20, seconds 360
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

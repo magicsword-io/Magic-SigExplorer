@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '1'
+      itype: '11'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Fragment Reassembly Time Exceeded"'
+      rev: '8'
+      sid: '410'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

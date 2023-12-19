@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2401'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"Max-dotdot",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER CVS Max-dotdot integer overflow attempt"'
+      pcre: '"/^Max-dotdot[\s\r\n]*\d{3,}/ims"'
+      reference: cve,2004-0417
+      rev: '9'
+      sid: '2583'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

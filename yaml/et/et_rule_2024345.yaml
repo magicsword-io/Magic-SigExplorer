@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Description|3a 20|File Transfer"'
+      - value: '"ci_session"'
+      - value: '"Expires|3a 20|0"'
+      - value: '!"MZ"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_06_02,
+        deployment Perimeter, former_category CURRENT_EVENTS, malware_family Exploit_Kit_Terror,
+        signature_severity Major, tag Exploit_Kit_Terror, updated_at 2020_08_06
+      msg: '"ET CURRENT_EVENTS Terror EK Payload URI T1 Jun 02 2017 M2"'
+      pcre: '"/Content-Disposition\x3a[^\r\n]+\.exe-rc4\.exe\r\n/Hi"'
+      rev: '1'
+      sid: '2024345'
+      special_options:
+      - http_header
+      - http_cookie
+      - http_header
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

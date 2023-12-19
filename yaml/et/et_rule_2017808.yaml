@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"information_schema"'
+      flow: to_server,established
+      metadata: created_at 2013_12_06, updated_at 2020_04_27
+      msg: '"ET WEB_SERVER Possible MySQL SQLi Attempt Information Schema Access"'
+      reference: url,pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
+      rev: '1'
+      sid: '2017808'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

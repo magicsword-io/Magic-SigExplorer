@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      base64_decode: offset 0,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"SVBNLk1pY3Jvc29mdCBNYWlsLk5vdG"'
+      - value: '"|0d 0a 0d 0a|"'
+      - depth: '4'
+        value: '"|78 9f 3e 22|"'
+      - value: '"IPM.Microsoft|20|Mail.Note"'
+      - value: '"|5c|"'
+      metadata: created_at 2023_03_16, cve CVE_2023_23397, former_category EXPLOIT,
+        signature_severity Major, updated_at 2023_03_21, reviewed_at 2023_10_11, former_sid
+        2853733
+      msg: '"ET EXPLOIT Possible Microsoft Outlook Elevation of Privilege Payload
+        Observed M8 (CVE-2023-23397)"'
+      pcre: '"/^\x00?\\\x00?[\w\.\-\x00]+\\/R"'
+      reference: cve,2023-23397
+      rev: '3'
+      sid: '2044687'
+      special_options:
+      - fast_pattern
+      - base64_data
+    protocol: tcp
+    source:
+      network: $SMTP_SERVERS
+      port: any

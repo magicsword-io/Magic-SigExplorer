@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[31335,35555]'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"PONG",fast_pattern,nocase'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER Trin00 Daemon to Master PONG message detected"'
+      reference: cve,2000-0138
+      rev: '13'
+      sid: '223'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '39'
+        value: '"import base64|0a|from datetime import date"'
+      - value: '"timestamp = date.today|28 29 2e|strftime|28 22 25|m|25|d|25|Y|22
+          29|"'
+      - value: '"base64.b64encode(bytes(timestamp"'
+      - value: '"print|28 22|http"'
+      - value: '"|2f 25 73 25 73 22 20 25 20 28 22 52 22 2c 20 75 72 69 29 29|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_27, deployment Perimeter, former_category
+        MALWARE, malware_family Molerats, signature_severity Major, updated_at 2022_02_07
+      msg: '"ET TROJAN TA402/Molerats Payload Downloaded"'
+      rev: '1'
+      sid: '2035113'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|microsoft-ru-data|02|ru|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_04, deployment Perimeter, malware_family
+        WoodyRAT, performance_impact Low, signature_severity Major, updated_at 2022_08_04
+      msg: '"ET TROJAN Woody RAT CnC Domain (microsoft-ru-data .ru) in DNS Lookup"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2022/08/woody-rat-a-new-feature-rich-malware-spotted-in-the-wild
+      rev: '1'
+      sid: '2037937'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

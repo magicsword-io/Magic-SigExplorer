@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '9993'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '27'
+        value: '"|01 0c 01 0a 00 01 00 00 01 82|"'
+      dsize: '137'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_01, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2022_09_01
+      msg: '"ET MALWARE ZeroTier P2P VPN Activity M1"'
+      reference: url,youtube.com/watch?v=Lao9T_RQTak
+      rev: '1'
+      sid: '2038708'
+      special_options:
+      - fast_pattern
+      threshold: type both, track by_src, count 20, seconds 300
+    protocol: udp
+    source:
+      network: any
+      port: any

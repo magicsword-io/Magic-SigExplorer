@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|12|cloudflare|2d|analyse|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_25, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN CopyKittens Cobalt Strike DNS Lookup (cloudflare-analyse .
+        com)"'
+      reference: md5,752240cddda5acb5e8d026cef82e2b54
+      rev: '3'
+      sid: '2024497'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 60
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

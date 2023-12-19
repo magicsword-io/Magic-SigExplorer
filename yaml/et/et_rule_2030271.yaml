@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a 20|Callstranger Vulnerability Checker|0d 0a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_06_09, deployment Perimeter,
+        former_category SCAN, signature_severity Informational, updated_at 2020_06_09
+      msg: '"ET SCAN Observed Suspicious UA (Callstranger Vulnerability Checker)"'
+      reference: url,github.com/yunuscadirci/CallStranger
+      rev: '2'
+      sid: '2030271'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a| swupdate.openvpn.net|0d 0a|"'
+      - value: '"User-Agent|3a| Twisted PageGetter|0d 0a|"'
+      fast_pattern: 14,14
+      flow: established,to_server
+      metadata: created_at 2012_05_22, updated_at 2020_09_15
+      msg: '"ET POLICY OpenVPN Update Check"'
+      rev: '1'
+      sid: '2014799'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/notify.php"'
+      - value: '"Content-Length: 0|0D 0A|"'
+      - value: '" HTTP/1.0|0D 0A|"'
+      - value: '"Content-Type: application/x-www-form-urlencoded|0D 0A|"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| MyApp)|0D 0A 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Banker.Delf variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/dce2799df1da1ad992d37c78ea586dfd0cf673642ecc56ac464fe7a81a6994ca/analysis/
+      rev: '3'
+      service: http
+      sid: '31820'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

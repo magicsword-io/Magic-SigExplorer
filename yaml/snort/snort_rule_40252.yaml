@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"mashine=",fast_pattern,nocase'
+      - value: '"publickey="'
+      - value: '"user="'
+      - value: '"os="'
+      - value: '"processor="'
+      - value: '"mac="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Perseus variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/e88709501e6c8923c7c9bf112f7a824f241f86b001dd824eb12a4284778c8137/analysis/
+      rev: '3'
+      service: http
+      sid: '40252'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

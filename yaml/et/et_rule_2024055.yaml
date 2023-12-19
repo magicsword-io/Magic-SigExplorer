@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"uylzJB3mWrFjellI9iDFGQjO"'
+      - value: '"("'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_03_14, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family terror_EK, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_10_08
+      msg: '"ET CURRENT_EVENTS Terror EK Payload RC4 Key M1 Mar 14 2017"'
+      pcre: '"/^\s*[\x22\x27]\s*http[^\x22\x27]+\.php\s*[\x22\x27]\s*\x2c\s*[\x22\x27]\s*uylzJB3mWrFjellI9iDFGQjO/Rs"'
+      rev: '1'
+      sid: '2024055'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

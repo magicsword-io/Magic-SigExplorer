@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|FF FA|''|00 00|"'
+      flow: to_server,established
+      flowbits: set,ttyprompt
+      metadata: created_at 2010_09_23, cve CVE_2001_0797, updated_at 2010_09_23
+      msg: '"GPL EXPLOIT login buffer non-evasive overflow attempt"'
+      pcre: '"/T.*?T.*?Y.*?P.*?R.*?O.*?M.*?P.*?T/RBi"'
+      reference: cve,2001-0797
+      rev: '4'
+      sid: '2103274'
+      special_options:
+      - rawbytes
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '26'
+        value: '"/apps/Samples/thumb/sample"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|20|NT|20|6|2e|1|3b
+          20|Trident|2f|7|2e|0|3b 20|rv|3a|11|2e|0|29 20|like|20|Gecko|0d 0a|"'
+      - value: '"Accept|3a 20|image/png"'
+      - value: '"/cgi-bin/|0d 0a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_01, deployment Perimeter, former_category
+        MALWARE, malware_family RaspberryRobin, confidence High, signature_severity
+        Critical, updated_at 2023_08_01
+      msg: '"ET TROJAN Possible Raspberry Robin Activity (GET) M3"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+\//cgi-bin\///Hmi"'
+      reference: md5,d89c574b4afdaadfd345177dd8f5c177
+      rev: '1'
+      sid: '2047013'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '43'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3A|irc|2D|sinkhole|2E|cert|2E|pl",fast_pattern,nocase'
+      - value: '"|3A|End of MOTD command|2E|"'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Sinkhole reply - irc-sinkhole.cert.pl"'
+      rev: '3'
+      sid: '32260'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

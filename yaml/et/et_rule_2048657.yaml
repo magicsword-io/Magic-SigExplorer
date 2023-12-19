@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"parrotcare.net"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_19, deployment Perimeter, former_category
+        MALWARE, malware_family Glupteba, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_10_19, reviewed_at 2023_10_19
+      msg: '"ET TROJAN Observed Glupteba CnC Domain (parrotcare .net in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0e|.\x2e)parrotcare\.net/R"'
+      reference: md5,e240f769d78a449b6c96bbbb7cbdf469
+      rev: '1'
+      sid: '2048657'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '1919'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"pan-chan|27|s mining rig hi|21|"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_06_22, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2022_06_22
+      msg: '"ET TROJAN [Akamai] Panchan Miner Botnet Checkin"'
+      reference: url,github.com/akamai/akamai-security-research/tree/main/malware/panchan
+      rev: '1'
+      sid: '2037093'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

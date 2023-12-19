@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a|"'
+      - value: '"ErrorSafe "'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Minor, tag Spyware_User_Agent,
+        updated_at 2020_10_12
+      msg: '"ET MALWARE Errorsafe.com Fake antispyware User-Agent (ErrorSafe)"'
+      pcre: '"/^User-Agent\x3a\x20[^\n]+ErrorSafe/Hmi"'
+      reference: url,doc.emergingthreats.net/2003346
+      rev: '15'
+      sid: '2003346'
+      special_options:
+      - nocase
+      - http_header
+      - http_header
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

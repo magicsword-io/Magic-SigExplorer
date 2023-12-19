@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/ru53332/"'
+      - value: '"-rtmd-"'
+      - value: '".exe"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_01
+      msg: '"ET TROJAN Suspected Glupteba Download"'
+      reference: md5,e39362df0a751289b6f65b3448ae38f4
+      rev: '2'
+      sid: '2030435'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ver|3a|1.500000|3a|null|3a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_10, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_10
+      msg: '"ET TROJAN ELF/BASHLITE vbot Variant CnC"'
+      reference: md5,65cc35e68e3834b1955115737ff3c55e
+      rev: '1'
+      sid: '2030496'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

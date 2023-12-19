@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -19
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"flarkonafaero.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_25, deployment Perimeter,
+        malware_family IcedID, signature_severity Major, updated_at 2023_07_25, reviewed_at
+        2023_10_05
+      msg: '"ET TROJAN Observed IcedID Domain (flarkonafaero .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x11|.\x2e)flarkonafaero\.com/R"'
+      reference: url,twitter.com/ian_kenefick/status/1683549956584382486
+      rev: '1'
+      sid: '2046901'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

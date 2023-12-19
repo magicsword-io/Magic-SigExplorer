@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"vrfy"'
+      - value: '"decode"'
+      distance: '1'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0096, updated_at 2010_09_23
+      msg: '"GPL SMTP vrfy decode"'
+      pcre: '"/^vrfy\s+decode/smi"'
+      reference: cve,1999-0096
+      rev: '10'
+      sid: '2100672'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"okhttp/"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"|0d 0a 0d 0a|{|22|logType|22 3a|"'
+      - value: '",|22|msg|22 3a 22|{|5c 22|auth|5c 22 3a|"'
+      - value: '"|5c 22|appVersionName|5c 22|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2022_03_10, former_category MOBILE_MALWARE, updated_at
+        2022_03_10
+      msg: '"ET MOBILE_MALWARE Android/TrojanDropper.Agent.GWO Checkin"'
+      reference: md5,dcfa846ca56e14e720d4a743ac5c9f0f
+      rev: '2'
+      sid: '2035432'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

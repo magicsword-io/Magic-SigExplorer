@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"jayyburrows.icu"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_19, deployment Perimeter, performance_impact
+        Low, confidence High, signature_severity Critical, tag TA401, updated_at 2023_10_19,
+        reviewed_at 2023_11_02
+      msg: '"ET TROJAN TA401 Domain in TLS SNI (jayyburrows .icu)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)jayyburrows\.icu/R"'
+      reference: url,go.recordedfuture.com/hubfs/reports/cta-2023-1019.pdf
+      rev: '1'
+      sid: '2048701'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

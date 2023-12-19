@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!--ded509-->"'
+      - value: '"<!--/ded509-->",distance 0'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-OTHER Compromised Website response - leads to Exploit Kit"'
+      reference: url,www.jsunpack.jeek.org/?report=c94ca7cda909cf93ae95db22a27bb5d711c2ae8f
+      rev: '2'
+      service: http
+      sid: '26698'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

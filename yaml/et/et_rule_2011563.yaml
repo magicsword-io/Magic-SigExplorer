@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/content/dynpage_load.php?"'
+      - value: '"file="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_09_27, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS DynPage dynpage_load.php file Parameter Local File
+        Inclusion Attempt"'
+      reference: url,secunia.com/advisories/41317/
+      rev: '2'
+      sid: '2011563'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

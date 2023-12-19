@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-Requested-With|3a 20|ShockwaveFlash/20.0.0.306|0d 0a|"'
+      - value: '"POST /messagebroker/amf HTTP/1.1"'
+      - depth: '15'
+        value: '"COOKIE_SUPPORT="'
+      - value: '"JSESSIONID="'
+      - value: '"COMPANY_ID="'
+      - value: '"ID="'
+      - value: '"PASSWORD="'
+      - value: '"LOGIN="'
+      - value: '"SCREEN_NAME"'
+      - value: '"GUEST_LANGUAGE_ID="'
+      - value: '"Referer|3a 20|http|3a 2f 2f|s.peheavens.com/html/portlet/ext/draco/resources/draco_manager.swf/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_27, deployment Perimeter,
+        former_category MALWARE, malware_family TA410, signature_severity Major, updated_at
+        2022_04_27
+      msg: '"ET TROJAN TA410 APT FlowCloud Hardcoded Request (POST)"'
+      reference: url,www.welivesecurity.com/2022/04/27/lookback-ta410-umbrella-cyberespionage-ttps-activity/
+      rev: '2'
+      sid: '2036391'
+      special_options:
+      - fast_pattern
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

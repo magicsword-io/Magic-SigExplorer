@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"data.php"'
+      - value: '"|0D 0A|URL: ",fast_pattern,nocase'
+      - value: '"Content-Disposition: form-data|3B| name="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gozi Data Theft POST Data"'
+      reference: url,www.virustotal.com/en/file/b78c5c53d3b54acbca2b344a779528f0408258b6ac12899c860d99bf563e883a/analysis/
+      rev: '3'
+      service: http
+      sid: '26968'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

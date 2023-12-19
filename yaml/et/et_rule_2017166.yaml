@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"jquery.js"'
+      - value: '"archive"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_07_23, former_category EXPLOIT_KIT, updated_at 2023_09_11,
+        reviewed_at 2023_09_11
+      msg: '"ET CURRENT_EVENTS Sibhost Zip as Applet Archive July 08 2013"'
+      pcre: '"/^[\r\n\s]*?=[\r\n\s]*?[\x22\x27][^\x22\x27]+?\.zip[\x22\x27]/Rsi"'
+      rev: '4'
+      sid: '2017166'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

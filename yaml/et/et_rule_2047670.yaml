@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"fleetdeck.io"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2023_08_17,
+        deployment Perimeter, former_category INFO, performance_impact Low, confidence
+        High, signature_severity Informational, updated_at 2023_08_17, reviewed_at
+        2023_08_17
+      msg: '"ET INFO Observed Fleetdeck Remote Management Software Domain in TLS SNI
+        (fleetdeck .io)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)fleetdeck\.io/R"'
+      reference: url,fleetdeck.io
+      rev: '1'
+      sid: '2047670'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

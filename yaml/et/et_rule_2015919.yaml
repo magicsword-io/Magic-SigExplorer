@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<span>Uname|3a|<br>User|3a|<br>Php|3a|<br>Hdd|3a|<br>Cwd|3a|</span>"'
+      flow: established,to_client
+      metadata: created_at 2012_11_21, updated_at 2012_11_21
+      msg: '"ET WEB_SERVER WebShell - Generic - c99shell based header w/colons"'
+      rev: '2'
+      sid: '2015919'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

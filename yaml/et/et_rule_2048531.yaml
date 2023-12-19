@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"requirejs"'
+      - value: '"new|20|self|5b 28|typeof|20|alert|29 2e|replace"'
+      - value: '"|2e|match|28 2f|COOKIE|5f|ANNOT|3a 3a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_10_10, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, malware_family MageCart,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_10_10
+      msg: '"ET CURRENT_EVENTS MageCart 404 COOKIE_ANNOT"'
+      reference: url,www.akamai.com/blog/security-research/magecart-new-technique-404-pages-skimmer
+      rev: '1'
+      sid: '2048531'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

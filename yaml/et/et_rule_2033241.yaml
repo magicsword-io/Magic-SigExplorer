@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|3a 31 34 b5 02 00|"'
+      dsize: <300
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2021_07_05,
+        deployment Perimeter, former_category MALWARE, signature_severity Major, updated_at
+        2021_07_05
+      msg: '"ET TROJAN Mirai pTea Variant - Info Submission Inbound"'
+      reference: url,blog.netlab.360.com/mirai_ptea-botnet-is-exploiting-undisclosed-kguard-dvr-vulnerability/
+      rev: '1'
+      sid: '2033241'
+    protocol: tcp
+    source:
+      network: any
+      port: any

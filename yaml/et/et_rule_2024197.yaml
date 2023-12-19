@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3a 20|application/hta|0d 0a|"'
+      fast_pattern: 9,20
+      flow: established,to_client
+      flowbits: isset,et.IE7.NoRef.NoCookie
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_11, cve CVE_2017_0199, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET EXPLOIT MSXMLHTTP Download of HTA (Observed in CVE-2017-0199)"'
+      rev: '6'
+      sid: '2024197'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

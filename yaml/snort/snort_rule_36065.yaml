@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/offers_new?v=",fast_pattern,nocase'
+      - value: '!"User-Agent"'
+      - value: '"&a="'
+      - value: '"&i=",distance 0'
+      - value: '"&f=",distance 0'
+      - value: '"&u=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bagsu variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/049bc9beeba4acd2a558dc695f65ad284b0ae1ff89f69a38f743510d6ab640c0/analysis
+      rev: '2'
+      service: http
+      sid: '36065'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

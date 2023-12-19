@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/webplus.exe?",nocase'
+      - value: '"about",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Talentsoft Web+ internal IP Address access"'
+      reference: url,archives.neohapsis.com/archives/ntbugtraq/2000-q3/0168.html
+      rev: '17'
+      service: http
+      sid: '1096'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

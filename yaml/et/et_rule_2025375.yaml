@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22 3b 20|filename=|22|report
+          - "'
+      - value: '".bin|22 0d 0a|Content-Type|3a 20|application/octet-stream|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a|"'
+      distance: '19'
+      fast_pattern: 44,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_21, deployment Perimeter, former_category
+        MALWARE, malware_family Evrial, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Evrial Stealer CnC Activity M2"'
+      pcre: '"/\.php$/U"'
+      reference: md5,ecd56f1f42f932865e98fd319301e1a5
+      rev: '3'
+      sid: '2025375'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

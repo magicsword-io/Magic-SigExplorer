@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"mcena="'
+      - value: '"&xx="'
+      - value: '"&jacar="'
+      - value: '"&bola="'
+      - value: '"&medo="'
+      - depth: '21'
+        value: '"POST|20|/cont/index.php|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category
+        MALWARE, malware_family TrojanDownloader_AHK_CH, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_03_22
+      msg: '"ET TROJAN Win64/TrojanDownloader.AHK.CH Checkin"'
+      reference: md5,47a482ea278532ace87fa5dd6c0bcba4
+      rev: '1'
+      sid: '2044747'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

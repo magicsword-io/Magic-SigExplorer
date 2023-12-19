@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -23
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"cryptoanalyzetech.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        tag TA401, updated_at 2023_07_13, former_sid 2854805
+      msg: '"ET TROJAN Observed TA401 Related Domain in TLS SNI"'
+      pcre: '"/^(?:\x00\x15|.\x2e)cryptoanalyzetech\.com/R"'
+      reference: url,github.com/Insikt-Group/Research/blob/master/BlueCharlie%2C%20Previously%20Tracked%20as%20TAG-53%2C%20Continues%20to%20Deploy%20New%20Infrastructure%20in%202023/BlueCharlie%2C%20Previously%20Tracked%20as%20TAG-53%2C%20Continues%20to%20Deploy%20New%20Infrastructure%20in%202023.csv
+      rev: '1'
+      sid: '2047125'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

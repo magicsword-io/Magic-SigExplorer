@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/post.php?",fast_pattern,nocase'
+      - value: '"pl="'
+      - value: '"&education=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.GateKeylogger keylog exfiltration attempt"'
+      reference: url,www.virustotal.com/en/file/77c802db1731fa8dae1b03d978f89b046309adfa1237b1497a69ccb9c2d82c16/analysis/1459520578/
+      rev: '3'
+      service: http
+      sid: '38564'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

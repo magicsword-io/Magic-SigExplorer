@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '15'
+        value: '"data=----------"'
+      - value: '"----|0a|COMPUTER|20|NAME|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_08, deployment Perimeter, former_category MALWARE, malware_family
+        ETERNALBLUE, performance_impact Low, signature_severity Major, updated_at
+        2020_08_28
+      msg: '"ET TROJAN PS/Unk.EB.Spreader CnC Checkin"'
+      reference: md5,e5a9c413812b5217ef0da962668e9651
+      rev: '2'
+      sid: '2027334'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

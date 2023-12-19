@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"openssh"'
+      icode: '0'
+      itype: '8'
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2017_06_08,
+        deployment Perimeter, former_category TROJAN, performance_impact Moderate,
+        signature_severity Major, updated_at 2017_06_08
+      msg: '"ET TROJAN OpenSSH in ICMP Payload - Possible Covert Channel"'
+      rev: '1'
+      sid: '2024366'
+      special_options:
+      - nocase
+    protocol: icmp
+    source:
+      network: any
+      port: any

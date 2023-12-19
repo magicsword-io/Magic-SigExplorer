@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/db_mysql.inc"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PHPLIB remote command attempt"'
+      reference: cve,2001-1370
+      rev: '15'
+      service: http
+      sid: '1255'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

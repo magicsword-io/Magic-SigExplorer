@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/rpt"'
+      - value: '!"User-Agent|3a| Mozilla"'
+      - value: '!".apple.com|0d 0a|"'
+      - value: '!".pandora.com|0d 0a|"'
+      - value: '!"microsoft.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_16
+      msg: '"ET TROJAN Common Downloader Install Report URL (farfly checkin)"'
+      pcre: '"/\/rpt\d/U"'
+      reference: url,doc.emergingthreats.net/2008233
+      rev: '16'
+      sid: '2008233'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

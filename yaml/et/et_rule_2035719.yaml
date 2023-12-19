@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"package|2e|loadlib|28|"'
+      - value: '"liblua"'
+      - value: '".execute|28|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Redis, attack_target Server, created_at 2022_04_04,
+        cve CVE_2022_0543, deployment Perimeter, deployment Internal, former_category
+        EXPLOIT, signature_severity Major, tag Exploit, updated_at 2022_04_04
+      msg: '"ET EXPLOIT Redis RCE Attempt (CVE-2022-0543) M2"'
+      reference: cve,2022-0543
+      rev: '2'
+      sid: '2035719'
+      special_options:
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

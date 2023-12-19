@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US|31|"'
+      - value: '"|55 04 08|"'
+      - value: '"|02|BA|31|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|04|Root|31|"'
+      - value: '"|55 04 0b|"'
+      - value: '"|04|Root|31|"'
+      - value: '"|55 04 03|"'
+      - value: '"|04|Root|30|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_23, deployment Perimeter, signature_severity
+        Major, updated_at 2019_12_23
+      msg: '"ET TROJAN Possible XServer Backdoor Certificate Observed"'
+      reference: url,resources.fox-it.com/rs/170-CAK-271/images/201912_Report_Operation_Wocao.pdf
+      rev: '2'
+      sid: '2029190'
+      special_options:
+      - fast_pattern
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

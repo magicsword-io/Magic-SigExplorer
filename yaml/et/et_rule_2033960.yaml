@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|Microsoft Office"'
+      - value: '!"2014|0d 0a|"'
+      - value: '!"Discovery|0d 0a|"'
+      - value: '!"OneNote|0d 0a|"'
+      fast_pattern: 8,20
+      flow: established,to_server
+      metadata: created_at 2021_09_16, former_category HUNTING, updated_at 2021_10_25
+      msg: '"ET POLICY [@Silv0123] Possible Fake Microsoft Office User-Agent Observed"'
+      pcre: '"/^User-Agent\x3a\x20Microsoft\x20Office[^\x3b\x2f\x28]+(\r\n)?$/Hmi"'
+      reference: url,twitter.com/silv0123/status/1437869745961832455
+      rev: '4'
+      sid: '2033960'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

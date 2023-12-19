@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        offset: '4'
+        value: '"|FF|SMB|75 00 00 00 00|"'
+      - value: '"|08 00 01 00|"'
+      - value: '"|00 5c 5c|"'
+      - value: '"|5c|AME_ICON.PNG"'
+      distance: '7'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2017_10_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2017_10_23
+      msg: '"ET TROJAN Possible Dragonfly APT Activity - SMB credential harvesting"'
+      reference: url,www.us-cert.gov/sites/default/files/publications/MIFR-10128883_TLP_WHITE.pdf
+      rev: '1'
+      sid: '2024898'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: any
+      port: any

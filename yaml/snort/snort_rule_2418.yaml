@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|03 00 01|",depth 3'
+      - value: '"|00|",depth 1,offset 288'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Microsoft Windows Terminal Server no encryption session
+        initiation attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-052
+      rev: '10'
+      sid: '2418'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

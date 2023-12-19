@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"error "'
+      - value: '"|3A| no such repository"'
+      - value: '"I HATE YOU"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL MISC CVS invalid repository response"'
+      rev: '3'
+      sid: '2102009'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

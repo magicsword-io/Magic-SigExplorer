@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|inflammable|0d 0a|"'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_14, deployment Perimeter,
+        deployment SSLDecrypt, former_category USER_AGENTS, confidence High, signature_severity
+        Informational, updated_at 2023_11_14
+      msg: '"ET USER_AGENTS Observed Suspicious User-Agent (inflammable)"'
+      reference: md5,adcaa63353083b81150d99bca3fc8752
+      rev: '1'
+      sid: '2049171'
+      special_options:
+      - http_header
+      threshold: type limit,seconds 300,count 1,track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

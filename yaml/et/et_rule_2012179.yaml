@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/U3D/Length 172"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2011_01_15, cve CVE_2009_2990, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Adobe Reader and Acrobat U3D File Invalid Array Index Remote
+        Code Execution Attempt"'
+      pcre: '"/<<[^>]*\x2FU3D\x2FLength\x20172[0-5][0-9]{2}/sm"'
+      reference: cve,2009-2990
+      rev: '2'
+      sid: '2012179'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?user="'
+      - value: '"&hwid="'
+      - value: '"&antivirus="'
+      - value: '"&os=Windows"'
+      - value: '"&passCount="'
+      - value: '"&coockieCount="'
+      - value: '"&walletCount="'
+      - value: '"&telegramCount="'
+      - value: '"&vpnCount="'
+      - value: '"&ftpCount="'
+      - value: '"&country="'
+      - value: '"multipart/form-data|3b 20|boundary="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_01, deployment SSLDecrypt, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2022_04_01
+      msg: '"ET TROJAN BlackGuard_v2 Data Exfiltration Observed"'
+      reference: url,blog.cyble.com/2022/04/01/dissecting-blackguard-info-stealer/
+      rev: '2'
+      sid: '2035716'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Email-login"'
+      - value: '"MM_validateForm"'
+      - value: '"Powered By|3a|"'
+      - value: '"Sign in to your account"'
+      - value: '"Email address|3a|"'
+      - value: '"Password|3a|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_06_02, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_07_14
+      msg: '"ET CURRENT_EVENTS Generic Email Login Phishing Landing 2016-06-02"'
+      rev: '1'
+      sid: '2031993'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

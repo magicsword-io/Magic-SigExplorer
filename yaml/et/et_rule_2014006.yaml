@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"allow_get.asp?name="'
+      - value: '"&hostname="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,from_client
+      metadata: created_at 2011_12_09, former_category MALWARE, updated_at 2020_06_09
+      msg: '"ET TROJAN Backdoor.Win32.Sykipot Checkin"'
+      reference: url,contagiodump.blogspot.com/2011/12/adobe-zero-day-cve-2011-2462.html
+      rev: '2'
+      sid: '2014006'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

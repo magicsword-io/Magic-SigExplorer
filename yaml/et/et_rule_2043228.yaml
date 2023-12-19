@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/reportresource/reportresource/?"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_01_05, cve CVE_2018_18809, deployment Perimeter, deployment
+        Datacenter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_01_05
+      msg: '"ET EXPLOIT TIBCO JasperReports Directory Traversal Attempt (CVE-2018-18809)"'
+      pcre: '"/\/reportresource\/reportresource\/\?resource=net\/sf\/jasperreports\/\.\..+/Ui"'
+      reference: url,security.elarlang.eu/cve-2018-18809-path-traversal-in-tibco-jaspersoft.html
+      rev: '1'
+      sid: '2043228'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

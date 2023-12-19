@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"GOBBLES"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER gobbles SSH exploit attempt"'
+      reference: nessus,11031
+      rev: '13'
+      sid: '1812'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

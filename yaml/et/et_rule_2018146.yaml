@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<script"'
+      - value: '"CollectGarbage"'
+      - value: '"while"'
+      - value: '"getElementsByClassName"'
+      - value: '"CollectGarbage"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2014_02_15, former_category CURRENT_EVENTS, updated_at
+        2014_02_15
+      msg: '"ET CURRENT_EVENTS Generic HeapSpray Construct"'
+      pcre: '"/^\s*?\([^\)]*?(?P<var>[^\.]+)\s*?\.\s*?length\s*<\s*(?:0?[0-9]{5,}|0x[a-z0-9]{3,})[^)]+\)\s*?\{\s*?(?P=var)\s*?=\s*?(?P=var)\s*?\+\s*?(?P=var)\s*?\}/Rsi"'
+      rev: '3'
+      sid: '2018146'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

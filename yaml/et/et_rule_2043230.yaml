@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"data|3a 7b 22|hwid|22 3a 22|"'
+      - value: '"|22 2c 22|pcName|22 3a 22|"'
+      - value: '"|22 2c 22|viewStatus|22 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_05, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_01_05
+      msg: '"ET MALWARE Win32/Youtube Bot - CnC Checkin"'
+      pcre: '"/^[A-F0-9]{16}/R"'
+      reference: url,blog.cyble.com/2022/12/23/new-youtube-bots-malware-spotted-stealing-users-sensitive-information/
+      rev: '1'
+      sid: '2043230'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

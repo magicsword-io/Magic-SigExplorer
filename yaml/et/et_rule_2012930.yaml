@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"Cisco.AnyConnect.VPNWeb.1"'
+      - value: '"url"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2011_06_03, cve CVE_2011_2039, updated_at 2011_06_03
+      msg: '"ET ACTIVEX Cisco AnyConnect VPN Secure Mobility Client Cisco.AnyConnect.VPNWeb.1
+        Arbitrary Program Execution Attempt"'
+      reference: cve,2011-2040
+      rev: '2'
+      sid: '2012930'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

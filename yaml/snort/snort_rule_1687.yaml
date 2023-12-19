@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"dba_tables",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE dba_tables access"'
+      rev: '7'
+      sid: '1687'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

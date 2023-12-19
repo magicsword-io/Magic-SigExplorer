@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".myddns.me|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2019_04_25, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, tag DynamicDNS, updated_at 2020_09_17, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1568, mitre_technique_name
+        Dynamic_Resolution
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to a *.myddns.me Domain"'
+      pcre: '"/Host\x3A[^\r\n]*\x2Emyddns\x2Eme/H"'
+      rev: '3'
+      sid: '2027288'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

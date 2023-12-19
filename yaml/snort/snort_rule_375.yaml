@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      dsize: '8'
+      id: '13170'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING LINUX/*BSD"'
+      rev: '10'
+      sid: '375'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

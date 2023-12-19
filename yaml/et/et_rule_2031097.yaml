@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php|22 20|method=|22|post|22|"'
+      - value: '"src=|22|https://logo.clearbit.com/"'
+      - value: '"$.get(|22|https://logo.clearbit.com/"'
+      - value: '"$(|22|#logoimg|22|).attr(|22|src|22|,|20 22|https://logo.clearbit.com/"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_10_23, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_10_23
+      msg: '"ET CURRENT_EVENTS Generic Custom Logo Phishing Landing"'
+      rev: '2'
+      sid: '2031097'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

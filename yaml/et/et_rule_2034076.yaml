@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|newtrendmicro|03|com|00|"'
+      - value: '!"www"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2021_10_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_10_01
+      msg: '"ET TROJAN ChamelGang Related CnC Domain in DNS Lookup (newtrendmicro
+        .com)"'
+      reference: md5,897bfb316d2e8ff72031a3332842be0f
+      rev: '2'
+      sid: '2034076'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

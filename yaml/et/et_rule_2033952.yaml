@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '[$HTTP_PORTS,5986,5985,1270]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '11'
+        value: '"POST /wsman"'
+      - value: '"Content-Type|3a 20|application/soap+xml"'
+      - value: '!"Authorization|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product HTTP_Server, attack_target Server, created_at 2021_09_15,
+        cve CVE_2021_38647, deployment Perimeter, deployment Internet, deployment
+        SSLDecrypt, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2021_09_15
+      msg: '"ET EXPLOIT Microsoft OMI RCE Exploit Attempt (CVE-2021-38647) M1"'
+      reference: cve,2021-38647
+      rev: '2'
+      sid: '2033952'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

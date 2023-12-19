@@ -1,0 +1,51 @@
+name: Check and Build
+
+on:
+  schedule:
+    - cron: '0 0 * * 5'
+
+jobs:
+  check-rules:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        curl -sSL https://install.python-poetry.org | python -
+        poetry install
+
+    - name: Check if rules have changed
+      run: python bin/updaterules.py
+
+    - name: Run conversion for snort
+      run: python runner.py --convert snort
+
+    - name: Run conversion for et
+      run: python runner.py --convert et
+
+    - name: Run conversion for et
+      run: python runner.py --convert custom
+
+    #- name: Run conversion for suricata
+    #  run: python runner.py --convert suricata
+
+    - name: Generate CVE Report
+      run: python bin/cvereport.py
+
+    - name: Build the site
+      run: |
+        cd Magic-SigExplorer
+        mkdocs build
+
+    - name: Deploy to GitHub Pages
+      run: |
+        cd Magic-SigExplorer
+        mkdocs gh-deploy --force

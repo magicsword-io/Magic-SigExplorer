@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a| something|0d 0a|"'
+      - depth: '4'
+        value: '"mac="'
+      - value: '"&t1="'
+      - value: '"&t2="'
+      flow: to_server,established
+      metadata: created_at 2014_02_12, former_category MALWARE, updated_at 2020_04_27
+      msg: '"ET TROJAN Infostealer.Jackpos Checkin"'
+      pcre: '"/^mac=([A-F0-9]{2}-){5}[A-F0-9]{2}&t1=/P"'
+      reference: url,intelcrawler.com/about/press10
+      rev: '1'
+      sid: '2018108'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

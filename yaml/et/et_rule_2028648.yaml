@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"0|7c|New|20|-|20|"'
+      - value: '"|7c|"'
+      - value: '"|7c|Windows"'
+      - value: '"|7c|"'
+      - value: '"|7c|"'
+      - value: '"|7c|"'
+      - value: '"|7c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_30, deployment Perimeter, former_category
+        MALWARE, malware_family Nemours, performance_impact Moderate, signature_severity
+        Major, updated_at 2019_10_04
+      msg: '"ET TROJAN Nemours/Proyecto RAT CnC Checkin"'
+      reference: md5,50a9218c891453c00b498029315ac680
+      rev: '2'
+      sid: '2028648'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

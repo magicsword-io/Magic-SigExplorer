@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/compliancepolicies.inc.php"'
+      - value: '"searchOption=contains"'
+      - value: '"searchField=antani"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2021_08_02, cve CVE_2020_10546,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_08_02
+      msg: '"ET EXPLOIT rConfig < 3.9.7 SQLi (CVE-2020-10546)"'
+      pcre: '"/searchField=antani(?:S(?:HOW.+(?:C(?:HARACTER.+SET|UR(DATE|TIME))|(?:VARI|T)ABLES)|ELECT.+(?:FROM|USER))|U(?:NION.+SELEC|PDATE.+SE)T|DELETE.+FROM|INSERT.+INTO|\/\*.+\*\/|EXEC)/Ui"'
+      reference: cve,2020-10546
+      rev: '2'
+      sid: '2033639'
+      special_options:
+      - nocase
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Disposition|3a 20|inline|3b|"'
+      - value: '".xap"'
+      - value: '"AppManifest.xaml"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_04_23, former_category EXPLOIT_KIT, updated_at 2020_09_30
+      msg: '"ET CURRENT_EVENTS Fiesta EK SilverLight Exploit Apr 23 2015"'
+      pcre: '"/Content-Disposition\x3a\x20[^\r\n]+filename=[a-z]{5,8}\d{2,3}\.xap\r\n/Hm"'
+      rev: '2'
+      sid: '2020982'
+      special_options:
+      - http_header
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

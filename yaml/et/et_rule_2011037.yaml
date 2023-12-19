@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"SELECT"'
+      - value: '"VERSION"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_08_20
+      msg: '"ET WEB_SERVER Possible Attempt to Get SQL Server Version in URI using
+        SELECT VERSION"'
+      reference: url,doc.emergingthreats.net/2011037
+      rev: '5'
+      sid: '2011037'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

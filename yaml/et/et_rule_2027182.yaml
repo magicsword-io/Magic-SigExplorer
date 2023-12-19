@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"wmic "'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target SMB_Client, created_at 2019_04_10, deployment Perimeter,
+        former_category POLICY, signature_severity Major, updated_at 2019_04_16
+      msg: '"ET POLICY WMIC WMI Request Over SMB - Likely Lateral Movement"'
+      rev: '3'
+      sid: '2027182'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 3f|xaxaxa-shadowserver-losers.brian-krebs-erectile-dysfunction.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_10, deployment Perimeter,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2021_09_10
+      msg: '"ET TROJAN Observed ELF/HabitsRAT CnC Domain in TLS SNI"'
+      reference: url,twitter.com/michalmalik/status/1435918937162715139
+      rev: '2'
+      sid: '2033920'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

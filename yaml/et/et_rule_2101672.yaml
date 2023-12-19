@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"CWD"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0421, updated_at 2010_09_23
+      msg: '"GPL FTP CWD ~ attempt"'
+      pcre: '"/^CWD\s+~/smi"'
+      reference: cve,2001-0421
+      rev: '12'
+      sid: '2101672'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

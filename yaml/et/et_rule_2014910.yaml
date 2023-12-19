@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3306'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"SELECT|20|user|2c|password|20|from|20|mysql|2e|user"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2012_06_16, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, signature_severity Critical, tag Metasploit, updated_at
+        2016_07_01
+      msg: '"ET SQL MySQL mysql.user Dump (Used in Metasploit Auth-Bypass Module)"'
+      rev: '3'
+      sid: '2014910'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

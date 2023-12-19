@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '666'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"FTPON"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR BackConstruction 2.1 Client FTP Open Request"'
+      rev: '9'
+      sid: '157'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

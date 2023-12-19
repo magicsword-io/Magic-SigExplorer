@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2031'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '29'
+        value: '"POST /login/index.php?login|3d 24|"'
+      - value: '"Cookie|3a 20|cwpsrv-"'
+      - value: '"username="'
+      - value: '"&password="'
+      - value: '"&commit=Login"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2023_01_13, cve CVE_2022_44877, deployment
+        Perimeter, deployment Datacenter, deployment SSLDecrypt, former_category EXPLOIT,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_01_13
+      msg: '"ET EXPLOIT CentOS Control Web Panel Pre-Auth Remote Code Execution (CVE-2022-44877)"'
+      reference: cve,2022-44877
+      rev: '1'
+      sid: '2043302'
+    protocol: tcp
+    source:
+      network: any
+      port: any

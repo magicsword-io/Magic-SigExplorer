@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?v"'
+      - value: '"&tq="'
+      - value: '"User-Agent|3a| mozilla/2.0|0d 0a|"'
+      fast_pattern: 10,15
+      flow: to_server,established
+      metadata: created_at 2011_06_07, former_category MALWARE, updated_at 2020_09_15
+      msg: '"ET TROJAN Kazy/Kryptor/Cycbot Trojan Checkin"'
+      pcre: '"/\.(jpg|png|gif)\?v[0-9]{1,2}=[0-9]+&tq=/U"'
+      rev: '6'
+      sid: '2012939'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

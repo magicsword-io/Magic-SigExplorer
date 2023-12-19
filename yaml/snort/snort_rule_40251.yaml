@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| bUQ8QmvUpI57udWFxQHPkuyKDfc3T8u5",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string - Win.Trojan.Perseus"'
+      reference: url,www.virustotal.com/en/file/e88709501e6c8923c7c9bf112f7a824f241f86b001dd824eb12a4284778c8137/analysis/
+      rev: '3'
+      service: http
+      sid: '40251'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

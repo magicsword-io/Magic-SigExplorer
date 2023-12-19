@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"Auth"'
+      - value: '"|20 40 20|"'
+      - value: '"|5c 23 2f|Microsoft|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2016_11_23, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/VB.SDB CnC Beacon"'
+      reference: url,securelist.com/blog/research/76717/inpage-zero-day-exploit-used-to-attack-financial-institutions-in-asia/
+      rev: '1'
+      sid: '2023544'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

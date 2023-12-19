@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Sign in - Apple Store</title>"'
+      - value: '"function isemail|28|email|29|"'
+      - value: '"Double-check that you typed a valid Apple ID."'
+      - value: '"Double-check that you have typed the right password."'
+      fast_pattern: 16,20
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_07_30, deployment Perimeter, former_category PHISHING, signature_severity
+        Minor, tag Phishing, updated_at 2022_03_17
+      msg: '"ET CURRENT_EVENTS Possible Apple Store Phish Landing 2015-07-30"'
+      rev: '2'
+      sid: '2031715'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

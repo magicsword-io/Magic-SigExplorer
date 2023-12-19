@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '5'
+        value: '"NICK "'
+      flow: established,to_server
+      metadata: created_at 2013_08_13, former_category MALWARE, updated_at 2013_08_13
+      msg: '"ET TROJAN SUSPICIOUS IRC - NICK and Win"'
+      pcre: '"/^[^\r\n]*win/Ri"'
+      rev: '4'
+      sid: '2017322'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

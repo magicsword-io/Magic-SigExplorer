@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|CigiCigi Logger"'
+      fast_pattern: 4,20
+      flow: to_server,established
+      metadata: created_at 2014_01_28, updated_at 2022_03_17
+      msg: '"ET TROJAN Win32/Antilam.2_0 Sending Data over SMTP"'
+      reference: md5,d95845c510ec1f5ad38cb9ccab16c38b
+      rev: '2'
+      sid: '2018018'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

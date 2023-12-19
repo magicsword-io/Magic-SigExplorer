@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"|82 00 00|"'
+      dsize: '16'
+      metadata: created_at 2014_10_22, updated_at 2014_10_22
+      msg: '"ET EXPLOIT Possible Malicious NAT-PMP Response Successful TCP Map to
+        External Network"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2014/10/21/r7-2014-17-nat-pmp-implementation-and-configuration-vulnerabilities
+      rev: '2'
+      sid: '2019491'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '5351'

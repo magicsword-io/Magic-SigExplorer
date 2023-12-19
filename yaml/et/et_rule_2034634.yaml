@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0c|webhook.site"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_08, deployment Perimeter, former_category
+        INFO, performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2021_12_08, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration,
+        mitre_technique_id T1567, mitre_technique_name Exfiltration_Over_Web_Service
+      msg: '"ET INFO Webhook/HTTP Request Inspection Service Domain (webhook .site
+        in TLS SNI)"'
+      reference: url,isc.sans.edu/forums/diary/InfoStealer+Using+webhooksite+to+Exfiltrate+Data/28088/
+      rev: '3'
+      sid: '2034634'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

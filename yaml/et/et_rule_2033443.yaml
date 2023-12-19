@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"version|22 3a 22|10.4|28|2|29|"'
+      flow: established,from_server
+      flowbits: isset,ET.ciscodcnm.1
+      metadata: created_at 2021_07_27, updated_at 2021_07_27
+      msg: '"ET POLICY Cisco Data Center Network Manager - Vulnerable Version Detected
+        10.4"'
+      reference: url,www.exploit-db.com/exploits/47347
+      rev: '1'
+      sid: '2033443'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

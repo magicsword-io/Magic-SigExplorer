@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendDocument"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"name|3d|caption|0d 0a 0d 0a|"'
+      - value: '"44CALIBER"'
+      - value: '"Grabbed Software|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2021_07_27
+      msg: '"ET TROJAN 44Calibar Variant Exfil via Telegram"'
+      reference: md5,fc489c5343f6db7d1be798a3ee331bdf
+      rev: '2'
+      sid: '2033455'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

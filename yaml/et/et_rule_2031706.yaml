@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Logging in"'
+      - value: '".php?cmd=_"'
+      - value: '"Hold a while"'
+      - value: '"Still loading after a few seconds"'
+      distance: '0'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_12_29, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2016_07_01
+      msg: '"ET WEB_CLIENT Anonisma Paypal Phishing Loading Page 2015-12-29"'
+      rev: '1'
+      sid: '2031706'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

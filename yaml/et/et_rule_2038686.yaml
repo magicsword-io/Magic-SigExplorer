@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '46'
+        value: '"/upload.php?result=ok&action=upload&androidid="'
+      - value: '"&opr="'
+      - value: '"&model="'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2022_08_30, deployment Perimeter, deployment SSLDecrypt, former_category MOBILE_MALWARE,
+        malware_family IRATA, performance_impact Low, signature_severity Major, updated_at
+        2022_08_30
+      msg: '"ET MOBILE_MALWARE Android/IRATA Data Exfiltration Attempt"'
+      reference: url,twitter.com/MalGamy12/status/1562967009381720064/photo/2
+      rev: '1'
+      sid: '2038686'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

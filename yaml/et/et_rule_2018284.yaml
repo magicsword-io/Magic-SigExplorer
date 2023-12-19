@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|06 03 55 04 0a 13 02|XX"'
+      - value: '"|06 03 55 04 0a 13 02|XX"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2014_03_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Minor, updated_at 2022_04_11
+      msg: '"ET INFO Self-Signed Cert O=XX Observed"'
+      reference: md5,00e7afce84c84cd70fe329d8bb8c0731
+      rev: '4'
+      sid: '2018284'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

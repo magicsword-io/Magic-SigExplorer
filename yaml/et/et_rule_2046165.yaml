@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2404'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|68 14 00|"'
+      - value: '"|67|"'
+      distance: '3'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target IoT, created_at 2023_06_07, deployment
+        Perimeter, deployment Internal, deployment Datacenter, former_category SCADA,
+        performance_impact Moderate, confidence High, signature_severity Informational,
+        updated_at 2023_06_07
+      msg: '"ET SCADA IEC-104 Clock Synchronization Command"'
+      reference: url,icsdefense.net/pcap
+      rev: '1'
+      sid: '2046165'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

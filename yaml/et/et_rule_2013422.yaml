@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"go2000.cn"'
+      flow: established,to_server
+      metadata: created_at 2011_08_18, former_category ADWARE_PUP, updated_at 2020_09_17
+      msg: '"ET MALWARE HTTP Connection to go2000.cn - Common Malware Checkin Server"'
+      pcre: '"/Host\x3A[^\r\n]*go2000\x2Ecn/Hi"'
+      reference: url,www.mywot.com/en/scorecard/go2000.cn
+      rev: '2'
+      sid: '2013422'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

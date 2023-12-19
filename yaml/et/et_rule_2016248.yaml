@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '10'
+        value: '"/i.html?0x"'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_01_22, updated_at 2020_04_23
+      msg: '"ET CURRENT_EVENTS StyX Landing Page"'
+      pcre: '"/\/i\.html\?0x\d{1,2}=[a-zA-Z0-9+=]{100}/U"'
+      rev: '5'
+      sid: '2016248'
+      special_options:
+      - http_uri
+      urilen: '>100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

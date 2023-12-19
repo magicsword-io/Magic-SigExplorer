@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3b|if|28|ndsw|3d 3d 3d|undefined|29 7b|function|20|"'
+      - value: '"var|20|ndsw|3d|true|2c|HttpClient|3d|function|28 29 7b|var|20|"'
+      - value: '"|3d|new|20|XMLHttpRequest|28 29 3b|"'
+      distance: '0'
+      fast_pattern: 4,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_08_17, deployment Perimeter,
+        deployment SSLDecrypt, former_category EXPLOIT_KIT, performance_impact Low,
+        signature_severity Major, tag TDS, updated_at 2022_08_17
+      msg: '"ET CURRENT_EVENTS Parrot TDS Check"'
+      reference: url,decoded.avast.io/janrubin/parrot-tds-takes-over-web-servers-and-threatens-millions
+      rev: '2'
+      sid: '2038550'
+      threshold: type limit, track by_src, seconds 60, count 1
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"goform/setUsbUnload"'
+      - value: '"deviceName="'
+      - value: '"|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_17, cve CVE_2020_10987, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2023_02_04
+      msg: '"ET EXPLOIT Tenda OS Command Injection (CVE-2020-10987) (GET)"'
+      pcre: '"/deviceName=[^&$]+\x3b/U"'
+      reference: cve,2020-10987
+      rev: '2'
+      sid: '2034489'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"33db9538.com"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Apache_HTTP_server, affected_product PHP, attack_target
+        Web_Server, created_at 2016_09_15, deployment Datacenter, signature_severity
+        Critical, updated_at 2022_11_21
+      msg: '"ET WEB_SERVER HTTP Request to a *.33db9538.com domain - Anuna Checkin
+        - Compromised PHP Site"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+33db953\.com[\r\n]$/Hmi"'
+      reference: url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code
+      rev: '2'
+      sid: '2023231'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[53,80,443,5432]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HHV1:"'
+      - value: '"HHV2:",within 20'
+      - value: '"HHV3: 61456",within 20,fast_pattern'
+      - value: '"HHV4:",within 20'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC WIN.Trojan.Plugx variant outbound connection"'
+      reference: url,virustotal.com/en/file/4d464f9def2276dac15d19ccf049b7c68642290bc0e345e06d4b6e9103fde9e6/analysis/
+      rev: '2'
+      service: dns,http,ssl
+      sid: '32179'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

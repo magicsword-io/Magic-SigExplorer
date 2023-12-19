@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/script"'
+      - value: '"script"'
+      - value: '"Submit"'
+      - value: '"Runtime"'
+      - value: '"getRuntime"'
+      - value: '".exec"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_01_25, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS Jenkins Script Console Usage (Can be Used to Spawn
+        Shell)"'
+      pcre: '"/\/script\/?$/Ui"'
+      rev: '9'
+      sid: '2016294'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - nocase
+      - http_client_body
+      - http_client_body
+      - nocase
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

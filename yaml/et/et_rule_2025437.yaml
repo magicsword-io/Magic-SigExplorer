@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|96 08 FA EC DE C0 22 84 66 58 4A BC 2E|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_21, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family GrandSoft_EK, signature_severity Major, updated_at
+        2022_05_03
+      msg: '"ET CURRENT_EVENTS [PTsecurity] Grandsoft EK Payload"'
+      reference: url,www.malware-traffic-analysis.net/2018/03/15/index3.html
+      rev: '3'
+      sid: '2025437'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,15 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      itype: '2'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP unassigned type 2 undefined code"'
+      rev: '12'
+      sid: '461'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

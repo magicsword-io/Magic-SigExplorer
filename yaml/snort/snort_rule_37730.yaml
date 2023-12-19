@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!&,0x78,2
+      classtype: attempted-user
+      contents:
+      - value: '"|00 01|",depth 2,offset 4'
+      - value: '"|00 00 01 00 01|",fast_pattern,nocase'
+      dsize: '>2000'
+      flow: to_client
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS glibc getaddrinfo A record stack buffer overflow attempt"'
+      reference: url,googleonlinesecurity.blogspot.com/2016/02/cve-2015-7547-glibc-getaddrinfo-stack.html
+      rev: '5'
+      service: dns
+      sid: '37730'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

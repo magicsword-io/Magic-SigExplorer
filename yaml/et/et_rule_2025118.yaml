@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|User-Agent|3a 20|come-tome|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2017_12_05, deployment Perimeter,
+        former_category TROJAN, signature_severity Major, tag MalDoc, updated_at 2020_09_16
+      msg: '"ET TROJAN Observed SluttyPutty Maldoc User-Agent"'
+      rev: '2'
+      sid: '2025118'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

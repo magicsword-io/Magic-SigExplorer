@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"READD|0A|",fast_pattern,nocase'
+      flow: to_client,established
+      isdataat: '!6'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Glupteba C&C server READD command to client"'
+      reference: url,www.virustotal.com/en/file/0bcc2bf3cf06952e18c3e1d9860698dbb3ff1644a0389a9756c1b82b66fb2b83/analysis/
+      rev: '3'
+      sid: '31604'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

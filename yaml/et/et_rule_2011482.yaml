@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| kav"'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, former_category USER_AGENTS, updated_at 2020_08_13
+      msg: '"ET TROJAN IMDDOS Botnet User-Agent kav"'
+      reference: url,www.damballa.com/downloads/r_pubs/Damballa_Report_IMDDOS.pdf
+      rev: '6'
+      sid: '2011482'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

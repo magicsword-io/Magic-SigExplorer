@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get/?ver=",depth 10'
+      - value: '"&aid=",distance 0'
+      - value: '"&hid=",distance 0'
+      - value: '"&rid=",distance 0'
+      - value: '"&data=",distance 0'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Adload.dyhq variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f5fbdc74afc209f2648490e077a2fcddc402cbc57ababbc2f735aaecde95681b/analysis/
+      rev: '2'
+      service: http
+      sid: '29828'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

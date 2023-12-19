@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"multipart"'
+      - value: '"form-data"'
+      - value: '"ognl.OgnlContext"'
+      - value: '"DEFAULT_MEMBER_ACCESS"'
+      - value: '"java.lang.ProcessBuilder"'
+      - value: '".start"'
+      distance: '1'
+      flow: established,to_server
+      metadata: affected_product Apache_Struts2, attack_target Web_Server, created_at
+        2017_07_14, cve CVE_2017_9791, deployment Datacenter, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, signature_severity Major, updated_at 2020_08_10
+      msg: '"ET WEB_SPECIFIC_APPS OGNL Expression Injection (CVE-2017-9791)"'
+      reference: cve,2017-9791
+      rev: '1'
+      sid: '2024468'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '23'
+    protocol: tcp
+    source:
+      network: any
+      port: any

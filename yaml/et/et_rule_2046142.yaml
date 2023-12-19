@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|web-trackers|03|com|00|"'
+      distance: '1'
+      metadata: affected_product iOS, attack_target Mobile_Client, created_at 2023_06_07,
+        deployment Perimeter, signature_severity Major, updated_at 2023_06_07
+      msg: '"ET MOBILE_MALWARE Trojan/iOS Operation Triangulation CnC Domain in DNS
+        Lookup"'
+      reference: url,securelist.com/operation-triangulation/109842/
+      rev: '1'
+      sid: '2046142'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

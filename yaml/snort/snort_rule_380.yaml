@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|88 04|              ",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING Seer Windows"'
+      rev: '11'
+      sid: '380'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

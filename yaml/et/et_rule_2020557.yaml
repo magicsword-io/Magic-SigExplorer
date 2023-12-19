@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ing|3a| identity|0D 0A|Host|3a|"'
+      - value: '"SESS="'
+      - value: '"|3B| SID="'
+      - value: '"|3B| PREF="'
+      - value: '"|3B|SSID="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_02_24, updated_at 2020_05_15
+      msg: '"ET WEB_SERVER ATTACKER WebShell - Weevely - Cookie"'
+      rev: '1'
+      sid: '2020557'
+      special_options:
+      - http_header
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

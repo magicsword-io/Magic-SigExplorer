@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/showthread.php?",fast_pattern,nocase'
+      - value: '"alphayz="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Silence variant outbound connection detected"'
+      reference: url,www.virustotal.com/gui/file/793b0dea13a1934f3a81d348ca8cb033da908a74feed5a37a3ccc9cb08cf31f1/detection
+      rev: '1'
+      service: http
+      sid: '51670'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

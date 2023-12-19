@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|14|windowscentralupdate|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2014_12_03, updated_at 2020_09_17
+      msg: '"ET TROJAN DNS Query for Operation Cleaver Domain"'
+      reference: url,www0.cylance.com/assets/Cleaver/Cylance_Operation_Cleaver_Report.pdf
+      rev: '3'
+      sid: '2019867'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

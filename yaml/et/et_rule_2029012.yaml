@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"wget http"'
+      - value: '"|20 3b 20|chmod "'
+      - value: '"|20 3b 20|./"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_11_20,
+        deployment Perimeter, signature_severity Minor, updated_at 2019_11_20
+      msg: '"ET INFO Generic IOT Downloader Malware in GET (Inbound)"'
+      rev: '2'
+      sid: '2029012'
+      special_options:
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

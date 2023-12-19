@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '6'
+        value: '"GET //"'
+      - value: '"HTTP/1.1|0d 0a|TE|3a| deflate,gzip|3b|q=0.3|0d 0a|Connection|3a|
+          TE, close|0d 0a|Host|3a| "'
+      - value: '"User-Agent|3a| "'
+      - value: '!"libwww-perl/"'
+      flow: established,to_server
+      metadata: created_at 2011_08_17, updated_at 2020_11_06
+      msg: '"ET SCAN libwww-perl GET to // with specific HTTP header ordering without
+        libwww-perl User-Agent"'
+      pcre: '"/^TE\x3a deflate,gzip\x3bq=0\.3\r\nHost\x3a[^\r\n]+\r\nUser-Agent\x3a[^\r\n]+\r\n$/H"'
+      rev: '6'
+      sid: '2013416'
+      special_options:
+      - fast_pattern
+      - http_header
+      threshold: type threshold, track by_dst, count 10,seconds 20
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

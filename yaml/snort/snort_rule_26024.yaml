@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '20'
+      classtype: trojan-activity
+      contents:
+      - value: '"/b/n/winrar/tudo.rar",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Wecod variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/22e0300501e6bbb7f46c2fb5aed12e4c0d23385cc6319d430cd4faed5241f362/analysis/
+      rev: '3'
+      service: http
+      sid: '26024'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

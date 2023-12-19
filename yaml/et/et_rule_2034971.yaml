@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '21'
+        value: '"/helpdesk/assetReport"'
+      - value: '"select"'
+      - value: '"password"'
+      - value: '"text/plain"'
+      flow: established,to_server
+      metadata: created_at 2022_01_25, cve CVE_2021_35232, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET EXPLOIT SolarWinds Web Help Desk Hard Coded Credentials Request (CVE-2021-35232)"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+text\/plain/Hmi"'
+      reference: cve,2021-35232
+      rev: '2'
+      sid: '2034971'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

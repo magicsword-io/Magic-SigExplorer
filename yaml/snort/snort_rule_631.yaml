@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"ehlo cybercop|0A|quit|0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL ehlo cybercop attempt"'
+      rev: '16'
+      service: smtp
+      sid: '631'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

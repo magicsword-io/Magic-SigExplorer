@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '9'
+        value: '"M-SEARCH|20|"'
+      - value: '"|0d 0a|ST|3a|"'
+      - value: '"uuid|3a|"'
+      distance: '0'
+      metadata: attack_target Networking_Equipment, created_at 2021_03_25, cve CVE_2021_27137,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2021_03_25
+      msg: '"ET EXPLOIT DD-WRT UPNP Unauthenticated Buffer Overflow (CVE-2021-27137)"'
+      pcre: '"/^[^\r\n]{128,}\r\n/R"'
+      reference: cve,2021-27137
+      rev: '2'
+      sid: '2032326'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '6'
+    protocol: udp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"STAT",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP EXPLOIT STAT asterisk dos attempt"'
+      pcre: '"/^STAT\s+[^\n]*\x2a/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS02-018
+      rev: '19'
+      service: ftp
+      sid: '1777'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

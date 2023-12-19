@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/g4t3_indata.php"'
+      - value: '"uuid="'
+      - value: '"&pass="'
+      - value: '"&username="'
+      - value: '"&pcname="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_06, deployment Perimeter, former_category
+        MALWARE, malware_family MINEBRIDGE, malware_family MINEDOOR, performance_impact
+        Low, signature_severity Major, updated_at 2020_02_06
+      msg: '"ET TROJAN MINEBRIDGE/MINEDOOR CnC Checkin"'
+      pcre: '"/\/g4t3_indata\.php$/U"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/01/stomp-2-dis-brilliance-in-the-visual-basics.html
+      rev: '2'
+      sid: '2029393'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

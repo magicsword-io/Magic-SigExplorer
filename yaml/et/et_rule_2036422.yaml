@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|12|*.svc.dynamics.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_04_29, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag SSL_Malicious_Cert,
+        updated_at 2022_04_29
+      msg: '"ET INFO Observed Abused Redirect Service SSL Cert (svc .dynamics .com)"'
+      rev: '2'
+      sid: '2036422'
+      special_options:
+      - fast_pattern
+      within: '19'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

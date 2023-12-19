@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/solr/"'
+      - value: '"dataimport"'
+      - value: '"command=full-import"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_08, cve CVE_2019_0193,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, updated_at
+        2021_07_26
+      msg: '"ET EXPLOIT Solr DataImport Handler RCE (CVE-2019-0193)"'
+      pcre: '"/\bexec\b/Pi"'
+      reference: url,github.com/jas502n/CVE-2019-0193
+      rev: '3'
+      sid: '2033114'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

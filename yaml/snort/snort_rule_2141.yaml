@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/shoutbox.php"'
+      - value: '"conf="'
+      - value: '"../",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP shoutbox.php directory traversal attempt"'
+      reference: nessus,11668
+      rev: '8'
+      service: http
+      sid: '2141'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

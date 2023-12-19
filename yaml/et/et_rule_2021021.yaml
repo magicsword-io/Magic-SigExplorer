@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|"'
+      - value: '"|00 04 5F D3 AC 8F|"'
+      distance: '4'
+      metadata: created_at 2015_04_28, former_category MALWARE, updated_at 2022_07_13
+      msg: '"ET TROJAN Kaspersky Sinkhole DNS Reply"'
+      rev: '1'
+      sid: '2021021'
+      within: '6'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

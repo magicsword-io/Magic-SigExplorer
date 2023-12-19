@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/p.php|20|HTTP/1.1|0d 0a|Content-Length|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2021_05_20, former_category MOBILE_MALWARE, updated_at
+        2021_05_20
+      msg: '"ET MOBILE_MALWARE Android Flubot / LIKEACHARM Stealer Exfil (POST) 3"'
+      pcre: '"/\r\nHost\x3a\x20[a-z]{15}\.(?:com|ru|cn|su)\r\n/H"'
+      rev: '2'
+      sid: '2033003'
+      special_options:
+      - http_method
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      byte_test: 2,!=,8,30
+      classtype: attempted-dos
+      contents:
+      - value: '"|05|",depth 1,offset 16'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ISAKMP invalid identification payload attempt"'
+      reference: cve,2004-0184
+      rev: '14'
+      sid: '2486'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

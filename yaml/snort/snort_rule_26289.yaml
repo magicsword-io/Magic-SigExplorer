@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST",depth 4'
+      - value: '"|0D 0A|Content|2D|Disposition|3A 20|form|2D|data|3B 20|name|3D 22|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Daws Trojan Outbound Plaintext over SSL Port"'
+      pcre: '"/\d+\x2d{2}\r\n$/R"'
+      reference: url,www.virustotal.com/file/f810c56734a686fdf46eb3ff895db6f3dd0cebb45c1e74bcc1c43f8050242d53/analysis/1359999907/
+      rev: '2'
+      service: ssl
+      sid: '26289'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

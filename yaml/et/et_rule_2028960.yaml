@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"06xwsrdrub2i84n6map3li3vz3h9bh4vfgcw"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_11_11, deployment Perimeter, former_category MALWARE, malware_family
+        Titanium, performance_impact Low, signature_severity Major, tag PLATINUM,
+        updated_at 2019_11_11
+      msg: '"ET TROJAN Platinum APT - Titanium Hardcoded String Observed"'
+      reference: url,securelist.com/titanium-the-platinum-group-strikes-again/94961/
+      rev: '2'
+      sid: '2028960'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

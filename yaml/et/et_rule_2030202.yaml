@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/p/api/video.php"'
+      - value: '"QMS_SID="'
+      - value: '"./../"'
+      flow: established,to_server
+      metadata: created_at 2020_05_21, deployment Perimeter, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, updated_at 2020_05_21
+      msg: '"ET EXPLOIT QNAP PhotoStation Pre-Auth Local File Disclosure Attempt"'
+      pcre: '"/\/video\.php$/Ui"'
+      reference: url,medium.com/bugbountywriteup/qnap-pre-auth-root-rce-affecting-450k-devices-on-the-internet-d55488d28a05
+      rev: '2'
+      sid: '2030202'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

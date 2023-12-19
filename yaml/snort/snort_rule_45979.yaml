@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|72 00 17|com.net.LoginDataPacket",fast_pattern,nocase'
+      - value: '"|74 00 13|Lcom/net/LoginData",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC MultiOS.Trojan.OSCelestial variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/9b4843ff0181af15a6c8478ca00aafd4296592a2985a480575810f4f64442742/analysis/
+      rev: '1'
+      sid: '45979'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

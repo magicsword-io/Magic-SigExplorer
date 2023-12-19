@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ZwProtectVirtualMemory|22|"'
+      - value: '"strDup|28|"'
+      - value: '"<object|20|"'
+      - value: '"application|2f|x|2d|java|2d|applet"'
+      - value: '"|3c|param|20|name"'
+      - value: '"|22|launchjnlp|22|"'
+      - value: '"|3c|param|20|name"'
+      - value: '"|22|docbase|22|"'
+      - value: '"|3c|fieldset|3e 3c|legend|3e|"'
+      - value: '"object"'
+      - value: '"|2e|innerHTML"'
+      distance: '0'
+      flow: to_client,established
+      flowbits: isset,NtDll.ImageBase.Module.Called
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_12_22, cve CVE_2010_3552, deployment
+        Perimeter, former_category WEB_CLIENT, confidence High, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Oracle Java 6 Object Tag launchjnlp docbase Parameters
+        Buffer Overflow"'
+      reference: bid,44023
+      rev: '5'
+      sid: '2012100'
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-2013.zip|0D 0A|",fast_pattern,nocase'
+      - value: '"-2013.zip|0D 0A|"'
+      - value: '"-",within 1,distance -14'
+      - value: '"-2013.exe"'
+      - value: '"-",within 1,distance -14'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Win.Trojan.Zeus Spam 2013 dated zip/exe HTTP Response -
+        potential malware download"'
+      reference: url,www.virustotal.com/en/file/2eff3ee6ac7f5bf85e4ebcbe51974d0708cef666581ef1385c628233614b22c0/analysis/
+      rev: '2'
+      service: http
+      sid: '26470'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

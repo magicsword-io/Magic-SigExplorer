@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/search.dll"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP search.dll access"'
+      reference: nessus,10514
+      rev: '13'
+      service: http
+      sid: '1767'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

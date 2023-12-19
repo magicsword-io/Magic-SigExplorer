@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '8'
+        value: '"/upload/"'
+      - value: '"ChromePwd"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_23, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_03_23
+      msg: '"ET TROJAN Win32/MuggleStealer CnC ChromePwd Exfil (POST)"'
+      pcre: '"/Host\x3a\x20(?:[0-9]{1,3}\.){3}[0-9]{1,3}\x0d\x0a/H"'
+      reference: url,twitter.com/suyog41/status/1638865731550085120
+      rev: '1'
+      sid: '2044752'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

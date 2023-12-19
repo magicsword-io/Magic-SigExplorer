@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/gate.php?"'
+      - value: '"hwid="'
+      - value: '"filename="'
+      - value: '"Str=1&desc="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_20, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_01_20
+      msg: '"ET TROJAN Win32/Enigma Stealer CnC Checkin"'
+      pcre: '"/User-Agent\x3a\x20[A-F0-9]{8}-(?:[A-F0-9]{4}-){3}[A-F0-9]{12}\x0d\x0a/H"'
+      reference: md5,505e7b77cba9c4a64ac2827d86c68427
+      rev: '1'
+      sid: '2043420'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

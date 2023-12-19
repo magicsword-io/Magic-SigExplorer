@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&message="'
+      - value: '"User-Agent|3a 20|Client|0d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_03, deployment Perimeter, former_category MALWARE, malware_family
+        Krypton, performance_impact Low, signature_severity Major, tag Stealer, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Win32/Krypton Stealer CnC Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: md5,825afad02d07063689b7b59e8cf46809
+      rev: '2'
+      sid: '2027313'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

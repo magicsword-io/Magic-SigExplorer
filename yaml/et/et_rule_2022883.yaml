@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|00 00 0c 00 00 00 00 00 00 00|"'
+      flow: from_server,established
+      flowbits: isset,ET.qarallax
+      metadata: created_at 2016_06_08, former_category MALWARE, updated_at 2016_06_08
+      msg: '"ET TROJAN Qarallax RAT Keepalive C2"'
+      reference: url,labsblog.f-secure.com/2016/06/07/qarallax-rat-spying-on-us-visa-applicants/
+      rev: '1'
+      sid: '2022883'
+      threshold: type both, track by_src, count 5, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1714'

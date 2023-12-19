@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"dc978a97"'
+      - offset: '12'
+        value: '"|05|alert"'
+      distance: '6'
+      metadata: attack_target Client_Endpoint, created_at 2014_10_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2019_08_29,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN FrameworkPOS Covert DNS CnC Beacon 2"'
+      pcre: '"/^[\x08-\xFF](?:[a-f0-9]{2})*?dc978a97/Ri"'
+      reference: url,blog.gdatasoftware.com/blog/article/new-frameworkpos-variant-exfiltrates-data-via-dns-requests.html
+      rev: '2'
+      sid: '2019455'
+      special_options:
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

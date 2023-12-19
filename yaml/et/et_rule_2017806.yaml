@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/console/j_security_check"'
+      - value: '"j_username=operator"'
+      - value: '"j_password=password"'
+      flow: to_server,established
+      metadata: created_at 2013_12_06, updated_at 2020_04_27
+      msg: '"ET WEB_SERVER Possible WebLogic Operator Login With Default Creds"'
+      reference: url,media.blackhat.com/us-13/US-13-Polyakov-Practical-Pentesting-of-ERPs-and-Business-Applications-Slides.pdf
+      rev: '1'
+      sid: '2017806'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

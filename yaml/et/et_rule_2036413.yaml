@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|image/gif|0d 0a|"'
+      - depth: '4'
+        value: '"|c2 2e ab 48|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_04_28, deployment Perimeter,
+        former_category MALWARE, malware_family TA410, signature_severity Major, updated_at
+        2022_04_28
+      msg: '"ET TROJAN [ESET] TA410 APT LookBack HTTP Server Response"'
+      reference: url,github.com/eset/malware-ioc/tree/master/ta410
+      rev: '1'
+      sid: '2036413'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

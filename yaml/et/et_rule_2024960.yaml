@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|20|322ffbbc7c1b312c2f9d942f20422f8d|03|com|00|"'
+      distance: '0'
+      fast_pattern: 16,20
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2017_11_06, deployment Internal, former_category MALWARE, performance_impact
+        Moderate, signature_severity Major, updated_at 2022_07_22
+      msg: '"ET TROJAN RouteX CnC Domain (322ffbbc7c1b312c2f9d942f20422f8d .com) in
+        DNS Lookup"'
+      reference: url,forkbomb.us/press-releases/2017/09/08/routex-press-release.html
+      rev: '2'
+      sid: '2024960'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

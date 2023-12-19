@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[9200,9292]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"search"'
+      - value: '"source="'
+      - value: '"script_fields"'
+      - value: '"import"'
+      - value: '"java."'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_05_21, cve CVE_2014_3120, updated_at 2020_05_13
+      msg: '"ET WEB_SERVER Possible CVE-2014-3120 Elastic Search Remote Code Execution
+        Attempt"'
+      reference: url,bouk.co/blog/elasticsearch-rce/
+      rev: '2'
+      sid: '2018495'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

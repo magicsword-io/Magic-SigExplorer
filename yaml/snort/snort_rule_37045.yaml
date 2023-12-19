@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/counter/?",fast_pattern,nocase'
+      - value: '"UA-CPU"'
+      - value: '"MSIE 7.0|3B|"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kovter outbound connection"'
+      reference: url,www.virustotal.com/en/file/9d6b1bd74848dd0549ad3883b7292d3ba0a4fa06d0aaf562032b0bf6dc198249/analysis/
+      rev: '4'
+      service: http
+      sid: '37045'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

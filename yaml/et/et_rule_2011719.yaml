@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a| SOGOU_UPDATER|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, deployment Perimeter, former_category POLICY,
+        signature_severity Informational, updated_at 2020_09_15
+      msg: '"ET INFO Win32/Sogou User-Agent (SOGOU_UPDATER)"'
+      reference: url,microsoft.com/security/portal/threat/encyclopedia/entry.aspx?Name=Program%3aWin32%2fSogou
+      rev: '7'
+      sid: '2011719'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

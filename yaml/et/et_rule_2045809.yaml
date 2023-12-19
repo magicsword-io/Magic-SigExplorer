@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|80.90.181.24|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_22, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_05_22
+      msg: '"ET TROJAN Gamaredon APT Related Maldoc Activity (GET)"'
+      pcre: '"/\/[a-z]{2,5}\.[0-9]{2}\.[0-9]{2}\.gif\/[a-z]{2,20}\/[a-z]{2,20}\.jpeg$/Ui"'
+      reference: url,twitter.com/DSLab_Ukraine/status/1659168675323162625
+      rev: '1'
+      sid: '2045809'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/youxi_up.php"'
+      - depth: '52'
+        value: '"--*****|0d 0a|Content-Disposition|3a| form-data|3b| name=|22|npki|22|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_06_20, updated_at 2020_09_24
+      msg: '"ET MOBILE_MALWARE Andr/com.sdwiurse"'
+      reference: md5,04d24eb45d3278400b5fee5c1b06226c
+      rev: '3'
+      sid: '2018584'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '"WinHttp.WinHttpRequest."'
+      - value: '!"download.nai.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_03_24, former_category CURRENT_EVENTS, updated_at
+        2022_05_03
+      msg: '"ET TROJAN Possible Malicious Macro DL EXE Feb 2016 (WinHTTPRequest)"'
+      pcre: '"/(?:\/(?:(?:p(?:lugins\/content\/vote\/\.ssl\/[a-z0-9]|a(?:nel\/includes\/[^\x2f]+|tric)|osts?\/[a-z0-9]+|rogcicicic)|s(?:ystem\/(?:logs|engine)\/[^\x2f]+?|e(?:rv(?:au|er)|ct)|gau\/.*?|alam|ucks|can|ke)|(?=[a-z]*[0-9])(?=[0-9]*[a-z])(?!setup\d+\.exe$)[a-z0-9]{5,10}|a(?:d(?:min\/images\/\w+|obe)|salam|live|us)|m(?:edia\/files\/\w+|a(?:cros?|rch)|soffice)|d(?:o(?:c(?:\/[a-z0-9]+)?|ne)|bust)|(?:~.+?\/\.[^\x2f]+|\.css)\/.+?|in(?:voice\/[^\x2f]+|fos?)|c(?:onfig|hris|alc)|u(?:swinz\w+|pdate)|xml\/load\/[^\x2f]+|(?:[Dd]ocumen|ve)t|Ozonecrytedserver|w(?:or[dk]|insys)|t(?:mp\/.+?|est)|fa(?:cture|soo)|n(?:otepad|ach)|k(?:be|ey|is)|ArfBtxz|office|yhaooo|[a-z]|etna|link|\d+)\.exe$|(?:(?=[a-z0-9]*?[3456789][a-z0-9]*?[3456789])(?=[a-z0-9]*?[h-z])[a-z0-9]{3,31}\+|PasswordRecovery|RemoveWAT|Dejdisc|Host\d+|Msword)\.exe)|(?:^\/(?:image\/.+?\/[^\x2f]+|x\/setup)|keem)\.exe$)/Ui"'
+      rev: '5'
+      sid: '2022658'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

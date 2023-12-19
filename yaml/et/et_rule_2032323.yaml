@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>PANEL ANTIBOT"'
+      - value: '">Real Visitor Detection Manager"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2021_03_25, deployment Perimeter, signature_severity Major, updated_at
+        2021_03_25
+      msg: '"ET CURRENT_EVENTS ANTIBOT Phishing Panel Accessed on External Compromised
+        Server"'
+      rev: '2'
+      sid: '2032323'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

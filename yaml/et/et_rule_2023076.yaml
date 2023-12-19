@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '14'
+        value: '"/index.php?id="'
+      - value: '"&1="'
+      - value: '"&2="'
+      - value: '"&4="'
+      - value: '"&5="'
+      - value: '"&6="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_18, deployment Perimeter, former_category
+        MALWARE, malware_family Aveo, malware_family FormerFirstRAT, performance_impact
+        Low, signature_severity Major, updated_at 2020_07_27
+      msg: '"ET TROJAN Aveo Checkin"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/08/unit42-aveo-malware-family-targets-japanese-speaking-users/
+      rev: '1'
+      sid: '2023076'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

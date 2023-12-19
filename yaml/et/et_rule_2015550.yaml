@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|upas|02|su|00|"'
+      distance: '0'
+      metadata: created_at 2012_07_31, former_category HUNTING, updated_at 2020_09_17
+      msg: '"ET DNS Query for a Suspicious *.upas.su domain"'
+      rev: '2'
+      sid: '2015550'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

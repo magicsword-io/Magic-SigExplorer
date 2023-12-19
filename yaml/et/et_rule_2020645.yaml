@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/rp?"'
+      - value: '"v="'
+      - value: '"a="'
+      - value: '"u="'
+      - value: '"d="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_03_09, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_29,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Trapwot FakeAV Post Infection CnC Beacon"'
+      pcre: '"/^\/(?:[^\x2f]+\/)?rp\?[a-z]=/U"'
+      reference: md5,fc962cb08f62e3d6368500a8e747cf73
+      rev: '1'
+      sid: '2020645'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

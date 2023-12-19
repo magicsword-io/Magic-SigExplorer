@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|21 00 00 00|"'
+      - value: '!"|00 00 00 00|"'
+      - value: '!"|0d 00|"'
+      dsize: '37'
+      flow: established,to_client
+      flowbits: isset,ET.NanoCore
+      metadata: attack_target Client_Endpoint, created_at 2015_03_27, deployment Perimeter,
+        former_category MALWARE, malware_family NanoCore, performance_impact Significant,
+        signature_severity Major, updated_at 2023_07_26, former_sid 2810291
+      msg: '"ET TROJAN NanoCore RAT Keepalive Response 2"'
+      reference: url,medium.com/@the_abjuri5t/nanocore-rat-hunting-guide-cb185473c1e0
+      rev: '10'
+      sid: '2046910'
+      stream_size: client,<,5000
+      threshold: type both, track by_src, count 10, seconds 10
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[!9000,!9001,!9002,!9003,!9004,!2032,1024:]'

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '"XaW5kb3dzIElQIENvbmZpZ3VyYXRpb2"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_09, deployment Perimeter, former_category
+        HUNTING, performance_impact Low, signature_severity Informational, updated_at
+        2021_12_09
+      msg: '"ET INFO Base64 Encoded ipconfig sent via HTTP POST M3"'
+      pcre: '"/XaW5kb3dzIElQIENvbmZpZ3VyYXRpb2.*(?:Q29ubmVjdGlvbi1zcGVjaWZpYyBETlMgU3VmZml4|Nvbm5lY3Rpb24tc3BlY2lmaWMgRE5TIFN1ZmZpe|Db25uZWN0aW9uLXNwZWNpZmljIEROUyBTdWZmaX)/P"'
+      reference: md5,1df312629294f2de70a335a751a13a28
+      rev: '2'
+      sid: '2034643'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

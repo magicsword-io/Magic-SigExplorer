@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"Login failed for user ''sa''",fast_pattern,nocase'
+      detection_filter: track by_src,count 5,seconds 2
+      flow: to_client,established,no_stream
+      metadata: ruleset community
+      msg: '"SQL sa brute force failed login attempt"'
+      reference: url,attack.mitre.org/techniques/T1110
+      rev: '11'
+      sid: '3152'
+    protocol: tcp
+    source:
+      network: $SQL_SERVERS
+      port: '1433'

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"cAdwBCAE8AQQBHAFUAQQBkAEEAQQB1AEEARgBNAEEAWgBRAEIAeQBBAEgAWQBBAGEAUQBCAGoAQQBHAFUAQQBVAEEAQgB2AEEARwBrAEEAYgBnAEIAM"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_16, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2017_11_16
+      msg: '"ET TROJAN Possibly Malicious Double Base64 Unicode Net.ServicePointManager
+        M2"'
+      reference: md5,45b0e5a457222455384713905f886bd4
+      rev: '2'
+      sid: '2023945'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

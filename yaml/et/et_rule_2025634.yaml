@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '10'
+        value: '"raptor_un="'
+      - value: '"raptor_pw_hash="'
+      - value: '"logtype="'
+      - value: '"raptor_account_id="'
+      - value: '"computer_username="'
+      - value: '"computer_name="'
+      - value: '"capture_timestamp="'
+      - value: '"submit="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_03, deployment Perimeter, former_category
+        MALWARE, malware_family SpyAgent_Raptor, performance_impact Low, signature_severity
+        Major, tag Spyware, updated_at 2022_09_13
+      msg: '"ET TROJAN [PTsecurity] Win32/SpyAgent.Raptor (realtime-spy) CnC activity
+        2"'
+      reference: md5,ec88a1185714684b6388beddeef79e15
+      rev: '3'
+      sid: '2025634'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

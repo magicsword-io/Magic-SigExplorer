@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Hoic/buttons2/PK"'
+      - value: '"Hoic/buttons2/buttons.rar"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2014_08_21, updated_at 2014_08_21
+      msg: '"ET TROJAN Hoic.zip retrieval"'
+      reference: url,blog.spiderlabs.com/2012/01/hoic-ddos-analysis-and-detection.html
+      rev: '2'
+      sid: '2018976'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

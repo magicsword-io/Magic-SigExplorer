@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - offset: '110'
+        value: '"sip|3a|sivus-discovery@vopsecurity.org"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Sivus VOIP Vulnerability Scanner SIP Components Scan"'
+      reference: url,doc.emergingthreats.net/2008610
+      rev: '4'
+      sid: '2008610'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|amnestyhk|03|org"'
+      distance: '1'
+      metadata: affected_product Mac_OSX, affected_product Safari, attack_target Client_Endpoint,
+        created_at 2022_01_25, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_01_25
+      msg: '"ET TROJAN DazzleSpy Related Domain in DNS Lookup"'
+      reference: url,www.welivesecurity.com/2022/01/25/watering-hole-deploys-new-macos-malware-dazzlespy-asia/
+      rev: '1'
+      sid: '2034976'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 10|nvidiacenter.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_08_30, performance_impact Significant, signature_severity
+        Major, updated_at 2022_08_30
+      msg: '"ET TROJAN Win32/Nitrokod Domain (nvidiacenter .com) in TLS SNI"'
+      reference: url,research.checkpoint.com/2022/check-point-research-detects-crypto-miner-malware-disguised-as-google-translate-desktop-and-other-legitimate-applications
+      rev: '1'
+      sid: '2038681'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

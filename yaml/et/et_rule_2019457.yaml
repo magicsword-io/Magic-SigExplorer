@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/0"'
+      - value: '"/0000"'
+      - value: '!"Referer|3a|"'
+      - value: '"Windows NT"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2014_10_17, updated_at 2020_05_19
+      msg: '"ET TROJAN Vawtrak/NeverQuest Posting Data"'
+      pcre: '"/\/0[0-2](?:\/[^\/]*?)?\/0000[a-fA-F0-9]{4}(?:\/[^\/]*?)?\/[a-fA-F0-9]{8}(?:\?\w+=[a-fA-F0-9]+)?$/U"'
+      rev: '10'
+      sid: '2019457'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

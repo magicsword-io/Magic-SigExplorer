@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!=,26,20,relative
+      classtype: attempted-user
+      contents:
+      - value: '"Extended Module|3A 20|",nocase'
+      flow: to_client,established
+      flowbits: isset,file.xm
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"FILE-OTHER Nullsoft Winamp XM file buffer overflow attempt"'
+      reference: url,www.securityfocus.com/bid/10045
+      rev: '10'
+      service: ftp-data,http,imap,pop3
+      sid: '2550'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

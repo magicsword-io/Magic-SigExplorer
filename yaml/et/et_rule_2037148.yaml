@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|bookaustriavisit|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_25, deployment Perimeter,
+        former_category MALWARE, malware_family EvilNum, signature_severity Major,
+        updated_at 2022_05_25
+      msg: '"ET TROJAN EvilNum APT Related Domain in DNS Lookup (bookaustriavisit
+        .com)"'
+      reference: url,www.zscaler.com/blogs/security-research/return-evilnum-apt-updated-ttps-and-new-targets
+      rev: '1'
+      sid: '2037148'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

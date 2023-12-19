@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e 3c 2f|title|3e 3c|link|20|href|3d 22 22 20|rel|3d 22|shortcut|20|icon"'
+      - value: '"|3c 2f|div|3e 3c|script|3e|eval|28|function|28 24|"'
+      - value: '"|2e|replace|28|new|20|RegExp|28 27 5c 5c|b|27|"'
+      - value: '!":<script>"'
+      - value: '"|3c 2f|script|3e 3c 2f|body|3e 3c 2f|html|3e 0a|"'
+      - value: '!"|0d 0a|"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_05_27, deployment Perimeter, deployment SSLDecrypt, former_category PHISHING,
+        signature_severity Major, updated_at 2021_05_27
+      msg: '"ET CURRENT_EVENTS PerSwaysion Landing Page M1"'
+      reference: url,blog.group-ib.com/perswaysion
+      rev: '1'
+      sid: '2033036'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

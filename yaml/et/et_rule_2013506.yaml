@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: 11.11.11.11
+      port: '55611'
+    details:
+      classtype: trojan-activity
+      flags: S
+      flow: to_server
+      metadata: created_at 2011_08_31, updated_at 2011_08_31
+      msg: '"ET TROJAN W32/Badlib Connectivity Check To Department of Defense Intelligence
+        Information Systems"'
+      reference: url,www.eset.com/about/blog/blog/article/win32delf-qcz-additional-details
+      rev: '1'
+      sid: '2013506'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

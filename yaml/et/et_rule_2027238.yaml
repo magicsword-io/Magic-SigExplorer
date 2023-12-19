@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"200"'
+      - value: '"|00|s|00|t|00|o|00|p|00 20 00|"'
+      - value: '"|00|c|00|o|00|p|00|y|00 20 00|T|00|S|00|V|00|I|00|P|00|S|00|r|00|v|00|.|00|d|00|l|00|l|00|"'
+      - value: '"|00 5c 00|W|00|i|00|n|00|d|00|o|00|w|00|s|00 5c 00|S|00|y|00|s|00|t|00|e|00|m|00|3|00|2|00
+          5c 00|T|00|S|00|M|00|S|00|I|00|S|00|r|00|v|00|.|00|d|00|l|00|l|00|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_04_22, deployment Perimeter, former_category
+        ATTACK_RESPONSE, performance_impact Low, signature_severity Major, updated_at
+        2020_08_28
+      msg: '"ET ATTACK_RESPONSE Windows SCM DLL Hijack Command (UTF-16) Inbound via
+        HTTP M3"'
+      reference: url,posts.specterops.io/lateral-movement-scm-and-dll-hijacking-primer-d2f61e8ab992
+      rev: '3'
+      sid: '2027238'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

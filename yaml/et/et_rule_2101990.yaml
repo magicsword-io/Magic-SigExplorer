@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1863'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '4'
+        value: '"CAL "'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL CHAT MSN user search"'
+      rev: '2'
+      sid: '2101990'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

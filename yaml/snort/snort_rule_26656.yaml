@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"hostid="'
+      - value: '"|26|hostname="'
+      - value: '"|26|hostip="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Travnet Botnet data upload"'
+      reference: url,www.virustotal.com/en/file/F7E9A1A4FC4766ABD799B517AD70CD5FA234C8ACC10D96CA51ECF9CF227B94E8/analysis/
+      rev: '2'
+      service: http
+      sid: '26656'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

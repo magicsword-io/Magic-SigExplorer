@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?wd="'
+      - value: '"x-debug|3a|"'
+      - value: '"x-request|3a|"'
+      - value: '"x-content|3a|"'
+      - value: '"x-storage|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_10_14, deployment Perimeter, deployment
+        SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag MustangPanda, updated_at 2020_10_19
+      msg: '"ET TROJAN APT Mustang Panda Payload - CnC Checkin"'
+      pcre: '"/\?wd=[a-f0-9]{8}$/Ui"'
+      reference: url,www.anomali.com/blog/china-based-apt-mustang-panda-targets-minority-groups-public-and-private-sector-organizations
+      rev: '2'
+      sid: '2028823'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Portable SDK for UPnP devices"'
+      metadata: created_at 2013_01_30, cve CVE_2012_5958, deployment Perimeter, former_category
+        INFO, signature_severity Minor, updated_at 2013_01_30
+      msg: '"ET INFO UPnP Discovery Search Response - CVE-2012-5958 and CVE-2012-5959
+        Vulnerable UPnP device M3"'
+      pcre: '"/^Server\x3a[^\r\n]*Portable SDK for UPnP devices(\/?\s*$|\/1\.([0-5]\..|8\.0.|(6\.[0-9]|6\.1[0-7])))/m"'
+      reference: cve,2012-5959
+      rev: '3'
+      sid: '2016304'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '1900'

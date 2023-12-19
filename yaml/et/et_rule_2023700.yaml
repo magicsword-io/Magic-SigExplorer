@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"0x1DA2F5"'
+      - value: '"0x1DA2CB"'
+      - value: '"getPrototypeOf"'
+      - value: '".__proto__"'
+      - value: '"Symbol.species"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Microsoft_Edge_Browser, attack_target Client_Endpoint,
+        created_at 2017_01_06, cve CVE_2016_7200, deployment Perimeter, signature_severity
+        Critical, tag Exploit_Kit_Sundown, updated_at 2017_01_06
+      msg: '"ET EXPLOIT Possible Microsoft Edge Chakra.dll Type Confusion (CVE-2016-7200
+        CVE-2016-7201) Observed in SunDown EK 1"'
+      reference: url,malware.dontneedcoffee.com/2017/01/CVE-2016-7200-7201.html
+      rev: '1'
+      sid: '2023700'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

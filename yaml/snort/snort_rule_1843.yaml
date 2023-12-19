@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '33270'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"!@|23|",depth 3'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR trinity connection attempt"'
+      reference: nessus,10501
+      rev: '11'
+      sid: '1843'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

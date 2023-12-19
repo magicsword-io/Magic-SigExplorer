@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".php?php=receipt",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-OTHER Request for a non-legit postal receipt"'
+      pcre: '"/\x2f[a-z0-9]+\.php\?php\x3dreceipt$/i"'
+      reference: url,urlquery.net/search.php?q=.php%3Fphp%3Dreceipt&type=string
+      rev: '3'
+      service: http
+      sid: '25277'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

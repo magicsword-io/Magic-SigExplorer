@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".osa.pl|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2011_12_22, updated_at 2020_09_15
+      msg: '"ET INFO HTTP Request to a *.osa.pl domain"'
+      rev: '2'
+      sid: '2014037'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

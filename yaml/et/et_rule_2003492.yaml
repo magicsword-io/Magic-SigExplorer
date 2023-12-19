@@ -1,0 +1,62 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.0|0d 0a|"'
+      - value: '!"/CallParrotWebClient/"'
+      - value: '!"Host|3a| www|2e|google|2e|com|0d 0a|"'
+      - value: '!"Cookie|3a| PREF|3d|ID|3d|"'
+      - value: '!"Host|3a 20|secure|2e|logmein|2e|com|0d 0a|"'
+      - value: '!"Host|3a 20|weixin.qq.com"'
+      - value: '!"Host|3a| slickdeals.net"'
+      - value: '!"Host|3a| cloudera.com"'
+      - value: '!"Host|3a 20|secure.digitalalchemy.net.au"'
+      - value: '!".ksmobile.com|0d 0a|"'
+      - value: '!"gstatic|2e|com|0d 0a|"'
+      - value: '!"weixin.qq.com|0d 0a|"'
+      - value: '!"|2e|cmcm|2e|com|0d 0a|"'
+      - value: '!".deckedbuilder.com"'
+      - value: '!".mobolize.com"'
+      - value: '!"wq.cloud.duba.net"'
+      - value: '!"Host|3a 20|infoc2.duba.net|0d 0a|"'
+      - value: '!".bitdefender.net|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category HUNTING, updated_at 2020_10_21
+      msg: '"ET INFO Suspicious Mozilla User-Agent - Likely Fake (Mozilla/4.0)"'
+      reference: url,doc.emergingthreats.net/2003492
+      rev: '30'
+      sid: '2003492'
+      special_options:
+      - fast_pattern
+      - nocase
+      - http_header
+      - http_uri
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - nocase
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

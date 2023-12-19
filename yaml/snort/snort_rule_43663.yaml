@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SITE SETC",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER WSFTP IpSwitch custom SITE command execution attempt"'
+      reference: cve,2004-1885
+      rev: '2'
+      service: ftp
+      sid: '43663'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

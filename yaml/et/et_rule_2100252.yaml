@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '16'
+        offset: '2'
+        value: '"|09 80 00 00 00 01 00 00 00 00|"'
+      metadata: created_at 2010_09_23, cve CVE_1999_0009, updated_at 2010_09_23
+      msg: '"GPL DNS named iquery attempt"'
+      reference: url,www.rfc-editor.org/rfc/rfc1035.txt
+      rev: '9'
+      sid: '2100252'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

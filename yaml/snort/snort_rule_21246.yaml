@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"User-Agent|3A 20|DataCha0s",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string DataCha0s"'
+      reference: url,www.internetofficer.com/web-robot/datacha0s/
+      rev: '6'
+      service: http
+      sid: '21246'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/PasswordVault/auth/saml/"'
+      - depth: '41'
+        value: '"SAMLResponse=PCFET0NUWVBFIHIgWwo8IUVMRU1F"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: created_at 2019_05_16, deployment Perimeter, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET EXPLOIT CyberArk Enterprise Password Vault XXE Injection Attempt"'
+      reference: url,www.exploit-db.com/exploits/46828
+      rev: '2'
+      sid: '2027358'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

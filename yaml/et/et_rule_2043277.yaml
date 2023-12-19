@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|04 00 00 00 1b 8d 34 01|"'
+      dsize: '8'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_11, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_01_11
+      msg: '"ET TROJAN Win32/Nitol.A CnC Checkin M3"'
+      reference: md5,f01b49498b82320973c6006ee117f91e
+      rev: '1'
+      sid: '2043277'
+      stream_size: server, =, 1
+      threshold: type both, track by_src, count 10, seconds 120
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

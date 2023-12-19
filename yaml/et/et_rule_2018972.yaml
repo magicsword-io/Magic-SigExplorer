@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|param name=|22|"'
+      - value: '"value=|22|nix.bin|22 3e|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, affected_product Any, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2014_08_21,
+        deployment Perimeter, signature_severity Major, tag Web_Client_Attacks, tag
+        DriveBy, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT DRIVEBY Social Engineering Toolkit Web Clone code detected"'
+      reference: url,securelist.com/blog/research/66108/el-machete/
+      rev: '1'
+      sid: '2018972'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

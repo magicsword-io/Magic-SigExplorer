@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|zxjfcvfvhqfqsrpz"'
+      distance: '0'
+      metadata: created_at 2014_08_05, former_category TROJAN, updated_at 2020_09_01
+      msg: '"ET TROJAN Zbot .onion Proxy DNS lookup July 31 2014"'
+      reference: md5,9c40169371adbee467587ab55a61e883
+      rev: '3'
+      sid: '2018893'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

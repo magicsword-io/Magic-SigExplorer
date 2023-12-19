@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get.php?invite=",fast_pattern,nocase'
+      - value: '"Accept-Encoding: gzip"'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluoz Potential phishing URL"'
+      pcre: '"/^\/get.php\?invite=.*?=$/m"'
+      reference: url,www.virustotal.com/en/file/93a40a83977ca24df6e12d7d6f19a9b9d92cb3ea3174ea9d4398ad2048205c42/analysis/
+      rev: '4'
+      service: http
+      sid: '28255'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

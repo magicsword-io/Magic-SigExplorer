@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Lotto"'
+      flow: to_server,established
+      metadata: created_at 2011_04_20, updated_at 2020_10_13
+      msg: '"ET USER_AGENTS suspicious User Agent (Lotto)"'
+      rev: '2'
+      sid: '2012695'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

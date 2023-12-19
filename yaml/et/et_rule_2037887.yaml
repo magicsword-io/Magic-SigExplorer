@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|iframe|20|src|3d 22 22|data|3a|text|2f|x|2d|powershell|3b|base64|2c|"'
+      fast_pattern: 8,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_02, deployment Perimeter, deployment SSLDecrypt,
+        former_category ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_07,
+        reviewed_at 2023_10_16
+      msg: '"ET ATTACK_RESPONSE HTML Smuggling Powershell Payload In iframe"'
+      rev: '2'
+      sid: '2037887'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

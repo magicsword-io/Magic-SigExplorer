@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -10
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"opela.ru"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_10, deployment Perimeter, signature_severity
+        Major, tag Gamaredon, updated_at 2023_07_10
+      msg: '"ET TROJAN Observed Gamaredon Domain (opela .ru in TLS SNI)"'
+      pcre: '"/^(?:\x00\x08|.\x2e)opela\.ru/R"'
+      reference: url,twitter.com/Cyber0verload/status/1678150909694443520
+      rev: '1'
+      sid: '2046781'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

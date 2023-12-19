@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '27'
+        value: '"/notifier/watcher-check/?t="'
+      - value: '".drp.su|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_02, deployment Perimeter,
+        former_category ADWARE_PUP, performance_impact Low, signature_severity Informational,
+        updated_at 2022_08_02
+      msg: '"ET MALWARE DriverPack Update Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.drp\.su/Hmi"'
+      reference: md5,63181b2e347fbe0faf02e26085513a05
+      rev: '1'
+      sid: '2037896'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"|0d 0a|Host|3a| "'
+      - value: '"whatismyip."'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category POLICY, updated_at 2020_08_25
+      msg: '"ET POLICY IP Check Domain (whatismyip in HTTP Host)"'
+      rev: '6'
+      sid: '2008986'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

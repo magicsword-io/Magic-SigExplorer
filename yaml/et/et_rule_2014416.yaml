@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<script"'
+      - value: '"PLAYERPT.PlayerPTCtrl.1"'
+      - value: '"|2e|SetSource("'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_03_23, deployment Perimeter, former_category
+        ACTIVEX, signature_severity Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Cisco Linksys WVC200 Wireless-G PTZ Internet Video Camera
+        PlayerPT ActiveX Control PlayerPT.ocx Access 1"'
+      pcre: '"/(ActiveXObject|CreateObject)\s*\(\s*(\x22|\x27)PLAYERPT\.PlayerPTCtrl\.1/iG"'
+      reference: url,retrogod.altervista.org/9sg_linksys_playerpt.htm
+      rev: '4'
+      sid: '2014416'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

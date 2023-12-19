@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/menu.php"'
+      - value: '!"Referer|3a|"'
+      - value: '"Content-Type|3a 20|application/octet-stream|0d 0a|"'
+      - value: '"rv|3a|20.0"'
+      - value: '"Firefox/20.0"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_05,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Operation Buhtrap CnC Beacon 2"'
+      pcre: '"/\/menu\.php$/U"'
+      reference: md5,24fac66b3a6d55a83e1309bc530b032e
+      rev: '2'
+      sid: '2020891'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

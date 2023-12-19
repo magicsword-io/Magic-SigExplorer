@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /beta_ HTTP/1.1"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_12_20, deployment Perimeter,
+        former_category MALWARE, malware_family Phorpiex, signature_severity Major,
+        updated_at 2021_12_20
+      msg: '"ET TROJAN Phorpiex Botnet Downloader Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n\r\n$/H"'
+      reference: url,research.checkpoint.com/2021/phorpiex-botnet-is-back-with-a-new-twizt-hijacking-hundreds-of-crypto-transactions/
+      rev: '2'
+      sid: '2034774'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

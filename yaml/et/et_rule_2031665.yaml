@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/~8f3g4yogufey8g7yfg/~dfb375y8ufg34gfyu.bin"'
+      fast_pattern: 5,25
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_02_24, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_02_24
+      msg: '"ET TROJAN MINEBRIDGE CnC Activity"'
+      reference: url,www.zscaler.com/blogs/security-research/return-minebridge-rat-new-ttps-and-social-engineering-lures
+      rev: '2'
+      sid: '2031665'
+      special_options:
+      - http_uri
+      urilen: '43'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

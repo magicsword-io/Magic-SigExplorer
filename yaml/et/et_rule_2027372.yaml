@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3A 20|iplocation.truevue.org|0d 0a|"'
+      - depth: '30'
+      fast_pattern: 6,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2019_05_22, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        tag IP_address_lookup_website, updated_at 2020_09_17
+      msg: '"ET POLICY External IP Lookup - iplocation .truevue .org"'
+      rev: '2'
+      sid: '2027372'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

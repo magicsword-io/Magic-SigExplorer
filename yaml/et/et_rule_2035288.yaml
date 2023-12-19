@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/get.php"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Linux"'
+      - value: '!"Android"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_25, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2022_02_25
+      msg: '"ET TROJAN Gamaredon APT Related Activity (GET)"'
+      pcre: '"/^Host\x3a\x20[0-9]{6,10}\./Hm"'
+      reference: md5,860137d224440fd7c1cb3652199dcd58
+      rev: '2'
+      sid: '2035288'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

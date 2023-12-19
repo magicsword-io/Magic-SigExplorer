@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content|3a 20|image/png|0d 0a|"'
+      - value: '"Content-Length|3a 20|5|0d 0a|"'
+      - depth: '5'
+        value: '"|1a 1a 6e 04 29|"'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_31, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Manjusaka, signature_severity Major,
+        updated_at 2023_04_04, reviewed_at 2023_10_16
+      msg: '"ET TROJAN Manjusaka C2 Heartbeat Response"'
+      reference: url,corelight.com/blog/detecting-manjusaka-c2-framework
+      rev: '2'
+      sid: '2039602'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - file_data
+      - fast_pattern
+      threshold: type limit, seconds 360, count 1, track by_dst
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

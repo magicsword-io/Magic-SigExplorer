@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"/d/s/c"'
+      - value: '"node.exe"'
+      - value: '"7C%"'
+      - value: '"7C%"'
+      - value: '"ActiveXObject"'
+      - value: '"252Cunescape%25"'
+      - value: '"WScript"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_19, deployment Perimeter, former_category
+        MALWARE, malware_family lu0bot, signature_severity Major, updated_at 2021_11_19
+      msg: '"ET TROJAN lu0bot Loader HTTP Response M2"'
+      reference: md5,79b9a5e7b2e87ad7f99fbcd7d7d0a9ed
+      rev: '2'
+      sid: '2034517'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '23'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '3'
+      itype: '40'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Photuris Valid Security Parameters, But Decryption Failed"'
+      rev: '9'
+      sid: '432'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

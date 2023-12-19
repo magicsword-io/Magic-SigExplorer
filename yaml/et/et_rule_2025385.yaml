@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|rpnew|02|mm|02|my"'
+      distance: '0'
+      metadata: affected_product Linux, attack_target IoT, created_at 2018_02_23,
+        deployment Perimeter, former_category MALWARE, malware_family Mirai, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN Mirai/OMG Proxy Variant CnC in DNS Lookup (rpnew.mm .my)"'
+      reference: url,blog.fortinet.com/2018/02/21/omg-mirai-based-bot-turns-iot-devices-into-proxy-servers5a8e05ccc4f85
+      rev: '2'
+      sid: '2025385'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

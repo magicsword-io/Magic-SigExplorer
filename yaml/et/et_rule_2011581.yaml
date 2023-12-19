@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|20|Java/1.5."'
+      flow: established,to_server
+      flowbits: set,ET.http.javaclient.vulnerable
+      metadata: affected_product Java, attack_target Client_Endpoint, created_at 2010_09_27,
+        deployment Perimeter, deployment Internal, former_category POLICY, performance_impact
+        Low, signature_severity Informational, tag EOL, updated_at 2023_12_13
+      msg: '"ET POLICY Vulnerable Java Version 1.5.x Detected"'
+      reference: url,www.oracle.com/technetwork/java/javase/documentation/index.html
+      rev: '12'
+      sid: '2011581'
+      special_options:
+      - nocase
+      - http_header
+      threshold: type limit, count 2, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

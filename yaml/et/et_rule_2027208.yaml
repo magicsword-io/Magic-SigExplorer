@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|time-loss|05|dns05|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_04_16, former_category MALWARE, tag DustySky, updated_at 2020_09_17
+      msg: '"ET TROJAN DustySky/Gaza Cybergang Group1 CnC Domain in DNS Lookup (time-loss
+        .dns05 .com)"'
+      reference: url,securelist.com/gaza-cybergang-group1-operation-sneakypastes/90068/
+      rev: '2'
+      sid: '2027208'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| umbra|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2013_02_08, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN Umbra/Multibot Loader User-Agent (umbra)"'
+      reference: url,malware.dontneedcoffee.com/2013/02/inside-multi-botnet-ver4-c-panel.html
+      rev: '1'
+      sid: '2016366'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

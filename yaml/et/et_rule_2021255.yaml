@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>*** Security Error Code 0x80070424</title>"'
+      fast_pattern: 29,20
+      flow: established,to_client
+      metadata: created_at 2015_06_11, former_category WEB_CLIENT, updated_at 2020_09_01
+      msg: '"ET WEB_CLIENT Fake AV Phone Scam Landing June 11 2015 M1"'
+      rev: '3'
+      sid: '2021255'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

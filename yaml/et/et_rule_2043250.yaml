@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/coinbaselogin/login.php"'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&password="'
+      - value: '"|26|commit|3d|Sign|2b|In"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2023_01_09, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_04_05, reviewed_at 2023_11_02
+      msg: '"ET CURRENT_EVENTS Successful Coinbase Credential Phish 2023-01-09"'
+      pcre: '"/\/coinbaselogin\/login\.php$/U"'
+      reference: md5,9cb507f79ca72c630f66a4fc3631aeae
+      rev: '2'
+      sid: '2043250'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

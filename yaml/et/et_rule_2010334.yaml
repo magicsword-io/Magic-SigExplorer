@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"hingDeny="'
+      - value: '"&id="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Dosenjo/Kvadr Proxy Trojan Activity"'
+      pcre: '"/\?ca[sc]hingDeny=[0-9A-Za-z]{16}&/U"'
+      reference: md5,e4664144f8e95cfec510d5efa24a35e7
+      rev: '4'
+      sid: '2010334'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"."'
+      - value: '!"&"'
+      - value: '!"?"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"-"'
+      - value: '"|3a|StartU|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_11, deployment Perimeter, former_category
+        MALWARE, malware_family Kraken_Ransomware, signature_severity Major, tag Ransomware,
+        updated_at 2022_03_24, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN [PTsecurity] Kraken Ransomware Start Activity 2"'
+      rev: '2'
+      sid: '2026472'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

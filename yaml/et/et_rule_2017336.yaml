@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"=[|27|eval|27|]|3b|"'
+      flow: established,from_server
+      metadata: created_at 2013_08_15, former_category INFO, updated_at 2013_08_15
+      msg: '"ET INFO SUSPICIOUS Reassigned Eval Function 3"'
+      rev: '2'
+      sid: '2017336'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"alt|3d 22|DHL|20|Logo|22 20|class|3d 22|dhlLogo|22|"'
+      - value: '"form|20|id|3d 22|j|5f|idt20|22 20|name|3d 22|j|5f|idt20|22 20|method|3d
+          22|post|22 20|action|3d 22 22|"'
+      - value: '"name|3d 22|loginForm|22 20|action|3d 22|action|2e|php|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_07, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_10_07
+      msg: '"ET CURRENT_EVENTS DHL Credential Phish Landing Page 2022-10-07"'
+      reference: md5,65e7de48c2728b96a67ae5c10ec53cb2
+      rev: '1'
+      sid: '2039125'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

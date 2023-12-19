@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: 0:1023
+    details:
+      byte_test: 1,&,1,0
+      classtype: attempted-dos
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"|00 02 01|"'
+      metadata: created_at 2014_08_26, updated_at 2014_08_26
+      msg: '"ET DOS Likely NTP DDoS In Progress PEER_LIST_SUM Response to Non-Ephemeral
+        Port IMPL 0x02"'
+      reference: url,en.wikipedia.org/wiki/Ephemeral_port
+      rev: '3'
+      sid: '2019012'
+      threshold: type both,track by_src,count 1,seconds 120
+    protocol: udp
+    source:
+      network: any
+      port: '123'

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ip.txt"'
+      - depth: '12'
+        value: '"User-Agent|3a 20|"'
+      - value: '"|3a 20|no-cache|0d 0a 0d 0a|"'
+      - value: '!"%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84"'
+      - value: '!"malwaredomainlist.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_05_31, deployment Perimeter, former_category
+        MALWARE, malware_family Hupigon, confidence Low, signature_severity Major,
+        updated_at 2023_09_29, reviewed_at 2023_09_29
+      msg: '"ET TROJAN Possible Win32/Hupigon ip.txt with a Non-Mozilla UA"'
+      pcre: '"/^User-Agent\x3a(?!\x20Mozilla\/)[^\r\n]+[\r\n]+Host\x3a\x20[^\r\n]+\r\n(?:Cache-Control|Pragma)\x3a\x20no-cache[\r\n]+$/H"'
+      reference: md5,4d23395fcbab1dabef9afe6af81df558
+      rev: '4'
+      sid: '2016950'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

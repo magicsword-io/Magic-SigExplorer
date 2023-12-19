@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"req="'
+      flow: established,to_server
+      metadata: created_at 2013_08_28, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN Trojan.Dirtjump Checkin"'
+      pcre: '"/^req=[A-Za-z0-9]{15}([A-Za-z0-9]{19})?$/P"'
+      reference: md5,50a538221e015d77cf4794ae78978ce2
+      rev: '1'
+      sid: '2017385'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

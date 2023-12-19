@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"legal"'
+      - value: '"restore"'
+      - value: '"currentdevice"'
+      - value: '"putdeviceprops"'
+      distance: '0'
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2018_09_05, deployment Datacenter,
+        former_category EXPLOIT, signature_severity Informational, updated_at 2018_09_05
+      msg: '"ET EXPLOIT Ghostscript invalidcheck escape attempt"'
+      pcre: '"/legal[^x7B]*\x7B[^\x7D]*restore/smi"'
+      reference: url,seclists.org/oss-sec/2018/q3/142
+      rev: '1'
+      sid: '2026085'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

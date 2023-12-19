@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/se/adx.php"'
+      - depth: '5'
+        value: '"lang="'
+      - value: '"&op="'
+      - value: '"&RndID="'
+      - value: '"&Mac="'
+      - value: '"&Version="'
+      - value: '"&LocalIp="'
+      - value: '"&ProductKey="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_18, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2022_07_18
+      msg: '"ET MALWARE Win32 Handy Cafe Checkin"'
+      reference: md5,8ab0a4a3c9cd62727484e634457081a3
+      rev: '1'
+      sid: '2037785'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

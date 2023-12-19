@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 1,=,102,2
+      classtype: attempted-recon
+      contents:
+      - value: '"|84|",depth 1,offset 18'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SCADA PCOM Read Data Table binary reply"'
+      reference: url,unitronicsplc.com
+      rev: '2'
+      sid: '49033'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '20256'

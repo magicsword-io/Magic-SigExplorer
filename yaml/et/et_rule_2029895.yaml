@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"/slave"'
+      - value: '"User-Agent|3a 20|Go-http-client/1.1|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_04_13, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_04_13
+      msg: '"ET TROJAN DDG Botnet CnC Slave POST"'
+      pcre: '"/X-Hub\x3a\x20[^\r\n]+\r\nX-Relay\x3a\x20[^\r\n]+\r\nX-Uid[^\r\n]+\r\n(?:\r\n)?/Hi"'
+      reference: md5,e956e5b97cd0b73057980d735ee92974
+      rev: '2'
+      sid: '2029895'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

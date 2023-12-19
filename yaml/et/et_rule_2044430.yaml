@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|3c|component|3e|"'
+      - value: '"GetDrive|28 22|C|3a 22 29|"'
+      - value: '"|28 22|windowsinstaller|2e|installer"'
+      - value: '"|2e|InstallProduct"'
+      - value: '"SerialNumber"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_02, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_04, reviewed_at
+        2023_11_17
+      msg: '"ET TROJAN VBS/TrojanDownloader.Agent.YLH Payload Inbound"'
+      reference: url,twitter.com/0xToxin/status/1631281875195949056
+      rev: '2'
+      sid: '2044430'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|ftpupload|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_22, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_06_22
+      msg: '"ET INFO Commonly Abused File Sharing Domain in DNS Lookup (ftpupload
+        .net)"'
+      reference: md5,ddc7091a431c36c35adbc0d1ccfbfa3a
+      rev: '1'
+      sid: '2037077'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

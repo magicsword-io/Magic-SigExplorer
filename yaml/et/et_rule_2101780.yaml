@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '" x PARTIAL 1 BODY["'
+      dsize: '>1092'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2002_0379, updated_at 2010_09_23
+      msg: '"GPL IMAP EXPLOIT partial body overflow attempt"'
+      reference: cve,2002-0379
+      rev: '10'
+      sid: '2101780'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

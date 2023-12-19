@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"add.php?apikey="'
+      - value: '"&compuser="'
+      - value: '"&sid="'
+      - value: '"&phase="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.Matrix outbound connection"'
+      reference: url,www.virustotal.com/#/file/996ea85f12a17e8267dcc32eae9ad20cff44115182e707153006162711fbe3c9/detection
+      rev: '3'
+      service: http
+      sid: '46339'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

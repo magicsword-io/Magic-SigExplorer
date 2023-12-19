@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,0,little,from_beginning, post_offset -1
+      classtype: trojan-activity
+      contents:
+      - offset: '8'
+        value: '"|7b 9e|"'
+      dsize: '>11'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2014_07_03, deployment Perimeter, former_category
+        MALWARE, malware_family Gh0st, malware_family PCRAT, performance_impact Significant,
+        signature_severity Critical, tag PCRAT, tag Gh0st, tag RAT, updated_at 2021_09_09
+      msg: '"ET TROJAN Backdoor family PCRat/Gh0st CnC traffic (OUTBOUND) 39"'
+      pcre: '"/^.{4}[\x20-\x7e]+?.{4}\x7b\x9e/s"'
+      reference: md5,3134e62b117f9994e173c262b1bcbca5
+      rev: '2'
+      sid: '2018639'
+      stream_size: server,<,5
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

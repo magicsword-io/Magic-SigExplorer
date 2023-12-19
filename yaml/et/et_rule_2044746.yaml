@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"-DATA-"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_22, deployment Perimeter, former_category
+        MALWARE, malware_family SOMNIRECORD, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_03_23, reviewed_at 2023_08_21
+      msg: '"ET TROJAN SOMNIRECORD Backdoor DATA Command in DNS Query"'
+      pcre: '"/[a-z0-9]{3}-DATA-[a-f0-9]{6}/i"'
+      reference: url,www.elastic.co/security-labs/not-sleeping-anymore-somnirecords-wakeup-call
+      rev: '4'
+      sid: '2044746'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

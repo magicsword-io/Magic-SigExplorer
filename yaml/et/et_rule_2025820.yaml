@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"query=--open-files-in-pager"'
+      - value: '"php%20"'
+      - value: '"%22eval"'
+      - value: '"base64_decode"'
+      flow: established,to_server
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2018_07_10,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_11_04
+      msg: '"ET WEB_SPECIFIC_APPS GitList Argument Injection"'
+      reference: url,exploit-db.com/exploits/44993/
+      rev: '2'
+      sid: '2025820'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

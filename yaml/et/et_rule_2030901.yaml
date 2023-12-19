@@ -1,0 +1,52 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|08|Zhongguo"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|11|Internet Security"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|08|ShenZhen"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|04|ESET"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|11|Internet Security"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|16|Eset Internet Security"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|08|Zhongguo"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|11|Internet Security"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|08|ShenZhen"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|04|ESET"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|11|Internet Security"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|16|Eset Internet Security"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2020_09_23, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2022_04_18, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Cobalt Strike CnC)"'
+      reference: url,twitter.com/bryceabdo/status/1308802052487774210
+      rev: '3'
+      sid: '2030901'
+      special_options:
+      - fast_pattern
+      within: '23'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

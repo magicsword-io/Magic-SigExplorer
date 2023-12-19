@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '32'
+        value: '"|A9| Sustainable So"'
+      itype: '8'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL ICMP_INFO PING IP NetMonitor Macintosh"'
+      reference: arachnids,157
+      rev: '8'
+      sid: '2100374'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

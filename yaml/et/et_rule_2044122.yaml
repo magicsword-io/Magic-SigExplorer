@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET / HTTP/1.0"'
+      - value: '"User-Agent|3a 20|360|20|Safe|20|Browser|20|2.0|0d 0a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      flowbits: set,ET.nginxspy
+      metadata: attack_target Web_Server, created_at 2023_02_06, deployment Perimeter,
+        former_category MALWARE, confidence Medium, signature_severity Major, updated_at
+        2023_02_06
+      msg: '"ET TROJAN Suspected NginxSpy Related Request (Inbound)"'
+      reference: url,jsac.jpcert.or.jp/archive/2023/pdf/JSAC2023_2_4_peter-jr-wei_en.pdf
+      rev: '1'
+      sid: '2044122'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

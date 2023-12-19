@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/cgi-bin/login_mgr.cgi"'
+      - value: '"cmd|3d|login"'
+      - value: '"&port="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2019_09_18, cve CVE_2019_16057,
+        deployment Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_02
+      msg: '"ET EXPLOIT DLink DNS 320 Remote Code Execution (CVE-2019-16057)"'
+      pcre: '"/port=\d{2,5}+(?!\&|\d)/U"'
+      reference: url,blog.cystack.net/d-link-dns-320-rce/
+      rev: '2'
+      sid: '2028603'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

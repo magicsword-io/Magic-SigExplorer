@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"HTTP/1.1|0d 0a|Accept|3a 20|*/*|0d 0a|Cookie|3a 20|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 11,20
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_09_09, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_08_24,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Beacon Observed"'
+      pcre: '"/^[a-zA-Z0-9/+]{171}=/R"'
+      reference: md5,d3f53580f7ce72caf9be799106ad89ca
+      rev: '1'
+      sid: '2033713'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".js|20|HTTP/1.1|0d 0a|Cookie|3a 20|SSID="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_25, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_03_25
+      msg: '"ET TROJAN Cobalt Strike Activity"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})\r\n/R"'
+      reference: url,twitter.com/z0ul_/status/1374724622508245008
+      rev: '2'
+      sid: '2032330'
+      special_options:
+      - http_method
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

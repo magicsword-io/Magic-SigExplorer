@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - depth: '14'
+        value: '"/resolve?type="'
+      - value: '"&name="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"|0d 0a|Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_31, deployment Perimeter,
+        former_category HUNTING, performance_impact Low, signature_severity Informational,
+        updated_at 2023_03_31
+      msg: '"ET INFO Terse DoH Style Query (GET)"'
+      reference: md5,dc1852f54d4e5144b3129a2294d3bc39
+      rev: '1'
+      sid: '2044850'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

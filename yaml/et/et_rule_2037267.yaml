@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Navy Federal Credit Union"'
+      - value: '"<h1>Verification process running...</h1>"'
+      - value: '"<span>Confirm Your Card Details</span></h2>"'
+      - value: '"<!--******************-->"'
+      - value: '".php|22|"'
+      - value: '"name|3d 22|Name|22|"'
+      - value: '"name|3d 22|Month|22|"'
+      - value: '"name|3d 22|Year|22|"'
+      - value: '"name|3d 22|CVV|22|"'
+      - value: '"name|3d 22|ATM|22|"'
+      - value: '"name|3d 22|SignIn|22|"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_05, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_07_05
+      msg: '"ET CURRENT_EVENTS Navy Federal Credit Union Credential Phish Landing
+        Page 2022-07-05"'
+      reference: md5,4ac348fb32a7a37d184d381186962c5e
+      rev: '1'
+      sid: '2037267'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"/owa/?wa="'
+      - value: '"&path=/calendar"'
+      - depth: '39'
+        value: '"MicrosoftApplicationsTelemetryDeviceId="'
+      - value: '"|3b|ClientId="'
+      - value: '"|3b|MSPAuth="'
+      - value: '"|3b|xid="'
+      - value: '"|3b|wla42="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_09_17, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2020_09_02, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN [TGI] Cobalt Strike Malleable C2 Request (O365 Profile)"'
+      pcre: '"/&path=\/calendar$/U"'
+      reference: url,attack.mitre.org/groups/G0080/
+      rev: '2'
+      sid: '2028588'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

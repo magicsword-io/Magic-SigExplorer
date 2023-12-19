@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&string=",fast_pattern,nocase'
+      - value: '"key=",depth 4'
+      - value: '"Content-Type: application/x-www-Form-urlencoded|0D 0A|"'
+      - value: '".php"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Tirabot variant outbound connection"'
+      pcre: '"/User\x2dAgent\x3a\x20([\x20-\x7e]{3,56})\r\n.*?\r\n\r\nkey\x3d\1\x26string\x3d/ms"'
+      reference: url,www.virustotal.com/en/file/7ea920d297e23cf58e9f00fa3d48e02994253cb4a673bdd6db9a02fa5ab9ffb8/analysis/1407432311/
+      rev: '2'
+      service: http
+      sid: '31680'
+      special_options:
+      - http_client_body
+      - http_header
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

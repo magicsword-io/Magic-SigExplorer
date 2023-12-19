@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|76 DC D7 09 68 53 16 74 BB A8 7B CC DE C4 9D 66 77 43 34 DC|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Linux, attack_target Client_and_Server, created_at 2019_11_21, deployment
+        Perimeter, former_category MALWARE, malware_family ACBackdoor, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2020_10_22,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (ACBackdoor CnC)"'
+      reference: url,www.intezer.com/blog-acbackdoor-analysis-of-a-new-multiplatform-backdoor/
+      rev: '2'
+      sid: '2029048'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

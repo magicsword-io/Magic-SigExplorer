@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 10|chad-jessie.info|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_16, deployment Perimeter, signature_severity
+        Major, updated_at 2020_12_16
+      msg: '"ET TROJAN Observed AridViper CnC Domain in TLS SNI"'
+      reference: url,unit42.paloaltonetworks.com/pymicropsia
+      rev: '2'
+      sid: '2031404'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e|Login|3c 2f|title|3e|"'
+      - value: '"|3c|h3|20|class|3d 22|box|2d|title|20|m|2d|b|2d|20|22 3e|Lone|20|Wolf|3c
+          2f|h3|3e|"'
+      - value: '"placeholder|3d 22|Password|22 20|name|3d 22|Password|22 3e|"'
+      - value: '"type|3d 22|submit|22 3e|Log|20|In|3c 2f|button|3e|"'
+      fast_pattern: 22,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_05_30, deployment Perimeter,
+        former_category ATTACK_RESPONSE, confidence Medium, signature_severity Major,
+        updated_at 2023_05_30
+      msg: '"ET ATTACK_RESPONSE Mana Tools-Lone Wolf Admin Panel Inbound"'
+      reference: url,twitter.com/0xToxin/status/1663588503089737729
+      rev: '1'
+      sid: '2045885'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

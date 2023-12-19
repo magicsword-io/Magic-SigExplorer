@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B| MSIE 6.0|3B| Windows NT 5.1)|0D 0A|Accept: */*|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC XP Fake Antivirus Check-in"'
+      pcre: '"/^\x2F\d{10}$/"'
+      reference: url,camas.comodo.com/cgi-bin/submit?file=cf3eff5320b0c8d41490e412e89b97559bf34fcde8f9934e5fb7c76467a679d8
+      rev: '2'
+      service: http
+      sid: '26812'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|00 00 00 00 04 01 00|"'
+      - value: '"|01 00 00 00 02 05 02 01 00|"'
+      - value: '"|01 00|"'
+      distance: '256'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_09, deployment Perimeter, former_category
+        MALWARE, malware_family DynamicRat, confidence High, signature_severity Critical,
+        updated_at 2023_06_09
+      msg: '"ET TROJAN [ANY.RUN] Win32/DynamicRAT CnC Activity"'
+      reference: url,gi7w0rm.medium.com/dynamicrat-a-full-fledged-java-rat-1a2dabb11694
+      rev: '1'
+      sid: '2046187'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

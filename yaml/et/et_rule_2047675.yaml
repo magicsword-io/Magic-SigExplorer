@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ajax/openvpn/"'
+      - value: '"_ovpncfg.php"'
+      - depth: '8'
+        value: '"cfg_id|3d 3b|"'
+      - value: '"|3b 23|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_08_18, deployment Perimeter, deployment Internal, deployment
+        SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_08_18
+      msg: '"ET WEB_SPECIFIC_APPS RaspAP Command Injection Attempt (CVE 2022-39986)
+        M2"'
+      pcre: '"/_ovpncfg\.php$/U"'
+      reference: url,www.exploit-db.com/exploits/51676
+      rev: '1'
+      sid: '2047675'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

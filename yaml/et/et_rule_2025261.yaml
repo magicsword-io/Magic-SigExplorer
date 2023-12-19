@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"background|3a 20|#3baee7|3b|"'
+      - value: '"-webkit-linear-gradient(top, #3baee7, #08c)"'
+      - value: '"text-shadow|3a 20|1px 1px 3px #666666"'
+      - value: '"background|3a 20|#3cb0fd|3b|"'
+      - value: '"-webkit-linear-gradient(top, #3cb0fd, #3498db)"'
+      - value: '".dark {"'
+      - value: '"color|3a 20|#525252|3b|"'
+      - value: '".dark-select {"'
+      - value: '"background|3a 20|#DFDFDF url(''down-arrow.png'')"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_29, deployment Perimeter, former_category PHISHING, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_29
+      msg: '"ET CURRENT_EVENTS Generic Phishing Landing M2 2018-01-29"'
+      rev: '2'
+      sid: '2025261'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

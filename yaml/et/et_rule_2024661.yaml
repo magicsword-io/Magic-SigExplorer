@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"iddq"'
+      - value: '"<param"'
+      fast_pattern: only
+      flow: established,from_server
+      flowbits: set,ET.RIGEKExploit
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_05, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family RIG, performance_impact Moderate, signature_severity
+        Major, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS RIG EK Rip Sep 05 2017 M2"'
+      pcre: '"/^(?=(?:(?!<\/>).)+?FlashVars)(?:(?!<\/>).)+?value\s*?=\s*?[\x22\x27][^=]*\s*=EB02EB05E8F9FFFFFF/Rsi"'
+      rev: '2'
+      sid: '2024661'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 10|cdn-frontend.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_20, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        performance_impact Low, signature_severity Major, tag CardSkimmer, updated_at
+        2021_04_20
+      msg: '"ET TROJAN Observed Magecart/Skimmer - _try_action CnC Domain (cdn-frontend
+        .com in TLS SNI)"'
+      reference: url,lukeleal.com/research/posts/cdn-frontend-skimmer/
+      rev: '2'
+      sid: '2032789'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

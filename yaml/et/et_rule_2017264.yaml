@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - value: '"filename="'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: created_at 2013_08_01, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN CBReplay Checkin"'
+      pcre: '"/filename=\x22\d+?\x22/P"'
+      rev: '1'
+      sid: '2017264'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

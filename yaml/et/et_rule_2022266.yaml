@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".msp"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2015_12_15, updated_at 2020_10_05
+      msg: '"ET INFO Possible MSXMLHTTP Request (msp) unset (no exe)"'
+      rev: '5'
+      sid: '2022266'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

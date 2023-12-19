@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"POST"'
+      - value: '"|3c|LV|0e|qbkpireportbakf|04|stat|7d 00|"'
+      - value: '"|05|crypt|18 00|"'
+      - value: '"|01 06 0a|list|3c|char|3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_13, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Informational, updated_at
+        2020_03_13
+      msg: '"ET POLICY QQ Browser WUP Request - qbkpireportbakf.stat"'
+      reference: url,citizenlab.ca/2016/03/privacy-security-issues-qq-browser/
+      rev: '2'
+      sid: '2029633'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      threshold: type limit, track by_src, count 1, seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

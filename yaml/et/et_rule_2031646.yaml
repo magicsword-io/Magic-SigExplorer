@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0c|alsalaf.info"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_22, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag WRAT, updated_at 2021_02_22
+      msg: '"ET TROJAN WRAT Dropper (TLS SNI)"'
+      reference: md5,7831f12dac1d4ef7dcd6e3218b8dad68
+      rev: '2'
+      sid: '2031646'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

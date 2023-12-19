@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"BROWS"'
+      - value: '"|3a|"'
+      distance: '1'
+      dsize: <100
+      flow: established,from_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C Browse Drive Command (BROWSC)"'
+      reference: url,doc.emergingthreats.net/2008027
+      rev: '3'
+      sid: '2008027'
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

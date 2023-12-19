@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '6'
+        value: '"POST /"'
+      - value: '"?ACTION=HELLO"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"|0d 0a|Accept-"'
+      - value: '!"nanosystems.it|0d 0a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_17, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET INFO RealThinClient Session Init"'
+      pcre: '"/^POST\x20\/[$A-Za-z0-9]+\?ACTION=HELLO/"'
+      reference: url,rtc.teppi.net
+      rev: '7'
+      sid: '2036705'
+      special_options:
+      - fast_pattern
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

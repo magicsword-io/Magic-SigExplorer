@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"DOWNLOAD1|0d 0a|"'
+      dsize: '11'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_11, deployment Perimeter, former_category
+        MALWARE, malware_family Banking_Trojan, signature_severity Major, updated_at
+        2020_08_19
+      msg: '"ET TROJAN [eSentire] Win32/Spy.Banker CnC Command (DOWNLOAD)"'
+      reference: md5,f45991556122b07d501fa995bd4e74a7
+      rev: '3'
+      sid: '2025651'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

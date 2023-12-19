@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"base64_decode("'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_02_16, updated_at 2020_09_18
+      msg: '"ET WEB_SERVER base64_decode in UA"'
+      pcre: '"/^User-Agent\x3a[^\r\n]base64_decode\x28/Hmi"'
+      reference: url,blog.spiderlabs.com/2013/02/honeypot-alert-user-agent-field-php-injection-attacks.html
+      rev: '1'
+      sid: '2016416'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

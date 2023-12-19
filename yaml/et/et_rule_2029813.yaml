@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|WIN"'
+      - value: '"|7c 20|Processor|3a 20|"'
+      - value: '"|7c 20|Cores|3a 20|"'
+      - value: '"|7c 20|Videocard|3a 20|"'
+      - value: '"|7c 20|SmartScreen|3a 20|"'
+      - value: '"|7c 20|Defender|3a 20|"'
+      - value: '"|7c 20|Antivirus|3a 20|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_04_06, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        tag Coinminer, updated_at 2022_05_03, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1496, mitre_technique_name Resource_Hijacking
+      msg: '"ET TROJAN Win32/MOOZ.THCCABO CoinMiner CnC Checkin"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/zoomed-in-a-look-into-a-coinminer-bundled-with-zoom-installer
+      rev: '3'
+      sid: '2029813'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

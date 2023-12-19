@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"connect_data",nocase'
+      - value: '"|28|service_name=",nocase'
+      - value: '!"|29|",within 1000'
+      flow: to_server,established
+      isdataat: 1000,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-ORACLE Oracle 9i TNS Listener SERVICE_NAME Remote Buffer Overflow
+        attempt"'
+      reference: cve,2002-0965
+      rev: '8'
+      sid: '2649'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

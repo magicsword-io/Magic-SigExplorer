@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500:'
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 04 93 F3|",depth 4,offset 16'
+      - value: '"|00 00 00 08|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC AMD TCP version request"'
+      rev: '11'
+      sid: '1955'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

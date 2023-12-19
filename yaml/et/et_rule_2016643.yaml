@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<applet"'
+      - value: '"value"'
+      flow: established,from_server
+      metadata: created_at 2013_03_22, updated_at 2013_03_22
+      msg: '"ET CURRENT_EVENTS Possible RedDotv2 applet with 32hex value Landing Page"'
+      pcre: '"/^[\r\n\s]*=[\r\n\s]*(?P<q1>[\x22\x27])[a-f0-9]{32}(?P=q1)/Rsi"'
+      rev: '4'
+      sid: '2016643'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

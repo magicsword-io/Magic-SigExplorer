@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '33'
+        value: '"/system/ws-control-servelet?name="'
+      - value: '"uuid="'
+      - value: '"url=http|3a 2f 2f|localhost/system"'
+      - value: '"Connection|3a 20|"'
+      - value: '"Sec-WebSocket-Version|3a 20|"'
+      - value: '"Sec-WebSocket-Key|3a 20|"'
+      - value: '"Upgrade|3a 20|"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"Host|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2023_09_05, cve CVE_2023_39476, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_05, reviewed_at
+        2023_09_05
+      msg: '"ET WEB_SPECIFIC_APPS Inductive Automation remoteSystemID Check (CVE-2023-39476)"'
+      pcre: '"/url=http|3a\x202f\x202f|localhost\/system$/U"'
+      reference: cve,2023-39476
+      rev: '1'
+      sid: '2047920'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

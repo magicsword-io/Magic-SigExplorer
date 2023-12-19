@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|noscript|3e 3c|meta|20|http|2d|equiv|3d 22|Refresh|22 20|content|3d
+          22|5|3b|URL|3d|https|3a 2f 2f|www|2e|enable|2d|javascript|2e|com|2f 22 3e
+          3c 2f|noscript|3e|"'
+      - value: '"<title>HTML Document</title>"'
+      - value: '"window|2e|location|2e|href|20 3d 20 22|index123|2e|php|3f|t|3d|"'
+      - value: '"(''vendor/vendor."'
+      - value: '".then(() => {"'
+      distance: '0'
+      fast_pattern: 19,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_28, deployment Perimeter,
+        former_category PHISHING, confidence High, signature_severity Major, updated_at
+        2023_04_28
+      msg: '"ET CURRENT_EVENTS USPS Credential Phish Landing Page M1 2023-04-28"'
+      rev: '1'
+      sid: '2045245'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

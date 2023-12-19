@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"d3ec7975f76aefdbfcdc3c3e"'
+      dsize: '24'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Linux, created_at 2019_08_09, deployment Perimeter,
+        former_category MALWARE, malware_family Emptiness, performance_impact Low,
+        signature_severity Major, tag DDoS, updated_at 2019_09_28
+      msg: '"ET TROJAN ELF/Emptiness v2 XOR (b2bb01039307baa2) CnC Checkin"'
+      reference: url,blog.netlab.360.com/emptiness-a-new-evolving-botnet/
+      rev: '1'
+      sid: '2027836'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

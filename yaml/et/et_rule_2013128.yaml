@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/minbrowse.php?"'
+      - value: '"search="'
+      - value: '"INSERT"'
+      - value: '"INTO"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_06_29, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS SoftMP3 search Parameter INSERT INTO SQL Injection
+        Attempt"'
+      pcre: '"/INSERT.+INTO/Ui"'
+      reference: url,exploit-db.com/exploits/17209
+      rev: '1'
+      sid: '2013128'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"let getBotData=function"'
+      - value: '"console|2e|log|28 22|bot|20|data|20|file|20|exists|20|but|20|there|20|is|20|no|20|email|20|and|20|password"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_05, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_10_16
+      msg: '"ET TROJAN JS.ElectronBot Payload Inbound"'
+      reference: url,research.checkpoint.com/2022/new-malware-capable-of-controlling-social-media-accounts-infects-5000-machines-and-is-actively-being-distributed-via-gaming-applications-on-microsofts-official-store
+      rev: '2'
+      sid: '2041679'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

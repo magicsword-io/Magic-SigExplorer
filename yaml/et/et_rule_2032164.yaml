@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".psd1 HTTP/1."'
+      flow: established,from_client
+      flowbits: set,ET.PS.Download
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_03_18, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2021_03_18
+      msg: '"ET INFO PSD1 Powershell File Request"'
+      rev: '2'
+      sid: '2032164'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

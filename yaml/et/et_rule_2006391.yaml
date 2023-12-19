@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| SPM_ID="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_14
+      msg: '"ET TROJAN Poebot Related User Agent (SPM_ID=)"'
+      reference: url,doc.emergingthreats.net/2006391
+      rev: '4'
+      sid: '2006391'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

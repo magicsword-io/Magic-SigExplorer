@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".xla"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_07_13, deployment Perimeter, former_category
+        INFO, performance_impact Low, signature_severity Major, updated_at 2020_07_17
+      msg: '"ET INFO SUSPICIOUS Excel Add-in Download M1"'
+      pcre: '"/\.xla$/Ui"'
+      reference: url,blogs.mcafee.com/mcafee-labs/patch-now-simple-office-protected-view-bypass-could-have-big-impact/
+      rev: '1'
+      sid: '2022965'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

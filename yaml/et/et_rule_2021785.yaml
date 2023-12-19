@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '80'
+    details:
+      byte_jump: 4,0,relative,post_offset -1
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 00|text|00|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2015_09_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_09_16,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN SYNful Knock Cisco IOS Router Implant CnC Beacon (INBOUND)"'
+      reference: url,fireeye.com/blog/threat-research/2015/09/synful_knock_-_acis.html
+      rev: '2'
+      sid: '2021785'
+    protocol: tcp
+    source:
+      network: any
+      port: any

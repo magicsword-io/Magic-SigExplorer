@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|crashedff|03|xyz|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_31, deployment Perimeter, malware_family
+        Crashedtech_Loader, performance_impact Low, signature_severity Major, tag
+        Crashedtech_Loader, updated_at 2023_03_31, reviewed_at 2023_10_06
+      msg: '"ET TROJAN Crashedtech Loader Domain (crashedff .xyz) in DNS Lookup"'
+      reference: url,medium.com/@lcam/updates-from-the-maas-new-threats-delivered-through-nullmixer-d45defc260d1
+      rev: '1'
+      sid: '2044852'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

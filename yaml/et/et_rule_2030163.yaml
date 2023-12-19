@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|iplogger.org|0d 0a|"'
+      - value: '"User-Agent|3a 20 20|(|20|Windows|20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_13, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_05_14
+      msg: '"ET TROJAN AutoHotkey Downloader Checkin via IPLogger"'
+      reference: md5,6db987f9e87340ab3c3dd2b6d938e60c
+      rev: '3'
+      sid: '2030163'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

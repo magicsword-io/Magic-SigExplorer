@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/start_cache1.php"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2019_09_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN Possible PHP.MAILER WebShell Generic Request Inbound"'
+      pcre: '"/\/start_cache1\.php$/U"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/spam-campaign-abuses-php-functions-for-persistence-uses-compromised-devices-for-evasion-and-intrusion/
+      rev: '2'
+      sid: '2027969'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

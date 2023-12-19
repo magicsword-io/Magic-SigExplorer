@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: system-call-detect
+      contents:
+      - value: '"|82 10| |17 91 D0| |08|",fast_pattern,nocase'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SHELLCODE Oracle sparc setuid 0"'
+      rev: '15'
+      sid: '647'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

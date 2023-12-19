@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|CD 80 E8 D7 FF FF FF|/bin/sh",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Bind named overflow attempt"'
+      reference: url,www.cert.org/advisories/CA-1998-05.html
+      rev: '16'
+      service: dns
+      sid: '261'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

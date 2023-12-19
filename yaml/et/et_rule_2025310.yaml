@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title"'
+      - value: '"Mail Settings|20 7c 20|Email"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_05, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_05
+      msg: '"ET CURRENT_EVENTS Mailbox Upgrade Phishing Landing 2018-02-05"'
+      rev: '3'
+      sid: '2025310'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

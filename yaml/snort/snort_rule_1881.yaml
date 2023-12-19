@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"GET / HTTP/1.1|0D 0A 0D 0A|",depth 18'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP bad HTTP 1.1 request - potential worm attack"'
+      reference: url,securityresponse.symantec.com/avcenter/security/Content/2002.09.13.html
+      rev: '13'
+      service: http
+      sid: '1881'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

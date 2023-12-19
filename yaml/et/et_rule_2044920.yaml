@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"|2f 62 6c 6f 2f 6d 65 2e 7a 69 70|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_11, deployment Perimeter, former_category
+        MALWARE, malware_family Qakbot, signature_severity Major, updated_at 2023_04_26,
+        reviewed_at 2023_11_17
+      msg: '"ET TROJAN Win32/QakBot CnC Payload Request (GET)"'
+      reference: url,twitter.com/Cryptolaemus1/status/1645836544580648984
+      rev: '2'
+      sid: '2044920'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

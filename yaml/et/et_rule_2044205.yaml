@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '18'
+        value: '"/check?cmd=ping../"'
+      - depth: '4'
+        value: '"CID="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2023_02_14, cve CVE_2022_48323, deployment
+        Perimeter, deployment Internal, deployment SSLDecrypt, former_category EXPLOIT,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_02_14
+      msg: '"ET EXPLOIT Sunlogin Sunflower Simplified 1.0.1.43315 Directory Traversal
+        Attempt (CVE-2022-48323)"'
+      reference: cve,2022-48323
+      rev: '1'
+      sid: '2044205'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

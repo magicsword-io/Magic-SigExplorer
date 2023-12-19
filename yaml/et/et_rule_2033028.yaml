@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/rl?tm="'
+      - value: '"&id="'
+      - value: '"&cu="'
+      - value: '"&ci="'
+      - value: '"&cv="'
+      - value: '"&iv="'
+      - value: '"&pchid="'
+      - value: '"&ug="'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2021_05_25, deployment Perimeter, former_category ADWARE_PUP, performance_impact
+        Low, signature_severity Minor, updated_at 2021_05_25
+      msg: '"ET MALWARE OSX/Adware.Pirrit CnC Activity 3"'
+      reference: url,www.cybereason.com/blog/targetingedge-mac-os-x-pirrit-malware-adware-still-active
+      rev: '1'
+      sid: '2033028'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

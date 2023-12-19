@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/purchase.php?a=",fast_pattern,nocase'
+      - value: '"&v="'
+      - value: '"&u=",distance 0'
+      - value: '"&bgload=",within 8,distance 32'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.FakeAV variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f4c10d33b8c46cc7922a6eebc9f14858a01b2f573ee99dd1dc02a4534b537e18/analysis
+      rev: '2'
+      service: http
+      sid: '36107'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

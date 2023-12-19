@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '80'
+        value: '"POST /upload?token=43a7df2f0395152e HTTP/1.1|0d 0a|Content-Type|3a
+          20|multipart/form-data|3b|"'
+      - value: '"Host|3a 20|api.anonfiles.com|0d 0a|"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_14, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family StormKitty, performance_impact Low,
+        signature_severity Major, updated_at 2020_10_14
+      msg: '"ET TROJAN StormKitty Exfil via AnonFiles"'
+      reference: md5,74d2206a0f29c6d975cba20028284ca2
+      rev: '2'
+      sid: '2031020'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

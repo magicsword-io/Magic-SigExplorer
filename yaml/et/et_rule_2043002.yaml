@@ -1,0 +1,52 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS,$SMTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '5'
+        value: '"/owa/"'
+      - value: '"@"'
+      - value: '"/powershell"'
+      - value: '!"User-Agent|3a 20|ClientInfo|0d 0a|"'
+      - value: '!"User-Agent|3a 20|Microsoft WinRM Client|0d 0a|"'
+      - value: '!"User-Agent|3a 20|Exchange BackEnd Probes|0d 0a|"'
+      - depth: '23'
+        value: '"|3c|s|3a|Envelope|20|xmlns|3a|rsp|3d 22|"'
+      - value: '"wbem/wsman/1/windows/shell|22|"'
+      - value: '"|3c|wsa|3a|To|3e|"'
+      - value: '"|3c|s|3a|Body|3e 3c|rsp|3a|Shell|20|ShellId|3d 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Microsoft_Exchange, attack_target Server, created_at
+        2022_12_23, cve CVE_2022_41040_CVE_2022_41082, deployment Perimeter, deployment
+        SSLDecrypt, former_category EXPLOIT, signature_severity Major, tag ProxyNotShell,
+        updated_at 2022_12_23
+      msg: '"ET EXPLOIT Microsoft Exchange Remote Code Execution Attempt - OWASSRF
+        (CVE-2022-41040, CVE-2022-41082)"'
+      pcre: '"/\/powershell$/Ui"'
+      reference: cve,2022-41082
+      rev: '1'
+      sid: '2043002'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '100'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|54 63 6C 53 68 65 6C 6C|"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Cisco TclShell TFTP Download"'
+      reference: url,doc.emergingthreats.net/2009245
+      rev: '3'
+      sid: '2009245'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '69'

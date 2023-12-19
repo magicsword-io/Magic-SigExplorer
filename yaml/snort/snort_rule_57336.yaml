@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/mgmt/tm/util/bash",fast_pattern,nocase'
+      - value: '"command",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"POLICY-OTHER F5 iControl REST interface tm.util.bash invocation attempt"'
+      reference: cve,2022-1388
+      rev: '3'
+      service: http
+      sid: '57336'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

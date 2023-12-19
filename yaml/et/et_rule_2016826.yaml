@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"NvbGxlY3RHYXJiYWdlK"'
+      flow: established,from_server
+      metadata: created_at 2013_05_07, former_category INFO, updated_at 2013_05_07
+      msg: '"ET INFO Suspicious Possible CollectGarbage in base64 2"'
+      rev: '2'
+      sid: '2016826'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

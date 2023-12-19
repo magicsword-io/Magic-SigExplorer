@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"token="'
+      - value: '"&Category="'
+      - value: '"POST /publish HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_19, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_19
+      msg: '"ET TROJAN Powershell Octopus Backdoor Activity (POST)"'
+      reference: url,app.any.run/tasks/0c991e38-b571-435c-a34b-281b2c9df1ef/
+      rev: '1'
+      sid: '2034939'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

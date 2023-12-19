@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/misc.php?v="'
+      - value: '"&js=js",within 12'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP vBulletin XSS redirect attempt"'
+      reference: url,www.virustotal.com/en/url/6a7664105f1f144930f51e71dd0fec728607b4c9e33037d376cd7bf8351273a9/analysis/1430224991/
+      rev: '3'
+      service: http
+      sid: '34287'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

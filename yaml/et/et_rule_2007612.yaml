@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|X-Priority|3a| 3|0d 0a|X-Library|3a| Indy "'
+      - value: '"|0d 0a 0d 0a 2e 0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Possible Infection Report Mail - Indy Mail lib and No Message
+        Body - Priority 3"'
+      reference: url,doc.emergingthreats.net/2007612
+      rev: '8'
+      sid: '2007612'
+      within: '30'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

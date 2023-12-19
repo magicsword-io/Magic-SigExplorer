@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|webscriptly|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2020_03_03, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_11_03
+      msg: '"ET TROJAN Magecart CnC Domain in DNS Lookup"'
+      reference: url,twitter.com/felixaime/status/1234111603831910400
+      rev: '2'
+      sid: '2029566'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?u="'
+      - value: '"&p="'
+      - value: '"&i="'
+      - value: '"&co="'
+      - value: '"&ci="'
+      - value: '"&t="'
+      - value: '"Host|3a 20|eternity"'
+      - value: '"Expect|3a 20|100-continue|0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_12_08, deployment Perimeter,
+        former_category MALWARE, malware_family Eternity_Stealer, confidence Medium,
+        signature_severity Major, updated_at 2022_12_08
+      msg: '"ET TROJAN Win32/Eternity Stealer Activity (POST)"'
+      reference: md5,2ce3d4b143ae185de225071f73a62cfb
+      rev: '1'
+      sid: '2042517'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

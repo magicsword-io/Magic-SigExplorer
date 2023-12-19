@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2d 62 6c 61 63 6b 20 68 61 74|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_09_13
+      msg: '"ET TROJAN MSIL/Black Hat Worm Server Response"'
+      reference: md5,42c130f8d037d6cc0ca4342b6e8794b4
+      rev: '1'
+      sid: '2033932'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

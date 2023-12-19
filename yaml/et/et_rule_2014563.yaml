@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"STATUS-IMPORT-OK"'
+      flow: established,from_server
+      metadata: created_at 2012_04_13, updated_at 2012_04_13
+      msg: '"ET TROJAN Pony Downloader check-in response STATUS-IMPORT-OK"'
+      rev: '5'
+      sid: '2014563'
+      special_options:
+      - file_data
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

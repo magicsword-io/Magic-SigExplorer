@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/philboard_admin.asp"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP philboard_admin.asp access"'
+      reference: nessus,11675
+      rev: '9'
+      service: http
+      sid: '2137'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

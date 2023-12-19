@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/update/"'
+      - value: '"os="'
+      - value: '"email="'
+      - value: '"dafom"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_27, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_04_27
+      msg: '"ET TROJAN TraderTraitor dafom CnC Checkin M2 (POST)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+dafom/Hmi"'
+      reference: url,www.cisa.gov/uscert/ncas/alerts/aa22-108a
+      rev: '2'
+      sid: '2036409'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

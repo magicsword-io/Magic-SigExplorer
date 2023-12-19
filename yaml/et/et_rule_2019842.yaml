@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '!"Content-Type|3a 20|text/xml|0d 0a|"'
+      - value: '!"Content-Type|3a 20|application/xml|0d 0a|"'
+      - value: '"preserve"'
+      - value: '"redim "'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2014_12_03, cve CVE_2014_6332, deployment
+        Perimeter, signature_severity Major, tag Web_Client_Attacks, updated_at 2020_08_11
+      msg: '"ET WEB_CLIENT Possible Internet Explorer VBscript CVE-2014-6332 multiple
+        redim preserve"'
+      pcre: '"/^\s*?Preserve\s*?(?P<var1>[a-z]\w{0,254}+)\s*?\x28\s*?[^\x29]+?\x29.*?redim\s*?Preserve\s*?(?P=var1)/Rsi"'
+      reference: cve,2014-6332
+      rev: '3'
+      sid: '2019842'
+      special_options:
+      - http_header
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

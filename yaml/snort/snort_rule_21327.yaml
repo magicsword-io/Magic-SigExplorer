@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"User-Agent|3A| asafaweb.com",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC User-Agent ASafaWeb Scan"'
+      reference: url,asafaweb.com
+      rev: '8'
+      service: http
+      sid: '21327'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

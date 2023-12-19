@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '>1'
+      itype: '11'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Time-To-Live Exceeded in Transit undefined code"'
+      rev: '11'
+      sid: '450'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

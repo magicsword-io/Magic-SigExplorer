@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|myanmarnewsonline|03|org|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_02, deployment Perimeter,
+        former_category MALWARE, malware_family PlugX, malware_family MustangPanda,
+        signature_severity Major, updated_at 2022_06_02
+      msg: '"ET TROJAN Mustang Panda APT PlugX Related Domain in DNS Lookup (myanmarnewsonline
+        .org)"'
+      reference: md5,1a5aee6e33385b69b7ca46229fb64b8b
+      rev: '1'
+      sid: '2036754'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

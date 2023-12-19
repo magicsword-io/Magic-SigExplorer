@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20|sysWeb/"'
+      flow: established,to_server
+      metadata: created_at 2021_08_04, former_category USER_AGENTS, performance_impact
+        Low, updated_at 2021_08_04
+      msg: '"ET USER_AGENTS sysWeb User-Agent"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x20sysWeb\//Hmi"'
+      reference: url,twitter.com/starsSk87264403/status/1422543872853426198
+      rev: '1'
+      sid: '2033665'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

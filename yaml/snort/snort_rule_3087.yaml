@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/w3who.dll?",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-IIS w3who.dll buffer overflow attempt"'
+      pcre: '"/w3who\.dll\x3F[^\r\n]{519}/i"'
+      reference: cve,2004-1134
+      rev: '20'
+      service: http
+      sid: '3087'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

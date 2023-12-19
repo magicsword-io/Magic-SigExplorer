@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '" HTTP/1.1|0d 0a|Accept-Language|3a| "'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_10
+      msg: '"ET TROJAN Mac Trojan HTTP Checkin (accept-language violation)"'
+      pcre: '"/Accept-Language\: [a-zA-Z0-9]{20}/"'
+      reference: url,doc.emergingthreats.net/2007650
+      rev: '4'
+      sid: '2007650'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

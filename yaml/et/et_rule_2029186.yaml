@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587,465,2525]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject: PCInfo:"'
+      - value: '"<li>User Name:<b>"'
+      - value: '"PC Name:<b>"'
+      - value: '"<li>Proxy:<b>"'
+      - value: '"Gateway:<b>"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_20, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2019_12_20
+      msg: '"ET MALWARE Win32/InstallDisck SMTP Checkin"'
+      reference: md5,b79640ae0cf9f3ad58b14c15c50f3de3
+      rev: '2'
+      sid: '2029186'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

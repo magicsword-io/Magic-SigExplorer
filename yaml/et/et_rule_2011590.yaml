@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"ActiveXObject"'
+      - value: '"MSVidCtlLib.MSVidVMR9"'
+      - value: '".CustomCompositorClass"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_10_02, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2019_09_27
+      msg: '"ET ACTIVEX Microsoft DirectX 9 ActiveX Control Format String Function
+        Call"'
+      reference: url,packetstorm.linuxsecurity.com/1009-exploits/msvidctl-activex.txt
+      rev: '2'
+      sid: '2011590'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

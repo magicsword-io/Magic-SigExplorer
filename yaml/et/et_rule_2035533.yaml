@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|03 00 dc|"'
+      dsize: '3'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_18, deployment Perimeter,
+        former_category MALWARE, malware_family Bitter, signature_severity Major,
+        updated_at 2022_03_18
+      msg: '"ET TROJAN Bitter APT Backdoor Related Activity"'
+      reference: url,ShadowChasing1/status/1504833720489951234
+      rev: '1'
+      sid: '2035533'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 2, seconds 5, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

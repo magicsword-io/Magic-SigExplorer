@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/info.php?message=",fast_pattern,nocase'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kuluoz Potential Phishing URL"'
+      reference: url,www.soleranetworks.com/blogs/kuluoz-spam-uses-a-lot-of-stolen-web-servers/
+      rev: '3'
+      service: http
+      sid: '28192'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

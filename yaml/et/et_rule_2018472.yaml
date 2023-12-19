@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"javarhino"'
+      - value: '"javaimage"'
+      - value: '"javadb"'
+      - value: '"getVersion"'
+      - value: '"SilverLight"'
+      flow: from_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2014_05_14,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY FlashPack Plugin-Detect May 13 2014"'
+      pcre: '"/^[\x22\x27]/R"'
+      rev: '1'
+      sid: '2018472'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

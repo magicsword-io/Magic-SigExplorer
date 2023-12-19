@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '20'
+        value: '"?"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|3b 20|U|3b 20|MSIE|20|9|2e|0|3b
+          20|Windows|20|NT|20|9|2e|0|3b 20|en|2d|US|29 0d 0a|"'
+      - value: '"Host|3a 20|"'
+      - value: '"."'
+      distance: '7'
+      fast_pattern: 39,20
+      flow: established, to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_04, deployment Perimeter, former_category
+        MALWARE, malware_family Socks5Systemz, confidence High, signature_severity
+        Critical, updated_at 2023_12_04
+      msg: '"ET TROJAN [ANY.RUN] Socks5Systemz HTTP C2 Connection M1"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nUser-Agent|0d 0a 0d 0a|/H"'
+      reference: url,community.emergingthreats.net/t/et-malware-socks5systemz/1155/8
+      rev: '1'
+      sid: '2049467'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

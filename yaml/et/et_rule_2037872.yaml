@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<!--$-->"'
+      - value: '"|2e|php|3f 2f|checkpoint|2f|dyi|2f 3f|referrer|3d|disabled|5f|checkpoint"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_01, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_08_01
+      msg: '"ET CURRENT_EVENTS Facebook Credential Phish Landing Page M1 2022-08-01"'
+      reference: md5,2102c8709b172edfee22880a261da51d
+      rev: '1'
+      sid: '2037872'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

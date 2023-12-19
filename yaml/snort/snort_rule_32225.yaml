@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '27'
+      classtype: trojan-activity
+      contents:
+      - value: '"/blog-trabajos/n65dj17i1836",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Cryptowall variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f75b9ed535c3b33ead4da28854f3e8d6e805135679a2352463184acb06ffcaf0/analysis/
+      rev: '3'
+      service: http
+      sid: '32225'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

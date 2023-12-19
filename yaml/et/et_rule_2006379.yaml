@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gnutella/"'
+      - value: '"?client=BEAR"'
+      - value: '"&version="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category P2P, updated_at 2020_04_22
+      msg: '"ET P2P BearShare P2P Gnutella Client HTTP Request"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2006379
+      rev: '6'
+      sid: '2006379'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SIP_SERVERS
+      port: $SIP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"() {"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-OTHER Bash environment variable injection attempt"'
+      reference: cve,2014-7169
+      rev: '4'
+      service: sip
+      sid: '32042'
+      special_options:
+      - sip_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

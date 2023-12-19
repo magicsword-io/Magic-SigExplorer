@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|00 00 00 00 00 00 00 00|"'
+      - value: '"|00 00 00 00|"'
+      - value: '"|00 9C 00 00 00|"'
+      - value: '"|00 00 00|"'
+      - value: '"|00 00 00|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      distance: '172'
+      dsize: '780'
+      flow: to_server,established
+      metadata: created_at 2012_02_14, updated_at 2012_02_14
+      msg: '"ET TROJAN Backdoor Win32.Idicaf/Atraps"'
+      reference: url,www.commandfive.com/papers/C5_APT_C2InTheFifthDomain.pdf
+      rev: '7'
+      sid: '2014228'
+      special_options:
+      - fast_pattern
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"try"'
+      - value: '"prototype",within 30'
+      - value: '"}catch(",within 30'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Blackhole exploit kit landing page with specific structure
+        - prototype catch"'
+      pcre: '"/prototype([^\x7d]{1,3})?\x7dcatch\x28/ims"'
+      reference: url,community.websense.com/blogs/securitylabs/pages/black-hole-exploit-kit.aspx
+      rev: '23'
+      service: ftp-data,http,imap,pop3
+      sid: '21492'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

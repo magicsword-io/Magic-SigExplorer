@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"PDF-"'
+      - value: '"/"'
+      - value: '!"Subtype"'
+      - value: '"#"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_22, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT PDF Name Representation Obfuscation of /Subtype"'
+      pcre: '"/\x2F(?!Subtype)(S|#53)(u|#75)(b|#62)(t|#74)(y|#79)(p|#70)(e|#65)/"'
+      reference: url,blog.didierstevens.com/2008/04/29/pdf-let-me-count-the-ways/
+      rev: '6'
+      sid: '2011528'
+      special_options:
+      - file_data
+      within: '19'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

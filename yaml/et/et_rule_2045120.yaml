@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|chatgpt4beta|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_20, deployment Perimeter, malware_family
+        Cuba_Ransomware, performance_impact Low, signature_severity Major, tag Ransomware,
+        updated_at 2023_04_20, reviewed_at 2023_08_21
+      msg: '"ET TROJAN Cuba Ransomware Related Domain in DNS Lookup (chatgpt4beta
+        .com)"'
+      reference: url,blog.google/threat-analysis-group/ukraine-remains-russias-biggest-cyber-focus-in-2023/
+      rev: '1'
+      sid: '2045120'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

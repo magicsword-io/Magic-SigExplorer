@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"Windows Script Host Version"'
+      - value: '"Copyright |28|C|29|"'
+      - value: '"Microsoft Corp"'
+      distance: '0'
+      flow: established
+      metadata: created_at 2015_01_05, updated_at 2015_01_05
+      msg: '"ET ATTACK_RESPONSE Microsoft CScript Banner Outbound"'
+      rev: '1'
+      sid: '2020085'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

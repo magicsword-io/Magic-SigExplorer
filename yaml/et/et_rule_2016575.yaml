@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"mysql_web_admin_"'
+      - value: '"mysql_web_admin"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_03_14, updated_at 2020_04_23
+      msg: '"ET WEB_SERVER WebShell - MySQL Interface - Client Cookie mysql_web_admin*="'
+      rev: '1'
+      sid: '2016575'
+      special_options:
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '17'
+        value: '"/Update/CC/CC.php"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_09_19, deployment Perimeter, former_category MALWARE, malware_family
+        GhostMiner, performance_impact Low, signature_severity Major, updated_at 2019_09_19
+      msg: '"ET TROJAN Possible GhostMiner CCBOT Component - CnC Checkin"'
+      pcre: '"/^\/Update\/CC\/CC\.php$/U"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/fileless-cryptocurrency-miner-ghostminer-weaponizes-wmi-objects-kills-other-cryptocurrency-mining-payloads/
+      rev: '2'
+      sid: '2028604'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

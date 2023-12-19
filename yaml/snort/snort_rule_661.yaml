@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"eply-to|3A| a~.`/bin/",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Majordomo ifs"'
+      reference: cve,1999-0207
+      rev: '18'
+      service: smtp
+      sid: '661'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

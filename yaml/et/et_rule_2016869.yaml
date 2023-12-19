@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '"HTTP/1.0|0d 0a|"'
+      - value: '"Content-Length|3a 20|0|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_05_21, updated_at 2020_11_05
+      msg: '"ET CURRENT_EVENTS FlimKit Post Exploit Payload Download"'
+      pcre: '"/^Host\x3a[^\r\n]+\r\nContent-Length\x3a\s0\r\nConnection\x3a\sclose\r\n(\r\n)?$/H"'
+      rev: '2'
+      sid: '2016869'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      urilen: '17'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

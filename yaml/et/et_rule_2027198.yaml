@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"createOscillator|28 29|"'
+      - value: '"createGain|28 29|"'
+      - value: '"|3e|System|20|Warning!|3c 2f|span|3e|"'
+      - value: '"|3c|b|3e|Windows|20|Version"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2019_04_15, former_category WEB_CLIENT, tag Tech_Support_Scam,
+        tag Malvertising, updated_at 2020_09_01
+      msg: '"ET WEB_CLIENT Tech Support Scam Landing M2 2019-04-15"'
+      rev: '3'
+      sid: '2027198'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

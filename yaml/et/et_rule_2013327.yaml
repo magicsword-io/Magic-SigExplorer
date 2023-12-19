@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/security.jsp"'
+      - depth: '3'
+        value: '"f0="'
+      - value: '"&b0="'
+      - value: '"&pid="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2011_07_27, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2020_10_28
+      msg: '"ET MOBILE_MALWARE Android.Zitmo Forwarding SMS Message to CnC Server"'
+      reference: url,blog.fortinet.com/zitmo-hits-android/
+      rev: '3'
+      sid: '2013327'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

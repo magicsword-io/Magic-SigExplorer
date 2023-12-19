@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|ab8cee60c2d|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_18, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_07_21
+      msg: '"ET TROJAN CCleaner Backdoor DGA Domain (ab8cee60c2d .com) Aug 2017"'
+      reference: url,blog.talosintelligence.com/2017/09/avast-distributes-malware.html
+      rev: '3'
+      sid: '2024714'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

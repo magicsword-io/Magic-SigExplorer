@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Brutus/AET"'
+      flow: established,to_server
+      metadata: created_at 2012_09_17, updated_at 2020_04_22
+      msg: '"ET WEB_SERVER Brutus Scan Inbound"'
+      rev: '1'
+      sid: '2015703'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

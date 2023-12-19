@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"username too long",depth 17'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE rexec username too long response"'
+      reference: cve,2003-1097
+      rev: '10'
+      sid: '2104'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '512'

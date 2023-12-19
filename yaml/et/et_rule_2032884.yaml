@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '80'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - depth: '34'
+        value: '"/adfs/services/policystoretransfer"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_04_28, deployment Internal,
+        former_category EXPLOIT, signature_severity Major, updated_at 2021_04_28
+      msg: '"ET EXPLOIT Possible Local Active Directory Federation Services (AD FS)
+        Replication Attempt"'
+      reference: url,fireeye.com/blog/threat-research/2021/04/abusing-replication-stealing-adfs-secrets-over-the-network.html
+      rev: '1'
+      sid: '2032884'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      threshold: type limit,track by_src,count 1,seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

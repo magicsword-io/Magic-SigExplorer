@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[92.63.0.0/16,91.218.114.0/24,149.56.245.196]'
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.1|3b 20|WOW64|3b 20|Trident/7.0|3b
+          20|AS|3b 20|rv|3a|11.0) like Gecko|0d 0a|"'
+      fast_pattern: 64,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_05_29, deployment Perimeter, former_category
+        MALWARE, malware_family Maze_Ransomware, signature_severity Major, tag Ransomware,
+        tag Maze, updated_at 2020_11_17, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Maze/ID Ransomware Activity"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,20}[^\x20-\x7e\r\n]/P"'
+      reference: md5,9823800f063a1d4ee7a749961db7540f
+      rev: '4'
+      sid: '2027392'
+      special_options:
+      - http_method
+      - http_header
+      urilen: '>1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

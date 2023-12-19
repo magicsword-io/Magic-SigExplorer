@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '47'
+        value: '"|b8 0f 00 00 47 00 45 00 54 00 20 00 2f 00 69 00 6e 00 64 00 65 00
+          78 00 2e 00 70 00 68 00 70 00 20 00 48 00 54 00 54 00 50 00 2f 00 31 00
+          2e|"'
+      - value: '"|31 00 20 00 6d 00 69 00 6e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_01_13
+      msg: '"ET TROJAN Win32/Spy.KeyLogger.RJA Checkin"'
+      reference: md5,f470070c30da8769f1b24eeaace17498
+      rev: '1'
+      sid: '2043303'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|25 56 0a dc 16 07 be fe 2e 05 fd a7|"'
+      - value: '"|63 00 3a 00 5c 00|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_14, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2023_03_14
+      msg: '"ET TROJAN Win32/HMR RAT Sending System Information M3"'
+      reference: md5,711114867e22b9573614b72756466e5a
+      rev: '1'
+      sid: '2044595'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

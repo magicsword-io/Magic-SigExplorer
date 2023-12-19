@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"document.write(|22|404|22 3B|"'
+      flow: established,to_client
+      metadata: created_at 2012_06_05, former_category EXPLOIT_KIT, updated_at 2012_06_05
+      msg: '"ET CURRENT_EVENTS Possible Sakura Exploit Kit Version 1.1 document.write
+        Fake 404 - Landing Page"'
+      reference: url,blog.spiderlabs.com/2012/05/sakura-exploit-kit-11.html
+      rev: '2'
+      sid: '2014852'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

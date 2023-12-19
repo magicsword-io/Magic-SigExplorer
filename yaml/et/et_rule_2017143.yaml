@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|0D 0A|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_07_13, updated_at 2020_09_18
+      msg: '"ET WEB_SERVER CRLF Injection - Newline Characters in URL"'
+      pcre: '"/[\n\r](?:content-(type|length)|set-cookie|location)\x3a/Ui"'
+      reference: url,www.owasp.org/index.php/CRLF_Injection
+      rev: '2'
+      sid: '2017143'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

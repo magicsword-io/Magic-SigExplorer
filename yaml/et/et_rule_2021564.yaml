@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Installer|28|ref=|5b|"'
+      - value: '"|3b|windows="'
+      - value: '"|3b|uac="'
+      - value: '"|3b|elevated="'
+      - value: '"|3b|dotnet="'
+      - value: '"|3b|startTime="'
+      - value: '"|3b|pid="'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: created_at 2015_07_31, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/DownloadAdmin.Adware User-Agent"'
+      rev: '2'
+      sid: '2021564'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

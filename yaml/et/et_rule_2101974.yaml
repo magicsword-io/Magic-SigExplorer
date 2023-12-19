@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"REST"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2001_0826, updated_at 2010_09_23
+      msg: '"GPL FTP REST overflow attempt"'
+      pcre: '"/^REST\s[^\n]{100}/smi"'
+      reference: cve,2001-0826
+      rev: '7'
+      sid: '2101974'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

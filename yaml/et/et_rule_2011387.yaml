@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/indux.php?U="'
+      - value: '"@"'
+      - value: '"Referer|3a| http|3a|//www.google.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_09_28, updated_at 2020_10_13
+      msg: '"ET TROJAN indux.php check-in"'
+      rev: '3'
+      sid: '2011387'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

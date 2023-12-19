@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 6789:6790
+    details:
+      classtype: denial-of-service
+      flow: to_server,established
+      isdataat: '!1'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER DB2 dos attempt"'
+      reference: nessus,10871
+      rev: '16'
+      sid: '1641'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

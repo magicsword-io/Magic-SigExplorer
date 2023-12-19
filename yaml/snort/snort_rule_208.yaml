@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"phAse zero server",depth 17,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR PhaseZero Server Active on Network"'
+      reference: url,www3.ca.com/securityadvisor/pest/pest.aspx?id=4539
+      rev: '13'
+      sid: '208'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '555'

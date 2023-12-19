@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rdp|3a 2f 2f|"'
+      - value: '"drivestoredirect"'
+      - value: '"rdp|3a 2f 2f|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2017_01_24, deployment Perimeter, former_category CURRENT_EVENTS, performance_impact
+        Low, signature_severity Major, updated_at 2017_01_24
+      msg: '"ET CURRENT_EVENTS Possible Microsoft RDP Client for Mac RCE"'
+      pcre: '"/^\S+?drivestoredirect/Ri"'
+      reference: url,www.wearesegment.com/research/Microsoft-Remote-Desktop-Client-for-Mac-Remote-Code-Execution
+      rev: '1'
+      sid: '2023755'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

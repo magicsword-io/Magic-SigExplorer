@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| Mozilla/5.0 (compatible|3b| Grendel-Scan"'
+      - value: '"http|3a|//www.grendel-scan.com"'
+      fast_pattern: 37,12
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_10_14
+      msg: '"ET SCAN Grendel Web Scan - Default User Agent Detected"'
+      reference: url,doc.emergingthreats.net/2009480
+      rev: '9'
+      sid: '2009480'
+      special_options:
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      threshold: type limit, track by_dst, count 1, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

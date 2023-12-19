@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|cybermon|0e|fortigatecloud|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2020_03_09, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2020_11_05
+      msg: '"ET TROJAN BlackTech ELF/TSCookie CnC Observed in DNS Query"'
+      reference: url,blogs.jpcert.or.jp/ja/2020/02/elf_tscookie.html
+      rev: '2'
+      sid: '2029587'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

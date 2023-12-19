@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a 20|"'
+      - value: '"Windows 3.1"'
+      - value: '!"Cisco AnyConnect VPN Agent"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_13
+      msg: '"ET POLICY Windows 3.1 User-Agent Detected - Possible Malware or Non-Updated
+        System"'
+      pcre: '"/User-Agent\:[^\n]+Windows 3.1/Hi"'
+      reference: url,doc.emergingthreats.net/2011694
+      rev: '7'
+      sid: '2011694'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

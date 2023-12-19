@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"L|00|o|00|g|00|i|00|n|00| |00|f|00|a|00|i|00|l|00|e|00|d|00| |00|f|00|o|00|r|00|
+          |00|u|00|s|00|e|00|r|00| |00|''|00|s|00|a|00|''|00|"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_1209, updated_at 2010_09_23
+      msg: '"GPL SQL sa brute force failed login unicode attempt"'
+      reference: nessus,10673
+      rev: '4'
+      sid: '2103273'
+      threshold: type threshold, track by_src, count 5, seconds 2
+    protocol: tcp
+    source:
+      network: $SQL_SERVERS
+      port: '1433'

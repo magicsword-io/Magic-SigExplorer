@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/configWizard/keyUpload.jsp"'
+      - value: '"name=|22|key|22 3b|"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      fast_pattern: 0,20
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2023_02_21, cve CVE_2022_39952, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2023_02_21
+      msg: '"ET EXPLOIT Fortinet FortiNAC - Observed POST .zip with Vulnerable Parameter
+        (CVE-2022-39952)"'
+      reference: cve,2022-39952
+      rev: '1'
+      sid: '2044270'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

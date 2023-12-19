@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"|0d 0a|Content-Encoding|3a| binary|0d 0a|"'
+      - depth: '2'
+        value: '"|03 00|"'
+      - value: '"|00 01 00|"'
+      - value: '"|00 01 00|"'
+      flow: to_server,established
+      metadata: created_at 2015_08_10, former_category MALWARE, updated_at 2020_05_29
+      msg: '"ET TROJAN Win32.VBKrypt.vquj Checkin"'
+      reference: md5,0c420e1eef4b1f097ffec8d0c0ff438a
+      rev: '3'
+      sid: '2021605'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

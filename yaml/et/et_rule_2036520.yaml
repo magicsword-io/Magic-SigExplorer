@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '42'
+        value: '"/classroom/sharewidget/widget_stable.html/"'
+      - value: '"/?"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_05_06, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family PoshC2, signature_severity
+        Major, tag c2, updated_at 2022_05_06, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol
+      msg: '"ET TROJAN PoshC2 - Observed Default URI Structure M11"'
+      pcre: '"/\/\?[A-Za-z0-9]{15}$/U"'
+      reference: url,poshc2.readthedocs.io/en/latest/
+      rev: '2'
+      sid: '2036520'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      within: '38'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

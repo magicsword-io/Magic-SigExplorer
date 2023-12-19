@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"Authorization|3a 20|Basic|20|"'
+      - depth: '10'
+        value: '"/apply.cgi"'
+      - value: '"change_action=gozila_cgi"'
+      - value: '"submit_type=language"'
+      - value: '"&ui_language="'
+      flow: established,to_server
+      metadata: created_at 2020_03_24, former_category EXPLOIT, updated_at 2020_03_24
+      msg: '"ET EXPLOIT Linksys WRT54G Version 3.1 Command Injection Attempt"'
+      pcre: '"/^[(?:\x60|%60)(?:\x27|%27)]/R"'
+      reference: url,nstarke.github.io/0034-linksys-wrt54g-v3.1-writeup.html
+      rev: '2'
+      sid: '2029734'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

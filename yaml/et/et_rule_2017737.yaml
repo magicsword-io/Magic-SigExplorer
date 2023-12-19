@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"gGdn5WZs5SehJnch5SZslHdzh2chR"'
+      flow: established,from_server
+      metadata: created_at 2013_11_21, updated_at 2013_11_21
+      msg: '"ET CURRENT_EVENTS Possible WhiteLotus EK 2013-2551 Exploit 2"'
+      rev: '3'
+      sid: '2017737'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

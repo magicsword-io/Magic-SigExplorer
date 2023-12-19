@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2A 00 00 00|",depth 4'
+      flow: to_server,established
+      isdataat: '!38,relative'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zegost variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/108bbc4ff7b7da4f0de1225094964d03b19fc38b93933f739c475f08ae17915e/detection
+      rev: '2'
+      sid: '47567'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

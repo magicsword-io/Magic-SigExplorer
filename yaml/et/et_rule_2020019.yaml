@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|82 f4 de d4 d3 c2 ca f5 c8 c8 d3 82 fb f4 de d4 d3 c2 ca 94 95 fb
+          d4 d1 c4 cf c8 d4 d3 89 c2 df c2 87 8a cc 87 00|"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2014_12_23, updated_at 2021_08_20
+      msg: '"ET TROJAN US-CERT TA14-353A Proxy Tool 3"'
+      reference: url,www.us-cert.gov/ncas/alerts/TA14-353A
+      rev: '2'
+      sid: '2020019'
+    protocol: tcp
+    source:
+      network: any
+      port: '![902]'

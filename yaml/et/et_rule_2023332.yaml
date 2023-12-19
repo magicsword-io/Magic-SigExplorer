@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|wallymac|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2016_10_07, deployment Perimeter,
+        tag Ransomware, updated_at 2020_09_17
+      msg: '"ET TROJAN CryptoWall/TeslaCrypt Payment Domain"'
+      rev: '2'
+      sid: '2023332'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

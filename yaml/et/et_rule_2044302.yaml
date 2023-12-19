@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"GET"'
+      - value: '"mozglue.dll"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category HUNTING, performance_impact Low, confidence Medium, signature_severity
+        Informational, updated_at 2023_02_22
+      msg: '"ET INFO HTTP GET Request for mozglue.dll - Possible Infostealer Activity"'
+      rev: '1'
+      sid: '2044302'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

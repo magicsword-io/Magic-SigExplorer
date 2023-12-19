@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '17'
+        value: '"[System Process]|0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, updated_at 2022_05_03
+      msg: '"ET TROJAN Sinowal/sinonet/mebroot/Torpig infected host POSTing process
+        list"'
+      rev: '5'
+      sid: '2011364'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

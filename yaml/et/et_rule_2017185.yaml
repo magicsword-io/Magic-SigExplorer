@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"#0c0896#"'
+      - value: '"split"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2013_07_24, former_category CURRENT_EVENTS, updated_at
+        2013_07_24
+      msg: '"ET WEB_CLIENT c0896 Hacked Site Response (Inbound) 2"'
+      rev: '1'
+      sid: '2017185'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

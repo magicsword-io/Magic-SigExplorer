@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|85 80 00 01 00 01 00 00 00 00|"'
+      - value: '"|C0 0C 00 0C 00 01 00 00 00|<|00 0F|",fast_pattern,nocase'
+      flow: to_client
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS SPOOF query response PTR with TTL of 1 min. and no authority"'
+      rev: '15'
+      service: dns
+      sid: '253'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

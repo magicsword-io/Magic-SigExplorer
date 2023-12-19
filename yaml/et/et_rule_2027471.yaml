@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|00 02 00 01|"'
+      - value: '"|03|ns1|08|carbon2u|03|com|00|"'
+      distance: '14'
+      metadata: created_at 2019_06_14, deployment Perimeter, former_category INFO,
+        performance_impact Low, signature_severity Major, updated_at 2019_06_14
+      msg: '"ET INFO Suspicious Registrar Nameservers in DNS Response (carbon2u)"'
+      rev: '2'
+      sid: '2027471'
+      special_options:
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|30 82|",distance 13'
+      - value: '"|00 92 93 45 3A 42 8B 15 4C|",fast_pattern,nocase'
+      - value: '"London"'
+      - value: '"example.com"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Trickbot self-signed certificate exchange"'
+      reference: url,malware-traffic-analysis.net/2017/08/12/index.html
+      rev: '2'
+      service: ssl
+      sid: '44401'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,447,449]'

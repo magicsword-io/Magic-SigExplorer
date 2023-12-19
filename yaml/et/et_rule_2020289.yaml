@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|09 00 92 87 8f 35 b4 aa 08 d1|"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|06|Taipei"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_01_23, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_03_19
+      msg: '"ET TROJAN Possible Dyre SSL Cert Jan 22 2015"'
+      rev: '3'
+      sid: '2020289'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,4443]'

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"|50 57 44 75 6d 70 34 2e 64 6c 6c 00 47 65 74 48 61 73 68|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT Pwdump4 Session Established GetHash port 445"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001754
+      rev: '5'
+      sid: '2001754'
+    protocol: tcp
+    source:
+      network: any
+      port: any

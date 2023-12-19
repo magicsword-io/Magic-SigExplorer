@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"/ksa.txt",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Mozilla/3.0 (compatible|3B| Indy Library)"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos variant outbound connection - ksa.txt"'
+      reference: url,www.virustotal.com/en/file/d8870137f7f761055a2ac83b03eb3f8fe26015fa0ba99f41551ca59374c6a3ec/analysis/1365436849/
+      rev: '2'
+      service: http
+      sid: '26370'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

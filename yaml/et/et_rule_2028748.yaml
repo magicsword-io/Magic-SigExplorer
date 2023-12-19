@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|securitytactics|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2019_10_14,
+        deployment Perimeter, former_category POLICY, performance_impact Low, signature_severity
+        Informational, updated_at 2019_10_14
+      msg: '"ET POLICY DNS Query to DynDNS Domain *.securitytactics .com"'
+      reference: url,www.noip.com/support/faq/free-dynamic-dns-domains/
+      rev: '2'
+      sid: '2028748'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

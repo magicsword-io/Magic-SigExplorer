@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|56 50 55 4a 56 52 40|"'
+      - value: '"|7c 78 78 78 7c 7c|"'
+      - value: '"|7c 79 79 79 7c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_04_27, reviewed_at 2023_11_27
+      msg: '"ET TROJAN Win32/Spy.Mekotio.ER Checkin"'
+      reference: md5,5d9580fe41fbcf5dfe08d4a61df5014e
+      rev: '2'
+      sid: '2044941'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

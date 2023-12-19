@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|HTMLGET|20|"'
+      flow: established,to_server
+      metadata: created_at 2011_06_13, former_category POLICY, signature_severity
+        Informational, updated_at 2023_05_15
+      msg: '"ET POLICY HTMLGET User Agent Detected - Often Linux utility based"'
+      reference: url,mtc.sri.com/iPhone/
+      rev: '5'
+      sid: '2013018'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

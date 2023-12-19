@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/lib/page/pageDescriptionObject.php?"'
+      - value: '"LibDir="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, cve CVE_2010_1922, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS 29o3 CMS pageDescriptionObject.php LibDir Parameter
+        Remote File Inclusion Attempt"'
+      pcre: '"/LibDir=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: cve,2010-1922
+      rev: '4'
+      sid: '2011164'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

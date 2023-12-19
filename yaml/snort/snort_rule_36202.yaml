@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/document.php?rnd=",fast_pattern,nocase'
+      - value: '"&id=",depth 4,offset 22'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Yakes variant dropper"'
+      reference: url,www.virustotal.com/en/file/ff0ae81f0dece17baf8480d866c9462c9f3d49be9adde8b16f105e244eb31d67/analysis/
+      rev: '2'
+      service: http
+      sid: '36202'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

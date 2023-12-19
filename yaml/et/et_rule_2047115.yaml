@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|welcome|02|to|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_09, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_08_09, reviewed_at 2023_11_07
+      msg: '"ET INFO URL Shortening Service DNS Lookup (welcome .to)"'
+      rev: '1'
+      sid: '2047115'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '12'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

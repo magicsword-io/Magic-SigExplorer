@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|ifconfig|03|pro|00|"'
+      distance: '0'
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2022_09_02, deployment Perimeter, former_category INFO, performance_impact
+        Low, signature_severity Informational, updated_at 2022_09_09
+      msg: '"ET INFO External IP Address Lookup Domain (ifconfig .pro) in DNS Lookup"'
+      reference: url,ifconfig.pro
+      rev: '1'
+      sid: '2038734'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

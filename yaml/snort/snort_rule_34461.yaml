@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST / HTTP/1.0|0D 0A|Host: ",depth 28'
+      - value: '"Content-type: application/x-www-form-urlencoded|0D 0A|Content-Length:
+          ",within 100'
+      - value: '"|0D 0A 0D 0A 0F 0F 09|",within 25,fast_pattern'
+      - value: '!"User-Agent: ",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Linux.Trojan.Mumblehard variant outbound connection"'
+      reference: url,virustotal.com/file/9512cd72e901d7df95ddbcdfc42cdb16141ff155e0cb0f8321069212e0cd67a8/analysis/1430996623
+      rev: '4'
+      service: http
+      sid: '34461'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!$HTTP_PORTS'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/update?id="'
+      - offset: '16'
+        value: '"X-Status|3A|"'
+      - offset: '16'
+        value: '"X-Size|3A|"'
+      - offset: '16'
+        value: '"X-Sn|3A|"'
+      - offset: '16'
+        value: '"User-Agent|3a| Mozilla/4.0 |28|compatible|3b| MSIE 6.0|3b| Windows
+          NT 5.1|3b|SV1|3b 0d 0a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_02_16, updated_at 2020_10_14
+      msg: '"ET TROJAN UPDATE Protocol Trojan Communication detected on non-http ports
+        2"'
+      rev: '5'
+      sid: '2014231'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

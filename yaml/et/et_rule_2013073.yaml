@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"praquem="'
+      - value: '"&titulo="'
+      flow: established, to_server
+      metadata: created_at 2011_06_21, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32.Meredrop Checkin"'
+      reference: url,www.virustotal.com/file-scan/report.html?id=14c8e9f054d6f7ff4d59b71b65933d73027fe39a2a62729257712170e36f32c5-1308250070
+      rev: '3'
+      sid: '2013073'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

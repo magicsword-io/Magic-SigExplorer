@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| bot/"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Major, tag
+        User_Agent, updated_at 2020_04_22
+      msg: '"ET SCAN Suspicious User-Agent inbound (bot)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008228
+      rev: '10'
+      sid: '2008228'
+      special_options:
+      - http_header
+      - nocase
+      threshold: type limit, count 3, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

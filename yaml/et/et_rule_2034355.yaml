@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/t.html HTTP/1.1|0d 0a|"'
+      - value: '"GET"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2023_04_04
+      msg: '"ET TROJAN Datoploader Activity (GET)"'
+      pcre: '"/^Accept\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: url,twitter.com/Max_Mal_/status/1456555275326996497
+      rev: '3'
+      sid: '2034355'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

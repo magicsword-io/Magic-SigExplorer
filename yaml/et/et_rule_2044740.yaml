@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendMessage?chat_id="'
+      - value: '"&text="'
+      - value: '"HookSpoofer|20 2d 20|Report|3a|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family HookSpoofer, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_03_22
+      msg: '"ET TROJAN Win32/HookSpoofer Stealer Sending System Information via Telegram
+        (GET)"'
+      reference: url,www.uptycs.com/blog/threat-research-hookspoofer
+      rev: '1'
+      sid: '2044740'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

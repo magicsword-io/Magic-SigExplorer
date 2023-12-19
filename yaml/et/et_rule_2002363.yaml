@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"PRIVMSG|20|"'
+      - value: '"|3a|"'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN IRC potential reptile commands"'
+      pcre: '"/\.((testdlls|threads|nsp|speed|uptime|installed|secure|sec|unsecure|unsec|process|ps|rand|exploitftpd|eftpd|flusharp|farp|flushdns|fdns|resolve|dns|pstore|pst|sysinfo|si|netinfo|ni|driveinfo|di|currentip)\s*[\r\n]|(iestart|ies|login|l|mirccmd|system|file\s+(cat|exists|e|del|rm|rmdir|move|copy|attrib)|down|dl\dx|update|reg\s+(query|delete|write))\s+\w+|(banner|ban|advscan|asc|scanall|sa|ntscan|nts)\s*[\n\r])/i"'
+      reference: url,doc.emergingthreats.net/2002363
+      rev: '15'
+      sid: '2002363'
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

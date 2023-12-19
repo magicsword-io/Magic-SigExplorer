@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|ff 53 4d 42 32|"'
+      - value: '"|00 00 00 00|"'
+      - value: '"|00 00|"'
+      - value: '"|00 03 00|"'
+      distance: '19'
+      flow: to_server,established
+      metadata: created_at 2010_12_23, cve CVE_2010_2550, former_category NETBIOS,
+        confidence High, updated_at 2020_08_19
+      msg: '"ET NETBIOS SMB Trans2 Query_Fs_Attribute_Info SrvSmbQueryFsInformation
+        Pool Buffer Overflow"'
+      reference: url,www.microsoft.com/technet/security/Bulletin/MS10-054.mspx
+      rev: '2'
+      sid: '2012094'
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

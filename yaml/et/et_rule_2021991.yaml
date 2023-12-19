@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/download.php?id="'
+      - value: '"&sid="'
+      - value: '"&name=Java|20|Runtime|20|Environment|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_10_21, former_category CURRENT_EVENTS, updated_at
+        2020_12_10
+      msg: '"ET WEB_CLIENT Fake Java Installer Landing Page Oct 21"'
+      pcre: '"/&name=[a-z0-9\x20]+$/Ui"'
+      reference: url,heimdalsecurity.com/blog/security-alert-blackhat-seo-campaign-passes-around-malware-to-unsuspecting-users
+      rev: '1'
+      sid: '2021991'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

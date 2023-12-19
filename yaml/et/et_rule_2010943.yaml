@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"66757BFC-DA0C-41E6-B3FE-B6D461223FF5"'
+      - value: '"SaveFormat"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX SoftCab Sound Converter ActiveX SaveFormat File overwrite
+        Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*66757BFC-DA0C-41E6-B3FE-B6D461223FF5/si"'
+      reference: url,doc.emergingthreats.net/2010943
+      rev: '3'
+      sid: '2010943'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

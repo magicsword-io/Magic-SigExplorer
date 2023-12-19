@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[!25,!445,!1500]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '2'
+        value: '"|77 77|"'
+      - value: '"|77|"'
+      - value: '"|77 77 77 77 77 77 77 77 77 77 77 77 77|"'
+      - value: '"|20 77 1e 77 19 77 13 77 18 77 00 77 04|"'
+      - value: '!"|00 00 00 00 00 00|"'
+      distance: '0'
+      dsize: '>800'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_18, deployment Perimeter, former_category
+        MALWARE, malware_family BlackCarat, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2019_01_30
+      msg: '"ET TROJAN Win32/BlackCarat XORed (0x77) CnC Checkin"'
+      reference: url,www.virusbulletin.com/uploads/pdf/conference_slides/2018/AncelKuprins-VB2018-WolfSheep.pdf
+      rev: '6'
+      sid: '2026525'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '!80'

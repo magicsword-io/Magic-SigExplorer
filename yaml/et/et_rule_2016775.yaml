@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"MZ"'
+      - value: '"|00 00 00 00|"'
+      - value: '"PE|00 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_04_19, updated_at 2020_04_23
+      msg: '"ET INFO Generic HTTP EXE Upload Outbound"'
+      rev: '1'
+      sid: '2016775'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

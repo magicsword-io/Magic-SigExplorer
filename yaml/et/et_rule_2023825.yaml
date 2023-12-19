@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"drive.google.com"'
+      - value: '!"drive.google.com|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_02_02, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_17, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Google Drive Phishing Domain Feb
+        02 2017"'
+      pcre: '"/^Host\x3a[^\r\n]+drive\.google\.com[^\r\n]{20,}\r\n/Hmi"'
+      rev: '1'
+      sid: '2023825'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

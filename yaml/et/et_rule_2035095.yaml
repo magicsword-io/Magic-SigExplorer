@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"LIGHT''S BOMB|00|"'
+      dsize: '13'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_02_04
+      msg: '"ET TROJAN TinyNuke VNC Checkin M3"'
+      reference: url,asec.ahnlab.com/en/27346/
+      rev: '1'
+      sid: '2035095'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

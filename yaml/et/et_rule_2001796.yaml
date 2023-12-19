@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1024:65535
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"KaZaA"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Kazaa over UDP"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001796
+      rev: '5'
+      sid: '2001796'
+      special_options:
+      - nocase
+      threshold: type threshold, track by_src,count 10, seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: 1024:65535

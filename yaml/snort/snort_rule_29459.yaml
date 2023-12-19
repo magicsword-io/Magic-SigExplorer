@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0A|Agtid|3A 20|"'
+      - value: '"08x|0D 0A|",within 5,distance 8'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fexel variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/b33ffbec01b43301edd9db42a59dcd33dd45f638733e2f92f0cb5bfe86714734/analysis/
+      rev: '3'
+      service: http
+      sid: '29459'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

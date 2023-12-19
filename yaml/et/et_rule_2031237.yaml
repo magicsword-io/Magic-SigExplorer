@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (compatible|3b 20|MSIE 9.0|3b 20|Windows
+          NT 6.0|3b 20|Trident/5.0|3b 20|BOIE9|3b|ENUS)|0d 0a|"'
+      - value: '"Cookie|3a 20|"'
+      - value: '"|0d 0a|"'
+      distance: '172'
+      fast_pattern: 55,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_11_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2020_11_25
+      msg: '"ET TROJAN Geocon CnC Request"'
+      reference: md5,6e020db51665614f4a2fd84fb0f83778
+      rev: '2'
+      sid: '2031237'
+      special_options:
+      - http_method
+      - http_header
+      - http_raw_header
+      - http_raw_header
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

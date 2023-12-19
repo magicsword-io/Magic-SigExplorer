@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '8'
+        value: '"/jquery-"'
+      - value: '".min.js"'
+      - depth: '115'
+        value: '"Accept|3a 20|text/html,application/xhtml+xml,application/xml|3b|q=0.9,*/*|3b|q=0.8|0d
+          0a|Accept-Language|3a 20|en-US,en|3b|q=0.5|0d 0a|Referer|3a 20|"'
+      - value: '"Accept-Encoding|3a 20|gzip, deflate|0d 0a|"'
+      fast_pattern: 95,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_05_21, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_05_21, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 JQuery Custom Profile M3"'
+      pcre: '"/^Accept\x3a\x20[^\r\n]+\r\nAccept-Language\x3a\x20[^\r\n]+\r\nReferer\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,4547d3404ceb0436585e11f317eadb7c
+      rev: '2'
+      sid: '2033008'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

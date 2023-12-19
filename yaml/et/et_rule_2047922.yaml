@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/command_bot.php?hwid="'
+      - value: '"application/x-www-form-urlencoded"'
+      - value: '"application/x-www-form-urlencoded"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2023_09_05, deployment Perimeter, former_category MALWARE, malware_family
+        echida_botnet, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_09_05
+      msg: '"ET TROJAN [ANY.RUN] Echida Botnet Check-In M2"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+application\//x-www-form-urlencoded/Hmi"'
+      reference: url,twitter.com/ViriBack/status/1698693553168236869
+      rev: '1'
+      sid: '2047922'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

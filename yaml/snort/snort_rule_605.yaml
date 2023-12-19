@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"login incorrect",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES rlogin login failure"'
+      rev: '13'
+      sid: '605'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '513'

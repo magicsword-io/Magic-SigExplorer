@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"@hello ???"'
+      fast_pattern: only
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2010_07_30, former_category SCAN, updated_at 2017_05_11
+      msg: '"ET SCAN ICMP @hello request Likely Precursor to Scan"'
+      reference: url,doc.emergingthreats.net/2010641
+      rev: '4'
+      sid: '2010641'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

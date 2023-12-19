@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: User-Agent: Mozilla/",fast_pattern,nocase'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user agent - User-Agent User-Agent
+        Mozilla"'
+      reference: url,www.virustotal.com/file/D67B6706559C5F7AB97CC788E668E27A29B7D2D39C9ACA93AF73778E53993339/analysis/
+      rev: '3'
+      service: http
+      sid: '30918'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

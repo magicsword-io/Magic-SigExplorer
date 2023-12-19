@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '6'
+      classtype: attempted-admin
+      contents:
+      - value: '"/HNAP1",fast_pattern,nocase'
+      - value: '"Authorization: Basic YWRtaW46"'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-WEBAPP HNAP remote code execution attempt"'
+      reference: url,isc.sans.edu/diary/Linksys+Worm+%22TheMoon%22+Summary%3A+What+we+know+so+far/17633
+      rev: '2'
+      service: http
+      sid: '29829'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

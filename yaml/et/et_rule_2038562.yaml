@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|celebritylife|04|news|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_08_18, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_08_18
+      msg: '"ET TROJAN Observed DNS Query to UNC3890 Domain (celebritylife .news)"'
+      reference: url,www.mandiant.com/resources/suspected-iranian-actor-targeting-israeli-shipping
+      rev: '1'
+      sid: '2038562'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

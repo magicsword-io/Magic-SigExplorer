@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|X-Havoc|3a 20|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_05_01, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, confidence High, signature_severity
+        Major, updated_at 2023_05_01
+      msg: '"ET TROJAN Havoc Framework Header in HTTP Response"'
+      reference: url,twitter.com/MichalKoczwara/status/1652986620658761729
+      rev: '1'
+      sid: '2045270'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

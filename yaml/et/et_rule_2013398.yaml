@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - value: '"byE8PCdtbzE6PTU8czo3"'
+      flow: established,to_server
+      metadata: created_at 2011_08_11, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Backdoor.Win32/Momibot Checkin"'
+      reference: url,hypersecurity.blogspot.com/2011/08/uncovering-win32momibot-communication.html
+      rev: '4'
+      sid: '2013398'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

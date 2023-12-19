@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/?M=D"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0731, updated_at 2020_04_21
+      msg: '"GPL WEB_SERVER apache ?M=D directory list attempt"'
+      reference: cve,2001-0731
+      rev: '10'
+      sid: '2101519'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

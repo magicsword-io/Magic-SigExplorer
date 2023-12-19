@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|21 2a 20|LOLNOBYE"'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_05_20,
+        deployment Perimeter, former_category MALWARE, malware_family Mirai, signature_severity
+        Major, updated_at 2019_09_28
+      msg: '"ET TROJAN Mirai Variant Checkin Response"'
+      reference: url,www.stratosphereips.org/blog/2019/5/17/iot-malware-analysis-series-a-mirai-variant-in-ctu-iot-malware-capture-49-1
+      rev: '1'
+      sid: '2027366'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

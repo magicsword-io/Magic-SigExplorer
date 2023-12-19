@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '31337'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|4E 0F 42 07 27|",depth 5'
+      flow: to_server
+      isdataat: '!25'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Linux.DDoS.D93 outbound connection"'
+      reference: url,www.virustotal.com/en/file/2c017c94d9f40cba9a20e92c7c636e98de15c599bf004fa06508d701ab9e3068/analysis/
+      rev: '3'
+      service: http
+      sid: '40991'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

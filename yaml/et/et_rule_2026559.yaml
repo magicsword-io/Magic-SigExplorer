@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22 3b 20|filename=|22|C|3a
+          5c|"'
+      - value: '".DAT|22 3b 0d 0a|"'
+      - value: '"|0d 0a|Host Name|3a 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+          20|"'
+      - value: '"|0d 0a|OS Name|3a 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20|"'
+      - value: '"|0d 0a|OS Version|3a 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+          20|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_29, deployment Perimeter, former_category
+        MALWARE, malware_family TrueBot, malware_family Silence_Downloader, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN TrueBot/Silence.Downloader CnC Checkin"'
+      pcre: '"/\.php$/U"'
+      reference: md5,c2a00949ddacfed9ed2ef83a8cb44780
+      rev: '2'
+      sid: '2026559'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

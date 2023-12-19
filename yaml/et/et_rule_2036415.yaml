@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Win|20|"'
+      - value: '"MB|00|"'
+      - value: '"MHz|00|"'
+      - value: '"|20|Mbps|00|"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2016_03_15, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Win32.ServStart.D Checkin"'
+      pcre: '"/^(:?[78]|XP)/Ri"'
+      reference: url,blog.netlab.360.com/public-cloud-threat-intelligence-202203/
+      rev: '1'
+      sid: '2036415'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/active_auctions.php?"'
+      - value: '"lan="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2011_02_25, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS WeBid active_auctions.php lan Parameter Local File
+        inclusion Attempt"'
+      reference: url,johnleitch.net/Vulnerabilities/WeBid.0.8.5P1.Local.File.Inclusion/63
+      rev: '2'
+      sid: '2012343'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Cookie|3a 20|Auth=cisco_tac_admin"'
+      - value: '"GET"'
+      - depth: '20'
+        value: '"Auth=cisco_tac_admin"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_10_30, cve CVE_2023_20198,
+        deployment Perimeter, deployment SSLDecrypt, former_category HUNTING, confidence
+        Medium, signature_severity Informational, updated_at 2023_10_30, reviewed_at
+        2023_10_30
+      msg: '"ET INFO Cisco IOS XE Web Server Auth From Suspicious Username (cisco_tac_admin)
+        (CVE-2023-20198) (Inbound)"'
+      reference: cve,2023-20198
+      rev: '1'
+      sid: '2048938'
+      special_options:
+      - http_method
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| Peach"'
+      - value: '!"User-Agent|3a| PeachTree"'
+      flow: established,to_server
+      metadata: created_at 2011_06_17, updated_at 2020_10_14
+      msg: '"ET POLICY Peach C++ Library User Agent Outbound"'
+      reference: url,www.useragentstring.com/Peach1.01_id_12276.php
+      rev: '3'
+      sid: '2013056'
+      special_options:
+      - nocase
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

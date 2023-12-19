@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"lista"'
+      - value: '"|3B| name=|22|arquivo|22 3B| filename=|22|C:|5C|",fast_pattern,nocase'
+      - value: '".log|22 0D 0A|",nocase'
+      - value: '!"Accept-"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/c70ca3914e44cf574f50019892916ed910d7454cdb64b4eab403961c953fe44e/analysis/1395407305/
+      rev: '3'
+      service: http
+      sid: '30262'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

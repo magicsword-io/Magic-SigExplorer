@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/api/log.html|3f|"'
+      - value: '"c="'
+      - value: '"&o="'
+      - value: '"&n="'
+      - value: '"User-Agent|3a| Apache-HttpClient"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2015_03_23, deployment Perimeter, signature_severity Critical, tag Android,
+        updated_at 2020_05_19
+      msg: '"ET MOBILE_MALWARE Android.Trojan.SMSSend.Y"'
+      reference: md5,ef79985c90675e7abfb6b9a6bc5a6c65
+      rev: '4'
+      sid: '2020729'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

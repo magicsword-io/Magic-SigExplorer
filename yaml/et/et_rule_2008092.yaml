@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2555'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/upnp/"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2019_09_26
+      msg: '"ET SCAN Internal to Internal UPnP Request tcp port 2555"'
+      pcre: '"/\/upnp\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{16}\//i"'
+      reference: url,doc.emergingthreats.net/2008092
+      rev: '3'
+      sid: '2008092'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/includes/header.php?"'
+      - value: '"c_temp_path"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Hedgehog CMS header.php c_temp_path Remote File
+        Inclusion"'
+      pcre: '"/c_temp_path=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2009233
+      rev: '4'
+      sid: '2009233'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

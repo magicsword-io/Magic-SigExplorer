@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"FM|7c 27 7c 27 7c|"'
+      flow: from_server,established
+      metadata: created_at 2013_09_05, former_category MALWARE, updated_at 2013_09_05
+      msg: '"ET TROJAN Bladabindi/njrat CnC Command (File Manager)"'
+      reference: url,threatgeek.com/2013/07/njrat-detection-rules-using-yara-.html
+      rev: '1'
+      sid: '2017420'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

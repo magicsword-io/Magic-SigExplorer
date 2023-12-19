@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '300'
+        value: '"PDF-"'
+      - value: '"x-shockwave-flash"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_10_29, deployment Perimeter,
+        former_category WEB_CLIENT, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Suspicious Embedded Shockwave Flash In PDF"'
+      pcre: '"/(a|#61)(p|#70)(p|#70)(l|#6C)(i|#69)(c|#63)(a|#61)(t|#74)(i|#69)(o|#6F)(n|#6E)(\x2F|#2F)x-shockwave-flash/i"'
+      rev: '2'
+      sid: '2011866'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

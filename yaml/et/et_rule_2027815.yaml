@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"var|20|_0x"'
+      - value: '"|27 5c|x61|5c|x57|5c|x35|5c|x75|5c|x5a|5c|x58|5c|x4a|5c|x49|5c|x5a"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_08_07, deployment Perimeter, deployment SSLDecrypt, former_category CURRENT_EVENTS,
+        performance_impact Low, signature_severity Major, tag CardSkimmer, updated_at
+        2020_11_18
+      msg: '"ET CURRENT_EVENTS Possible Injected JS Form Stealer Checking Page Contents
+        M1"'
+      reference: url,www.symantec.com/content/dam/symantec/docs/security-center/white-papers/istr-formjacking-deep-dive-en.pdf
+      rev: '2'
+      sid: '2027815'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

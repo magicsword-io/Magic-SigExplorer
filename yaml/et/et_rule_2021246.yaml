@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 8.0|3b| Windows
+          NT 5.1|3b| Trident/4.0|29 0d 0a|"'
+      fast_pattern: 57,20
+      flow: established,to_server
+      metadata: created_at 2015_06_11, updated_at 2020_05_22
+      msg: '"ET TROJAN Win32/Gatak.DR Activity"'
+      pcre: '"/^\/([a-z]{4,9}\/[a-z]{4,12}\?[a-z]{4,7}\=[0-9]{5,7})$/U"'
+      reference: md5,adb3242f8efad48ca174a7e46991f507
+      rev: '2'
+      sid: '2021246'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

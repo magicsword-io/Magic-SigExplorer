@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"results"'
+      - value: '"accprofile"'
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2022-40684
+      metadata: affected_product Web_Server_Applications, affected_product Fortigate,
+        attack_target Server, created_at 2022_10_17, cve CVE_2022_40684, deployment
+        Perimeter, deployment SSLDecrypt, former_category WEB_SERVER, confidence High,
+        signature_severity Critical, updated_at 2022_10_17
+      msg: '"ET WEB_SERVER Successful FortiOS Auth Bypass Attempt - Administrative
+        Details Leaked (CVE-2022-40684)"'
+      reference: cve,2022-40684
+      rev: '1'
+      sid: '2039420'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

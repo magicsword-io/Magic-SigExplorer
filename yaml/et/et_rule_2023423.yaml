@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|09|ngefqevwe"'
+      distance: '1'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_25, deployment Perimeter, former_category
+        MALWARE, malware_family APT28_Sednit, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_04_06
+      msg: '"ET TROJAN APT28/Sednit SSL Cert"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2016/10/eset-sednit-part-2.pdf
+      rev: '1'
+      sid: '2023423'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

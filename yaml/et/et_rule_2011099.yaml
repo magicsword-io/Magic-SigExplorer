@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/modules/dfss/lgsl/lgsl_players.php?"'
+      - value: '"lgsl_path="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS DaFun Spirit lgsl_players.php lgsl_path Parameter
+        Remote File Inclusion"'
+      pcre: '"/lgsl_path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2011099
+      rev: '3'
+      sid: '2011099'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

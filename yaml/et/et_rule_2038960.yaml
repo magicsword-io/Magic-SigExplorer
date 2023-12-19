@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|5c|x43|5c|x72|5c|x65|5c|x64|5c|x69|5c|x74|5c|x2f|5c|x44|5c|x65|5c|x62|5c|x69|5c|x74|5c|x20|5c|x43|5c|x61|5c|x72|5c|x64|5c|x20|5c|x53|5c|x65|5c|x63|5c|x75|5c|x72|5c|x65|5c|x20|5c|x50|5c|x61|5c|x79|5c|x6d|5c|x65|5c|x6e|5c|x74"'
+      - value: '"|5c|x43|5c|x61|5c|x72|5c|x64|5c|x68|5c|x6f|5c|x6c|5c|x64|5c|x65|5c|x72"'
+      - value: '"|5c|x70|5c|x61|5c|x79|5c|x6d|5c|x65|5c|x6e|5c|x74|5c|x5b|5c|x63|5c|x63|5c|x5f|5c|x6f|5c|x77|5c|x6e|5c|x65|5c|x72|5c|x5d"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_09_23, deployment Perimeter,
+        former_category ATTACK_RESPONSE, signature_severity Major, updated_at 2022_09_23
+      msg: '"ET ATTACK_RESPONSE JS/Spy.Banker.LD Credit Card Skimmer Inbound"'
+      reference: url,twitter.com/MBThreatIntel/status/1573059941619081221
+      rev: '1'
+      sid: '2038960'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

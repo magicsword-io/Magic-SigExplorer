@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"infoback|3b|"'
+      - value: '"|7c|"'
+      - value: '"|7c|Windows"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2023_03_15, former_category MALWARE, updated_at 2023_03_15
+      msg: '"ET TROJAN SideCopy APT Related Backdoor Victim Response (infoback)"'
+      reference: url,twitter.com/malwareforme/status/1636005291849396224
+      rev: '1'
+      sid: '2044627'
+      special_options:
+      - fast_pattern
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

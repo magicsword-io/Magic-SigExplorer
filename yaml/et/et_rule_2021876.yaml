@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PRIVMSG"'
+      - value: '"{RAW}"'
+      - value: '"Executing command|3a|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_10_01, updated_at 2015_10_01
+      msg: '"ET TROJAN Linux/dtool IRC Command (RAW)"'
+      reference: md5,a60b96a2cf4b979968fe5ac6259fb197
+      rev: '3'
+      sid: '2021876'
+      special_options:
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

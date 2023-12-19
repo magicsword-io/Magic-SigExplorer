@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<TITLE>Tracking made easy"'
+      - value: '"Login to Continue Tracking your Package"'
+      - value: '"Sign In With Your Correct Email and Password To Review Package Information"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2018_07_24, deployment Perimeter,
+        former_category CURRENT_EVENTS, signature_severity Major, updated_at 2018_07_24
+      msg: '"ET CURRENT_EVENTS [eSentire] DHL Phish Landing July 24 2018"'
+      rev: '1'
+      sid: '2025886'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

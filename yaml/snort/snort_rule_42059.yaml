@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host: mbfce24rgn65bx3g.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.Sage variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/c1c31129a39441607c060a7da57855d3969cf47ce4119cda9beaf65b63faca60/analysis/
+      rev: '2'
+      service: http
+      sid: '42059'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

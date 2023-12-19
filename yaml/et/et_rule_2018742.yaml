@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/op?sid="'
+      - value: '"&dt="'
+      - value: '"&gid="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2013_12_11, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE OptimizerPro Checkin"'
+      reference: md5,eba3a996f5b014b2d410f4bf32b8530b
+      rev: '3'
+      sid: '2018742'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

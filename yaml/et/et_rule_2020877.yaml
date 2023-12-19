@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/router/add_dhcp_segment.cgi?"'
+      - value: '"is_router_as_dns=1"'
+      - value: '"&dns1="'
+      - value: '"submitbutton="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_04_09, updated_at 2020_09_30
+      msg: '"ET EXPLOIT Known Malicious Router DNS Change GET Request"'
+      reference: url,wepawet.cs.ucsb.edu/view.php?hash=5e14985415814ed1e107c0583a27a1a2&t=1384961238&type=js
+      rev: '1'
+      sid: '2020877'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Checking Informations"'
+      - value: '"http-equiv=|22|refresh|22|"'
+      flow: from_server,established
+      metadata: created_at 2015_12_29, former_category PHISHING, updated_at 2015_12_29
+      msg: '"ET WEB_CLIENT PHOEN!X Phish Loading Page 2015-12-29"'
+      rev: '1'
+      sid: '2031694'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

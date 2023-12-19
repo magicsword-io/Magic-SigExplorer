@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>64'
+      classtype: attempted-admin
+      contents:
+      - value: '"/deleteOfflineClient.cgi",fast_pattern,nocase'
+      - value: '"delete_offline_client="'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Asus RT-AC88U deleteOfflineClients memory corruption attempt"'
+      pcre: '"/[?&]delete_offline_client=[^&]{14}/i"'
+      reference: cve,2017-12754
+      rev: '3'
+      service: http
+      sid: '45412'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '".dotm"'
+      flow: established,to_server
+      flowbits: set,ETPRO.Maldoc.dotm
+      metadata: attack_target Client_Endpoint, created_at 2020_12_14, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2020_12_14
+      msg: '"ET INFO Doc Requesting Remote Template (.dotm)"'
+      pcre: '"/User-Agent[^\r\n]+ms-office\x3b\x20MSOffice\x20/H"'
+      rev: '2'
+      sid: '2031379'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

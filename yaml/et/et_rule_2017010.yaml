@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"xp_cmdshell"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_06_13, updated_at 2020_09_18
+      msg: '"ET WEB_SERVER Possible SQLi xp_cmdshell POST body"'
+      rev: '3'
+      sid: '2017010'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

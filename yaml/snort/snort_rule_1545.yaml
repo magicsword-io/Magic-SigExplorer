@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|13|"'
+      flow: to_server,established
+      isdataat: '!1'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Cisco denial of service attempt"'
+      rev: '15'
+      service: http
+      sid: '1545'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

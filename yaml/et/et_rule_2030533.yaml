@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 2,>=,0xfeea,0
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 00 18|"'
+      - value: '"|00 00 18|"'
+      - value: '"|c0|"'
+      - value: '"|00 18|"'
+      distance: '1'
+      flow: established,from_server
+      metadata: affected_product Windows_DNS_server, created_at 2020_07_14, cve CVE_2020_1350,
+        former_category EXPLOIT, performance_impact Significant, signature_severity
+        Critical, updated_at 2020_07_16
+      msg: '"ET EXPLOIT Possible Windows DNS Integer Overflow Attempt M1 (CVE-2020-1350)"'
+      reference: url,research.checkpoint.com/2020/resolving-your-way-into-domain-admin-exploiting-a-17-year-old-bug-in-windows-dns-servers/
+      rev: '4'
+      sid: '2030533'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: any
+      port: '53'

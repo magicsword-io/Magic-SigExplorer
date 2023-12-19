@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 17|officewestunionbank.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_02_10, deployment Perimeter,
+        former_category MALWARE, malware_family Buer, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_02_10
+      msg: '"ET TROJAN Observed Buer Loader Domain (officewestunionbank .com in TLS
+        SNI)"'
+      reference: md5,61e213e717cc8e156cec79a7c1cd0c64
+      rev: '2'
+      sid: '2031610'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

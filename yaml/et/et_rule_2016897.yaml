@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" MSIE 9.0|3b| Windows NT 5."'
+      fast_pattern: 3,20
+      flow: established,to_server
+      metadata: created_at 2013_05_21, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET INFO Invalid User-Agent - MSIE 9 on Windows NT 5"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+?\sMSIE\s9\.0\x3b\sWindows\sNT\s5\./Hmi"'
+      reference: url,windows.microsoft.com/en-us/internet-explorer/products/ie-9/system-requirements
+      rev: '6'
+      sid: '2016897'
+      threshold: type limit,track by_src,count 2,seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

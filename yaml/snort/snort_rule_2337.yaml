@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '69'
+    details:
+      byte_test: 1,<,3,0,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|00|",depth 1'
+      - value: '!"|00|",within 100,distance 2'
+      flow: to_server
+      isdataat: 101,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP PUT filename overflow attempt"'
+      reference: nessus,18264
+      rev: '23'
+      sid: '2337'
+    protocol: udp
+    source:
+      network: any
+      port: any

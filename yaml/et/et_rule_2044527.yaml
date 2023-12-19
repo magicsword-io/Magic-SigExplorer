@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d|document|3b
+          20|filename|3d|"'
+      - value: '"|2d|dump|2e|txt|0d 0a 0d 0a|Username|3a 20|"'
+      - value: '"|0d 0a|Machine Name|3a 20|"'
+      - value: '"|0d 0a|OS|3a 20|"'
+      - value: '"|0d 0a|Bits|3a 20|"'
+      - value: '"|20|Bit|0d 0a|Antivirus|28|s|29 20|active|3a 20|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family VectorStealer,
+        confidence High, signature_severity Major, updated_at 2023_03_26, reviewed_at
+        2023_11_28
+      msg: '"ET TROJAN Win32/Vector Stealer Sending System Information via Telegram
+        (POST)"'
+      reference: url,twitter.com/James_inthe_box/status/1633503622381322242
+      rev: '2'
+      sid: '2044527'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      within: '27'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

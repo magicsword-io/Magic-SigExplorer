@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"|5b 2a 5d 5b 6f 2e 72 2e 63 2e 68 2e 61 2e 72 2e 64 5d|"'
+      - value: '"|5b 6f 2e 72 2e 63 2e 68 2e 61 2e 72 2e 64 5d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_09_07
+      msg: '"ET TROJAN Win32/Orchard Botnet Activity"'
+      reference: url,blog.netlab.360.com/orchard-dga/
+      rev: '1'
+      sid: '2038728'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

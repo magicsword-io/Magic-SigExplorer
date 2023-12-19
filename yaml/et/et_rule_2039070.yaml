@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"HTTP/1.1 404 Not Found"'
+      - value: '"<script language=|22|Javascript|22|>var _skz_pid|20|=|20 22|"'
+      fast_pattern: 25,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_09_30
+      msg: '"ET INFO 404 Response with Javascript Variable in Page"'
+      rev: '1'
+      sid: '2039070'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

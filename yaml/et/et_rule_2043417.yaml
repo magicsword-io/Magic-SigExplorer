@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '22'
+        value: '"|7b 22|ok|22 3a|true|2c 22|result|22 3a 7b 22|"'
+      - value: '"|22|is|5f|bot|22 3a|true|2c 22|first|5f|name|22 3a 22|DCRAT|20|BOT|22
+          2c 22|username|22 3a 22|dcra9bot|22|"'
+      distance: '40'
+      fast_pattern: 17,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_20, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_08_29
+      msg: '"ET TROJAN DCRat Initial Checkin Server Response M5"'
+      reference: url,github.com/eatinsundip/Suricata/tree/main/ET_Open_Submissions/2023/January/DCRat_Activity_01192023
+      rev: '2'
+      sid: '2043417'
+      special_options:
+      - http_stat_code
+      - file_data
+      within: '60'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

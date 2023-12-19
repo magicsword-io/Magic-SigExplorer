@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".net frame work file missing"'
+      - value: '"Debug malware error"'
+      - value: '"Please do not open"'
+      - value: '"avoid data corruption"'
+      - value: '"PLEASE DO NOT SHUT DOWN"'
+      - value: '"RESTART YOUR COMPUTER"'
+      distance: '0'
+      fast_pattern: 8,20
+      flow: established,from_server
+      metadata: created_at 2015_10_19, former_category WEB_CLIENT, updated_at 2022_03_17
+      msg: '"ET WEB_CLIENT Fake Virus Phone Scam Landing Oct 19 M3"'
+      rev: '2'
+      sid: '2021965'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

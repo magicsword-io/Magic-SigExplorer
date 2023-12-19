@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"TO_CHAR",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE TO_CHAR buffer overflow attempt"'
+      pcre: '"/TO_CHAR\s*\(\s*SYSTIMESTAMP\s*,\s*(\x27[^\x27]{256}|\x22[^\x22]{256})/ims"'
+      reference: cve,2004-1364
+      rev: '5'
+      sid: '2699'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

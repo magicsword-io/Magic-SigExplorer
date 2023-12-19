@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b|"'
+      - value: '"|24 7b 3a 3a|"'
+      metadata: attack_target Server, created_at 2021_12_18, cve CVE_2021_44228, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, confidence Low, signature_severity
+        Major, tag Exploit, updated_at 2022_01_11
+      msg: '"ET EXPLOIT Possible Apache log4j RCE Attempt - 2021/12/12 Obfuscation
+        Observed M2 (udp) (Outbound) (CVE-2021-44228)"'
+      reference: cve,2021-44228
+      rev: '3'
+      sid: '2034805'
+      special_options:
+      - fast_pattern
+      within: '100'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

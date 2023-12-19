@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"/Home/index.php|22| width=1 height=1 scrolling=no></iframe>"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_08_19,
+        deployment Perimeter, former_category INFO, signature_severity Major, tag
+        DriveBy, updated_at 2017_04_14
+      msg: '"ET INFO Redirection to driveby Page Home index.php"'
+      rev: '3'
+      sid: '2013436'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

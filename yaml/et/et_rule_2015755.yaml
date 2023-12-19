@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Content-Type|3a| image/"'
+      - value: '"eval(gzinflate(base64_decode("'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2012_10_02, updated_at 2020_04_22
+      msg: '"ET WEB_SERVER Image Content-Type with Obfuscated PHP (Seen with C99 Shell)"'
+      reference: url,malwaremustdie.blogspot.jp/2012/10/how-far-phpc99shell-malware-can-go-from.html
+      rev: '2'
+      sid: '2015755'
+      special_options:
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '26'
+        value: '"/bin/KommDatenGEG.pl?user="'
+      - value: '"&rechner="'
+      - value: '"&rnd="'
+      - value: '"UA-CPU|3a 20|"'
+      distance: '0'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_25, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_25
+      msg: '"ET TROJAN Unknown Maldoc CnC Activity (2022-07-25)"'
+      reference: md5,2cdae46b94ef33d20a8ace6d4d8cae56
+      rev: '1'
+      sid: '2037821'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

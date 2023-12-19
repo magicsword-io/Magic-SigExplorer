@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".xyz|0d 0a|"'
+      - depth: '9'
+        value: '"password="'
+      - value: '!"&"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_05, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2021_04_05
+      msg: '"ET CURRENT_EVENTS HTTP POST Contains Only Password (xyz) 2021-04-05"'
+      rev: '2'
+      sid: '2032475'
+      special_options:
+      - http_method
+      - http_header
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

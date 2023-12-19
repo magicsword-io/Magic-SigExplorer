@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,26,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|SUQ6"'
+      - value: '"0J3QsNC30LLQsNC90LjQtSDQutC+0LzQv9GM0Y7RgtC1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_12, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2021_02_12
+      msg: '"ET MALWARE Win32/RemoteUtilities Checkin via SMTP"'
+      rev: '2'
+      sid: '2031618'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

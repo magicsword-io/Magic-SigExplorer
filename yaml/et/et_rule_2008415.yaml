@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| Cisco-torch"'
+      fast_pattern: 12,10
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_04_23
+      msg: '"ET SCAN Cisco Torch IOS HTTP Scan"'
+      reference: url,doc.emergingthreats.net/2008415
+      rev: '9'
+      sid: '2008415'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

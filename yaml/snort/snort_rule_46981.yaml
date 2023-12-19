@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|",depth 2'
+      - value: '"|02|",within 1,distance 3'
+      - value: '"|0C|Orcus Server",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Orcus RAT inbound SSL certificate"'
+      reference: url,virustotal.com/en/file/8d880758549220154d2ff4ee578f2b49527c5fb76a07d55237b61e30bcc09e3a/analysis/
+      rev: '1'
+      service: ssl
+      sid: '46981'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<--"'
+      - value: '"-->|0a|<"'
+      flow: established,from_server
+      flowbits: isset,ET.CozyDuke.HTTP
+      metadata: attack_target Client_Endpoint, created_at 2015_04_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_04_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN CozyDuke APT HTTP CnC Beacon Response"'
+      pcre: '"/^[A-F0-9]{8,12}/R"'
+      reference: md5,98a6484533fa12a9ba6b1bd9df1899dc
+      rev: '1'
+      sid: '2020965'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

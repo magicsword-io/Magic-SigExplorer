@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/images/MainMemoryPool.png?"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2018_08_22, cve CVE_2018_15533, deployment
+        Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity Major, updated_at
+        2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Geutebrueck re_porter 16 - Cross-Site Scripting
+        5"'
+      pcre: '"/\/images\/MainMemoryPool\.png\?[^&]+(?:s(?:cript|tyle\x3D)|on(?:mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: url,exploit-db.com/exploits/45242/
+      rev: '2'
+      sid: '2026013'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '12'
+      classtype: trojan-activity
+      contents:
+      - value: '"/prl/el.html",fast_pattern,nocase'
+      - value: '"Accept: text/html, */*|0D 0A|User-Agent: Mozilla/3.0 (compatible|3B|
+          Indy Library)|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ExplorerHijack variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/de67654959d29ffc5b9ec854d1e9e240ec96090ce8b3f9c3c9b337b7f2a54f8a/analysis/
+      rev: '4'
+      service: http
+      sid: '29897'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

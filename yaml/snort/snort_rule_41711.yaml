@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"new_slave|0D 0A|",depth 11,offset 4'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Houdini variant initial outbound connection"'
+      reference: url,virustotal.com/en/file/8d75e47c04bb2cc0f4c2e973475d4ff1fc8f32039794e3ea5ca2494c66d80d3f/analysis/
+      rev: '2'
+      sid: '41711'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

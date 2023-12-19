@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - offset: '8'
+        value: '"|a1 8a ee 02 e8 91 ff 04 be ac f7 09 b3 9c|"'
+      - value: '"Connection|3a 20|Upgrade"'
+      flow: established,to_server
+      metadata: affected_product IoT, created_at 2020_09_30, deployment Perimeter,
+        former_category MALWARE, malware_family Ttint, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_30
+      msg: '"ET TROJAN Ttint XORed CnC Checkin"'
+      reference: url,blog.netlab.360.com/ttint-an-iot-rat-uses-two-0-days-to-spread/
+      rev: '2'
+      sid: '2030924'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

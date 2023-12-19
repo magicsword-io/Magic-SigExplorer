@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|66 69 6e 64 50 6f 70 52 65 74|"'
+      - value: '"|66 69 6e 64 53 74 61 63 6b 50 69 76 6f 74|"'
+      - value: '"|56 69 72 74 75 61 6c 41 6c 6c 6f 63|"'
+      - value: '"|72 6f 70 43 68 61 69 6e|"'
+      - value: '"|6b 65 72 6e 65 6c 33 32 2e 64 6c 6c|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Firefox, attack_target Client_Endpoint, created_at 2016_11_30, deployment
+        Perimeter, performance_impact Low, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2016_11_30
+      msg: '"ET EXPLOIT Firefox 0-day used against TOR browser Nov 29 2016 M1"'
+      reference: url,arstechnica.com/security/2016/11/firefox-0day-used-against-tor-users-almost-identical-to-one-fbi-used-in-2013/
+      rev: '1'
+      sid: '2023559'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

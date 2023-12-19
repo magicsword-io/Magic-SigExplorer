@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"cybercop",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN cybercop udp bomb"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '9'
+      sid: '636'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

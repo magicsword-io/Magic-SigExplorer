@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '23'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|ff fa 24 00 03|CISCO_KITS"'
+      - value: '"|3a|"'
+      - value: '!"|3a|"'
+      distance: '2'
+      flow: to_server,established
+      isdataat: 160,relative
+      metadata: affected_product CISCO_Catalyst, attack_target IoT, created_at 2017_04_10,
+        cve CVE_2017_3881, deployment Datacenter, former_category EXPLOIT, performance_impact
+        Low, signature_severity Critical, updated_at 2017_04_10
+      msg: '"ET EXPLOIT Cisco Catalyst Remote Code Execution (CVE-2017-3881)"'
+      reference: url,artkond.com/2017/04/10/cisco-catalyst-remote-code-execution/
+      rev: '1'
+      sid: '2024194'
+      within: '160'
+    protocol: tcp
+    source:
+      network: any
+      port: any

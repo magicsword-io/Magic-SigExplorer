@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Utopia_Init|3a 20|SUCCEEDED"'
+      flow: from_server,established
+      metadata: created_at 2014_02_19, updated_at 2014_02_19
+      msg: '"ET EXPLOIT Linksys Failed Upgrade BackDoor Access (Server Response)"'
+      reference: url,www.securityfocus.com/archive/1/531107
+      rev: '3'
+      sid: '2018160'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '8083'

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|00 B0 B9 E1 42 A0 E9 1A C7|"'
+      - value: '"|55 04 03|"'
+      - value: '"|07|vm19622"'
+      - value: '"|55 04 03|"'
+      - value: '"|07|vm19622"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_16, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, tag StrongPity, updated_at 2020_08_31
+      msg: '"ET TROJAN SSL/TLS Certificate Observed (StrongPity)"'
+      reference: url,www.alienvault.com/blogs/labs-research/newly-identified-strongpity-operations
+      rev: '2'
+      sid: '2027715'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

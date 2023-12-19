@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '40'
+        offset: '110'
+        value: '"|7c 20|Select|20 2d|exp|20|country|0a|"'
+      - value: '"|20|If|20 28 24|"'
+      - value: '"|2d|eq|20 27|"'
+      - value: '"|27 29|"'
+      distance: '2'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_01, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_03, reviewed_at
+        2023_10_04
+      msg: '"ET ATTACK_RESPONSE PowerShell Geo Check Before Execution"'
+      pcre: '"/ElseIf\s+\x28\x24\w{8,10}\s+\x2deq\s+\x27\w{2}\x27\x29\s+\x7b/R"'
+      reference: url,twitter.com/StopMalvertisin/status/1542782976052056065
+      rev: '3'
+      sid: '2037253'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php?m=F&",fast_pattern,nocase'
+      - value: '"&a="'
+      - value: '"&b="'
+      - value: '"&d="'
+      - value: '"&e="'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Danabot outbound connection"'
+      reference: url,www.virustotal.com/en/file/f60c6c45ff27d1733d8ab03393ab88e3a2d7c75c7d9fce3169417e8c9fd3df12/analysis
+      rev: '1'
+      service: http
+      sid: '46967'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

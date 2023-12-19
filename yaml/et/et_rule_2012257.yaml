@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"%0c%0c%0c%0c"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2011_02_03, updated_at 2019_09_27
+      msg: '"ET SHELLCODE Common %0c%0c%0c%0c Heap Spray String"'
+      reference: url,www.darkreading.com/security/vulnerabilities/221901428/index.html
+      rev: '1'
+      sid: '2012257'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

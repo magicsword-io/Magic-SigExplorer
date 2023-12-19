@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|NSIS_Inetc (Mozilla)|0D 0A|",fast_pattern,nocase'
+      - value: '"|22|event_type|22|",depth 15,offset 1'
+      - value: '"|22|installation_session_id|22|",within 100'
+      - value: '"|22|environment|22|",distance 0'
+      - value: '"|22|command_line|22|",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE SuperOptimizer installation status"'
+      reference: url,www.virustotal.com/en/file/1df4d1f316bd526e56b5fa0f84704bac365484c049e6a7c76145cb45e5e32049/analysis/1426449377/
+      rev: '2'
+      service: http
+      sid: '34144'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

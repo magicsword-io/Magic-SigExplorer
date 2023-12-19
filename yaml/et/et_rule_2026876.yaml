@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Cayosin/2.0|0d|"'
+      fast_pattern: 12,11
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2019_02_04,
+        deployment Perimeter, former_category USER_AGENTS, malware_family Mirai, malware_family
+        Cayosin, performance_impact Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Cayosin Botnet User-Agent Observed M1"'
+      rev: '4'
+      sid: '2026876'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

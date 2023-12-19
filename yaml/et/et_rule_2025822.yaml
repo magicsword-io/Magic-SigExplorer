@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4070'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"discover|3b|013|3b|"'
+      dsize: <45
+      metadata: attack_target IoT, created_at 2018_07_10, deployment Datacenter, former_category
+        SCAN, updated_at 2018_07_18
+      msg: '"ET SCAN HID VertX and Edge door controllers discover"'
+      reference: url,exploit-db.com/exploits/44992/
+      rev: '2'
+      sid: '2025822'
+    protocol: udp
+    source:
+      network: any
+      port: any

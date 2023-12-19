@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: unknown
+      contents:
+      - value: '"User-Agent|3a| _TEST_"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET USER_AGENTS User-Agent (_TEST_)"'
+      reference: url,doc.emergingthreats.net/2009545
+      rev: '7'
+      sid: '2009545'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

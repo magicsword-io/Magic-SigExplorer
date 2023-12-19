@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!"|22|manifestVersion|22|"'
+      - value: '!"<html"'
+      - value: '!"|22 7d 2c|"'
+      - value: '"powershell"'
+      - value: '"-w 1"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_02_28, deployment alert_only, former_category ATTACK_RESPONSE, performance_impact
+        Low, confidence Low, signature_severity Major, tag PowerShell, updated_at
+        2023_04_25, reviewed_at 2023_10_11
+      msg: '"ET INFO PowerShell Hidden Window Command Common In Powershell Stagers
+        M2"'
+      rev: '5'
+      sid: '2026990'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|ductai|03|xyz|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_09_26, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_09_26, reviewed_at 2023_10_26
+      msg: '"ET TROJAN Ducktail Malware Related Domain in DNS Lookup (ductai .xyz)"'
+      reference: md5,bdab780d4cfc976a87cc13c4f4db7253
+      rev: '1'
+      sid: '2048257'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

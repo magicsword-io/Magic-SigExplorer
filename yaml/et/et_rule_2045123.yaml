@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"content=|22|3|3b|url=login.php|22 20 2f 3e|"'
+      - value: '"<title>Jasmin Dashboard</title>"'
+      - value: '"<span class=|22|text|22 3e 20|Jasmin Dashboard</span>"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_21, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Minor, updated_at 2023_04_21
+      msg: '"ET MALWARE Jasmin Ransomware Panel Activity (Response)"'
+      reference: url,github.com/codesiddhant/Jasmin-Ransomware/
+      rev: '2'
+      sid: '2045123'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '40006'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"user|00|dm_postgres|00|database|00|hpdmdb|00|"'
+      flow: established,to_server
+      metadata: created_at 2020_10_02, former_category EXPLOIT, performance_impact
+        Low, updated_at 2020_10_02
+      msg: '"ET EXPLOIT [401TRG] HPDM Backdoor Login"'
+      reference: url,twitter.com/nickstadb/status/1310853783765815297
+      rev: '2'
+      sid: '2030961'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

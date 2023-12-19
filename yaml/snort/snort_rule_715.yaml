@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"to su root",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET Attempted SU from wrong group"'
+      rev: '14'
+      service: telnet
+      sid: '715'
+    protocol: tcp
+    source:
+      network: $TELNET_SERVERS
+      port: '23'

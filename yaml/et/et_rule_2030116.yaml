@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"GET /START_ HTTP/1.1|0d 0a 0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_06, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2020_05_06,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Ragnarok Ransomware CnC Activity M1"'
+      reference: md5,32ed52d918a138ddad24dd3a84e20e56
+      rev: '2'
+      sid: '2030116'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

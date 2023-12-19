@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/showGallery.php"'
+      - value: '"galid="'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Galerie ShowGallery.php SQL Injection attempt"'
+      pcre: '"/galid=-?\d+ /Ui"'
+      reference: url,doc.emergingthreats.net/2002671
+      rev: '8'
+      sid: '2002671'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

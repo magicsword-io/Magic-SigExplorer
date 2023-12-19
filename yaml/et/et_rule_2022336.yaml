@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '8'
+        value: '"Linux_"'
+      - value: '"TF-"'
+      distance: '58'
+      flow: established,to_server
+      metadata: created_at 2016_01_07, updated_at 2016_01_07
+      msg: '"ET TROJAN ELF.MrBlack DOS.TF Variant"'
+      reference: url,blog.malwaremustdie.org/2016/01/mmd-0048-2016-ddostf-new-elf-windows.html
+      rev: '2'
+      sid: '2022336'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

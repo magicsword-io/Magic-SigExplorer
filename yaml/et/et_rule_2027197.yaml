@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"alert|28 22|Windows|20|Firewall|20|has|20|detected|20|that|20|your|20|Windows"'
+      - value: '"system|20|files|20|are|20|automatically|20|deleted"'
+      - value: '"Please|20|follow|20|the|20|instructions"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2019_04_15, former_category WEB_CLIENT, tag Tech_Support_Scam,
+        tag Malvertising, updated_at 2020_11_19
+      msg: '"ET WEB_CLIENT Tech Support Scam Landing M1 2019-04-15"'
+      rev: '3'
+      sid: '2027197'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

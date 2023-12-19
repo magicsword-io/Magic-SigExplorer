@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|08|owncloud"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|08|owncloud"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_11_29, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, updated_at 2021_11_29
+      msg: '"ET POLICY Owncloud Observed Self Signed TLS Certificate"'
+      rev: '2'
+      sid: '2034550'
+      special_options:
+      - nocase
+      - nocase
+      within: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

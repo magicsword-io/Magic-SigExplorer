@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/nope.php"'
+      - depth: '5'
+        value: '"nohp="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_21, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_02_21
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish M1 2023-02-22"'
+      reference: md5,8b2132284b7dbb76998eb4a91d2a64ba
+      rev: '1'
+      sid: '2044293'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

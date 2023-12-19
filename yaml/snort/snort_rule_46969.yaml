@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '10'
+      classtype: trojan-activity
+      contents:
+      - value: '"/mainls.cs",fast_pattern,nocase'
+      - value: '"Content-Type: application/octet-stream",nocase'
+      - value: '!"User-Agent",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.Autophyte dropper variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/086a50476f5ceee4b10871c1a8b0a794e96a337966382248a8289598b732bd47/detection
+      rev: '1'
+      service: http
+      sid: '46969'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

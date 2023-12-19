@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"BattleMail"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL battle-mail traffic"'
+      rev: '12'
+      service: smtp
+      sid: '490'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

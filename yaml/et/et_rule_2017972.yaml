@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?title=2.0_-"'
+      - value: '"User-Agent|3a 20|Java"'
+      - depth: '18'
+        value: '"content=HostName|3a 20|"'
+      - value: '"|0d 0a|Java Version|3a 20|"'
+      - value: '"|0d 0a 20|HostIp|3a 20|"'
+      - value: '!"Accept-Language|3A 20|"'
+      - value: '!"Referer|3A 20|"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server
+      metadata: created_at 2014_01_15, former_category MALWARE, updated_at 2020_09_22
+      msg: '"ET TROJAN ICEFOG JAVAFOG JAR checkin"'
+      reference: url,jsunpack.jeek.org/dec/go?report=6b63068d3259f5032a301e0d3f935b4d3f2e2998
+      rev: '3'
+      sid: '2017972'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[442,443,446,447,8001]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|00 ff|"'
+      - value: '"|00 00|"'
+      distance: '1'
+      dsize: '6'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_06_06, deployment Perimeter, former_category
+        MALWARE, malware_family Ramnit, performance_impact Low, signature_severity
+        Major, updated_at 2017_07_19
+      msg: '"ET TROJAN Win32/Ramnit Checkin"'
+      reference: md5,5740a73856128270b37ec4afae870d12
+      rev: '5'
+      sid: '2018558'
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

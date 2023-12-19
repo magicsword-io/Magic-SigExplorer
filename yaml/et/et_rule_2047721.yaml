@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -20
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '".external-share.com"'
+      distance: '4'
+      flow: established,to_server
+      metadata: created_at 2023_08_24, deployment Perimeter, former_category INFO,
+        performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2023_08_24, reviewed_at 2023_08_24
+      msg: '"ET INFO Abused Confluence/Jira External Sharing Site (external-share
+        .com in TLS SNI)"'
+      reference: url,urlscan.io/result/b3b6638b-76ed-48d5-b66f-a78d25d2a8c1/
+      rev: '1'
+      sid: '2047721'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 600, track by_src
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

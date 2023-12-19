@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>1000'
+      classtype: trojan-activity
+      contents:
+      - value: '"/click?h=",fast_pattern,nocase'
+      - value: '"subid="'
+      - value: '"data_fb="'
+      - value: '"data_rtt="'
+      - value: '"data_proto="'
+      - value: '"data_ic="'
+      - value: '"data_ss="'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Osx.Adware.SurfBuyer adware outbound connection detected"'
+      reference: url,virustotal.com/en/file/baed00c6e6b157f3a53c76a200de84927f5c9d448cf76438c55d62c18033ba1b/analysis/
+      rev: '2'
+      service: http
+      sid: '45398'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

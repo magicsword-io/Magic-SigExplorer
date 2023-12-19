@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|06 03 55 04 03|"'
+      - value: '"*.tor2web."'
+      distance: '2'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2013_05_02, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag TOR_Proxy, updated_at
+        2022_03_15
+      msg: '"ET INFO Tor2Web .onion Proxy Service SSL Cert (1)"'
+      reference: url,uscyberlabs.com/blog/2013/04/30/tor-exploit-pak/
+      rev: '7'
+      sid: '2016806'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

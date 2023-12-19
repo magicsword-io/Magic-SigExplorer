@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/counter/mac_proc.php?cid="'
+      - value: '"&mid="'
+      - value: '"User-Agent|3A| internet|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2012_07_04, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Numnet.Downloader CnC Checkin 1"'
+      reference: md5,fbc732c7cd1bbd84956b1e76b53384da
+      rev: '1'
+      sid: '2015020'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

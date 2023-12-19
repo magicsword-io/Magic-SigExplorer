@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/.bash_history"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP .bash_history access"'
+      reference: url,attack.mitre.org/techniques/T1139
+      rev: '15'
+      service: http
+      sid: '1434'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

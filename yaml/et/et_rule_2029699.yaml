@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"plugin|7c 7c|"'
+      - value: '"|7c 7c|"'
+      - value: '!"}"'
+      distance: '0'
+      flow: established,from_server
+      isdataat: 1000,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_23, deployment Perimeter, former_category
+        MALWARE, malware_family ModiRAT, signature_severity Major, updated_at 2021_04_27
+      msg: '"ET TROJAN MSIL/Modi RAT CnC Command Inbound (plugin)"'
+      reference: md5,ca075cb808eb6f69ab5ea82d7acb3f39
+      rev: '2'
+      sid: '2029699'
+      special_options:
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

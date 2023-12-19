@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Rostpay Downloader|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_16, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Rostpay Downloader User-Agent"'
+      reference: md5,6887e8e2fb391a1ca84f192efd5c8331
+      rev: '2'
+      sid: '2025697'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

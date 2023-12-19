@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?"'
+      - value: '"Cache=fail"'
+      - value: '"Sand="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_13, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_04_13
+      msg: '"ET TROJAN VBS/Agent.PUK Data Exfiltration Request M2"'
+      reference: md5,e49e41a810730f4bf3d43178e4c84ee5
+      rev: '1'
+      sid: '2035947'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

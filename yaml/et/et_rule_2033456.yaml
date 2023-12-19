@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '100'
+        value: '"<office|3a|document"'
+      - value: '"<office|3a|"'
+      - value: '"<script|3a|"'
+      - value: '"|2f|pydoc.py|24|tempfilepager"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2021_07_27, cve CVE_2018_16858, updated_at 2021_07_27
+      msg: '"ET EXPLOIT LibreOffice pydoc RCE Inbound (CVE-2018-16858)"'
+      reference: cve,2018-16858
+      rev: '1'
+      sid: '2033456'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

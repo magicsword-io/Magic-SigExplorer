@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|monerohash|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_10_27, deployment Perimeter,
+        former_category COINMINER, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_10_27, reviewed_at 2023_10_27
+      msg: '"ET TROJAN Observed DNS Query to Monero Miner Related Domain (monerohash
+        .com)"'
+      reference: url,asec.ahnlab.com/en/54647/
+      rev: '1'
+      sid: '2048922'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

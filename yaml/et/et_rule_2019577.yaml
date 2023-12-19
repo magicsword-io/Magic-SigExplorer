@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|testservice24|03|net|00|"'
+      distance: '0'
+      metadata: created_at 2014_10_29, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN Sofacy DNS Lookup testservice24.net"'
+      reference: url,fireeye.com/resources/pdfs/apt28.pdf
+      rev: '3'
+      sid: '2019577'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

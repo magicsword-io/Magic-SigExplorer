@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/mvn/FedEx/fdx.php"'
+      - depth: '7'
+        value: '"passwd="'
+      - value: '"&login="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_21, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_21
+      msg: '"ET CURRENT_EVENTS Successful FedEx Phish 2022-07-20"'
+      reference: md5,43b1f3cf17ee1c81aed0496754e488dd
+      rev: '1'
+      sid: '2037805'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      urilen: '18'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

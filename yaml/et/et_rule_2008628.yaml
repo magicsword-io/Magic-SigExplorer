@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/ServiceDefinition"'
+      - value: '"User-Agent|3A| Python-urllib/"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_17
+      msg: '"ET SCAN WSFuzzer Web Application Fuzzing"'
+      reference: url,doc.emergingthreats.net/2008628
+      rev: '7'
+      sid: '2008628'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

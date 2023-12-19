@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/feed?req=http",fast_pattern,nocase'
+      - value: '"|3B| MSIE "'
+      - value: '!"|0D 0A|Accept-Language:"'
+      - value: '!"|0D 0A|Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Medfos Trojan variant outbound connection"'
+      pcre: '"/^Host\x3a\x20\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\r?\n/ims"'
+      reference: url,www.virustotal.com/en/file/5bad5a2e4497f866291813aed264b5dc3c9fad4e56796306842c7b50b553ae11/analysis/
+      rev: '3'
+      service: http
+      sid: '26613'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

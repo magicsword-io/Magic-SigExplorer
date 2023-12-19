@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"v="'
+      - value: '"|26|u=",within 3,distance 3'
+      - value: '"|26|c=",distance 0'
+      - value: '"|26|s={",distance 0'
+      - value: '"}|26|w=",within 4,distance 36'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Napolar variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/463d39dcbf19b5c4c9e314e5ce77bf8a51848b8c7d64e4f0a6656b9d28941e2e/analysis/
+      rev: '4'
+      service: http
+      sid: '28079'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

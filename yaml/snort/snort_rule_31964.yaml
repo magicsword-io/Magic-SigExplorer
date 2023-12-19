@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/notify.php",fast_pattern,nocase'
+      - value: '"Accept: text/html, */*|0D 0A|Accept-Encoding: identity|0D 0A|User-Agent:
+          "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banker variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/bf40d710dda1a3ada127d68b34b837eca03a28699cd858cda7d4a3e36690628a/analysis/
+      rev: '2'
+      service: http
+      sid: '31964'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

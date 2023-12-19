@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/default.aspx?ver="'
+      - value: '"&uid=",distance 0'
+      - value: '"|3B 20|MRA|20|5.10|20|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Buzus variant outbound connection"'
+      pcre: '"/\x26uid\x3d[a-f0-9]{16}($|\x26)/"'
+      rev: '4'
+      service: http
+      sid: '25271'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

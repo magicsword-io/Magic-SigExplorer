@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Useragents",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string - X-Mas"'
+      reference: url,virustotal.com/en/file/83a2b429b969fc5cd38b6c5072391c3513b3b914f54ea80e245b243dbd5377be/analysis/1484847306/
+      rev: '3'
+      service: http
+      sid: '41441'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

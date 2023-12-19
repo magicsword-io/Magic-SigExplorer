@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"RNFR ",fast_pattern,nocase'
+      - value: '" ././"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP RNFR ././ attempt"'
+      reference: cve,1999-0081
+      rev: '14'
+      service: ftp
+      sid: '1622'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

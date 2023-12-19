@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"403"'
+      - value: '"Forbidden|3A|"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS Unauthorized IP Access Attempt"'
+      rev: '15'
+      service: http
+      sid: '1045'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

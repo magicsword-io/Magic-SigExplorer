@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '"CharSet|3a 20|UTF-8|0d 0a|"'
+      - depth: '3'
+        value: '"vl="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, tag TA450,
+        updated_at 2021_11_02
+      msg: '"ET TROJAN TA450 Nagual CnC Activity"'
+      pcre: '"/^vl=[0-9D]+$/P"'
+      reference: md5,b0ab12a5a4c232c902cdeba421872c37
+      rev: '2'
+      sid: '2034325'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_client_body
+      urilen: <50
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

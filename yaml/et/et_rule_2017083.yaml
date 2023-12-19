@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GOD Hacker"'
+      flow: established,to_client
+      metadata: created_at 2013_07_02, updated_at 2013_07_02
+      msg: '"ET WEB_SERVER WebShell - GODSpy - GOD Hacker"'
+      rev: '1'
+      sid: '2017083'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $FTP_PORTS
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"PASS joxu06wj/|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP QTS hard coded credential access attempt"'
+      reference: cve,2015-7261
+      rev: '3'
+      service: ftp
+      sid: '46335'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

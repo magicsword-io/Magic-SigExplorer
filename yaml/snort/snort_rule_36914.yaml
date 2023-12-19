@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wp-admin/"'
+      - value: '".exe|20|HTTP/1.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Potential hostile executable served from compromised or malicious
+        WordPress site"'
+      pcre: '"/\.exe$/"'
+      rev: '2'
+      service: http
+      sid: '36914'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

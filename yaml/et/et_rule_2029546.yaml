@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '53'
+        value: '"/images/pixel.gif?action=install&point=start&version="'
+      - value: '"&lngid="'
+      - value: '"&cid="'
+      - value: '"&isn="'
+      - value: '"&kt="'
+      - value: '"&lt=0"'
+      distance: '0'
+      fast_pattern: 18,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_27, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Minor, updated_at 2020_02_27
+      msg: '"ET MALWARE Win32/YTDDownloader.F Variant CnC Activity"'
+      pcre: '"/&lt=0$/U"'
+      reference: md5,5e438deb5e2dd34dcf6e96c8c97f8981
+      rev: '2'
+      sid: '2029546'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

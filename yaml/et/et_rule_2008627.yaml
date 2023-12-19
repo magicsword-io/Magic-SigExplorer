@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"/etc/passwd?format="'
+      - value: '"><script>alert(''xss'')"'
+      - value: '"traversal="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET SCAN Httprecon Web Server Fingerprint Scan"'
+      reference: url,doc.emergingthreats.net/2008627
+      rev: '8'
+      sid: '2008627'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

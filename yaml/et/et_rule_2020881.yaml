@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Sendori-Client"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: created_at 2015_04_09, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE PUP Win32/AdWare.Sendori User-Agent"'
+      reference: md5,aee8ddf3b36d60d33c571ee798b6bad6
+      rev: '2'
+      sid: '2020881'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

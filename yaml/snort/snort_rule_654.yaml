@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rcpt to|3A|",nocase'
+      flow: to_server,established
+      isdataat: 256,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-MAIL RCPT TO overflow"'
+      pcre: '"/^RCPT TO\x3a\s*\x3c?[^\n\x3e]{256}/im"'
+      reference: cve,2010-2580
+      rev: '29'
+      service: smtp
+      sid: '654'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

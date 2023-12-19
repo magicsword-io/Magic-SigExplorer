@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 A2 30 81 9F 30 0D 06 09 2A 86 48 86 F7 0D 01 01 01 05 00 03
+          81 8D 00 30 81 89 02 81 81 00|",depth 32'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dunihi outbound connection"'
+      reference: url,www.virustotal.com/en/file/be442a5f8be3bf720236f71a613a534b8aa82b16b0daf8ff84a59bcb92e19e7d/analysis/
+      rev: '2'
+      sid: '46827'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".github.io/PHP-Backdoor/"'
+      - value: '"<h3><center>Linux|20|"'
+      - value: '"<input type=|22|submit|22 20|value=|22|Upload|22 20|/></form>"'
+      - value: '"<option value=|22|delete|22|>Delete</option><option value=|22|rename|22|>Rename</option></select><input
+          type=|22|hidden|22 20|name=|22|type|22 20|value=|22|dir|22|><input type=|22|hidden|22
+          20|name=|22|name|22 20|value=|22|chase|22|>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_09_28, deployment Perimeter, signature_severity Major, updated_at
+        2020_09_28
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2030911'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

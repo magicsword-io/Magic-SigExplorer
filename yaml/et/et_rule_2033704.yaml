@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"/user/get/"'
+      - value: '"User-Agent|3a 20|Microsoft BITS/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_10, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_08_10
+      msg: '"ET TROJAN Suspected Malicious VBS Script Activity"'
+      pcre: '"/^Host\x3a\x20\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/Hm"'
+      reference: url,blog.group-ib.com/prometheus-tds
+      rev: '2'
+      sid: '2033704'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

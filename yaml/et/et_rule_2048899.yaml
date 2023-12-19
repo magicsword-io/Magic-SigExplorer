@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|20|NT|20|6|2e|1|3b
+          20|WOW64|3b 20|rv|3a|68|2e|0|29 09 09 09 20 20 20 20|Gecko|2f|20100101|20|Firefox|2f|68|2e|0|0d
+          0a|"'
+      fast_pattern: 68,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_25, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family Volt_Typhoon, confidence Medium, signature_severity
+        Major, updated_at 2023_10_25, reviewed_at 2023_10_25
+      msg: '"ET TROJAN Volt Typhoon User-Agent"'
+      reference: url,media.defense.gov/2023/May/24/2003229517/-1/-1/0/CSA_PRC_State_Sponsored_Cyber_Living_off_the_Land_v1.1.PDF
+      rev: '1'
+      sid: '2048899'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

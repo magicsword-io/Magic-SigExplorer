@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Zimbra Web Client Sign In</title>"'
+      - value: '"<form method|3d 22|post|22|"'
+      - value: '"name|3d 22|loginForm|22|"'
+      - value: '"action|3d 22|mll.php|22|"'
+      - value: '"accept-charset|3d 22|UTF-8|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2021_08_09, former_category PHISHING, updated_at 2021_08_09
+      msg: '"ET CURRENT_EVENTS Observed Zimbra Phishing Landing Page 2021-08-09"'
+      reference: url,app.any.run/tasks/bda22930-0bfb-4ccd-b5c4-26f526b8cba7
+      rev: '1'
+      sid: '2033697'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

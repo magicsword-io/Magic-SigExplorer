@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<html><body><applet|20|code=",nocase'
+      - value: '"|20|archive=",distance 0,nocase'
+      - value: '"display|3A|none|3B|",distance 0,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"EXPLOIT-KIT Blackhole exploit kit JavaScript carat string splitting with
+        hostile applet"'
+      pcre: '"/([@\x2da-z0-9]+?\x5e){10}/ims"'
+      reference: url,community.websense.com/blogs/securitylabs/pages/black-hole-exploit-kit.aspx
+      rev: '8'
+      service: http
+      sid: '21438'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

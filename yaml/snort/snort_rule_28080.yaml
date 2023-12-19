@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe&h=",fast_pattern,nocase'
+      - value: '"p=",depth 2'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Napolar data theft"'
+      reference: url,www.virustotal.com/en/file/12781be5908ecc3dbf4a459e4cbc7bedb654b50236f7a961e85f3af5e2275ddf/analysis/
+      rev: '3'
+      service: http
+      sid: '28080'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/tor/server/"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_01
+      msg: '"ET P2P Tor Get Server Request"'
+      reference: url,doc.emergingthreats.net/2008113
+      rev: '5'
+      sid: '2008113'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

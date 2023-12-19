@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Disposition|3a 20|form-data|3b| name=|22|upload|22 3b| filename=|22|temp.gif|22
+          0d 0a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 48,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_15, deployment Perimeter, former_category
+        MALWARE, malware_family JEUSD, signature_severity Major, tag Lazarus, tag
+        c2, updated_at 2020_08_25, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Lazarus Downloader (JEUSD) CnC Beacon"'
+      reference: url,us-cert.cisa.gov/ncas/analysis-reports/ar21-048a
+      rev: '2'
+      sid: '2025991'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

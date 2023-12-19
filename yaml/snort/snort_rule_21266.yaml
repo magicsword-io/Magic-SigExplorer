@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"User|2D|Agent|3A 20|Morfeus|20|Fucking|20|Scanner",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string Morfeus Scanner"'
+      rev: '5'
+      service: http
+      sid: '21266'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

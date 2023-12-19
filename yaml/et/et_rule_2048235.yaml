@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/s?pa="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_25, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category MALWARE, malware_family OwlProxy,
+        performance_impact Low, confidence Medium, signature_severity Major, updated_at
+        2023_09_25, reviewed_at 2023_09_25
+      msg: '"ET TROJAN Possible OwlProxy activity M1"'
+      reference: url,www.telsy.com/microsoft-exchange-servers-backdoored-with-owlproxy-fuscom-dll
+      rev: '1'
+      sid: '2048235'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

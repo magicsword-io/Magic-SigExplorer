@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".aspx?id="'
+      - value: '"&macaddress="'
+      - value: '"&pcname="'
+      - value: '"&username="'
+      - value: '"&osversion="'
+      - value: '"&versaoatual="'
+      - value: '"&winkey="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_12_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_14,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/TRCrypt.ULPM Downloader CnC Beacon"'
+      reference: md5,3b4f77eefd208f699e6a540878e753a8
+      rev: '1'
+      sid: '2019947'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

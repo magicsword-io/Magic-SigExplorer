@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?hwid="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_11_23, former_category MALWARE, updated_at 2020_10_05
+      msg: '"ET TROJAN MegalodonHTTP/LuciferHTTP Client Action"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\n\r?$/H"'
+      reference: md5,d543973bd33d45d515e8dfc251411c4b
+      rev: '3'
+      sid: '2022127'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

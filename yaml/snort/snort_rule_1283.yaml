@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/exchange/LogonFrm.asp?",fast_pattern,nocase'
+      - value: '"mailbox=",nocase'
+      - value: '"%%%"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS Microsoft Office Outlook web dos"'
+      reference: bugtraq,3223
+      rev: '21'
+      service: http
+      sid: '1283'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

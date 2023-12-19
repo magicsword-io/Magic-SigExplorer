@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"post.php?filename="'
+      - value: '"&folder="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_06_16, former_category MALWARE, updated_at 2020_04_30
+      msg: '"ET TROJAN Hangover related campaign Checkin"'
+      pcre: '"/\/\/?$/U"'
+      reference: url,bluecoat.com/security-blog/2014-06-10/snake-grass-python-based-malware-used-targeted-attacks
+      rev: '1'
+      sid: '2018566'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

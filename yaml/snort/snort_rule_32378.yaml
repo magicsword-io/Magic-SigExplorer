@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".bmp",fast_pattern,nocase'
+      - value: '"Content-Disposition: attachment|3B|"'
+      - value: '"filename=",nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY bmp file attachment detected"'
+      pcre: '"/filename=[^\n]*\x2ebmp/i"'
+      reference: url,en.wikipedia.org/wiki/BMP_file_format
+      rev: '12'
+      service: smtp
+      sid: '32378'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

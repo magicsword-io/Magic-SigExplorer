@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '12345'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"TLPU"'
+      dsize: '>369'
+      metadata: attack_target Server, created_at 2021_08_03, cve CVE_2021_37164, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_05_03
+      msg: '"ET EXPLOIT [PwnedPiper] Exploitation Attempt - Large Malformed Translogic
+        Packet (CVE-2021-37164)"'
+      reference: url,www.armis.com/pwnedPiper
+      rev: '1'
+      sid: '2033662'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: any
+      port: any

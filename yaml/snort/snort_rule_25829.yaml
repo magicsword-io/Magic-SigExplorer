@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '18'
+      classtype: trojan-activity
+      contents:
+      - value: '"/listas/out/si.php",fast_pattern,nocase'
+      - value: '"HTTP/1.0|0D 0A|",depth 10,offset 24'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Trojan Banker FTC variant outbound connection"'
+      reference: url,www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~Banker-FTC/detailed-analysis.aspx
+      rev: '3'
+      service: http
+      sid: '25829'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

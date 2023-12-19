@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"PUT /"'
+      - value: '"|40|"'
+      - value: '"_report.wsr HTTP/"'
+      - value: '"|0d 0a|Host|3a 20|"'
+      - value: '"|0d 0a|Content-Length|3a 20|"'
+      - value: '"|0d 0a|Expect|3a 20|"'
+      - value: '!"|0d 0a|Referer|3a 20|"'
+      - value: '!"|0d 0a|User-Agent|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_25, deployment Perimeter, former_category
+        MALWARE, malware_family Gurcu, malware_family WhiteSnake, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_05_25
+      msg: '"ET TROJAN [ANY.RUN] WhiteSnake Stealer Reporting Request (Outbound)"'
+      reference: md5,aeccba3e22db4978ae4e754ce940568c
+      rev: '1'
+      sid: '2045868'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

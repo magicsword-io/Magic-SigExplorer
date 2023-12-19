@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|oracle|0a|zzhreceive|03|top|00|"'
+      distance: '1'
+      metadata: created_at 2022_06_03, performance_impact Significant, signature_severity
+        Major, updated_at 2022_06_03
+      msg: '"ET TROJAN WatchDog Coinminer Payload Delivery Domain in DNS Lookup (oracle
+        .zzhreceive .top)"'
+      reference: url,www.cadosecurity.com/tales-from-the-honeypot-watchdog-evolves-with-a-new-multi-stage-cryptojacking-attack/
+      rev: '1'
+      sid: '2036854'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

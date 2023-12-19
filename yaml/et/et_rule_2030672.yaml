@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,2525,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a 0d 0a|jui=0D=0A=0D=0Atre|3a 20|"'
+      - value: '"|0d 0a 0d 0a 2e 0d 0a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_11, deployment Perimeter, former_category
+        MALWARE, malware_family JobCrypter, signature_severity Major, tag Ransomware,
+        updated_at 2020_08_11, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN MSIL/JobCrypter Ransomware Checkin via SMTP"'
+      reference: md5,3bb560cb690a91134508910178928973
+      rev: '2'
+      sid: '2030672'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

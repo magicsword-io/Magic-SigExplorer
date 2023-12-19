@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '34012'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|28 00 01 00 04 00 00 00 00 00 00 00|",depth 12'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR Remote PC Access connection"'
+      reference: nessus,11673
+      rev: '8'
+      sid: '2124'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

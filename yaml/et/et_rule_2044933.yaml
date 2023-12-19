@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"class|3d 22|MuiOutlinedInput|2d|notchedOutline"'
+      - value: '"data|2d|testid|3d 22|AccountCircleTwoToneIcon|22 3e|"'
+      - value: '"|3c|b|3e 5b 3c 2f|b|3e 20|welcome|20|back|20 3c|b|3e 5d 3c 2f|b|3e|"'
+      - value: '"|3c|span|3e|Username|3c 2f|span|3e|"'
+      fast_pattern: 10,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_13, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Raccoon_Stealer,
+        confidence High, signature_severity Major, updated_at 2023_04_13
+      msg: '"ET TROJAN RaccoonStealer Admin Console Inbound"'
+      reference: url,twitter.com/TLP_R3D/status/1646246721293520898
+      rev: '2'
+      sid: '2044933'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

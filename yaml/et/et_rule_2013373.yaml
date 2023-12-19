@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/oms.php"'
+      - depth: '5'
+        value: '"data="'
+      flow: established,to_server
+      metadata: created_at 2011_08_05, updated_at 2020_04_21
+      msg: '"ET TROJAN FakeAV oms.php Data Post"'
+      rev: '4'
+      sid: '2013373'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

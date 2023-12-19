@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/movie.swf"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_07_15, former_category CURRENT_EVENTS, updated_at
+        2020_10_01
+      msg: '"ET CURRENT_EVENTS Suspicious SWF filename movie(dot)swf in doc root"'
+      rev: '2'
+      sid: '2021414'
+      special_options:
+      - http_uri
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

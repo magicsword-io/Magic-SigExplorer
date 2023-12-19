@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id="'
+      - value: '"&info="'
+      - value: '"User-Agent|3a 20|REBOL"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_10, deployment Perimeter,
+        former_category MALWARE, malware_family MirrorBlast, performance_impact Low,
+        signature_severity Major, updated_at 2021_09_10
+      msg: '"ET TROJAN MirrorBlast Checkin"'
+      reference: md5,3a8a6702523f9f53866fb2682fdaaf66
+      rev: '1'
+      sid: '2034012'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

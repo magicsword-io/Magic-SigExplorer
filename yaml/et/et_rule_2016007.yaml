@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/demos/time-tracker/tests/functional.php?"'
+      - value: '"sr="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_12_08, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2022_05_03
+      msg: '"ET WEB_SPECIFIC_APPS PRADO PHP Framework functional.php Local File Inclusion
+        Vulnerability"'
+      reference: url,packetstormsecurity.org/files/118348/PRADO-PHP-Framework-3.2.0-File-Read.html
+      rev: '3'
+      sid: '2016007'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[5060,5061]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_09_27, cve CVE_2014_6271, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible CVE-2014-6271 Attempt Against SIP Proxy"'
+      reference: url,github.com/zaf/sipshock
+      rev: '2'
+      sid: '2019290'
+    protocol: tcp
+    source:
+      network: any
+      port: any

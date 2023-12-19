@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|"'
+      - value: '"|6e 71 71 66 34 3a 33 35 25 2d 46 75 75 71 6a 32 6e 55 6d 74 73 6a
+          3c 48 37 34 36 37 35 37 33 39 3b 3b 40 25 5a 40 25 48 55 5a 25 71 6e 70
+          6a 25 52 66 68 25 54 58 25 5d 40 25 6a 73 2e 25 46 75 75 71 6a 5c 6a 67
+          50 6e 79 34 39 37 35 30 25 2d 50 4d 59 52 51 31 25 71 6e 70 6a 25 4c 6a
+          68 70 74 2e 25 5b 6a 77 78 6e 74 73 34 38 33 35 25 52 74 67 6e 71 6a 34
+          36 46 3a 39 38 25 58 66 6b 66 77 6e 34 39 36 3e 33 38|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_04_30, former_category MALWARE, malware_family Buer,
+        updated_at 2021_04_30
+      msg: '"ET MALWARE Buer - DomainInfo User-Agent"'
+      reference: md5,0731679c5f99e8ee65d8b29a3cabfc6b
+      rev: '2'
+      sid: '2032892'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

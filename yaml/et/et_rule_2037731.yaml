@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '7'
+        value: '"/c?uid="'
+      - value: '"filename|3d 22|Screenshot.bmp|22|"'
+      - value: '"multipart/form-data|3b 20|boundary|3d|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_08, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_07_08
+      msg: '"ET TROJAN MSIL/Spy.Agent.DYS Exfil"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+multipart\/form-data\x3b\x20boundary\x3d/Hmi"'
+      reference: md5,a101aebd7e97dba97311cde683a64a32
+      rev: '1'
+      sid: '2037731'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

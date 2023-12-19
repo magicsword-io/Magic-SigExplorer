@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PUT"'
+      - value: '"/upload/"'
+      - value: '"User-Agent|3a 20|Go-http-client"'
+      - value: '"Accept|3a 20|application/json"'
+      - value: '"Accept-Encoding|3a 20|gzip"'
+      - value: '"Content-Type|3a 20|application/x-zip-compressed"'
+      - value: '"|0d 0a 0d 0a|PK"'
+      - value: '"Screenshot-"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_25, deployment Perimeter, former_category
+        MALWARE, malware_family Bandit_Stealer, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_25
+      msg: '"ET TROJAN Bandit Stealer Data Exfiltration Attempt"'
+      reference: url,twitter.com/FalconFeedsio/status/1649641466300334081
+      rev: '1'
+      sid: '2045866'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      within: '70'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

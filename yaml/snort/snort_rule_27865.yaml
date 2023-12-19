@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>32'
+      classtype: trojan-activity
+      contents:
+      - value: '".php",fast_pattern,nocase'
+      - value: '"GET"'
+      - value: '!"PacketShaper"'
+      - value: '!"siteadvisor.com"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Blackholev2/Darkleech exploit kit landing page request"'
+      pcre: '"/^\/[a-f0-9]{32}\/[a-z]{1,15}-[a-z]{1,15}\.php/"'
+      reference: cve,2012-4681
+      rev: '7'
+      service: http
+      sid: '27865'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

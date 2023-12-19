@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '47'
+        value: '"POST|20|/modules/monitor/interfaces/interface.php|20|"'
+      fast_pattern: 27,20
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_10_28, cve CVE_2022_22244, deployment
+        Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET TROJAN Potential Juniper XPATH Injection Attempt (CVE-2022-22244)"'
+      reference: cve,2022-22244
+      rev: '1'
+      sid: '2039592'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

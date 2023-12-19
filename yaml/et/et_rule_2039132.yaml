@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"mail.php"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|email|22|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|password|22|"'
+      - value: '"Content|2d|Type|3a 20|multipart|2f|form|2d|data|3b 20|boundary|3d
+          2d 2d 2d 2d|WebKitFormBoundary"'
+      fast_pattern: 26,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_07, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_10_07
+      msg: '"ET CURRENT_EVENTS Successful Outlook Phish 2022-10-06"'
+      reference: md5,fdc75a84b6a60e2a7e22269308e06fce
+      rev: '1'
+      sid: '2039132'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

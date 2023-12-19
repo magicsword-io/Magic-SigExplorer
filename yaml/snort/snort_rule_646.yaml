@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|A6 1C C0 13 A6 1C C0 13 A6 1C C0 13 A6 1C C0 13|",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE sparc NOOP"'
+      rev: '11'
+      sid: '646'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"showip."'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category POLICY, updated_at 2022_12_09
+      msg: '"ET POLICY IP Check Domain (showip in HTTP Host)"'
+      pcre: '"/^Host\x3a[^\r\n]+showip\.[a-z]+(?:\x3a\d{1,5})?\r?$/Hmi"'
+      reference: url,doc.emergingthreats.net/2008987
+      rev: '6'
+      sid: '2008987'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

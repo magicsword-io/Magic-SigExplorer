@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '1'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET / HTTP/1.1|0D 0A|User-Agent: Mozilla/4.0|0D 0A|Host: checkip.dyndns.org|0D
+          0A 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!69'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.WEC variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/164c792247b2822ab1dce8271a9498d3c9172ff21d36feccf83265ded1be8d0b/analysis/
+      rev: '4'
+      service: http
+      sid: '29882'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

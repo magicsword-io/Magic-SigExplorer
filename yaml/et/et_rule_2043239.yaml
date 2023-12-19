@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|Windows|20|Installer|0d 0a|"'
+      fast_pattern: 11,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_09, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_02_07,
+        reviewed_at 2023_08_29
+      msg: '"ET TROJAN WasabiSeed Backdoor Payload Request (GET)"'
+      pcre: '"/^\/-?[0-9]{8,10}$/U"'
+      reference: url,twitter.com/Unit42_Intel/status/1608567622856998912
+      rev: '2'
+      sid: '2043239'
+      special_options:
+      - http_method
+      - http_header
+      urilen: <13
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

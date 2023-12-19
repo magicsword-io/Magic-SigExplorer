@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 08|"'
+      - value: '"|0a|California"'
+      - value: '"|55 04 07|"'
+      - value: '"|07|SneHose"'
+      - value: '"|55 04 0a|"'
+      - value: '"|06|Googls"'
+      - value: '"|55 04 0b|"'
+      - value: '"|02|IT"'
+      - value: '"|55 04 03|"'
+      - value: '"|03|fff"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_28, deployment Perimeter, former_category
+        MALWARE, malware_family Emotet, signature_severity Major, tag Emotet, updated_at
+        2022_02_03
+      msg: '"ET TROJAN Emotet Certificate Observed M2"'
+      reference: md5,8430d8cf1b1edd6c49092a7dd6412a8a
+      rev: '3'
+      sid: '2035063'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

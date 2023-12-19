@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '23'
+      classtype: attempted-recon
+      contents:
+      - value: '"/get_getnetworkconf.cgi",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Orange LiveBox unauthorized credentials access attempt"'
+      reference: url,badpackets.net/over-19000-orange-livebox-adsl-modems-are-leaking-their-wifi-credentials/
+      rev: '1'
+      service: http
+      sid: '49418'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

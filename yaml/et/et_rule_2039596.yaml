@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '40'
+        value: '"PUT|20|/api/2.0/services/usermgmt/password/"'
+      flow: established,to_server
+      metadata: affected_product VMware, attack_target Server, created_at 2022_10_28,
+        cve CVE_2021_39144, deployment Perimeter, deployment SSLDecrypt, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET EXPLOIT Possible VMWare NSX Manager Remote Code Execution Exploit
+        Attempt (CVE-2021-39144)"'
+      reference: cve,2021-39144
+      rev: '3'
+      sid: '2039596'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

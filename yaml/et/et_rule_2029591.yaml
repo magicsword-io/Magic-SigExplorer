@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '50'
+        value: '"|28|function"'
+      - value: '"g=|22|"'
+      - value: '"=|5b 22|mid=|22 2c 22|wid="'
+      - value: '"|22|sid=|22 2c 22|tid="'
+      - value: '"|22|rid="'
+      - value: '"monetizationsConfig|3a|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, created_at 2020_03_09, former_category
+        MALWARE, malware_family LNKR, malware_family MonetizeUs, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_19
+      msg: '"ET TROJAN Inbound MonetizeUs/LNKR Struct"'
+      pcre: '"/^[a-f0-9]{18}\x22/R"'
+      reference: md5,0866447a440f1e01a391ccb1c0ab150d
+      rev: '2'
+      sid: '2029591'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      threshold: type limit, count 1, seconds 120, track by_src
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

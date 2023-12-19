@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Content-Disposition|3A|",nocase'
+      - value: '"Form-data|3B|",within 20,nocase'
+      - value: '"|D0 CF 11 E0 A1 B1 1A E1|",within 200,fast_pattern'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy connectivity-ips alert,policy max-detect-ips
+        alert,policy security-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY OLE Document upload detected"'
+      rev: '10'
+      service: http
+      sid: '36058'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

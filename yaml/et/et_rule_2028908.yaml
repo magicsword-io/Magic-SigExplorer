@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|40|"'
+      - value: '"|40|ID|3a 40|"'
+      - value: '"|40 20 2d 3e 20|"'
+      distance: '0'
+      dsize: <400
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_25, deployment Perimeter, former_category
+        MALWARE, malware_family Sakabota, malware_family Diezen, performance_impact
+        Low, signature_severity Major, updated_at 2019_10_25
+      msg: '"ET TROJAN MSIL/Diezen CnC Checkin M1"'
+      reference: url,threatrecon.nshc.net/2019/10/24/sectord01-when-anime-goes-cyber/
+      rev: '2'
+      sid: '2028908'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

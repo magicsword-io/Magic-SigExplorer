@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PK"'
+      - value: '".pif"'
+      flow: established,from_server
+      metadata: created_at 2014_02_13, former_category CURRENT_EVENTS, updated_at
+        2014_02_13
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS .PIF File Inside of Zip"'
+      reference: md5,2e760350a5c692bd94c7c6d1233af72c
+      rev: '5'
+      sid: '2018125'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

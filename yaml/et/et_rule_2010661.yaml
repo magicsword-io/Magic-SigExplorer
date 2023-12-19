@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/e-pay/src/a_affil.php?"'
+      - value: '"_REQUEST[read]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS epay a_affil.php _REQUEST Remote File Inclusion
+        Attempt"'
+      pcre: '"/_REQUEST\[read\]\s*=\s*(https?|ftps?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2010661
+      rev: '3'
+      sid: '2010661'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

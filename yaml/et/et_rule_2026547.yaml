@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '12'
+        value: '"/api/hazard/"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"compatible|3b 20|Googlebot|2f|"'
+      - value: '"|0d 0a|"'
+      - value: '"Content-Type|3a 20|multipart|2f|form-data|3b 20|boundary|3d 2d 2d
+          2d 2d 2d 2d 2d|Embt-Boundary"'
+      - value: '"Accept-Encoding|3a 20|UTF8|0d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_24, deployment Perimeter, former_category
+        MALWARE, malware_family MICROPSIA, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN MICROPSIA HTTP Failover CnC Checkin"'
+      reference: url,twitter.com/ClearskySec/status/1054722167433297920
+      rev: '2'
+      sid: '2026547'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, count 1, seconds 30, track by_dst
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

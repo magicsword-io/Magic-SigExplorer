@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/instlog/?"'
+      - value: '"User-Agent|3a| Mozilla/3.0 (compatible|3b| TALWinInetHTTPClient"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_10_14
+      msg: '"ET TROJAN FraudLoad.aww HTTP CnC Post"'
+      reference: url,doc.emergingthreats.net/2008322
+      rev: '9'
+      sid: '2008322'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

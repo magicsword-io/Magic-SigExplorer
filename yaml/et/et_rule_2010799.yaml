@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"document.createEventObject"'
+      - value: '".innerHTML"'
+      - value: '"window.setInterval"'
+      - value: '"srcElement"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_07_30, cve CVE_2010_0249, deployment
+        Perimeter, former_category WEB_CLIENT, confidence Medium, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2019_09_27
+      msg: '"ET WEB_CLIENT Possible Internet Explorer srcElement Memory Corruption
+        Attempt"'
+      reference: url,doc.emergingthreats.net/2010799
+      rev: '5'
+      sid: '2010799'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| ERRN200"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE ErrorNuker FakeAV User-Agent (ERRN2004 (Windows XP))"'
+      reference: url,doc.emergingthreats.net/2009861
+      rev: '8'
+      sid: '2009861'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

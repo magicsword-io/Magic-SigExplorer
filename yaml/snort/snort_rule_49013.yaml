@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 1,=,101,2
+      classtype: attempted-recon
+      contents:
+      - value: '"UG",depth 2,offset 10'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SCADA PCOM Get UnitID ASCII reply"'
+      reference: url,unitronicsplc.com
+      rev: '2'
+      sid: '49013'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '20256'

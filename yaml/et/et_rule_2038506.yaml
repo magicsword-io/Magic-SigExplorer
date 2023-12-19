@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 12|link.storjshare.io"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_12, deployment Perimeter,
+        former_category INFO, signature_severity Major, updated_at 2022_08_12
+      msg: '"ET INFO Observed File Sharing Service Domain (link .storjshare .io in
+        TLS SNI)"'
+      rev: '1'
+      sid: '2038506'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

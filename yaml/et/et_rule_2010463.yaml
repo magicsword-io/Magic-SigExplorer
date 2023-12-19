@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-user
+      contents:
+      - value: '"FeeLCoMzFeeLCoMz"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET WEB_SERVER RFI Scanner Success (Fx29ID)"'
+      reference: url,opinion.josepino.com/php/howto_website_hack1
+      rev: '7'
+      sid: '2010463'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

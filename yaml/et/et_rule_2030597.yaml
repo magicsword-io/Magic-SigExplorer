@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/kerbynet?"'
+      - value: '"Action="'
+      - value: '"Section="'
+      flow: to_server,established
+      metadata: attack_target Networking_Equipment, created_at 2020_07_24, cve CVE_2019_12725,
+        deployment Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_19
+      msg: '"ET EXPLOIT [401TRG] ZeroShell RCE Inbound (CVE-2019-12725)"'
+      reference: url,isc.sans.edu/forums/diary/Scanning+Activity+for+ZeroShell+Unauthenticated+Access/26368/
+      rev: '2'
+      sid: '2030597'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

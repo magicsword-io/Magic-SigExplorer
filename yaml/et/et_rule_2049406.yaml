@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"jsp File Browser version"'
+      - value: '"www.vonloesch.de"'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_30, deployment Perimeter,
+        deployment SSLDecrypt, former_category WEB_SERVER, performance_impact Low,
+        confidence High, signature_severity Major, tag WebShell, updated_at 2023_11_30,
+        mitre_tactic_id TA0003, mitre_tactic_name Persistence, mitre_technique_id
+        T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET WEB_SERVER vonloesch JSP File Browser"'
+      reference: md5,1a02e6179cfc8118c1864890ea0e5e77
+      rev: '1'
+      sid: '2049406'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '120'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

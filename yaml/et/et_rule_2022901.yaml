@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"php"'
+      - value: '!"Content-Type"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie:"'
+      flow: established,to_server
+      metadata: created_at 2016_06_15, updated_at 2022_04_18
+      msg: '"ET TROJAN FOX-SRT ShimRat check-in (php)"'
+      pcre: '"/^php.{0,500}[\x80-\xff]/Ps"'
+      reference: url,blog.fox-it.com/2016/06/15/mofang-a-politically-motivated-information-stealing-adversary/
+      rev: '2'
+      sid: '2022901'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

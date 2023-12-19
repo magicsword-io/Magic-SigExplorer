@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/?msg=MSG"'
+      flow: established,to_server
+      metadata: created_at 2012_12_14, updated_at 2020_05_06
+      msg: '"ET DOS LOIC GET"'
+      rev: '2'
+      sid: '2016031'
+      special_options:
+      - http_method
+      - http_uri
+      threshold: type limit, track by_src, count 1, seconds 300
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

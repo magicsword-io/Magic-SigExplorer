@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Chrome Edge 97.0.5|0d 0a|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_10, deployment Perimeter,
+        former_category USER_AGENTS, malware_family DonotGroup, signature_severity
+        Major, updated_at 2023_02_10
+      msg: '"ET USER_AGENTS Observed DonotGroup Related UA (Chrome Edge)"'
+      reference: url,twitter.com/StopMalvertisin/status/1624033048940642310
+      rev: '1'
+      sid: '2044168'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

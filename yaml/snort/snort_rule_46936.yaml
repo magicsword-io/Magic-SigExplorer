@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: HTTPREAD|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dropper outbound connection"'
+      reference: url,www.virustotal.com/en/file/782cc4188618cf0c4815f85ea7873a004464095f5ed459b8d1579fa27ce5810e/analysis/
+      rev: '1'
+      service: http
+      sid: '46936'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

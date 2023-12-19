@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Error</title>"'
+      - value: '"Trend Micro Phish Insight provides a phishing simulation service"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_11_15, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, signature_severity Informational,
+        updated_at 2022_11_15
+      msg: '"ET INFO Trend Micro Phishing Simulation Service"'
+      rev: '1'
+      sid: '2039782'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      threshold: type limit, count 1, seconds 600, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '3306'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|0F 00 00 00 03|show databases",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MYSQL show databases attempt"'
+      rev: '9'
+      service: mysql
+      sid: '1776'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

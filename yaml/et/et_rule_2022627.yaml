@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,>,7,1,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|03 02 01 02 02 09 00|"'
+      - value: '"|30 09 06 03 55 04 06 13 02|"'
+      - value: '!"|55 04 08|"'
+      - value: '"|55 04 07|"'
+      - value: '"|55 04 0a|"'
+      - value: '"|55 04 03|"'
+      - value: '!"|2a 86 48 86 f7 0d 01 09 01|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_and_Server, created_at 2016_03_17, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2016_11_11, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL certificate detected (Dridex)"'
+      pcre: '"/^.{2}(?:(?:\d[A-Z]?|[A-Z]\d?)[a-z]{6,20}|[A-Z]?[a-z]{3,7}\d[a-z]{3,7})\.(?:(?:\d[A-Z]?|[A-Z]\d?)[a-z]{6,20}|[A-Z]?[a-z]{3,7}\d[a-z]{3,7})\.(?!(?:com|net|org)[01])[a-z]{2,}[01]/Rs"'
+      reference: url,sslbl.abuse.ch
+      rev: '11'
+      sid: '2022627'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

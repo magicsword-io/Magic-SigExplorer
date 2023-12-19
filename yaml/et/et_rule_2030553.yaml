@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '">CPANEL CRACKER</font><font color="'
+      - value: '"color=white>--==[[Greetz to]]==--"'
+      - value: '"####### Coded By"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_07_17, deployment Perimeter, signature_severity Major, updated_at
+        2020_07_17
+      msg: '"ET WEB_CLIENT Generic Cpanel Cracker Accessed on External Compromised
+        Server"'
+      rev: '2'
+      sid: '2030553'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

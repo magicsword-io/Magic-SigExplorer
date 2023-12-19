@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '[1024:5000,49152:]'
+    details:
+      classtype: misc-activity
+      contents:
+      - offset: '3'
+        value: '"|00|"'
+      - value: '"|10 00 00 00|"'
+      - value: '"|1a 00 8e ca 40 99 2f 51 58 4c 88 a9 61 09 8d 68 96 bd|"'
+      distance: '14'
+      flow: established,to_server
+      metadata: created_at 2021_07_06, former_category POLICY, signature_severity
+        Informational, updated_at 2021_07_14
+      msg: '"ET POLICY [MS-PAR] Windows Printer Spooler Activity - RpcAsyncGetPrinterDriver"'
+      rev: '3'
+      sid: '2033256'
+      within: '18'
+    protocol: tcp
+    source:
+      network: any
+      port: any

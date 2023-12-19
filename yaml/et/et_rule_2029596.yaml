@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|02|YY"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|07|WW/O=YY"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|AU"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|0a|Some-State"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|04|City"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0c|Some Company"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2020_03_09, deployment
+        Perimeter, former_category MALWARE, malware_family Maldoc, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_04_18,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (MalDoc 2020-03-09)"'
+      reference: url,twitter.com/JAMESWT_MHT/status/1237028470565240832
+      rev: '3'
+      sid: '2029596'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

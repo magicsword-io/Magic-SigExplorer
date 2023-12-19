@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/file.php|7C|file="'
+      flow: established,to_server
+      metadata: created_at 2013_04_09, updated_at 2020_04_23
+      msg: '"ET TROJAN W32/Citadel Infection or Config URL Request"'
+      reference: url,seifreed.es/docs/Citadel%20Trojan%20Report_eng.pdf
+      rev: '1'
+      sid: '2016738'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

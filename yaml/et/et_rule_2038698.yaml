@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/photo/p/api/video.php"'
+      - value: '"filename|27 3a 20 27|"'
+      - value: '"./."'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Server, created_at 2022_08_31, cve CVE_2019_7195, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_08_31
+      msg: '"ET EXPLOIT QNAP Photo Station Path Traversal Attempt Inbound (CVE-2019-7195)"'
+      reference: cve,2019-7195
+      rev: '1'
+      sid: '2038698'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      within: '4'
+    protocol: tcp
+    source:
+      network: any
+      port: any

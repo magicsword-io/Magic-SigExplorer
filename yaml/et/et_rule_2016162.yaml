@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"BBB7AA7C-DCE4-4F85-AED3-72FE3BCA4141"'
+      - value: '".Admin_RemoveDirectory"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2013_01_05, updated_at 2013_01_05
+      msg: '"ET ACTIVEX Possible Sony PC Companion Admin_RemoveDirectory Stack-based
+        Unicode Buffer Overload SEH"'
+      reference: url,packetstormsecurity.com/files/119024/Sony-PC-Companion-2.1-Admin_RemoveDirectory-Unicode-Buffer-Overflow.html
+      rev: '2'
+      sid: '2016162'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

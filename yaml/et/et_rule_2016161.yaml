@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"A70D160E-E925-4207-803B-A0D702BEDF46"'
+      - value: '".CheckCompatibility"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2013_01_05, updated_at 2013_01_05
+      msg: '"ET ACTIVEX Possible Sony PC Companion CheckCompatibility method Stack-based
+        Unicode Buffer Overload"'
+      reference: url,packetstormsecurity.com/files/119023/Sony-PC-Companion-2.1-CheckCompatibility-Unicode-Buffer-Overflow.html
+      rev: '2'
+      sid: '2016161'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

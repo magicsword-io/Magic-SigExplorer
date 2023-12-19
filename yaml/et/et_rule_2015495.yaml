@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/include/we_modules/show.php?"'
+      - value: '"mod="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_07_20, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Web Edition mod parameter Local File Inclusion vulnerability"'
+      reference: url,packetstormsecurity.org/files/99789/Web-Edition-6.1.0.2-Local-File-Inclusion.html
+      rev: '1'
+      sid: '2015495'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cart.php?"'
+      - value: '"a="'
+      - value: '"templatefile="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2011_10_31, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS WHMCompleteSolution templatefile Parameter Local
+        File Inclusion Attempt"'
+      reference: url,dl.packetstormsecurity.net/1110-exploits/whmcompletesolution-disclose.txt
+      rev: '2'
+      sid: '2013818'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/tasks.php",fast_pattern,nocase'
+      - value: '"Content-length:"'
+      - value: '"Content-type:"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Dropper.Ch variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/3d8f05f45f8335198e5488716be2a9c5cebead7d0321bc371fa475d689ffe658/analysis/
+      rev: '3'
+      service: http
+      sid: '32670'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

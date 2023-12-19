@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|vikingsofnorth|03|top|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_02_24, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_02_24
+      msg: '"ET TROJAN MINEBRIDGE CnC Domain in DNS Lookup (vikingsofnorth .top)"'
+      reference: url,www.zscaler.com/blogs/security-research/return-minebridge-rat-new-ttps-and-social-engineering-lures
+      rev: '2'
+      sid: '2031656'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

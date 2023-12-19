@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Google Omaha|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user agent - Google Omaha - Win.Trojan.ExtenBro"'
+      reference: url,www.virustotal.com/en/file/34a3667846bbdea8dc92150e6766e3bac129a2b5fd4856c6f1512e794b90f23d/analysis/
+      rev: '3'
+      service: http
+      sid: '33649'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

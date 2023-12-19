@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/show_joined.php?"'
+      - value: '"path="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Enthusiast path parameter Remote File Inclusion"'
+      pcre: '"/path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2008833
+      rev: '4'
+      sid: '2008833'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

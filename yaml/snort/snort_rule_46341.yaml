@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"administrator/index.php",fast_pattern,nocase'
+      - value: '"option=com_joomlaupdate",nocase'
+      - value: '"task=update.install",nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Akeeba Kickstart cross site request forgery attempt"'
+      reference: cve,2014-7229
+      rev: '3'
+      service: ftp-data,http,imap,pop3
+      sid: '46341'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

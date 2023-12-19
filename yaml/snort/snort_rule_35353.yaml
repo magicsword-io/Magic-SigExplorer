@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '28'
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| MSIE 8.0)",fast_pattern,nocase'
+      - value: '"/page_",depth 6,offset 9,nocase'
+      - value: '".html",within 5,distance 8,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Elise.B variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/9a226eeae1fc51a2bc2e72b098d5654238d0cc8eae29c0cdaacb49ae9d997d04/analysis/
+      rev: '2'
+      service: http
+      sid: '35353'
+      special_options:
+      - http_header
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/modules.php?"'
+      - value: '"name=Wiki",fast_pattern,nocase'
+      - value: '"<script",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP PHP-Wiki cross site scripting attempt"'
+      reference: cve,2002-1070
+      rev: '16'
+      service: http
+      sid: '1834'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

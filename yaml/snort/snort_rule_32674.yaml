@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[8000,8080]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"(|00|",depth 2'
+      - value: '"|04 00 00 00|",within 4,distance 36'
+      flow: to_server,established
+      isdataat: '!42'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Wiper variant outbound connection"'
+      reference: url,virustotal.com/en/file/e2ecec43da974db02f624ecadc94baf1d21fd1a5c4990c15863bb9929f781a0a/analysis/
+      rev: '5'
+      sid: '32674'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

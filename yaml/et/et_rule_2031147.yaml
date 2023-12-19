@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/console/images/%252E%252E%252Fconsole.portal?_nfpb=true&_pageLabel="'
+      - value: '"com.tangosol.coherence.mvel2.sh.ShellSession("'
+      - value: '"com.tangosol.coherence.mvel2.sh.ShellSession("'
+      - value: '"java.lang.Runtime.getRuntime("'
+      - value: '".exec"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Client_Endpoint,
+        created_at 2020_10_30, cve CVE_2020_14882, deployment Perimeter, former_category
+        WEB_SPECIFIC_APPS, signature_severity Major, updated_at 2022_05_03
+      msg: '"ET WEB_SPECIFIC_APPS Oracle WebLogic RCE Shell Inbound M2 (CVE-2020-14882)"'
+      reference: cve,2020-14883
+      rev: '3'
+      sid: '2031147'
+      special_options:
+      - http_raw_uri
+      - http_raw_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      within: '75'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

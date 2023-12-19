@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".dnsip.ru|0D 0A|"'
+      flow: to_server,established
+      metadata: created_at 2016_01_20, former_category INFO, updated_at 2020_08_04
+      msg: '"ET INFO DYNAMIC_DNS HTTP Request to a *.dnsip.ru Domain"'
+      rev: '1'
+      sid: '2022378'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

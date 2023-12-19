@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1723'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01|",depth 2,offset 2'
+      - value: '"|00 01|",depth 2,offset 8'
+      flow: to_server,established,no_stream
+      metadata: ruleset community
+      msg: '"POLICY-OTHER PPTP Start Control Request attempt"'
+      rev: '8'
+      sid: '2044'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Connection|3a 20|Keep-Alive|0d 0a|Cookie|3a 20|__gads="'
+      - depth: '7'
+        value: '"__gads="'
+      - value: '"|3b 20|_gat="'
+      - value: '"|3b 20|_ga="'
+      - value: '"|3b 20|_u="'
+      - value: '"|3b 20|__io="'
+      - value: '"|3b 20|_gid="'
+      - value: '!"User-Agent"'
+      - value: '!"Accept"'
+      fast_pattern: 19,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_04_29, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family IcedID, performance_impact Moderate,
+        confidence High, signature_severity Major, updated_at 2023_07_21
+      msg: '"ET TROJAN Win32/IcedID Requesting Encoded Binary M4"'
+      pcre: '"/^Connection\x3a\x20Keep-Alive\r\nCookie\x3a\x20\r\nHost\x3a\x20[^\r\n]+\r\n\r\n$/H"'
+      reference: url,sysopfb.github.io/malware,/icedid/2020/04/28/IcedIDs-updated-photoloader.html
+      rev: '10'
+      sid: '2030053'
+      special_options:
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

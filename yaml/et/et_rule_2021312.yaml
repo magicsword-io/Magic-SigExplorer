@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,from_server
+      flowbits: isset,ET.wininet.UA
+      metadata: created_at 2015_06_19, former_category CURRENT_EVENTS, updated_at
+        2015_06_19
+      msg: '"ET CURRENT_EVENTS Likely Malicious wininet UA Downloading EXE"'
+      rev: '1'
+      sid: '2021312'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

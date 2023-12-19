@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $SSH_PORTS
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|00 01|W|00 00 00 18|",depth 7'
+      - value: '"|FF FF FF FF 00 00|",depth 14,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE ssh CRC32 overflow"'
+      reference: nessus,10607
+      rev: '14'
+      sid: '1327'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

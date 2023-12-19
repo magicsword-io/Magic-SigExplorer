@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: 64.245.58.0/23
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"E_|00 03 05|",depth 5'
+      flow: established
+      metadata: ruleset community
+      msg: '"POLICY-MULTIMEDIA audio galaxy keepalive"'
+      rev: '8'
+      sid: '1428'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

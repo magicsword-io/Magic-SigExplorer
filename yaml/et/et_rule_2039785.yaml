@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|7b 22|ok|22 3a|true|2c 22|result|22 3a 7b 22|message_id|22 3a|"'
+      - value: '"|22|is_bot|22 3a|true|2c 22|first_name|22 3a 22|Typhon|22 2c|"'
+      - value: '"|22|username|22 3a 22|TyphonSyphonBot|22 7d 2c|"'
+      - value: '"New TyphonReborn log"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_11_15, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_11_15
+      msg: '"ET TROJAN Win32/TyphonReborn Telegram CnC Checkin"'
+      reference: url,unit42.paloaltonetworks.com/typhon-reborn-stealer/
+      rev: '1'
+      sid: '2039785'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

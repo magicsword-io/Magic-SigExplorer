@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"302"'
+      - value: '" SL_"'
+      - value: '"_0000="'
+      flow: established,to_client
+      metadata: created_at 2012_04_12, former_category EXPLOIT_KIT, tag TDS, updated_at
+        2020_10_28
+      msg: '"ET CURRENT_EVENTS TDS Sutra - redirect received"'
+      rev: '2'
+      sid: '2014542'
+      special_options:
+      - http_stat_code
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

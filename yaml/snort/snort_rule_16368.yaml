@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|FF FF FF FF FF FF 00 00 FE FF FF FF FF FF FF FF FF FF 88 FF|",depth
+          20'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Hydraq variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/9051f618a5a8253a003167e65ce1311fa91a8b70d438a384be48b02e73ba855c/detection
+      rev: '8'
+      service: ssl
+      sid: '16368'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

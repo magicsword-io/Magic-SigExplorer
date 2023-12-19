@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -13
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"alliumso.ru"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_08, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, signature_severity Major,
+        updated_at 2023_08_08, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1583, mitre_technique_name Acquire_Infrastructure
+      msg: '"ET TROJAN Observed Gamaredon APT Related Domain (alliumso .ru in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x0b|.\x2e)alliumso\.ru/R"'
+      reference: url,twitter.com/Cyber0verload/status/1686972930360553473
+      rev: '1'
+      sid: '2047141'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|14|connect-facebook.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_and_Server, created_at
+        2020_10_06, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, tag CardSkimmer, updated_at
+        2020_11_12, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Fullz House CC Skimmer)"'
+      reference: url,blog.malwarebytes.com/malwarebytes-news/2020/10/mobile-network-operator-falls-into-the-hands-of-fullz-house-criminal-group/
+      rev: '3'
+      sid: '2030972'
+      special_options:
+      - fast_pattern
+      within: '21'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

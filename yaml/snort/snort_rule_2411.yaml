@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '554'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"DESCRIBE",nocase'
+      - value: '"../",distance 1'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP RealNetworks RealSystem Server DESCRIBE buffer overflow
+        attempt"'
+      pcre: '"/^DESCRIBE\s[^\n]{300}/ims"'
+      reference: url,www.service.real.com/help/faq/security/rootexploit091103.html
+      rev: '16'
+      sid: '2411'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

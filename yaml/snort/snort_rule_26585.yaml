@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<iframe"'
+      - value: '"config.inc.php",within 100'
+      - value: '"</iframe>",distance 0'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE config.inc.php in iframe"'
+      reference: url,blog.sucuri.net/2013/05/auto-generated-iframes-to-blackhole-exploit-kit-following-the-cookie-trail.html
+      rev: '3'
+      service: http
+      sid: '26585'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

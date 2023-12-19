@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -12
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"dns.google"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2022_02_07,
+        deployment Perimeter, former_category INFO, performance_impact Low, confidence
+        High, signature_severity Informational, tag DoH, updated_at 2023_10_05, reviewed_at
+        2023_10_05, former_sid 2851058
+      msg: '"ET INFO Observed Google DNS over HTTPS Domain (dns .google in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0a|.\x2e)dns\.google/R"'
+      reference: url,developers.google.com/speed/public-dns/docs/doh/
+      rev: '3'
+      sid: '2047866'
+      threshold: type both, track by_src, count 1, seconds 600
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

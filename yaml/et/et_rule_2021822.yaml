@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Host|3a 20|init.icloud-analysis.com|0d 0a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: created_at 2015_09_23, former_category MALWARE, updated_at 2020_06_01
+      msg: '"ET TROJAN XcodeGhost CnC Checkin"'
+      reference: url,github.com/XcodeGhostSource/XcodeGhost
+      rev: '1'
+      sid: '2021822'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

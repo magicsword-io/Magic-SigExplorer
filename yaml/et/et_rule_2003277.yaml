@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 1024:65535
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '4'
+        value: '"|04 01 07 47|"'
+      dsize: 9<>18
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2017_10_27
+      msg: '"ET INFO SOCKSv4 Port 1863 Inbound Request (Linux Source)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003277
+      rev: '6'
+      sid: '2003277'
+      threshold: type both, track by_src, count 1, seconds 900
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: 32768:61000

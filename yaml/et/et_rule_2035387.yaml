@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /gate HTTP/1.1"'
+      - value: '"User-Agent|3a 20|bumblebee|0d 0a|"'
+      - value: '"|22|client_id|22|"'
+      - value: '"|22|group_name|22|"'
+      - value: '"|22|sys_version|22|"'
+      - value: '"User name|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_03, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Bumblebee_Loader,
+        signature_severity Major, updated_at 2022_03_03
+      msg: '"ET TROJAN Win32/BumbleBee Loader Activity (GET)"'
+      reference: md5,3f34d94803e9c8bc0a9cd09f507bc515
+      rev: '2'
+      sid: '2035387'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

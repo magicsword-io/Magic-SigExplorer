@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/1/6b-558694705129b01c0",fast_pattern,nocase'
+      - value: '"Connection: Keep-Alive|0D 0A|",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Uroburos usermode-centric client request"'
+      reference: url,www.virustotal.com/en/file/50edc955a6e8e431f5ecebb5b1d3617d3606b8296f838f0f986a929653d289ed/analysis/
+      rev: '2'
+      service: http
+      sid: '30191'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

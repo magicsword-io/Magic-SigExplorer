@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CONNECT"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|0D 0A|",fast_pattern,nocase'
+      - value: '"Pragma|3A 20|no-cache"'
+      - value: '"Proxy-Connection|3A 20|Keep-Alive|0D 0A|"'
+      - value: '"Accept: */*"'
+      - value: '"Accept-Encoding|3A| identity"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win-Linux.Trojan.Derusbi variant outbound connection"'
+      reference: url,www.fidelissecurity.com/sites/default/files/TA_Fidelis_Turbo_1602%283%29.pdf
+      rev: '4'
+      service: http
+      sid: '38256'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"L|00|o|00|g|00|i|00|n|00| |00|f|00|a|00|i|00|l|00|e|00|d|00| |00|f|00|o|00|r|00|
+          |00|u|00|s|00|e|00|r|00| |00|''|00|s|00|a|00|''|00|"'
+      detection_filter: track by_src,count 5,seconds 2
+      flow: to_client,established,no_stream
+      metadata: ruleset community
+      msg: '"SQL sa brute force failed login unicode attempt"'
+      reference: url,attack.mitre.org/techniques/T1110
+      rev: '10'
+      sid: '3273'
+    protocol: tcp
+    source:
+      network: $SQL_SERVERS
+      port: '1433'

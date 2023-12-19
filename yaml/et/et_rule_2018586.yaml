@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '49152'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/PSStore"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_06_20, updated_at 2020_09_24
+      msg: '"ET EXPLOIT Supermicro BMC Password Disclosure 2"'
+      reference: url,arstechnica.com/security/2014/06/at-least-32000-servers-broadcast-admin-passwords-in-the-clear-advisory-warns/
+      rev: '2'
+      sid: '2018586'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

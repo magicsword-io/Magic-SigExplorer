@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"ng-app=|22|signInControllerApp|22|"'
+      - value: '"<title>Sign In</title>"'
+      - value: '"href=|22|index_fichiers/favicon.ico"'
+      - value: '"usabilla_live_button_container"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_13, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_13
+      msg: '"ET CURRENT_EVENTS Capital One Phishing Landing 2018-02-13 M1"'
+      rev: '2'
+      sid: '2025350'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

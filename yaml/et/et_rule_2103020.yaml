@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_jump: 4,-15,little,relative,from_beginning
+      byte_test: 4,>,1024,36,relative,little
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB|A0|"'
+      - value: '"|01 00|"'
+      distance: '37'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, cve CVE_2004_1154, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB NT Trans NT CREATE unicode oversized Security Descriptor
+        attempt"'
+      pcre: '"/^.{4}/R"'
+      reference: cve,2004-1154
+      rev: '5'
+      sid: '2103020'
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

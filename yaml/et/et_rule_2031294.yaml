@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7b 22|meta|22 3a 7b 7d 2c 22|status|22 3a 22|OK|22 2c 22|saved|22
+          3a 22|1|22 2c 22|starttime|22 3a|17656184060|2c 22|id|22 3a 22 22 2c 22|vims|22
+          3a 7b 22|dtc|22 3a 22|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_08, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag c2, updated_at 2020_12_09, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES Server]"'
+      reference: url,github.com/fireeye/red_team_tool_countermeasures
+      rev: '3'
+      sid: '2031294'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

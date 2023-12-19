@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '1'
+        value: '"|00 00 00|"'
+      - value: '"|00 00 00 00 00 00 00 ff 01|"'
+      - value: '"|ff ff ff ff ff ff ff ff|"'
+      - value: '"|00 00 00|This|20|Client|20|Node|00 00 00|"'
+      distance: '0'
+      dsize: <600
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_03_14, deployment Perimeter, deployment
+        Internal, former_category MALWARE, malware_family Termite, performance_impact
+        Low, signature_severity Major, updated_at 2019_03_14
+      msg: '"ET TROJAN Win32/Termite Agent Implant CnC Checkin"'
+      reference: md5,2820653437d5935d94fcb0c997d6f13c
+      rev: '2'
+      sid: '2027083'
+      special_options:
+      - fast_pattern
+      within: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

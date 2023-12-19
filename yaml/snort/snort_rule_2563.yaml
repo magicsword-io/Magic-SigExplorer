@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '137'
+    details:
+      byte_test: 1,>,32,12
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01|",depth 2,offset 6'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"NETBIOS NS lookup response name overflow attempt"'
+      reference: url,www.eeye.com/html/Research/Advisories/AD20040512A.html
+      rev: '8'
+      service: netbios-ns
+      sid: '2563'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '137'

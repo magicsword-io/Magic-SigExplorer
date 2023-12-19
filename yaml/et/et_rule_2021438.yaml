@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/iplookup.php"'
+      - value: '"dpool.sina.com.cn"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_07_20, former_category POLICY, updated_at 2020_08_17
+      msg: '"ET POLICY External IP Lookup sina.com.cn"'
+      rev: '1'
+      sid: '2021438'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

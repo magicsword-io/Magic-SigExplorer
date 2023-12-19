@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '3478'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '2'
+        value: '"|00 01|"'
+      - value: '"|21 12 a4 42|"'
+      distance: '2'
+      metadata: created_at 2013_01_04, deployment Perimeter, deployment alert_only,
+        former_category INFO, signature_severity Informational, updated_at 2013_01_04
+      msg: '"ET INFO Session Traversal Utilities for NAT (STUN Binding Request)"'
+      reference: url,tools.ietf.org/html/rfc5389
+      rev: '3'
+      sid: '2016149'
+      within: '4'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

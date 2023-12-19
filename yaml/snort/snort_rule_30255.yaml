@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Length: 6|0D 0A|"'
+      - value: '"BRASIL",depth 6,fast_pattern'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Strictor HTTP Response - Brazil Geolocated Infected
+        User"'
+      reference: url,www.virustotal.com/en/file/4b6a4211191c8115a3bce64897159127dabcef0fbf6268007cb223dfa0870b60/analysis/
+      rev: '2'
+      service: http
+      sid: '30255'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

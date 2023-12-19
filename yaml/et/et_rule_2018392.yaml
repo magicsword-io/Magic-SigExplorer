@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - depth: '40'
+        value: '"Microsoft Windows "'
+      - value: '"[Version"'
+      - value: '"Copyright (c) 2009"'
+      - value: '"Microsoft Corp"'
+      distance: '0'
+      dsize: <200
+      metadata: created_at 2014_04_16, former_category ATTACK_RESPONSE, updated_at
+        2020_08_19
+      msg: '"ET ATTACK_RESPONSE Possible  MS CMD Shell opened on local system 2"'
+      rev: '1'
+      sid: '2018392'
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

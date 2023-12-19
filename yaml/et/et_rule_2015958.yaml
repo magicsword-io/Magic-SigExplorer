@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/ad/?"'
+      - value: '!"User-Agent|3a| "'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2012_11_29, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2020_04_22, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Lyposit Ransomware Checkin 2"'
+      pcre: '"/^\/ad\/\?[a-z]{1,4}\x3d[a-z0-9]+?$/Ui"'
+      rev: '1'
+      sid: '2015958'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

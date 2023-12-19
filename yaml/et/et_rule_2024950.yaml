@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"banking.raiffeisen.at."'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2017_11_03, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2020_08_13
+      msg: '"ET MOBILE_MALWARE Android Marcher Trojan Download - Raiffeisen Bank Targeting
+        (set)"'
+      pcre: '"/^Host\x3a\x20banking\.raiffeisen\.at\.[a-z]*?[0-9]{3,9}\.[a-z]{2,4}$/Hmi"'
+      rev: '3'
+      sid: '2024950'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

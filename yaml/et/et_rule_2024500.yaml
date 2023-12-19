@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '8'
+        value: '"keyauth="'
+      - value: '"&key="'
+      - value: '"&uid="'
+      - value: '!"Referer|3a|"'
+      - value: '"WinHttpRequest"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_27, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2020_08_11
+      msg: '"ET TROJAN Revcode RAT CnC"'
+      reference: md5,3f652d9bc17a4be3c0e497ea19848344
+      rev: '1'
+      sid: '2024500'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

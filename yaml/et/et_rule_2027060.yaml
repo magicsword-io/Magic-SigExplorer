@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|"'
+      - value: '"Gecko|2f|201001o1|20|Firef0x/19,0"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_06, deployment Perimeter, former_category
+        USER_AGENTS, malware_family SkidRat, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2020_08_28
+      msg: '"ET TROJAN MSIL/SkidRat User-Agent Observed"'
+      reference: url,www.dodgethissecurity.com/2019/02/28/reverse-engineering-an-unknown-rat-lets-call-it-skidrat-1-0/
+      rev: '2'
+      sid: '2027060'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

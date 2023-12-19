@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '">Loading ...<|2f|title>"'
+      - value: '"|3b|base64,"'
+      - value: '"ZnVuY3Rpb24gTWFrZShDcmVkZW50aWF"'
+      - value: '"ZG5zU2Vjb25kYXJ5OiAn"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2019_05_24, deployment Perimeter, former_category CURRENT_EVENTS,
+        performance_impact Low, signature_severity Major, updated_at 2020_11_04
+      msg: '"ET CURRENT_EVENTS Possible Router EK Landing Page Inbound 2019-05-24"'
+      rev: '2'
+      sid: '2027380'
+      special_options:
+      - http_stat_code
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

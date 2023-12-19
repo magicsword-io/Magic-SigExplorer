@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|06 03 55 04 07|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2014_05_09, deployment Perimeter, former_category
+        MALWARE, malware_family Upatre, performance_impact Significant, signature_severity
+        Critical, tag SSL_Malicious_Cert, tag Exploit_Kit, tag Downloader, tag Upatre,
+        updated_at 2022_03_21
+      msg: '"ET TROJAN Possible Upatre Downloader SSL certificate (fake loc)"'
+      pcre: '"/^.{2}(?P<fake_loc>([asdfgh]+|[qwerty]+|[zxcvbn]+|[23werf]+)[01]).+?\x06\x03\x55\x04\x07.{2}(?P=fake_loc)/Rs"'
+      rev: '1'
+      sid: '2018457'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

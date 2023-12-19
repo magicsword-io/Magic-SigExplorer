@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/login.php",nocase'
+      - value: '"|C9 97 A2 F3 7E 37 CB 7E 27|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Betad variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/46a87d0818ffd828df5c8fca63b1628f068e50cf3d20ec0e4e009e1dd547b9e9/analysis/
+      rev: '10'
+      service: http
+      sid: '21230'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

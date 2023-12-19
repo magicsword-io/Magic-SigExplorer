@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/ews/web/webconfig/"'
+      - value: '"|0d 0a|RPDbgEsJF9o8S=|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_09_29, deployment Perimeter,
+        former_category WEB_SERVER, signature_severity Major, updated_at 2022_09_29
+      msg: '"ET WEB_SERVER Antsword Related Webshell Activity (Inbound)"'
+      reference: url,www.gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
+      rev: '1'
+      sid: '2039066'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

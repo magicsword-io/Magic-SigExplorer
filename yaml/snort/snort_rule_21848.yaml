@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/in.cgi?"'
+      - value: '!"id=",within 3,nocase'
+      - value: '!"&",within 6'
+      - value: '!"=",within 6'
+      flow: to_client,established
+      isdataat: 15,relative
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-OTHER TDS Sutra - page redirecting to a SutraTDS"'
+      pcre: '"/\x2Fin\.cgi\?(\w{1,6}|default)\b/ims"'
+      reference: url,xylibox.blogspot.com/2011/12/sutra-tds-v34.html
+      rev: '15'
+      service: http
+      sid: '21848'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -10
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"tox.chat"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_13, deployment Perimeter, signature_severity
+        Informational, updated_at 2023_11_13
+      msg: '"ET INFO Observed Tox Chat Domain (tox .chat in TLS SNI)"'
+      pcre: '"/^(?:\x00\x08|.\x2e)tox\.chat/R"'
+      reference: url,tox.chat/about.html
+      rev: '1'
+      sid: '2049168'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

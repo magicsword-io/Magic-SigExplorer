@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '34'
+        value: '"<html><head></head><body><p>Code|3a 20|"'
+      - value: '"</p><p>@@@"'
+      distance: '32'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_10_27, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_10_27
+      msg: '"ET TROJAN DTLoader Encoded Binary - Server Response"'
+      reference: md5,259de13f2337562a9075cd8acb1ef615
+      rev: '2'
+      sid: '2031128'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,3000]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"POST /new"'
+      - value: '"Go-http-client"'
+      - value: '"signInUrls"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_06, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2022_10_06
+      msg: '"ET TROJAN WinGo/Go-rod signInUrls Failed Data Exfiltration attempt"'
+      reference: md5,e3adc4d6881c16affd4fc0239a79c9b7
+      rev: '1'
+      sid: '2039105'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|9507c4e8|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Apache_HTTP_server, affected_product PHP, attack_target
+        Web_Server, created_at 2016_09_15, deployment Datacenter, former_category
+        WEB_SERVER, signature_severity Critical, updated_at 2020_09_17
+      msg: '"ET WEB_SERVER DNS Query for Suspicious 9507c4e8.com Domain - Anuna Checkin
+        - Compromised PHP Site"'
+      reference: url,security.stackexchange.com/questions/47253/hacked-site-encrypted-code
+      rev: '3'
+      sid: '2023228'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HTTP_SERVERS
+      port: any

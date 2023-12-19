@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/www.gcash.com.ph/gcash-login-web/"'
+      - depth: '7'
+        value: '"number="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_17, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_06_17
+      msg: '"ET CURRENT_EVENTS GCash Credential Phish 2022-06-17"'
+      reference: md5,34ba622c5d2442f872ac5e34c22f5f44
+      rev: '1'
+      sid: '2037036'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      urilen: '34'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

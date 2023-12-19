@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%E2%9A%99%EF%B8%8F%20Windows%20"'
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"/sendDocument?chat_id="'
+      - value: '"&caption="'
+      - value: '"%E2%9A%99%EF%B8%8F%20Windows%20"'
+      - value: '"BROWSER:%0A"'
+      - value: '"%0A%0A%20Link%20"'
+      - value: '"Host|3a 20|api.telegram.org"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|document|22
+          3b 20|filename|3d 22|"'
+      - value: '".zip|22 0d 0a|Content-Type|3a 20|application/x-ms-dos-executable"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_07, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family BlackGuard, performance_impact Low,
+        signature_severity Major, tag Stealer, updated_at 2022_03_08
+      msg: '"ET TROJAN MSIL/BlackGuard Stealer Variant Exfil via Telegram"'
+      reference: url,twitter.com/3xp0rtblog/status/1499748871362261001
+      rev: '3'
+      sid: '2035397'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_raw_uri
+      - nocase
+      - http_raw_uri
+      - nocase
+      - http_raw_uri
+      - nocase
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

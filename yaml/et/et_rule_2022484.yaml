@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3b 2d dd 4b 40 77 77 41|"'
+      flow: established,to_client
+      metadata: created_at 2016_02_03, former_category CURRENT_EVENTS, updated_at
+        2017_08_01
+      msg: '"ET CURRENT_EVENTS RIG encrypted payload M1 Feb 02 2016"'
+      rev: '2'
+      sid: '2022484'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

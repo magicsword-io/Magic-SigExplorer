@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".com-"'
+      - value: '"|0D 0A|Accept|3A 20|text/html, image/gif, image/jpeg, *|3B| q=.2,
+          */*|3B| q=.2|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Nuclear exploit kit Spoofed Host Header .com- requests"'
+      pcre: '"/\r\nHost\x3a\x20[a-z0-9\x2d\x2e]+\.com\x2d[a-z0-9\x2d\x2e]+(\x3a\d{1,5})?\r\n/i"'
+      rev: '3'
+      service: http
+      sid: '26562'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

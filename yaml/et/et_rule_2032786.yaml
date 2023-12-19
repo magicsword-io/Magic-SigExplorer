@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"x_cmd|3a 20|"'
+      - value: '"x_key|3a 20|"'
+      - value: '"x_cnt|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_04_20, deployment Perimeter,
+        deployment Internal, deployment SSLDecrypt, former_category MALWARE, signature_severity
+        Major, updated_at 2021_05_05
+      msg: '"ET TROJAN Suspected PULSECHECK Webshell Access Inbound"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,13}[^\x20-\x7e\r\n]/R"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day.html
+      rev: '3'
+      sid: '2032786'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

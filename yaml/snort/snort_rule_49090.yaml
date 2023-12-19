@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_extract: 2,72,len,relative,little
+      byte_test: 2,=,1,1,relative,little,bitmask 0x8000
+      classtype: attempted-user
+      contents:
+      - value: '"|FF|SMB|A2 00 00 00 00|",depth 9,offset 4'
+      - value: '"/",within 2'
+      - value: '"/",within len,distance 2'
+      flow: to_server,established
+      flowbits: isset,smb.tree.connect.ipc
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-SAMBA Samba is_known_pipe arbitrary module load code execution
+        attempt"'
+      reference: url,www.samba.org/samba/security/CVE-2017-7494.html
+      rev: '1'
+      service: netbios-ssn
+      sid: '49090'
+    protocol: tcp
+    source:
+      network: any
+      port: any

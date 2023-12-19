@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.php?udpool=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.UDPOS outbound command and control IP address
+        check"'
+      reference: url,www.virustotal.com/#/file/62688903adfc719c5514f25a17563547aac4801959852f5d49faa93967ce86cf/detection
+      rev: '1'
+      service: http
+      sid: '45963'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

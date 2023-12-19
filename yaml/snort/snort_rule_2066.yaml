@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".pl"'
+      - value: '".pl"'
+      - value: '".",within 1'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Lotus Notes .pl script source download attempt"'
+      reference: cve,2003-1408
+      rev: '12'
+      service: http
+      sid: '2066'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

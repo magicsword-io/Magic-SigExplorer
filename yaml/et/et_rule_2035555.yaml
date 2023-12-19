@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Cookie|3a 20|__test="'
+      - value: '"GET"'
+      - value: '"edu"'
+      - depth: '7'
+        value: '"__test="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_21, deployment Perimeter, former_category
+        HUNTING, signature_severity Informational, updated_at 2022_03_21
+      msg: '"ET INFO Possible Fake Edu Host with __test Cookie"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+edu/Hmi"'
+      rev: '2'
+      sid: '2035555'
+      special_options:
+      - http_method
+      - http_header
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"POTATO "'
+      flow: established,to_server
+      metadata: created_at 2012_07_31, updated_at 2012_07_31
+      msg: '"ET SCAN HTExploit Method"'
+      reference: url,www.mkit.com.ar/labs/htexploit/download.php
+      rev: '1'
+      sid: '2015552'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/StageOne/iexplore_exe/"'
+      - value: '"/vgx_dll/"'
+      - value: '"Host|3A| watson.microsoft.com"'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2014_04_30, cve CVE_2014_1776, deployment
+        Perimeter, former_category WEB_CLIENT, confidence Medium, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2020_04_29
+      msg: '"ET WEB_CLIENT Microsoft Application Crash Report Indicates Potential
+        VGX Memory Corruption 2"'
+      reference: cve,2014-1776
+      rev: '1'
+      sid: '2018436'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

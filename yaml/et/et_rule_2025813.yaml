@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"OHFQRDl3YUhBZ"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_07_09, deployment Datacenter, former_category EXPLOIT, updated_at
+        2018_07_18
+      msg: '"ET EXPLOIT php script double base64 encoded Remote Code Execution 4"'
+      rev: '2'
+      sid: '2025813'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

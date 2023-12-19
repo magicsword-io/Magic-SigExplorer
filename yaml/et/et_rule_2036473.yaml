@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"async.php"'
+      - value: '"Referer|3a 20|"'
+      - value: '"?affId="'
+      - value: '"&c1="'
+      - value: '"&c2="'
+      - value: '"&c3="'
+      - value: '"pageType=leadPage&method=importClick"'
+      distance: '0'
+      fast_pattern: 16,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_04, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_05_04
+      msg: '"ET CURRENT_EVENTS Successful Survey Credential Phish M5 2022-04-04"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+?\?affId[^\r\n]+\&c1=[^\r\n]+[^\r\n]+\&c2=[^\r\n]+\&c3=[^\r\n]+/Hmi"'
+      rev: '2'
+      sid: '2036473'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

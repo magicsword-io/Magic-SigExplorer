@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '21'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/siganofi/rounder.php",fast_pattern,nocase'
+      - value: '"Cache-Control: no-cache"'
+      - value: '"Pragma|3A| no-cache|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Zusy variant outbound connection"'
+      reference: url,www.www.virustotal.com/en/file/857ae380e297f840b88146ec042286ef459a1c4dc53680b117a9677b189e6c68/analysis/
+      rev: '2'
+      service: http
+      sid: '35076'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

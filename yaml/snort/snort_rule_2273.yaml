@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"LOGIN",fast_pattern,nocase'
+      detection_filter: track by_dst,count 30,seconds 30
+      flow: to_server,established,no_stream
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP login brute force attempt"'
+      reference: url,attack.mitre.org/techniques/T1110
+      rev: '12'
+      service: imap
+      sid: '2273'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

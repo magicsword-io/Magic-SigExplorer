@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/editors/FCKeditor/editor_registry.php?"'
+      - value: '"root_path="'
+      flow: established,to_server
+      metadata: created_at 2011_06_22, updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS impressCMS FCKeditor root_path Parameter Remote
+        File inclusion Attempt"'
+      pcre: '"/root_path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,1337day.com/exploits/16001
+      rev: '1'
+      sid: '2013087'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

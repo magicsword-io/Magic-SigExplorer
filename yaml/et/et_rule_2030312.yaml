@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/cgi-bin/luci/|3b|stok="'
+      - value: '"/api/xqsmarthome/request_mitv?payload={"'
+      - value: '"$("'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2020_06_11,
+        cve CVE_2018_16130, deployment Perimeter, former_category EXPLOIT, signature_severity
+        Minor, updated_at 2020_06_11
+      msg: '"ET EXPLOIT Mi TV Integration Remote Code Execution CVE-2018-16130"'
+      reference: cve,2018-16130
+      rev: '2'
+      sid: '2030312'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

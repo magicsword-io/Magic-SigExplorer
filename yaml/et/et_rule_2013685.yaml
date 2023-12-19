@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?w="'
+      - value: '"&i="'
+      - value: '"&a="'
+      flow: established,to_server
+      metadata: created_at 2011_09_22, former_category MALWARE, updated_at 2020_08_17
+      msg: '"ET TROJAN ZeroAccess/Max++ Rootkit C&C Activity 1"'
+      pcre: '"/\.php\?w=\d+&i=[0-9a-f]{32}&a=\d+$/U"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=TrojanDropper%3aWin32%2fSirefef.B
+      rev: '1'
+      sid: '2013685'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

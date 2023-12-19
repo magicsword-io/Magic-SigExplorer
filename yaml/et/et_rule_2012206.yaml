@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"36723F97-7AA0-11D4-8919-FF2D71D0D32C"'
+      - value: '"GetDriverSettings2"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_01_20, cve CVE_2010_4321, deployment Perimeter,
+        signature_severity Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Novell iPrint ActiveX GetDriverSettings Remote Code Execution
+        Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*36723F97-7AA0-11D4-8919-FF2D71D0D32C/si"'
+      reference: cve,2010-4321
+      rev: '1'
+      sid: '2012206'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"isp="'
+      - value: '"&browser="'
+      - value: '"&browserversion"'
+      - value: '"&ip="'
+      - value: '"&os="'
+      - value: '"&osversion="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_06_29, former_category WEB_CLIENT, updated_at 2020_09_01
+      msg: '"ET WEB_CLIENT Fake AV Phone Scam Landing June 26 2015 M5"'
+      rev: '2'
+      sid: '2021367'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

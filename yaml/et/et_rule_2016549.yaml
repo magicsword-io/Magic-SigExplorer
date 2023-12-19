@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<applet "'
+      - value: '"aHR0cDov"'
+      fast_pattern: only
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_03_07, deployment Perimeter, malware_family
+        Angler, signature_severity Critical, tag Angler, tag Exploit_Kit, updated_at
+        2019_10_08
+      msg: '"ET CURRENT_EVENTS Base64 http argument in applet (Neutrino/Angler)"'
+      pcre: '"/^((?!<\/applet>).)+?[\x22\x27]aHR0cDov/Rs"'
+      rev: '4'
+      sid: '2016549'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

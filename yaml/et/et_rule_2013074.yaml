@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '910'
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"GetFlexMLangIResourceBrowser"'
+      - value: '!"|0A|"'
+      flow: established,to_server
+      isdataat: 1000,relative
+      metadata: created_at 2011_06_21, former_category SCADA, confidence High, updated_at
+        2011_06_21
+      msg: '"ET SCADA DATAC RealWin SCADA Server 2 On_FC_CONNECT_FCS_a_FILE Buffer
+        Overflow Vulnerability"'
+      reference: url,exploit-db.com/exploits/17417/
+      rev: '2'
+      sid: '2013074'
+      within: '1000'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

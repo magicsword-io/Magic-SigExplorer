@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|90 1A C0 0F 90 02| |08 92 02| |0F D0 23 BF F8|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-SOLARIS EXPLOIT sparc overflow attempt"'
+      rev: '13'
+      service: dns
+      sid: '267'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/data.php"'
+      - value: '"Authentification|25|2FSFRMail|3b|"'
+      - depth: '3'
+        value: '"lt="'
+      - value: '"&execution="'
+      - value: '"&lrt="'
+      - value: '"&_eventId=submit&username="'
+      - value: '"&password="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_07, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_07_07
+      msg: '"ET CURRENT_EVENTS Successful SFR Mail Credential Phish 2023-07-07"'
+      pcre: '"/\/data\.php$/U"'
+      rev: '1'
+      sid: '2046754'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

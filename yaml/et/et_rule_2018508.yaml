@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.html"'
+      - depth: '19'
+        value: '"User-Agent|3A 20|gtalk|0d 0a|"'
+      flow: to_server
+      metadata: created_at 2014_05_30, updated_at 2020_10_19
+      msg: '"ET TROJAN Win32/Enosch.A gtalk connectivity check"'
+      pcre: '"/^User-Agent\x3a\x20gtalk\r\nHost\x3a\x20www\.google\.com\r\n(?:\r\n)?$/H"'
+      reference: md5,b13db8b21289971b3c88866d202fad49
+      rev: '3'
+      sid: '2018508'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

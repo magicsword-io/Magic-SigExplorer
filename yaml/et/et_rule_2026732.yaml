@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|ff|SMB"'
+      - value: '"|00 00 00 00 00 00|"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      - value: '"|41 8A 14 02 8B 45|"'
+      - value: '"|32 14 30 88 16 3B CB 72|"'
+      distance: '1'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        SMB_Server, created_at 2018_12_14, deployment Perimeter, former_category TROJAN,
+        malware_family Shamoon, performance_impact Low, signature_severity Major,
+        tag SMB, tag Worm, tag Wiper, updated_at 2020_08_19
+      msg: '"ET TROJAN Shamoon v3 32bit Propagating Internally via SMB"'
+      reference: url,www.trendmicro.com/vinfo/hk-en/security/news/cybercrime-and-digital-threats/new-version-of-disk-wiping-shamoon-disttrack-spotted-what-you-need-to-know
+      rev: '2'
+      sid: '2026732'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

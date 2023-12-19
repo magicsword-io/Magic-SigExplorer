@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sys.dbms_defer_repcat.enable_propagation_to_dblink",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sys.dbms_defer_repcat.enable_propagation_to_dblink buffer
+        overflow attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1024,}\x27|\x22[^\x22]{1024,}\x22)[\r\n\s]*\x3b.*dblink[\r\n\s]*=>[\r\n\s]*\2|dblink\s*=>\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})|\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,}))/is"'
+      rev: '4'
+      sid: '2690'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

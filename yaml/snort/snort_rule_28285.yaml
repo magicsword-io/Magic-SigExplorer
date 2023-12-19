@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?gws_rd=cr",fast_pattern,nocase'
+      - value: '"|0D 0A|Connection: Close|0D 0A 0D 0A|"'
+      - value: '"|3B 20|MSIE|20|"'
+      - value: '!"Accept-Encoding: "'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.hdog connectivity check-in version 2"'
+      reference: url,www.virustotal.com/en/file/d4b16269c9849c33a7bb2fdc782173a00e99db12a585689618dde3f4c6fcb101/analysis/
+      rev: '2'
+      service: http
+      sid: '28285'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

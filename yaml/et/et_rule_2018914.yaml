@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-disposition|3A| attachment|3B| filename=exe.exe"'
+      fast_pattern: 32,17
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2014_08_08, deployment Perimeter, former_category
+        EXPLOIT_KIT, malware_family Nuclear, signature_severity Critical, tag Exploit_Kit,
+        tag Nuclear, updated_at 2020_05_01
+      msg: '"ET CURRENT_EVENTS Nuclear Exploit Kit exe.exe Payload"'
+      reference: url,www.malware-traffic-analysis.net/2014/08/06/index.html
+      rev: '1'
+      sid: '2018914'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

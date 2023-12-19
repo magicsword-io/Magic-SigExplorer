@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|webz|02|cc|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_08_10, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_08_10
+      msg: '"ET INFO URL Shortening Service Domain in DNS Lookup (webz .cc)"'
+      rev: '2'
+      sid: '2038476'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '9'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

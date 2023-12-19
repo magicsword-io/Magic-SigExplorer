@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"//autoindex.php"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_02_19, deployment Perimeter,
+        former_category TROJAN, signature_severity Major, updated_at 2020_02_19
+      msg: '"ET TROJAN Suspected Gamaredon Downloader Activity"'
+      pcre: '"/\x2eddns\x2enet\r$/Hmi"'
+      reference: url,blog.yoroi.company/research/cyberwarfare-a-deep-dive-into-the-latest-gamaredon-espionage-campaign/
+      rev: '2'
+      sid: '2029500'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

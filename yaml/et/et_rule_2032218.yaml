@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/plain|0d 0a|"'
+      - value: '"Content-Length|3a 20|3|0d 0a|"'
+      - depth: '3'
+        value: '"/1/"'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_15, deployment Perimeter, former_category
+        MALWARE, malware_family TrickBot, signature_severity Major, updated_at 2023_05_19
+      msg: '"ET TROJAN Trickbot Checkin Response"'
+      reference: md5,5d2d59d6cbff1dc1d108bdcae0294c51
+      rev: '4'
+      sid: '2032218'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - fast_pattern
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

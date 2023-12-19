@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/vstudio"'
+      - depth: '13'
+        value: '"Cache-Control"'
+      - value: '"Host|3a 20|msdn.microsoft.com"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_03_27, deployment Perimeter, former_category
+        TROJAN, malware_family Smoke_Loader, signature_severity Major, updated_at
+        2020_08_25
+      msg: '"ET TROJAN Possible Sharik/Smoke Loader Microsoft Connectivity check M2"'
+      reference: md5,e297f2ed2d162ad925ac140915a21405
+      rev: '1'
+      sid: '2025439'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

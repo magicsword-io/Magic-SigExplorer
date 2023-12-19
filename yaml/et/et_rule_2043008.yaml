@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"data.php?t=l&m=0"'
+      - value: '!"Referer|3a|"'
+      - value: '"MSIE 5.01"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_05_01, deployment Perimeter, former_category
+        ADWARE_PUP, signature_severity Major, updated_at 2020_09_17, former_sid 2830630
+      msg: '"ET MALWARE Win32/Atshz.A Checkin"'
+      reference: md5,e7b8bb0f99c7f6428dbac35c01fcdd9b
+      rev: '2'
+      sid: '2043008'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

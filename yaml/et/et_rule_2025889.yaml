@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Gemini/2.0|0d 0a|"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_25, deployment Perimeter,
+        former_category USER_AGENTS, malware_family VPNFilter, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET USER_AGENTS VPNFilter Related UA (Gemini/2.0)"'
+      reference: url,twitter.com/m0rb/status/1021626709307805696
+      rev: '2'
+      sid: '2025889'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/newuser.php?saff="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Winquickupdates.com/Mycashloads.com Related Trojan Install
+        Report"'
+      pcre: '"/\/newuser\.php\?saff=(\d+|x.+)/U"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008012
+      rev: '5'
+      sid: '2008012'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

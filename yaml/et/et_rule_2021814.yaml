@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"|20 7c 20 22|0x"'
+      - value: '"_"'
+      - value: '"|22 20 7c 20|"'
+      - depth: '20'
+        value: '"User-Agent|3a 20|Mozilla/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_09_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_06_01,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Ursnif Variant CnC Beacon 3"'
+      reference: md5,8ab21ac9199d3ced2230924b90f49f0d
+      rev: '1'
+      sid: '2021814'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

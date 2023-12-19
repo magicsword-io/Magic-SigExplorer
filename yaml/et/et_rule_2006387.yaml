@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Windows Updates Manager|7c|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category TROJAN, updated_at 2020_10_16
+      msg: '"ET USER_AGENTS Downloader User-Agent Detected (Windows Updates Manager|3.12|...)"'
+      reference: url,doc.emergingthreats.net/2006387
+      rev: '8'
+      sid: '2006387'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

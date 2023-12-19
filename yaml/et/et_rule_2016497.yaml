@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|22|pdf|5c|78.ht|5c|6dl|22|"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_02_26, updated_at 2013_02_26
+      msg: '"ET CURRENT_EVENTS StyX Landing Page (2)"'
+      rev: '6'
+      sid: '2016497'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

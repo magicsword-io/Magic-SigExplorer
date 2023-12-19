@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/photoLibrary/?user="'
+      - value: '"&ver="'
+      - value: '"&os2=",fast_pattern,nocase'
+      - value: '"&type="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Ursnif outbound connection"'
+      reference: url,malware.dontneedcoffee.com/2015/07/a-fileless-ursnif-doing-some-pos.html
+      rev: '4'
+      service: http
+      sid: '35312'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

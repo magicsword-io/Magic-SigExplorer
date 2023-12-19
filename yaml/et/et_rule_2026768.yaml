@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 0e|arhidsfderm.pw"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_13, deployment Perimeter, former_category
+        MALWARE, malware_family ServHelper, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2020_09_16
+      msg: '"ET TROJAN ServHelper RAT CnC Domain Observed in SNI"'
+      reference: md5,43e7274b6d42aef8ceae298b67927aec
+      rev: '3'
+      sid: '2026768'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

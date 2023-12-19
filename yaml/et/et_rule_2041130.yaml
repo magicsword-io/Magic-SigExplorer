@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|mailer-daemon|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_11_30, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_11_30
+      msg: '"ET TROJAN TA453 Related Domain in DNS Lookup (mailer-daemon .org)"'
+      rev: '1'
+      sid: '2041130'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

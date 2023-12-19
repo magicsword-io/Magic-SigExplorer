@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '100'
+        offset: '4'
+        value: '"&downlink="'
+      - value: '"&uplink="'
+      - value: '"&id="'
+      - value: '"&statpass="'
+      - value: '"&version="'
+      - value: '"&features="'
+      - value: '"&guid="'
+      - value: '"&comment="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_07_19, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Win32.Glupteba/ClIEcker CnC Checkin"'
+      reference: url,blog.eset.com/2011/03/02/tdl4-and-glubteba-piggyback-piggybugs
+      rev: '4'
+      sid: '2013293'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

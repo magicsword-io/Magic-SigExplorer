@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -40
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"bc1qc230lt32ey73qlaj9rkujm0ujtv090.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_13, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, tag Phishing, updated_at 2023_09_13, reviewed_at
+        2023_09_13
+      msg: '"ET CURRENT_EVENTS [TW] Observed Microsoft Credential Phish V3 Domain
+        (bc1qc230lt32ey73qlaj9rkujm0ujtv090 .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x26|.\x2e)bc1qc230lt32ey73qlaj9rkujm0ujtv090\.com/R"'
+      rev: '1'
+      sid: '2048071'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

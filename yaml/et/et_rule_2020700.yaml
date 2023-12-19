@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"INCLUDEPICTURE "'
+      flow: established,from_server
+      flowbits: isset,ETPRO.RTF
+      metadata: created_at 2015_03_16, former_category EXPLOIT_KIT, updated_at 2015_03_16
+      msg: '"ET TROJAN MWI Maldoc Exploit Kit Stats Callout"'
+      pcre: '"/^\s*?[\x22\x27][^\x22\x27]+\.php\?id=\d+[\x22\x27]/Rs"'
+      rev: '2'
+      sid: '2020700'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"From|3a|"'
+      - value: '"Subject|3a 20|Keylogger"'
+      flow: established,to_server
+      metadata: created_at 2014_12_13, updated_at 2014_12_13
+      msg: '"ET TROJAN Probable Keylogger Report SMTP"'
+      rev: '2'
+      sid: '2019928'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

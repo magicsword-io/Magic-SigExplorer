@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type:",nocase'
+      - value: '"application/java-vm",within 50,fast_pattern'
+      - value: '"MZ",depth 2'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.Dropper malicious executable download attempt"'
+      reference: url,virustotal.com/#/file/76afa767b0374bde95d9a93074aceaec88228ba234caa13dd01313076baf02ee/detection
+      rev: '2'
+      service: ftp-data,http,imap,pop3
+      sid: '46744'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

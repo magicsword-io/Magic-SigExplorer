@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".mod"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|0D 0A|",fast_pattern,nocase'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Andromeda download request"'
+      pcre: '"/[a-z]{2}_[a-z0-9]{8}\.mod/i"'
+      reference: url,malware.dontneedcoffee.com/2015/07/a-fileless-ursnif-doing-some-pos.html
+      rev: '2'
+      service: http
+      sid: '35388'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

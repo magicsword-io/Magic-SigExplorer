@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/connectors/system/phpthumb.php"'
+      - value: '"<?php"'
+      - value: '"($_SERVER"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_07_27, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Minor, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Modx Revolution < 2.6.4 phpthumb.php RCE Attempt"'
+      reference: url,exploit-db.com/exploits/45055/
+      rev: '2'
+      sid: '2025917'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - nocase
+      - http_client_body
+      urilen: '31'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

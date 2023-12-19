@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 11 C8 00 00 00 00 00 00 00 00 00 00 00|",depth 16,fast_pattern,fast_pattern_offset
+          0,fast_pattern_length 12'
+      flow: to_server,established
+      isdataat: '!16'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Win.Backdoor.Wekby Torn variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/1D6BCF409C85887861D587C8AABFC8C8393EA692FE93C0A6836BE507A7F75985/analysis/
+      rev: '4'
+      sid: '34500'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

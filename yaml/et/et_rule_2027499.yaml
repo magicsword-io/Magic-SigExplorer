@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|obuhov2k|05|beget|04|tech|00|"'
+      distance: '0'
+      metadata: created_at 2019_06_20, deployment Perimeter, former_category MALWARE,
+        malware_family Plurox, performance_impact Low, signature_severity Major, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Plurox CnC Domain in DNS Lookup"'
+      rev: '2'
+      sid: '2027499'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

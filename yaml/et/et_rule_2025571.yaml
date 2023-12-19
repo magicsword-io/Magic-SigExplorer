@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"class=|22 69 6d 67 5f 76 69 63 74 69 6d 65 22|"'
+      - value: '"class=|22 6e 61 6d 65 5f 76 69 63 74 69 6d 65 22|"'
+      - value: '"class=|22 6d 6f 75 73 74 61 63 68 65 22|"'
+      - value: '"class=|22 6d 6f 75 73 74 61 63 68 65 5f 61 6e 6f 6e 69 73 6d 61 22|"'
+      - value: '"class=|22 6d 69 61 5f 6b 68 61 6c 69 66 61 22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_05_09, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_05_09
+      msg: '"ET CURRENT_EVENTS Paypal Phishing Landing 2018-05-09"'
+      rev: '2'
+      sid: '2025571'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

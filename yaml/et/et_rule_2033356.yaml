@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"steven-gerrard-liverpool-future-dalglish--goal-"'
+      - value: '!"Host|3a 20|www.liverpool.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_07_16, deployment Perimeter, former_category
+        MALWARE, malware_family DTLoader, performance_impact Low, signature_severity
+        Major, updated_at 2021_07_16
+      msg: '"ET TROJAN DTLoader Binary Request M2"'
+      reference: md5,10f8195621113f9c8de63ba139e91cff
+      rev: '2'
+      sid: '2033356'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

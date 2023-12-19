@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '10'
+        value: '"|43 21 f0 39 ff 82 2c 1c 54 06|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_24, deployment Perimeter,
+        former_category MALWARE, malware_family ReverseRAT, performance_impact Low,
+        signature_severity Major, updated_at 2021_06_24
+      msg: '"ET TROJAN ReverseRAT Activity (POST) M1"'
+      pcre: '"/\x3a\x20[^\r\n]+\r\nExpect\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,blog.lumen.com/suspected-pakistani-actor-compromises-indian-power-company-with-new-reverserat/
+      rev: '1'
+      sid: '2033174'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

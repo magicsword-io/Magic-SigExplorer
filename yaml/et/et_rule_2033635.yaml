@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|paymenthacks|03|com"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_02, deployment Perimeter, former_category
+        MALWARE, malware_family DarkSide, performance_impact Low, signature_severity
+        Major, tag Ransomware, updated_at 2021_08_02
+      msg: '"ET TROJAN BlackMatter CnC Domain in DNS Lookup (paymenthacks .com)"'
+      reference: md5,d0512f2063cbd79fb0f770817cc81ab3
+      rev: '1'
+      sid: '2033635'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

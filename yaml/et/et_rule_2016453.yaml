@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows|3b| Windows NT 5.1|3b| en-US|3b|
+          rv|3a|1.8.0.12) Firefox/1.5.0.12|0d 0a|"'
+      fast_pattern: 66,20
+      flow: established,to_server
+      metadata: created_at 2013_02_22, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN WEBC2-CLOVER Download UA"'
+      reference: md5,29c691978af80dc23c4df96b5f6076bb
+      rev: '1'
+      sid: '2016453'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '6'
+        value: '"GET /%"'
+      - value: '"%64%b8%06%08"'
+      - value: '"?"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_26, cve CVE_2021_20038, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, confidence High,
+        signature_severity Major, tag Exploit, updated_at 2022_01_26
+      msg: '"ET EXPLOIT SonicWall SMA Stack-Based Buffer Overflow CVE-2021-20038 M1"'
+      pcre: '"/^[a-zA-Z0-9]{2}[%a-zA-Z0-9]{9}(?P<addr>(?:[%a-zA-Z0-9]{3}){4})(?P=addr)/R"'
+      reference: cve,2021-20038
+      rev: '1'
+      sid: '2034984'
+      special_options:
+      - fast_pattern
+      threshold: type threshold, track by_src, count 10, seconds 30
+      urilen: '>400'
+      within: '55'
+    protocol: tcp
+    source:
+      network: any
+      port: any

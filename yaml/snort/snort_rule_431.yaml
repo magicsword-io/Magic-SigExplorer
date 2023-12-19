@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '2'
+      itype: '40'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Photuris Valid Security Parameters, But Authentication
+        Failed"'
+      rev: '9'
+      sid: '431'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

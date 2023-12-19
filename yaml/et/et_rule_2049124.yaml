@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"GET"'
+      - value: '"/AutoItX3"'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_11_08, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, confidence High,
+        signature_severity Informational, updated_at 2023_11_08, reviewed_at 2023_11_08
+      msg: '"ET INFO HTTP GET Request for AutoItX3"'
+      reference: md5,14d6353abf6ac67babc3b14c16a5a850
+      rev: '1'
+      sid: '2049124'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

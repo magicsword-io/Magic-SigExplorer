@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Keep-Alive: 300|0d 0a|"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|4|2e|0|20 28|compatible|3b 20|Synapse|29
+          0d 0a|"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&data="'
+      - value: '"&act=100"'
+      - value: '"Connection|3a 20|keep-alive|0d 0a|"'
+      - value: '"application|2f|x|2d|www|2d|form|2d|urlencoded"'
+      flow: established,to_server
+      isdataat: '!2,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_23, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Critical, updated_at 2023_08_23,
+        reviewed_at 2023_08_23
+      msg: '"ET TROJAN LNK/Unknown Downloader CnC Checkin (POST)"'
+      pcre: '"/^Host\x3a\x20(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/Hm"'
+      reference: url,twitter.com/Gi7w0rm/status/1693432581583184029
+      rev: '1'
+      sid: '2047717'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

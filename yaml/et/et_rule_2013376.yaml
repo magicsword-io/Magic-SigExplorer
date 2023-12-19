@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FileNolja"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2011_08_05, former_category USER_AGENTS, updated_at 2020_10_09
+      msg: '"ET TROJAN W32/Nolja Trojan User-Agent (FileNolja)"'
+      pcre: '"/User-Agent\x3A[^\r\n]*FileNolja/Hi"'
+      rev: '2'
+      sid: '2013376'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

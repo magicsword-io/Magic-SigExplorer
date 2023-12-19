@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 5800:5802
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/vncviewer.jar"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-MULTIMEDIA vncviewer Java applet download attempt"'
+      reference: nessus,10758
+      rev: '7'
+      sid: '1846'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/1.8/gw_admin.php?a="'
+      - value: '"t="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_02_08, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS Glossword gw_admin.php Cross Site Scripting Attempt"'
+      pcre: '"/a\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.com/files/120045/Glossword-1.8.12-XSS-CSRF-Shell-Upload-Database-Disclosure.html
+      rev: '2'
+      sid: '2016390'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

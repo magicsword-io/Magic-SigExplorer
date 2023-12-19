@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Welcome!psyBNC@lam3rz.de",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"APP-DETECT psyBNC access"'
+      rev: '11'
+      sid: '493'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

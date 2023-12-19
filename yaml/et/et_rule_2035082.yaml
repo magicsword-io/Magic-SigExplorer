@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|cooperron|02|me|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_02_03, deployment Perimeter,
+        former_category MALWARE, malware_family AridViper, signature_severity Major,
+        updated_at 2022_02_03
+      msg: '"ET TROJAN Arid Viper APT Related Domain in DNS Lookup (cooperron .me)"'
+      reference: url,blog.talosintelligence.com/2022/02/arid-viper-targets-palestine.html
+      rev: '2'
+      sid: '2035082'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

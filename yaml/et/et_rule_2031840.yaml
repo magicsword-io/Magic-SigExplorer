@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"EM="'
+      - value: '"&PS="'
+      - value: '"&btnLogin=+Log+In"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_10_16, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_09_17, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Paypal Account Phish 2015-10-16"'
+      pcre: '"/\.php$/U"'
+      reference: md5,ce07d8a671e2132f404e13ff8e1959b5
+      rev: '1'
+      sid: '2031840'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

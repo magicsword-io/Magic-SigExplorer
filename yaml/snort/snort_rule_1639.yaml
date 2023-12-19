@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"PRIVMSG ",nocase'
+      - value: '" |3A|.DCC SEND",distance 0,fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL IRC DCC file transfer request"'
+      rev: '13'
+      sid: '1639'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>chase online - account update</title>"'
+      - value: '"method=|22|post|22|"'
+      - value: '".php|22|"'
+      - value: '"onsubmit=|22|javascript|3a|return webform_onsubmit()|3b 22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_04_09, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_04_09
+      msg: '"ET CURRENT_EVENTS Chase Phishing Landing 2018-04-09"'
+      rev: '2'
+      sid: '2025475'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|5C|...|00 00 00|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"NETBIOS SMB CD..."'
+      rev: '9'
+      sid: '535'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

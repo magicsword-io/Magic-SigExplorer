@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cnc.php?id="'
+      - value: '"&uid="'
+      - value: '"User-Agent|3a| AppleMac|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_12_16, former_category MALWARE, updated_at 2020_09_28
+      msg: '"ET TROJAN Trojan.Agent.AIXD Checkin"'
+      reference: md5,f6ea10f719885fbcfb6743724faa94f7
+      rev: '2'
+      sid: '2019945'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

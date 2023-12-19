@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/Second_Life_Setup.exe"'
+      flow: established,to_server
+      metadata: created_at 2011_11_11, updated_at 2020_04_20
+      msg: '"ET GAMES Second Life setup download"'
+      reference: url,wiki.secondlife.com/wiki/Furry
+      rev: '2'
+      sid: '2013910'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

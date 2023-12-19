@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"rs|7c 4b 69 6c 65 72 7c|"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: created_at 2015_11_11, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN KilerRAT CnC - Remote Shell"'
+      pcre: '"/\x7c(?:[A-Za-z0-9/+]{4})*(?:[A-Za-z0-9/+]{2}==|[A-Za-z0-9/+]{3}=|[A-Za-z0-9/+]{4})$/"'
+      reference: url,alienvault.com/open-threat-exchange/blog/kilerrat-taking-over-where-njrat-remote-access-trojan-left-off
+      rev: '2'
+      sid: '2022068'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

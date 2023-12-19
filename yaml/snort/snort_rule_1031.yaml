@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/SiteServer/Publishing/viewcode.asp",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS /SiteServer/Publishing/viewcode.asp access"'
+      reference: nessus,10576
+      rev: '19'
+      service: http
+      sid: '1031'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

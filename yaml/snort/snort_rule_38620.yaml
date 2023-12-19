@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|0B|",distance 3'
+      - value: '"|55 04 07 0C 0B|Ouagadougou"'
+      - value: '"|55 04 0A 0C 16|Tiongon Wledb A.M.B.A.",distance 6'
+      - value: '"|55 04 03 0C 10|ina.themanyag.zm",distance 6'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dridex certificate exchange"'
+      reference: url,www.virustotal.com/en/file/fc25709c4e05dbfbcc6ae0cf8a7c06e80156ae05179203021838259aeda9801a/analysis/1461600547/
+      rev: '2'
+      service: ssl
+      sid: '38620'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

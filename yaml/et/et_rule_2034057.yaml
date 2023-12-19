@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/jquery-ajaxSuccess.js"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_30, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_09_30, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Activity (GET)"'
+      pcre: '"/^__cfduid=[a-zA-Z0-9_-]{171}$/C"'
+      reference: md5,cc13942c46fb85a5754570c2b2c06e35
+      rev: '2'
+      sid: '2034057'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      urilen: '22'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

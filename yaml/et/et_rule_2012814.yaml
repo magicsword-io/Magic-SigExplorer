@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|43 4F 4F 4C 4E 45 53 53 50 F2 08 00|"'
+      fast_pattern: only
+      flow: established,to_client
+      flowbits: isset,ET_Assassin.ses
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2011_05_18, deployment Perimeter,
+        former_category WEB_CLIENT, confidence Medium, signature_severity Major, tag
+        Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT PDF With Adobe Audition Session File Handling Memory Corruption
+        Attempt"'
+      reference: url,securitytracker.com/id/1025530
+      rev: '1'
+      sid: '2012814'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

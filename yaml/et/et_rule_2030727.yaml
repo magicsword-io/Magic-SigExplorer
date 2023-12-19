@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Length|3a 20|364|0d 0a|"'
+      - depth: '40'
+        value: '"OE1utcJ1hOpXDXMMv7v6fEB0TE58D8zB2PFvgXLL"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_08_24, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_24
+      msg: '"ET TROJAN Win32/Agent.ACBD CnC Activity"'
+      reference: md5,26382278c3d185d750203d6a600f8ae9
+      rev: '2'
+      sid: '2030727'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

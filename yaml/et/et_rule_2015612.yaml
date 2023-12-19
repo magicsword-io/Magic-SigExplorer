@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/dirLIST_files/gallery_files/show_scaled_image.php?"'
+      - value: '"image_path="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_08_10, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS dirLIST show_scaled_image.php Local File Inclusion
+        Attempt"'
+      reference: url,packetstormsecurity.org/files/115381/dirLIST-0.3.0-Local-File-Inclusion.html
+      rev: '1'
+      sid: '2015612'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

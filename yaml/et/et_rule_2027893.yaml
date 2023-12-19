@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '39'
+        value: '"/wp-content/plugins/WPSecurity/load.php"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 19,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_16, deployment Perimeter, former_category
+        MALWARE, malware_family Clipsa, performance_impact Low, signature_severity
+        Major, tag Stealer, updated_at 2020_09_17
+      msg: '"ET TROJAN Clipsa Stealer - CnC Checkin"'
+      pcre: '"/^Content-Length\x3a\x20[123]\d{2}\r\n/Hm"'
+      reference: url,decoded.avast.io/janrubin/clipsa-multipurpose-password-stealer/
+      rev: '2'
+      sid: '2027893'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/nagiosxi/backend/index.php",fast_pattern,nocase'
+      - value: '"command_data=",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Nagios XI command injection attempt"'
+      pcre: '"/[?&]command(\x5f|%5f)data=[^&]*?%26/i"'
+      reference: cve,2018-8734
+      rev: '1'
+      service: http
+      sid: '46776'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '"function"'
+      - value: '"|28 7b 7d 29|.__proto__"'
+      - value: '"Error.prototype.toString"'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_24, cve CVE_2019_0568,
+        deployment Perimeter, former_category EXPLOIT, confidence Medium, signature_severity
+        Major, tag Exploit, updated_at 2021_08_24
+      msg: '"ET EXPLOIT Microsoft Edge Chakra - InjectJsBuiltInLibraryCode Use-After-Free
+        Inbound (CVE-2019-0568)"'
+      pcre: '"/^\s*(?P<opt>[A-Za-z0-9_-]{1,20})\(\)\s*\{\s*let\s*(?P<o_var>[A-Za-z0-9_-]{1,20})\s*=\s*\{\}\x3b\s*(?:\/\/[\w\s_-]+)?(?:\/\/\s*[^\r\n]+\r\n)?(?P=o_var)\.(?P<x_prop>[A-Za-z0-9_-]{1,20}).{1,300}for\s*\(\s*let\s*(?P<counter>[A-Za-z0-9_-]{1,20})\s*=\s*\d{1,8}\s*\x3b\s*(?:\/\/[\w\s_-]+)?(?:\/\/\s*[^\r\n]+\r\n)?(?P=counter)\s*(?:<|>)\s*(?:0x)?\d{2,}\s*\x3b\s*(?:\/\/[\w\s_-]+)?(?:\/\/\s*[^\r\n]+\r\n)?(?P=counter)(?:\+{2}|-{2})\).{1,100}(?P=opt)\(\).{1,300}let\s*(?P<leaked_stack_obj>[A-Za-z0-9_-]{1,20})\s*=\s*null.{1,100}let\s*(?P<obj_proto>[A-Za-z0-9_-]{1,20})\s*=\s*\(\{\}\)\.__proto__\x3b.{1,300}(?P=obj_proto)\.__defineGetter__\([\x22\x27](?P=x_prop)[\x22\x27],\s*Error\.prototype\.toString\)\x3b\s*(?:\/\/[\w\s_-]+)?(?:\/\/\s*[^\r\n]+\r\n)?(?P=obj_proto)\.__defineGetter__\([\x22\x27](?P<message_proto>[A-Za-z0-9_-]{1,20})[\x22\x27].{1,300}delete\s*(?P=obj_proto)\.(?P=message_proto)\x3b.{1,300}(?P=obj_proto)\.\w+\s*=\s*Array\.prototype.{1,300}(?P=opt)/Rs"'
+      reference: cve,2019-0568
+      rev: '2'
+      sid: '2033775'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '19'
+        value: '"/wp-content/themes/"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: created_at 2014_07_26, former_category MALWARE, updated_at 2020_05_01
+      msg: '"ET TROJAN Win32/TrojanDownloader.Waski.F Locker DL URI Struct Jul 25
+        2014"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+(?:MSIE|rv\x3a11\.0)[^\r\n]+\r\nHost\x3a[^\r\n]+\r\nCache-Control\x3a\x20no-cache\r\n(?:\r\n)?$/H"'
+      reference: md5,dc4d0bd7fb9e647501c3b0d75aa2be65
+      rev: '1'
+      sid: '2018787'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

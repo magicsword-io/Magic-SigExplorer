@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"expn",nocase'
+      - value: '"root",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL expn root"'
+      pcre: '"/^expn\s+root/ims"'
+      reference: nessus,10249
+      rev: '19'
+      service: smtp
+      sid: '660'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

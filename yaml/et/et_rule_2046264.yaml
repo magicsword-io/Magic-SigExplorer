@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/payload.bin"'
+      - value: '"dl.dropbox.com"'
+      metadata: created_at 2023_06_14, updated_at 2023_06_14
+      msg: '"ET INFO DropBox User Content Download for payload.bin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+dl\.dropbox\.com/Hmi"'
+      reference: md5,7f3e405d6e9fb03de14551e19e3dfccb
+      rev: '1'
+      sid: '2046264'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

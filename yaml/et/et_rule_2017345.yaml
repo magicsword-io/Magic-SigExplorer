@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|5c|u9090|5c|"'
+      flow: established,to_client
+      metadata: created_at 2013_08_19, former_category SHELLCODE, tag possible_exploitation,
+        updated_at 2013_08_19
+      msg: '"ET SHELLCODE Possible UTF-16 u9090 NOP SLED"'
+      pcre: '"/^[a-f0-9]{4}/Ri"'
+      reference: url,www.windowsecurity.com/articles/Obfuscated-Shellcode-Part1.html
+      rev: '3'
+      sid: '2017345'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

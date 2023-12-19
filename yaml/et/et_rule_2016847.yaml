@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|2f|crx|2f|blobs"'
+      - value: '" Chrome/"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_05_14, updated_at 2020_09_18
+      msg: '"ET INFO Possible Chrome Plugin install"'
+      reference: url,blogs.technet.com/b/mmpc/archive/2013/05/10/browser-extension-hijacks-facebook-profiles.aspx
+      rev: '1'
+      sid: '2016847'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

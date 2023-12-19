@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api?upload",fast_pattern,nocase'
+      - value: '"Expect|3A 20|"'
+      - value: '!"User-Agent"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.iSpySoft variant exfiltration attempt"'
+      reference: url,www.virustotal.com/en/file/146889acc9c4a5dbda2de339320159560567b14f846653df727284076f092e63/analysis/1460466642/
+      rev: '3'
+      service: http
+      sid: '38510'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

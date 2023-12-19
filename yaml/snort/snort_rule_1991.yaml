@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1863'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"USR ",depth 4,nocase'
+      - value: '" TWN ",distance 1,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Microsoft MSN login attempt"'
+      rev: '9'
+      sid: '1991'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

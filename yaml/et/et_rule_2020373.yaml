@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"POST /"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0+(compatible|3b|+MSIE+8.0|3b|+Windows+NT+5.1|3b|+SV1|29
+          0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Accept"'
+      - value: '"|0d 0a 0d 0a|"'
+      - value: '"|00 00 00 00 00|"'
+      distance: '0'
+      fast_pattern: 39,20
+      flow: established,to_server
+      metadata: created_at 2015_02_06, former_category MALWARE, updated_at 2020_05_15
+      msg: '"ET TROJAN Possible DEEP PANDA C2 Activity"'
+      rev: '3'
+      sid: '2020373'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

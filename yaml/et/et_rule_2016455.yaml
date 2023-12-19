@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!--|0d 0a|<img border="'
+      flow: established,from_server
+      metadata: created_at 2013_02_22, former_category MALWARE, updated_at 2013_02_22
+      msg: '"ET TROJAN Possible WEBC2-GREENCAT Response - Embedded CnC APT1 Related"'
+      pcre: '"/^[0-4]\s*src=\x22[^\x22]+\x22\swidth=\d+\sheight=\d+>\r\n-->/R"'
+      reference: md5,b5e9ce72771217680efaeecfafe3da3f
+      rev: '3'
+      sid: '2016455'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Referer|3a| http|3a|//mysticnews.ru"'
+      - value: '"User-Agent|3a| Mozilla/5.0 (Windows NT 6.1|3b| rv|3a|11.0)"'
+      - value: '"spShopId="'
+      - value: '"&spShopPaymentId="'
+      - value: '"&spCurrency="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_04_02, updated_at 2020_10_14
+      msg: '"ET TROJAN Win32/LockScreen.BW Payment Info"'
+      reference: md5,c74d4633e0593879d5e1321d9021e708
+      rev: '2'
+      sid: '2020827'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

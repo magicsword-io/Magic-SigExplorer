@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '14'
+      classtype: trojan-activity
+      contents:
+      - value: '"/data/info.php",fast_pattern,nocase'
+      - value: '"x-requested-with: XMLHttpRequest"'
+      - value: '"Referer|3A| http|3A|"'
+      - value: '"/data",within 25'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Locky variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f29ce76169727ff5a43ef7baa5c4e04f7d3302189e3d2a31cfc9dec39e84ad03/analysis/
+      rev: '3'
+      service: http
+      sid: '40011'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

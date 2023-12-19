@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HEAD"'
+      - value: '"hact.be|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_08, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_03_08
+      msg: '"ET TROJAN Hact .be Pentesting CnC Activity"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+hact\.be/Hmi"'
+      reference: md5,d0ae5e30bb9dbc4563cb95c34b47112e
+      rev: '1'
+      sid: '2044528'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

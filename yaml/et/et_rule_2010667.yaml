@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/bin/bash"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_05_04
+      msg: '"ET WEB_SERVER /bin/bash In URI, Possible Shell Command Execution Attempt
+        Within Web Exploit"'
+      reference: url,doc.emergingthreats.net/2010667
+      rev: '9'
+      sid: '2010667'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

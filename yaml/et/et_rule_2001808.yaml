@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a 20|LimeWire"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2023_02_13
+      msg: '"ET P2P LimeWire P2P Traffic"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001808
+      rev: '9'
+      sid: '2001808'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

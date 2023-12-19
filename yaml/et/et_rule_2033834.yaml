@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/ecp/"'
+      - value: '"SecurityToken="'
+      flow: established,to_server
+      flowbits: set,ET.proxytoken
+      metadata: attack_target Server, created_at 2021_08_30, cve CVE_2021_33766, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_08_30
+      msg: '"ET EXPLOIT Microsoft Exchange - Information Disclosure flowbit set (CVE-2021-33766)"'
+      reference: cve,2021-33766
+      rev: '2'
+      sid: '2033834'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"hanc"'
+      - value: '"|08 00|"'
+      distance: '16'
+      isdataat: '!1,relative'
+      itype: '8'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_18, deployment Perimeter, former_category
+        MALWARE, malware_family Anchor, signature_severity Major, updated_at 2020_08_18
+      msg: '"ET TROJAN Trickbot/Anchor ICMP Request"'
+      reference: url,github.com/sysopfb/open_mal_analysis_notes/blob/master/546bf4fc684c5d1e17b204a28c795a414124335b6ef7cbadf52ae8fbadcb2a4a.md
+      rev: '1'
+      sid: '2030698'
+      within: '2'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

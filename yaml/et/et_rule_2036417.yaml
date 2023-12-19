@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/1/members/me/boards?key=664f145b65b9ea751df4dd21a96601f0&token=39daa5890c85fba874a352473b2fa9a97c7839223422411c22f22970f3b71ecc"'
+      - value: '"(iPad|3b 20|CPU|20|OS|20|"'
+      - value: '"Host|3a 20|api.trello.com|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 25,25
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Nobelium, signature_severity
+        Major, updated_at 2022_04_28
+      msg: '"ET TROJAN Nobelium APT Related Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\(iPad\x3b\x20CPU\x20OS\x20/Hmi"'
+      reference: url,inquest.net/blog/2022/04/18/nobelium-israeli-embassy-maldoc
+      rev: '2'
+      sid: '2036417'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

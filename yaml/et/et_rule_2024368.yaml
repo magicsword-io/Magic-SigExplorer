@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/otrs/index.pl?Action=Installer"'
+      flow: to_server,established
+      metadata: affected_product OTRS, attack_target Web_Server, created_at 2017_06_08,
+        cve CVE_2017_9324, deployment Datacenter, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, signature_severity Major, updated_at 2020_08_06
+      msg: '"ET WEB_SPECIFIC_APPS OTRS Installation Dialog (after auth) attempt"'
+      reference: cve,2017-9324
+      rev: '1'
+      sid: '2024368'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '21'
+        value: '"/themes/index.php?id="'
+      - value: '"Accept|3a 20|image/jpeg, application/*|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_26, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2020_03_26, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 (Magnitude EK)"'
+      pcre: '"/^\/themes\/index\.php\?id=[a-z]{200,}$/Us"'
+      reference: url,github.com//rsmudge/Malleable-C2-Profiles/blob/master/crimeware/magnitude.profile
+      rev: '2'
+      sid: '2029741'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      urilen: '>235'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|UA"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|04|Kyev"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|04|Kyev"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|06|GG UKR"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|09|UA System"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0a|monblan.ua"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_07_23, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_07_23, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Bazar Backdoor)"'
+      reference: md5,4d171ef3656ef56354ba8f336eab2cca
+      rev: '1'
+      sid: '2033391'
+      special_options:
+      - fast_pattern
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

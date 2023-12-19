@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|30 82|",within 2,distance 13'
+      - value: '"My Company Name LTD."'
+      - value: '"domain.com",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.PandaZeus self-signed certificate exchange"'
+      reference: url,virustotal.com/#/file/00fa65c8fced0abfab3f544801014a349f7d960819d8d79c47abe090bd75ccfc
+      rev: '2'
+      service: ssl
+      sid: '44592'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

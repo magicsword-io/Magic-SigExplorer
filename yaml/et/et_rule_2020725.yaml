@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function iu7("'
+      - value: '"ji2"'
+      - value: '"hu2"'
+      flow: established,from_server
+      metadata: created_at 2015_03_21, updated_at 2015_03_21
+      msg: '"ET CURRENT_EVENTS RIG EK Landing March 20 2015"'
+      pcre: '"/^\W/R"'
+      rev: '1'
+      sid: '2020725'
+      special_options:
+      - file_data
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

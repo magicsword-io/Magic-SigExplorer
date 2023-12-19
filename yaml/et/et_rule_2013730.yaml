@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"083B40D3-CCBA-11D2-AFE0-00C04F7993D6"'
+      - value: '".AddPage"'
+      - value: '"<OBJECT"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_10_04, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2022_05_03
+      msg: '"ET SCADA PcVue Activex Control Insecure method (AddPage)"'
+      pcre: '"/^[^>]*?classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*?083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi"'
+      reference: url,exploit-db.com/exploits/17896
+      rev: '6'
+      sid: '2013730'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

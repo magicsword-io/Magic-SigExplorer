@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"From|3A|",nocase'
+      - value: '"<><><><><><><><><><><><><><><><><><><><><><>",distance 0'
+      - value: '"|28|",distance 1'
+      - value: '"|29|",distance 1'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL From comment overflow attempt"'
+      reference: url,www.kb.cert.org/vuls/id/398025
+      rev: '14'
+      service: smtp
+      sid: '2087'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

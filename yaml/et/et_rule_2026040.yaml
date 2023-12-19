@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '2'
+        value: '"|81 80 00 01 00 01 00 00 00 00|"'
+      - value: '"|c0 0c 00 01 00 01 00 00 00 00 00 04 00 00 00 00|"'
+      - value: '!"|06|nessus|03|org"'
+      - value: '!"trr|03|dns|07|nextdns|02|io"'
+      - value: '!"|08|cloudapp|03|net"'
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_28, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, tag c2, updated_at
+        2022_03_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN CobaltStrike DNS Beacon Response"'
+      reference: url,www.youtube.com/watch?v=zAB5G-QOyx8
+      rev: '8'
+      sid: '2026040'
+      threshold: type both, count 10, seconds 90, track by_dst
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

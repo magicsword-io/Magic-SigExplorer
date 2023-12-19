@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Subject|3a 20|TenInfect"'
+      - value: '"|0d 0a 0d 0a|TenInfect"'
+      distance: '0'
+      fast_pattern: 9,9
+      flow: to_server,established
+      metadata: created_at 2014_01_29, former_category MALWARE, updated_at 2022_03_17
+      msg: '"ET TROJAN Win32.Genome.boescz Checkin"'
+      reference: url,www.virustotal.com/en/file/75c454bbcfc06375ad1e8b45d4167d7830083202f06c6309146e9a4870cddfba/analysis/
+      rev: '3'
+      sid: '2018033'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

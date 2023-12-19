@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/5.0 (compatible, Viper 4.0)|0d 0a|"'
+      fast_pattern: 37,12
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category USER_AGENTS, signature_severity Minor, tag Spyware_User_Agent,
+        updated_at 2020_10_13
+      msg: '"ET MALWARE Casino Related Spyware User-Agent Detected (Viper 4.0)"'
+      reference: url,doc.emergingthreats.net/2008586
+      rev: '7'
+      sid: '2008586'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

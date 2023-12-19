@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/c2conf"'
+      - depth: '4'
+        value: '"lid="'
+      - value: '"&ver="'
+      - value: '"|2e|"'
+      distance: '1'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_23, deployment Perimeter, former_category
+        MALWARE, malware_family lumma, confidence High, signature_severity Critical,
+        updated_at 2023_06_23
+      msg: '"ET TROJAN [ANY.RUN] Win32/Lumma Stealer Configuration Request Attempt"'
+      reference: url,app.any.run/tasks/bd11c4e0-0942-4880-bc43-03a6440d25d5
+      rev: '1'
+      sid: '2046637'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '7'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

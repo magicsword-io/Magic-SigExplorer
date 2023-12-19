@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3A 20|=?utf-8?B?SGF3a0V5ZSBMb2dnZXIg",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kirts initial registration"'
+      reference: url,www.virustotal.com/en/file/f81128f3b9c0347f4ee5946ecf9a95a3d556e8e3a4742d01e5605f862e1d116d/analysis/1462888129/
+      rev: '2'
+      service: smtp
+      sid: '38891'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

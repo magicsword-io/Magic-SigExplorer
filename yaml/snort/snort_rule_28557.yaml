@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|54 20|",fast_pattern,nocase'
+      - value: '"GET |2F| HTTP"'
+      flow: to_server
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-DNS Malformed DNS query with HTTP content"'
+      reference: url,www.ietf.org/rfc/rfc2616.txt
+      rev: '3'
+      service: dns
+      sid: '28557'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

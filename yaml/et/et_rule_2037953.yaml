@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '16052'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"|28 0f 00 00 31 00 32 00 33 00 34 00 35 00 36 00 00 00 03 00|"'
+      - value: '"|00 0a 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20
+          00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_04, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_08_04
+      msg: '"ET TROJAN Win64/Spy.Agent.EU CnC Checkin"'
+      reference: md5,b3d7480ac748ce375ee8f84f656222a1
+      rev: '1'
+      sid: '2037953'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

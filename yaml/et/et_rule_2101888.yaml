@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"SITE"'
+      - value: '"CPWD"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2002_0826, updated_at 2010_09_23
+      msg: '"GPL FTP SITE CPWD overflow attempt"'
+      pcre: '"/^SITE\s+CPWD\s[^\n]{100}/smi"'
+      reference: cve,2002-0826
+      rev: '9'
+      sid: '2101888'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

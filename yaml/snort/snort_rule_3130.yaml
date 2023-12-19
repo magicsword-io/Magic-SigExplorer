@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,256,-8,relative,big
+      classtype: attempted-user
+      contents:
+      - value: '"application/x-msnmsgrp2p",nocase'
+      - value: '"|89|PNG|0D 0A 1A 0A|",distance 0'
+      - value: '"IHDR",within 4,distance 4'
+      - value: '"|03|",within 1,distance 9'
+      - value: '"tRNS",distance 0'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PUA-OTHER Microsoft MSN Messenger png overflow"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS05-009
+      rev: '8'
+      sid: '3130'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1863'

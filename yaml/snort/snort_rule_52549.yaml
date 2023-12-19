@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7C|root|7C|",depth 6,offset 3'
+      flow: to_server,established
+      isdataat: '!11'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.XpertRAT outbound connection"'
+      reference: url,www.virustotal.com/gui/file/064d1d9a20f737679bb7ce912854c7ab29f78a0716ee8bc8dc69ade02acdca5a/detection
+      rev: '1'
+      sid: '52549'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

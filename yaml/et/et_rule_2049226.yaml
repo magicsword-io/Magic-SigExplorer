@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/add-user"'
+      - value: '"|22|customer|5f|name|22|"'
+      - value: '"|22|phone|22|"'
+      - value: '"|22|serial|5f|key|22|"'
+      - value: '"|22|software|5f|name|22|"'
+      - value: '"|22|software|5f|version|22|"'
+      flow: established,to_server
+      flowbits: set,ET.QBScam.Checkin
+      metadata: attack_target Client_Endpoint, created_at 2023_11_16, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Critical, updated_at 2023_11_16
+      msg: '"ET TROJAN QuickBooks Pop-Up Scam - Checkin"'
+      reference: url,www.esentire.com/blog/threat-actors-using-fake-quickbooks-software-to-scam-organizations
+      rev: '1'
+      sid: '2049226'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

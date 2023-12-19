@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '>2'
+      itype: '12'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Parameter Problem undefined Code"'
+      rev: '10'
+      sid: '428'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

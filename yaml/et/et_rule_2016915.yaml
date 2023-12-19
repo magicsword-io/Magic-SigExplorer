@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Smart-RTP"'
+      flow: established,to_server
+      metadata: created_at 2013_05_23, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Suspicious User Agent Smart-RTP"'
+      reference: md5,a80f33c94c44556caa2ef46cd5eb863c
+      rev: '4'
+      sid: '2016915'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

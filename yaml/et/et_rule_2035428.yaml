@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|05 00 00|"'
+      - value: '"|5c 00|c|00|m|00|d|00 2e 00|e|00|x|00|e|00 20 00 2f 00|c|00 20 00|s|00|t|00|a|00|r|00|t|00
+          20|"'
+      - value: '"r|00|e|00|g|00|s|00|v|00|r|00|3|00|2|00 2e 00|e|00|x|00|e|00 20 00
+          2f 00|s|00 20 00 2f 00|i|00 20 00|C|00 3a 00 5c 00|W|00|i|00|n|00|d|00|o|00|w|00|s|00
+          5c 00|c|00|"'
+      - value: '"|2e 00|d|00|l|00|l"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_03_10, deployment Internal, deployment
+        Datacenter, former_category MALWARE, malware_family HermeticWizard, signature_severity
+        Major, updated_at 2022_03_10
+      msg: '"ET TROJAN HermeticWizard - WMI Spreader - Remote Process Creation M2"'
+      pcre: '"/^(?:[A-F0-9]\x00){12}/R"'
+      reference: md5,517d2b385b846d6ea13b75b8adceb061
+      rev: '2'
+      sid: '2035428'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: any
+      port: any

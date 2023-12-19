@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: any
+      port: '3389'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '2'
+        value: '"|03 00|"'
+      - value: '"|02 f0|"'
+      - value: '"|00 05 00 14 7c 00 01|"'
+      - value: '"|03 c0|"'
+      - value: '"MS_T120|00|"'
+      distance: '6'
+      flow: to_server,established
+      metadata: attack_target Client_and_Server, created_at 2019_05_21, deployment
+        Perimeter, deployment Internet, deployment Internal, former_category EXPLOIT,
+        malware_family Bluekeep, signature_severity Major, updated_at 2019_05_21
+      msg: '"ET EXPLOIT [NCC GROUP] Possible Bluekeep Inbound RDP Exploitation Attempt
+        (CVE-2019-0708)"'
+      reference: url,github.com/nccgroup/Cyber-Defence/blob/master/Signatures/suricata/2019_05_rdp_cve_2019_0708.txt
+      rev: '3'
+      sid: '2027369'
+      special_options:
+      - nocase
+      - fast_pattern
+      threshold: type limit, track by_src, count 2, seconds 600
+      within: '372'
+    protocol: tcp
+    source:
+      network: any
+      port: any

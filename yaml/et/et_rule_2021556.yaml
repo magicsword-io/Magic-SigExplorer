@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"_W"'
+      - depth: '11'
+        value: '"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2015_07_31, former_category MALWARE, updated_at 2020_05_29
+      msg: '"ET TROJAN Dyre CnC Checkin"'
+      pcre: '"/_W\d+\.[A-F0-9]+\/\d+\/[^\x2f]+\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/$/U"'
+      reference: md5,3e215dfa84c271bb431b3de2e5da016a
+      rev: '1'
+      sid: '2021556'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

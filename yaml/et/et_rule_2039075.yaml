@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-includes/php-compat/compat.php"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"Edg/"'
+      - value: '"gametype="'
+      - value: '"type=O8Akm8aV09Nw412KoWJds"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_09_30, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_09_30
+      msg: '"ET TROJAN TA404/Zinc Trojanized KiTTY CnC Checkin"'
+      reference: url,www.microsoft.com/security/blog/2022/09/29/zinc-weaponizing-open-source-software/
+      rev: '1'
+      sid: '2039075'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

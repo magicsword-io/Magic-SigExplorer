@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"RETR",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP RETR overflow attempt"'
+      pcre: '"/^RETR(?!\n)\s[^\n]{200}/ims"'
+      reference: cve,2005-3683
+      rev: '22'
+      service: ftp
+      sid: '2392'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

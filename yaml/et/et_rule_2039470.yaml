@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b|java|3a|version|7d 20 24 7b|script|3a|JEXL|3a 27 27 2e|getClass|28
+          29 2e|forName|28 27|java|2e|lang|2e|Runtime|27 29 2e|getRuntime|28 29 2e|exec"'
+      - value: '"|7d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Apache_HTTP_server, attack_target Web_Server, created_at
+        2022_10_19, cve CVE_2022_42889, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, confidence Medium, signature_severity Major, updated_at
+        2022_12_15
+      msg: '"ET EXPLOIT Possible Apache Text4shell RCE Attempt JEXL Path (CVE-2022-42889)
+        (Inbound)"'
+      reference: url,twitter.com/pwntester/status/1582321752566161409
+      rev: '2'
+      sid: '2039470'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

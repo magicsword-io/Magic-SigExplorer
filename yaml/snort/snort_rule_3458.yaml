@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '617'
+    details:
+      byte_test: 2,>,255,6
+      classtype: attempted-user
+      contents:
+      - value: '"|00|T",depth 2'
+      - value: '!"|00|",depth 255,offset 8'
+      flow: to_server,established
+      isdataat: '263'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Arkeia backup client type 84 overflow attempt"'
+      reference: cve,2005-0491
+      rev: '9'
+      sid: '3458'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-admin/admin-ajax.php?action=tcp_register_and_login_ajax"'
+      - value: '"tcp_role|27 3a 20|"'
+      - value: '"tcp_new_user_pass|27 3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_10_06, deployment Perimeter,
+        deployment Internal, former_category WEB_SPECIFIC_APPS, signature_severity
+        Major, tag Exploit, updated_at 2021_10_06
+      msg: '"ET WEB_SPECIFIC_APPS Possible Wordpress Plugin TheCartPress Privilege
+        Escalation Attempt Inbound"'
+      rev: '1'
+      sid: '2034129'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"STATUS"'
+      flow: established,to_server
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2005_1256, updated_at 2010_09_23
+      msg: '"GPL IMAP status overflow attempt"'
+      pcre: '"/\sSTATUS\s[^\n]{100}/smi"'
+      reference: cve,2005-1256
+      rev: '3'
+      sid: '2103072'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

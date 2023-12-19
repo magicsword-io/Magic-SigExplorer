@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?commandline="'
+      - value: '"&country="'
+      - value: '"&username="'
+      - value: '"&newpc="'
+      - value: '"&av="'
+      - value: '"User-Agent|3a 20|WinHttpClient|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_16, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2021_09_16
+      msg: '"ET MALWARE Win32/TrojanDownloader.Adload.NSD Variant Checkin"'
+      reference: md5,dd6dca8dd2f53fdedeb5513f103ab711
+      rev: '2'
+      sid: '2033958'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

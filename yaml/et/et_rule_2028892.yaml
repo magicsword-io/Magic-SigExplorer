@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|"'
+      - value: '".scr|22 0d 0a 0d 0a|TVqQ"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_10_21, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, tag SpamBot, updated_at 2019_10_21
+      msg: '"ET TROJAN Unk Spam Bot Template 1 Active - Outbound Malicious Email Spam"'
+      pcre: '"/^(?:Cek\x20This|miss\x20[A-Za-z0-9]{2,20}|[A-Za-z0-9]{2,20}Porn)\r\n/R"'
+      rev: '2'
+      sid: '2028892'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

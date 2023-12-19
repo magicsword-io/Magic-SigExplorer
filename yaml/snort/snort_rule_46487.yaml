@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"id=",depth 3,offset 5'
+      - value: '"&os=",within 4,distance 8'
+      - value: '"&priv=",distance 0'
+      - value: '"&cred=",distance 0'
+      - value: '"&pcname=",distance 0'
+      - value: '"&build_time=",distance 0,fast_pattern'
+      - value: '"&card=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Ammy heartbeat"'
+      rev: '1'
+      service: http
+      sid: '46487'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/bot"'
+      - value: '"|2f|sendDocument|3f|chat|5f|id"'
+      - value: '"&caption=|f0 9f 94 94|New|20|Log|20|From|3a 20|"'
+      - value: '"|f0 9f 94 90|Password|3a 20|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_29, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, confidence High, signature_severity Critical, updated_at
+        2023_08_29
+      msg: '"ET TROJAN Win32/Steallerium Stealer Data Exfil via Telegram (POST)"'
+      reference: url,twitter.com/suyog41/status/1696071374178222119
+      rev: '1'
+      sid: '2047813'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

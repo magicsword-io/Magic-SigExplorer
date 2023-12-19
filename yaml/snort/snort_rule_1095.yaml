@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/webplus.exe?",nocase'
+      - value: '"script=test.wml",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Talentsoft Web+ Source Code view access"'
+      reference: url,archives.neohapsis.com/archives/ntbugtraq/2000-q3/0168.html
+      rev: '17'
+      service: http
+      sid: '1095'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

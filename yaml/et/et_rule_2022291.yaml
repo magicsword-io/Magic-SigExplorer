@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|3c 3c 3c 20 25 73 28 75 6e 3d 27 25 73 27 29 20 3d 20 25 75|"'
+      flow: established,to_server
+      metadata: created_at 2015_12_21, cve CVE_2015_7755, updated_at 2015_12_21
+      msg: '"ET EXPLOIT Juniper ScreenOS telnet Backdoor Default Password Attempt"'
+      reference: url,community.rapid7.com/community/infosec/blog/2015/12/20/cve-2015-7755-juniper-screenos-authentication-backdoor
+      rev: '1'
+      sid: '2022291'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '"User-Agent|3a 20|Java/"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_12, deployment Perimeter, former_category
+        HUNTING, signature_severity Informational, updated_at 2020_02_12
+      msg: '"ET INFO Suspicious EXE requested with Java UA"'
+      rev: '2'
+      sid: '2029421'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

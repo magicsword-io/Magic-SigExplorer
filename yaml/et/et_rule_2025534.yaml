@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"user/password"'
+      - value: '"POST"'
+      - value: '"_triggering_element_name"'
+      flow: established,to_server
+      metadata: affected_product Drupal_Server, attack_target Web_Server, created_at
+        2018_04_26, deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Minor, tag drupalgeddon, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Drupalgeddon2 <8.3.9 <8.4.6 <8.5.1 RCE Through Registration
+        Form (CVE-2018-7600)"'
+      pcre: '"/(?:%(?:25)?23|#)\s*(access_callback|pre_render|post_render|lazy_builder)/U"'
+      reference: url,research.checkpoint.com/uncovering-drupalgeddon-2
+      rev: '2'
+      sid: '2025534'
+      special_options:
+      - http_uri
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

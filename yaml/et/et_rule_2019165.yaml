@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3a 20|image/"'
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: established,from_server
+      flowbits: isset,ET.autoit.ua
+      metadata: created_at 2014_09_11, updated_at 2020_06_24
+      msg: '"ET TROJAN Possible Banload Downloading Executable"'
+      reference: md5,838ab7aacac590ea2e170888b2502a63
+      rev: '2'
+      sid: '2019165'
+      special_options:
+      - http_header
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

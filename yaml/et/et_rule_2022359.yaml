@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"JGVudiA9ICJYRFZTTl9TRVNTSU9OX0NPT0tJR"'
+      - value: '"eval(base64_decode($_REQUEST["'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_01_13, updated_at 2020_10_05
+      msg: '"ET WEB_SERVER WEBSHELL Linux/Torte Uploaded"'
+      reference: url,blog.malwaremustdie.org/2016/01/mmd-0050-2016-incident-report-elf.html
+      rev: '1'
+      sid: '2022359'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

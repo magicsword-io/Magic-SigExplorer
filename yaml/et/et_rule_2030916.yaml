@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"BITS_POST"'
+      - depth: '14'
+        value: '"/winfoxupdate_"'
+      - value: '"|0d 0a|BITS-"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2020_09_29, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_29
+      msg: '"ET TROJAN APT39/Chafer Payload - CnC Checkin M2"'
+      rev: '2'
+      sid: '2030916'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

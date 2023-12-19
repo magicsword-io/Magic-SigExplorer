@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"AUTH"'
+      - value: '!"|0A|",within 368'
+      flow: to_server,established
+      isdataat: 368,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP auth overflow attempt"'
+      reference: nessus,11910
+      rev: '11'
+      service: imap
+      sid: '2330'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

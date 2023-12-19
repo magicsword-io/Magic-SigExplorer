@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/wp-content/uploads/optpress/images_"'
+      - value: '".php"'
+      fast_pattern: 16,20
+      flow: to_server,established
+      metadata: created_at 2013_12_13, former_category CURRENT_EVENTS, updated_at
+        2020_08_18
+      msg: '"ET ATTACK_RESPONSE PHP script in OptimizePress Upload Directory Possible
+        WebShell Access"'
+      pcre: '"/\/wp-content\/uploads\/optpress\/images\_(?:comingsoon|lncthumbs|optbuttons)\/.*?\.php/Ui"'
+      reference: url,blog.sucuri.net/2013/12/wordpress-optimizepress-theme-file-upload-vulnerability.html
+      rev: '2'
+      sid: '2017854'
+      special_options:
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|besaintegration|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2020_12_28, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_12_28
+      msg: '"ET TROJAN FIN7/Carbanak CnC Domain in DNS Lookup (besaintegration .com)"'
+      reference: url,blog.truesec.com/2020/12/22/collaboration-between-fin7-and-the-ryuk-group-a-truesec-investigation/
+      rev: '2'
+      sid: '2031455'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

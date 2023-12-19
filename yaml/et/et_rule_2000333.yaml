@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: 4660:4799
+    details:
+      classtype: policy-violation
+      contents:
+      - offset: '1'
+        value: '"|e3|"'
+      - value: '"|00 00 00 59|"'
+      distance: '2'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P ed2k file request answer"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000333
+      rev: '11'
+      sid: '2000333'
+      within: '4'
+    protocol: tcp
+    source:
+      network: any
+      port: any

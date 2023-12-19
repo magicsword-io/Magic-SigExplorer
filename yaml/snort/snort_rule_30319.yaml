@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".mp3?rnd=",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: set,file.exploit_kit.pe
+      metadata: ruleset community
+      msg: '"EXPLOIT-KIT Goon/Infinity exploit kit malicious portable executable file
+        request"'
+      pcre: '"/\/\d+\.mp3\?rnd=\d+$/"'
+      rev: '5'
+      service: http
+      sid: '30319'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

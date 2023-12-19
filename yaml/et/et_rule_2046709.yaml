@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|git-hub|02|me|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_06_30, deployment Perimeter,
+        former_category MALWARE, malware_family JokerSpy, signature_severity Major,
+        updated_at 2023_06_30
+      msg: '"ET TROJAN JokerSpy Domain in DNS Lookup (git-hub .me)"'
+      reference: url,www.bitdefender.com/blog/labs/fragments-of-cross-platform-backdoor-hint-at-larger-mac-os-attack/
+      rev: '1'
+      sid: '2046709'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

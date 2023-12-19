@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|09|127.0.0.1"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|05|Chaos"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|09|127.0.0.1"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_29, deployment Perimeter, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_09_29
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Go/Chaos Botnet)"'
+      reference: url,blog.lumen.com/chaos-is-a-go-based-swiss-army-knife-of-malware/
+      rev: '1'
+      sid: '2039038'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

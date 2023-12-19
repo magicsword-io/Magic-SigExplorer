@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/insert.inc.php",fast_pattern,nocase'
+      - value: '"path="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP rolis guestbook remote file include attempt"'
+      reference: bugtraq,9057
+      rev: '13'
+      service: http
+      sid: '2284'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

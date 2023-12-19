@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2c 2d dd 4b 40 44 77 41|"'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2016_06_26, deployment Perimeter,
+        performance_impact Low, signature_severity Major, updated_at 2016_08_16
+      msg: '"ET CURRENT_EVENTS RIG EK Payload Jun 26 2016"'
+      rev: '2'
+      sid: '2022916'
+      special_options:
+      - file_data
+      within: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"Authorization|3A|",nocase'
+      - value: '"Negotiate",within 20,nocase'
+      - value: '"YIQAAABiBoMAAAYrBgEFBQKgggBTMIFQoA4wDAYKKwYBBAGCNwICCqM",within 100'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS NTLM ASN1 vulnerability scan attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-007
+      rev: '23'
+      service: http
+      sid: '2386'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

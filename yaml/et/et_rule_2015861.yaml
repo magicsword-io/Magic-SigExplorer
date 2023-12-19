@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ts="'
+      - value: '"affid="'
+      - value: '"|3b|c|3a|AMD-"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2012_10_13, updated_at 2020_09_18
+      msg: '"ET TROJAN System Progressive Detection FakeAV (AMD)"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+\(b\x3a\d+?\x3bc\x3aAMD-/Hm"'
+      reference: md5,76bea2200601172ebc2374e4b418c63a
+      rev: '5'
+      sid: '2015861'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/status.php"'
+      - value: '".my-files-download.ru"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_01_12, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2020_05_08, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN W32/Tobfy.Ransomware CnC Request - status.php"'
+      pcre: '"/Host\x3A\x20[^\r\n]*\x2Emy\x2Dfiles\x2Ddownload\x2Eru/H"'
+      reference: url,blog.fireeye.com/research/2013/01/happy-new-year-from-new-java-zero-day.html
+      rev: '3'
+      sid: '2016186'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

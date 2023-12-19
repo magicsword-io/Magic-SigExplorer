@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0e|bolt-food.site"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2022_05_19, deployment Perimeter,
+        former_category MOBILE_MALWARE, signature_severity Major, updated_at 2022_05_19
+      msg: '"ET MOBILE_MALWARE Observed Android ERMAC Banker (PL) Domain (bolt-food
+        .site in TLS SNI)"'
+      reference: md5,1e0586aef0f106031260fecb412c5cdf
+      rev: '1'
+      sid: '2036635'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

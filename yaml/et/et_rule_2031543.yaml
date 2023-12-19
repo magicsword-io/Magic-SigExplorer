@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/cgi-bin/jarrewrite.sh"'
+      - value: '"|28 29 20 7b|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_01_25, cve CVE_2014_6271,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2021_01_25
+      msg: '"ET EXPLOIT VisualDoor Sonicwall SSL VPN Exploit Attempt"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x28\x29\x20\x7b/Hmi"'
+      reference: cve,2014-6271
+      rev: '2'
+      sid: '2031543'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

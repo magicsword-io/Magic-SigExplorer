@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ETag|3a 20 22|8c0bf6-ba-4b975a53906e4|22|"'
+      flow: to_client,established
+      metadata: created_at 2013_01_17, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN Possible Red October proxy CnC 1"'
+      rev: '2'
+      sid: '2016224'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

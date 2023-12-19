@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/passwordrecovered.cgi",fast_pattern,nocase'
+      - value: '"id=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear passwordrecovered.cgi insecure admin password disclosure
+        attempt"'
+      reference: url,kb.netgear.com/30632/Web-GUI-Password-Recovery-and-Exposure-Security-Vulnerability
+      rev: '3'
+      service: http
+      sid: '41504'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

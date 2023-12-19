@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/set/first.html"'
+      - value: '"id="'
+      - value: '"os="'
+      - value: '"plist="'
+      flow: established,to_server
+      metadata: created_at 2010_10_09, updated_at 2020_04_21
+      msg: '"ET TROJAN carberp check in"'
+      rev: '3'
+      sid: '2011798'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

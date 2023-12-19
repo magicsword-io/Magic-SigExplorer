@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '5'
+        offset: '32769'
+        value: '"CD001"'
+      - depth: '5'
+        offset: '34817'
+        value: '"CD001"'
+      - depth: '5'
+        offset: '36865'
+        value: '"CD001"'
+      flow: established,to_client
+      metadata: created_at 2023_10_09, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_10_09, reviewed_at 2023_10_09
+      msg: '"ET INFO ISO File Downloaded"'
+      rev: '1'
+      sid: '2048493'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

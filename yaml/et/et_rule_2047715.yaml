@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"hp_socket|00|"'
+      dsize: '10'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_08_23, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, confidence Medium,
+        signature_severity Major, updated_at 2023_08_23
+      msg: '"ET TROJAN Carderbee APT Related Activity"'
+      reference: url,symantec-enterprise-blogs.security.com/blogs/threat-intelligence/carderbee-software-supply-chain-certificate-abuse
+      rev: '1'
+      sid: '2047715'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,2525,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Time|3a 20|"'
+      - value: '"<br>User Name|3a 20|"'
+      - value: '"<br>OSFullName|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_18, deployment Perimeter, former_category
+        MALWARE, malware_family AgentTesla, signature_severity Major, updated_at 2020_05_18
+      msg: '"ET TROJAN AgentTesla Exfil Via SMTP"'
+      reference: md5,b8b71fc1124765b75b3aa3be805e9d12
+      rev: '2'
+      sid: '2030171'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

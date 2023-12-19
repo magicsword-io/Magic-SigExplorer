@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-Library|3a| Indy 9"'
+      - value: '"Dispositivo instalado."'
+      - value: '"Maquina pronta para uso."'
+      - value: '"Data|3a| "'
+      - value: '"Hora|3a| "'
+      - value: '"Development by "'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Banload Downloader Infection - Sending initial email to owner"'
+      reference: url,doc.emergingthreats.net/2002977
+      rev: '4'
+      sid: '2002977'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

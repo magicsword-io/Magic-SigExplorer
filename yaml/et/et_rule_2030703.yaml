@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 03|"'
+      - value: '"|16|content.dropboxapi.com"'
+      distance: '1'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_19, deployment Perimeter, signature_severity
+        Informational, updated_at 2020_08_19
+      msg: '"ET POLICY [401TRG] DropBox Access via API (Certificate)"'
+      reference: url,github.com/dropbox/dbxcli
+      rev: '2'
+      sid: '2030703'
+      special_options:
+      - fast_pattern
+      within: '23'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

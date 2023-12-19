@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '23'
+      classtype: trojan-activity
+      contents:
+      - value: '"/content/img/awards.jpg",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC XP Fake Antivirus Payment Page Request"'
+      pcre: '"/\r\nReferer\x3A\x20http\x3A\x2F\x2f[a-z0-9\x2d\x2e]+\x2F\x3Fdo\x3Dpayment\x26ver\x3D\d+\x26sid\x3D\d+\x26sn\x3D\d+\r\n/"'
+      reference: url,camas.comodo.com/cgi-bin/submit?file=cf3eff5320b0c8d41490e412e89b97559bf34fcde8f9934e5fb7c76467a679d8
+      rev: '2'
+      service: http
+      sid: '26811'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

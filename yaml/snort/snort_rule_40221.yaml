@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[500,848,4500,4848]'
+    details:
+      byte_test: 2,>,2000,0,relative
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00 00 00 00 00 00|",depth 8,offset 8'
+      - value: '"|00 00 00 01 00 00 00 01|",depth 8,offset 32'
+      - value: '"|01 01 04 01|",within 4,distance 4'
+      - value: '"|80 02 00 01 80 04 00 01 00 06|",distance 0,fast_pattern'
+      dsize: '>2000'
+      flow: to_server
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-OTHER Cisco IOS Group-Prime MD5 memory disclosure attempt"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160916-ikev1
+      rev: '5'
+      sid: '40221'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

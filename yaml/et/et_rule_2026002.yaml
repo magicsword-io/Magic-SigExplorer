@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      byte_extract: 2,0,byte1,relative
+      byte_test: 2,=,byte1,50,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '76'
+        value: '"User-Agent|3a 20|Mozilla/5.0 (compatible|3b 20|MSIE 10.0|3b 20|Windows
+          NT 6.1|3b 20|Trident/6.0)"'
+      - depth: '2000'
+        value: '"|0d 0a 0d 0a|"'
+      - depth: '30'
+        value: '!"|00 00|"'
+      - depth: '2'
+        offset: '34'
+        value: '"|00 00|"'
+      - value: '"|00 00|"'
+      - value: '"|00 00|"'
+      - value: '!"Referer|3a|"'
+      distance: '2'
+      fast_pattern: 56,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_20, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, tag Tinba, updated_at 2020_11_04
+      msg: '"ET TROJAN [PTsecurity] Tinba (Banking Trojan) Check-in"'
+      reference: md5,be312fdb94f3a3c783332ea91ef00ebd
+      rev: '2'
+      sid: '2026002'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

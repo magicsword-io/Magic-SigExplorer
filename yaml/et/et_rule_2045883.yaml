@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"3ad7c2ebb96fcba7cda0cf54a2e802f5"'
+      flow: established,to_client
+      metadata: affected_product Wordpress, attack_target Web_Server, created_at 2023_05_30,
+        deployment Perimeter, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence High, signature_severity Critical, updated_at
+        2023_05_30
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress - Successful Check for Malicious posts-layout
+        (post-layout Doppelganger) Plugin - Infected Web Server"'
+      reference: url,blog.sucuri.net/2023/05/vulnerability-in-essential-addons-for-elementor-leads-to-mass-infection.html
+      rev: '1'
+      sid: '2045883'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

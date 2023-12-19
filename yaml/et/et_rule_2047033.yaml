@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '".dll|3e|"'
+      - value: '"|7c|"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.donotgroup
+      metadata: attack_target Client_Endpoint, created_at 2023_08_03, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_08_03
+      msg: '"ET TROJAN Donot Group Related Activity (Response)"'
+      reference: md5,d7e123fe7fb8a5f56ec9d89f7787340d
+      rev: '1'
+      sid: '2047033'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '25'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

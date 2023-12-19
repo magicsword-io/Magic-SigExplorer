@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/tracemap.php"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_22, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_05_19,
+        reviewed_at 2023_10_04, former_sid 2852977
+      msg: '"ET TROJAN Win32/BeamWinHTTP CnC Activity M2 (GET)"'
+      pcre: '"/\/tracemap\.php$/U"'
+      reference: url,asec.ahnlab.com/en/43255
+      rev: '2'
+      sid: '2045779'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

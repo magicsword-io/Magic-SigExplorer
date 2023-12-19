@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"BF6EFFF3-4558-4C4C-ADAF-A87891C5F3A3"'
+      - value: '"AddColumn"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_07_20, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Possible CA BrightStor ARCserve Backup ActiveX AddColumn Method
+        Access Buffer Overflow"'
+      reference: url,packetstormsecurity.org/files/82950/CA-BrightStor-ARCserve-Backup-AddColumn-ActiveX-Buffer-Overflow.html
+      rev: '2'
+      sid: '2015491'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

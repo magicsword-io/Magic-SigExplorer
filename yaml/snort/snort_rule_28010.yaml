@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/index.aspx?info=tserror_",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC BLYPT installer tserror outbound traffic"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/blypt-a-new-backdoor-family-installed-via-java-exploit
+      rev: '2'
+      service: http
+      sid: '28010'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

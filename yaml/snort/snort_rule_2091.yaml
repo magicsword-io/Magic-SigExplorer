@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"SEARCH / HTTP/1.1|0D 0A|Host|3A|"'
+      - value: '"|0D 0A 0D 0A|",within 255'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS WEBDAV nessus safe scan attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms03-007
+      rev: '16'
+      service: http
+      sid: '2091'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

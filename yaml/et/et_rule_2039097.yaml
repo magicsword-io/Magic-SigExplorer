@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|89 50 4E 47 0D 0A 1A 0A|"'
+      - value: '"IHDR"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, signature_severity Informational,
+        updated_at 2022_10_05
+      msg: '"ET INFO PNG in HTTP POST (Outbound)"'
+      reference: md5,71d5aea26377d283b4216bdbb6558ad0
+      rev: '1'
+      sid: '2039097'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

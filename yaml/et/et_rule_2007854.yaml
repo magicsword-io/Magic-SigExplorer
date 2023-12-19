@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla|0d 0a|"'
+      - value: '!"smartcom.com|0d 0a|"'
+      - value: '!"iscoresports.com|0d 0a|"'
+      - value: '!"popslotscasino.com|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_26
+      msg: '"ET MALWARE User-Agent (Mozilla) - Possible Spyware Related"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2007854
+      rev: '12'
+      sid: '2007854'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

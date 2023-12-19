@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"/config/"'
+      - value: '"/offers.json?"'
+      - value: '"version="'
+      - value: '"pid=installer&ts="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_03_01, former_category ADWARE_PUP, updated_at 2020_01_30
+      msg: '"ET MALWARE Win32.AdWare.iBryte.C Install"'
+      reference: md5,2fae46d1a71a893834a01ed3106b8036
+      rev: '3'
+      sid: '2018197'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

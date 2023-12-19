@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx?version="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_04, deployment Perimeter, former_category
+        MALWARE, malware_family OilRig, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_24
+      msg: '"ET TROJAN Oilrig Stealer CnC Checkin"'
+      pcre: '"/\.aspx\?version=[0-9]+lu[0-9]+d[0-9]+$/Ui"'
+      reference: url,docs.google.com/document/u/1/d/e/2PACX-1vR2TWm68bLidO3e2X0wTCqs0609vo5RXB85f6VL_Zm79wtTK59xADKh6MG0G7hSBZi8cPOiQVWAIie0/pub
+      rev: '2'
+      sid: '2025182'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

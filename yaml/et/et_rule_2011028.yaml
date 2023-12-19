@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"C|3a|/WINDOWS/system32/calc.exe"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET SCAN HZZP Scan in Progress calc in Headers"'
+      pcre: '"/^.+\x3a\s(test.)?C\:\/WINDOWS\/system32\/calc\.exe(.test)?\r$/m"'
+      reference: url,doc.emergingthreats.net/2011028
+      rev: '9'
+      sid: '2011028'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

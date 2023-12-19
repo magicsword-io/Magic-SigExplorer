@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"windows/meterpreter/reverse_"'
+      flow: established,from_server
+      flowbits: isset,et.DocVBAProject
+      metadata: created_at 2015_01_13, former_category MALWARE, updated_at 2015_01_13
+      msg: '"ET TROJAN Possible Office Doc with Embedded VBA containing Reverse Meterpreter
+        Shell"'
+      reference: url,github.com/enigma0x3/Generate-Macro/blob/master/Generate-Macro.ps1
+      rev: '3'
+      sid: '2020170'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

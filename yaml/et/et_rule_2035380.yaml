@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|22|filters|22 3a|"'
+      - value: '"|22 23 7b|"'
+      - depth: '30'
+        value: '"POST /actuator/gateway/routes/"'
+      flow: established,to_server
+      flowbits: set,ET.vmware.2022.22947
+      metadata: attack_target Server, created_at 2022_03_02, cve CVE_2022_22947, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_02
+      msg: '"ET EXPLOIT VMware Spring Cloud Gateway Code Injection (CVE-2022-22947)
+        (set)"'
+      reference: cve,2022-22947
+      rev: '1'
+      sid: '2035380'
+      special_options:
+      - nocase
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      within: '115'
+    protocol: tcp
+    source:
+      network: any
+      port: any

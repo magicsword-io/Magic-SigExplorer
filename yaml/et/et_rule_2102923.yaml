@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|FF|SMB"'
+      - value: '"s"'
+      - value: '"m|00 00 C0|"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB repeated logon failure"'
+      rev: '4'
+      sid: '2102923'
+      threshold: type threshold,track by_dst,count 10,seconds 60
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '139'

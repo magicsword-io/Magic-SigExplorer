@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - depth: '20'
+        value: '"/securityRealm/user/"'
+      - value: '"/api/xml"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2019_05_10, cve 2017_1000395, deployment
+        Perimeter, former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2022_03_24
+      msg: '"ET WEB_SPECIFIC_APPS Jenkins Information Disclosure CVE-2017-1000395"'
+      reference: url,jenkins.io/security/advisory/2017-10-11/#user-remote-api-disclosed-users-email-addresses
+      rev: '2'
+      sid: '2027347'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

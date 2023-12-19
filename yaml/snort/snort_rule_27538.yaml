@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 0A|"'
+      - value: '"|0E|MyCompany Ltd",within 14,distance 1'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-OTHER self-signed SSL certificate with default MyCompany Ltd
+        organization name"'
+      reference: url,security.ncsa.illinois.edu/research/grid-howtos/usefulopenssl.html
+      rev: '4'
+      service: ssl
+      sid: '27538'
+      ssl_state: server_hello
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

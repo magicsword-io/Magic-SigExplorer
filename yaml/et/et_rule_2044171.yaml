@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/search:"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_10, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_09_19, reviewed_at 2023_09_19
+      msg: '"ET TROJAN NewsPenguin CnC Checkin"'
+      pcre: '"/\/search:[a-z0-9]{12}$/Ui"'
+      reference: url,blogs.blackberry.com/en/2023/02/newspenguin-a-previously-unknown-threat-actor-targets-pakistan-with-advanced-espionage-tool
+      rev: '2'
+      sid: '2044171'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

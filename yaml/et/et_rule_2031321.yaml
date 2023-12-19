@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"HTTP/1."'
+      - value: '"Server: nginx/1.14.0 (Ubuntu)"'
+      - value: '"Connection|3a 20|close"'
+      - value: '"Cache-Control|3a 20|max-age=300, must-revalidate"'
+      - value: '"X-Content-Type-Options|3a 20|nosniff"'
+      - value: '"X-AspNetMvc-Version|3a 20|3.0"'
+      - value: '"X-AspNet-Version|3a 20|4.0.30319"'
+      - value: '"X-Powered-By|3a 20|ASP.NET"'
+      - value: '"Content-Length|3a 20|"'
+      - value: '"|0d 0a|"'
+      distance: '6'
+      fast_pattern: 3,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2020_12_14, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN [Fireeye] Backdoor.BEACON M2"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor.html
+      rev: '2'
+      sid: '2031321'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

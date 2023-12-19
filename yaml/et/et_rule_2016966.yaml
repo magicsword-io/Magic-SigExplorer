@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"a5chZev!"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_06_04, updated_at 2013_06_04
+      msg: '"ET CURRENT_EVENTS Sakura obfuscated javascript Jun 1 2013"'
+      rev: '7'
+      sid: '2016966'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[81:90,443]'

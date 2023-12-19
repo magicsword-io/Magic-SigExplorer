@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|2e|cmd|7b|background|2d|color|3a 23|000|3b|color|3a 23|FFF"'
+      - value: '"|3c|input|20|name|3d 27|postpass|27 20|type|3d 27|password|27 20|size|3d
+          27|22|27 3e 20 3c|input|20|type|3d 27|submit|27 20|value|3d|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2021_11_12, deployment Perimeter,
+        former_category WEB_SERVER, signature_severity Major, tag WebShell, updated_at
+        2021_11_12, mitre_tactic_id TA0003, mitre_tactic_name Persistence, mitre_technique_id
+        T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '1'
+      sid: '2034440'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

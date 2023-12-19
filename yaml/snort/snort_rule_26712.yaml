@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Opera/11 |28|Windows NT 5.1|3B 20 3B| x86|29|",fast_pattern,nocase'
+      - value: '"/count.php?page=",depth 16'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Kazy Trojan check-in"'
+      reference: url,camas.comodo.com/cgi-bin/submit?file=6d823488b26533f5151c3bab93c2a8ba832c9320e612d58d1134740abe3ca157
+      rev: '2'
+      service: http
+      sid: '26712'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

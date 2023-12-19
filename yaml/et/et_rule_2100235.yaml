@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"<success"'
+      flow: to_client,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL CHAT Jabber/Google Talk Logon Success"'
+      reference: url,www.google.com/talk/
+      rev: '3'
+      sid: '2100235'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5222'

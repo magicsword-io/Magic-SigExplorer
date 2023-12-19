@@ -1,0 +1,56 @@
+## "{{ rule.details.msg if 'msg' in rule.details else '' }}"
+
+**SID:** {{ rule.details.sid if 'sid' in rule.details else '' }}
+
+**Revision:** {{ rule.details.rev if 'rev' in rule.details else '' }}
+
+**Class Type:** {{ rule.details.classtype if 'classtype' in rule.details else '' }}
+
+**Metadata:** {{ rule.details.metadata if 'metadata' in rule.details else '' }}
+
+**Reference:** 
+{% if rule.details.reference is defined %}
+{% if 'url,' in rule.details.reference %}
+- [Link]({{ 'https://' if 'http://' not in rule.details.reference and 'https://' not in rule.details.reference else '' }}{{ rule.details.reference.replace('url,', '') }})
+{% else %}
+{% for ref in rule.details.reference.split(',') %}
+- {{ ref }}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+**Protocol:** {{ rule.protocol if 'protocol' in rule else '' }}
+
+**Source Network:** {{ rule.source.network if 'source' in rule and 'network' in rule.source else '' }}
+
+**Source Port:** {{ rule.source.port if 'source' in rule and 'port' in rule.source else '' }}
+
+**Destination Network:** {{ rule.destination.network if 'destination' in rule and 'network' in rule.destination else '' }}
+
+**Destination Port:** {{ rule.destination.port if 'destination' in rule and 'port' in rule.destination else '' }}
+
+**Flow:** {{ rule.details.flow if 'flow' in rule.details else '' }}
+
+**Contents:**
+{% if rule.details.contents %}
+{% for content in rule.details.contents %}
+- Value: {{ content.value }}
+  {% if content.depth is defined %}Depth: {{ content.depth }}{% endif %}
+  {% if content.offset is defined %}Offset: {{ content.offset }}{% endif %}
+{% endfor %}
+{% elif rule.details.content %}
+- {{ rule.details.content }}
+{% endif %}
+
+**Within:** {{ rule.details.within if 'within' in rule.details else '' }}
+
+**PCRE:** {{ rule.details.pcre if 'pcre' in rule.details else '' }}
+
+**Special Options:**
+{% if 'special_options' in rule.details %}
+{% for option in rule.details.special_options %}
+- {{ option }}
+{% endfor %}
+{% endif %}
+
+[*source*](https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/{{ rule_type }}/{{ rule_type }}_rule_{{ rule.details.sid if 'sid' in rule.details else '' }}.yaml)

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: '69'
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"|00 01|",depth 2'
+      - value: '"passwd",offset 2,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP GET passwd"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-aironet-info-disc-BfWqghj
+      rev: '12'
+      sid: '1443'
+    protocol: udp
+    source:
+      network: any
+      port: any

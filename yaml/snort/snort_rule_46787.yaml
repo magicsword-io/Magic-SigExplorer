@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/telg/sv/sv.php",fast_pattern,nocase'
+      - value: '"id"'
+      - value: '"data"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.ZooPark outbound connection attempt"'
+      reference: url,www.virustotal.com/en/file/76fa36d35e0e16b0ea416726b0da2a66dfe7d7b35504cf6c475eac4cfa95fe3a/analysis
+      rev: '1'
+      service: http
+      sid: '46787'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

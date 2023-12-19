@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/track-time"'
+      - depth: '14'
+        value: '"|7b 22|page|22 3a 22|index"'
+      - value: '"|22 2c 22|time|22 3a|"'
+      - value: '!"|22|"'
+      - value: '"|7d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2022_12_20, deployment Perimeter, deployment SSLDecrypt, former_category PHISHING,
+        malware_family Lucy, signature_severity Minor, tag Phishing, updated_at 2022_12_20
+      msg: '"ET CURRENT_EVENTS Lucy Security Time Tracking POST"'
+      pcre: '"/\/track-time$/U"'
+      rev: '1'
+      sid: '2042972'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      threshold: type limit, count 1, seconds 300, track by_src
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

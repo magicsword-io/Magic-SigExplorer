@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function llll|28|"'
+      - value: '"return bmw|3b|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_02_20, updated_at 2015_02_20
+      msg: '"ET CURRENT_EVENTS KaiXin Secondary Landing Page M2"'
+      rev: '2'
+      sid: '2020494'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

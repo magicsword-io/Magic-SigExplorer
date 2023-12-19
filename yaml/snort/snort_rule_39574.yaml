@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|08 00 00 00 D7 75 FF F7 C7 62 B9 82|",depth 12'
+      flow: to_server,established
+      isdataat: '!12'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.NanoBot variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/d74fcf6b8f2f1c3a1ed742feb3f323f7826e9fc79a3d642082cee46770a4697a/analysis/1461003042/
+      rev: '4'
+      sid: '39574'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

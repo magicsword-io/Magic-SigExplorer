@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".gif.exe",fast_pattern,nocase'
+      - value: '"Content-Length:"'
+      flow: to_client,established
+      flowbits: isset,file.zip
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Potential malware download - .gif.exe within .zip
+        file"'
+      rev: '2'
+      service: http
+      sid: '30998'
+      special_options:
+      - file_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

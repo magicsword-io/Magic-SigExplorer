@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/dir.php?url=YUhSMGNITTZMeTlzWVhjdWFtRnJibVYwTG0xNUxtbGtMM0J5YjNSbFkzUXRlVzkxY25ObGJHWXRabkp2YlMxdVpYUm1iR2w0TFhOallXMXpMV2x1YzJsbmFIUnpMV1p5YjIwdFlTMXNZWGN0WVhSMGIzSnVaWGt2"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_01, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_01
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page from Text Scam
+        M3 2023-05-01"'
+      rev: '1'
+      sid: '2045281'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

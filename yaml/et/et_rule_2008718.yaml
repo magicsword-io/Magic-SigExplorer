@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|20 00|"'
+      - value: '"|C8 4F 32 4B 70 16 D3 01 12 78 5A 47 BF 6E E1 88|"'
+      - value: '"../../"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2008_4250, updated_at 2010_07_30
+      msg: '"ET NETBIOS Microsoft Windows NETAPI Stack Overflow Inbound - MS08-067
+        (28)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008718
+      rev: '5'
+      sid: '2008718'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|22|spl|22|+|22|it|22|"'
+      flow: established,from_server
+      flowbits: set,ET.JS.Obfus.Func
+      metadata: created_at 2013_07_30, updated_at 2013_07_30
+      msg: '"ET INFO Obfuscated Split String (Double Q) 4"'
+      rev: '1'
+      sid: '2017236'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

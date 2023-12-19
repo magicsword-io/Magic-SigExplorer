@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 2,>,512,-11,relative,little
+      classtype: misc-attack
+      contents:
+      - value: '"|05 00|",depth 2'
+      - value: '"|12 02|",within 2,distance 5'
+      - value: '"|05 00|"'
+      - value: '"n|00|",within 2,distance 5'
+      - value: '"|05 00|"'
+      - value: '"|DE 03|",within 2,distance 5'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER ICQ SRV_MULTI/SRV_META_USER overflow attempt - ISS Witty
+        Worm"'
+      reference: url,www.eeye.com/html/Research/Advisories/AD20040318.html
+      rev: '16'
+      sid: '2446'
+    protocol: udp
+    source:
+      network: any
+      port: '4000'

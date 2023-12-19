@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,0,relative,align
+      byte_test: 4,>,64,0,relative
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '4'
+        offset: '12'
+        value: '"|00 01 86 A9|"'
+      - value: '"|00 00 00 01|"'
+      - depth: '4'
+        offset: '4'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      metadata: created_at 2010_09_23, cve CVE_2001_0779, updated_at 2010_09_23
+      msg: '"GPL RPC yppasswd username overflow attempt UDP"'
+      reference: cve,2001-0779
+      rev: '10'
+      sid: '2102025'
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

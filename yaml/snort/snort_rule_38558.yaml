@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/News/gate.php",fast_pattern,nocase'
+      - value: '"=",depth 4'
+      - value: '"User-Agent|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.GateKeylogger outbound connection"'
+      pcre: '"/User-Agent\x3a\x20[A-F0-9]{32}\x0d\x0a/"'
+      reference: url,www.virustotal.com/en/file/77c802db1731fa8dae1b03d978f89b046309adfa1237b1497a69ccb9c2d82c16/analysis/1459520578/
+      rev: '3'
+      service: http
+      sid: '38558'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

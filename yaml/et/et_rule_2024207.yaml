@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        offset: '4'
+        value: '"|FF|SMB|26 00 00 00 00|"'
+      - value: '"|4d 5a|"'
+      - value: '"This program cannot be run"'
+      distance: '0'
+      fast_pattern: 6,20
+      flow: to_server,established
+      flowbits: isset,ETPRO.ETERNALROMANCE
+      metadata: attack_target SMB_Server, created_at 2017_04_17, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2022_03_17
+      msg: '"ET EXPLOIT Possible Successful ETERNALROMANCE MS17-010 - Windows Executable
+        Observed"'
+      rev: '2'
+      sid: '2024207'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

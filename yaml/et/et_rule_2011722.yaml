@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"clsid"'
+      - value: '"DE625294-70E6-45ED-B895-CFFA13AEB044"'
+      - value: '"SetImage"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2019_09_27
+      msg: '"ET ACTIVEX Axis Media Controller ActiveX SetImage Method Remote Code
+        Execution Attempt"'
+      reference: url,doc.emergingthreats.net/2011722
+      rev: '4'
+      sid: '2011722'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

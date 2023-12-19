@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|4vw37z|02|cn|00|"'
+      distance: '1'
+      metadata: created_at 2021_06_09, former_category MALWARE, updated_at 2021_06_09
+      msg: '"ET TROJAN Observed DNS Query to Known Gelsemium CnC"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2021/06/eset_gelsemium.pdf
+      rev: '2'
+      sid: '2033124'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

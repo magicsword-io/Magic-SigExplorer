@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '12'
+        value: '"|89 50 4e 57 0d 0a 1a 0a 3c 3c 3c 3c|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_06_19, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2020_06_19
+      msg: '"ET TROJAN HTTPCore CnC Tasking File"'
+      reference: url,www.cyber.gov.au/sites/default/files/2020-06/ACSC-Advisory-2020-008-Copy-Paste-Compromises.pdf
+      rev: '2'
+      sid: '2030365'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

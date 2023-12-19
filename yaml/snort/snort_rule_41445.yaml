@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/cgi-bin/cgi.cgi",fast_pattern,nocase'
+      - value: '"u="'
+      - value: '"p="'
+      - value: '!"&",within 263'
+      - value: '!"|0D 0A|",within 263'
+      flow: to_server,established
+      isdataat: 263,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP remote buffer overflow attempt"'
+      reference: url,seclists.org/bugtraq/2017/Jan/5
+      rev: '2'
+      service: http
+      sid: '41445'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

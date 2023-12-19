@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/attach/1759CB3B5124F217143044"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_02_19, updated_at 2020_09_29
+      msg: '"ET TROJAN Win32.Beaugrit.gen.AAAA"'
+      reference: md5,fbfe6c2673aec9098e1fc9bf6d7fc059
+      rev: '1'
+      sid: '2020479'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

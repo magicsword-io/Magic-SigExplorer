@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/CLIENT_REQUEST/"'
+      - value: '".CallCppFunction|28|"'
+      flow: established,to_server
+      metadata: created_at 2020_09_05, cve CVE_2020_3495, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, signature_severity Major, updated_at 2020_09_05
+      msg: '"ET EXPLOIT Possible Cisco Jabber RCE Inbound (CVE-2020-3495)"'
+      reference: cve,2020-3495
+      rev: '2'
+      sid: '2030837'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|whois|08|pconline|03|com|02|cn|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_11, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_08_11, reviewed_at 2023_11_10
+      msg: '"ET INFO External IP Check Domain in DNS Lookup (whois .pconline .com
+        .cn)"'
+      rev: '1'
+      sid: '2047621'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - value: '"curlmyip.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_01_07, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2023_05_23
+      msg: '"ET INFO Possible IP Check curlmyip.com"'
+      pcre: '"/^Host\x3a[^\r\n]+?curlmyip\.com(?:\x3a\d{1,5})?[\r\n]+$/Hmi"'
+      reference: url,blogs.cisco.com/security/talos/cryptowall-2
+      rev: '4'
+      sid: '2020106'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

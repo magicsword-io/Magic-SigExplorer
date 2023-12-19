@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/support/s"'
+      - value: '"User-Agent|3a| Internet Explorer|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_06_05, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN FakeAvCn-A Checkin 1"'
+      rev: '2'
+      sid: '2014855'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

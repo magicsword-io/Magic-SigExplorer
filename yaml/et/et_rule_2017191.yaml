@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".htm"'
+      - value: '!"BridgitAgent"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      - value: '!"Content-Type"'
+      - value: '"Content-Length|3a 20|"'
+      - value: '!"0|0d 0a|"'
+      - value: '"|0d 0a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_07_24, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Win32/Kelihos.F Checkin"'
+      pcre: '"/^\/[^\x2f]+?\.htm$/U"'
+      reference: md5,00db349caf2eefc3be5ee30b8b8947a2
+      rev: '2'
+      sid: '2017191'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: <13
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

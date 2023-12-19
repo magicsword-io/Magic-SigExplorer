@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '617'
+    details:
+      byte_test: 2,>,23,6
+      classtype: attempted-user
+      contents:
+      - value: '"|00|M",depth 2'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER Arkeia backup client type 77 overflow attempt"'
+      reference: nessus,17158
+      rev: '14'
+      sid: '3457'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

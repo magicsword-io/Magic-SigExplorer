@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-Auth-43245-S-20|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2023_12_06, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        confidence High, signature_severity Major, updated_at 2023_12_06
+      msg: '"ET TROJAN SnappyTCP Reverse Shell Header Value Observed"'
+      reference: url,pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/tortoise-and-malwahare.html
+      rev: '1'
+      sid: '2049527'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

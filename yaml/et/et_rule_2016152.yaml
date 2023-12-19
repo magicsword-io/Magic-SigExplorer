@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<h2>(L)aunch external program</h2>"'
+      flow: established,to_client
+      metadata: created_at 2013_01_04, updated_at 2013_01_04
+      msg: '"ET WEB_SERVER WebShell - JSP File Admin"'
+      rev: '2'
+      sid: '2016152'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

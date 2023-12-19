@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        offset: '1'
+        value: '"|00 00 00 19 00 00 00|"'
+      - value: '"|01 00 00|"'
+      - value: '"BOT-"'
+      - value: '"|00|"'
+      distance: '1'
+      dsize: <100
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_12, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2021_11_29, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN VNCStartServer BOT Variant CnC Beacon"'
+      reference: md5,d66956e0ee70a60e19a4f310339d28a9
+      rev: '3'
+      sid: '2035524'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

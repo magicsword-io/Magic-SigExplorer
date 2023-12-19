@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/pdfx.html"'
+      flow: established,to_server
+      metadata: created_at 2012_12_18, updated_at 2020_04_23
+      msg: '"ET CURRENT_EVENTS Unknown_gmf EK - pdfx.html"'
+      rev: '2'
+      sid: '2016055'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

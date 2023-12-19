@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|cn|00|"'
+      - value: '!"|03|360"'
+      distance: '-8'
+      metadata: created_at 2011_02_21, former_category ADWARE_PUP, updated_at 2019_08_29
+      msg: '"ET MALWARE All Numerical .cn Domain Likely Malware Related"'
+      pcre: '"/\x00[\x02-\x1E][0-9]{2,30}\x02cn\x00/i"'
+      rev: '6'
+      sid: '2012327'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '4'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

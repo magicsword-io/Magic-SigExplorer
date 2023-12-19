@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"N5c3RlbSgiIHBoc"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_07_09, deployment Datacenter, former_category EXPLOIT, updated_at
+        2018_07_18
+      msg: '"ET EXPLOIT Generic system shell command to php base64 encoded Remote
+        Code Execution 2"'
+      rev: '2'
+      sid: '2025796'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

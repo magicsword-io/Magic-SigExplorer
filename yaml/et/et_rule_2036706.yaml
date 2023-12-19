@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|paknavy|07|comsats|03|xyz|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_27, deployment Perimeter,
+        former_category MALWARE, malware_family Sidewinder, signature_severity Major,
+        updated_at 2022_05_27
+      msg: '"ET TROJAN Sidewinder APT Related Domain in DNS Lookup (paknavy .comsats
+        .xyz)"'
+      reference: url,twitter.com/__0XYC__/status/1529707301979947009
+      rev: '1'
+      sid: '2036706'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

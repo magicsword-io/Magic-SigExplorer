@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/rundll32.exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_02, former_category INFO, updated_at 2022_05_03
+      msg: '"ET INFO Suspicious rundll32.exe in URI"'
+      pcre: '"/\/rundll32\.exe$/Ui"'
+      reference: md5,ea3dec87f79ff97512c637a5c8868a7e
+      rev: '12'
+      sid: '2016703'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      urilen: <100
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

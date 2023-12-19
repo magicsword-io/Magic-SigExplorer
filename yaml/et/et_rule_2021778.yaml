@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|23 31 f9 4f 62 57 73 67|"'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2015_09_15, former_category EXPLOIT_KIT, updated_at 2015_09_15
+      msg: '"ET TROJAN Cryptowall docs campaign Sept 2015 encrypted binary (1)"'
+      rev: '1'
+      sid: '2021778'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

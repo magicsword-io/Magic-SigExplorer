@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 17|hawad.000webhostapp.com|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_14, deployment Perimeter, former_category
+        MALWARE, malware_family AwadBot, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN Observed Awad Bot CnC Domain (hawad .000webhostapp .com in
+        TLS SNI)"'
+      reference: md5,5872fde3bf4b5a30a64837a35d1ec5fd
+      rev: '2'
+      sid: '2026799'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

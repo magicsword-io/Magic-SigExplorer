@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7777'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '50'
+        value: '"/BPELConsole/default/processLog.jsp"'
+      - value: '"processName="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_10_28, cve CVE_2010_3581, deployment Datacenter, signature_severity
+        Major, tag XSS, tag Cross_Site_Scripting, updated_at 2016_07_01
+      msg: '"ET WEB_SPECIFIC_APPS Oracle Fusion Middleware BPEL Console Cross Site
+        Scripting"'
+      pcre: '"/processName\x3D.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange)/i"'
+      reference: cve,2010-3581
+      rev: '2'
+      sid: '2011860'
+      special_options:
+      - nocase
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

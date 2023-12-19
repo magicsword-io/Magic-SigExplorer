@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|48 00 00 00 78 ff 61 48 03 b2 91 94|"'
+      dsize: '12'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_06_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Nanocore, updated_at 2018_06_13, former_sid
+        2831256
+      msg: '"ET TROJAN NanoCore RAT CnC 23"'
+      reference: url,medium.com/@the_abjuri5t/nanocore-rat-hunting-guide-cb185473c1e0
+      rev: '1'
+      sid: '2046919'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

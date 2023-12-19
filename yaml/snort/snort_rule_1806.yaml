@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".htr",nocase'
+      - value: '"Transfer-Encoding|3A|",nocase'
+      - value: '"chunked",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS .htr chunked Transfer-Encoding"'
+      reference: nessus,11028
+      rev: '20'
+      service: http
+      sid: '1806'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

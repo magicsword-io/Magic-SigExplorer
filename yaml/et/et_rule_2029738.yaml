@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/continue_bnb.php"'
+      - value: '"airbnb"'
+      - value: '"covid"'
+      flow: established,to_server
+      flowbits: isset,ET.genericphish
+      isdataat: '!1,relative'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_03_25, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_03_25, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Airbnb COVID-19 Phish 2020-03-25"'
+      rev: '2'
+      sid: '2029738'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

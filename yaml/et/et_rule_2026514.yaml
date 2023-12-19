@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".live|0d 0a|Conne"'
+      - depth: '5'
+        value: '"Host|3a|"'
+      - value: '!"Host|3a 20|parrot.live"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_17, deployment Perimeter, former_category
+        MALWARE, malware_family MalDocGeneric, malware_family Maldoc, signature_severity
+        Major, updated_at 2020_09_02
+      msg: '"ET TROJAN Malicious XLS DDE rar Drop Attempt (.live)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nConnection[^\r\n]+[\r\n]+$/H"'
+      reference: md5,63b070b222d170ef4cc35ad94d42a088
+      rev: '4'
+      sid: '2026514'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

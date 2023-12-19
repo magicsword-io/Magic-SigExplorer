@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/command.php?t=1&id="'
+      - value: '"User-Agent|3a 20|Mozilla/5.0|20|(Windows|20|NT)|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_10_23, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_10_23
+      msg: '"ET TROJAN Win32/Spy.Pavica.FH Variant CnC Activity"'
+      reference: url,twitter.com/jstrosch/status/1319704698031640577
+      rev: '2'
+      sid: '2031096'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

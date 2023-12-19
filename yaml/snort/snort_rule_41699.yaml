@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ping.cgi",nocase'
+      - value: '"ping_IPAddr=",fast_pattern,nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear DGN2200 ping.cgi command injection attempt"'
+      pcre: '"/[?&]ping_IPAddr=[^&]*?%26/i"'
+      reference: url,seclists.org/fulldisclosure/2017/Feb/50
+      rev: '3'
+      service: http
+      sid: '41699'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

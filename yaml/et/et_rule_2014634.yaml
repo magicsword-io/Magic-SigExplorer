@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_extract: 3,0,SSL.Client_Hello.length,relative
+      byte_test: 1,>,SSL.Client_Hello.length,34,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"|16 03 00|"'
+      - value: '"|01|"'
+      distance: '2'
+      flow: to_server,established
+      metadata: created_at 2012_04_24, updated_at 2019_08_13
+      msg: '"ET TROJAN Possible Variant.Kazy.53640 Malformed Client Hello SSL 3.0
+        (Session_Id length greater than Client_Hello Length)"'
+      reference: md5,a01d75158cf4618677f494f9626b1c4c
+      rev: '2'
+      sid: '2014634'
+      threshold: type both, track by_src, count 5, seconds 60
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

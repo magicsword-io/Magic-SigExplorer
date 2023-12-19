@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|2f 2a 20 61 64 69 6c 62 6f 20 48 54 4d 4c 20 45 6e 63 6f 64 65 72|"'
+      - value: '"*|20 20|Checksum|3a 20|"'
+      fast_pattern: 2,20
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_09_23, deployment Perimeter, former_category INFO, signature_severity
+        Informational, updated_at 2023_05_02, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET INFO Adilbo HTML Encoder Observed"'
+      reference: url,web.archive.org/web/20220519100131/https://codecanyon.net/item/hide-my-html/13813808?s_rank=9
+      rev: '4'
+      sid: '2024763'
+      special_options:
+      - file_data
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

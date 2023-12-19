@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/graphql"'
+      - depth: '7'
+        value: '"|7b 22|query"'
+      - value: '"|27 29|"'
+      flow: established,to_server
+      metadata: created_at 2021_07_24, cve CVE_2020_13921, updated_at 2021_08_16
+      msg: '"ET WEB_SPECIFIC_APPS Apache SkyWalking GraphQL SQL Injection Inbound
+        (CVE-2020-13921)"'
+      pcre: '"/^\s?.{0,100}(?:SELECT|UNION|CHAR|LONGVARCHAR|SCHEMA|FROM|WHERE|IFNULL|INSERT|UPDATE)/R"'
+      reference: cve,2020-13921
+      rev: '2'
+      sid: '2033403'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

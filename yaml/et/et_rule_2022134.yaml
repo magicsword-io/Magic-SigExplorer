@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|09|eDellRoot"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2015_11_24, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2022_03_24
+      msg: '"ET WEB_CLIENT Possible eDellRoot Rogue Root CA"'
+      reference: url,arstechnica.com/security/2015/11/dell-does-superfish-ships-pcs-with-self-signed-root-certificates/
+      rev: '3'
+      sid: '2022134'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

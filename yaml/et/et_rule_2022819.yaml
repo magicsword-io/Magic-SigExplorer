@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|ff ff ff|tcp/CONNECT/3/"'
+      flow: to_server
+      metadata: created_at 2016_05_18, cve CVE_2016_1287, updated_at 2016_05_18
+      msg: '"ET ATTACK_RESPONSE Possible CVE-2016-1287 Inbound Reverse CLI Shellcode"'
+      pcre: '"/^(?:\d{1,3}\.){3}\d{1,3}\/\d+\x00$/Ri"'
+      reference: url,raw.githubusercontent.com/exodusintel/disclosures/master/CVE_2016_1287_PoC
+      rev: '1'
+      sid: '2022819'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

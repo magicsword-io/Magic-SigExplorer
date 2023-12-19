@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/login.uix",nocase'
+      - value: '"connectID=",nocase'
+      flow: to_server,established
+      isdataat: 255,relative
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Oracle 10g iSQLPlus login.unix connectID overflow attempt"'
+      pcre: '"/connectID=[^&\x3b\r\n]{255}/ims"'
+      reference: url,www.nextgenss.com/advisories/ora-isqlplus.txt
+      rev: '12'
+      service: http
+      sid: '2704'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

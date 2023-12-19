@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e 40|"'
+      - value: '!"|40|"'
+      - value: '"|40 3c 2f|title|3e|"'
+      distance: '3'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Minor, updated_at 2022_06_24
+      msg: '"ET TROJAN Win32/Syndicasec Encoded Response Embedded in HTML Title Tags
+        Inbound"'
+      reference: md5,f339bbca8e7a5d0f1629212f61b7d351
+      rev: '3'
+      sid: '2033905'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

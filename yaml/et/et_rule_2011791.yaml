@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"&ver="'
+      - value: '"&up="'
+      - value: '"&os="'
+      flow: established,to_server
+      metadata: created_at 2010_09_29, former_category MALWARE, updated_at 2020_09_10
+      msg: '"ET TROJAN Shiz/Rohimafo Checkin"'
+      reference: md5,3614d4f6527d512b61c27c4e213347a6
+      rev: '3'
+      sid: '2011791'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

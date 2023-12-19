@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_test: 2,>,256,0,relative,little
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB2"'
+      - depth: '2'
+        offset: '60'
+        value: '"|00 14|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0201, former_category NETBIOS,
+        confidence High, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB trans2open buffer overflow attempt"'
+      reference: url,www.digitaldefense.net/labs/advisories/DDI-1013.txt
+      rev: '10'
+      sid: '2102103'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1720'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|03 00|",depth 2'
+      - value: '"|08|",distance 2'
+      - value: '"|05|",distance 4'
+      - value: '"MERA RTU",within 100,fast_pattern'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Polycom Botnet inbound connection attempt"'
+      reference: url,support.polycom.com/global/documents/support/documentation/H_3_2_3_Botnet_Bulletin_v_1_2.pdf
+      rev: '4'
+      sid: '37814'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

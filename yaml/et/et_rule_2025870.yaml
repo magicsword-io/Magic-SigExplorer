@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Sign in to Badoo</title>"'
+      - value: '"<label for=|22|emaill"'
+      - value: '"<label for=|22|password"'
+      - value: '">Password</label>"'
+      - value: '">Sign me in!</span>"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_07_19, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Minor, tag Phish, updated_at 2020_08_19
+      msg: '"ET CURRENT_EVENTS Badoo Phishing Landing 2018-07-19"'
+      pcre: '"/^\d{5,20}\x22/R"'
+      rev: '2'
+      sid: '2025870'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

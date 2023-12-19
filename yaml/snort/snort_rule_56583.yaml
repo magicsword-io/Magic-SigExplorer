@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '88'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|05|",depth 30'
+      - value: '"|0A|",within 1,distance 4'
+      - value: '"Z"'
+      - value: '"|6C 69 6C 00|",within 25'
+      flow: to_server,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-TOOLS GhostPack Rubeus kerberos request attempt"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: kerberos
+      sid: '56583'
+    protocol: tcp
+    source:
+      network: any
+      port: any

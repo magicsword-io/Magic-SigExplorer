@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|0C|any.ident.me"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2018_12_26,
+        deployment Perimeter, former_category POLICY, performance_impact Low, signature_severity
+        Informational, updated_at 2022_10_25
+      msg: '"ET POLICY Observed Suspicious SSL Cert (External IP Lookup - ident .me)"'
+      rev: '3'
+      sid: '2026743'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

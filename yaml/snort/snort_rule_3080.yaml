@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7787'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|5C|secure|5C|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Unreal Tournament secure overflow attempt"'
+      pcre: '"/\x5csecure\x5c[^\x00]{50}/ims"'
+      reference: cve,2004-0608
+      rev: '9'
+      sid: '3080'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/scripts/postinfo.asp",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS postinfo.asp access"'
+      reference: cve,1999-0360
+      rev: '21'
+      service: http
+      sid: '1075'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

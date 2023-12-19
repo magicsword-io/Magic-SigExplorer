@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-user
+      contents:
+      - value: '"|0A|Referer|3A| res|3A|/C|3A|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE successful cross site scripting forced download
+        attempt"'
+      rev: '9'
+      sid: '2412'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '4'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|google|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_18, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_03_18
+      msg: '"ET INFO DNS Query to google .com Non Standard Port (tcp)"'
+      rev: '1'
+      sid: '2035535'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

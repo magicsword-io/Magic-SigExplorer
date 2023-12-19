@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"_vti_bin"'
+      - value: '"/webpartpages.asmx"'
+      - value: '"<?xml"'
+      - value: '"System.Diagnostics.Process.Start"'
+      flow: established,to_server
+      metadata: created_at 2021_11_18, cve CVE_2020_0646, former_category EXPLOIT,
+        updated_at 2021_11_18
+      msg: '"ET EXPLOIT .NET Framework Remote Code Execution Injection (CVE-2020-0646)"'
+      pcre: '"/\/webpartpages\.asmx$/U"'
+      reference: cve,2020-0646
+      rev: '1'
+      sid: '2034509'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

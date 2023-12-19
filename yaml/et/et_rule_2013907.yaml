@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/stat"'
+      - value: '".php?w="'
+      - value: '"&i=00000000000"'
+      - value: '"&a="'
+      - value: '"User-Agent|3a 20|Opera/6 (Windows NT 5.1|3b 20|"'
+      flow: established,to_server
+      metadata: created_at 2011_11_11, former_category MALWARE, updated_at 2020_08_18
+      msg: '"ET TROJAN ZAccess/Sirefef/MAX++/Jorik/Smadow Checkin"'
+      rev: '3'
+      sid: '2013907'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

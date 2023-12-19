@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      itype: '7'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP unassigned type 7 undefined code"'
+      reference: cve,1999-0454
+      rev: '14'
+      sid: '463'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|10|updatedaemon.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_04_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Ransomware, updated_at
+        2022_04_22, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed BlackCat Ransomware Related SSL Cert (updatedaemon
+        .com)"'
+      reference: url,www.trendmicro.com/en_us/research/22/d/an-investigation-of-the-blackcat-ransomware.html
+      rev: '1'
+      sid: '2036314'
+      special_options:
+      - fast_pattern
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

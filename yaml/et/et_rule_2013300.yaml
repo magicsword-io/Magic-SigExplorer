@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|0b|"'
+      - value: '"|30 2b 06 03 55 04 03 13 24|DivX, Inc. Certificate Authority"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2011_07_23, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, tag SSL_Malicious_Cert,
+        updated_at 2022_03_25
+      msg: '"ET POLICY DivX Client SSL Connection via Self-Signed SSL Cert"'
+      rev: '3'
+      sid: '2013300'
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

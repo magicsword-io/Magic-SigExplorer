@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '12'
+        value: '"browserData="'
+      - value: '"&org.apache.struts.taglib.html.TOKEN="'
+      - value: '"&jsEnabled="'
+      - value: '"&userid="'
+      - value: '"&password="'
+      - value: '"&login="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_11_18, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_09_17, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Wells Fargo Phish M1 2016-11-18"'
+      pcre: '"/\.php$/U"'
+      rev: '1'
+      sid: '2032627'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

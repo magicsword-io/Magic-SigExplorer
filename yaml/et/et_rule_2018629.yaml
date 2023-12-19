@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"work|3a|"'
+      - value: '"|7c|downexec|20|"'
+      - value: '".jpg|3b 0d 0a|"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2014_07_02, former_category MALWARE, updated_at 2020_08_19
+      msg: '"ET TROJAN Trojan.Karagany C&C Response"'
+      reference: url,www.symantec.com/content/en/us/enterprise/media/security_response/whitepapers/Dragonfly_Threat_Against_Western_Energy_Suppliers.pdf
+      rev: '1'
+      sid: '2018629'
+      special_options:
+      - file_data
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

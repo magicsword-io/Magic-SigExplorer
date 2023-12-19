@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"~"'
+      - value: '"[",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP wu-ftp bad file completion attempt"'
+      reference: nessus,10821
+      rev: '24'
+      service: ftp
+      sid: '1377'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

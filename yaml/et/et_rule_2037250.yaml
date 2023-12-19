@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|41 ac 50 53 8f 6b 82 33 6a 46 77|"'
+      - value: '"|bc f6|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_01, deployment Perimeter, former_category
+        MALWARE, malware_family Remcos, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2022_07_01
+      msg: '"ET TROJAN Win32/Remcos RAT Checkin 809"'
+      rev: '1'
+      sid: '2037250'
+      special_options:
+      - fast_pattern
+      threshold: type limit, seconds 30, count 1, track by_src
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

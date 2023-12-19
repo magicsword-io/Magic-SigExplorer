@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".gif?action="'
+      - value: '"&browser=",distance 0'
+      - value: '"&osbuild=",distance 0'
+      - value: '"&osprod=",distance 0'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"PUA-TOOLBARS Win.Toolbar.Crossrider variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/06f3bd3df0326b5c3c5b03070d9d870507b868ee4e1acff62f0d301c43492709/analysis/
+      rev: '3'
+      service: http
+      sid: '33452'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

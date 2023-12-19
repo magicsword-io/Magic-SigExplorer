@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"sparkSaslUser|00 00 00 00|"'
+      flow: established,to_server
+      flowbits: noalert
+      isdataat: '!1,relative'
+      metadata: attack_target Server, created_at 2022_01_28, deployment Internal,
+        deployment Datacenter, former_category INFO, signature_severity Informational,
+        updated_at 2022_01_28
+      msg: '"ET INFO Apache Spark RPC - Auth Request (set)"'
+      rev: '2'
+      sid: '2035002'
+    protocol: tcp
+    source:
+      network: any
+      port: any

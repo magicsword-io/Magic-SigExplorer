@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|22|un|22 3a|"'
+      - value: '"|22|cn|22 3a|"'
+      - value: '"|22|av|22 3a|"'
+      - value: '"|22|dob|22 3a|"'
+      - value: '"|22|os|22 3a|"'
+      - value: '"|22|ou|22 3a|"'
+      - value: '"|22|dc|22 3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2020_08_24, deployment Perimeter, former_category MALWARE,
+        malware_family Powersing, signature_severity Major, tag APT, updated_at 2020_08_24
+      msg: '"ET TROJAN DeathStalker/Powersing CnC Checkin"'
+      reference: url,securelist.com/deathstalker-mercenary-triumvirate/98177/
+      rev: '2'
+      sid: '2030726'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

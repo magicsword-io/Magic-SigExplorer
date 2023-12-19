@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '119'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"takethis",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-NNTP article post without path attempt"'
+      pcre: '!"/^takethis.*?Path\x3a.*?[\r]{0,1}?\n[\r]{0,1}\n/is"'
+      rev: '10'
+      sid: '2432'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

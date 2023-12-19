@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/data.php?action=",nocase'
+      - value: '"&m=",distance 0,nocase'
+      - value: '"&p=",distance 0,nocase'
+      - value: '"&n=",distance 0,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-MOBILE Android/Fakelash.A!tr.spy trojan command and control channel
+        traffic"'
+      reference: url,blog.fortiguard.com/android-malware-distributed-by-malicious-sms-in-france/
+      rev: '5'
+      service: http
+      sid: '24251'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

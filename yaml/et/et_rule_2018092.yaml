@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/reports/rwservlet?"'
+      - value: '"JOBTYPE"'
+      - value: '"rwurl"'
+      - value: '"URLPARAMETER"'
+      flow: established,to_server
+      metadata: created_at 2014_02_07, cve CVE_2012_3152, updated_at 2020_04_27
+      msg: '"ET WEB_SERVER Possible Oracle Reports Forms RCE CVE-2012-3152"'
+      pcre: '"/URLPARAMETER\s*?=\s*?[\x22\x27]?(?:f(?:ile|tp)|gopher|https?|mailto)\s*?\x3a/Ui"'
+      reference: url,netinfiltration.com
+      rev: '1'
+      sid: '2018092'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/functions.php?"'
+      - value: '"id="'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS Mathis Dirksen-Thedens ZephyrSoft Toolbox Address
+        Book Continued (ABC) SQL Injection Attempt -- functions.php id ASCII"'
+      pcre: '"/ASCII\(.+SELECT/Ui"'
+      reference: url,doc.emergingthreats.net/2004807
+      rev: '6'
+      sid: '2004807'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 1d|oss-content.securestudies.com|00|"'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2019_07_09, deployment Perimeter, former_category ADWARE_PUP, malware_family
+        PremierOpinionD, performance_impact Low, signature_severity Major, updated_at
+        2020_09_17
+      msg: '"ET MALWARE Observed OSX/PremierOpinionD Collection Domain in TLS SNI"'
+      reference: url,www.airoav.com/mitm-voicefive
+      rev: '4'
+      sid: '2027694'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

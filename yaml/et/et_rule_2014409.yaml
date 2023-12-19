@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"= HTTP/1.1|0D 0A|Host|3a| "'
+      - value: '!"User-Agent|3a| "'
+      - value: '"|0D 0A|Cache-Control|3a| no-cache|0D 0A 0D 0A|"'
+      - value: '!"pandora.com"'
+      - value: '!"wordpress.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_03_22, former_category MALWARE, updated_at 2020_11_05
+      msg: '"ET TROJAN FakeAV.dfze/FakeAV!IK Checkin"'
+      pcre: '"/^\/(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/U"'
+      reference: md5,fe1e735ec10fb8836691fe2f2ac7ea44
+      rev: '8'
+      sid: '2014409'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>150'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".pack"'
+      - value: '!"Referer|3a|"'
+      - value: '"Mozilla"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_06_25, updated_at 2020_09_29
+      msg: '"ET TROJAN Andromeda Downloading Module"'
+      pcre: '"/^User-Agent\x3a\x20Mozilla(?:\/4\.0)?\r?$/Hmi"'
+      reference: md5,65125129418e07ce1000aa677b66b72f
+      rev: '4'
+      sid: '2018604'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

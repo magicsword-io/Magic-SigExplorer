@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"%PDF-"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: created_at 2010_09_25, updated_at 2010_09_25
+      msg: '"ET INFO Adobe PDF in HTTP Flowbit Set"'
+      reference: secunia,29773
+      rev: '7'
+      sid: '2015671'
+      special_options:
+      - file_data
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

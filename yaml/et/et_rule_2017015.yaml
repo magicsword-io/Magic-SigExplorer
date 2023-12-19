@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|18|*.dropboxusercontent.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: created_at 2013_06_13, updated_at 2022_03_23
+      msg: '"ET POLICY DropBox User Content Access over SSL"'
+      reference: url,www.dropbox.com/help/201/en
+      rev: '7'
+      sid: '2017015'
+      special_options:
+      - nocase
+      within: '25'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

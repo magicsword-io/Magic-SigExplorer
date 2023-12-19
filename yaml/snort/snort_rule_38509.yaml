@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7C 7C|CM01|7C|CM02|7C|CM03|7C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Boaxxe variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/efd9036e675507da76cd0946408aedb814aff9da62d23de4f0680a4e7186a75c/analysis/1460471360/
+      rev: '2'
+      service: http
+      sid: '38509'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

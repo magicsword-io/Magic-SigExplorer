@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '37'
+        offset: '5'
+        value: '"http://tempuri.org/Entity/Id1Response"'
+      - value: '"|01 01 01|"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_02, deployment Perimeter, former_category
+        MALWARE, malware_family Redline, performance_impact Low, signature_severity
+        Major, tag c2, updated_at 2022_03_24, former_sid 2850353
+      msg: '"ET MALWARE Redline Stealer TCP CnC - Id1Response"'
+      reference: md5,c0054e73bfcd26d2690b0b5094997463
+      rev: '1'
+      sid: '2043234'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"STOU",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP STOU overflow attempt"'
+      pcre: '"/^STOU\s[^\n]{200}/ims"'
+      reference: cve,2003-0466
+      rev: '12'
+      service: ftp
+      sid: '2390'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

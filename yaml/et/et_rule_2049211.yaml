@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Server|3a 20|Microsoft|20 2d|IIS"'
+      fast_pattern: 2,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_11_15, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, confidence Medium, signature_severity
+        Informational, updated_at 2023_11_15
+      msg: '"ET INFO Suspicious HTTP Server Value in Response (Microsoft -IIS)"'
+      reference: url,blog.fox-it.com/2023/11/15/the-spelling-police-searching-for-malicious-http-servers-by-identifying-typos-in-http-responses
+      rev: '1'
+      sid: '2049211'
+      special_options:
+      - http_header
+      threshold: type limit,seconds 300,count 1,track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

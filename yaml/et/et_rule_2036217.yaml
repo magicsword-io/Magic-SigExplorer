@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|greatsong|09|soundcast|02|me|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_04_14, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_04_14
+      msg: '"ET TROJAN Observed DNS Query to ShadowPad Domain (greatsong .soundcast
+        .me)"'
+      reference: url,otx.alienvault.com/pulse/624ff0af271429d152b5a27e
+      rev: '2'
+      sid: '2036217'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '24'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

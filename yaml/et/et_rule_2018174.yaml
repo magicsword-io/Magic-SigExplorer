@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"X-OSSProxy|3a|"'
+      - value: '"&os="'
+      - value: '"&osmajorver="'
+      - value: '"&osminorver="'
+      - value: '"&osmajorsp="'
+      - value: '"&lang="'
+      - value: '"&country="'
+      - value: '"&ossname="'
+      - value: '"&brand="'
+      - value: '"&bits="'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_02_26, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Major, tag c2, updated_at 2020_10_09,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MALWARE RelevantKnowledge Adware CnC Beacon"'
+      reference: md5,d93b888e08693119a1b0dd3983b8d1ec
+      rev: '3'
+      sid: '2018174'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

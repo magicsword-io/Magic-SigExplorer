@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"403"'
+      - value: '" 403"'
+      flow: established,to_client
+      metadata: created_at 2010_09_23, updated_at 2022_05_03
+      msg: '"GPL WEB_SERVER 403 Forbidden"'
+      rev: '12'
+      sid: '2101201'
+      special_options:
+      - http_stat_code
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

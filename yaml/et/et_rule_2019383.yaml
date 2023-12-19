@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '3653'
+    details:
+      classtype: policy-violation
+      contents:
+      - offset: '8'
+        value: '"AUTHENTICATE|20|"'
+      metadata: created_at 2014_10_10, updated_at 2014_10_10
+      msg: '"ET POLICY gogo6/Freenet6 Authentication Attempt"'
+      pcre: '"/^(?:ANONYMOUS|PASSDSS-3DES-1)\r\n/R"'
+      rev: '1'
+      sid: '2019383'
+      threshold: type both, count 1, seconds 60, track by_src
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

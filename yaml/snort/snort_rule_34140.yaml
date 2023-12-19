@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 DE C5 45 99 14 1E F5 7E 56 78 DF 23 CE 8A 12|",fast_pattern,nocase'
+      - value: '"LvtfOWStYYHNbdiE15aNsOyg"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dyre publickey outbound connection"'
+      reference: url,www.virustotal.com/en/file/417c9cd7c8abbd7bbddfc313c9f153758fd11bda47f754b9c59bc308d808c486/analysis/
+      rev: '3'
+      service: http
+      sid: '34140'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

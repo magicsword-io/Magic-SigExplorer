@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/admin/filebrowser.php?"'
+      - value: '"path="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2013_01_25, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS GetSimple CMS path parameter Local File Inclusion
+        Attempt"'
+      reference: url,packetstormsecurity.com/files/115302/GetSimple-CMS-3.1.2-Local-File-Inclusion-Path-Disclosure.html
+      rev: '1'
+      sid: '2016285'
+      special_options:
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

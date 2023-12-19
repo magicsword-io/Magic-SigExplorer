@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/gate.php"'
+      - depth: '5'
+        value: '"crypt"'
+      - value: '"="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_02_05, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_27,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32.Blackshades/Shadesrat Backdoor CnC Beacon"'
+      reference: md5,a01451eae2d47872ce796bb85f116710
+      rev: '1'
+      sid: '2018079'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

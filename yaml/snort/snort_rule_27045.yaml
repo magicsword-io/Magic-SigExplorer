@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename="'
+      - value: '"security_cleaner.exe",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: isset,file.exe
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Blocker Download"'
+      reference: url,www.virustotal.com/en/file/6d4d93f68aaf783a2526d920fa3c070d061fd56853669a72a10b2c2232008582/analysis/1372086855/
+      rev: '3'
+      service: http
+      sid: '27045'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '35'
+        value: '"/fcg-bin/cgi_get_portrait.fcg?uins="'
+      - value: '"keep-alive|0d 0a|User-Agent"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      fast_pattern: 15,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_01_04, deployment Perimeter, malware_family
+        Banking_Trojan, performance_impact Low, signature_severity Major, updated_at
+        2020_08_03
+      msg: '"ET TROJAN Blackmoon/Banbra Configuration Request M2"'
+      reference: md5,56b8f9428b2171f45dc447fb9fa1b03f
+      rev: '1'
+      sid: '2023694'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

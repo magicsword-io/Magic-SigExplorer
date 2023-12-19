@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -21
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"victimname-okta.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_16, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_16
+      msg: '"ET TROJAN Observed Scattered Spider Domain (victimname-okta .com in TLS
+        SNI)"'
+      pcre: '"/^(?:\x00\x13|.\x2e)victimname\-okta\.com/R"'
+      reference: url,www.cisa.gov/sites/default/files/2023-11/aa23-320a_scattered_spider.pdf
+      rev: '1'
+      sid: '2049240'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

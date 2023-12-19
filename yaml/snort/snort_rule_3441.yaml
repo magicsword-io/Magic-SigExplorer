@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"PORT",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP PORT bounce attempt"'
+      pcre: '"/^PORT/ims"'
+      reference: nessus,10081
+      rev: '13'
+      service: ftp
+      sid: '3441'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

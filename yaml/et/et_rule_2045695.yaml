@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|potunulit|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_05_15,
+        reviewed_at 2023_09_19
+      msg: '"ET TROJAN DNS Query to SmokeLoader Domain (potunulit .org)"'
+      reference: url,twitter.com/Gi7w0rm/status/1658060675770351616
+      rev: '1'
+      sid: '2045695'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

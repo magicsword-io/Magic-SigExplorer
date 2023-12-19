@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/"'
+      - value: '"mozzzzzzzzzzz"'
+      - depth: '10'
+        value: '"machineId="'
+      - value: '"&configId="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_05, deployment Perimeter, former_category
+        MALWARE, malware_family RecordBreaker, performance_impact Low, signature_severity
+        Major, updated_at 2022_07_05
+      msg: '"ET TROJAN Win32/RecordBreaker Checkin M2"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+mozzzzzzzzzzz/Hmi"'
+      reference: md5,bf9fa2681da355e328f6eb8c63da8253
+      rev: '1'
+      sid: '2037274'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

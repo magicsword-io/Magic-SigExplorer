@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|24 7b|"'
+      - value: '"|25 7b|"'
+      - value: '"|7d|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Apache_HTTP_server, attack_target Web_Server, created_at
+        2016_11_18, cve CVE_2013_2135, deployment Datacenter, performance_impact Low,
+        signature_severity Major, updated_at 2020_08_03
+      msg: '"ET WEB_SERVER Possible Apache Struts OGNL Expression Injection"'
+      pcre: '"/\${\s*?%{/U"'
+      reference: url,cwiki.apache.org/confluence/display/WW/S2-015
+      rev: '1'
+      sid: '2023535'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

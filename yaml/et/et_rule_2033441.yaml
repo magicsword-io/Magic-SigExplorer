@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"/fm/fmrest/about/version"'
+      flow: established,to_server
+      flowbits: set,ET.ciscodcnm.1
+      metadata: created_at 2021_07_27, former_category POLICY, updated_at 2021_07_27
+      msg: '"ET POLICY Cisco Data Center Network Manager Version Check Inbound (flowbit
+        set)"'
+      pcre: '"/\/fm\/fmrest\/about\/version$/U"'
+      reference: url,www.exploit-db.com/exploits/47347
+      rev: '1'
+      sid: '2033441'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

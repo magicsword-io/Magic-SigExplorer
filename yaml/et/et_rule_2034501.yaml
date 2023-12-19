@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"exec_code=put"'
+      - value: '"delimiter="'
+      - value: '"dst="'
+      flow: established,to_server
+      metadata: created_at 2021_11_18, updated_at 2021_11_18
+      msg: '"ET MALWARE Unattributed WebShell Access - Command Execution"'
+      reference: url,thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+      rev: '1'
+      sid: '2034501'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

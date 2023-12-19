@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Open protocol for connecting Wallets to Dapps"'
+      - value: '"ethereum, cryptocurrency, wallet, mobile, connect, bridge, relay,
+          proxy, standard, protocol, crypto, tokens, dapp"'
+      - value: '"@walletconnect"'
+      - value: '"ROBOTS AIDS"'
+      - value: '"wallet/css2"'
+      - value: '"|3c|title|3e|WalletConnect|3c 2f|title|3e|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_11_23, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_11_23
+      msg: '"ET CURRENT_EVENTS WalletConnect Stealer Landing Page 2022-11-23"'
+      reference: md5,f532aee5271714c6a3b5207adbf7a533
+      rev: '1'
+      sid: '2039837'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

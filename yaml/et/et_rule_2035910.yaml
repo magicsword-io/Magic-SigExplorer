@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '8443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 2b|5iw68rugwfcir37uj8z3r6rfaxwd8g8cdcfcqw62.de"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_04_13, former_category MOBILE_MALWARE, updated_at
+        2022_04_13
+      msg: '"ET MOBILE_MALWARE Observed Trojan-Spy.AndroidOS.Agent.abe Domain in TLS
+        SNI"'
+      reference: md5,ad6f124d00ca05f2a19b5215b85e25a8
+      rev: '2'
+      sid: '2035910'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

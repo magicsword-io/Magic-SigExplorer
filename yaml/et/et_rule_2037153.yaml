@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|grandfoodtony|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_29, deployment Perimeter,
+        former_category MALWARE, malware_family ShadowPad, signature_severity Major,
+        updated_at 2022_06_29
+      msg: '"ET TROJAN ShadowPad Backdoor Related Domain in DNS Lookup (grandfoodtony
+        .com)"'
+      reference: url,ics-cert.kaspersky.com/publications/reports/2022/06/27/attacks-on-industrial-control-systems-using-shadowpad/
+      rev: '1'
+      sid: '2037153'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

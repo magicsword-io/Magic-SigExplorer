@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/iView3/NetworkServlet"'
+      - value: '"page_action"'
+      - value: '"|22|EXPORTPATH|22 3a 20 22|webapps|5c 5c|iView3|5c 5c 22|"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2021_04_15, cve CVE_2021_22652,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_04_15
+      msg: '"ET EXPLOIT Advantech iView RCE Setup via Config Overwrite Inbound (CVE-2021-22652)"'
+      reference: cve,2021-22652
+      rev: '2'
+      sid: '2032767'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

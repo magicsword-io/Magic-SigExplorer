@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|meta|20|name|3d 22|twitter|3a|description|22 20|content|3d 22|"'
+      - value: '"|3c|meta|20|name|3d 22|twitter|3a|app|3a|id|3a|iphone|22 20|content|3d
+          22|686449807|22|"'
+      fast_pattern: 34,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_16, deployment Perimeter, former_category
+        MALWARE, malware_family Raccoon_Stealer, performance_impact Low, signature_severity
+        Major, updated_at 2022_02_11
+      msg: '"ET TROJAN Win32.Raccoon Stealer - Telegram Mirror Checkin (generic)"'
+      pcre: '"/^[a-f0-9]{5}(?:[a-zA-Z0-9+\/]{4})*(?:[a-zA-Z0-9+\/]{2}==|[a-zA-Z0-9+\/]{3}=|[a-zA-Z0-9+\/]{4})[a-f0-9]{2}-v[a-f0-9]{2}\x0a\x22\x3e\x0a\x3c/R"'
+      reference: md5,0b2463e542ff395417ecb1cd37f77556
+      rev: '2'
+      sid: '2034960'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

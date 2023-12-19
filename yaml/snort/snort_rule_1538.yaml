@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '119'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"AUTHINFO",nocase'
+      - value: '"USER",distance 0,nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-NNTP AUTHINFO USER overflow attempt"'
+      pcre: '"/^AUTHINFO\s+USER\s[^\n]{200}/ims"'
+      reference: nessus,10388
+      rev: '22'
+      sid: '1538'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

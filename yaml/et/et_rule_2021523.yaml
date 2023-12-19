@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"HTTP|3a 2f 2f|"'
+      - depth: '3'
+        value: '"id="'
+      - value: '!"Host|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"HTTP/1.1|0d 0a|Cookie|3a 20|id="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2015_07_23, deployment Perimeter, former_category
+        MALWARE, malware_family PoisonIvy, signature_severity Major, tag PoisonIvy,
+        tag c2, updated_at 2016_07_01, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN PoisonIvy HTTP CnC Beacon"'
+      pcre: '"/^id=[0-9A-F]{12}[^\r\n]+$/C"'
+      reference: url,blog.jpcert.or.jp/2015/07/poisonivy-adapts-to-communicate-through-authentication-proxies.html
+      rev: '1'
+      sid: '2021523'
+      special_options:
+      - http_raw_uri
+      - http_cookie
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

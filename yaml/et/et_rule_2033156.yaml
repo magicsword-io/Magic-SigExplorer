@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"emailAddress=trump@whitehouse.xyz"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|0a|Washington"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|0a|Washington"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0b|White House"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|0c|Mr President"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|30|whitehouse.xyz/emailAddress=trump@whitehouse.xyz"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_06_22, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2021_06_22
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Klingon RAT)"'
+      reference: url,www.intezer.com/blog/malware-analysis/klingon-rat-holding-on-for-dear-life/
+      rev: '2'
+      sid: '2033156'
+      special_options:
+      - fast_pattern
+      within: '49'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

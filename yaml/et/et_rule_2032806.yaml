@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|13|passwordstate-18ed2|05|kxcdn|03|com"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_04_23
+      msg: '"ET TROJAN Observed DNS Query to MoserPass Download Domain (passwordstate-18ed2
+        .kxcdn .com)"'
+      reference: url,www.csis.dk/newsroom-blog-overview/2021/moserpass-supply-chain
+      rev: '1'
+      sid: '2032806'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

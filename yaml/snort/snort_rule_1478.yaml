@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>500'
+      classtype: attempted-user
+      contents:
+      - value: '"/swc",nocase'
+      - value: '"ctr=",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Simple Web Counter URI Parameter Buffer Overflow attempt"'
+      reference: nessus,10493
+      rev: '18'
+      service: http
+      sid: '1478'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Official Windows Notification"'
+      - value: '"Call Windows Technical Support"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_14, deployment Perimeter, signature_severity
+        Major, updated_at 2020_10_21
+      msg: '"ET WEB_CLIENT Tech Support Scam 2019-11-14"'
+      rev: '2'
+      sid: '2028971'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| Jcomers Bot scan"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SERVER, updated_at 2020_10_15
+      msg: '"ET WEB_SERVER Bot Search RFI Scan (Casper-Like Jcomers Bot scan)"'
+      reference: url,doc.emergingthreats.net/2011285
+      rev: '6'
+      sid: '2011285'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

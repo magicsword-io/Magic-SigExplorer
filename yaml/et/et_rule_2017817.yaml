@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"display|3a| none|3b 22|"'
+      - value: '">"'
+      - value: '!">"'
+      - value: '"f"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_12_10, former_category EXPLOIT_KIT, updated_at 2013_12_10
+      msg: '"ET CURRENT_EVENTS Sweet Orange Landing Page Dec 09 2013"'
+      pcre: '"/^(?P<sep>.{1,50})u(?P=sep)n(?P=sep)c(?P=sep)t(?P=sep)i(?P=sep)o(?P=sep)n(?P=sep)\s/R"'
+      rev: '10'
+      sid: '2017817'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

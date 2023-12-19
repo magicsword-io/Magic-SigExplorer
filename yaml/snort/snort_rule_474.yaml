@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 00 00 00 00 00 00 00|",fast_pattern,nocase'
+      dsize: '8'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP superscan echo"'
+      rev: '9'
+      sid: '474'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

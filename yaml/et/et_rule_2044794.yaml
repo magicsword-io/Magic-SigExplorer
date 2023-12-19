@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/ncsi.txt"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - value: '"Host|3a 20|www.msftncsi.com|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_28, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2023_03_28
+      msg: '"ET INFO Connectivity Check With Go User-Agent"'
+      rev: '1'
+      sid: '2044794'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

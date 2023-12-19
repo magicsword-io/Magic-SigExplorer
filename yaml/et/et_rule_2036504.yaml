@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/mgmt/shared/authn/login"'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2022_05_06, updated_at 2022_05_06
+      msg: '"ET POLICY F5 BIG-IP Exposed REST API GET (flowbit set)"'
+      rev: '2'
+      sid: '2036504'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

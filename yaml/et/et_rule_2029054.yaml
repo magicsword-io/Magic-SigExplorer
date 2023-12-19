@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 zgrab/0.x|0d 0a|"'
+      fast_pattern: 15,20
+      flow: established,to_server
+      metadata: created_at 2019_11_26, former_category SCAN, updated_at 2020_10_23
+      msg: '"ET SCAN Zmap User-Agent (Inbound)"'
+      rev: '2'
+      sid: '2029054'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

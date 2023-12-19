@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"pass="'
+      flow: established,to_server
+      metadata: created_at 2011_05_30, former_category POLICY, updated_at 2020_04_21
+      msg: '"ET POLICY HTTP POST contains pass= in cleartext"'
+      rev: '2'
+      sid: '2012887'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

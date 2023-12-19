@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"If|3a 20 3c|"'
+      flow: to_server,established
+      metadata: affected_product Microsoft_IIS, attack_target Web_Server, created_at
+        2017_03_28, cve CVE_2017_7269, deployment Datacenter, former_category WEB_SERVER,
+        performance_impact Low, signature_severity Major, updated_at 2020_08_04
+      msg: '"ET WEB_SERVER Microsoft IIS Remote Code Execution (CVE-2017-7269)"'
+      pcre: '"/^If\x3a\x20\x3c[^\r\n>]+?(?:[\x7f-\xff])/Hmi"'
+      reference: url,github.com/edwardz246003/IIS_exploit/blob/master/exploit.py
+      rev: '2'
+      sid: '2024107'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

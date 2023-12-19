@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"/in.cgi"'
+      flow: established,to_client
+      metadata: created_at 2012_04_12, former_category EXPLOIT_KIT, tag TDS, updated_at
+        2020_04_21
+      msg: '"ET CURRENT_EVENTS TDS Sutra - HTTP header redirecting to a SutraTDS"'
+      rev: '4'
+      sid: '2014546'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

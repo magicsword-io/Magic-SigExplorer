@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"response=fallback",fast_pattern,nocase'
+      - value: '"/api.php?",depth 9'
+      - value: '"gpu=",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Silverstar outbound connection"'
+      reference: url,www.virustotal.com/#/file/3f751799a501532f43ca5f12fe80aa0bad78f9f5d57e76bf49b401bb99f355df/detection
+      rev: '1'
+      service: http
+      sid: '45960'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

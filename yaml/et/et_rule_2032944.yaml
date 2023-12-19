@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".htm"'
+      - value: '"|20 28|compatible|3b 20|"'
+      - value: '"|3b 20|.NET4.0E|20 29 0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_05_11, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        tag c2, updated_at 2021_05_11, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Beacon Activity (UNC2447)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x3b\x20\.NET4\.0E\x20\x29/Hmi"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/unc2447-sombrat-and-fivehands-ransomware-sophisticated-financial-threat.html
+      rev: '1'
+      sid: '2032944'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

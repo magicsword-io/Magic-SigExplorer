@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/?ver="'
+      - value: '"corp="'
+      - value: '"os="'
+      - value: '"softid="'
+      - value: '"hid="'
+      - value: '"macadd="'
+      - value: '"md5="'
+      - value: '"rand="'
+      - value: '"subid="'
+      - value: '"IEhook"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_15, deployment Perimeter,
+        former_category ADWARE_PUP, performance_impact Low, signature_severity Minor,
+        updated_at 2022_04_18
+      msg: '"ET MALWARE Bluebox Data Exfiltration"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+IEhook/Hmi"'
+      reference: md5,b13718f353c8c0ea51a15733e035199e
+      rev: '2'
+      sid: '2036236'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

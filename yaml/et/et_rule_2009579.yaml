@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: successful-user
+      contents:
+      - depth: '60'
+        value: '"stdapi_registry_create_key"'
+      flow: to_client,established
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2010_07_30, deployment Perimeter, deployment Internet, deployment Internal,
+        deployment Datacenter, signature_severity Critical, tag Metasploit, updated_at
+        2016_07_01
+      msg: '"ET ATTACK_RESPONSE Metasploit Meterpreter Registry Interation Detected"'
+      reference: url,doc.emergingthreats.net/2009579
+      rev: '4'
+      sid: '2009579'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

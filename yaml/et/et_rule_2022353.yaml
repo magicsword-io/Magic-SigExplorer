@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"XMLHttpRequest"'
+      - value: '"|3a|49155/api/showSB?url="'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: created_at 2016_01_13, updated_at 2019_10_08
+      msg: '"ET EXPLOIT TrendMicro node.js HTTP RCE Exploit Inbound (showSB)"'
+      reference: url,code.google.com/p/google-security-research/issues/detail?id=693
+      rev: '1'
+      sid: '2022353'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

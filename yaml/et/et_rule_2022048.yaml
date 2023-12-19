@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|3wzn5p2yiumh7akj"'
+      distance: '0'
+      metadata: created_at 2015_11_09, updated_at 2020_08_18
+      msg: '"ET TROJAN Cryptowall .onion Proxy Domain"'
+      reference: url,www.bleepingcomputer.com/news/security/cryptowall-4-0-released-with-new-features-such-as-encrypted-file-names
+      rev: '2'
+      sid: '2022048'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?wShell="'
+      - value: '"|3b 20 2e|NET CLR 3.5.30729|3b 20|InfoPath.2)|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_04, deployment Perimeter, former_category
+        MALWARE, malware_family KGH_Malware_Suite, signature_severity Major, tag Kimsuky,
+        updated_at 2020_11_04
+      msg: '"ET TROJAN Kimsuky KGH Backdoor CnC Activity M2"'
+      pcre: '"/User-Agent\x3a\x20[^\r\n]+\x3b\x20\x2eNET CLR 3.5.30729|3b 20|InfoPath.2\)$/Hm"'
+      reference: url,www.cybereason.com/blog/back-to-the-future-inside-the-kimsuky-kgh-spyware-suite
+      rev: '2'
+      sid: '2031179'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

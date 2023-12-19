@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"Content-Type|3A|",fast_pattern,nocase'
+      - value: '"Content-Disposition|3A|",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL WinZip MIME content-disposition buffer overflow"'
+      pcre: '"/name=\s*[^\r\n\x3b\s\x2c]{300}/ims"'
+      reference: nessus,12621
+      rev: '18'
+      service: smtp
+      sid: '2488'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

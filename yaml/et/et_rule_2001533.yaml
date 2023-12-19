@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20 28 43 29 20 32 30 30 31 2c 20 32 30 30 33 20 52 61 64 69 6d 20
+          50 69 63 68 61|"'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, updated_at 2010_07_30, mitre_tactic_id TA0009,
+        mitre_tactic_name Collection, mitre_technique_id T1005, mitre_technique_name
+        Data_from_local_system
+      msg: '"ET MALWARE Searchmiracle.com Spyware Installer silent.exe Download"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001533
+      rev: '12'
+      sid: '2001533'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

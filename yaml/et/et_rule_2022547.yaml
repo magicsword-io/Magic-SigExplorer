@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!&,8,4
+      classtype: attempted-user
+      contents:
+      - depth: '2'
+        offset: '6'
+        value: '"|00 01|"'
+      flow: established,from_server
+      flowbits: isset,ET.CVE20157547.primer
+      metadata: created_at 2016_02_18, cve CVE_2015_7547, updated_at 2016_02_18
+      msg: '"ET EXPLOIT Possible CVE-2015-7547 Large Response to A/AAAA query"'
+      reference: cve,2015-7547
+      rev: '1'
+      sid: '2022547'
+    protocol: tcp
+    source:
+      network: any
+      port: '53'

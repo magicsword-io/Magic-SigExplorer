@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16 03|"'
+      - value: '"|0B|",distance 3'
+      - value: '"|55 04 07 0C 06|Lisbon"'
+      - value: '"|55 04 0A 0C 10|Souppi Otiop SEM",distance 6'
+      - value: '"|55 04 03 0C 0E|wthcethesmw.ph"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dridex certificate exchange"'
+      reference: url,www.virustotal.com/en/file/f4bf52759270fa4fc4e5745d51dd8d73b49feae9de5bedfd8f4e0a865e8047c4/analysis/1459264179/
+      rev: '2'
+      service: ssl
+      sid: '38378'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '4043'

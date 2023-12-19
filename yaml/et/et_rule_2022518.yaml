@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/setSystemCommand"'
+      - value: '"SystemCommand="'
+      flow: to_server,established
+      metadata: created_at 2016_02_13, updated_at 2020_06_24
+      msg: '"ET EXPLOIT D-Link DCS-930L Remote Command Execution attempt"'
+      reference: url,www.exploit-db.com/exploits/39437/
+      rev: '1'
+      sid: '2022518'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      urilen: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

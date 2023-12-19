@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/autodiscover",fast_pattern,nocase'
+      - value: '"Email=",nocase'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Microsoft Exchange autodiscover server side request forgery
+        attempt"'
+      pcre: '"/(^|&)Email=[^&]*?(\x2f|%(25)?2f)autodiscover/im"'
+      reference: url,portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2022-41082
+      rev: '6'
+      service: http
+      sid: '57906'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Bireysel|20 c4 b0|nternet|20 c5 9e|ubesi|20 7c 20|Yap|c4 b1
+          20|Kredi</title>"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_08_16, deployment Internet, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2017_12_29
+      msg: '"ET CURRENT_EVENTS Possible YapiKredi Bank (TR) Phishing Landing - Title
+        over non SSL"'
+      rev: '4'
+      sid: '2024583'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|61 63 6b 00|"'
+      dsize: '4'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_24, deployment Perimeter, former_category
+        MALWARE, malware_family ObliqueRAT, signature_severity Major, updated_at 2020_02_24
+      msg: '"ET TROJAN ObliqueRAT CnC Heartbeat Packet"'
+      reference: url,blog.talosintelligence.com/2020/02/obliquerat-hits-victims-via-maldocs.html
+      rev: '1'
+      sid: '2029529'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

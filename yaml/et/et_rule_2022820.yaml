@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|60 c7 02 90 67 b9 09 8b 45 f8 8b 40 5c 8b 40 04 8b 40 08 8b 40 04
+          8b 00 85 c0 74 3b 50 8b 40 08 8b 40 04 8d 98 d8 00 00 00 58 81 3b d0 d4
+          00 e1 75 e4 83 7b 04 31 74 de 89 d8 2d 00 01 00 00 c7 40 04 03 01 00 00
+          c7 40 0c d0 00 00 00 c7 80 f8|"'
+      metadata: created_at 2016_05_18, cve CVE_2016_1287, updated_at 2016_05_18
+      msg: '"ET EXPLOIT CVE-2016-1287 Public Exploit ShellCode"'
+      reference: url,github.com/exodusintel/disclosures/blob/master/CVE_2016_1287_PoC
+      rev: '1'
+      sid: '2022820'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

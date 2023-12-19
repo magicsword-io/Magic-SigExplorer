@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MDTM",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP invalid MDTM command attempt"'
+      pcre: '"/^MDTM \d+[-+]\D/ims"'
+      reference: cve,2004-0330
+      rev: '13'
+      service: ftp
+      sid: '2416'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

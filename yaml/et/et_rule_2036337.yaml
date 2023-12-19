@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20|-|20|Router|20|Login|20|-|20|"'
+      - value: '"and|20|IP|20|address.|20|Both|20|are|20|the|20|best|20|ways|20|to|20|login"'
+      flow: established,from_server
+      metadata: created_at 2022_04_25, former_category PHISHING, updated_at 2022_04_25
+      msg: '"ET CURRENT_EVENTS Tech Support/Refund Scam Landing Inbound 2022/04/25"'
+      rev: '1'
+      sid: '2036337'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

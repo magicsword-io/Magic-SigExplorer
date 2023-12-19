@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Ch&alpha|3b|se &Beta|3b|&alpha|3b|n&Kappa|3b|"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_11_26, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2020_11_26
+      msg: '"ET CURRENT_EVENTS Chase Phish Landing 2020-11-26"'
+      rev: '2'
+      sid: '2031239'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

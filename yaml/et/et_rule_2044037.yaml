@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"dllENCR.dll|22 3b 0d 0a|"'
+      - value: '"Content-Transfer-Encoding|3a 20|binary|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/octet-stream|0d 0a|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_12_06, deployment Perimeter, former_category
+        MALWARE, malware_family GCleaner, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_12_06, former_sid 2852925
+      msg: '"ET TROJAN GCleaner Downloader - Payload Response"'
+      pcre: '"/^Content-Disposition\x3a\x20attachment\x3b\x20filename\x3d\x22[a-zA-Z0-9]+dllENCR.dll\x22\x3b[\r\n]+$/Hmi"'
+      reference: md5,780099266c4cf79fbf344297b0a4e29e
+      rev: '1'
+      sid: '2044037'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

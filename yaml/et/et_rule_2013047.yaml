@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/gateway/index"'
+      - depth: '9'
+        offset: '19'
+        value: '"|20|HTTP/1.0"'
+      flow: established,to_server
+      metadata: created_at 2011_06_16, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN DonBot Checkin"'
+      reference: url,labs.m86security.com/2011/06/new-bots-old-bots-ii-donbot/
+      rev: '3'
+      sid: '2013047'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

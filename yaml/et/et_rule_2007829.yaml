@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?act=online&"'
+      - value: '"s4="'
+      - value: '"&s5="'
+      - value: '"&nickname="'
+      - depth: '8'
+        value: '"msg_out="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Illusion Bot (Lussilon) Checkin"'
+      reference: url,doc.emergingthreats.net/2007829
+      rev: '8'
+      sid: '2007829'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

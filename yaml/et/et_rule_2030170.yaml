@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|MSIE|28|6.00.2900.5512|20 28|"'
+      - value: '"|3b 20|NT|28|"'
+      - value: '"|29 3b 20|AV|28|"'
+      - value: '"|29 3b 20|OV|28|"'
+      - value: '"|29 3b 20|NA|28|"'
+      - value: '"VR|28|PH"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_15, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_10
+      msg: '"ET USER_AGENTS Suspicious User-Agent (MSIE)"'
+      reference: url,documents.trendmicro.com/assets/Tech-Brief-Tropic-Trooper-s-Back-USBferry-Attack-Targets-Air-gapped-Environments.pdf
+      rev: '3'
+      sid: '2030170'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

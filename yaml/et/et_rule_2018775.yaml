@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"HTTP/1."'
+      - value: '"Server|3A| Stalin"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2014_07_25, updated_at 2020_10_28
+      msg: '"ET TROJAN Dyreza RAT Fake Server Header"'
+      reference: md5,7e3e28320d209a586917668e3b8eac40
+      rev: '2'
+      sid: '2018775'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

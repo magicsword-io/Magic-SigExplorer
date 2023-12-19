@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '32'
+        value: '"/api?method=number.update&botid="'
+      - value: '"&phoneNumber="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_09_14, updated_at 2023_03_11, reviewed_at 2023_11_14
+      msg: '"ET MOBILE_MALWARE Android/SOVA Banking Trojan Activity (number update)"'
+      reference: md5,01b6f0220794476fe19a54c049600ab3
+      rev: '3'
+      sid: '2033941'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

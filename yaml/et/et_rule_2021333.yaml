@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|wangzongfacai|03|com"'
+      distance: '0'
+      metadata: created_at 2015_06_24, former_category CURRENT_EVENTS, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Likely Linux/Xorddos.F DDoS Attack Participation (wangzongfacai.com)"'
+      reference: md5,3c49b5160b981f06bd5242662f8d0a54
+      rev: '2'
+      sid: '2021333'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type both,track by_src,count 10,seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

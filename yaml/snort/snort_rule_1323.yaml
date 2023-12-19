@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4321'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"-soa %p"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER rwhoisd format string attempt"'
+      reference: nessus,10790
+      rev: '10'
+      sid: '1323'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

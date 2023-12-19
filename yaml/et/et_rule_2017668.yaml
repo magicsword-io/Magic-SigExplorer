@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"plugins/AdwindServer.class"'
+      flow: established,from_server
+      metadata: created_at 2013_11_06, updated_at 2013_11_06
+      msg: '"ET TROJAN Possible Backdoor.Adwind Download"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2013-070113-1904-99&tabid=3
+      rev: '3'
+      sid: '2017668'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

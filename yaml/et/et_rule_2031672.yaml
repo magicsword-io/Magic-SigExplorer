@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 03|"'
+      - value: '"|0b|flickry.xyz"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      distance: '1'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Android, attack_target Client_and_Server, created_at 2021_02_25, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, tag DonotGroup, updated_at 2021_02_25, mitre_tactic_id
+        TA0042, mitre_tactic_name Resource_Development, mitre_technique_id T1587,
+        mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (DonotGroup CnC)"'
+      rev: '2'
+      sid: '2031672'
+      special_options:
+      - fast_pattern
+      within: '14'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

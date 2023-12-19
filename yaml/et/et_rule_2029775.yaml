@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a 0d 0a 3d 32 30 0d 0a 0d 0a 0d 0a 0d 0a 0d 0a 0d 0a 53 0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2020_03_31, former_category MALWARE, malware_family Tofsee, updated_at 2020_03_31
+      msg: '"ET TROJAN Win32/Tofsee Unique Email Body Byte Sequence Observed"'
+      rev: '2'
+      sid: '2029775'
+      special_options:
+      - fast_pattern
+      threshold: type threshold, count 5, seconds 120, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

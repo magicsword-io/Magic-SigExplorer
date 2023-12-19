@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"lady8vhc"'
+      - value: '"eval(function("'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2014_04_22,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS DRIVEBY EL8 EK Landing"'
+      rev: '1'
+      sid: '2018405'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

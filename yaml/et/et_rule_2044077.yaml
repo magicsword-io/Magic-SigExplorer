@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '40500'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|20 00 00 00|"'
+      dsize: '36'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_02_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_02_02
+      msg: '"ET TROJAN Win32/Phorpiex UDP Peer-to-Peer CnC"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,13}[^\x20-\x7e\r\n]/R"'
+      reference: md5,461f422870426748cc3e24111532472b
+      rev: '1'
+      sid: '2044077'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 5, seconds 30
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"cmyip."'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category POLICY, updated_at 2020_09_17
+      msg: '"ET POLICY IP Check Domain (cmyip.com in HTTP Host)"'
+      reference: url,doc.emergingthreats.net/2008988
+      rev: '5'
+      sid: '2008988'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

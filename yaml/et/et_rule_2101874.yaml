@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/oprocmgr-status"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_20
+      msg: '"GPL WEB_SERVER Oracle Java Process Manager access"'
+      reference: nessus,10851
+      rev: '4'
+      sid: '2101874'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

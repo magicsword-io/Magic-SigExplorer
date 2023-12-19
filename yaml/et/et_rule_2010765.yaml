@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/manda.php?"'
+      - value: '"id="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_11
+      msg: '"ET TROJAN Zalupko/Koceg/Mandaph HTTP Checkin (2)"'
+      pcre: '"/\/manda\.php\?id=(-)?\d{8,10}&v=\w/U"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2008-042816-0445-99&tabid=2
+      rev: '8'
+      sid: '2010765'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

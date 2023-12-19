@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '12'
+        value: '"/upload/info"'
+      - value: '"Content-disposition|3a 20|form-data|3b 20|name="'
+      - value: '"--9ff7172192b7--"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product iOS, attack_target Mobile_Client, created_at 2019_08_30,
+        deployment Perimeter, former_category MOBILE_MALWARE, signature_severity Critical,
+        updated_at 2020_09_01
+      msg: '"ET MOBILE_MALWARE Apple iPhone Implant - Upload Files"'
+      reference: url,googleprojectzero.blogspot.com/2019/08/implant-teardown.html
+      rev: '2'
+      sid: '2027932'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

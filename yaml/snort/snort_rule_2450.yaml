@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"YMSG",depth 4,nocase'
+      - value: '"|00 01|",depth 2,offset 10'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Yahoo IM successful logon"'
+      rev: '9'
+      sid: '2450'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5050'

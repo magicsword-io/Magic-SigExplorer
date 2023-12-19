@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/?v="'
+      - value: '"&pcrc="'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_01_13, deployment Perimeter,
+        former_category ADWARE_PUP, signature_severity Major, tag c2, updated_at 2020_08_31,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MALWARE DealPly Adware CnC Beacon 4"'
+      pcre: '"/^\/\?v=[\d.]+&pcrc=\d+$/U"'
+      reference: md5,038da581f99c88a4ee6700de440a54ca
+      rev: '2'
+      sid: '2022354'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Server|3a 20|BaseHTTP/"'
+      - value: '"Python/"'
+      - value: '!"Content-Length"'
+      - value: '!"Content-Length"'
+      flow: established,to_client
+      flowbits: isset,ET.maceframework
+      metadata: attack_target Client_Endpoint, created_at 2023_11_09, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, confidence High, signature_severity
+        Major, updated_at 2023_11_09
+      msg: '"ET TROJAN MACE C2 Framework Response M2"'
+      pcre: '"/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/"'
+      reference: url,github.com/nickvangilder/most-average-c2-ever/
+      rev: '1'
+      sid: '2049131'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - file_data
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

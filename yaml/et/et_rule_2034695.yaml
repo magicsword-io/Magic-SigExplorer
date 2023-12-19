@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CreateObject(|22|WScript.Shell|22|)"'
+      - value: '"reg add"'
+      - value: '"ftp://"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_13, deployment Perimeter, former_category
+        HUNTING, performance_impact Low, signature_severity Major, updated_at 2021_12_13
+      msg: '"ET INFO Possible Kimsuky Related Malicious VBScript Inbound"'
+      pcre: '"/[a-z]{8}.[a-z]{3}/Ri"'
+      reference: url,github.com/eset/malware-ioc/tree/master/kimsuky/hotdoge_donutcat_case
+      rev: '2'
+      sid: '2034695'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

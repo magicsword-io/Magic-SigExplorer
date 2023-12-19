@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"cookie=4"'
+      flow: established,from_server
+      flowbits: isset,ET.Anuna.Backdoor
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2016_09_28,
+        deployment Perimeter, malware_family Anuna, signature_severity Major, updated_at
+        2020_07_29
+      msg: '"ET TROJAN Anuna PHP Backdoor Sucessful Exploit"'
+      rev: '1'
+      sid: '2023306'
+      special_options:
+      - http_stat_code
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

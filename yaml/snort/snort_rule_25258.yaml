@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/file.aspx?file=",fast_pattern,nocase'
+      - value: '"ksp/WS"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Rombrast variant outbound connection"'
+      reference: url,www.virustotal.com/file/af1ffe831112cbb34866fe1a65ed18613578039b002ca221757b791a5006894d/analysis/
+      rev: '5'
+      service: http
+      sid: '25258'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        value: '"|2c ef 3a e7 89 fe 48 af ac f8|"'
+      dsize: 110<>113
+      flow: established,to_server
+      flowbits: set,ET.OzoneRAT
+      metadata: attack_target Client_Endpoint, created_at 2021_04_08, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_04_08
+      msg: '"ET TROJAN Ozone/Darktrack RAT Variant - Client Hello (set)"'
+      reference: md5,583de02ec747f0316fb7b0e59bd858bd
+      rev: '1'
+      sid: '2032542'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

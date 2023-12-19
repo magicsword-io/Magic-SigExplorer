@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|0d 0a 0d 0a|command="'
+      - value: '"&result="'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_11_02
+      msg: '"ET MALWARE Win32/Agent.PMS Variant CnC Activity"'
+      rev: '7'
+      sid: '2011391'
+      special_options:
+      - nocase
+      - http_method
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

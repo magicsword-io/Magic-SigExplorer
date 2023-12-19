@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '35'
+        value: '"/webui/rest/softwareMgmt/installAdd"'
+      - depth: '5'
+        value: '"Auth="'
+      - value: '"|22|ipaddress|22|"'
+      - value: '"|22|"'
+      - value: '"|3a|"'
+      - value: '"|3a|"'
+      - value: '"|3a|"'
+      - value: '"X-Csrf-Token|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Cisco_IOS, attack_target Networking_Equipment, created_at
+        2023_11_01, cve CVE_2023_20273, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Critical, updated_at 2023_11_01, reviewed_at 2023_11_01
+      msg: '"ET EXPLOIT Cisco IOS XE Web UI Command Injection Vulnerability (CVE-2023-20273)"'
+      pcre: '"/^X-Csrf-Token\x3a\x20[^\r\n]+[\r\n]+$/Hmi"'
+      reference: cve,2023-20273
+      rev: '1'
+      sid: '2049007'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_cookie
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '5'
+    protocol: tcp
+    source:
+      network: any
+      port: any

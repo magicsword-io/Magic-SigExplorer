@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"PRIVMSG #"'
+      - value: '"|3a 5b|d=|22|http|3a|//"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_07_11, updated_at 2011_07_11
+      msg: '"ET TROJAN Ruskill/Palevo Download Command"'
+      reference: url,sebdraven.tumblr.com/post/6769853139/palevo-analysises
+      rev: '3'
+      sid: '2013245'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

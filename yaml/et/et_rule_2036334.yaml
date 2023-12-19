@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/get.php?pid="'
+      - value: '"&first=true"'
+      - depth: '42'
+        value: '"User-Agent|3a 20|Microsoft Internet Explorer|0d 0a|"'
+      distance: '32'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_09_12, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN Win32/Filecoder.STOP Variant Request for Public Key"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n$/Hmi"'
+      reference: md5,c0672f0359afba1c24ab0f90f568bdc0
+      rev: '2'
+      sid: '2036334'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      threshold: type limit, track by_dst, seconds 60, count 1
+      within: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

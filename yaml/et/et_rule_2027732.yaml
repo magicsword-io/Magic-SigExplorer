@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '2'
+        value: '"|7c 78 01|"'
+      dsize: '15'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_19, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Blacknix, updated_at 2019_07_19
+      msg: '"ET TROJAN Win32/Blacknix CnC Heartbeat"'
+      pcre: '"/^[0-9]{2}\x7cx/"'
+      reference: md5,b4e95d3ec39cf8c7347ca1c64cfed631
+      rev: '2'
+      sid: '2027732'
+      threshold: type both, track by_src, count 5, seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"/install"'
+      - value: '"argc=",depth 5'
+      - value: '"&name=",distance 0'
+      - value: '"&previous=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SDBot variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/5682e096bad2d2e75fb09122af272572b23ca5defb70325ab7cdc4c534a68e7d/analysis
+      rev: '3'
+      service: http
+      sid: '31458'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

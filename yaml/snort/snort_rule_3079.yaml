@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,36,0,relative,little
+      classtype: attempted-user
+      contents:
+      - value: '"RIFF",depth 4'
+      - value: '"ACON",within 4,distance 4'
+      - value: '"anih",distance 0,nocase'
+      flow: to_client,established
+      flowbits: isset,file.ani
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-IE Microsoft Internet Explorer ANI file parsing buffer overflow
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS07-017
+      rev: '25'
+      service: ftp-data,http,imap,pop3
+      sid: '3079'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

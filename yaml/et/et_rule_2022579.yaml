@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3306'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '2'
+        offset: '3'
+        value: '"|00 03|"'
+      - value: '"GRANT ALTER, ALTER ROUTINE"'
+      - value: '"TO root@% WITH"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server
+      metadata: created_at 2016_03_01, former_category CURRENT_EVENTS, updated_at
+        2019_10_08
+      msg: '"ET SCAN MySQL Malicious Scanning 1"'
+      reference: url,isc.sans.edu/diary/Quick+Analysis+of+a+Recent+MySQL+Exploit/20781
+      rev: '1'
+      sid: '2022579'
+      special_options:
+      - nocase
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GETPROPERTIES",depth 13'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP iPlanet GETPROPERTIES attempt"'
+      reference: cve,2001-0746
+      rev: '17'
+      service: http
+      sid: '1050'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

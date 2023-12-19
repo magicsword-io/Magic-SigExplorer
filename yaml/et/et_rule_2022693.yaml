@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/json/new/"'
+      - value: '"javascript|3a|require"'
+      - value: '"child_process"'
+      - value: '"spawnSync"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2016_03_31, updated_at 2016_03_31
+      msg: '"ET EXPLOIT TrendMicro node.js (Remote Debugger)"'
+      reference: url,bugs.chromium.org/p/project-zero/issues/detail?id=773
+      rev: '1'
+      sid: '2022693'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

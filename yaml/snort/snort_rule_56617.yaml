@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"x-timer: S1580937960.346550,VS0,VE0",fast_pattern,nocase'
+      - value: '"Cache-Control: public,max-age=31536000"'
+      - value: '"Server: UploadServer"'
+      - value: '"Vary: Accept-Encoding, Fastly-SSL"'
+      - value: '"x-api-version: F-X"'
+      - value: '"x-Firefox-Spdy: h2"'
+      - value: '"x-served-by: cache-mdw17344-MDW"'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Cobalt Strike beacon inbound connection attempt"'
+      reference: url,fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56617'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|apple-iclouds|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2016_09_26, deployment Perimeter, former_category MALWARE, malware_family
+        APT28, malware_family OSX_Komplex, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN APT28 Komplex DNS Lookup (apple-iclouds .net)"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/09/unit42-sofacys-komplex-os-x-trojan/
+      rev: '2'
+      sid: '2023300'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

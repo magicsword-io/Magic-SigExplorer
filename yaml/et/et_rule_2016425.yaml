@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/forum/images.php?id"'
+      - value: '"User-Agent|3a| Mozilla/6"'
+      - value: '" MSIE "'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_02_19, updated_at 2020_09_18
+      msg: '"ET TROJAN Win32.Zbot.ivgw Downloading EXE"'
+      reference: md5,e8e3d22203f9549d6c5f361dfe51f8c6
+      rev: '4'
+      sid: '2016425'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

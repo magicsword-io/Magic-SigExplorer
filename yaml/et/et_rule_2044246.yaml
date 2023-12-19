@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"form-data|3b 20|name=|22|token|22|"'
+      - value: '"form-data|3b 20|name=|22|message|22 0d 0a 0d 0a|plugins|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.stealc.plugins
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_20, deployment Perimeter, former_category
+        MALWARE, malware_family Stealc, signature_severity Major, tag Stealer, updated_at
+        2023_02_20
+      msg: '"ET TROJAN Win32/Stealc Requesting plugins Config from C2"'
+      pcre: '"/\.php$/U"'
+      reference: url,blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+      rev: '1'
+      sid: '2044246'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

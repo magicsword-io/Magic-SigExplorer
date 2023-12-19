@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '>0'
+      itype: '32'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Mobile Host Redirect undefined code"'
+      rev: '10'
+      sid: '420'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

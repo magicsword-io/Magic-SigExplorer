@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/sending/cok.php"'
+      - depth: '9'
+        value: '"username="'
+      - value: '"&password="'
+      - value: '"&_eventId_login="'
+      - value: '"&authtype=unamepword&_csrf="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_30, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_01_30
+      msg: '"ET CURRENT_EVENTS Successful AU myGov Credential Phish 2023-01-30"'
+      pcre: '"/\/sending\/cok\.php$/U"'
+      reference: md5,579d9e177d4a9ab1f3dc884740ff76ab
+      rev: '1'
+      sid: '2044029'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

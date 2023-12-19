@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/boafrm/formSysCmd"'
+      - value: '"Run|2b|Command|26|sysCmd|3d|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_23, cve CVE_2019_19824, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_23
+      msg: '"ET EXPLOIT TOTOLINK Realtek SDK RCE (CVE-2019-19824)"'
+      reference: cve,2019-19824
+      rev: '1'
+      sid: '2035282'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

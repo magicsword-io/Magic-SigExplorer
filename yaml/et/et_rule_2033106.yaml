@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Server|3a 20|360Netlab-sinkhole"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_06_07, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_06_07
+      msg: '"ET TROJAN Known Sinkhole Response Header"'
+      rev: '1'
+      sid: '2033106'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

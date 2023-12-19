@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|kokotech|03|xyz|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_22, deployment Perimeter,
+        former_category MALWARE, malware_family SideCopy, signature_severity Major,
+        updated_at 2022_03_22
+      msg: '"ET TROJAN Sidecopy APT Backdoor Related Domain in DNS Lookup (kokotech
+        .xyz)"'
+      reference: url,twitter.com/bofheaded/status/1505928947955302401
+      rev: '2'
+      sid: '2035559'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

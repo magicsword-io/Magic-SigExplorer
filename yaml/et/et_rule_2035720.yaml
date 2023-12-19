@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"package|2e|loadlib|28|"'
+      - value: '"liblua"'
+      flow: established,to_server
+      metadata: affected_product Redis, created_at 2022_04_04, cve CVE_2022_0543,
+        former_category EXPLOIT, updated_at 2022_04_04
+      msg: '"ET EXPLOIT Possible Redis RCE Attempt - Dynamic Importing of liblua (CVE-2022-0543)"'
+      reference: cve,2022-0543
+      rev: '2'
+      sid: '2035720'
+      special_options:
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

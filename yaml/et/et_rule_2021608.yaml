@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/Count.asp?ver="'
+      - value: '"&mac="'
+      - value: '!"Referer|3a|"'
+      - value: '"Content-Length|3a| 0"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_08_11, former_category MALWARE, updated_at 2020_10_01
+      msg: '"ET TROJAN Win32.Androm.gnlb Checkin"'
+      reference: md5,c7e6ebf91c03a2bcaa8053f149870fad
+      rev: '3'
+      sid: '2021608'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"GET"'
+      - depth: '27'
+        value: '"/if.cgi?redirect=AccLog.htm"'
+      - value: '"&type=go_log_page&page=2781000"'
+      - value: '"/AccLog.htm|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product IoT, attack_target Client_Endpoint, created_at 2021_07_19,
+        cve CVE_2021_31642, deployment Perimeter, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_07_19
+      msg: '"ET EXPLOIT CHIYU IoT Devices - Denial of Service"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+\/AccLog\.htm/Hmi"'
+      reference: url,www.exploit-db.com/exploits/49937
+      rev: '2'
+      sid: '2033362'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

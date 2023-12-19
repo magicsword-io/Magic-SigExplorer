@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"APPE",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP APPE overflow attempt"'
+      pcre: '"/^APPE(?!\n)\s[^\n]{200}/ims"'
+      reference: cve,2003-0772
+      rev: '17'
+      service: ftp
+      sid: '2391'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

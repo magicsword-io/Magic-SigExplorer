@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 10.0|3b 20|Win64|3b 20|x64)
+          AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.5359.128 Safari/537.36|0d
+          0a|"'
+      fast_pattern: 98,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_31, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        Medium, signature_severity Major, updated_at 2023_03_31, reviewed_at 2023_11_28
+      msg: '"ET TROJAN Observed 3CX Supply Chain Attack User-Agent"'
+      reference: url,objective-see.org/blog/blog_0x73.html
+      rev: '2'
+      sid: '2044857'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

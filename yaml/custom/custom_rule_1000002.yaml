@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/_api/web/"'
+      flow: established,to_server
+      msg: '"Suspicious SharePoint API Endpoint Access"'
+      rev: '1'
+      sid: '1000002'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

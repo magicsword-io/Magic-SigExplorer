@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8888'
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/SiteScope/cgi/go.exe/SiteScope"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP SiteScope Service access"'
+      reference: nessus,10778
+      rev: '11'
+      service: http
+      sid: '1499'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

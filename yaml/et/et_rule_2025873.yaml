@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"form action=|22|login.php|22|"'
+      - value: '"<h1>Sign in to GitHub</h1>"'
+      - value: '"<input type=|22|text|22 20|name=|22|username|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_07_19, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Major, tag Phish, updated_at 2018_07_19
+      msg: '"ET CURRENT_EVENTS Github Phishing Landing 2018-07-19"'
+      rev: '2'
+      sid: '2025873'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

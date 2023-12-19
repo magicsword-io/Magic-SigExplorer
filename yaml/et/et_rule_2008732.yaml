@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '".php?"'
+      - value: '"action=stat&wmid="'
+      - value: '"&event="'
+      - value: '"&uid="'
+      - value: '"&i1"'
+      - value: '"&i2"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Trojan.FakeAV.SystemDefender Checkin"'
+      reference: md5,4d1df7240837832853c8b87606f3dfc2
+      rev: '5'
+      sid: '2008732'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

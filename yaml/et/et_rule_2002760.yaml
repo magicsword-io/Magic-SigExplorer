@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"SCP@|83|DNA@"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P GnucDNA UDP Ultrapeer Traffic"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2002760
+      rev: '3'
+      sid: '2002760'
+      threshold: type both,track by_src,count 10,seconds 600
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"E protocol error|3A| invalid directory syntax in",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE CVS invalid directory response"'
+      reference: nessus,11385
+      rev: '12'
+      sid: '2011'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20|OS|3A 20|"'
+      - value: '"|20|CPU|3A|",distance 0'
+      - value: '"Hz,RAM|3A|",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zxshell variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/547044cb73f1c18ccd92cd28afded37756f749a9338ed7c04306c1de46889d6b/analysis/
+      rev: '2'
+      sid: '32192'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

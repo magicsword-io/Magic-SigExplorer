@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|log|0e|exposedbotnets|02|ru|00|"'
+      distance: '0'
+      metadata: attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228,
+        deployment Perimeter, performance_impact Low, signature_severity Major, updated_at
+        2021_12_21
+      msg: '"ET ATTACK_RESPONSE DNS Query for Observed CVE-2021-44228 Callback Domain
+        (log .exposedbotnets .ru)"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034830'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

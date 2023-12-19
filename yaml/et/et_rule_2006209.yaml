@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ixm_ixpnews.php?"'
+      - value: '"story_id="'
+      - value: '"INSERT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Ixprim SQL Injection Attempt -- ixm_ixpnews.php
+        story_id INSERT"'
+      pcre: '"/INSERT.+INTO/Ui"'
+      reference: url,doc.emergingthreats.net/2006209
+      rev: '6'
+      sid: '2006209'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '1'
+        value: '"/"'
+      - value: '"/?1"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"Accept|3a 20 2a 2f 2a 0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_08, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2023_03_09
+      msg: '"ET TROJAN Observed Emotet Maldoc Retrieving Payload (2023-03-07) M2"'
+      pcre: '"/\/\?1[0-9]{5}(?:&c=\d{1,2})?$/U"'
+      rev: '2'
+      sid: '2044518'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: <60
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

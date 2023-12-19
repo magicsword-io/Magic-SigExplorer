@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|title|3e 20 7c 20|Email|20|Settings|3c 2f|title|3e|"'
+      - value: '"|7c 20|Email|20|Settings"'
+      - value: '"method|3d 22|post|22 20|action|3d 22|none"'
+      - value: '"|2e|php|22|"'
+      - value: '"type|3d 22|hidden|22 20|name|3d 22|login|22|"'
+      - value: '"name|3d 22|passwd|22 20|type|3d 22|password|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_12, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_10_12
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-10-12"'
+      reference: md5,aa4869dd3f6e5d56f49929fdfc4c6993
+      rev: '1'
+      sid: '2039174'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

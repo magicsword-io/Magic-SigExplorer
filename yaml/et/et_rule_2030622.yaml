@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"EBRX1:6X76D"'
+      - value: '"Due to suspicious activity"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_07_30, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, tag Phishing, updated_at 2020_07_30
+      msg: '"ET CURRENT_EVENTS Generic Financial Phone Support Scam/Phishing Landing
+        M2"'
+      rev: '2'
+      sid: '2030622'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

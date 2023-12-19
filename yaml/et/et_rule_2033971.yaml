@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/set.cgi?cmd=diag_traceroute"'
+      - value: '"&hostname="'
+      metadata: attack_target Networking_Equipment, created_at 2021_09_16, deployment
+        Perimeter, former_category EXPLOIT, signature_severity Major, updated_at 2021_09_22
+      msg: '"ET EXPLOIT Netgear Seventh Inferno Vulnerability (post-auth shell injection)"'
+      pcre: '"/&hostname=[^&\r\n]+(?:\x3b|\x0a|\x26|\x60|\x7C|\x24)/P"'
+      reference: url,gynvael.coldwind.pl/?id=742
+      rev: '2'
+      sid: '2033971'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

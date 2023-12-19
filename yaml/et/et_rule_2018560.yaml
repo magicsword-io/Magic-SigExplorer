@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_extract: 3,0,frag_len,relative
+      byte_jump: 3,5,relative
+      byte_test: 3,!=,frag_len,0,relative
+      classtype: attempted-user
+      contents:
+      - depth: '10'
+        value: '"|16 fe ff 00 00 00 00 00 00 00|"'
+      - value: '"|01|"'
+      - value: '"|01|"'
+      distance: '3'
+      metadata: created_at 2014_06_13, cve CVE_2014_0195, former_category CURRENT_EVENTS,
+        updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS DTLS 1.0 Fragmented Client Hello Possible
+        CVE-2014-0195"'
+      reference: url,h30499.www3.hp.com/t5/HP-Security-Research-Blog/ZDI-14-173-CVE-2014-0195-OpenSSL-DTLS-Fragment-Out-of-Bounds/ba-p/6501002
+      rev: '3'
+      sid: '2018560'
+      within: '1'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

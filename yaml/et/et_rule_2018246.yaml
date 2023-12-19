@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"count_threads|09 09 09 3d 09|"'
+      - value: '"|0a|efficiency_limit|09 09 3d 09|"'
+      distance: '1'
+      flow: established,from_server
+      flowbits: isset,ETGamut
+      metadata: created_at 2014_03_11, former_category MALWARE, updated_at 2014_03_11
+      msg: '"ET TROJAN Gamut Spambot Checkin Response"'
+      reference: md5,f00f3f47062646f900aa327b1d5ca3a1
+      rev: '2'
+      sid: '2018246'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '22'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

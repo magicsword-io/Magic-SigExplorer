@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|d0 cd d0 db d4 d8 d0|"'
+      - value: '"|d9 da d2 dc db|"'
+      - value: '"|d1 da d6 d8 d1|"'
+      - value: '"|dd da c6 c1 db d4 d8 d0|"'
+      - value: '"|c2 dc db d1 da c2 c6|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2014_02_19, former_category MALWARE, updated_at 2014_02_19
+      msg: '"ET TROJAN Win32.Hack.PcClient.g CnC (OUTBOUND) XOR b5"'
+      reference: md5,dfd6b93dac698dccd9ef565a172123f3
+      rev: '3'
+      sid: '2018154'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

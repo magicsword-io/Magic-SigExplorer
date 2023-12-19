@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      detection_filter: track by_src,count 200,seconds 1
+      flags: R
+      flow: to_server,no_stream
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-LINUX Linux Kernel Challenge ACK provocation attempt"'
+      reference: cve,2017-7285
+      rev: '5'
+      sid: '40063'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '23'
+        value: '"|5b|Server|5d 20|All|20|good|20|to|20|go"'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: created_at 2019_09_13, deployment Perimeter, former_category MALWARE,
+        malware_family Tunna, performance_impact Low, signature_severity Major, updated_at
+        2020_09_02
+      msg: '"ET TROJAN Possible Tunna Proxy Activity (Response)"'
+      reference: url,github.com/SECFORCE/Tunna
+      rev: '2'
+      sid: '2028582'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '300'
+        value: '"PDF-"'
+      - value: '"/SubType"'
+      - value: '"flash"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_09_27, cve CVE_2010_1297, deployment
+        Perimeter, former_category WEB_CLIENT, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2017_05_11
+      msg: '"ET WEB_CLIENT PDF With Embedded Flash Possible Remote Code Execution
+        Attempt"'
+      reference: cve,2010-1297
+      rev: '4'
+      sid: '2011505'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

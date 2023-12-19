@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"mail from|3a|"'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Inbound Frequent Emails - Possible Spambot Inbound"'
+      reference: url,doc.emergingthreats.net/2002087
+      rev: '10'
+      sid: '2002087'
+      special_options:
+      - nocase
+      threshold: type threshold, track by_src, count 10, seconds 60
+    protocol: tcp
+    source:
+      network: '!$HOME_NET'
+      port: any

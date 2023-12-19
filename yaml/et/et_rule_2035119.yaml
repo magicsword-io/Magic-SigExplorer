@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"username="'
+      - value: '"_"'
+      - value: '"&cart=FV&"'
+      - value: '"-"'
+      - value: '"="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_07, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_02_07, reviewed_at 2023_09_19
+      msg: '"ET TROJAN Win32/Pteranodon CnC Exfil (POST) M2"'
+      pcre: '"/^\d+$/R"'
+      reference: md5,b5120dcc0f2682cb6fb2a4f68dcbbb0b
+      rev: '2'
+      sid: '2035119'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      within: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

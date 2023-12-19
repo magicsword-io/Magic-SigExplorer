@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20 00 00 00 2B FF 4B F4|",depth 8'
+      flow: to_client,established
+      isdataat: '!36'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.NanoBot/Perseus server heartbeat request attempt"'
+      reference: url,www.virustotal.com/en/file/4b16d1e205f198222bd2b2bb8dbd55886a9e2b79de484eec0d8cce5db376d3c8/analysis/
+      rev: '3'
+      sid: '39582'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

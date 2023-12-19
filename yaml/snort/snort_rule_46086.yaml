@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"apply.cgi",fast_pattern,nocase'
+      - value: '"ping_",nocase'
+      - value: '"%26"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Linksys E-Series apply.cgi ping function command injection
+        attempt"'
+      pcre: '"/[?&]ping(\x5f|%5f)(ip|size|times)=[^&]*?%26/i"'
+      reference: cve,2013-3307
+      rev: '3'
+      service: http
+      sid: '46086'
+      special_options:
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

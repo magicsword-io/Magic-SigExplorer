@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 0d|sahm-melli.tk"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_17, former_category MOBILE_MALWARE, updated_at
+        2022_03_17
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Realrat.c (TLS SNI) 4"'
+      reference: md5,56b25d666bb8174d822d8d4c558bad81
+      rev: '1'
+      sid: '2035491'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

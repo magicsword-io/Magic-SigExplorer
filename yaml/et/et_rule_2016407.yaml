@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PK"'
+      - value: '"SunJCE.class"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_02_13, updated_at 2013_02_13
+      msg: '"ET CURRENT_EVENTS Cool Java Exploit Recent Jar (1)"'
+      rev: '2'
+      sid: '2016407'
+      special_options:
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

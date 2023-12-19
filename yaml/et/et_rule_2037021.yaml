@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|3c 7c 7c 20 20|v"'
+      - value: '"|20 7c 7c 3e|"'
+      - value: '"User Name|3a 20|"'
+      - value: '"Windows OS|3a 20|"'
+      - value: '"MassLogger Started|3a 20|"'
+      - value: '"Interval|3a 20|"'
+      - value: '"MassLogger Process|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_16, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_06_16
+      msg: '"ET TROJAN Win32/MassLogger FTP Data Exfiltration"'
+      reference: md5,b044aefa2e42d7efadf53394442fcca6
+      rev: '1'
+      sid: '2037021'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '1'
+      itype: '40'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Photuris Unknown Security Parameters Index"'
+      rev: '9'
+      sid: '430'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

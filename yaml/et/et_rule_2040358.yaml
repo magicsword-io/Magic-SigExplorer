@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"87 105 110 100 111 119 115 66 117 105 108 100 76 97 98 69 120"'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_11_29, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_11_29
+      msg: '"ET INFO Powershell Get-ComputerInfo Output (WindowsBuildLabEx) - Decimal
+        Encoded"'
+      rev: '1'
+      sid: '2040358'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

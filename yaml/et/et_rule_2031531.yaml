@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/checknew"'
+      - depth: '16'
+        value: '"{|22|machine_id|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|model_name|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|os|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|os_version|22 3a 20 22|"'
+      - value: '"|22 2c 20 22|model_ident"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2021_01_20, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2021_01_20
+      msg: '"ET TROJAN OSX/WizardUpdate CnC Activity"'
+      pcre: '"/\/checknew$/Ui"'
+      reference: md5,6a76ee693b3d43ed385ce4b930fe3e30
+      rev: '2'
+      sid: '2031531'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '69'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01|",depth 2'
+      - value: '!"|00|",within 100'
+      flow: to_server
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP GET filename overflow attempt"'
+      reference: nessus,18264
+      rev: '24'
+      service: tftp
+      sid: '1941'
+    protocol: udp
+    source:
+      network: any
+      port: any

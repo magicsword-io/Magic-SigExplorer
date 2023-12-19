@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/info.php?pid="'
+      - value: '"&bo_table="'
+      - value: '"&wr_id="'
+      - value: '"&mac="'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_08_05,
+        deployment Perimeter, former_category MALWARE, signature_severity Major, tag
+        Trojan_Downloader, updated_at 2020_04_20
+      msg: '"ET TROJAN W32/Nolja Trojan Downloader Initial Checkin"'
+      rev: '1'
+      sid: '2013375'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

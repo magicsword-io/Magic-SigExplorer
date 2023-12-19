@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '"function"'
+      - value: '"Object.prototype.push = Array.prototype.push"'
+      - value: '".push|28|"'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_25, cve CVE_2018_8617,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2021_08_25
+      msg: '"ET EXPLOIT Microsoft Edge Chakra - InlineArrayPush Type Confusion Inbound
+        M1 (CVE-2018-8617)"'
+      pcre: '"/^\s*(?P<func_opt>[\w-]{1,20})\((?P<var_a>[\w-]{1,20})\s*,\s*(?P<var_b>[\w-]{1,20}).{1,300}(?:(?P=var_a)\.(?P=var_b)|(?P=var_b)\.(?P=var_a))\s*=\s*\d+\x3b\s*(?:(?P=var_a)|(?P=var_b))\.push\(\d+\)\x3b\s*(?:(?P=var_a)\.(?P=var_a)|(?P=var_b)\.(?P=var_b))\s*=\s*0x.{1,300}Object\.prototype\.push\s*=\s*Array\.prototype\.push\x3b\s*for\s*\(\s*let\s*(?P<counter>[\w-]{1,20})\s*=\s*\d{1,8}\s*\x3b\s*(?P=counter)\s*(?:<|>)\s*(?:0x)?\d{2,}\s*\x3b\s*(?P=counter)(?:\+{2}|-{2})\).{1,300}let\s*(?:(?P=var_a)|(?P=var_b))\s*=\s*\{(?:(?P=var_a):\s*\d+\s*,\s*(?P=var_b):\s*\d+|(?:(?P=var_b):\s*\d+\s*,\s*(?P=var_a):\s*\d+))\}\x3b.{1,300}(?P=func_opt)\((?:(?P=var_a)|(?P=var_b)),\s*\{\}.{1,300}let\s*(?P<var_o>[\w-]{1,20})\s*=\s*\{(?:(?P=var_a):\s*\d+\s*,\s*(?P=var_b):\s*\d+|(?:(?P=var_b):\s*\d+\s*,\s*(?P=var_a):\s*\d+))\}.{1,300}(?P=func_opt)\((?P=var_o)/Rs"'
+      reference: cve,2018-8617
+      rev: '1'
+      sid: '2033782'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

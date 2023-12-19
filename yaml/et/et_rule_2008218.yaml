@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '3'
+        value: '"to="'
+      - value: '"Optix Pro v"'
+      - value: '" Server Online"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Optix Pro Trojan/Keylogger Reporting Installation via HTTP-Email
+        Post"'
+      reference: url,doc.emergingthreats.net/2008218
+      rev: '5'
+      sid: '2008218'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

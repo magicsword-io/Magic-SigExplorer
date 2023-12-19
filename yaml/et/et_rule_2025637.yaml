@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|1b 84 d5 b0 5d f4 c4 93 c5 30 c2|"'
+      - value: '"|da b1|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_03, deployment Perimeter, former_category
+        MALWARE, malware_family Remcos, signature_severity Major, tag RAT, updated_at
+        2020_11_06
+      msg: '"ET TROJAN Remcos RAT Checkin 23"'
+      reference: md5,f4f2425e9735f92cc9f75711aa8cb210
+      rev: '4'
+      sid: '2025637'
+      special_options:
+      - fast_pattern
+      threshold: type limit, seconds 30, count 1, track by_src
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

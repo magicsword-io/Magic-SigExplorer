@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|holdmem|08|dbhubspi|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_20, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_20
+      msg: '"ET TROJAN Microcin Backdoor Related Domain in DNS Lookup (holdmem .dbhubspi
+        .com)"'
+      reference: url,securelist.com/moonbounce-the-dark-side-of-uefi-firmware/105468/
+      rev: '2'
+      sid: '2034955'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

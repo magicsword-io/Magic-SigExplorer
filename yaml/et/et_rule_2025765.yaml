@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '68'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"|02|"'
+      - value: '"|35 01 05 fc|"'
+      - value: '"|2f|bin|2f|sh"'
+      distance: '0'
+      metadata: attack_target Networking_Equipment, created_at 2018_06_29, cve CVE_2018_1111,
+        deployment Datacenter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Critical, updated_at 2023_11_27
+      msg: '"ET EXPLOIT DynoRoot DHCP - Client Command Injection"'
+      reference: cve,2018-1111
+      rev: '2'
+      sid: '2025765'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: any
+      port: '67'

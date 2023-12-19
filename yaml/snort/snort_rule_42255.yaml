@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|08 E0 00 00 00 00|",depth 6,offset 4'
+      - value: '"|0D 0A|",within 2,distance 1'
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows empty RDP cookie negotiation attempt"'
+      reference: url,www.securitytracker.com/id/1038264
+      rev: '4'
+      service: rdp
+      sid: '42255'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|bwhrdaumwuvn|07|support|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2016_12_12, deployment Perimeter,
+        signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN Mirai Botnet Domain Observed"'
+      reference: url,blog.netlab.360.com/new-mirai-variant-with-dga/
+      rev: '2'
+      sid: '2023603'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

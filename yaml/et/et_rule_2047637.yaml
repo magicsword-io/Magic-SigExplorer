@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id="'
+      - value: '"|3b|timeout"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_14, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        Medium, signature_severity Major, updated_at 2023_08_14
+      msg: '"ET TROJAN Suspected Bitter Elephant APT Related Activity (GET)"'
+      pcre: '"/|3b|timeout$/U"'
+      reference: url,asec.ahnlab.com/ko/50851/
+      rev: '1'
+      sid: '2047637'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

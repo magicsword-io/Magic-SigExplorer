@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 27020:27050
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|00 00 00 03|"'
+      dsize: '4'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET GAMES STEAM Connection (v2)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003089
+      rev: '4'
+      sid: '2003089'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

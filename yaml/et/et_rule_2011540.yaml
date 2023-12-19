@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 0a|"'
+      - value: '"Internet Widgits Pty Ltd"'
+      flow: established,to_client
+      metadata: created_at 2010_09_27, former_category POLICY, updated_at 2022_05_03
+      msg: '"ET POLICY OpenSSL Demo CA - Internet Widgits Pty (O)"'
+      rev: '7'
+      sid: '2011540'
+      within: '50'
+    protocol: tcp
+    source:
+      network: any
+      port: '443'

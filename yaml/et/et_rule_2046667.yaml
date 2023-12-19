@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '25'
+        value: '"$$$$$$WALLETS_START$$$$$$"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_27, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2023_06_27
+      msg: '"ET TROJAN [ANY.RUN] StatusRecorder Stealer Sending System Information"'
+      reference: url,app.any.run/tasks/0d0744a8-c186-4fe7-95d9-bdd483e8e6ad
+      rev: '1'
+      sid: '2046667'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

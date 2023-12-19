@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NzgzNDI"'
+      - value: '"NzgzNDI"'
+      - value: '"NzgzNDI"'
+      - value: '"=|22|,|20 0a 22|"'
+      - value: '"=|22|,|20 0a 22|"'
+      - value: '"=|22|,|20 0a 22|"'
+      - value: '"=|22|,|20 0a 22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_05, deployment Perimeter, signature_severity
+        Major, updated_at 2019_11_05
+      msg: '"ET CURRENT_EVENTS Capesand EK Landing"'
+      pcre: '"/^[a-zA-Z0-9]{4}NzgzNDI[a-zA-Z0-9]{8}=\x22/R"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/new-exploit-kit-capesand-reuses-old-and-new-public-exploits-and-tools-blockchain-ruse/
+      rev: '2'
+      sid: '2028937'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

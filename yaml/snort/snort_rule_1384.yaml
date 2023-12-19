@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"NOTIFY * ",fast_pattern,nocase'
+      - value: '"LOCATION|3A|",nocase'
+      detection_filter: track by_dst,count 10,seconds 1
+      flow: to_server,no_stream
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows UPnP malformed advertisement"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-059
+      rev: '21'
+      sid: '1384'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

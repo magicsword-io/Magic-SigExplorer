@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: suspicious-login
+      contents:
+      - offset: '54'
+        value: '"Authentication unsuccessful"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SMTP AUTH LOGON brute force attempt"'
+      rev: '3'
+      sid: '2102275'
+      special_options:
+      - nocase
+      threshold: type threshold, track by_dst, count 5, seconds 60
+    protocol: tcp
+    source:
+      network: $SMTP_SERVERS
+      port: '25'

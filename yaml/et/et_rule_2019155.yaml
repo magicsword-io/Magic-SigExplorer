@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Connection|3a 20|Close"'
+      - value: '"Host|3a 20|windowsupdate.microsoft.com|0d 0a|"'
+      - value: '!"Accept|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_10, updated_at 2020_09_25
+      msg: '"ET TROJAN Possible Zeus GameOver Connectivity Check 2"'
+      reference: md5,236bde81355e075e7ed6bcdc60daefcb
+      rev: '1'
+      sid: '2019155'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

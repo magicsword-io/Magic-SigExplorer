@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|11 00 00 00 01 00 00 00 78 9c 4b 05 00 00 66 00 66|"'
+      dsize: '17'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_02_11, updated_at 2019_10_08
+      msg: '"ET TROJAN Linux/Xnote Keep-Alive"'
+      reference: url,deependresearch.org/2015/02/linuxbackdoorxnote1-indicators.html
+      rev: '1'
+      sid: '2020389'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

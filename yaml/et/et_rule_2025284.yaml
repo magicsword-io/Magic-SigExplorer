@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Sign In</title>"'
+      - value: '"Outlook.com is a free, personal email service from Microsoft."'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_01, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_01
+      msg: '"ET CURRENT_EVENTS Microsoft Live Login Phishing Landing 2018-02-01"'
+      rev: '2'
+      sid: '2025284'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

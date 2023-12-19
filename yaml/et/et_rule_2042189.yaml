@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,0, relative, little, post_offset -1
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|d1 57 f4 37|"'
+      - value: '"|02 00 00 00|"'
+      distance: '4'
+      flow: established,to_server
+      isdataat: '!2,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_12_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_12_13
+      msg: '"ET TROJAN Impersoni-fake-ator backdoor CnC Checkin"'
+      reference: url,www.bitdefender.com/files/News/CaseStudies/study/426/Bitdefender-PR-Whitepaper-BackdoorDiplomacy-creat6507-en-EN.pdf
+      rev: '2'
+      sid: '2042189'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

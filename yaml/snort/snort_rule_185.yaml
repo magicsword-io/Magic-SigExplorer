@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"ypi0ca",depth 15,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR CDK"'
+      rev: '10'
+      sid: '185'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"O|00|K|00 00|"'
+      flow: from_server,established
+      metadata: created_at 2014_10_29, updated_at 2014_10_29
+      msg: '"ET TROJAN CORESHELL Malware Response from server"'
+      pcre: '"/^\x00(?:(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4}))?$/R"'
+      reference: url,www.fireeye.com/resources/pdfs/apt28.pdf
+      rev: '2'
+      sid: '2019584'
+      special_options:
+      - file_data
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

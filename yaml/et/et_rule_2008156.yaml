@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| VIP20"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_19
+      msg: '"ET TROJAN Hupigon User Agent Detected (VIP2007)"'
+      reference: url,doc.emergingthreats.net/2008156
+      rev: '3'
+      sid: '2008156'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

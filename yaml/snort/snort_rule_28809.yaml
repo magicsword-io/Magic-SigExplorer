@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|filename=exe.exe|0D 0A|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dofoil inbound connection"'
+      reference: url,www.virustotal.com/en/file/2325492f457a8b7d3df48a570210f65f3a094fe8925278451713768d938bec86/analysis/
+      rev: '6'
+      service: http
+      sid: '28809'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/?step=|00|"'
+      - value: '"submit-job-form"'
+      - value: '"enctype=|22|multipart/form-data|22|"'
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, attack_target Web_Server, created_at
+        2018_07_16, deployment Datacenter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS WordPress Plugin Job Manager Stored Cross-Site Scripting"'
+      pcre: '"/enctype=\x22multipart/form-data\x22[^&]+(?:s(?:cript|tyle\x3D)|on(?:mouse[a-z]|key[a-z]|load|unload|dragdrop|blur|focus|click|dblclick|submit|reset|select|change))/Ui"'
+      reference: url,exploit-db.com/exploits/45031/
+      rev: '2'
+      sid: '2025839'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

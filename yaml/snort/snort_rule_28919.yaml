@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host: bitly.com|0D 0A|Accept: text/html, */*|0D 0A|Accept-Encoding:
+          identity|0D 0A|User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant network connectivity check"'
+      reference: url,www.virustotal.com/en/file/084455c1de5d9440eb95edd2e6868aab1ce3dd674c2e3ba481254edc65b30b89/analysis/
+      rev: '3'
+      service: http
+      sid: '28919'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

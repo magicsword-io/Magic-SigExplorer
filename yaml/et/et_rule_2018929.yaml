@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ord/"'
+      - value: '".exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_13, updated_at 2020_09_25
+      msg: '"ET TROJAN OneLouder Common URI Struct"'
+      pcre: '"/\/ord\/[^\x2f]+?\.exe$/Ui"'
+      rev: '1'
+      sid: '2018929'
+      special_options:
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

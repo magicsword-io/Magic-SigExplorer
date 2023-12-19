@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"GET|20|/jrest.php?payload="'
+      - value: '"|5c 2e 2e 5c 2e 2e 5c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_10_28, cve CVE_2022_22246, deployment
+        Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET TROJAN Potential Juniper PHP Local File Inclusion Attempt (CVE-2022-22246)"'
+      reference: cve,2022-22246
+      rev: '1'
+      sid: '2039600'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

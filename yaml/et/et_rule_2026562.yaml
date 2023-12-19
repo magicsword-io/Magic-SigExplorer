@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '13'
+        value: '"/red/info.php"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a|"'
+      - value: '"Host|3a|"'
+      - value: '"Connection|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_29, deployment Perimeter, former_category
+        TROJAN, malware_family KeyRedirEx, performance_impact Low, signature_severity
+        Major, tag Banker, updated_at 2020_09_16
+      msg: '"ET TROJAN MSIL/KeyRedirEx Banker Requesting Redirect/Inject List"'
+      pcre: '"/^\/red\/info\.php$/U"'
+      reference: url,otx.alienvault.com/pulse/5bd339328f32ad2db2e03f1a
+      rev: '2'
+      sid: '2026562'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

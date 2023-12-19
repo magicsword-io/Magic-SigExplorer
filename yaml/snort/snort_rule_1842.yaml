@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"LOGIN",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP login buffer overflow attempt"'
+      pcre: '"/\sLOGIN\s[^\n]{100}/i"'
+      reference: nessus,10125
+      rev: '35'
+      service: imap
+      sid: '1842'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

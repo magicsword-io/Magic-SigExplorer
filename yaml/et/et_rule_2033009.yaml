@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"/*!|20|jQuery|20|v"'
+      - value: '"if|28|e|5b|n|5d 3d 3d 3d|t|29|return n|3b|return|2d|1|7d 2c|P|3d
+          22|"'
+      - value: '!"checked"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_21, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2021_05_21, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 JQuery Custom Profile Response"'
+      reference: md5,09773b90da8f3688faf54750b6a5ecf5
+      rev: '1'
+      sid: '2033009'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

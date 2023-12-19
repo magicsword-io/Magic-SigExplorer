@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"yoO4TAbn2tpl5DltCfASJIZ2spEJPLSn",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Sibhost exploit kit"'
+      reference: url,www.malwaresigs.com/2013/02/26/sport-cd-am-sibhost
+      rev: '4'
+      service: http
+      sid: '26020'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

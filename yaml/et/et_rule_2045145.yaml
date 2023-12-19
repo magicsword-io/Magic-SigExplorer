@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -15
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"ipfs.w3s.link"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2023_04_21,
+        deployment Perimeter, former_category HUNTING, performance_impact Low, confidence
+        High, signature_severity Informational, updated_at 2023_04_21
+      msg: '"ET INFO Observed IPFS Gateway Domain (ipfs .w3s .link) in TLS SNI"'
+      pcre: '"/^(?:\x00\x0d|.\x2e)ipfs\.w3s\.link/R"'
+      reference: url,unit42.paloaltonetworks.com/ipfs-used-maliciously/
+      rev: '1'
+      sid: '2045145'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

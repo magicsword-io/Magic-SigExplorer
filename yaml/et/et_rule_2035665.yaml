@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -14
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"verble.rocks"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_30, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_03_30
+      msg: '"ET TROJAN Observed Trojan.Verblecon Related Domain (.verble .rocks in
+        TLS SNI)"'
+      pcre: '"/^(?:\x00\x0c|.\x2e)verble\.rocks/R"'
+      reference: url,symantec-enterprise-blogs.security.com/blogs/threat-intelligence/verblecon-sophisticated-malware-cryptocurrency-mining-discord
+      rev: '2'
+      sid: '2035665'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

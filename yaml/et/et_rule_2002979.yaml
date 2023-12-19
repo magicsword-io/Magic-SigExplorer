@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Installation of SC-KeyLog on host "'
+      - value: '"<p>You will receive a log report every "'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN SC-KeyLog Keylogger Installed - Sending Initial Email Report"'
+      reference: url,doc.emergingthreats.net/2002979
+      rev: '4'
+      sid: '2002979'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

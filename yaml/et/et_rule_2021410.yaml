@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|xxxatat456|03|com"'
+      distance: '0'
+      metadata: created_at 2015_07_13, former_category CURRENT_EVENTS, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Likely Linux/Xorddos DDoS Attack Participation (xxxatat456.com)"'
+      reference: md5,5a6bd6b5e00333b8d39ff6be13a346f6
+      rev: '2'
+      sid: '2021410'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type both,track by_src,count 10,seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

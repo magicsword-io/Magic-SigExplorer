@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"'
+      dsize: '32'
+      icmp_id: '512'
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2012_02_21, updated_at 2012_02_21
+      msg: '"ET TROJAN Backdoor.Win32.RShot Ping Outbound"'
+      reference: md5,adf4c3a16f5f6d4baa634b2c50bf7454
+      rev: '3'
+      sid: '2014270'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

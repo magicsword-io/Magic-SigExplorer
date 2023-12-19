@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"catchControlKeys"'
+      - value: '"// Ctrl+U"'
+      - value: '"// Ctrl+C"'
+      - value: '"// Ctrl+A"'
+      - value: '"//e.cancelBubble is supported by IE"'
+      - value: '"//e.stopPropagation works in Firefox"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2016_04_04, former_category WEB_CLIENT, updated_at 2020_11_05
+      msg: '"ET WEB_CLIENT Fake AV Phone Scam Landing Apr 4"'
+      rev: '2'
+      sid: '2022697'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

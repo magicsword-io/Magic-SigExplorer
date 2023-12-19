@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|sessionprotocol|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_21, deployment Perimeter,
+        former_category MALWARE, malware_family StrongPity, signature_severity Major,
+        updated_at 2022_03_21
+      msg: '"ET TROJAN StrongPity APT Related Domain in DNS Lookup (sessionprotocol
+        .com)"'
+      reference: url,twitter.com/HONKONE_K/status/1505920551503626242
+      rev: '2'
+      sid: '2035553'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

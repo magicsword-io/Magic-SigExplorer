@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|10|rj2bocejarqnpuhm"'
+      metadata: created_at 2014_04_16, updated_at 2014_04_16
+      msg: '"ET TROJAN CryptoDefense DNS Domain Lookup"'
+      pcre: '"/^[^\x00]+?\x00/Rs"'
+      rev: '3'
+      sid: '2018397'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

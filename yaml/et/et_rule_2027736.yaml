@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - depth: '6'
+        value: '"GIF89a"'
+      - value: '"<%eval|20|request|28 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2019_07_22, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, signature_severity Major,
+        tag WebShell, updated_at 2020_08_31
+      msg: '"ET EXPLOIT Possible WebShell GIF Upload"'
+      rev: '2'
+      sid: '2027736'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/mss"'
+      - value: '".exe"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_03_17, former_category MALWARE, updated_at 2022_03_24
+      msg: '"ET TROJAN Likely Geodo/Emotet Downloading PE"'
+      pcre: '"/\/mss\d+\.exe$/U"'
+      reference: md5,6c4d198794d1afd2b8bbae6f16bdfaa7
+      rev: '1'
+      sid: '2035043'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

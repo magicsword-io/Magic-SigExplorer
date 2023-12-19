@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"crimson.universal.containers.Message"'
+      - value: '"FILEMANAGER_list"'
+      - value: '"|00|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_03, deployment Perimeter, former_category
+        MALWARE, malware_family Subterranean_Crimson, signature_severity Major, tag
+        RAT, updated_at 2022_02_03
+      msg: '"ET TROJAN Subterranean Crimson Rat - FileManager List Command"'
+      pcre: '"/^.\d{1,2}\.\d+\.\d+/R"'
+      reference: url,twitter.com/James_inthe_box/status/1488987814066753538
+      rev: '2'
+      sid: '2035071'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

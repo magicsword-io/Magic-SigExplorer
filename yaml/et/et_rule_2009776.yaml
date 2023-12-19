@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id="'
+      - value: '"&v="'
+      - value: '"&tm="'
+      - value: '"&b="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_22
+      msg: '"ET TROJAN Oficla Downloader Activity Observed"'
+      pcre: '"/\x2Ephp\x3Fid\x3D\d*\x26v\x3D\d*\x26tm\x3D\d*\x26b\x3D/iU"'
+      reference: md5,1db0c8d48a76662496af7faf581b1cf0
+      rev: '8'
+      sid: '2009776'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

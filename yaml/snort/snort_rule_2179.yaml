@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"PASS",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP PASS format string attempt"'
+      pcre: '"/^PASS\s[^\n]*?%[^\n]*?%/ims"'
+      reference: nessus,10490
+      rev: '16'
+      service: ftp
+      sid: '2179'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|70 00 00 8f ff|"'
+      dsize: '5'
+      flow: established,to_server
+      metadata: created_at 2022_04_13, former_category MALWARE, malware_family Fodcha,
+        updated_at 2022_04_14
+      msg: '"ET TROJAN Fodcha Bot CnC Heartbeat Response"'
+      reference: url,blog.netlab.360.com/fodcha-a-new-ddos-botnet/
+      rev: '3'
+      sid: '2035941'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

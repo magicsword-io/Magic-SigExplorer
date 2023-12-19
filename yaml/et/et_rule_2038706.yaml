@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[!80,!443,!445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7b 22|Identity|22 3a 22|"'
+      - value: '"|22 2c 22|Architecture|22 3a|"'
+      - value: '"|2c 22|Antivirus|22 3a 5b|"'
+      - value: '"|2c 22|DotNetStatus|22 3a|"'
+      - value: '"|2c 22|Bot_Version|22 3a 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_01, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_09_01
+      msg: '"ET TROJAN Win32/Orchard Botnet Activity M2"'
+      reference: md5,f3e0b960a48b433bc4bfe6ac44183b74
+      rev: '1'
+      sid: '2038706'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

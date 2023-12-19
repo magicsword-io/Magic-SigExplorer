@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"aut_sep_"'
+      - value: '"_sep_"'
+      - value: '"_packet_"'
+      distance: '0'
+      dsize: <150
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_07, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2022_03_24, reviewed_at 2023_12_18
+      msg: '"ET TROJAN JavaRAT CnC Checkin"'
+      reference: md5,9a33176dd80de6f49099a148a2df3491
+      rev: '1'
+      sid: '2026581'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

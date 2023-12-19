@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>filesystembrowser<|2f|title>"'
+      - value: '"action=|22|?operation=upload|22|"'
+      - value: '"<br>Auth|20|Key|3a|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Server, created_at 2021_07_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag WebShell, updated_at
+        2021_07_25, mitre_tactic_id TA0003, mitre_tactic_name Persistence, mitre_technique_id
+        T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET CURRENT_EVENTS Webshell Landing Outbound - Possibly Iran-based"'
+      rev: '1'
+      sid: '2033416'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

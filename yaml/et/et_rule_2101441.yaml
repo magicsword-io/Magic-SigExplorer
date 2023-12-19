@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '69'
+    details:
+      classtype: successful-admin
+      contents:
+      - depth: '2'
+        value: '"|00 01|"'
+      - offset: '2'
+        value: '"nc.exe"'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL TFTP GET nc.exe"'
+      rev: '5'
+      sid: '2101441'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: any
+      port: any

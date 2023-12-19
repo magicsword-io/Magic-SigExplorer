@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 5060:5061
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Via|3A| SIP/2.0/TCP nm"'
+      - value: '"From|3A| <sip|3A|nm@nm"'
+      metadata: created_at 2014_03_25, updated_at 2014_03_25
+      msg: '"ET SCAN NMAP SIP Version Detection Script Activity"'
+      rev: '1'
+      sid: '2018318'
+      special_options:
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

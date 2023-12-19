@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|EB|n^|C6 06 9A|1|C9 89|N|01 C6|F|05|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-OTHER x86 FreeBSD overflow attempt"'
+      rev: '15'
+      service: dns
+      sid: '266'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

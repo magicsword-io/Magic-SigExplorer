@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Length|3a 20|13|0d 0a|"'
+      - value: '"Client|20|online"'
+      flow: established,to_client
+      flowbits: isset,ET.BunnyLoader.Heartbeat
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Windows_11, created_at 2023_10_04, deployment Perimeter, former_category MALWARE,
+        malware_family BunnyLoader, performance_impact Low, confidence High, updated_at
+        2023_10_04, reviewed_at 2023_10_04
+      msg: '"ET TROJAN BunnyLoader Heartbeat Acknowledgement"'
+      reference: md5,dbf727e1effc3631ae634d95a0d88bf3
+      rev: '1'
+      sid: '2048403'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 300
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

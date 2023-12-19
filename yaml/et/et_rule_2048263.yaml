@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -13
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"binlist.net"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_09_25, deployment Perimeter,
+        signature_severity Informational, updated_at 2023_09_25, reviewed_at 2023_09_25
+      msg: '"ET INFO Observed Credit and Debit Card Metadata Lookup Domain (binlist
+        .net in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0b|.\x2e)binlist\.net/R"'
+      reference: url,binlist.net/
+      rev: '1'
+      sid: '2048263'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

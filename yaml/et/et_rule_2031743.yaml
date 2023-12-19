@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/cook32.rar"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2021_03_02, former_category MALWARE, malware_family ursnif, updated_at 2021_03_02
+      msg: '"ET TROJAN Ursnif Payload Request (cook32.rar)"'
+      pcre: '"/\/cook32\.rar$/U"'
+      reference: md5,c453d38c87a5df2fff509a4d9aba40e8
+      rev: '2'
+      sid: '2031743'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

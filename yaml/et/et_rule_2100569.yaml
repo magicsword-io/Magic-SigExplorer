@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,1024,20,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 87 99|"'
+      - value: '"|00 00 01 01|"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2001_0236, updated_at 2010_09_23
+      msg: '"GPL RPC snmpXdmi overflow attempt TCP"'
+      reference: url,www.cert.org/advisories/CA-2001-05.html
+      rev: '15'
+      sid: '2100569'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

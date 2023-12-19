@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"STOU"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_2003_0466, updated_at 2010_09_23
+      msg: '"GPL FTP STOU overflow attempt"'
+      pcre: '"/^STOU\s[^\n]{100}/smi"'
+      reference: cve,2003-0466
+      rev: '5'
+      sid: '2102390'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

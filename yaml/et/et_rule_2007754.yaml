@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '20000'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Club World Casinos"'
+      dsize: '23'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Club World Casino Client in Use"'
+      reference: url,doc.emergingthreats.net/2007754
+      rev: '4'
+      sid: '2007754'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

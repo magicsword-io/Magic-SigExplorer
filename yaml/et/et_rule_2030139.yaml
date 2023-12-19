@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".png?uid=TQBpAGMAcgBvAHMAbwBmAHQAIABXAGk"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_21, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_11_02
+      msg: '"ET TROJAN Unk.VBSLoader Retrieving Payload"'
+      reference: md5,2c727910738e0a381acf00fd0e1d636d
+      rev: '2'
+      sid: '2030139'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

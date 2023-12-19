@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"/html.php?"'
+      - value: '"page="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS WebMoney html.php page Remote File Inclusion"'
+      pcre: '"/page=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2009690
+      rev: '4'
+      sid: '2009690'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

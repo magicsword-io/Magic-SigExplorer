@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|sytes|03|net|00|"'
+      distance: '0'
+      metadata: created_at 2012_03_05, former_category INFO, updated_at 2020_09_17,
+        former_sid 2804633
+      msg: '"ET INFO DYNAMIC_DNS Query to a *.sytes.net Domain"'
+      reference: url,www.trendmicro.com/en_us/research/23/b/earth-kitsune-delivers-new-whiskerspy-backdoor.html
+      rev: '8'
+      sid: '2044233'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

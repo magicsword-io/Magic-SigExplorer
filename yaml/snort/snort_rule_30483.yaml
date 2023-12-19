@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1600:1604
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /123456789.functionss",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zbot/Bublik outbound connection"'
+      reference: url,www.virustotal.com/en/file/bbc1a8b0892785c75f0f44d9414e424ed03cefbf951ed20eaae50031670c8a96/analysis/
+      rev: '3'
+      sid: '30483'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"cRxmlqC14I8yhr92sovp"'
+      flow: from_server,established
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_12_21, updated_at 2012_12_21
+      msg: '"ET CURRENT_EVENTS SofosFO obfuscator string 19 Dec 12 - possible landing"'
+      rev: '4'
+      sid: '2016070'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

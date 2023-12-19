@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|octavia-blake|05|world|00|"'
+      distance: '0'
+      metadata: created_at 2018_09_26, former_category MOBILE_MALWARE, updated_at
+        2020_09_16, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1583, mitre_technique_name Acquire_Infrastructure
+      msg: '"ET MOBILE_MALWARE Android APT-C-23 (octavia-blake .world in DNS Lookup)"'
+      reference: url,www.symantec.com/blogs/expert-perspectives/ongoing-android-malware-campaign-targets-palestinians-part-2
+      rev: '1'
+      sid: '2026379'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

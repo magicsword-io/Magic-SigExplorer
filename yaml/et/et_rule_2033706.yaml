@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/privacy.aspx"'
+      - value: '"|0d 0a|X-IIS-Data|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_08_11, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_08_11
+      msg: '"ET TROJAN IIStealer Inbound Exfil Request"'
+      reference: url,i.blackhat.com/USA21/Wednesday-Handouts/us-21-Anatomy-Of-Native-Iis-Malware-wp.pdf
+      rev: '1'
+      sid: '2033706'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

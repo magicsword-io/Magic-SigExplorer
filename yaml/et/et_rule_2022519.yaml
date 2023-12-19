@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/stats/eurofxref/eurofxref-hist-90d.xml"'
+      - value: '"Host|3a 20|www.ecb.europa.eu|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2016_02_13, updated_at 2020_08_04
+      msg: '"ET TROJAN Bedep Connectivity Check M3"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+(?: MSIE |rv\x3a11)/Hmi"'
+      rev: '3'
+      sid: '2022519'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

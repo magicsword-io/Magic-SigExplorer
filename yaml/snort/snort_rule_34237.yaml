@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/cgi-bin/advert/getads.cgi?"'
+      - value: '"did=",distance 0'
+      - value: '"User-Agent|3A 20|mpck_",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Eorezo get advertisement"'
+      reference: url,www.virustotal.com/en/file/a31d47e5d6885c32cad2fb5799033982e7f9d070ed350cd2025dd8594d067651/analysis/1426449407/
+      rev: '2'
+      service: http
+      sid: '34237'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

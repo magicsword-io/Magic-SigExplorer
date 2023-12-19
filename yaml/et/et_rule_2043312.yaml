@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"HTTP/1.1 200 OK"'
+      - value: '"greek"'
+      - value: '"vietnamese"'
+      - value: '"latin-ext"'
+      - value: '"latin"'
+      - value: '"|0d 0a 7d 09 09 09 0d 0a 09 09 20 09 09 0d 0a 0d 0a 09 0d 0a 09 20
+          09 09 09 0d 0a 09 09 0d 0a 20 09 09 0d 0a 0d 0a 0d 0a 0d 0a 09 20 09 09
+          0d 0a 09 09 0d 0a 0d 0a 20 09 0d 0a 09 0d 0a 0d 0a 0d 0a 20 09 09 0d 0a
+          0d 0a 09 09 0d 0a 20 09 09 09 0d 0a 09 0d 0a 09 20 09 09 0d 0a 09 09 09
+          0d 0a 20 09 09 0d 0a 0d 0a 0d 0a 09 09 20 09 09 09 0d 0a 09 0d 0a 0d 0a
+          20 09 09 0d 0a 09 0d 0a 0d 0a 09 20 09 09 0d 0a 09 09 09 09 20 09 09 0d
+          0a 09 09 09 0d 0a 20 09 0d 0a 09 0d 0a 0d 0a 0d 0a 20 09 09 09 0d 0a 09
+          09 09 20 09 0d 0a 09 09 0d 0a 0d 0a 20 09 09 0d 0a 09 0d 0a 0d 0a 09 20
+          09 0d 0a 09 09 0d 0a 0d 0a 20 09 09 09 0d 0a 0d 0a 09 09 20 09 0d 0a 09
+          09 0d 0a 0d 0a 20 09 09 0d 0a 0d 0a 09 0d 0a 09 20 09 0d 0a 09 0d 0a 0d
+          0a 09 20 09 09 09 09 0d 0a 09 09 20 09 09 09 0d 0a 09 09 0d 0a 20 09 09
+          0d 0a 0d 0a|"'
+      distance: '0'
+      fast_pattern: 0,20
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_17, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2023_01_18
+      msg: '"ET TROJAN Magecart Skimmer CSS"'
+      reference: url,malwarebytes.com/blog/threat-intelligence/2023/01/crypto-inspired-magecart-skimmer-surfaces-via-digital-crime-haven
+      rev: '2'
+      sid: '2043312'
+      within: '1000'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

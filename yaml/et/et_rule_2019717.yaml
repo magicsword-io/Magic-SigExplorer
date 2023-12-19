@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"winver="'
+      - value: '"&ver="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_11_18, former_category MALWARE, updated_at 2022_05_03
+      msg: '"ET TROJAN Alureon Checkin"'
+      pcre: '"/^winver=\d+&ver=\d+$/"'
+      reference: md5,2155b7942ddc6d7a82e7d96a8c594501
+      rev: '1'
+      sid: '2019717'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

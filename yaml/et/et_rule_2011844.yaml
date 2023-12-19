@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/com_rwcards/rwcards.advancedate.php?"'
+      - value: '"mosConfig_absolute_path="'
+      flow: established,to_server
+      metadata: created_at 2010_10_25, updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_rwcards mosConfig_absolute_path Remote
+        File Inclusion Attempt"'
+      pcre: '"/mosConfig_absolute_path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.com/1010-exploits/joomlarwcards-rfi.txt
+      rev: '2'
+      sid: '2011844'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"60*60*24*7*1000|29 3b| document.cookie=|22|PHP_SESSION_PHP="'
+      fast_pattern: 31,20
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_06_25, deployment Perimeter, signature_severity Major, tag Redirector,
+        updated_at 2022_03_17
+      msg: '"ET CURRENT_EVENTS Possible Evil Redirector Leading to EK June 10 2015"'
+      pcre: '"/^\d+\x3b/R"'
+      rev: '10'
+      sid: '2021338'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"spoofworks"'
+      icmp_id: '1000'
+      itype: '0'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Stacheldraht client spoofworks"'
+      reference: cve,2000-0138
+      rev: '13'
+      sid: '227'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

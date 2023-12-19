@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|www.geoip.co.uk"'
+      flow: established,to_server
+      metadata: created_at 2015_11_20, updated_at 2020_08_04
+      msg: '"ET POLICY IP Lookup Geoip.co.uk"'
+      reference: md5,fa05d4f1558a9581a14936c0ab3723f7
+      rev: '1'
+      sid: '2022123'
+      special_options:
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

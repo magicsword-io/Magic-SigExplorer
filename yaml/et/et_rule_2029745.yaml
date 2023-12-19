@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '6'
+        value: '"/gett/"'
+      - value: '"?index="'
+      - value: '"&user="'
+      - value: '"&referrer="'
+      - value: '"&download="'
+      - value: '"ge.tt|0d 0a|"'
+      distance: '0'
+      flowbits: set,ET.ge.tt.download
+      isdataat: '!1,relative'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_03_25, deployment Perimeter, former_category POLICY, signature_severity
+        Informational, updated_at 2020_11_10
+      msg: '"ET POLICY File Downloaded via ge.tt Filesharing Service"'
+      rev: '2'
+      sid: '2029745'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

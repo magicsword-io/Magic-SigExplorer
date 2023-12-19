@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/update_new.php?",fast_pattern,nocase'
+      - value: '"code=",nocase'
+      - value: '!"User-Agent"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TechSupportScam installed binary outbound connection"'
+      reference: url,www.virustotal.com/#/file/c9adabc7516e38ce611cbde5856fbe6b06e8afee4422d754aa810aec59ecd8d8/detection
+      rev: '1'
+      service: http
+      sid: '47069'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

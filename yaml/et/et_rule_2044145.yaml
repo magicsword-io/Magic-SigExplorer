@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/goanywhere/lic/accept"'
+      - depth: '7'
+        value: '"bundle="'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Java, attack_target Web_Server, created_at 2023_02_07,
+        cve CVE_2023_0669, deployment Perimeter, deployment Internal, deployment Datacenter,
+        deployment SSLDecrypt, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2023_02_07
+      msg: '"ET EXPLOIT Fortra MFT Deserialization Remote Code Execution Attempt (CVE-2023-0669)
+        M3"'
+      reference: cve,2023-0669
+      rev: '1'
+      sid: '2044145'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

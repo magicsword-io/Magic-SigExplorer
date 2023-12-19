@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?MD="'
+      - value: '"Naoinstalado"'
+      - value: '!"Mozilla"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_26, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2020_08_06
+      msg: '"ET TROJAN Naoinstalad Checkin"'
+      reference: url,www.malware-traffic-analysis.net/2017/06/08/index.html
+      rev: '1'
+      sid: '2024427'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

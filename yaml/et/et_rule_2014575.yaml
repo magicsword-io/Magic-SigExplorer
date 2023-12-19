@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"%PDF"'
+      - value: '"/EmbeddedFiles"'
+      - value: '!"/EmbeddedFiles"'
+      distance: '-14'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2012_04_16, deployment Perimeter,
+        former_category INFO, signature_severity Minor, updated_at 2012_04_16
+      msg: '"ET INFO Potential Malicious PDF (EmbeddedFiles) improper case"'
+      reference: url,blog.didierstevens.com/2009/07/01/embedding-and-hiding-files-in-pdf-documents/
+      rev: '4'
+      sid: '2014575'
+      special_options:
+      - file_data
+      - nocase
+      within: '14'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

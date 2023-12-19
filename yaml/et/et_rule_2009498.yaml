@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/horde/test.php?"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Horde XSS attempt test.php (2)"'
+      pcre: '"/test\x2Ephp\x3F[^\x0A\x0D]*ext\x3D[^\x0A\x0D\x26]*[\x3E\x3C\x22\x27]/iU"'
+      reference: url,doc.emergingthreats.net/2009498
+      rev: '6'
+      sid: '2009498'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

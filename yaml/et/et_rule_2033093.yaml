@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"|bf bc 95|"'
+      - value: '"|8e 8e|"'
+      - value: '"|8e 8e 2c 1b 80 8e e6 02|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_04, deployment Perimeter, former_category
+        MALWARE, malware_family FatalRAT, signature_severity Major, updated_at 2021_06_04
+      msg: '"ET TROJAN FatalRAT CnC Activity"'
+      reference: url,twitter.com/c3rb3ru5d3d53c/status/1400075253695537155
+      rev: '2'
+      sid: '2033093'
+      special_options:
+      - fast_pattern
+      stream_size: server,=,1
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

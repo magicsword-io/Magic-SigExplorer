@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|www.face"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_04_13, deployment Perimeter,
+        former_category MALWARE, performance_impact Significant, signature_severity
+        Major, updated_at 2023_07_13, reviewed_at 2023_11_10
+      msg: '"ET TROJAN Suspected Tick Group APT Related Activity (GET)"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,asec.ahnlab.com/ko/51150/
+      rev: '2'
+      sid: '2044931'
+      special_options:
+      - http_method
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

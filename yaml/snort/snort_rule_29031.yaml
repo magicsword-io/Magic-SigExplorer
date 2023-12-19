@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/avcheck.exe|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '"|0D 0A|Location: https://dl.dropboxusercontent.com/"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banload variant inbound connection"'
+      pcre: '"/\r\nLocation\x3a\x20https\x3a\x2f{2}dl\.dropboxusercontent\.com\/[a-zA-Z\d\x2f]{5,32}\/avcheck\.exe\r\n\r\n$/"'
+      reference: url,www.virustotal.com/en/file/30032d2b7fd928392837eeb814cf1e2add0d80b0e17b8dbfec2e2c3be9164cf6/analysis/
+      rev: '5'
+      service: http
+      sid: '29031'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

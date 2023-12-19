@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"javax.naming.InitialContext"'
+      - value: '"progress-class"'
+      - value: '"</jnlp>"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_10_21, former_category CURRENT_EVENTS, updated_at
+        2019_10_08
+      msg: '"ET CURRENT_EVENTS Possible click2play bypass Oct 19 2015 as observed
+        in PawnStorm"'
+      pcre: '"/^\s*?=\s*?[\x22\x27]javax.naming.InitialContext/Rsi"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/new-headaches-how-the-pawn-storm-zero-day-evaded-javas-click-to-play-protection/
+      rev: '3'
+      sid: '2021985'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

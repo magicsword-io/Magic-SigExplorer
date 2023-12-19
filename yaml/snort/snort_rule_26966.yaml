@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"/u5.htm",fast_pattern,nocase'
+      - value: '"//u5.htm"'
+      flow: to_server,established
+      isdataat: '!142'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win32/Autorun.JN variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/36144738373c665d262bc007fceaeb9613e59ec29ea3d7424dd9f400af2c0f06/analysis/
+      rev: '5'
+      service: http
+      sid: '26966'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

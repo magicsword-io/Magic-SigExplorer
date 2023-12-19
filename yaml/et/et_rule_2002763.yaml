@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?p="'
+      - value: '"machineid="'
+      - value: '"&connection="'
+      - value: '"&iplan="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_05_06
+      msg: '"ET TROJAN Dumador Reporting User Activity"'
+      reference: url,doc.emergingthreats.net/2002763
+      rev: '6'
+      sid: '2002763'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"document.domain|28|",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"FILE-JAVA Oracle Javascript document.domain attempt"'
+      reference: cve,2002-0815
+      rev: '15'
+      service: http
+      sid: '1840'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

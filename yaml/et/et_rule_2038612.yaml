@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/l"'
+      - value: '"|20 28|unknown|20|version|29 20|CFNetwork|2f|"'
+      - depth: '3'
+        value: '"cs="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2022_08_25, deployment Perimeter, former_category MALWARE, malware_family
+        Shlayer, performance_impact Low, signature_severity Major, updated_at 2022_08_25
+      msg: '"ET TROJAN OSX/SHLAYER CnC Activity M2"'
+      pcre: '"/^cs=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})/P"'
+      rev: '1'
+      sid: '2038612'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+      threshold: type limit, count 1, seconds 600, track by_dst
+      urilen: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

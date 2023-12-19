@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '".type|20|==|20 22|password|22 29|"'
+      - value: '"=|20 22|Subject|3a 20 22 20|+|20|"'
+      - value: '"|20 22 5c|r|5c|n|5c|r|5c|n|22 20|+|20|window.top.content.document.location|20|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2019_08_07, deployment Perimeter, deployment SSLDecrypt, former_category CURRENT_EVENTS,
+        performance_impact Low, signature_severity Major, tag CardSkimmer, updated_at
+        2020_11_18
+      msg: '"ET CURRENT_EVENTS Possible FFSniff Inject Observed"'
+      reference: url,www.symantec.com/content/dam/symantec/docs/security-center/white-papers/istr-formjacking-deep-dive-en.pdf
+      rev: '2'
+      sid: '2027814'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      byte_test: 1,&,0x80,6,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB|a2|"'
+      - value: '"|5c 00|m|00|s|00|u|00|t|00|a|00|6|00|4|00|.|00|d|00|l|00|l"'
+      flow: to_server,established
+      metadata: created_at 2015_01_13, updated_at 2015_01_13
+      msg: '"ET TROJAN Skeleton Key Filename in SMB Traffic (Unicode)"'
+      reference: url,www.secureworks.com/cyber-threat-intelligence/threats/skeleton-key-malware-analysis
+      rev: '3'
+      sid: '2020176'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

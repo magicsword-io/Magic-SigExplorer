@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,100,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"DELETE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP delete literal overflow attempt"'
+      pcre: '"/\sDELETE\s[^\n]*?\{/ims"'
+      reference: nessus,15771
+      rev: '13'
+      service: imap
+      sid: '3008'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

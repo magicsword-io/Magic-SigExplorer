@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?id="'
+      - value: '"&p1="'
+      - value: '"&p2="'
+      - value: '"&region="'
+      - value: '"&ip="'
+      - value: '"&p3="'
+      - value: '"&p4="'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_02, deployment Perimeter, former_category
+        MALWARE, malware_family D1onis, signature_severity Major, updated_at 2020_11_02
+      msg: '"ET TROJAN D1onis Stealer Sending Data to CnC"'
+      reference: md5,6cf4f85e3907d4f0a0c1e653d6c6943f
+      rev: '2'
+      sid: '2031161'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

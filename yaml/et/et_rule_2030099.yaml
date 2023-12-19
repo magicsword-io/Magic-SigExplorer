@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|count|11|trackstatisticsss|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2020_05_04, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Minor, updated_at 2020_11_17
+      msg: '"ET CURRENT_EVENTS SEO Injection/Fraud DNS Lookup (count.trackstatisticsss
+        .com)"'
+      rev: '2'
+      sid: '2030099'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"G="'
+      - value: '"&PG="'
+      - value: '"&EPBB="'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Win32.Runner/Bublik Checkin"'
+      reference: md5,6d2919a92d7dda22f4bc7f9a9b15739f
+      rev: '6'
+      sid: '2009711'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

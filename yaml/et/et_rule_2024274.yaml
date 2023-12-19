@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[443,7080,8080]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"GET / HTTP/1.1|0D 0A|Cookie|3A|"'
+      - value: '"User-Agent|3A| Mozilla/5.0 (compatible|3B| MSIE 8.0|3B| Windows NT
+          5.1|3B| SLCC1|3B| .NET CLR 1.1.4322)|0D 0A|Host|3A|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_04, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag c2, updated_at 2020_11_05, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Emotet CnC Beacon 1"'
+      pcre: '"/Cookie\:\ [A-Za-z0-9]{3,4}=(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$/Smi"'
+      reference: md5,21542133a586782e7c2fa4286d98fd73
+      rev: '1'
+      sid: '2024274'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

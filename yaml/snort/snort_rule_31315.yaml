@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/srv2.php?param=1 HTTP/1.1|0D 0A|Host: ",fast_pattern,nocase'
+      - value: '"Connection: Keep-Alive|0D 0A 0D 0A|"'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.MSIL variant outbound connection"'
+      reference: url,malwr.com/analysis/ZDI5NTViMGI2MzZiNDU0MTlhMzNlZDhiZGUwNjFmOGY/
+      rev: '3'
+      service: http
+      sid: '31315'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

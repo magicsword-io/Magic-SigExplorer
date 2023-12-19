@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"APOP"'
+      flow: to_server,established
+      isdataat: 256,relative
+      metadata: created_at 2010_09_23, cve CVE_2000_0840, updated_at 2010_09_23
+      msg: '"GPL POP3 APOP overflow attempt"'
+      pcre: '"/^APOP\s[^\n]{256}/smi"'
+      reference: nessus,10559
+      rev: '14'
+      sid: '2101635'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

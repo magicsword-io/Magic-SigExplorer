@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|29 20|A"'
+      - value: '"filename=|22|"'
+      - value: '"|3a 5c|Windows|5c|"'
+      - value: '"|00|.|00|i|00|n|00|k|00|"'
+      - value: '".php"'
+      - value: '"HTTP/1.0"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_30, deployment Perimeter, former_category MALWARE, malware_family
+        DarkHotel, performance_impact Low, signature_severity Major, tag APT, tag
+        DarkHotel, updated_at 2020_09_17
+      msg: '"ET TROJAN DarkHotel Payload Uploading to CnC"'
+      pcre: '"/^[A-F0-9]{8}_[A-F0-9]{8}\.sql/Rsi"'
+      reference: url,blogs.jpcert.or.jp/ja/2019/05/darkhotel_lnk.html
+      rev: '2'
+      sid: '2027398'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_uri
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

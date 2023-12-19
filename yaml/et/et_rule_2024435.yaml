@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '42'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|00 00 78 00|"'
+      - depth: '4'
+        offset: '16'
+        value: '"|00 00 00 05|"'
+      dsize: '48'
+      flow: to_server,established
+      metadata: affected_product Windows_DNS_server, attack_target DNS_Server, created_at
+        2017_06_29, deployment Datacenter, former_category EXPLOIT, performance_impact
+        Low, confidence Medium, signature_severity Major, updated_at 2017_06_29
+      msg: '"ET EXPLOIT Possible WINS Server Remote Memory Corruption Vulnerability"'
+      reference: url,blog.fortinet.com/2017/06/14/wins-server-remote-memory-corruption-vulnerability-in-microsoft-windows-server
+      rev: '1'
+      sid: '2024435'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 3, seconds 1, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

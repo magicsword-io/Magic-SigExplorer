@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '19'
+      classtype: trojan-activity
+      contents:
+      - value: '"/FileToDownload.exe",fast_pattern,nocase'
+      - value: '"Host: dl.dropbox.com|0D 0A|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dropper variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/913cc54750e8bb6b88d5ccbfc988e0107f80ad14ba4d052a3f3db11ccfd8ce4a/analysis/
+      rev: '3'
+      service: http
+      sid: '29261'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

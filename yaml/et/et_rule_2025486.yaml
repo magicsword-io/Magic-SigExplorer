@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '10'
+        value: '"{|22|encry|22 3a 22|"'
+      - value: '"|22|randk|22 3a 22|"'
+      - value: '"|22|guid|22 3a 22|"'
+      - value: '"|22|start|22 3a 22|"'
+      - value: '"|22|market|22 3a 22|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_04_12, deployment Perimeter, former_category
+        MALWARE, malware_family Iron_Locker, signature_severity Major, tag Ransomware,
+        updated_at 2020_08_25, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Iron/Maktub Locker Ransomware CnC Checkin"'
+      reference: url,bartblaze.blogspot.com/2018/04/maktub-ransomware-possibly-rebranded-as.html
+      rev: '2'
+      sid: '2025486'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

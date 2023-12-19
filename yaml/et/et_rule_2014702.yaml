@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      byte_test: 1,&,64,2
+      classtype: policy-violation
+      contents:
+      - depth: '8'
+        value: '!"7PYqwfzt"'
+      - depth: '8'
+        value: '!"r6fnvWj8"'
+      metadata: created_at 2012_05_04, former_category DNS, performance_impact Significant,
+        updated_at 2022_07_18
+      msg: '"ET DNS Non-DNS or Non-Compliant DNS traffic on DNS port Opcode 8 through
+        15 set"'
+      reference: url,vrt-blog.snort.org/2008/08/checking-multiple-bits-in-flag-field_29.html
+      rev: '11'
+      sid: '2014702'
+      threshold: type limit, count 1, seconds 120, track by_dst
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

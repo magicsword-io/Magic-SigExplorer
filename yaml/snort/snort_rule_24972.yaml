@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[139,445]'
+    details:
+      byte_jump: 2,-10,relative,from_beginning,little,post_offset 10
+      byte_test: 1,!&,0x80,0,relative
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|FF|SMB2|00 00 00 00|",depth 9,offset 4'
+      - value: '"|01 00|",within 2,distance 52'
+      - value: '"|04 01|",within 2'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"NETBIOS SMB Trans2 FIND_FIRST2 find file and directory info request"'
+      rev: '6'
+      service: netbios-ssn
+      sid: '24972'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

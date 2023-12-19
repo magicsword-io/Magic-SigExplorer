@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0F|"'
+      - value: '"|04|ping",within 5,distance 15,fast_pattern'
+      flow: to_server
+      isdataat: '150'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.UDPOS outbound heartbeat"'
+      reference: url,www.virustotal.com/#/file/62688903adfc719c5514f25a17563547aac4801959852f5d49faa93967ce86cf/detection
+      rev: '1'
+      service: dns
+      sid: '45966'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

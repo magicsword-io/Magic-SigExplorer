@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|VB Http"'
+      flow: established,to_server
+      metadata: created_at 2011_08_31, former_category USER_AGENTS, updated_at 2020_08_13
+      msg: '"ET TROJAN Win32/Dynamer Trojan Dropper User-Agent VB Http"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Trojan%3AWin32%2FDynamer!dtc
+      rev: '2'
+      sid: '2013507'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3389'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MS_T120|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows RDP MS_T120 channel bind attempt"'
+      reference: url,portal.msrc.microsoft.com/en-us/security-guidance/advisory/CVE-2019-0708
+      rev: '2'
+      service: rdp
+      sid: '50137'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,&,128,4
+      classtype: attempted-admin
+      contents:
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      metadata: created_at 2014_10_15, cve CVE_2014_6271, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible CVE-2014-6271 exploit attempt via malicious DNS"'
+      reference: url,packetstormsecurity.com/files/128650
+      rev: '1'
+      sid: '2019403'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '53'

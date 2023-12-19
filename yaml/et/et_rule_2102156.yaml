@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/mod_gzip_status"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_21
+      msg: '"GPL WEB_SERVER mod_gzip_status access"'
+      reference: nessus,11685
+      rev: '3'
+      sid: '2102156'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

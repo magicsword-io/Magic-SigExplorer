@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/nano.php?x="'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_09_25, former_category EXPLOIT_KIT, updated_at 2020_04_22
+      msg: '"ET CURRENT_EVENTS Sakura exploit kit exploit download request /nano.php"'
+      rev: '1'
+      sid: '2015734'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

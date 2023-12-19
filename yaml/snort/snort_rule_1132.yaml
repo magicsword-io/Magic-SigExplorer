@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '457'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|EB|_|9A FF FF FF FF 07 FF C3|^1|C0 89|F|9D|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Netscape Unixware overflow"'
+      reference: cve,1999-0744
+      rev: '14'
+      sid: '1132'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".asp"'
+      - depth: '3'
+        value: '"fn="'
+      - value: '".gif&code="'
+      - value: '"Accept-Language|3a 20|ko-KR|3b|q="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_16, deployment Perimeter, signature_severity
+        Major, updated_at 2020_11_16
+      msg: '"ET TROJAN APT Lazarus Nukesped Downloader"'
+      pcre: '"/^fn=[^&]*\.gif&code=\d+$/Pi"'
+      reference: url,www.welivesecurity.com/2020/11/16/lazarus-supply-chain-attack-south-korea/
+      rev: '2'
+      sid: '2031207'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

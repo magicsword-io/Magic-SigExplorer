@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - depth: '19'
+        value: '"/|21|api/2.0/snippets/"'
+      - value: '"Host|3a 20|bitbucket.org|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2022_04_25, updated_at 2022_04_25
+      msg: '"ET INFO Terse Request For Bitbucket Snippet"'
+      pcre: '"/^Host[^\r\n]+\r\nConnection[^\r\n]+\r\n\r\n$/H"'
+      rev: '2'
+      sid: '2036349'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

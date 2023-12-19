@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"|30 32 bc|"'
+      - value: '"|bc 4d 4a 56 3a 20|"'
+      - value: '"|20 31 20 2d 20 42 75 69 6c 64 20 3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_27, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2021_08_27
+      msg: '"ET TROJAN Win32/GenCBL.XS CnC Activity"'
+      reference: md5,9dfd2f831b3672dc0c50b98550d3aa06
+      rev: '2'
+      sid: '2033819'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

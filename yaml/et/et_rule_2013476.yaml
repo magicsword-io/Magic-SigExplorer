@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".pdf.exe"'
+      flow: to_server,established
+      metadata: created_at 2011_08_26, former_category POLICY, updated_at 2020_04_20
+      msg: '"ET POLICY SUSPICIOUS *.pdf.exe in HTTP URL"'
+      rev: '1'
+      sid: '2013476'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

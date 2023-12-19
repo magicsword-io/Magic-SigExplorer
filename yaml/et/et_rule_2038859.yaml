@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|13 00 00 00 31 00 32 00 33 00 34 00 35 00 36 00 00 00 00|"'
+      dsize: '19'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2022_09_15, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_09_15
+      msg: '"ET TROJAN Win64/Spy.Agent.EE CnC Checkin Server Response"'
+      reference: md5,f4d9b144234ff75d669b1265f708ec55
+      rev: '1'
+      sid: '2038859'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

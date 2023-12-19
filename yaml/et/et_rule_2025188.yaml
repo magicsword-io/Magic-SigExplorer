@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"0x1000000"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: affected_product Web_Browser_Plugins, attack_target Client_Endpoint,
+        created_at 2018_01_09, cve CVE_2017_5753, deployment Perimeter, former_category
+        WEB_CLIENT, performance_impact Moderate, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2019_10_08
+      msg: '"ET WEB_CLIENT Spectre Exploit Javascript"'
+      pcre: '"/(?<var1>[^=\s]*)\s*=\s*0x1000000.+?\x28\s*\x28\s*\x28\s*\w+\s*<<\s*12\s*\x29\s*\|\s*0\s*\x29\s*\+\s*(?P=var1)\s*\x29\s*\|\s*0/s"'
+      reference: url,github.com/cgvwzq/spectre
+      rev: '4'
+      sid: '2025188'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

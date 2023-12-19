@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"From|3a|"'
+      - value: '"Subject|3a| "'
+      - value: '"|5b|Agent Tesla"'
+      flow: established,to_server
+      metadata: created_at 2015_10_28, former_category TROJAN, updated_at 2017_05_18
+      msg: '"ET TROJAN Agent Tesla Keylogger Report SMTP"'
+      rev: '2'
+      sid: '2022006'
+      special_options:
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

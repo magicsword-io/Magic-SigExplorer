@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|ag|08|brianlee|03|fun|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_30, deployment Perimeter,
+        signature_severity Informational, tag DoH, updated_at 2023_08_30, reviewed_at
+        2023_08_30
+      msg: '"ET INFO Observed DNS over HTTPS Domain (ag .brianlee .fun)"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2047838'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

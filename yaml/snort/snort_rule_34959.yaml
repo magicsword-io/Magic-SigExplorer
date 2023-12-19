@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"texto=%0D%0A",depth 12'
+      - value: '"/consulta"'
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)|0D 0A 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.SpyBanker variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/33b598e185ba483c5c1571651a03b90359fb1f56b55e902c7038baf315c5dad9/analysis/
+      rev: '2'
+      service: http
+      sid: '34959'
+      special_options:
+      - http_client_body
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

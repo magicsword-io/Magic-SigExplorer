@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"libs_"'
+      - value: '".dll"'
+      - value: '"sstmnfo_System Info.txt|3a|"'
+      - value: '"token|3a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category
+        MALWARE, malware_family RecordBreaker, performance_impact Low, signature_severity
+        Major, updated_at 2022_06_09
+      msg: '"ET TROJAN Win32/RecordBreaker CnC Checkin - Server Response"'
+      pcre: '"/^[a-f0-9]{32}/R"'
+      reference: md5,f75f596f7a0369717476f304eef7fe9b
+      rev: '1'
+      sid: '2036955'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

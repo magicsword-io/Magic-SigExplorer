@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5555'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CNXN|00 00 00 01 00 10 00 00 07 00 00 00 32 02 00 00 BC B1 A7 B1|host|3a
+          3a|"'
+      distance: '40'
+      flow: from_server,established
+      metadata: created_at 2018_07_24, updated_at 2018_07_24
+      msg: '"ET EXPLOIT Remote Command Execution via Android Debug Bridge"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/open-adb-ports-being-exploited-to-spread-possible-satori-variant-in-android-devices/
+      rev: '1'
+      sid: '2025887'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

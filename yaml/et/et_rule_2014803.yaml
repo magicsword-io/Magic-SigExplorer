@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/count.php?m=c&n="'
+      - value: '"_"'
+      - value: '"@"'
+      - value: '"|0D 0A|Content-Length|3a| 0|0D 0A|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2011_11_05, updated_at 2020_11_17
+      msg: '"ET TROJAN VBS/Wimmie.A Set"'
+      reference: md5,6fd7493e56fdc3b0dd8ecd24aea20da1
+      rev: '6'
+      sid: '2014803'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

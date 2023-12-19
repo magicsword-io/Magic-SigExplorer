@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| build"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2012_01_12,
+        deployment Perimeter, signature_severity Major, tag User_Agent, updated_at
+        2020_10_15
+      msg: '"ET TROJAN Suspicious User-Agent build - possibly Delf/Troxen/Zema"'
+      pcre: '"/User-Agent\x3a build\d/H"'
+      reference: md5,3d18363a20882bd74ae7e0f68d3ed8ef
+      rev: '2'
+      sid: '2014116'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

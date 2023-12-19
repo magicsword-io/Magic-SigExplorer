@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"addEventListener|28|",nocase'
+      - value: '"|5C|x",within 10,nocase'
+      - value: '"|5C|x",within 10,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION hex escaped characters in addEventListener call"'
+      pcre: '"/addEventListener\x28[\x22\x27][^\x2C]*?\x5cx[\da-f]{2}[^\x2C]*?[\da-f]{2,}\x5cx[\da-f]{2}/ims"'
+      reference: url,attack.mitre.org/techniques/T1140
+      rev: '6'
+      service: ftp-data,http,imap,pop3
+      sid: '23482'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

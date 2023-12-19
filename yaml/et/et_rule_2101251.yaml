@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Login incorrect"'
+      fast_pattern: only
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2019_10_08
+      msg: '"GPL TELNET Bad Login"'
+      rev: '11'
+      sid: '2101251'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

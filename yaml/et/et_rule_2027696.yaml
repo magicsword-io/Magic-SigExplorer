@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"localhost|3a|19421/launch?action=join&confno="'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2019_07_10,
+        cve CVE_2019_13450, deployment Perimeter, former_category EXPLOIT, performance_impact
+        Moderate, signature_severity Informational, updated_at 2019_07_10
+      msg: '"ET EXPLOIT Possible Zoom Client Auto-Join (CVE-2019-13450)"'
+      reference: cve,2019-13450
+      rev: '2'
+      sid: '2027696'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

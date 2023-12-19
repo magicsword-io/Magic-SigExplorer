@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"filename=|22 2e 2e 2f|"'
+      - depth: '18'
+        value: '"PUT|20|/api/content/|20|"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2022_05_04, cve CVE_2022_26352, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_05_04
+      msg: '"ET EXPLOIT dotCMS Arbitrary File Upload Attempt (CVE-2022-26352) M2"'
+      reference: cve,2022-26352
+      rev: '1'
+      sid: '2036458'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

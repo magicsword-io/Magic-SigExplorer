@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"base_lo"'
+      - value: '"base_hi"'
+      - value: '"fake_object"'
+      - value: '"i32"'
+      - value: '"f64"'
+      - value: '"array_addr"'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_11_15, deployment Perimeter, former_category WEB_CLIENT, performance_impact
+        Moderate, signature_severity Major, updated_at 2017_11_15
+      msg: '"ET WEB_CLIENT PWNJS JS Constructs"'
+      pcre: '"/^\s*?\[\s*?\d/Rs"'
+      reference: url,raw.githubusercontent.com/theori-io/pwnjs/
+      rev: '2'
+      sid: '2024994'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

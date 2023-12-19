@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '1'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET / HTTP/1.1|0D 0A|User-Agent: Mozilla/4.0 (compatible|3B| MSIE
+          7.0|3B| Windows NT 6.0)|0D 0A|Host: windowsupdate.microsoft.com|0D 0A|Connection:
+          Close|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '!"Accept"'
+      flow: to_server,established
+      isdataat: '!136'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Agent.BHHK variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/cab1fffe7a34b5bb7dab2cacd406cf15628d835ab63502d28df78c2faeaad366/analysis/1421677054/
+      rev: '4'
+      service: http
+      sid: '33227'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

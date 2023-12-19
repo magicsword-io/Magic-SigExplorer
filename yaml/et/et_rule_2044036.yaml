@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/process.php"'
+      - depth: '7'
+        value: '"FormId="'
+      - value: '"&UserNamex="'
+      - value: '"&Passwordx="'
+      - value: '"&RememberMe="'
+      - value: '"&Fingerprint="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_31, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_01_31
+      msg: '"ET CURRENT_EVENTS Successful VyStar CU Credential Phish 2023-01-31"'
+      pcre: '"/\/process\.php$/U"'
+      reference: md5,9f7c7043e7f12424a0ac70b46e037ba2
+      rev: '1'
+      sid: '2044036'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

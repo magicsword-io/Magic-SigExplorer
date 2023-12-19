@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[443,7080,8080,80]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '29'
+        value: '"POST / HTTP/1.1|0d 0a|User-Agent|3a 20|"'
+      - value: '"|20|MSIE|20|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Cookie"'
+      - value: '!"TagId|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_07_24, deployment Perimeter, former_category
+        MALWARE, malware_family Emotet, performance_impact Moderate, signature_severity
+        Major, updated_at 2020_08_31
+      msg: '"ET TROJAN W32/Emotet.v4 Checkin"'
+      pcre: '"/\x0d\x0a\x0d\x0a[\x20-\x7e\r\n]{0,20}[^\x20-\x7e\r\n]/s"'
+      rev: '5'
+      sid: '2035047'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

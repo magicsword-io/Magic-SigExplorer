@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1024:'
+    details:
+      byte_test: 1,&,16,2,relative
+      classtype: misc-attack
+      contents:
+      - depth: '2'
+        value: '"|04 00|"'
+      - value: '"|98 D0 FF|k|12 A1 10|6|98|3F|C3 F8|~4Z"'
+      distance: '22'
+      metadata: created_at 2010_09_23, cve CVE_2003_0812, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DCERPC Workstation Service direct service access attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-049.mspx
+      rev: '7'
+      sid: '2102316'
+      within: '16'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

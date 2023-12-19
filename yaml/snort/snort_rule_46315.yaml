@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/administrator/components/com_joomlaupdate/restore.php",fast_pattern,nocase'
+      - value: '"factory=",nocase'
+      - value: '"OjI2OiJraWNrc3RhcnQuc2V0dXAuc291cmNlZmlsZSI7"'
+      - value: '"aHR0cDovL"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Joomla restore.php PHP object injection attempt"'
+      reference: cve,2014-7228
+      rev: '3'
+      service: http
+      sid: '46315'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

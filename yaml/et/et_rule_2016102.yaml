@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|"'
+      - value: '"|00 04 c7 02 89|"'
+      distance: '4'
+      metadata: created_at 2012_12_28, former_category MALWARE, updated_at 2022_07_13
+      msg: '"ET TROJAN DNS Reply Sinkhole - Microsoft - 199.2.137.0/24"'
+      rev: '3'
+      sid: '2016102'
+      within: '5'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

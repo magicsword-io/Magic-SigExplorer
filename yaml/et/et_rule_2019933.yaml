@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"From|3a|"'
+      - value: '"Subject|3a 20|keylogger(v0."'
+      - value: '"@UserName"'
+      - value: '"@ComputerName"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_12_13, updated_at 2019_10_08
+      msg: '"ET TROJAN Trojan/Downloader.Fosniw.sap Reporting via SMTP"'
+      reference: md5,e36469241764b8c954a700146ca4c43f
+      rev: '1'
+      sid: '2019933'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

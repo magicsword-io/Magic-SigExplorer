@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|raspoly.biz"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_05_19, deployment Perimeter, signature_severity
+        Major, updated_at 2021_05_19
+      msg: '"ET TROJAN Observed Silver Implant Domain (raspoly .biz in TLS SNI)"'
+      reference: md5,13816c3ba10d4a3ca4b4c97f248a985f
+      rev: '2'
+      sid: '2032996'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

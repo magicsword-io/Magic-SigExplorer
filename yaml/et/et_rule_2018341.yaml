@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get_"'
+      - value: '"did="'
+      - value: '"&file_id="'
+      - value: '"User-Agent|3a| Downloader"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_09_11, former_category MALWARE, updated_at 2020_05_19
+      msg: '"ET TROJAN Kazy Checkin"'
+      reference: url,community.emc.com/community/connect/rsaxchange/netwitness/blog/2014/03/28/new-kazy-variant-kazy-forces
+      rev: '4'
+      sid: '2018341'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

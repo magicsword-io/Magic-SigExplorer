@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/victim.php?info=",fast_pattern,nocase'
+      - value: '"&ip="'
+      - value: '"info="'
+      - value: '"User-Agent|3A 20|Python-urllib/"'
+      - value: '!"Accept"'
+      - value: '!"Connection"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CryPy ransomware variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/de6da70478e7f84cd06ace1a0934cc9d5732f35aa20e960dc121fd8cf2388d6e/analysis/1477329470/
+      rev: '2'
+      service: http
+      sid: '40549'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

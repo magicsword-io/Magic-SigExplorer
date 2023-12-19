@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|anaida|06|evisyn|03|lol|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_03_09, deployment Perimeter,
+        signature_severity Major, updated_at 2023_03_09
+      msg: '"ET TROJAN Observed DNS Query to Cinoshi Stealer Domain (anaida .evisyn
+        .lol)"'
+      reference: url,twitter.com/suyog41/status/1633807752127475713
+      rev: '1'
+      sid: '2044549'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"rotina=plogin&login=",fast_pattern,nocase'
+      - value: '"&senha="'
+      - value: '"&casa=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bancos password stealing attempt"'
+      reference: url,www.virustotal.com/en/file/61cbe9b94bca25503c884bb0c9363b95fac6203534e5b23c5887dde91fbd4951/analysis/1384873658
+      rev: '2'
+      service: http
+      sid: '31112'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

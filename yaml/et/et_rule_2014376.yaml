@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      byte_test: 1,!&,0xF8,2
+      classtype: trojan-activity
+      contents:
+      - value: '"|02|ru|00|"'
+      metadata: created_at 2012_03_14, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Possible Zeus .ru CnC Domain Generation Algorithm (DGA) Lookup
+        Detected"'
+      pcre: '"/[^a-z0-9\-\.][a-z]{32,48}\x02ru\x00\x00/"'
+      rev: '4'
+      sid: '2014376'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

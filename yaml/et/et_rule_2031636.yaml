@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|woodmate|02|it|00|"'
+      distance: '1'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2021_02_19, deployment Perimeter, former_category MALWARE, malware_family
+        NukeSped, signature_severity Major, tag Lazarus, updated_at 2021_02_19
+      msg: '"ET TROJAN OSX/NukeSped Variant CnC Domain in DNS Lookup (woodmate .it)"'
+      reference: md5,451c23709ecd5a8461ad060f6346930c
+      rev: '2'
+      sid: '2031636'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

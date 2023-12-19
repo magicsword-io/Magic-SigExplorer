@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Vampire v1.2 Server On-Line.....",depth 32'
+      flow: to_client,established
+      flowbits: isset,backdoor.vampire_12.connect
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR Vampire 1.2 connection confirmation"'
+      rev: '8'
+      sid: '3064'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1020'

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '65314'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 00 10|",depth 3'
+      - value: '"|00 12 5C|",within 3,distance 9'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Unix.Backdoor.Godlua variant outbound connection"'
+      reference: url,virustotal.com/gui/file/bd8b1bd06817772af89d93a1789d5df13e15136e53a6af60be0900986c56234f/detection
+      rev: '1'
+      sid: '50811'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

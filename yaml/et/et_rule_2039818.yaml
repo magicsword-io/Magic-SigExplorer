@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '13'
+        value: '"|2f|link|2f|v2|3f|aid|3d|"'
+      - value: '"|26|scene|3d|bio|5f|url|26|target|3d|http"'
+      - value: '"tiktok.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_21, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, signature_severity Informational,
+        updated_at 2022_11_21
+      msg: '"ET INFO Redirect Link in TikTok URL"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+tiktok\.com/Hmi"'
+      rev: '1'
+      sid: '2039818'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

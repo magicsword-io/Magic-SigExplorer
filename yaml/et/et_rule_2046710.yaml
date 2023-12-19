@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -12
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"git-hub.me"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_30, deployment Perimeter,
+        malware_family JokerSpy, signature_severity Major, updated_at 2023_06_30
+      msg: '"ET TROJAN Observed JokerSpy Domain (git-hub .me in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0a|.\x2e)git\-hub\.me/R"'
+      reference: url,www.bitdefender.com/blog/labs/fragments-of-cross-platform-backdoor-hint-at-larger-mac-os-attack/
+      rev: '1'
+      sid: '2046710'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

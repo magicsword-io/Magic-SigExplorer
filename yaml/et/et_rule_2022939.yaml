@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/pm"'
+      - value: '".dll"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product MS_Office, attack_target Client_Endpoint, created_at
+        2016_07_01, deployment Perimeter, former_category CURRENT_EVENTS, malware_family
+        MalDocGeneric, performance_impact Low, signature_severity Major, tag MalDoc,
+        updated_at 2020_11_05
+      msg: '"ET CURRENT_EVENTS Possible Pony DLL Download"'
+      pcre: '"/\/pm\d?\.dll$/U"'
+      reference: md5,62e7a146079f99ded1a6b8f2db08ad18
+      rev: '2'
+      sid: '2022939'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|86 b9 44 2c|"'
+      dsize: '4'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_01, deployment Perimeter, former_category
+        MALWARE, confidence Medium, signature_severity Major, updated_at 2023_11_01,
+        reviewed_at 2023_11_01
+      msg: '"ET TROJAN SockRacket/KANDYKORN CnC Response (Nonce)"'
+      reference: url,elastic.co/security-labs/elastic-catches-dprk-passing-out-kandykorn
+      rev: '1'
+      sid: '2049035'
+      stream_size: server,<,10
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

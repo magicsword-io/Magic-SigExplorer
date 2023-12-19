@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 5<=>14
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A|Accept: */*|0D 0A|Accept-Encoding: identity, *|3B|q=0|0D 0A|Connection:
+          close|0D 0A|User-Agent: ",fast_pattern,nocase'
+      - value: '".exe HTTP/1.0|0D 0A|Host: "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ZeroAccess Download Headers"'
+      pcre: '"/^\x2f[a-z\d]{1,8}\.exe$/i"'
+      reference: url,www.virustotal.com/#/file/eeaeb1506d805271b5147ce911df9c264d63e4d229de4464ef879a83fb225a40/detection
+      rev: '4'
+      service: http
+      sid: '28541'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

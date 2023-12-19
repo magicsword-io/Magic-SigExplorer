@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - depth: '10'
+        value: '"/w00tw00t."'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_07_27
+      msg: '"ET WEB_SERVER DFind w00tw00t GET-Requests"'
+      reference: url,doc.emergingthreats.net/2010794
+      rev: '7'
+      sid: '2010794'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

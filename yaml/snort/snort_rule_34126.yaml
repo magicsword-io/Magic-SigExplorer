@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/inst?"'
+      - value: '"hid="'
+      - value: '"&sid=",distance 0'
+      - value: '"&tr=",distance 0'
+      - value: '"&a=",distance 0'
+      - value: '"&adm=",distance 0'
+      - value: '"&os=",distance 0'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| Win32|3B| WinHttp.WinHttpRequest.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Vitruvian outbound connection"'
+      reference: url,www.virustotal.com/en/file/a59f0e717dc530814dea3fdf65597faaad90ed8bfe3c8b8f6cea0e708049a784/analysis/1426449345/
+      rev: '2'
+      service: http
+      sid: '34126'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

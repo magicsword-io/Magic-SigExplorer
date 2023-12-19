@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -17
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"id.bigmir.space"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_25, deployment Perimeter, deployment SSLDecrypt,
+        former_category PHISHING, signature_severity Major, updated_at 2022_03_16
+      msg: '"ET CURRENT_EVENTS Suspected TA445 Spearphishing Related Domain (id .bigmir
+        .space in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0f|.\x2e)id\.bigmir\.space/R"'
+      reference: url,www.bleepingcomputer.com/news/security/ukraine-links-phishing-targeting-military-to-belarusian-hackers/
+      rev: '3'
+      sid: '2035301'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '27665'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"killme"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER Trin00 Attacker to Master default mdie password"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '9'
+      sid: '235'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

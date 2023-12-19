@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3535'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"USER",nocase'
+      - value: '"y049575046",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP Yak! FTP server default account login attempt"'
+      pcre: '"/^USER\s+y049575046/ims"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '11'
+      sid: '2334'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

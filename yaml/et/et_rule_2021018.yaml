@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/apply_noauth.cgi"'
+      - value: '"timestamp="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_04_28, updated_at 2020_09_30
+      msg: '"ET EXPLOIT WNR2000v4 HTTP POST RCE Attempt Via Timestamp Discovery"'
+      reference: url,seclists.org/fulldisclosure/2015/Apr/72
+      rev: '1'
+      sid: '2021018'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      threshold: type both, track by_dst, count 10, seconds 60
+    protocol: tcp
+    source:
+      network: any
+      port: any

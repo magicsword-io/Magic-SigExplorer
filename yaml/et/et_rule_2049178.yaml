@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"var erp = new Array|3b|"'
+      - value: '"erp["'
+      - value: '"String.fromCharCode(Math.floor((tmp/Math.pow(256,0))))"'
+      - value: '"document.write("'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_14, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, tag Phishing, updated_at 2023_11_15
+      msg: '"ET CURRENT_EVENTS Possible Generic Credential Phish with Obfuscated Javascript"'
+      reference: url,trendmicro.com/en_us/research/23/k/threat-actors-leverage-file-sharing-service-and-reverse-proxies.html
+      rev: '2'
+      sid: '2049178'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

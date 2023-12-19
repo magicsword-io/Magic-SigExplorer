@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - depth: '7'
+        value: '"{|22|ip|22 3a 22|"'
+      - value: '",|22|comment|22 3a 22|Opened "'
+      - value: '"|22|,|22|status|22 3a|"'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_07_01
+      msg: '"ET TROJAN Glupteba CnC Checkin"'
+      reference: md5,ae353f4c6558996e3abc9c016dd86e2c
+      rev: '2'
+      sid: '2030437'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

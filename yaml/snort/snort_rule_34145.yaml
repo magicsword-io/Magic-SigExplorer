@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|NSIS_Inetc (Mozilla)|0D 0A|",fast_pattern,nocase'
+      - value: '"|22|encryptedKey|22|",depth 20,offset 1'
+      - value: '"|22|encryptedData|22|",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE SuperOptimizer encrypted data transmission"'
+      reference: url,www.virustotal.com/en/file/1df4d1f316bd526e56b5fa0f84704bac365484c049e6a7c76145cb45e5e32049/analysis/1426449377/
+      rev: '2'
+      service: http
+      sid: '34145'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent: http://www.pershop.com.br/",fast_pattern,nocase'
+      - value: '".php"'
+      - value: '!"Referer:"'
+      - value: '!"Accept-"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Symmi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/609c2c8ab60a30822689a3955fb84f06b5c3962e0d2b894f4794ac8ee5eee2eb/analysis/
+      rev: '3'
+      service: http
+      sid: '33457'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

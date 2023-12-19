@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Facebook - Log In"'
+      - value: '"background-image"'
+      - value: '"form-group"'
+      - value: '"class=|22|form-control|22|"'
+      - value: '"formValidation"'
+      distance: '0'
+      fast_pattern: 4,20
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_09_02, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2020_07_27
+      msg: '"ET CURRENT_EVENTS Facebook Phishing Landing 2016-09-02"'
+      rev: '1'
+      sid: '2032075'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

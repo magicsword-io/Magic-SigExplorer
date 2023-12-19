@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/sendDocument?chat_id="'
+      - value: '"|20|Matiex|20|Keylogger|20|"'
+      - value: '"Host|3a 20|api.telegram.org|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|document|22 3b
+          20|filename=|22|MatiexPasswords.txt|22 0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_31, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_19
+      msg: '"ET TROJAN Matiex Keylogger Exfil Via Telegram"'
+      reference: md5,1275d29213c2580894371739beb16148
+      rev: '2'
+      sid: '2030633'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

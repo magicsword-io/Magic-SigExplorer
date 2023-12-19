@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PRIVMSG|20|"'
+      - value: '"Attack"'
+      - value: '"done"'
+      flow: established,to_server
+      metadata: created_at 2013_12_10, updated_at 2013_12_10
+      msg: '"ET WEB_SERVER Mambo.PerlBot Spreader IRC DDOS Attack Done Message"'
+      rev: '1'
+      sid: '2017832'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

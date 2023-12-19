@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '2090'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00|",depth 2,offset 19'
+      dsize: '21'
+      flow: to_server
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Palevo outbound connection"'
+      reference: url,palevotracker.abuse.ch/?ipaddress=31.170.179.179
+      rev: '5'
+      sid: '28805'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

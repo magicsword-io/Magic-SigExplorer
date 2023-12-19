@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|wpsupdate|08|luckfafa|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_02_23, deployment Perimeter,
+        signature_severity Major, updated_at 2023_02_23
+      msg: '"ET TROJAN Observed Malicious Domain in DNS Lookup (wpsupdate .luckfafa
+        .com)"'
+      reference: url,twitter.com/AzakaSekai_/status/1628446258649235456
+      rev: '1'
+      sid: '2044310'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '24'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

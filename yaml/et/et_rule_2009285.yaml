@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|53 53 53 53 53 43 53 43 53 FF D0 66 68|"'
+      - value: '"|66 53 89 E1 95 68 A4 1A|"'
+      distance: '0'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SHELLCODE Bindshell2 Decoder Shellcode (UDP)"'
+      reference: url,doc.emergingthreats.net/2009285
+      rev: '2'
+      sid: '2009285'
+    protocol: udp
+    source:
+      network: any
+      port: any

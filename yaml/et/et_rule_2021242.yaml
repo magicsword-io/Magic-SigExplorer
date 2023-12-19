@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"romanian.antihacker"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_06_10, updated_at 2019_10_08
+      msg: '"ET TROJAN Possible Duqu 2.0 Accessing backdoor over 443"'
+      reference: url,securelist.com/blog/research/70504/the-mystery-of-duqu-2-0-a-sophisticated-cyberespionage-actor-returns/
+      rev: '1'
+      sid: '2021242'
+    protocol: tcp
+    source:
+      network: any
+      port: any

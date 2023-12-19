@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|06|Silver"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_12_08, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2023_12_08
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Silver Keylogger)"'
+      rev: '1'
+      sid: '2049629'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '6666'

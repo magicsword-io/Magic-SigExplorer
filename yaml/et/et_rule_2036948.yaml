@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/delivery/checkout/attach"'
+      - depth: '12'
+        value: '"dhl_session="'
+      - depth: '10'
+        value: '"full_name="'
+      - value: '"mail="'
+      - value: '"address1="'
+      - value: '"address2="'
+      - value: '"phone="'
+      - value: '"country="'
+      - value: '"zip="'
+      - value: '"city="'
+      - value: '"state="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_09, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_06_09
+      msg: '"ET CURRENT_EVENTS Successful DHL Credential Phish M1 2022-06-09"'
+      rev: '1'
+      sid: '2036948'
+      special_options:
+      - http_method
+      - http_uri
+      - http_cookie
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

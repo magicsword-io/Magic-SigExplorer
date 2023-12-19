@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?id=",offset 6,fast_pattern'
+      - value: '" HTTP/1.",within 11,distance 1'
+      - value: '"|0D 0A|User-Agent: Mozilla/",within 22,distance 1'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kryptik Drive-by Download Malware"'
+      pcre: '"/\)\r\nHost\x3a\x20[a-z0-9\x2d\x2e]+\r\n(Cache\x2dControl|Pragma)\x3a\x20no-cache\r\n\r\n$/"'
+      reference: url,www.virustotal.com/en/file/5d7b09613c03cb3b54b9ab7a886558bba38861a899638f4318c09eaa56401821/analysis/1373466967/
+      rev: '3'
+      service: http
+      sid: '27256'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

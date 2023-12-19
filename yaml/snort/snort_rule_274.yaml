@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"+++ath",fast_pattern,nocase'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP ath"'
+      reference: cve,1999-1228
+      rev: '13'
+      sid: '274'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

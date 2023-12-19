@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|"'
+      - value: '"Canada|20|Post"'
+      - value: '"To|20|download|20|the|20|tracking|20|number"'
+      - value: '"in|20|the|20|zip|20|file.."'
+      - value: '"Click|20|here|20|to|20|download|20|your|20|Tracking|20|Number"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_06, deployment Perimeter, former_category
+        TROJAN, malware_family Onliner, performance_impact Low, signature_severity
+        Major, tag SpamBot, updated_at 2020_08_19
+      msg: '"ET TROJAN Win32/Onliner Template 1 Active - Malicious Outbound Email
+        Spam"'
+      reference: url,www.blueliv.com/blog/research/analysis-spam-distribution-botnet-onliner-spambot/
+      rev: '2'
+      sid: '2027811'
+      special_options:
+      - fast_pattern
+      within: '80'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

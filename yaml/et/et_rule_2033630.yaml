@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/getip"'
+      - value: '"3322.org|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_07_30,
+        deployment Perimeter, former_category POLICY, signature_severity Informational,
+        updated_at 2021_07_30
+      msg: '"ET POLICY External IP Lookup via 3322 .org"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+3322\.org/Hmi"'
+      rev: '1'
+      sid: '2033630'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

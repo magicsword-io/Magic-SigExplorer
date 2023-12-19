@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: '1024:'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '3'
+        value: '"|05 00 00|"'
+      - depth: '2'
+        offset: '22'
+        value: '"|04 00|"'
+      - value: '"|00 00 00 00 00 00 00 00|"'
+      flow: established,to_server
+      flowbits: set,dcerpc.rpcnetlogon.netrsrvreqchal.nullcc
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Server, created_at 2020_09_14, cve CVE_2020_1472, deployment Perimeter, deployment
+        Internal, former_category EXPLOIT, performance_impact Significant, signature_severity
+        Major, updated_at 2022_02_22
+      msg: '"ET EXPLOIT Possible Zerologon Phase 1/3 - NetrServerReqChallenge with
+        0x00 Client Challenge (CVE-2020-1472)"'
+      reference: url,thedfirreport.com/2022/02/21/qbot-and-zerologon-lead-to-full-domain-compromise/
+      rev: '4'
+      sid: '2030870'
+      special_options:
+      - fast_pattern
+      threshold: type limit, count 1, seconds 30, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

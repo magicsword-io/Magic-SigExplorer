@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"0"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER 0 query"'
+      reference: nessus,10069
+      rev: '14'
+      sid: '332'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

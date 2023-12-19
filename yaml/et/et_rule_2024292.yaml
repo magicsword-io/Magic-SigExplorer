@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/qr/bitcoinPNG.php?address="'
+      - value: '"Host|3a 20|www.btcfrog.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2017_05_12, deployment Perimeter,
+        deployment alert_only, former_category INFO, performance_impact Low, confidence
+        High, signature_severity Informational, updated_at 2020_08_06
+      msg: '"ET INFO Bitcoin QR Code Generated via Btcfrog.com"'
+      rev: '2'
+      sid: '2024292'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

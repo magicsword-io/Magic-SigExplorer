@@ -1,0 +1,48 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/201"'
+      - value: '"/?c="'
+      - value: '"&u="'
+      - value: '"&v="'
+      - value: '"&s="'
+      - value: '"&f="'
+      - value: '"&mi="'
+      - value: '"&b="'
+      - value: '"&t="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_08_02, deployment Perimeter, former_category
+        MALWARE, performance_impact Moderate, signature_severity Major, updated_at
+        2020_08_11
+      msg: '"ET TROJAN Foudre Checkin M2"'
+      pcre: '"/^Host\x3a\x20[a-f0-9]{8}\.(?:s(?:pac|it)e|net|top)$/Hm"'
+      reference: url,researchcenter.paloaltonetworks.com/2017/08/unit42-prince-persia-ride-lightning-infy-returns-foudre/
+      rev: '1'
+      sid: '2031410'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

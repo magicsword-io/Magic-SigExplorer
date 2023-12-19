@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".png?ID=",fast_pattern,nocase'
+      - value: '"&MAC="'
+      - value: '"&OS="'
+      - value: '"&BIT="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fakewmi variant outbound connection attempt"'
+      reference: url,www.virustotal.com/#/file/bdbfa96d17c2f06f68b3bcc84568cf445915e194f130b0dc2411805cf889b6cc/detection
+      rev: '1'
+      service: http
+      sid: '49571'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

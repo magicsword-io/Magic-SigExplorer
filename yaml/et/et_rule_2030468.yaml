@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a 20|go-external-ip (github.com/glendc/go-external-ip)|0d
+          0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_07_03, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Informational,
+        updated_at 2020_07_03
+      msg: '"ET POLICY go-external-ip library User-Agent"'
+      reference: md5,f33271282bc9aadadf2eff4bc0bad8a4
+      rev: '2'
+      sid: '2030468'
+      special_options:
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 5
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

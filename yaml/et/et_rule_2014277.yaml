@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|try2check|02|me|00|"'
+      distance: '1'
+      metadata: created_at 2012_02_24, updated_at 2020_09_01
+      msg: '"ET POLICY DNS Query for try2check.me Carder Tool"'
+      reference: url,cert.xmco.fr/blog/index.php?post/2012/02/23/Try2check.me%2C-le-maillon-fort
+      rev: '4'
+      sid: '2014277'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

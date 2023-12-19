@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|redeitt|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2023_06_21, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2023_06_21, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1583, mitre_technique_name Acquire_Infrastructure
+      msg: '"ET MOBILE_MALWARE Android Spy PREDATOR CnC Domain in DNS Lookup"'
+      reference: url,blog.talosintelligence.com/mercenary-intellexa-predator/
+      rev: '1'
+      sid: '2046344'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

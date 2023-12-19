@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"new_houdini|0D 0A|",depth 13,offset 4'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Houdini variant initial outbound connection"'
+      rev: '3'
+      sid: '40831'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

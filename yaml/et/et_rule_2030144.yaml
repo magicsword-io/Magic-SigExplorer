@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"infoHacKed*"'
+      - value: '"*"'
+      - value: '"*"'
+      - value: '"*"'
+      - value: '"*"'
+      - value: '"*Beta"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_11, deployment Perimeter, former_category
+        MALWARE, malware_family M3RAT, signature_severity Major, updated_at 2020_11_12
+      msg: '"ET TROJAN M3RAT CnC Checkin Outbound"'
+      reference: md5,5627e7aba7168aefe878e9251392542e
+      rev: '2'
+      sid: '2030144'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '39'
+        value: '"https|3a 2f 2f|cdn|2e|discordapp|2e|com|2f|attachments|2f|"'
+      - value: '".exe"'
+      flow: established,from_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_20, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_04_04,
+        reviewed_at 2023_08_29
+      msg: '"ET TROJAN Discord .exe Download URL In HTTP Response"'
+      reference: md5,151fa762f10072798939f72d73642824
+      rev: '2'
+      sid: '2043419'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

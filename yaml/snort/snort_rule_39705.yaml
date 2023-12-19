@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"attachment|3B|"'
+      - value: '"filename="'
+      - value: '"/us.xml",within 20,fast_pattern'
+      - value: '"Content-Type|3A 20|application/octet-stream|0D 0A|"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant inbound connection"'
+      reference: url,www.virustotal.com/en/file/292c12a4c9cf8724c7bfa9ec73e1b703bd51720ea18cd4528e9be516d05b5628/analysis/1468961317/
+      rev: '4'
+      service: http
+      sid: '39705'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

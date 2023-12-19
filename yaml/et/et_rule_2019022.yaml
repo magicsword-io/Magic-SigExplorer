@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 1,!&,1,0
+      classtype: attempted-dos
+      contents:
+      - depth: '5'
+        offset: '1'
+        value: '"|df 00 00 04 00|"'
+      metadata: created_at 2014_08_26, updated_at 2014_08_26
+      msg: '"ET DOS Likely NTP DDoS In Progress Multiple UNSETTRAP Mode 6 Responses"'
+      reference: url,community.rapid7.com/community/metasploit/blog/2014/08/25/r7-2014-12-more-amplification-vulnerabilities-in-ntp-allow-even-more-drdos-attacks
+      rev: '4'
+      sid: '2019022'
+      threshold: type both,track by_src,count 2,seconds 60
+    protocol: udp
+    source:
+      network: any
+      port: '123'

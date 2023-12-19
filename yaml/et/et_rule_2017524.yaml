@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '2'
+        value: '"g="'
+      - value: '"&cmd="'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_09_25, updated_at 2020_09_21
+      msg: '"ET TROJAN DATA-BROKER BOT Activity"'
+      pcre: '"/^g=[A-Z0-9]+&cmd=/P"'
+      reference: md5,adcfe50aaaa0928adf2785fefe7307cc
+      rev: '2'
+      sid: '2017524'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

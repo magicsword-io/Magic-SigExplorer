@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|bigboatreps|02|pw|00|"'
+      distance: '0'
+      metadata: affected_product Linux, attack_target IoT, created_at 2017_11_28,
+        deployment Perimeter, former_category TROJAN, malware_family Mirai, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_15
+      msg: '"ET TROJAN Mirai Variant Domain (bigboatreps .pw in DNS Lookup)"'
+      reference: url,blog.netlab.360.com/early-warning-a-new-mirai-variant-is-spreading-quickly-on-port-23-and-2323-en/
+      rev: '3'
+      sid: '2025078'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".html=?"'
+      - value: '"User-Agent|3a 20|mozilla/"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, confidence High, signature_severity
+        Major, updated_at 2023_04_18, reviewed_at 2023_10_23
+      msg: '"ET TROJAN Gamaredon APT Related Activity (GET)"'
+      pcre: '"/^User-Agent|3a 20|mozilla\/[^\r\n]+\x3b\x3b[^\r\n]+\x3b\x3b\x2f\x2e[^\r\n]+\x2e\r\n/H"'
+      reference: md5,3ec473c51154d725b75a6b22d8469ede
+      rev: '2'
+      sid: '2044353'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

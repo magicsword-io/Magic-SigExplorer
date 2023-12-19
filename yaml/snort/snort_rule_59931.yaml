@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"DriverManager.getConnection"'
+      - value: '"ServletOutputStream"'
+      - value: '"ResultSetMetaData"'
+      - value: '"request.getParameter"'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Jsp.Webshell.Chopper upload attempt"'
+      reference: url,community.atlassian.com/t5/Confluence-discussions/CVE-2022-26134-Critical-severity-unauthenticated-remote-code/td-p/20456533
+      rev: '2'
+      service: http
+      sid: '59931'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

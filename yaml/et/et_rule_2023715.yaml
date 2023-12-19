@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"%FDF-"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: affected_product Adobe_Reader, attack_target Client_Endpoint, created_at
+        2017_01_10, deployment Perimeter, performance_impact Low, signature_severity
+        Major, updated_at 2017_01_10
+      msg: '"ET INFO Adobe FDF in HTTP Flowbit Set"'
+      rev: '2'
+      sid: '2023715'
+      special_options:
+      - file_data
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

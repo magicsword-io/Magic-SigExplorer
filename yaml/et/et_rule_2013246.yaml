@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"PONG |3a|hub.us.com"'
+      flow: established,to_server
+      metadata: created_at 2011_07_11, former_category MALWARE, updated_at 2011_07_11
+      msg: '"ET TROJAN Ruskill/Palevo CnC PONG"'
+      reference: url,sebdraven.tumblr.com/post/6769853139/palevo-analysises
+      rev: '2'
+      sid: '2013246'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

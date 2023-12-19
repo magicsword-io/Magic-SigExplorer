@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/Common/module.php?"'
+      - value: '"brokerid="'
+      - value: '"&product="'
+      - value: '"&customid="'
+      - value: '"&mediaid="'
+      - value: '"&no_product_name="'
+      - value: '"&extlogin="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Dropper Checkin (often scripts.dlv4.com related)"'
+      reference: url,doc.emergingthreats.net/2010458
+      rev: '8'
+      sid: '2010458'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

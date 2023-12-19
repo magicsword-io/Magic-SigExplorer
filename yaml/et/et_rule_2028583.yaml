@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '32'
+        value: '"|5b|Server|5d 20|Closing|20|the|20|connection|20|"'
+      fast_pattern: 5,20
+      flow: established,from_server
+      metadata: created_at 2019_09_13, deployment Perimeter, former_category MALWARE,
+        malware_family Tunna, signature_severity Major, updated_at 2020_09_02
+      msg: '"ET TROJAN Possible Tunna Proxy Closing Connection"'
+      reference: url,github.com/SECFORCE/Tunna
+      rev: '2'
+      sid: '2028583'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: any
+      port: any

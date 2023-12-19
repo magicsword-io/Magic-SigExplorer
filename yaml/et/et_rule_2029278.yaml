@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '100'
+        value: '"-----BEGIN CERTIFICATE-----|0d 0a|JE"'
+      flow: established,to_client
+      isdataat: 300,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_14, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_01_14
+      msg: '"ET TROJAN Observed Certificate Containing Possible Base64 Encoded Powershell
+        Inbound"'
+      rev: '2'
+      sid: '2029278'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

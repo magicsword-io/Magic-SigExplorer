@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"*!Kt3+v|7c|"'
+      dsize: <11
+      flow: established,to_server
+      flowbits: set,ET.WEBC2KT3
+      metadata: attack_target Client_Endpoint, created_at 2013_02_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2013_02_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN WEBC2-KT3 Intial Connection Beacon APT1 Related"'
+      reference: md5,ec3a2197ca6b63ee1454d99a6ae145ab
+      rev: '2'
+      sid: '2016456'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

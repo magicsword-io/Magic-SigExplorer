@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 32772:34000
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 87 86 00 00 00 01 00 00 00 05|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '720'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER cachefsd buffer overflow attempt"'
+      reference: nessus,10951
+      rev: '12'
+      sid: '1751'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

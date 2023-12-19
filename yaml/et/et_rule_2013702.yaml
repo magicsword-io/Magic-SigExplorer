@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| N0PE"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_09_28,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Major,
+        tag Trojan_Downloader, updated_at 2020_10_17
+      msg: '"ET TROJAN Trojan Downloader User-Agent (NOPE)"'
+      reference: url,www.virustotal.com/file-scan/report.html?id=54dcad20b326a409c09f1b059925ba4ba260ef58297cda1421ffca79942a96a5-1305296734
+      rev: '3'
+      sid: '2013702'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

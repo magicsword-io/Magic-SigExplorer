@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!".html"'
+      - value: '"&filesize="'
+      - value: '"&framesize="'
+      - value: '"&framenum="'
+      - value: '"&filecrc="'
+      - value: '"&filename="'
+      - value: '"&pcname="'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_13, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Critical, updated_at 2021_10_17
+      msg: '"ET TROJAN Stealbit Variant Data Exfil M1"'
+      reference: url,blog.reversinglabs.com/blog/data-exfiltrator
+      rev: '4'
+      sid: '2033727'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

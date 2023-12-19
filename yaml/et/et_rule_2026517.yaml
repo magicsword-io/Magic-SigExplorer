@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/imageload.cgi"'
+      - value: '"x-requested-with|3a 20|XMLHttpRequest|0d 0a|"'
+      - value: '"www-form-urlencoded|0d 0a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_17, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Locky, updated_at 2020_11_04
+      msg: '"ET TROJAN Locky CnC Checkin"'
+      pcre: '"/^[A-Za-z]{1,10}=[^&]+(?:&[A-Za-z]{1,10}=[^&]+){10,}$/Ps"'
+      reference: md5,40ebefdec6870263827ce6425702e785
+      rev: '2'
+      sid: '2026517'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '14'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

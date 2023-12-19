@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Content-Type|3a 20|text/html"'
+      - depth: '6'
+        value: '"<html>"'
+      - value: '"<title>Mail Verification</title><script src=|27|http|3a 2f 2f|"'
+      - value: '!"google."'
+      - value: '"/google_analytics_auto.js|27|></script>"'
+      - value: '"<form method=|22|post|22 20|action=|22|x3d.php|22|"'
+      distance: '0'
+      fast_pattern: 16,20
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_05_19,
+        deployment Perimeter, former_category PHISHING, signature_severity Critical,
+        tag Phishing, updated_at 2021_05_19, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Phishing Landing Page 2021-05-18"'
+      reference: url,app.any.run/tasks/654f09ca-352f-4d7a-a8eb-ce49c88b4f58/
+      rev: '2'
+      sid: '2033001'
+      special_options:
+      - http_header
+      - file_data
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

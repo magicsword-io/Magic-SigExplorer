@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '3'
+        value: '"id="'
+      - value: '"&pname="'
+      - value: '"&uname="'
+      - value: '"&pkey="'
+      - value: '"&aekey="'
+      - value: '"&ppub="'
+      - value: '"&userx=ApolloCrypto"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_06, deployment Perimeter, former_category
+        MALWARE, malware_family ApolloLocker, signature_severity Major, tag Ransomware,
+        updated_at 2020_08_12, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN ApolloLocker Ransomware CnC Checkin"'
+      reference: md5,8acaa375c2146224d628bb408c3902ff
+      rev: '2'
+      sid: '2024666'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"x|00|p|00|_|00|r|00|e|00|a|00|d|00|e|00|r|00|r|00|o|00|r|00|l|00|o|00|g|00|s|00|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ATTACK_RESPONSE, updated_at
+        2018_01_09
+      msg: '"ET EXPLOIT xp_readerrorlogs access"'
+      reference: url,doc.emergingthreats.net/2010002
+      rev: '5'
+      sid: '2010002'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

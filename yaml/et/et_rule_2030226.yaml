@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '19'
+        value: '"/index/index.php?h="'
+      - value: '"&d="'
+      - value: '"form-data|3b 20|name=|22|array|22 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_27, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_05_27
+      msg: '"ET TROJAN COMRAT CnC"'
+      reference: md5,f7bb82b0e665b494bcebefc7351f46c5
+      rev: '2'
+      sid: '2030226'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|16|sys_andriod20_designer|0b|dynamic-dns|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_31, deployment Perimeter, former_category
+        MALWARE, malware_family Stitch, signature_severity Major, updated_at 2020_11_11
+      msg: '"ET TROJAN Observed DNS Query to Stitch C2 Domain"'
+      reference: url,securelist.com/holy-water-ongoing-targeted-water-holing-attack-in-asia/96311/
+      rev: '2'
+      sid: '2029767'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

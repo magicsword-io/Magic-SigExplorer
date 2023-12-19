@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/knock?worker="'
+      - value: '"&os="'
+      - value: '"&version="'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (X11|3b 20|Ubuntu|3b 20|Linux x"'
+      - value: '"Accept-Encoding|3a 20|gzip|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_05_22, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN GoBrut/StealthWorker Service Bruter CnC Checkin"'
+      reference: url,blog.yoroi.company/research/new-gobrut-version-in-the-wild/
+      rev: '3'
+      sid: '2033719'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

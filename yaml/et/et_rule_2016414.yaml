@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".txt?e="'
+      - value: '!"Referer|3a| "'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_02_16, former_category EXPLOIT_KIT, updated_at 2020_09_18
+      msg: '"ET CURRENT_EVENTS CoolEK Payload Download (5)"'
+      pcre: '"/\.txt\?e=\d+(&[fh]=\d+)?$/U"'
+      rev: '7'
+      sid: '2016414'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

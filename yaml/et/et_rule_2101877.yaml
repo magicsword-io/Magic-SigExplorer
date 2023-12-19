@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/printenv"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_0868, updated_at 2020_05_13
+      msg: '"GPL WEB_SERVER printenv access"'
+      reference: nessus,10503
+      rev: '9'
+      sid: '2101877'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

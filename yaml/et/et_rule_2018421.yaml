@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe"'
+      - depth: '30'
+        value: '"Accept|3a 20|*/*|0d 0a|Accept-Language|3a 20|"'
+      - value: '"|0d 0a|User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 7.0|3b|
+          Windows NT 6.0|3b 29 0d 0a|Host|3a| "'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_04_25, updated_at 2020_11_16
+      msg: '"ET TROJAN Zbot downloader Installing Zeus"'
+      pcre: '"/User-Agent: [^\r]*\r\nHost: [^\r]*\r\nCache-Control: no-cache\r\n\r\n$/H"'
+      rev: '1'
+      sid: '2018421'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

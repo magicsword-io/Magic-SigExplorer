@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"00"'
+      - value: '"00000"'
+      - value: '"|00|"'
+      distance: '0'
+      metadata: created_at 2016_05_24, former_category MALWARE, updated_at 2019_08_29
+      msg: '"ET TROJAN PowerShell/Agent.A DNS Checkin"'
+      pcre: '"/^(?!0+30)[0-9A-Z]+30[^0-9]/R"'
+      reference: url,www.fireeye.com/blog/threat-research/2016/05/targeted_attacksaga.html
+      rev: '4'
+      sid: '2022836'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

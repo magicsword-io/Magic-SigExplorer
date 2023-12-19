@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"mailto|3A|ops@digisle.com",depth 22'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP digital island bandwidth query"'
+      rev: '9'
+      sid: '1813'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

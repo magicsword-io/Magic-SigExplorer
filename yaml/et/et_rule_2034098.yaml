@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 1a|developer.api.autodesk.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_10_04, deployment Perimeter,
+        former_category HUNTING, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2021_10_04
+      msg: '"ET INFO Observed AutoDesk Domain in TLS SNI (api .autodesk .com)"'
+      rev: '2'
+      sid: '2034098'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

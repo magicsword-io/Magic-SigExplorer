@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24|malsite"'
+      - value: '"|24|dbname|20 3d 20 24 5f|GET|5b 27|dbname|27 5d 3b|"'
+      - value: '"|24|dbserver|20 3d 20 24 5f|COOKIE|5b 22|dbserver|22 5d 3b|"'
+      - value: '"|24|dbuser|20 3d 20 24 5f|COOKIE|5b 22|dbuser|22 5d 3b|"'
+      - value: '"|24|dbpass|20 3d 20 24 5f|COOKIE|5b 22|dbpass|22 5d 3b|"'
+      - value: '"|22|Dump|2d 24|dbname|2d 24|date|22 3b|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_06_13, deployment Perimeter,
+        former_category ATTACK_RESPONSE, confidence High, signature_severity Critical,
+        updated_at 2023_06_13
+      msg: '"ET ATTACK_RESPONSE FightAgent WebShell Response Outbound"'
+      rev: '1'
+      sid: '2046242'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

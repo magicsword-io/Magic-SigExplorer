@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '[$HTTP_PORTS,4117]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '17'
+        value: '"POST /agent/login"'
+      - value: '"|0d 0a 0d 0a|"'
+      - value: '"|3c|methodName|3e|"'
+      - value: '"login|3c 2f|methodName|3e|"'
+      - value: '"|3c|member|3e 3c|value|3e 3c|"'
+      - value: '!"|3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_03_29, cve CVE_2022_26318,
+        deployment Perimeter, deployment Internal, deployment SSLDecrypt, former_category
+        EXPLOIT, signature_severity Major, updated_at 2022_03_29
+      msg: '"ET EXPLOIT WatchGuard CVE-2022-26318 RCE Attempt M1"'
+      reference: cve,2022-26318
+      rev: '2'
+      sid: '2035633'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      within: '400'
+    protocol: tcp
+    source:
+      network: any
+      port: any

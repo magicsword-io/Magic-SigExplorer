@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '8'
+        value: '"/system/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: created_at 2016_05_24, former_category CURRENT_EVENTS, updated_at
+        2020_08_17
+      msg: '"ET TROJAN Possible Malicious Macro DL BIN May 2016 (No UA)"'
+      pcre: '"/^\/system\/(?:cache|logs)\/[^\x2f]+\.(?:exe|dll|doc|bin)$/Ui"'
+      reference: md5,c6747ca29d5c28f4349a5a8343d6b025
+      rev: '3'
+      sid: '2022834'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

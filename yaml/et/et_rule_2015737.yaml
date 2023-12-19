@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/server_sync.php?"'
+      - value: '"c="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_09_26, updated_at 2020_09_25
+      msg: '"ET WEB_SERVER PHPMyAdmin BackDoor Access"'
+      pcre: '"/\/server_sync.php\?(?:.+?&)?c=/Ui"'
+      reference: url,www.phpmyadmin.net/home_page/security/PMASA-2012-5.php
+      rev: '5'
+      sid: '2015737'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/${"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_08_06, cve CVE_2013_2135, updated_at 2020_09_19
+      msg: '"ET WEB_SERVER Possible Apache Struts OGNL in Dynamic Action"'
+      pcre: '"/\/\$\{[^\}\x2c]+?=/U"'
+      reference: url,cwiki.apache.org/confluence/display/WW/S2-015
+      rev: '3'
+      sid: '2017277'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

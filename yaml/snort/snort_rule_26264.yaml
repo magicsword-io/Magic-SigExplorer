@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '21'
+      classtype: trojan-activity
+      contents:
+      - value: '"/pics/_vti_cnf/00.inf",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Dapato banking Trojan variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/ebcff32473d032041bd69e9599fbff4ad295128003f76d1f452ba7cb6e2d20d4/analysis/1364314446/
+      rev: '6'
+      service: http
+      sid: '26264'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

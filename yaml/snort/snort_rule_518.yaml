@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '69'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|00 02|",depth 2'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-TFTP Put"'
+      reference: url,github.com/rapid7/metasploit-framework/blob/unstable/unstable-modules/auxiliary/d20tftpbd.rb
+      rev: '16'
+      sid: '518'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

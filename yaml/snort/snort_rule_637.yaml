@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|0A|help|0A|quite|0A|",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN Webtrends Scanner UDP Probe"'
+      reference: url,www.netiq.com/products/vsm/default.asp
+      rev: '13'
+      sid: '637'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

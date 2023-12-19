@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"FollowSite="'
+      - value: '"SiteName="'
+      - value: '"-confirm"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product HTTP_Server, attack_target Server, created_at 2017_06_19,
+        cve CVE_2017_8514, deployment Internal, former_category EXPLOIT, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_08_06
+      msg: '"ET EXPLOIT Possible SharePoint XSS (CVE-2017-8514) Inbound"'
+      reference: url,respectxss.blogspot.fr/2017/06/a-look-at-cve-2017-8514-sharepoints.html
+      rev: '2'
+      sid: '2024412'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

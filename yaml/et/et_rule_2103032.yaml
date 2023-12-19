@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 4,16,relative,little
+      byte_test: 4,>,32,-16,relative,little
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB|A0|"'
+      - value: '"|01 00|"'
+      - value: '!"|00 00 00 00|"'
+      distance: '16'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, cve CVE_2004_1154, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS NT Trans NT CREATE unicode SACL overflow attempt"'
+      reference: cve,2004-1154
+      rev: '5'
+      sid: '2103032'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

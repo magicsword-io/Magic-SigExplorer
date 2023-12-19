@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ALLUSERSPROFILE="'
+      - value: '"APPDATA="'
+      - value: '"CLIENTNAME="'
+      - value: '"CommonProgramFiles="'
+      - value: '"COMPUTERNAME="'
+      - value: '"ComSpec="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_08_28, updated_at 2014_08_28
+      msg: '"ET TROJAN Windows set Microsoft Windows DOS prompt command exit OUTBOUND"'
+      reference: md5,a22af4fc7fe011069704a15296634ca6
+      rev: '1'
+      sid: '2019081'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

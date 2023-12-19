@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/////url email getting//////"'
+      - value: '"ind=my_email.indexOf(|22|@|22|"'
+      - value: '"///////new injection//////"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_06, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2021_04_06
+      msg: '"ET CURRENT_EVENTS Generic Multibrand NewInjection Phishing Landing Template"'
+      rev: '2'
+      sid: '2032514'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

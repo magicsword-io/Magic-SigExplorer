@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        offset: '4'
+        value: '"new_houdini|0d 0a|"'
+      - value: '"|0d 0a|"'
+      - value: '"|0d 0a|"'
+      - value: '"|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_26, deployment Perimeter, former_category
+        MALWARE, malware_family Houdini, malware_family Hworm, performance_impact
+        Low, signature_severity Major, updated_at 2019_09_28
+      msg: '"ET TROJAN Houdini/Hworm CnC Checkin M1"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/10/unit42-houdinis-magic-reappearance
+      rev: '2'
+      sid: '2023429'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

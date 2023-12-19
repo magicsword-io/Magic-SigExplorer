@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '13'
+        value: '"/entrance?s1="'
+      - value: '!"Referer|3a|"'
+      flow: established, to_server
+      metadata: created_at 2014_06_20, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Adware.MultiInstaller checkin 2"'
+      pcre: '"/^\/entrance\?s1=[a-f0-9]{100,}$/Ui"'
+      reference: md5,c610d46d97c1b80f027f56d227a003f7
+      rev: '2'
+      sid: '2018590'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

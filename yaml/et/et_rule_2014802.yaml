@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"_.jar?"'
+      flow: established,to_server
+      metadata: created_at 2012_05_23, former_category CURRENT_EVENTS, updated_at
+        2020_08_04
+      msg: '"ET CURRENT_EVENTS Fragus Exploit jar Download"'
+      pcre: '"/\w_\.jar\?[a-f0-9]{8}$/U"'
+      rev: '2'
+      sid: '2014802'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

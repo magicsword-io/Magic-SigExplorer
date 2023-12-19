@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"2147023083"'
+      - value: '"BlackList"'
+      - value: '"lenBadFiles"'
+      - value: '"ProgFilePath"'
+      - value: '"lenProgFiles"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_04_24, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Sundown EK Secondary Landing Apr 20 2015"'
+      rev: '1'
+      sid: '2020985'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

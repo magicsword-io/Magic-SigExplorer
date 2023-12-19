@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"@MICR0S0FT"'
+      - value: '"C0RP0RATI0N"'
+      flow: from_server,established
+      metadata: created_at 2015_05_19, former_category MALWARE, updated_at 2015_05_19
+      msg: '"ET TROJAN Possible APT17 CnC Content in Public Website"'
+      pcre: '"/^[a-zA-Z0-9]{8}/R"'
+      reference: url,github.com/fireeye/iocs/tree/master/APT17
+      rev: '1'
+      sid: '2021116'
+      special_options:
+      - file_data
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

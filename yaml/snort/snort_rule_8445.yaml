@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"{|5C|rt",nocase'
+      - value: '"{|5C|object|5C|objemb{|5C|*|5C|objclass Package}",distance 0,nocase'
+      flow: to_client,established
+      flowbits: set,file.rtf.embed
+      metadata: policy max-detect-ips alert,policy security-ips alert,ruleset community
+      msg: '"FILE-OFFICE Microsoft Windows RTF file with embedded object package download
+        attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms06-065
+      rev: '17'
+      service: ftp-data,http,imap,pop3
+      sid: '8445'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

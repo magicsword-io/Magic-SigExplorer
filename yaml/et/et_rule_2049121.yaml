@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/downloadFile.cgi?payload="'
+      - value: '"|60|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2023_11_08, cve CVE_2020_40475,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_11_08
+      msg: '"ET EXPLOIT Totolink Command Injection Attempt (CVE-2020-40475)"'
+      reference: cve,2020-40475
+      rev: '1'
+      sid: '2049121'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

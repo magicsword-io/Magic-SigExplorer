@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/is-enum-fa"'
+      - value: '"|3c 7c 3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_09_25, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Worm.VBS.ayr CnC command (is-enum-folder)"'
+      reference: url,www.fireeye.com/blog/uncategorized/2013/09/now-you-see-me-h-worm-by-houdini.html
+      rev: '1'
+      sid: '2017520'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

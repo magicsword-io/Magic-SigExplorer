@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|XAgent/1."'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 12,9
+      flow: to_server,established
+      metadata: attack_target Mobile_Client, created_at 2015_02_05, former_category
+        MOBILE_MALWARE, updated_at 2020_05_15, mitre_tactic_id TA0037, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Operation Pawn Storm IOS_XAGENT Checkin"'
+      pcre: '"/^(?:(?:sear|wat)ch|results|close|find|open)\/\?[a-zA-Z]{2,8}=/U"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/pawn-storm-update-ios-espionage-app-found/
+      rev: '1'
+      sid: '2020363'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

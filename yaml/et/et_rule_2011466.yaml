@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/bin/tsh"'
+      flow: established,to_server
+      metadata: created_at 2010_09_10, updated_at 2020_04_21
+      msg: '"ET WEB_SERVER /bin/tsh In URI Possible Shell Command Execution Attempt"'
+      rev: '8'
+      sid: '2011466'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

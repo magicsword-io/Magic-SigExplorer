@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html|0d 0a|"'
+      - value: '"Content-Length|3a 20|"'
+      - value: '"|0d 0a|"'
+      - value: '"<!doctype html>|0d 0a|<html lang=|22|ja|22|>|0d 0a|<head>|0d 0a|<meta
+          http-equiv=|22|Content-Type|22 20|content=|22|text/html|3b 20|charset=UTF-8|22|>|0d
+          0a|<meta http-equiv=|22|x-ua-compatible|22 20|content=|22|IE=10|22|>|0d
+          0a|"'
+      - value: '"<meta http-equiv=|22|Expires|22 20|content=|22|0|22|>|0d 0a|<meta
+          http-equiv=|22|Pragma|22 20|content=|22|no-cache|22|>|0d 0a|<meta http-equiv=|22|Cache-control|22
+          20|content=|22|no-cache|22|>|0d 0a|<meta http-equiv=|22|Cache|22 20|content=|22|no-cache|22|>"'
+      - value: '"<body style=|22|background-color|3a 20|#F4F4F4|3b|font-family|3a|MS
+          PGothic,Arial,Hiragino Kaku Gothic ProN,Osaka,sans-serif|22|>"'
+      - value: '"/ajax.min.js|22|></script>|0d 0a|<script type=|22|text/javascript|22
+          20|src=|22|"'
+      - value: '"/main.js|22|></script>|0d 0a|</body>|0d 0a|</html>"'
+      distance: '0'
+      fast_pattern: 77,20
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_12, deployment Perimeter, former_category
+        EXPLOIT_KIT, signature_severity Major, updated_at 2022_03_24
+      msg: '"ET WEB_CLIENT BottleEK Landing"'
+      rev: '2'
+      sid: '2029122'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

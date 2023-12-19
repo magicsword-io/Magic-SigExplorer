@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?Data="'
+      - value: '"|25 33 44|"'
+      - value: '"User-Agent|3a 20|Microsoft Internet Explorer|0d 0a|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_23, deployment Perimeter,
+        former_category MALWARE, malware_family SharpPanda, signature_severity Major,
+        updated_at 2022_06_23
+      msg: '"ET TROJAN SharpPanda APT Activity (GET)"'
+      reference: md5,961aab9910bd0207d0c7816d22949c4d
+      rev: '1'
+      sid: '2037095'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_raw_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

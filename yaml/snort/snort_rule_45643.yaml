@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"s0|2D 7C 2D|",fast_pattern,nocase'
+      - value: '"Content-Length"'
+      - value: '"s0|2D 7C 2D|",within 200'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Vbs.Trojan.Agent inbound payload download"'
+      reference: url,virustotal.com/en/file/15f5aaa71bfa3d62fd558a3e88dd5ba26f7638bf2ac653b8d6b8d54dc7e5926b/analysis/
+      rev: '4'
+      sid: '45643'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1025:'

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?=FileExists"'
+      - value: '"|3b 3b 2f 2e|"'
+      - value: '"|2f 2e 0d 0a|"'
+      - value: '"Accept-Language|3a 20|ru|2d|RU|2c|ru|3b|q|3d|0|2e|8|2c|en|2d|US|3b|q|3d|0|2e|6|2c|en|3b|q|3d|0|2e|4|0d
+          0a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_06, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_02_08,
+        reviewed_at 2023_11_17
+      msg: '"ET TROJAN Win32/Gamaredon CnC Activity (POST) M2"'
+      reference: url,unit42.paloaltonetworks.com/trident-ursa/#post-126209-_kwk9f3k7n6vn
+      rev: '2'
+      sid: '2044129'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

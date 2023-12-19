@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"MARIJUANA</title>"'
+      - value: '"|e2 80 94 20|DIOS|20 e2 80 94 20|NO|20 e2 80 94 20|CREA|20 e2 80
+          94 20|NADA|20 e2 80 94 20|EN|20 e2 80 94 20|VANO|20 e2 80 94|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product HTTP_Server, attack_target Web_Server, created_at
+        2021_10_25, deployment Perimeter, former_category WEB_SERVER, signature_severity
+        Major, updated_at 2021_10_25
+      msg: '"ET WEB_SERVER Generic Webshell Accessed on Internal Compromised Server"'
+      rev: '1'
+      sid: '2034248'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

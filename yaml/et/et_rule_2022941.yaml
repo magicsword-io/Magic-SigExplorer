@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".dll"'
+      - value: '"GET"'
+      - value: '"|0d 0a|accept-Encoding|3a 20|none|0d 0a|accept-Language|3a 20|en-US.q=0.8|0d
+          0a|Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '"MSIE 7"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product MS_Office, attack_target Client_Endpoint, created_at
+        2016_07_01, deployment Perimeter, former_category CURRENT_EVENTS, malware_family
+        MalDocGeneric, performance_impact Low, signature_severity Major, tag MalDoc,
+        updated_at 2020_11_05
+      msg: '"ET CURRENT_EVENTS Possible Malicous Macro DL EXE Jul 01 2016 (dll generic
+        custom headers)"'
+      reference: md5,62e7a146079f99ded1a6b8f2db08ad18
+      rev: '2'
+      sid: '2022941'
+      special_options:
+      - http_uri
+      - http_method
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

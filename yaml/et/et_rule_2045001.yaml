@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|s|3a|Envelope|20|xmlns|3a|s|3d 22|http|3a 2f 2f|schemas|2e|xmlsoap|2e|org|2f|soap|2f|envelope|2f
+          22 3e|"'
+      - value: '"|3c|a|3a|BlockedCountry"'
+      - value: '"|3c|a|3a|BlockedIP"'
+      - value: '"|3c|a|3a|ScanBrowsers|3e|"'
+      - value: '"|3c|a|3a|ScanChromeBrowsersPaths"'
+      - value: '"|3c|a|3a|ScanDiscord|3e|"'
+      - value: '"|3c|a|3a|ScanScreen|3e|"'
+      - value: '"|3c|a|3a|ScanSteam|3e|"'
+      - value: '"|3c|a|3a|ScanVPN|3e|"'
+      - value: '"|3c|a|3a|ScanWallets|3e|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Major, updated_at 2023_04_18
+      msg: '"ET TROJAN Win32/LeftHook Stealer Browser Extension Config Inbound"'
+      reference: md5,43967615d9e0e19bc59d32fdb5afd7e4
+      rev: '2'
+      sid: '2045001'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

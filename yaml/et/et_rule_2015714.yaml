@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '11'
+        value: '"/result?hl="'
+      - value: '"&meta="'
+      - depth: '6'
+        value: '"Mjtdkj"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2012_09_19, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Mirage Campaign checkin"'
+      reference: url,secureworks.com/research/threats/the-mirage-campaign/
+      rev: '1'
+      sid: '2015714'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0f|asurecloud.tech"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_11_09, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_11_09
+      msg: '"ET TROJAN Malicious Cobalt Strike SSL Cert (asurecloud .tech)"'
+      reference: url,www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-009.pdf
+      rev: '1'
+      sid: '2034392'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

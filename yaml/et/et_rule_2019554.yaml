@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|microsof-update.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2014_10_29, former_category MALWARE, updated_at 2020_05_13
+      msg: '"ET TROJAN Sofacy HTTP Request microsof-update.com"'
+      reference: url,fireeye.com/resources/pdfs/apt28.pdf
+      rev: '2'
+      sid: '2019554'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

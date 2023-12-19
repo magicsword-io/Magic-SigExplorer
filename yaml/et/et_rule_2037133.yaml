@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|firoospecate|03|cf|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_27, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_09_25, reviewed_at 2023_09_25
+      msg: '"ET TROJAN Observed DNS Query to Win32/TrojanDropper.Agent.SLC Domain"'
+      reference: md5,8cf6cda24ee35b361e773be41d77c34a
+      rev: '2'
+      sid: '2037133'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

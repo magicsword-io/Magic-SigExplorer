@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"\\\\x4D\\\\x72\\\\x78\\\\x43\\\\x30\\\\x44\\\\x45\\\\x52"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_06_22, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2023_06_22
+      msg: '"ET CURRENT_EVENTS Obfuscated MrxC0DER Credential Phish Landing Page"'
+      reference: md5,e73af0d91c496b615ace6c3aa04a4c88
+      rev: '1'
+      sid: '2046620'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

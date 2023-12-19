@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '20'
+        value: '"/community/uploadxx/"'
+      - value: '".jpg"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, created_at 2019_11_21, deployment Perimeter,
+        deployment Internal, former_category MALWARE, malware_family Roboto, signature_severity
+        Major, updated_at 2019_11_21
+      msg: '"ET TROJAN ELF/Roboto - Possible Encrypted Roboto P2P Payload Requested
+        M2"'
+      pcre: '"/^\/community\/uploadxx\/[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}\/[\.]+\.jpg$/U"'
+      reference: url,blog.netlab.360.com/the-awaiting-roboto-botnet-en/
+      rev: '2'
+      sid: '2029041'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

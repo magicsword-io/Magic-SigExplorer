@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Sign in</title>"'
+      - value: '"id|3d 22|sign|20|in|22 20|name|3d 22|Sign|20|in|20|with|20|your|20|Standard|20|Bank|20|ID|22|"'
+      - value: '"|3c|div|20|class|3d 22|ping|2d|header|22 3e|Sign|20|in|20|with|20|your|20|Standard|20|Bank|20|ID|3c
+          2f|div|3e|"'
+      - value: '"Don|27|t|20|have|20|a|20|Standard|20|Bank|20|ID|3f 20 3c|a|20|onclick|3d
+          22|login|2e|postRegistration|28 29 22 3e|Register|20|here|3c 2f|a|3e 3c
+          2f|div|3e|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_07, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_02_07
+      msg: '"ET CURRENT_EVENTS Standard Bank Login Phish 2022-02-04"'
+      reference: md5,444401e72463904c6ccd11654e7cc789
+      rev: '1'
+      sid: '2035124'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

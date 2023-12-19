@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"2-1Q3@@4V-9-W$p#=A#9c=#W~,|0d 0a|"'
+      dsize: '28'
+      flow: established,to_server
+      metadata: created_at 2016_01_14, former_category MALWARE, updated_at 2016_01_14
+      msg: '"ET TROJAN ELF.STD.ddos Checkin"'
+      reference: url,www.kernelmode.info/forum/viewtopic.php?f=16&t=2747&start=20#p27639
+      rev: '2'
+      sid: '2022367'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

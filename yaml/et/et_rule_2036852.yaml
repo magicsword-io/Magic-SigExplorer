@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|laurentprotector|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_and_Server, created_at 2022_06_03, deployment
+        Perimeter, performance_impact Low, signature_severity Major, updated_at 2022_06_03
+      msg: '"ET INFO DNS Lookup to (laurentprotector .com)"'
+      rev: '1'
+      sid: '2036852'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|29 20|X-Tag/"'
+      flow: established,to_server
+      metadata: created_at 2010_11_16, updated_at 2010_11_16
+      msg: '"ET TROJAN X-Tag Zeus Mitmo user agent"'
+      reference: url,eternal-todo.com/blog/thoughts-facts-zeus-mitmo
+      rev: '4'
+      sid: '2011926'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

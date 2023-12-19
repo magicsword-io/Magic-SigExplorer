@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '!3389'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '3'
+        value: '"|03 00 00|"'
+      - value: '"|e0|"'
+      - value: '"Cookie|3a 20|mstshash="'
+      distance: '5'
+      dsize: <65
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_04_11, deployment Perimeter, former_category
+        POLICY, signature_severity Minor, updated_at 2019_04_11
+      msg: '"ET POLICY Tunneled RDP msts Handshake"'
+      reference: url,www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
+      rev: '1'
+      sid: '2027192'
+      within: '17'
+    protocol: tcp
+    source:
+      network: any
+      port: '[21,22,23,25,53,80,443,8080]'

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '49'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|80 01|",depth 2'
+      - value: '"|00|",distance 4'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"POLICY-OTHER xtacacs login attempt"'
+      rev: '9'
+      sid: '2040'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

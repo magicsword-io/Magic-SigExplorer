@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|cloud-miner|02|de|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_11_09, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_11_09
+      msg: '"ET TROJAN JS/Cloud9 Domain (cloud-miner .de) in DNS Lookup"'
+      reference: url,www.zimperium.com/blog/the-case-of-cloud9-chrome-botnet/
+      rev: '1'
+      sid: '2039759'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

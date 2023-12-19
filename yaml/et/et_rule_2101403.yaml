@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/viewcode"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0737, updated_at 2020_04_22
+      msg: '"GPL WEB_SERVER viewcode access"'
+      reference: nessus,12048
+      rev: '11'
+      sid: '2101403'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

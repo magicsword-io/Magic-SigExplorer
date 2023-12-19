@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"name=|22|lolzilla|22|"'
+      - value: '"name=|22|g|22|"'
+      flow: established,to_server
+      metadata: affected_product PHP, affected_product Magento, attack_target Web_Server,
+        created_at 2021_05_10, deployment Perimeter, deployment SSLDecrypt, former_category
+        WEB_SERVER, signature_severity Major, updated_at 2021_05_10
+      msg: '"ET WEB_SERVER lolzilla WebSkimmer - Remote Code Execution Attempt M5"'
+      reference: url,github.com/rootprivilege/samples/blob/0bbb2f1e3028f4eb53b797175a4b40a535d5742d/skimmers/lolzilla/skimmerv2-deob.php#L135-L139
+      rev: '1'
+      sid: '2032932'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

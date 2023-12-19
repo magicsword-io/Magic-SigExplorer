@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"?param=a"'
+      - value: '"exec%20master%2E%2Exp%5Fcmdshell%20%27cmd%20%2FC%20%25TEMP"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN SQLNinja Attempt To Create xp_cmdshell Session"'
+      reference: url,doc.emergingthreats.net/2009044
+      rev: '4'
+      sid: '2009044'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

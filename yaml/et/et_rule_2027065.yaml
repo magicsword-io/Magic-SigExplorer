@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '1'
+        value: '"|00 00 00 01|"'
+      - value: '"|00 00 00 01 6b 00 00 00 01|"'
+      - value: '"agent"'
+      distance: '4'
+      dsize: <500
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Linux, attack_target Client_Endpoint, created_at 2019_03_07, deployment Perimeter,
+        former_category MALWARE, malware_family Termite, malware_family EarthWorm,
+        performance_impact Moderate, signature_severity Major, updated_at 2019_03_07
+      msg: '"ET TROJAN EarthWorm/Termite IoT Agent CnC Response"'
+      pcre: '"/^\x00+?[\x20-\x7f]+?\x00+?$/R"'
+      reference: url,www.alienvault.com/blogs/labs-research/internet-of-termites
+      rev: '1'
+      sid: '2027065'
+      special_options:
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

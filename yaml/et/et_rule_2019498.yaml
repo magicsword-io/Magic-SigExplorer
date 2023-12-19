@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/client.asmx/SendData"'
+      - value: '"User-Agent|3A| mFramework HTTPGet"'
+      - depth: '4'
+        value: '"CFG="'
+      - value: '"&Lng="'
+      - value: '"&sinst="'
+      distance: '0'
+      fast_pattern: 12,18
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_10_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_12,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/24x7Help.ScareWare CnC Beacon"'
+      reference: md5,8d2dec745b9ac380beb2a0ea66427d06
+      rev: '2'
+      sid: '2019498'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

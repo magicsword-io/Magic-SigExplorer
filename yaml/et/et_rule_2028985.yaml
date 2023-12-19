@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|0b|sd1-bin.net"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_11_15, deployment Perimeter, former_category
+        MALWARE, malware_family Maldoc, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2019_11_15, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (MalDoc DL 2019-11-15)"'
+      reference: md5,9b1d0537d0734f1ddb53c5567f5d7ab5
+      rev: '2'
+      sid: '2028985'
+      special_options:
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

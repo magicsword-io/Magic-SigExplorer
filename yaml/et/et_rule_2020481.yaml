@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"436f6c6c6563744761726261676528"'
+      flow: to_client,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2015_02_19,
+        deployment Perimeter, former_category CURRENT_EVENTS, signature_severity Major,
+        tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY GENERIC CollectGarbage in Hex String No Seps"'
+      rev: '1'
+      sid: '2020481'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"*GOBBLE*",depth 8'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER successful kadmind buffer overflow attempt"'
+      reference: url,www.kb.cert.org/vuls/id/875073
+      rev: '15'
+      sid: '1900'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '749'

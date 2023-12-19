@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"|0d 0a|q-qealler-id|3a 20|"'
+      - value: '"|0d 0a|q-qealler-stub-id|3a 20|"'
+      - value: '!"|0d 0a|Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_02, deployment Perimeter, former_category TROJAN, malware_family Qealler,
+        performance_impact Low, signature_severity Major, tag Stealer, updated_at
+        2020_08_28
+      msg: '"ET TROJAN JAR/Qealler Stealer HTTP Headers Observed"'
+      reference: url,www.zscaler.com/blogs/research/qealler-new-jar-based-information-stealer
+      rev: '2'
+      sid: '2027311'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

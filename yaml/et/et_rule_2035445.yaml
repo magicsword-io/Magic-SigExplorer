@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|ItIsMe"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2022_03_14, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Informational,
+        updated_at 2022_03_14
+      msg: '"ET USER_AGENTS Suspicious User-Agent (ItIsMe)"'
+      reference: url,resources.cylera.com/new-evidence-linking-kwampirs-malware-to-shamoon-apts
+      rev: '1'
+      sid: '2035445'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

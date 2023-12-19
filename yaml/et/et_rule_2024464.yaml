@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"login"'
+      - value: '"107sbtd9cbhsbt"'
+      distance: '0'
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_07_12, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_09_01
+      msg: '"ET CURRENT_EVENTS DNS Query to Generic 107 Phishing Domain"'
+      rev: '2'
+      sid: '2024464'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      threshold: type limit, track by_src, count 1, seconds 30
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

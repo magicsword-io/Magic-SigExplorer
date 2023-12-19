@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      byte_jump: 1,0,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '2'
+        value: '"|30 81|"'
+      - value: '"|02 01|"'
+      - value: '"|64|"'
+      - value: '"|04|"'
+      - value: '"|04 0d|javaClassName"'
+      - value: '"|04|"'
+      - value: '"|04 0c|javaCodeBase"'
+      - value: '"|04|"'
+      - value: '"|04 0b|objectClass"'
+      - value: '"|04|"'
+      - value: '"|04 0b|javaFactory"'
+      distance: '2'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_12_14, cve CVE_2021_44228,
+        deployment Perimeter, former_category ATTACK_RESPONSE, signature_severity
+        Major, updated_at 2021_12_14
+      msg: '"ET ATTACK_RESPONSE Possible CVE-2021-44228 Payload via LDAPv3 Response"'
+      reference: cve,2021-44228
+      rev: '1'
+      sid: '2034722'
+      special_options:
+      - fast_pattern
+      within: '18'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

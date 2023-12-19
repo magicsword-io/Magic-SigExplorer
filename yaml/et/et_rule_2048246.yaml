@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '1'
+        value: '"/"'
+      - depth: '5'
+        offset: '3'
+        value: '"/?1"'
+      - value: '!"|2e|"'
+      - value: '!"&"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"ebby.com|0d 0a|"'
+      - value: '!"attsuppliers.com|0d 0a|"'
+      - value: '!"rittal.com|0d 0a|"'
+      flow: established,to_server
+      flowbits: set,ET.TA557.20230515.Request
+      metadata: attack_target Client_and_Server, created_at 2023_09_26, deployment
+        Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence Medium, signature_severity Major, tag TA577, updated_at 2023_12_13,
+        reviewed_at 2023_09_26
+      msg: '"ET TROJAN TA577 Style Request (2023-05-15)"'
+      pcre: '"/^\/(?!(?:h(?:elp|tml)|a(?:ch|ds)|blog|goto|item|site|user|en))(?:[A-IL-VX]{2,4}|[a-il-vx]{2,4})\/\?1[0-9]{4,7}$/U"'
+      rev: '3'
+      sid: '2048246'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      urilen: 10<>16
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

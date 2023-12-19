@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".jpg"'
+      - depth: '19'
+        value: '"H|00|O|00|S|00|T|00 20 00|N|00|A|00|M|00|E|00 3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_06_04, deployment Perimeter, former_category MALWARE, malware_family
+        ICEFOG_P, performance_impact Low, signature_severity Major, tag APT, tag IceFog,
+        updated_at 2020_08_31
+      msg: '"ET TROJAN ICEFOG-P Variant CnC Checkin M1"'
+      pcre: '"/_[A-F0-9]{12}\.jpg$/Ui"'
+      reference: url,speakerdeck.com/ashley920/into-the-fog-the-return-of-icefog-apt
+      rev: '2'
+      sid: '2027431'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

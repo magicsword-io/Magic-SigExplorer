@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|spora|03|biz|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2017_02_09, deployment Perimeter,
+        former_category MALWARE, malware_family Spora, signature_severity Major, tag
+        Ransomware, updated_at 2020_09_17, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Spora Ransomware DNS Query"'
+      reference: md5,41de296c5bcfc24fc0f16b1e997d9aa5
+      rev: '2'
+      sid: '2023887'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

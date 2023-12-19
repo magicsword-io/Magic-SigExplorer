@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" Java/1."'
+      - value: '".zip"'
+      flow: established,to_server
+      metadata: created_at 2013_05_09, updated_at 2020_04_24
+      msg: '"ET CURRENT_EVENTS FlimKit hex.zip Java Downloading Jar"'
+      pcre: '"/\/[a-f0-9]+\.zip$/U"'
+      rev: '3'
+      sid: '2016839'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?action="'
+      - value: '"&hwid="'
+      - value: '"&access="'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_12, deployment Perimeter, former_category
+        MALWARE, malware_family Ars_Stealer, performance_impact Moderate, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET TROJAN W32/SPARS/ARS Stealer Checkin"'
+      reference: md5,76516b465b3589547a9c7c7d955238d8
+      rev: '3'
+      sid: '2025344'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

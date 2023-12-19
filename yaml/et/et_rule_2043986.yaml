@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '11'
+        value: '"/LetsGo.php"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|4|2e|0|20 28|compatible|3b 20|Win32|3b
+          20|WinHttp|2e|WinHttpRequest|2e|5|29 0d 0a|"'
+      - value: '"|0d 0a|C|3a 5c|Users|5c|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_24, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_01_24
+      msg: '"ET TROJAN Win32/TradingView CnC Exfil (POST)"'
+      pcre: '"/^\/LetsGo.php$/U"'
+      reference: md5,291759ba9dd1ec291433b13f105401db
+      rev: '1'
+      sid: '2043986'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

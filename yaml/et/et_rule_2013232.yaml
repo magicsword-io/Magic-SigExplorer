@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"CLSID"'
+      - value: '"979AE8AA-C206-40EC-ACA7-EC6B6BD7BE5E"'
+      - value: '".SaveToFIle"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_07_08, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX IDrive Online Backup ActiveX control SaveToFile Insecure Method"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*979AE8AA-C206-40EC-ACA7-EC6B6BD7BE5E/si"'
+      reference: url,htbridge.ch/advisory/idrive_online_backup_activex_control_insecure_method.html
+      rev: '2'
+      sid: '2013232'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

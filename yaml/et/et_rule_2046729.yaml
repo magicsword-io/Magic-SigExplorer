@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|ba 49 b2 3c 5e 7e 69 43 28 63 8e|"'
+      - value: '"|39 84|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_05, deployment Perimeter, former_category
+        MALWARE, malware_family Remcos, performance_impact Low, confidence High, signature_severity
+        Major, tag RAT, updated_at 2023_07_05, reviewed_at 2023_10_06
+      msg: '"ET TROJAN [ANY.RUN] Remcos RAT Checkin 861"'
+      reference: url,app.any.run/tasks/80e04690-c0c0-4bb7-91d3-5e4fb9d215be
+      rev: '1'
+      sid: '2046729'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

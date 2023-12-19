@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".php"'
+      - value: '"&db_name="'
+      - value: '"%5C%27%3Bsystem(%24_GET%5B"'
+      flow: established,to_server
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2018_07_02,
+        deployment Perimeter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Critical, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Dolibarr ERP CRM PHP Code Injection"'
+      reference: url,exploit-db.com/exploits/44964/
+      rev: '2'
+      sid: '2025770'
+      special_options:
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

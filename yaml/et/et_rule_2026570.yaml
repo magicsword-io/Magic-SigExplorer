@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/putty.exe"'
+      - value: '!"Host|3a 20|the.earth.li"'
+      flow: to_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_11_02, deployment Perimeter, former_category INFO, signature_severity
+        Minor, updated_at 2020_09_16
+      msg: '"ET INFO Possibly Suspicious Request for Putty.exe from Non-Standard Download
+        Location"'
+      pcre: '"/\/putty\.exe$/Ui"'
+      rev: '2'
+      sid: '2026570'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|discordapp|03|com|00|"'
+      distance: '1'
+      metadata: created_at 2022_03_15, former_category INFO, signature_severity Informational,
+        updated_at 2022_09_21
+      msg: '"ET INFO Observed Discord Domain in DNS Lookup (discordapp .com)"'
+      reference: md5,03f93498e1006ffa3a1f9fcb6170525a
+      rev: '3'
+      sid: '2035466'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

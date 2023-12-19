@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1434'
+    details:
+      classtype: misc-activity
+      contents:
+      - offset: '90'
+        value: '"nng Snort (Snort)"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN NNG MS02-039 Exploit False Positive Generator - May Conceal A
+        Genuine Attack"'
+      reference: url,doc.emergingthreats.net/2008560
+      rev: '2'
+      sid: '2008560'
+      threshold: type threshold, track by_dst, count 4, seconds 15
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

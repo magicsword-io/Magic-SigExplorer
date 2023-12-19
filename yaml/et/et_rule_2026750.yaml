@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"{|22|params|22|:[|22|rhminer/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_02, deployment Perimeter, former_category
+        COINMINER, signature_severity Major, tag Coinminer, updated_at 2019_01_02
+      msg: '"ET POLICY Random Hash Pascalcoin Miner Checkin"'
+      rev: '2'
+      sid: '2026750'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

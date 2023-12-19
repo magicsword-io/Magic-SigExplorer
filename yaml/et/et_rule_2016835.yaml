@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"${IFS}"'
+      - value: '"mail from|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_05_08, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Exim/Dovecot Possible MAIL FROM Command Execution"'
+      pcre: '"/^[^\r\n]*?\x60[^\x60]*?\$\{IFS\}/R"'
+      reference: url,redteam-pentesting.de/de/advisories/rt-sa-2013-001/-exim-with-dovecot-typical-misconfiguration-leads-to-remote-command-execution
+      rev: '2'
+      sid: '2016835'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

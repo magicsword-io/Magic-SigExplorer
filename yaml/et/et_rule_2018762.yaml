@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ip.txt"'
+      - value: '"User-Agent|3a| Huai_Huai|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2012_07_14, former_category MALWARE, updated_at 2020_10_14
+      msg: '"ET TROJAN Hupigon.DF Checkin"'
+      reference: md5,1051f7176fe0a50414649d369e752e98
+      rev: '2'
+      sid: '2018762'
+      special_options:
+      - http_uri
+      - http_header
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

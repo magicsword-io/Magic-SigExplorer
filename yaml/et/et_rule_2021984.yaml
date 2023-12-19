@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/download/"'
+      - value: '"/FMP.dmg?download_browser="'
+      - value: '"&app_id="'
+      - value: '"&campaign="'
+      - value: '"&cargoType="'
+      - value: '"&oname=FMP.dmg"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_10_21, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE OSX/Fake Flash Player Download Oct 20"'
+      rev: '2'
+      sid: '2021984'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

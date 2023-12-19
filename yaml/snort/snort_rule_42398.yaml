@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[995,80,53,443]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"856",depth 3,offset 1'
+      - value: '"856|9A F3 EC 89|",within 7,distance 1'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.RedLeaves outbound connection"'
+      reference: url,github.com/nccgroup/Cyber-Defence/blob/master/Technical%20Notes/Red%20Leaves/Red%20Leaves%20technical%20note%20v1.0.pdf
+      rev: '4'
+      sid: '42398'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

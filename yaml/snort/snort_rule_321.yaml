@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"a b c d e f",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER account enumeration attempt"'
+      reference: nessus,10788
+      rev: '10'
+      sid: '321'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

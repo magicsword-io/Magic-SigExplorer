@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_jump: 4,8,relative,little,align
+      byte_test: 4,>,1024,0,little
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C 00|P|00|I|00|P|00|E|00 5C 00 00 00|"'
+      - value: '"|05|"'
+      - value: '"|00|"'
+      - value: '"|02 00|"'
+      distance: '19'
+      flow: established,to_server
+      flowbits: isset,smb.tree.bind.irot
+      isdataat: 4,relative
+      metadata: created_at 2010_09_23, cve CVE_2002_1561, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB IrotIsRunning unicode little endian attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-010.mspx
+      rev: '5'
+      sid: '2103259'
+      special_options:
+      - nocase
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

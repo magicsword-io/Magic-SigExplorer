@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| Enhanced-CTorrent"'
+      fast_pattern: 11,18
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_04_23
+      msg: '"ET P2P Bittorrent P2P Client User-Agent (Enhanced CTorrent 3.x)"'
+      reference: url,doc.emergingthreats.net/2011703
+      rev: '6'
+      sid: '2011703'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

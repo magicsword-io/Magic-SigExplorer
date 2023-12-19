@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"USER anonymous|0d 0a|PASS Java1."'
+      fast_pattern: 7,20
+      flow: to_server,established
+      flowbits: set,ET.Java.FTP.Logon
+      metadata: created_at 2013_03_29, updated_at 2022_03_17
+      msg: '"ET FTP Outbound Java Anonymous FTP Login"'
+      pcre: '"/^\d\.\d(_\d+)?\@\r\n/R"'
+      rev: '2'
+      sid: '2016687'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

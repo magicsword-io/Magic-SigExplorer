@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/11/feed.php",fast_pattern,nocase'
+      - value: '"POST"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Poolfiend variant outbound connection"'
+      pcre: '"/[a-z\d\x2f\x2b\x3d]{100}/AGi"'
+      reference: url,www.virustotal.com/en/file/12a803cd2f67d2dbdc3fb1a6940b9a11b61f6d8455f139e6e90893d9a4eb455a/analysis/
+      rev: '3'
+      service: http
+      sid: '32853'
+      special_options:
+      - http_uri
+      - http_method
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

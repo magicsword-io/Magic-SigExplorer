@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 2b|"'
+      - value: '".oast.live"'
+      distance: '33'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_28, former_category
+        INFO, performance_impact Low, confidence High, updated_at 2023_08_28, reviewed_at
+        2023_08_28, mitre_tactic_id TA0010, mitre_tactic_name Exfiltration, mitre_technique_id
+        T1567, mitre_technique_name Exfiltration_Over_Web_Service
+      msg: '"ET INFO Interactsh Domain (.oast .live in TLS SNI)"'
+      reference: url,unit42.paloaltonetworks.com/exploits-interactsh/
+      rev: '1'
+      sid: '2047778'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - depth: '8'
+        offset: '4'
+        value: '"|66 74 79 70 71 74 20 20|"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2017_02_14,
+        deployment Perimeter, performance_impact Low, signature_severity Major, updated_at
+        2017_02_14
+      msg: '"ET INFO MP4 in HTTP Flowbit Set M3"'
+      rev: '1'
+      sid: '2023900'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

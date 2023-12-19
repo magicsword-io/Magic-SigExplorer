@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/"'
+      - depth: '13'
+        value: '"JSON=d0hy65aW"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_27, deployment Perimeter, former_category
+        MALWARE, malware_family Soclears, signature_severity Major, updated_at 2020_05_27
+      msg: '"ET TROJAN Socelars Stealer CnC Activity"'
+      reference: md5,81a7f493c7b5a7c52ac19981a75f57df
+      rev: '2'
+      sid: '2030224'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"telnet.exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP telnet attempt"'
+      rev: '13'
+      service: http
+      sid: '1066'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

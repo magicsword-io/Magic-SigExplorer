@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|web|0b|mapperstate|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2021_05_25, deployment Perimeter, performance_impact Low, signature_severity
+        Major, updated_at 2021_05_25
+      msg: '"ET TROJAN OSX/MapperState CnC Domain in DNS Lookup"'
+      reference: url,twitter.com/ConfiantIntel/status/1393215825931288580
+      rev: '2'
+      sid: '2033030'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

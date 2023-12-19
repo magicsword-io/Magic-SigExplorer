@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Referer|3a| "'
+      - value: '"cgi-bin/get.pl?l="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Likely FakeAV/Fakeinit/FraudLoad Checkin"'
+      pcre: '"/get\.pl\?l=\d+$/Ui"'
+      reference: md5,f5e907a11831c757a94cde9257b3574c
+      rev: '6'
+      sid: '2010628'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - nocase
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

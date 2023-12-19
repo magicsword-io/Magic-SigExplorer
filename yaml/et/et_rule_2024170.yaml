@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"EB125831C966B9"'
+      - value: '"05498034088485C975F7FFE0E8E9FFFFFFD10D61074028D7D5D3B544E0"'
+      distance: '2'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_04_04,
+        cve CVE_2016_0189, deployment Perimeter, former_category CURRENT_EVENTS, malware_family
+        Exploit_Kit_Terror, performance_impact Low, signature_severity Major, tag
+        Exploit_Kit_Terror, updated_at 2017_04_04
+      msg: '"ET CURRENT_EVENTS Terror EK CVE-2015-2419 Exploit"'
+      reference: cve,2016-0189
+      rev: '1'
+      sid: '2024170'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '58'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

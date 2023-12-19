@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded"'
+      - value: '"Expect|3a 20|100-continue"'
+      - value: '!"User-Agent|3a 20|"'
+      - depth: '8'
+        value: '"machine="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_12, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Nuke, signature_severity
+        Major, tag Ransomware, updated_at 2022_04_18, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Nuke Ransomware Checkin"'
+      pcre: '"/^machine=[^&]+$/Pi"'
+      reference: md5,ff0e42146794f0d080df0467337b2d01
+      rev: '3'
+      sid: '2023335'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

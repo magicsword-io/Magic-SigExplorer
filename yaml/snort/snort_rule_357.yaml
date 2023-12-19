@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"pass -cklaus",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP piss scan"'
+      reference: url,www.mines.edu/fs_home/dlarue/cc/baby-doe.html
+      rev: '12'
+      service: ftp
+      sid: '357'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 12|samwinchester.club"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_24, deployment Perimeter, former_category
+        MALWARE, malware_family MICROPSIA, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_16
+      msg: '"ET TROJAN MICROPSIA CnC Domain Observed in SNI (samwinchester .club)"'
+      reference: url,unit42.paloaltonetworks.com/pymicropsia
+      rev: '2'
+      sid: '2026546'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

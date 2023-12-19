@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 3127:3199
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|85 13|<|9E A2|",depth 5'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC DoomJuice/mydoom.a backdoor upload/execute"'
+      reference: url,securityresponse.symantec.com/avcenter/venc/data/w32.hllw.doomjuice.html
+      rev: '9'
+      sid: '2375'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/?&tid="'
+      - value: '"&red="'
+      - value: '"&abt="'
+      - value: '"&v="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_05, deployment Perimeter, former_category
+        CURRENT_EVENTS, malware_family Malvertising, malware_family RoughTed, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_08_06
+      msg: '"ET CURRENT_EVENTS SUSPICIOUS Request for Grey Advertising Often Leading
+        to EK"'
+      reference: url,blog.malwarebytes.com/cybercrime/2017/05/roughted-the-anti-ad-blocker-malvertiser
+      rev: '2'
+      sid: '2024350'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

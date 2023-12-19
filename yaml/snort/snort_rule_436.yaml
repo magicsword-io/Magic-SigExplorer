@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '3'
+      itype: '5'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Redirect for TOS and Host"'
+      reference: cve,1999-0265
+      rev: '10'
+      sid: '436'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

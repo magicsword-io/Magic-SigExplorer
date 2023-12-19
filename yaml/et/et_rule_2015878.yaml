@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/app/geoip.js"'
+      - value: '"maxmind.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_11_13, updated_at 2020_08_17
+      msg: '"ET POLICY Maxmind geoip check to /app/geoip.js"'
+      rev: '1'
+      sid: '2015878'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

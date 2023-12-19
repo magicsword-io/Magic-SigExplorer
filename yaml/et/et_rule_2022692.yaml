@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/counter/?ad="'
+      - value: '"="'
+      - value: '!"Referer|3a| "'
+      distance: '0'
+      flow: to_server,established
+      flowbits: set,ET.nemucod.exerequest
+      metadata: created_at 2016_03_31, updated_at 2020_08_17
+      msg: '"ET TROJAN JS/Nemucod requesting EXE payload 2016-03-31"'
+      pcre: '"/=\d+$/U"'
+      reference: md5,c5ad81d8d986c92f90d0462bc06ac9c6
+      rev: '1'
+      sid: '2022692'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

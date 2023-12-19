@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '16'
+      classtype: trojan-activity
+      contents:
+      - value: '"/geoip/geoip.php",fast_pattern,nocase'
+      - value: '!"Accept"'
+      - value: '!"User-Agent"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.FTPKeyLogger geolocation check"'
+      reference: url,www.virustotal.com/en/file/44f956d41f5aea97884f88f60c1e28dc246b4b7318a87b332367e7f0476ca8fc/analysis/1459279340/
+      rev: '3'
+      service: http
+      sid: '38388'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

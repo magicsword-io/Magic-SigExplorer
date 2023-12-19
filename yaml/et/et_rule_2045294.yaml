@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|title|3e|Login|20|reNgine|3c 2f|title|3e|"'
+      - value: '"|3c|a|20|href|3d 22|https|3a 2f 2f|rengine|2e|wiki"'
+      fast_pattern: 7,20
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_05_02, deployment Perimeter,
+        former_category ATTACK_RESPONSE, confidence High, signature_severity Major,
+        updated_at 2023_05_02
+      msg: '"ET ATTACK_RESPONSE reNgine Recon Panel Inbound"'
+      reference: url,twitter.com/TLP_R3D/status/1653414548932575234
+      rev: '1'
+      sid: '2045294'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

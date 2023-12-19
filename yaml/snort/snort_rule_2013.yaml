@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"cvs server|3A| cannot find module",fast_pattern,nocase'
+      - value: '"error"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE CVS invalid module response"'
+      rev: '8'
+      sid: '2013'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

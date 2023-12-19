@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"403"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE 403 Forbidden"'
+      rev: '13'
+      service: http
+      sid: '1201'
+      special_options:
+      - http_stat_code
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

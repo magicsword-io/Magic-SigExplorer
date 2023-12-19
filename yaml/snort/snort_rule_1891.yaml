@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1024:'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 86 B8|",depth 4,offset 16'
+      - value: '"|00 00 00 02|",within 4,distance 4'
+      - value: '"%x %x",within 256'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC status GHBN format string attack"'
+      reference: nessus,10544
+      rev: '17'
+      sid: '1891'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

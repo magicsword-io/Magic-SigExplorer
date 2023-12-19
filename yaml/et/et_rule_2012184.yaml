@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/nucleus/xmlrpc/server.php?"'
+      - value: '"DIR_LIBS="'
+      flow: established,to_server
+      metadata: created_at 2011_01_15, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Nucleus server.php Remote File Inclusion Attempt"'
+      pcre: '"/DIR_LIBS=\s*(ftps?|https?|php)\x3a\//Ui"'
+      reference: url,exploit-db.com/exploits/15907/
+      rev: '2'
+      sid: '2012184'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

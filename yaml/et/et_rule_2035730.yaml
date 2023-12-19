@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"/gate?id="'
+      - depth: '8'
+        value: '"SU5JVA=="'
+      - value: '"TWljcm9zb2Z0IFdpbmRvd3M"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_04, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_04_04, reviewed_at 2023_10_04
+      msg: '"ET TROJAN Win32/POWERPLANT CnC Exfil (INIT)"'
+      reference: url,mandiant.com/resources/evolution-of-fin7
+      rev: '2'
+      sid: '2035730'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

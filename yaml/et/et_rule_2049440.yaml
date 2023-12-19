@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"PROPFIND"'
+      - value: '".zip"'
+      - value: '"User-Agent|3a 20|Microsoft-WebDAV-MiniRedir/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_01, deployment Perimeter, former_category
+        HUNTING, performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2023_12_01
+      msg: '"ET INFO WebDAV Retrieving .zip"'
+      pcre: '"/\.zip$/U"'
+      rev: '1'
+      sid: '2049440'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

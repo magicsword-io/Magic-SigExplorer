@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2766'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|EB 23|^3|C0 88|F|FA 89|F|F5 89|6"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-SOLARIS Oracle Solaris npls x86 overflow"'
+      reference: cve,1999-1588
+      rev: '13'
+      sid: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

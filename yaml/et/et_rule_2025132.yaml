@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '52869'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST /picdesc.xml"'
+      - value: '"SOAPAction|3a 20|urn|3a|schemas-upnp-org|3a|service|3a|WANIPConnection|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2017_12_05, former_category EXPLOIT,
+        updated_at 2020_08_24
+      msg: '"ET EXPLOIT Realtek SDK Miniigd UPnP SOAP Command Execution CVE-2014-8361"'
+      reference: url,www.exploit-db.com/exploits/37169/
+      rev: '3'
+      sid: '2025132'
+    protocol: tcp
+    source:
+      network: any
+      port: any

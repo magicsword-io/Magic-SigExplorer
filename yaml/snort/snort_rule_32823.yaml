@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images/view.php",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|"'
+      - value: '"Media Center PC 6.0",within 175'
+      - value: '!"Accept|3A 20|"'
+      - value: '!"Referer|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Darkhotel outbound connection"'
+      reference: url,securelist.com/files/2014/11/darkhotelappendixindicators_kl.pdf
+      rev: '3'
+      service: http
+      sid: '32823'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

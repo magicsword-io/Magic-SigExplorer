@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"pdf_efax_",fast_pattern,nocase'
+      - value: '"PK",depth 2'
+      - value: '".pif",distance 0,nocase'
+      flow: to_client,established
+      flowbits: isset,file.zip
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Win.Trojan.Agent E-FAX phishing attempt"'
+      reference: url,www.virustotal.com/en/file/4e102fd6fce767fa6c0d0a9871bb71ec5969ded694a9292c2c8a9749e5648ed4/analysis/
+      rev: '3'
+      service: http
+      sid: '30567'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

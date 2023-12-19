@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      icode: '4'
+      itype: '3'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-ICMP Destination Unreachable Fragmentation Needed and DF bit
+        was set"'
+      reference: cve,2015-7759
+      rev: '12'
+      sid: '396'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

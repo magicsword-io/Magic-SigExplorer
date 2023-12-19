@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|mypi|02|co|00|"'
+      distance: '0'
+      metadata: attack_target Client_and_Server, created_at 2022_12_14, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2022_12_14, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1568, mitre_technique_name Dynamic_Resolution
+      msg: '"ET INFO DYNAMIC_DNS Query to a *.mypi .co Domain"'
+      reference: url,now-dns.com/
+      rev: '2'
+      sid: '2042867'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

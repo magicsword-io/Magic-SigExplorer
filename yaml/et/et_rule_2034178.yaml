@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '152'
+        value: '"MFjOLrqOLbmPnAKuM7cBwxcPgaqvM7cNcoZKIYmscocPnAOuM7jRJYJy2YBEmEORcoZKLSuscOByLFZL2rZunrfOrFqNJazEJ7GXgYNocF24J8EocoZOgST/Ja3sceRocazuJaOEIYsvnYNsce5ocxkV"'
+      dsize: '512'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_12, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Informational, updated_at
+        2021_10_12
+      msg: '"ET POLICY NSecSoft Remote Monitoring Update/Download Activity M2"'
+      reference: md5,9b9f3a3b03831b6f98ca1b935dd0eb51
+      rev: '1'
+      sid: '2034178'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

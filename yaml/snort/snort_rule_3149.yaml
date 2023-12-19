@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"object",nocase'
+      - value: '"type",within 200,nocase'
+      - value: '"////////////////////////////////",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-IE Microsoft Internet Explorer malformed object type overflow
+        attempt"'
+      pcre: '"/object\s[^>]*type\s*=\s*[\x22\x27][^\x22\x27]*\x2f{32}/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-020
+      rev: '13'
+      service: ftp-data,http,imap,pop3
+      sid: '3149'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

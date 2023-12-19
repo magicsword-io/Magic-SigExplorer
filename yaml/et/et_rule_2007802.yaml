@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '21'
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"PASS "'
+      - value: '"gpuser@home.com"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Grim''s Ping ftp scanning tool"'
+      reference: url,doc.emergingthreats.net/2007802
+      rev: '6'
+      sid: '2007802'
+      within: '18'
+    protocol: tcp
+    source:
+      network: any
+      port: any

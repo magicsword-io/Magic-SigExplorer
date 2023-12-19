@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cos3q/in",fast_pattern,nocase'
+      - value: '".exe",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Cridex encrypted POST check-in"'
+      pcre: '"/\x5f\w{24}\.exe/i"'
+      reference: url,www.virustotal.com/en/file/843ffd922b9bd902d736ddb664b578cde6e3033fa5a14b862b09045c36aa7524/analysis/1369942427/
+      rev: '4'
+      service: http
+      sid: '26779'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

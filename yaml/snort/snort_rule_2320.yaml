@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1655'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"USER",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER ebola USER overflow attempt"'
+      pcre: '"/^USER\s[^\n]{49}/ims"'
+      reference: bugtraq,9156
+      rev: '7'
+      sid: '2320'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/mm.jpg",depth 7,fast_pattern'
+      - value: '"User-Agent|3A 20|Mozilla/5.0 (compatible"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.MadMax implant outbound connection attempt"'
+      rev: '4'
+      service: http
+      sid: '42883'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

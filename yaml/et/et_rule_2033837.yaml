@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"/goform/"'
+      - value: '"submit-url="'
+      flow: established,to_server
+      isdataat: 2000,relative
+      metadata: attack_target Server, created_at 2021_08_30, cve CVE_2021_35392, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, confidence High,
+        signature_severity Major, tag Exploit, updated_at 2023_04_05
+      msg: '"ET EXPLOIT Possible Realtek SDK - formRebootCheck/formWsc Stack Buffer
+        Overflow Inbound (CVE-2021-35392)"'
+      pcre: '"/\/goform\/form(RebootCheck|Wsc)$/U"'
+      reference: cve,2021-35392
+      rev: '2'
+      sid: '2033837'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

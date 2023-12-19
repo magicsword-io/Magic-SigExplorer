@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - depth: '27'
+        value: '"/PyxisUaMenu.htm?sessionId="'
+      - value: '"&MAINFRM|28|444,-1,591|29|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2020_05_05, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, signature_severity Minor,
+        updated_at 2020_05_05
+      msg: '"ET EXPLOIT NEC SL2100 - Session Enumeration Attempt"'
+      pcre: '"/^\/PyxisUaMenu\.htm\?sessionId=\d{3}&MAINFRM\(444,-1,591\)/U"'
+      reference: url,www.exploit-db.com/exploits/48425
+      rev: '2'
+      sid: '2030102'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      threshold: type threshold, count 5, seconds 60, track by_dst
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

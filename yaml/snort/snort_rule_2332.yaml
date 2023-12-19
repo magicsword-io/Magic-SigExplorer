@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"MKD",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP MKD format string attempt"'
+      pcre: '"/^MKD\s[^\n]*?%[^\n]*?%/ims"'
+      reference: bugtraq,9262
+      rev: '10'
+      service: ftp
+      sid: '2332'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

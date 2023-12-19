@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php|20|"'
+      - value: '!"Mozilla"'
+      - value: '"RequestModuleVersionInformationORupdate=ey"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_08_25
+      msg: '"ET TROJAN Win32/Matanbuchus Loader Activity (POST)"'
+      reference: url,www.cyberark.com/resources/threat-research-blog/inside-matanbuchus-a-quirky-loader
+      rev: '1'
+      sid: '2038617'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

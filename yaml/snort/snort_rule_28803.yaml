@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"UPDATE|7C|",depth 7'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Injector inbound connection"'
+      pcre: '"/^UPDATE\|[0-9]\.[0-9]\.[0-9]\|[A-F0-9]{48}\|{3}$/"'
+      reference: url,www.virustotal.com/en/file/253b2cb7f6eacaaaca5053f73445defce5df2cd4a5564ebc0721e0323a6c3557/analysis/1383139183/
+      rev: '5'
+      service: http
+      sid: '28803'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

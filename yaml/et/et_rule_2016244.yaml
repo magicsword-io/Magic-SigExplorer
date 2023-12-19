@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Symlink_Sa"'
+      flow: established,to_client
+      metadata: created_at 2013_01_22, updated_at 2013_01_22
+      msg: '"ET WEB_SERVER WebShell - Symlink_Sa"'
+      rev: '1'
+      sid: '2016244'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

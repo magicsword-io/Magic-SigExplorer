@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| mdms|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2011_05_03, updated_at 2020_10_13
+      msg: '"ET USER_AGENTS Suspicious user agent (mdms)"'
+      rev: '2'
+      sid: '2012761'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '3389'
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"|00 00 00 00 00|Cookie|3a 20|mstshash|3d|nmap|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_04_19, deployment Perimeter, deployment
+        Internal, former_category SCAN, performance_impact Low, signature_severity
+        Minor, updated_at 2022_04_19
+      msg: '"ET SCAN RDP Connection Attempt from Nmap"'
+      reference: url,github.com/nmap/nmap/blob/4b46fa7097673f157e7b93e72f0c8b3249c54b4c/nselib/rdp.lua#L211
+      rev: '1'
+      sid: '2036252'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

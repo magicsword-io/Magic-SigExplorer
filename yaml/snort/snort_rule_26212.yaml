@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /?",depth 6'
+      - value: '"HTTP/1.1|0D 0A|Host|3A 20|update|2E|",distance 0'
+      - value: '"0b8pre|0D 0A|",fast_pattern,nocase'
+      - value: '!"|0A|Referer"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Proxyier variant outbound connection"'
+      rev: '2'
+      service: http
+      sid: '26212'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

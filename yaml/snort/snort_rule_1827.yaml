@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/servlet/"'
+      - value: '"/org.apache."'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-APACHE Apache Tomcat servlet mapping cross site scripting attempt"'
+      reference: nessus,11041
+      rev: '16'
+      service: http
+      sid: '1827'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

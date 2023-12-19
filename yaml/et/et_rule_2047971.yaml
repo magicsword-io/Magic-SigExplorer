@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 10|trabingviews.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_09_07, deployment Perimeter, malware_family AMOS_Stealer, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_07, reviewed_at
+        2023_09_07
+      msg: '"ET TROJAN Observed Atomic macOS (AMOS) Stealer Payload Deliver Domain
+        (trabingviews .com) in TLS SNI"'
+      reference: url,www.malwarebytes.com/blog/threat-intelligence/2023/09/atomic-macos-stealer-delivered-via-malvertising
+      rev: '1'
+      sid: '2047971'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

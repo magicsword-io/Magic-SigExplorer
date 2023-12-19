@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"_0000=",fast_pattern'
+      - value: '"SL_"'
+      - value: '"_0000=",within 8'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-OTHER TDS Sutra - redirect received"'
+      reference: url,xylibox.blogspot.com/2011/12/sutra-tds-v34.html
+      rev: '9'
+      service: http
+      sid: '21845'
+      special_options:
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

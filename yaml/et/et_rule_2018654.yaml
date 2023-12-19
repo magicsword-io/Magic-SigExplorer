@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".hlp"'
+      - value: '"Accept-Encoding|3a| identity|0d 0a|User-Agent|3a| Mozilla/3.0 (compatible|3b|
+          Indy Library)"'
+      - value: '!"Referer"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_07_08, former_category MALWARE, updated_at 2020_09_24
+      msg: '"ET TROJAN Downloader.Banload2.KZU Checkin 2"'
+      pcre: '"/^\/[^\x2f]+?\.hlp$/Ui"'
+      reference: md5,b67e23e4a0248c71b71e73e37d52c906
+      rev: '2'
+      sid: '2018654'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

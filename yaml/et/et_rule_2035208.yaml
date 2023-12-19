@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"302"'
+      - value: '"Namecheap URL Forward"'
+      - value: '"X-Served-By|3a 20|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_16, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2022_02_16
+      msg: '"ET INFO Namecheap URL Forward"'
+      reference: md5,a85e405481368f8a3384149243577155
+      rev: '2'
+      sid: '2035208'
+      special_options:
+      - http_stat_code
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

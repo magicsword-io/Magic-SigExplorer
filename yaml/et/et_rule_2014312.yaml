@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|Ini download file modue"'
+      - value: '"DownUrl="'
+      - value: '"FileName="'
+      - value: '"SaveType="'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_03_06, updated_at 2012_03_06
+      msg: '"ET TROJAN W32/NSIS.TrojanDownloader Second Stage Download Instructions
+        from Server"'
+      pcre: '"/FileName\x3D[^\r\n]*\x2E(dll|exe)/i"'
+      reference: md5,3ce5da32903b52394cff2517df51f599
+      rev: '1'
+      sid: '2014312'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

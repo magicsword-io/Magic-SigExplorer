@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"create",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE create file buffer overflow attempt"'
+      pcre: '"/CREATE\s.*?FILE\s+((AS|MEMBER|TO)\s+)?(\x27[^\x27]{512}|\x22[^\x22]{512})/ims"'
+      rev: '4'
+      sid: '2698'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

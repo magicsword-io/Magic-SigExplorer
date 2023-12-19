@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 2,4,relative,little
+      byte_test: 1,&,1,2,relative
+      classtype: attempted-dos
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|FE|SMB"'
+      - value: '"|03 00|"'
+      - value: '!"|FE|SMB"'
+      distance: '8'
+      flow: from_server,established
+      isdataat: 1000,relative
+      metadata: affected_product SMBv3, attack_target Client_and_Server, created_at
+        2017_02_03, cve CVE_2017_0016, deployment Datacenter, signature_severity Major,
+        updated_at 2017_02_07
+      msg: '"ET DOS SMB Tree_Connect Stack Overflow Attempt (CVE-2017-0016)"'
+      reference: cve,2017-0016
+      rev: '3'
+      sid: '2023832'
+      within: '1000'
+    protocol: tcp
+    source:
+      network: any
+      port: '445'

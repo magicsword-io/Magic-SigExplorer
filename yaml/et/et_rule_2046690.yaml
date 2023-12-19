@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/apache"'
+      - value: '"User-Agent|3a 20|Go-http-client/1.1|0d 0a|"'
+      - value: '"Accept-Encoding|3a 20|gzip"'
+      - value: '"COntent-Type|3a 20|application/x-www-form-urlencoded"'
+      flow: established,to_server
+      flowbits: set,ET.easystealer
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_29, deployment Perimeter, former_category
+        MALWARE, confidence Medium, signature_severity Critical, updated_at 2023_10_25,
+        reviewed_at 2023_10_25
+      msg: '"ET TROJAN Golang Easy Stealer Exfil (POST)"'
+      pcre: '"/^(?:(?:[a-z0-9]{32}\x3d[A-Z]{2}\x26)(?:[a-z0-9]{32}\x3d)(?:[a-z0-9]{32})\x26(?:[a-z0-9]{32}\x3d))/P"'
+      reference: md5,731ed24011df3a33fe5d3765bf424b0c
+      rev: '2'
+      sid: '2046690'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

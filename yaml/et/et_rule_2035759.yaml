@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Bfrt4DSob5.ico"'
+      - value: '"|2e|php|22 20|enctype|3d 22|multipart|2f|form|2d|data|22|"'
+      - value: '"src|3d 22|poina|2e|png|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_05, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_05
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page M1 2022-04-05"'
+      rev: '2'
+      sid: '2035759'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

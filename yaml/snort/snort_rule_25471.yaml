@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '39'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/?ptrxcz_",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Pushdo Spiral Traffic"'
+      pcre: '"/^\x2f\x3fptrxcz\x5f[a-zA-Z0-9]{30}$/i"'
+      reference: url,updates.atomicorp.com/channels/rules/delayed/modsec/10_asl_antimalware.conf
+      rev: '4'
+      service: http
+      sid: '25471'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<body><b></b><style>div{overflow|3A|hidden|3B|width|3A|1px|3B|height|3A|1px}</style><div>",fast_pattern,nocase'
+      flow: to_client,established
+      flowbits: set,file.exploit_kit.jar
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Blackholev2/Darkleech exploit kit landing page"'
+      rev: '2'
+      service: http
+      sid: '27866'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

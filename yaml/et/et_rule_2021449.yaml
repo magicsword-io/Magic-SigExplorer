@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"myFunction|28 29|"'
+      - value: '"setInterval"'
+      - value: '"alert"'
+      - value: '"gp-msg.mp3"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2015_07_20, former_category WEB_CLIENT, updated_at 2015_07_20
+      msg: '"ET WEB_CLIENT Fake AV Phone Scam Landing July 20 2015 M4"'
+      rev: '2'
+      sid: '2021449'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

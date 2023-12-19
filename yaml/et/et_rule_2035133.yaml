@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 11|lkjhgfgsdshja.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_08, deployment Perimeter,
+        signature_severity Major, updated_at 2022_02_08
+      msg: '"ET TROJAN Observed ZLoader Related Domain (lkjhgfgsdshja .com in TLS
+        SNI)"'
+      reference: url,research.checkpoint.com/2022/can-you-trust-a-files-digital-signature-new-zloader-campaign-exploits-microsofts-signature-verification-putting-users-at-risk/
+      rev: '2'
+      sid: '2035133'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

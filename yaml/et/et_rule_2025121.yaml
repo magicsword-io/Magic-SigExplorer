@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|cxkefbwo7qcmlelb"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2017_12_05, deployment Perimeter,
+        former_category TROJAN, performance_impact Low, signature_severity Major,
+        tag DNS_Onion_Query, updated_at 2021_04_13
+      msg: '"ET TROJAN MewsSpy.AE Onion Domain (cxkefbwo7qcmlelb in DNS Lookup)"'
+      reference: md5,e69b3a5b8fccd8607e08dd6d34ae99a9
+      rev: '2'
+      sid: '2025121'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

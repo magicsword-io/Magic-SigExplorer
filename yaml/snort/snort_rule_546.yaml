@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"CWD  ",depth 5,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE FTP ''CWD  '' possible warez site"'
+      rev: '10'
+      service: ftp
+      sid: '546'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

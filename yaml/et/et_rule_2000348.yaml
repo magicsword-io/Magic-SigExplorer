@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '![25,587,6666:7000,8076]'
+    details:
+      classtype: unusual-client-port-connection
+      contents:
+      - depth: '5'
+        value: '"JOIN "'
+      dsize: <64
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2010_07_30, deployment
+        Perimeter, former_category POLICY, performance_impact Moderate, confidence
+        Medium, signature_severity Informational, updated_at 2023_05_09
+      msg: '"ET POLICY IRC Channel JOIN on non-standard port"'
+      pcre: '"/&|#|\+|!/R"'
+      reference: url,www.rfc-editor.org/rfc/rfc1459#section-4.2.1
+      rev: '18'
+      sid: '2000348'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

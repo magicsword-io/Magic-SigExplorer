@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 0d 00 00 00 00 00 00 00|"'
+      flow: established,to_client
+      flowbits: isset,ET.ZenRATStatus
+      metadata: attack_target Client_and_Server, created_at 2023_08_25, deployment
+        Perimeter, former_category MALWARE, malware_family ZenRAT, performance_impact
+        Significant, confidence High, signature_severity Major, updated_at 2023_08_25,
+        reviewed_at 2023_08_25
+      msg: '"ET TROJAN ZenRAT Status Response"'
+      reference: md5,6f809b1c82d9fb6cd277c6b645ecaf84
+      rev: '1'
+      sid: '2047757'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

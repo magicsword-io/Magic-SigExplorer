@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ows-bin/",nocase'
+      - value: '"?&"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP oracle web arbitrary command execution attempt"'
+      reference: nessus,10348
+      rev: '17'
+      service: http
+      sid: '1193'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

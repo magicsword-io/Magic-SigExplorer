@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"?uid="'
+      - value: '"&context="'
+      - value: '"&mode=text&"'
+      - value: '"data="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_01_22, former_category MALWARE, updated_at 2020_05_14
+      msg: '"ET TROJAN Backdoor.TurlaCarbon.A C2 HTTP Request"'
+      pcre: '"/\?uid=\d+&context=\w+&mode=text&data=\w+$/U"'
+      reference: url,blog.gdatasoftware.com/blog/article/analysis-of-project-cobra.html
+      rev: '1'
+      sid: '2020241'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '2'
+        value: '"|00 00 00|ent4rme"'
+      - value: '"|20 7c 20|"'
+      - value: '"|23|runtimebroker"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_18, deployment Perimeter, former_category
+        MALWARE, malware_family Crimson, signature_severity Major, tag c2, updated_at
+        2022_04_18, reviewed_at 2023_10_04, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN MSIL/Crimson Rat CnC Exfil"'
+      reference: url,twitter.com/0xrb/status/1515979150515122178
+      rev: '2'
+      sid: '2036241'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 5, seconds 600
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

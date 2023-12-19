@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|my|09|kickidler|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_09_20, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_09_20, reviewed_at 2023_10_23
+      msg: '"ET INFO Kickidler Employee Monitoring Software Related Domain in DNS
+        Lookup (my .kickidler .com)"'
+      rev: '1'
+      sid: '2048125'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

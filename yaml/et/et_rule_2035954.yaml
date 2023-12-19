@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/api/crontab"'
+      - value: '"|22|tasks|22 3a|"'
+      - value: '"|22|command|22 3a|"'
+      flow: to_server,established
+      metadata: attack_target Networking_Equipment, created_at 2022_04_14, cve CVE_2022_27226,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_04_14
+      msg: '"ET EXPLOIT iRZ Mobile Router RCE Inbound M1 (CVE-2022-27226)"'
+      reference: cve,2022-27226
+      rev: '2'
+      sid: '2035954'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

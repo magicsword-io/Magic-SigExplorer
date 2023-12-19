@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/getcfg.php"'
+      - depth: '36'
+        value: '"action|3d|sethostname|26|value|3d 26 20|wget|20|http"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2022_09_09, cve CVE_2022_28958,
+        former_category EXPLOIT, updated_at 2022_09_09
+      msg: '"ET EXPLOIT D-Link Remote Code Execution Attempt (CVE-2022-28958)"'
+      reference: cve,2022-28958
+      rev: '1'
+      sid: '2038782'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: any
+      port: any

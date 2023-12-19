@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"JHBlcmwgPSBuZXcg"'
+      flow: established,to_server
+      metadata: created_at 2011_11_22, updated_at 2022_05_03
+      msg: '"ET WEB_SERVER Weevely PHP backdoor detected (perl->system() function
+        used)"'
+      reference: url,bechtsoudis.com/security/put-weevely-on-the-your-nids-radar
+      rev: '4'
+      sid: '2013944'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

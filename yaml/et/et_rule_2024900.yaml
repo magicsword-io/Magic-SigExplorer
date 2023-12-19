@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Windows-Update-Agent"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_23, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, tag Locky, updated_at 2020_08_13
+      msg: '"ET TROJAN Locky Intermediate Downloader"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,20}[^\x20-\x7e\r\n]/P"'
+      reference: md5,4f03e360be488a3811d40c113292bc01
+      rev: '2'
+      sid: '2024900'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

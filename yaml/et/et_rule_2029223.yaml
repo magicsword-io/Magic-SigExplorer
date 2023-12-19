@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|carlos_castaneda|0d 0a|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_03, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_10_27
+      msg: '"ET TROJAN Legion Loader Activity Observed (carlos_castaneda)"'
+      reference: md5,35d17e42e314a5ebf6ddd4a3d0b47712
+      rev: '2'
+      sid: '2029223'
+      special_options:
+      - nocase
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

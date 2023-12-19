@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"GET"'
+      - value: '"/stm.cgi?eeprom_reset=1"'
+      flow: established,to_server
+      metadata: attack_target ICS, created_at 2023_11_21, deployment Perimeter, deployment
+        Internal, former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_11_21
+      msg: '"ET WEB_SPECIFIC_APPS Tinycontrol LAN Controller v3 Denial of Service
+        Attempt - EEPROM Reset"'
+      reference: url,www.zeroscience.mk/en/vulnerabilities/ZSL-2023-5786.php
+      rev: '1'
+      sid: '2049279'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

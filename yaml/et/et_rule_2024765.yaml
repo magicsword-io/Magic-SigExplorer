@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,7878]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/gt|20|HTTP/1."'
+      - value: '"|0d 0a|Connection|3a 20|keep-alive|0d 0a|Content-Type|3a 20|application/json|0d
+          0a|"'
+      - value: '"|3b 20|Android|20|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2017_09_25, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Android_RedAlert, signature_severity Major, tag Android, tag c2, updated_at
+        2020_11_05, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Trojan-Banker.AndroidOS.RedAlert CnC Beacon"'
+      reference: url,info.phishlabs.com/blog/redalert2-mobile-banking-trojan-actively-updating-its-techniques
+      rev: '2'
+      sid: '2024765'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

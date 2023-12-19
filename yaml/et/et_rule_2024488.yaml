@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|coffeinoffice|03|xyz|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2017_07_21, deployment Perimeter, former_category
+        TROJAN, malware_family lokibot, performance_impact Low, signature_severity
+        Major, updated_at 2020_09_17
+      msg: '"ET TROJAN LokiBot Related DNS query"'
+      reference: url,gist.github.com/vulnersCom/65fe44d27d29d7a5de4c176baba45759
+      rev: '3'
+      sid: '2024488'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

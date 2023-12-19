@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<title>|20 7c 20|Log In|20 7c 20|Power Mailer Inbox"'
+      - value: '"</a>Welcome To Power Mailer Inbox"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_17, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_04_17
+      msg: '"ET WEB_SERVER Generic PHP Mailer Accessed on Internal Compromised Server"'
+      rev: '2'
+      sid: '2029941'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

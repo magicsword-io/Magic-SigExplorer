@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/plugins/thinkun-remind/exportData.php?"'
+      - value: '"dirPath="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      fast_pattern: 19,20
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2012_06_22, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS WordPress Thinkun Remind Plugin dirPath Remote File
+        Disclosure Vulnerability"'
+      reference: url,secunia.com/advisories/49461
+      rev: '2'
+      sid: '2014947'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

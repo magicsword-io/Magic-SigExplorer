@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/api.php",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Apache-HttpClient|2F|UNAVAILABLE"'
+      - value: '"method="'
+      - value: '"&app_key="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.Scarelocker outbound connection"'
+      reference: url,www.virustotal.com/en/file/ebed6a20738f68787e19eaafc725bc8c76fba6b104e468ddcfb05a4d88a11811/analysis/
+      rev: '3'
+      service: http
+      sid: '31644'
+      special_options:
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

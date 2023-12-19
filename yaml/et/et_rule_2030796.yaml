@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 10|first-destin.com|00|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_08_26, deployment Perimeter, former_category
+        MALWARE, malware_family Get2, signature_severity Major, updated_at 2020_08_26
+      msg: '"ET TROJAN Observed Get2 CnC Domain in TLS SNI"'
+      rev: '2'
+      sid: '2030796'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

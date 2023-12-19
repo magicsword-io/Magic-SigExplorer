@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/7773/plug/",fast_pattern,nocase'
+      - value: '".ahk"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Downloader.TeamBot additional payload download attempt"'
+      reference: url,www.virustotal.com/#/file/efe51c2453821310c7a34dca3054021d0f6d453b7133c381d75e3140901efd12
+      rev: '2'
+      service: http
+      sid: '50260'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

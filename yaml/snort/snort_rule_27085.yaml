@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PK"'
+      - value: '"|00|pipe.class",distance 0'
+      - value: '"|00|inc.class",distance 0'
+      - value: '"|00|fdp.class",distance 0,fast_pattern'
+      flow: to_client,established
+      flowbits: isset,file.jar
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Unknown Malvertising exploit kit Hostile Jar pipe.class"'
+      rev: '3'
+      service: http
+      sid: '27085'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

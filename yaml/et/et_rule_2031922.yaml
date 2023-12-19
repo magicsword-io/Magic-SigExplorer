@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"############################"'
+      - value: '"### THIS WEBPAGE WAS PROTECTED AT|3a|"'
+      - value: '"############################"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_03_10, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2021_03_10
+      msg: '"ET CURRENT_EVENTS Generic Encoded Phishing Landing 2021-03-10"'
+      rev: '2'
+      sid: '2031922'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

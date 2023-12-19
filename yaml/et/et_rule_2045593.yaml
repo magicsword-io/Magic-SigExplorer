@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"discord.com|0d 0a|"'
+      - value: '"|7b 22|title|22 3a 22|Umbral|20|Stealer|22 2c 22|description|22 3a
+          22|"'
+      - value: '"|22 2a 2a 5f 5f|System|20|Info|5f 5f 2a 2a 5c|r|5c|n"'
+      - value: '"|5c|r|5c|n|5c|r|5c|n|2a 2a 5f 5f|Grabbed|20|Data|5f 5f 2a 2a 5c|r|5c|n|60
+          60 60|"'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_05_04, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family UmbralStealer, confidence High, signature_severity
+        Major, updated_at 2023_05_04
+      msg: '"ET TROJAN Win32/Umbral-Stealer CnC Exfil via Discord (POST)"'
+      pcre: '"/Host\x3a\x20[^\r\n]+discord\.com/Hmi"'
+      reference: url,github.com/Blank-c/Umbral-Stealer
+      rev: '1'
+      sid: '2045593'
+      special_options:
+      - http_method
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Referer|3a| "'
+      - value: '!"Accept-Encoding|3a| "'
+      - value: '".php?"'
+      - value: '"v="'
+      - value: '"&id="'
+      - value: '"&b="'
+      - value: '"&tm="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Oficla Checkin (1)"'
+      reference: url,doc.emergingthreats.net/2010743
+      rev: '7'
+      sid: '2010743'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - nocase
+      - nocase
+      - http_header
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

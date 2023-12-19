@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"powershell"'
+      - value: '"-w"'
+      - value: '"hidden"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_04_10, deployment Internal, former_category
+        POLICY, signature_severity Minor, updated_at 2019_04_10
+      msg: '"ET POLICY Powershell Command With Hidden Window Argument Over SMB - Likely
+        Lateral Movement"'
+      rev: '1'
+      sid: '2027170'
+      special_options:
+      - nocase
+      - nocase
+      within: '17'
+    protocol: tcp
+    source:
+      network: any
+      port: any

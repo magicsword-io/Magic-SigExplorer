@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?"'
+      - value: '"&ai="'
+      - value: '!"Referer"'
+      - value: '"Windows NT"'
+      - value: '!"&adurl="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_10_29, former_category MALWARE, updated_at 2020_10_09
+      msg: '"ET TROJAN Sofacy Request Outbound"'
+      pcre: '"/^\/[a-z]+?\/\?(?:[a-z]+?=[A-Za-z0-9\x5f\x2d]+&){1,}ai=[^&]{5}(?:[A-Za-z0-9\x5f\x2d]{4})*(?:[A-Za-z0-9\x5f\x2d]{2}==|[A-Za-z0-9\x5f\x2d]{3}=|[A-Za-z0-9\x5f\x2d]{4})(?:&|$)/U"'
+      rev: '1237'
+      sid: '2019545'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

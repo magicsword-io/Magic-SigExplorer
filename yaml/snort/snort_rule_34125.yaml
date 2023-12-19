@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|Vitruvian",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE User-Agent Vitruvian"'
+      reference: url,www.virustotal.com/en/file/a59f0e717dc530814dea3fdf65597faaad90ed8bfe3c8b8f6cea0e708049a784/analysis/1426449345/
+      rev: '2'
+      service: http
+      sid: '34125'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gt.jpg?",fast_pattern'
+      - value: '"=",within 1,distance 15'
+      - value: '"bytes=6433-"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dridex dropper variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/8a80760f60f42ce5574a8020c08123a6a8fc2a12d28e8802f3d5101f72c2ad0c/analysis/
+      rev: '2'
+      service: http
+      sid: '37733'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

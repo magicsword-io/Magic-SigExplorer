@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,20,relative,align
+      byte_test: 4,>,512,4,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 87 88|"'
+      - value: '"|00 00 00 01|"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0977, updated_at 2010_09_23
+      msg: '"GPL RPC sadmind TCP NETMGT_PROC_SERVICE CLIENT_DOMAIN overflow attempt"'
+      reference: cve,1999-0977
+      rev: '10'
+      sid: '2101912'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

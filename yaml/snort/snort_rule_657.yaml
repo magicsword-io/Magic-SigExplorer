@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"HELP",nocase'
+      flow: to_server,established
+      isdataat: 500,relative
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Netmanager chameleon SMTPd buffer overflow attempt"'
+      pcre: '"/^HELP\s[^\n]{500}/ims"'
+      reference: cve,1999-0261
+      rev: '20'
+      service: smtp
+      sid: '657'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

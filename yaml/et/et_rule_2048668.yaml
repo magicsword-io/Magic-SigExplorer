@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"Calibration Access Established"'
+      flow: established,to_client
+      metadata: affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target
+        ICS, created_at 2023_10_19, deployment Perimeter, deployment Internal, former_category
+        SCADA, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_10_19
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboratories SEL
+        Calibration Access Level Login Success"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048668'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

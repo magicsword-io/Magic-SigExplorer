@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"<html><title>"'
+      - value: '"</title><body>"'
+      - value: '!"</body>"'
+      - value: '"|f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6 f6|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2012_04_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2012_04_25,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN FakeM RAT CnC Beacon"'
+      reference: md5,3e008471eaa5e788c41c2a0dff3d1a89
+      rev: '5'
+      sid: '2014636'
+      within: '48'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

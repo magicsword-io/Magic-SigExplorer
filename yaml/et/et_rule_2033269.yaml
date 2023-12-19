@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"agent-waterdropx"'
+      flow: established,to_server
+      metadata: created_at 2021_07_07, former_category USER_AGENTS, malware_family
+        PRISM, tag WaterDropX, updated_at 2021_07_07
+      msg: '"ET USER_AGENTS WaterDropX PRISM UA Observed"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+agent-waterdropx/Hmi"'
+      rev: '1'
+      sid: '2033269'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|00 00 0c|iplogger.org"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2017_11_27, former_category POLICY, updated_at 2020_09_15
+      msg: '"ET POLICY IP Check Domain (iplogger .org in TLS SNI)"'
+      rev: '1'
+      sid: '2035949'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

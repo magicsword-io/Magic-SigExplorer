@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/utility.cgi?testType="'
+      - value: '"IP="'
+      - value: '"|7C 7C|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Possible 3Com OfficeConnect Router Default User Account
+        Remote Command Execution Attempt"'
+      pcre: '"/\x7C\x7C.+[a-z]/Ui"'
+      reference: url,doc.emergingthreats.net/2010159
+      rev: '4'
+      sid: '2010159'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/cgi-bin/rtpd.cgi?"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_11_25, cve CVE_2013_1599, updated_at 2020_09_28
+      msg: '"ET EXPLOIT D-Link IP Camera Vulnerable HTTP Request (CVE-2013-1599)"'
+      reference: url,www.coresecurity.com/advisories/d-link-ip-cameras-multiple-vulnerabilities
+      rev: '1'
+      sid: '2019801'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

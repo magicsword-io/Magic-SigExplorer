@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"|2F|Config|2E|txt",fast_pattern,nocase'
+      - value: '"Mozilla|2F|3|2E|0|20 28|compatible|3B 20|Indy|20|Library|29 0D 0A|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Potential Banking Trojan Config File Download"'
+      reference: url,www.virustotal.com/file/2418469245edf860633f791b972e1a8a11e5744c6deb0cc1a55531cba3d0bd7f/analysis/
+      rev: '3'
+      service: http
+      sid: '24885'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

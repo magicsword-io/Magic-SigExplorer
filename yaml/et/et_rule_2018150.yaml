@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/dnsmake.txt"'
+      - value: '"Indy Library"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_02_18, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_27,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Dadobra.Downloader/DNSChanger Dnsmake CnC Beacon"'
+      pcre: '"/User-Agent\x3A\x20[^\r\n]*Indy\x20Library/H"'
+      reference: md5,dd3e5b41238a73d627c6c48108a15452
+      rev: '1'
+      sid: '2018150'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

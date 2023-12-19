@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '8161'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '6'
+        value: '"MOVE /"'
+      - value: '"|0d 0a|Destination|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_05_10, cve CVE_2016_3088,
+        deployment Datacenter, former_category WEB_SPECIFIC_APPS, signature_severity
+        Minor, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Apache ActiveMQ File Upload RCE (CVE-2016-3088)"'
+      reference: url,www.exploit-db.com/exploits/42283/
+      rev: '1'
+      sid: '2025574'
+    protocol: tcp
+    source:
+      network: any
+      port: any

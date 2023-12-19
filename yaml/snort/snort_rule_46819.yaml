@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cab/sts.exe",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Win.Ransomware.Satan payload download"'
+      reference: url,www.virustotal.com/en/file/b686cba1894f8ab5cec0ce5db195022def00204f6cd143a325608ec93e8b74ee/analysis/
+      rev: '1'
+      service: http
+      sid: '46819'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

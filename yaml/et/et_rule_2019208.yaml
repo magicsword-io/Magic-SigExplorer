@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|08 00 00 00 0c 00 00 00 00 00 00 00 00 00 00 00 e8 fd 00 00|"'
+      dsize: '20'
+      flow: established,from_server
+      metadata: created_at 2014_09_22, former_category MALWARE, updated_at 2014_09_22
+      msg: '"ET TROJAN Linux/BillGates Checkin Response"'
+      reference: md5,b4dd0283c73d0b288e7322b95df0cb1b
+      rev: '1'
+      sid: '2019208'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

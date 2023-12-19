@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/Home/send/send_phone.php"'
+      - depth: '15'
+        value: '"identification="'
+      - value: '"&phonenumber="'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_13, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_07_13
+      msg: '"ET CURRENT_EVENTS Successful Standard Bank Credential Phish 2022-07-12
+        M3"'
+      pcre: '"/\/Home\/send\/send_phone\.php$/U"'
+      reference: md5,eb877755540c0c962dfa1129de579f6d
+      rev: '1'
+      sid: '2037758'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

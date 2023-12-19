@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<pre align=center><form method=post>Password|3a| <input type=password
+          name=pass><input type=submit value=|27|>>|27|></form></pre>"'
+      flow: established,from_server
+      isdataat: '!2,relative'
+      metadata: created_at 2014_05_09, former_category WEB_SERVER, updated_at 2014_05_09
+      msg: '"ET WEB_SERVER SUSPICIOUS Possible WebShell Login Form (Outbound)"'
+      reference: url,blog.malwaremustdie.org/2014/05/elf-shared-so-dynamic-library-malware.html
+      rev: '1'
+      sid: '2018459'
+      special_options:
+      - file_data
+      within: '120'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_test: 1,&,16,3,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"`|9E E7 B9|R=|CE 11 AA A1 00 00|i|01 29|?"'
+      distance: '29'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DCERPC irot bind attempt"'
+      rev: '3'
+      sid: '2103236'
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

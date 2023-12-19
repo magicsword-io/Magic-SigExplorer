@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Viruses were found on your computer</title>"'
+      flow: established,from_server
+      metadata: created_at 2013_07_13, updated_at 2013_07_13
+      msg: '"ET TROJAN Cryptmen FakAV page Title"'
+      rev: '1'
+      sid: '2017137'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

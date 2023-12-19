@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|api.ipify.org"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_10_23, former_category POLICY, updated_at 2020_08_18
+      msg: '"ET POLICY External IP Lookup api.ipify.org"'
+      reference: md5,79809fd3e05a852581b897cc4b06aa32
+      rev: '1'
+      sid: '2021997'
+      special_options:
+      - http_method
+      - http_header
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

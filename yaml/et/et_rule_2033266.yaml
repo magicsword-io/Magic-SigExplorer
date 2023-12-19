@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '23'
+        value: '"JOIN|20|#WindowsKubernetes"'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: created_at 2021_07_07, former_category MALWARE, updated_at 2021_07_07
+      msg: '"ET TROJAN Possible Siloscape IRC CnC JOIN Command Observed"'
+      reference: url,unit42.paloaltonetworks.com/siloscape/
+      rev: '2'
+      sid: '2033266'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

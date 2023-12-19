@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/simpleeditor/fileSystem/makeDetailContent.do"'
+      - value: '"|7b 22|command|22 3a 22|cp|22 2c 22|option|22 3a 22|-f|22 2c 22|srcPath|22
+          3a 22|"'
+      - value: '".bmp|22 2c 22|destPath|22 3a 22|"'
+      - value: '".jsp|22 7d|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_11_15, cve CVE_2023_40498,
+        deployment Perimeter, deployment Internal, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_11_16
+      msg: '"ET WEB_SPECIFIC_APPS LG Simple Editor Rename Malicious BMP to JSP Attempt
+        (CVE-2023-40498)"'
+      reference: cve,2023-40498
+      rev: '2'
+      sid: '2049213'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '50'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2022_12_15, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2022_12_15
+      msg: '"ET TROJAN CIA Ransomware - wallpaper/readme retrieval attempt"'
+      pcre: '"/Host\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: url,blog.phylum.io/phylum-detects-active-typosquatting-campaign-in-pypi
+      rev: '1'
+      sid: '2042950'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

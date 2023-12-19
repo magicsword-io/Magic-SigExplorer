@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|03|cli|02|co|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_02_18, deployment Perimeter, former_category
+        INFO, signature_severity Major, updated_at 2022_02_18
+      msg: '"ET INFO URL Shortener Service Domain in DNS Lookup (cli .co)"'
+      rev: '2'
+      sid: '2035231'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '8'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

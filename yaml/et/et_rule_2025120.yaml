@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '4'
+        value: '"/kb/"'
+      - value: '"User-Agent|3a|"'
+      - value: '!"Microsoft Outlook"'
+      - value: '"|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_05, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, tag Smoke_Loader, updated_at 2020_08_24
+      msg: '"ET TROJAN Possible Sharik/Smoke Loader Microsoft Connectivity check"'
+      pcre: '"/^\/kb\/\d{4,8}$/U"'
+      reference: md5,7e604b9e059d054d58c91330d4d88c62
+      rev: '4'
+      sid: '2025120'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|68 04 23 00 00 00|"'
+      dsize: '6'
+      flow: established,to_client
+      metadata: affected_product IoT, attack_target IoT, created_at 2023_06_06, deployment
+        Perimeter, deployment Internal, deployment Datacenter, former_category SCADA,
+        performance_impact Low, confidence High, signature_severity Informational,
+        updated_at 2023_06_07
+      msg: '"ET SCADA IEC-104 STOPDT (Stop Data Transfer) Confirmation"'
+      reference: url,github.com/automayt/ICS-pcap/tree/master/IEC 60870/iec104
+      rev: '1'
+      sid: '2046163'
+    protocol: tcp
+    source:
+      network: any
+      port: '2404'

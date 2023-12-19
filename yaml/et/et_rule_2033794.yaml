@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?name="'
+      - value: '"&prefix=tt"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_08_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag RAT, updated_at 2021_08_25
+      msg: '"ET TROJAN Konni RAT Querying CnC for Commands"'
+      pcre: '"/&prefix=tt$/U"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2021/08/new-variant-of-konni-malware-used-in-campaign-targetting-russia/
+      rev: '1'
+      sid: '2033794'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

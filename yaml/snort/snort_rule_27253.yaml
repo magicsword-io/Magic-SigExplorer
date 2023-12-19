@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <34
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"U|3B| MSIE "'
+      - value: '"|0D 0A|Connection|3A| Keep-Alive|0D 0A|Cache-Control|3A| no-cache",fast_pattern,nocase'
+      - value: '!"Accept-Language:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Cridex Encrypted POST w/ URL Pattern"'
+      pcre: '"/[^ -~\x0d\x0a]{4}/"'
+      reference: url,www.virustotal.com/en/file/cd0cdc216e456b34dc2e4c6db6bacbbba20122489e6751621f921ca53cc7e421/analysis/
+      rev: '2'
+      service: http
+      sid: '27253'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_header
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

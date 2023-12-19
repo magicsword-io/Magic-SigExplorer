@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"expn",nocase'
+      - value: '"decode",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail expn decode"'
+      pcre: '"/^expn\s+decode/ims"'
+      reference: nessus,10248
+      rev: '18'
+      service: smtp
+      sid: '659'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

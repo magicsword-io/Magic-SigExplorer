@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Custom_56562_HttpClient/VER_STR_COMMA"'
+      flow: established,to_server
+      metadata: created_at 2013_05_23, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Suspicious User Agent Custom_56562_HttpClient/VER_STR_COMMA"'
+      rev: '3'
+      sid: '2016916'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

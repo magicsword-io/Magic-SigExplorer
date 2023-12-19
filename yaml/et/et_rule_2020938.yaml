@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - offset: '1'
+        value: '"/"'
+      - value: '!"Accept|3a|"'
+      - value: '!"Referer|3a|"'
+      - depth: '6'
+        value: '"unkey="'
+      - value: '!"&"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_04_17, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_05_21,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN PunkeyPOS HTTP CnC Beacon 4"'
+      pcre: '"/\/$/U"'
+      reference: md5,43c277dd56f9c6de4b8dc249e12039df
+      rev: '1'
+      sid: '2020938'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

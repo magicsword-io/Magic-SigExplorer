@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"{|22|children|22|:[{|22|name|22|:",fast_pattern,nocase'
+      - value: '"|81|",depth 1'
+      - value: '"|22 2C 22|value|22 3A|",distance 0,nocase'
+      flow: established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Unix.Malware.Drovorub cnc inbound connection attempt"'
+      pcre: '"/^\x81.{1,9}\x7b\x22children\x22\x3a\x5b\x7b\x22name\x22\x3a\x22[a-z0-9_\x2e]+\x22\x2c\x22value\x22\x3a\x22[a-z0-9\x2b\x2f]+={0,2}\x22\x7d/ims"'
+      reference: url,media.defense.gov/2020/Aug/13/2002476465/-1/-1/0/CSA_DROVORUB_RUSSIAN_GRU_MALWARE_AUG_2020.PDF
+      rev: '1'
+      sid: '54793'
+    protocol: tcp
+    source:
+      network: any
+      port: any

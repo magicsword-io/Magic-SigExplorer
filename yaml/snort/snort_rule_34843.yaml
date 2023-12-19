@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|EMERY|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user agent - EMERY - Win.Trojan.W97M"'
+      reference: url,www.virustotal.com/en/file/d0f0a446162c6dafc58e4034f4879275d3766f20336b6998cb5a5779d995a243/analysis/
+      rev: '3'
+      service: http
+      sid: '34843'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '33'
+        value: '"S|00|T|00|A|00|R|00|T|00|S|00|E|00|R|00|V|00|E|00|R|00|B|00|U|00|F|00|F|00|E|00|R"'
+      flow: established,from_server
+      metadata: created_at 2014_01_28, former_category MALWARE, updated_at 2014_01_28
+      msg: '"ET TROJAN Win32/Xtrat C2 Response"'
+      reference: md5,f45b1b82c849fbbea3374ae7e9200092
+      rev: '2'
+      sid: '2018027'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

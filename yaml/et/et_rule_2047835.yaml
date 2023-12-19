@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|internetsehat|07|bebasid|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_30, deployment Perimeter,
+        signature_severity Informational, tag DoH, updated_at 2023_08_30, reviewed_at
+        2023_08_30
+      msg: '"ET INFO Observed DNS over HTTPS Domain (internetsehat .bebasid .com)"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2047835'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '27'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

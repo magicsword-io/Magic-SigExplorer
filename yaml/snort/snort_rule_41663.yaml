@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '14'
+      classtype: trojan-activity
+      contents:
+      - value: '"/Servermac.php",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Osx.Downloader.MacDownloader variant outbound connection"'
+      reference: url,virustotal.com/en/file/7a9cdb9d608b88bd7afce001cb285c2bb2ae76f5027977e8635aa04bd064ffb7/analysis/
+      rev: '2'
+      service: http
+      sid: '41663'
+      special_options:
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

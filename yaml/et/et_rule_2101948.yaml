@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '53'
+    details:
+      classtype: attempted-recon
+      contents:
+      - offset: '14'
+        value: '"|00 00 FC|"'
+      metadata: created_at 2010_09_23, cve CVE_1999_0532, updated_at 2010_09_23
+      msg: '"GPL DNS zone transfer UDP"'
+      reference: nessus,10595
+      rev: '8'
+      sid: '2101948'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

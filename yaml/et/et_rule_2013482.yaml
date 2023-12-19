@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|jifr|03|net"'
+      distance: '1'
+      metadata: created_at 2011_08_29, updated_at 2020_09_01
+      msg: '"ET TROJAN DNS query for Morto RDP worm related domain jaifr.net"'
+      reference: url,www.f-secure.com/weblog/archives/00002227.html
+      rev: '4'
+      sid: '2013482'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

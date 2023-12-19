@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"VICTIM-PC__"'
+      - value: '"/screen/"'
+      - value: '".jpg"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_11, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_11
+      msg: '"ET TROJAN TA453 Related Activity (FTP)"'
+      reference: url,research.checkpoint.com/2022/apt35-exploits-log4j-vulnerability-to-distribute-new-modular-powershell-toolkit/
+      rev: '1'
+      sid: '2034890'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

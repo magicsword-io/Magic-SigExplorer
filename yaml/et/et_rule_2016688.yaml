@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".jar"'
+      - value: '"RETR "'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: isset,ET.Java.FTP.Logon
+      metadata: created_at 2013_03_29, updated_at 2019_10_08
+      msg: '"ET FTP Outbound Java Downloading jar over FTP"'
+      pcre: '"/^[^\r\n]+\.jar/Ri"'
+      rev: '2'
+      sid: '2016688'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

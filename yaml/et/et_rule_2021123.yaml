@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Hacked"'
+      flow: to_server,established
+      metadata: created_at 2015_05_20, updated_at 2020_05_22
+      msg: '"ET TROJAN Worm.VBS.Jenxcus.H User Agent"'
+      reference: url,www.virustotal.com/en/file/a00eaca44c480843b1a8a11ac8870a931477be08d98f0476d1f8f60433e3f40a/analysis
+      rev: '1'
+      sid: '2021123'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

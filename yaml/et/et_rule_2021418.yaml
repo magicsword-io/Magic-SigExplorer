@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Accept|3a 20|text/html, application/xhtml+xml, */*|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_07_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_17,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Bedep HTTP POST CnC Beacon"'
+      pcre: '"/^(?:Connection\x3a[^\r\n]+\r\n)?(?:Content-Type\x3a[^\r\n]+\r\n)?Accept\x3a[^\r\n]+\r\n(?:Accept-Encoding\x3a[^\r\n]+\r\n)?Accept-Language\x3a[^\r\n]+\r\n(?:Content-Type\x3a[^\r\n]+\r\n)?(?:Referer\x3a[^\r\n]+\.php[^\r\n]*?\r\n)?User-Agent\x3a[^\r\n]+(?:
+        MSIE |rv\x3a11)/Hi"'
+      rev: '7'
+      sid: '2021418'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

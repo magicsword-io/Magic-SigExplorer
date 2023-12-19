@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/webcm"'
+      - depth: '10'
+        value: '"getpage="'
+      - value: '"errorpage="'
+      - value: '"/html/index.html&login|3a|command"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_04_09, updated_at 2020_09_30
+      msg: '"ET EXPLOIT FritzBox RCE POST Request"'
+      reference: url,www.exploit-db.com/exploits/33136
+      rev: '2'
+      sid: '2020867'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '14'
+    protocol: tcp
+    source:
+      network: any
+      port: any

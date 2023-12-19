@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/plugins/is-human/engine.php?"'
+      - value: '"action="'
+      - value: '"type="'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2011_05_20, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress Plugin Is-human type Parameter Remote
+        Code Execution Attempt"'
+      pcre: '"/type=\w/Ui"'
+      reference: url,exploit-db.com/exploits/17299
+      rev: '2'
+      sid: '2012838'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

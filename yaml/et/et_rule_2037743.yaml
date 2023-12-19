@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?Chatid="'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary=|22|"'
+      - value: '"|2d|"'
+      - value: '"|2d|4"'
+      - value: '"|2d|"'
+      - value: '"|2d|"'
+      - value: '"|22 0d 0a|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"|0d 0a|Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d|file|3b
+          20|filename|3d|q|3b 20|filename|2a 3d|utf|2d|8|27 27|q|0d 0a 0d 0a|PK|03
+          04|"'
+      distance: '12'
+      fast_pattern: 60,20
+      flow: established,to_server
+      metadata: created_at 2022_07_12, former_category MALWARE, updated_at 2022_07_12
+      msg: '"ET TROJAN X-Files Stealer CnC Exfil Activity M2"'
+      reference: md5,c128193024853118bd07d4a4e89200bf
+      rev: '1'
+      sid: '2037743'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_client_body
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

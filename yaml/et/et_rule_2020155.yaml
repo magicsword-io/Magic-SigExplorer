@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|e8 03 00 00|"'
+      flow: established,from_server
+      flowbits: isset,ET.Reslurp.D.Client
+      metadata: created_at 2015_01_08, former_category MALWARE, updated_at 2015_01_08
+      msg: '"ET TROJAN Win32/Recslurp.D C2 Response"'
+      reference: md5,fcf364abd9c82d89f8d0b4b091276b41
+      rev: '2'
+      sid: '2020155'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: 9000:10000

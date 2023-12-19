@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '29'
+        value: '"POST|20|/trustwallet/process.php"'
+      - depth: '4'
+        value: '"key="'
+      - value: '"&import=Import"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2022_10_11, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_04_04, reviewed_at 2023_11_02
+      msg: '"ET CURRENT_EVENTS Successful Trust Wallet Phish 2022-10-11"'
+      reference: md5,d5ec9f1577822439757946ce465f89bf
+      rev: '2'
+      sid: '2039168'
+      special_options:
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

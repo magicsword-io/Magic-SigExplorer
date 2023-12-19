@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| Mozilla/5.0 (Windows NT 6.1|3b| WOW64) AppleWebKit/537.11
+          (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11|0d 0a|"'
+      - depth: '122'
+      - value: '!"Referer|3a| "'
+      - value: '!"Accept|3a| "'
+      fast_pattern: 86,20
+      flow: to_server,established
+      metadata: created_at 2013_03_08, former_category MALWARE, updated_at 2020_09_15
+      msg: '"ET TROJAN Win32/Urausy.C Checkin"'
+      pcre: '"/^\/[a-z-_]+?\.(php|html)$/Ui"'
+      reference: md5,1494b8b9f42753a4bc1762d8f3287db6
+      rev: '2'
+      sid: '2016553'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>80'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

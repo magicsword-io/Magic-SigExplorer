@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"document|2e|getElementsByTagName|28 22|script|22 29 3b|"'
+      - value: '"var|20|wantmee|20 3d 20|false|3b|"'
+      - value: '"wantmee|3d|true|3b|"'
+      - value: '"if|28|wantmee|3d 3d|false|29|"'
+      - value: '"async|3d|true|3b|"'
+      - value: '"|2e|src|3d|String|2e|fromCharCode|28|"'
+      - value: '"document|2e|currentScript|2e|parentNode|2e|insertBefore"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2022_09_30
+      msg: '"ET TROJAN WP CharCode Inject"'
+      reference: md5,be4c9c2b5b96eb2eafb32105036da953
+      rev: '1'
+      sid: '2039077'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

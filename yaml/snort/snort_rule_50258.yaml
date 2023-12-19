@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '15'
+      classtype: trojan-activity
+      contents:
+      - value: '"/7773/index.php",fast_pattern,nocase'
+      - value: '"&string="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Downloader.TeamBot outbound cnc connection"'
+      reference: url,www.virustotal.com/#/file/91637c3b2fdb9fe50e80dd872580856275eb0275e885fec4b47ffcbe7d724b61
+      rev: '2'
+      service: http
+      sid: '50258'
+      special_options:
+      - http_uri
+      - http_raw_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

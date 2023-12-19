@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '32'
+        value: '"|88 04|              "'
+      itype: '8'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL ICMP_INFO PING Seer Windows"'
+      reference: arachnids,166
+      rev: '8'
+      sid: '2100380'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".js?callback="'
+      - value: '"&data=bG9nP"'
+      - value: '"JnB3ZD"'
+      - value: '"&_="'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_05_09, former_category CURRENT_EVENTS, updated_at
+        2020_05_21
+      msg: '"ET TROJAN Possible CryptoPHP Leaking Credentials May 8 2015 M1"'
+      pcre: '"/&_=\d+$/U"'
+      reference: url,research.zscaler.com/2015/05/compromised-wordpress-sites-leaking.html
+      rev: '1'
+      sid: '2021081'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

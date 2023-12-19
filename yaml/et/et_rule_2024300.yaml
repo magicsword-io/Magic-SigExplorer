@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ayylmaotjhsstasdfasdfasdfasdfasdfasdfasdf"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_16, cve CVE_2017_0144, deployment Perimeter,
+        former_category MALWARE, malware_family wannacry, signature_severity Major,
+        tag Ransomware, updated_at 2020_10_09, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN W32/WannaCry.Ransomware Killswitch Domain HTTP Request 3"'
+      pcre: '"/Host\x3a\x20[^\s]*ayylmaotjhsstasdfasdfasdfasdfasdfasdfasdf\.[a-z]{2,5}\x0d\x0a/Hi"'
+      reference: url,www.bleepingcomputer.com/news/security/telefonica-tells-employees-to-shut-down-computers-amid-massive-ransomware-outbreak/
+      rev: '4'
+      sid: '2024300'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

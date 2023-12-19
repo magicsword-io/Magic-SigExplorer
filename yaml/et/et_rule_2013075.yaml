@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|in|00|"'
+      distance: '0'
+      metadata: created_at 2011_06_21, updated_at 2019_08_29
+      msg: '"ET TROJAN Large DNS Query possible covert channel"'
+      pcre: '"/\x00[0-9]{4,7}\x02in\x00/i"'
+      rev: '9'
+      sid: '2013075'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

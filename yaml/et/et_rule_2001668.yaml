@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 4,>,36,0,relative,little
+      classtype: misc-attack
+      contents:
+      - value: '"RIFF"'
+      - value: '"ACON"'
+      - value: '"anih"'
+      distance: '160'
+      flow: to_client,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT Exploit MS05-002 Malformed .ANI stack overflow attack"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001668
+      rev: '6'
+      sid: '2001668'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

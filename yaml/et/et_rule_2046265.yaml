@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|cryptohedgefund|02|us|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_14, deployment Perimeter, former_category
+        MALWARE, malware_family GreetingGhoul, signature_severity Major, tag Stealer,
+        updated_at 2023_06_14
+      msg: '"ET TROJAN GreetingGhoul Stealer Domain in DNS Lookup (cryptohedgefund
+        .us)"'
+      reference: url,kaspersky.com/blog/doublefinger-crypto-stealer/48418/
+      rev: '1'
+      sid: '2046265'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3A 20|iexplore"'
+      - value: '!"Host|3a 20|su.pctools.com|0d 0a|"'
+      - value: '!".advent.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_08_21, deployment Perimeter,
+        deployment Internal, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence Low, signature_severity Informational, updated_at 2020_08_18
+      msg: '"ET INFO SUSPICIOUS UA (iexplore)"'
+      reference: md5,b0e8ce16c42dee20d2c1dfb1b87b3afc
+      rev: '6'
+      sid: '2017365'
+      special_options:
+      - http_header
+      - nocase
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

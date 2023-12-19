@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"cgi-bin/create_user.cgi",fast_pattern,nocase'
+      - value: '"function=",nocase'
+      - value: '"subfun=",nocase'
+      - value: '"NAME=",nocase'
+      - value: '"PASSWD=",nocase'
+      - value: '"VERIFY=",nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP QTS cross site request forgery attempt"'
+      reference: cve,2013-0144
+      rev: '3'
+      service: ftp-data,http,imap,pop3
+      sid: '46342'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

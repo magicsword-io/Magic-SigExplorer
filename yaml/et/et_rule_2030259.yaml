@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '59'
+        value: '"/view/IPV6/ipv6networktool/traceroute/ping.php?text_target="'
+      - value: '"&text_pingcount="'
+      - value: '"&text_packetsize="'
+      - value: '"|7c|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2020_06_08,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, updated_at
+        2020_06_08
+      msg: '"ET EXPLOIT Multiple Router RCE Routersploit"'
+      reference: url,github.com/threat9/routersploit/blob/master/routersploit/modules/exploits/routers/netsys/multi_rce.py
+      rev: '2'
+      sid: '2030259'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

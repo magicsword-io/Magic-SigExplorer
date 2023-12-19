@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/social/api/feed/aggregation"'
+      - value: '"ticket="'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_07_10, deployment Datacenter,
+        former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET WEB_SPECIFIC_APPS Elektronischer Leitz-Ordner 10 - SQL Injection"'
+      pcre: '"/ticket=[^&]*[\x22\x27\x28]/Ui"'
+      reference: url,exploit-db.com/exploits/44999/
+      rev: '2'
+      sid: '2025819'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

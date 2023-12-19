@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"=11&"'
+      - value: '"=2"'
+      - value: '"&"'
+      - value: '"=410&"'
+      - value: '"=650&"'
+      - value: '"=51"'
+      distance: '1'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_17, deployment Perimeter, former_category
+        MALWARE, malware_family APT29_CozyCar, signature_severity Major, tag c2, updated_at
+        2020_08_04, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN CozyCar CnC Beacon"'
+      pcre: '"/=11&[^&]{1,7}?=2[^&]{6,12}&[^&]{1,7}?=410&[^&]{1,7}?=650&[^&]{1,7}?=51$/U"'
+      reference: url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+      rev: '1'
+      sid: '2023965'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      within: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/inc/smarty/libs/init.php?"'
+      - value: '"sitepath="'
+      flow: established,to_server
+      metadata: created_at 2012_06_29, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS AdaptCMS sitepath parameter Remote File Inclusion
+        Vulnerability"'
+      pcre: '"/sitepath=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/91022/AdaptCMS-2.0.0-Beta-Remote-File-Inclusion.html
+      rev: '1'
+      sid: '2014993'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

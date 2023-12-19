@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| USR-KL",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Vbs.Downloader.Kryptik known malicious user-agent string
+        "'
+      reference: url,www.virustotal.com/en/file/7975cbaa5657d89b45126bf739fd84acd5bbe724f372a20360bd4fc038b67541
+      rev: '2'
+      service: http
+      sid: '46435'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

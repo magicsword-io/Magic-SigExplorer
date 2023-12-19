@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WebKitFormBoundary"'
+      - value: '"|20|form-data|3B 20|name=|22|uid|22|",fast_pattern'
+      - value: '"|20|form-data|3B 20|name=|22|uname|22|",distance 0'
+      - value: '"|20|form-data|3B 20|name=|22|cname|22|",distance 0'
+      - value: '"|20|form-data|3B 20|name=|22|ltime|22|",distance 0'
+      - value: '"|20|form-data|3B 20|name=|22|uright|22|",distance 0'
+      - value: '"|20|form-data|3B 20|name=|22|sysinfo|22|",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.X-Mas outbound connection"'
+      reference: url,virustotal.com/en/file/83a2b429b969fc5cd38b6c5072391c3513b3b914f54ea80e245b243dbd5377be/analysis/1484847306/
+      rev: '3'
+      service: http
+      sid: '41442'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

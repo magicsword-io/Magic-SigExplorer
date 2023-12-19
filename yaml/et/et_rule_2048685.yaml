@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/CSS/S7Web.css"'
+      flow: established,to_server
+      metadata: affected_product Siemens_S7_Series, attack_target ICS, created_at
+        2023_10_19, deployment Perimeter, deployment Internal, former_category SCADA,
+        performance_impact Low, confidence High, signature_severity Minor, updated_at
+        2023_10_19
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Possible Siemens S7-1200 Unauthorized Access
+        Attempt - Request for /CSS/S7Web.css"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048685'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

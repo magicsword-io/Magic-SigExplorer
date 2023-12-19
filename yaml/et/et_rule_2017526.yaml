@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!-- vbe -->"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: isset,ET.Hiloti
+      metadata: created_at 2013_09_25, former_category MALWARE, updated_at 2013_09_25
+      msg: '"ET TROJAN Hiloti/Mufanom CnC Response"'
+      rev: '2'
+      sid: '2017526'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"zippyshare.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_03_06, deployment
+        Perimeter, former_category INFO, performance_impact Low, signature_severity
+        Informational, updated_at 2023_03_06
+      msg: '"ET INFO Observed File Sharing Domain (zippyshare .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0e|.\x2e)zippyshare\.com/R"'
+      reference: md5,fe5cec314cb00b1e74004cbbca5eb949
+      rev: '1'
+      sid: '2044436'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

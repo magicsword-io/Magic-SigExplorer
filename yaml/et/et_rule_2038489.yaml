@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|clik|03|rip|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_08_11, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_08_11
+      msg: '"ET INFO URL Shortening/Redirect Service Domain in DNS Lookup (clik .rip)"'
+      rev: '2'
+      sid: '2038489'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '10'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

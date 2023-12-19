@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"securityfocus"'
+      - value: '"securityfocus"'
+      distance: '50'
+      dsize: '>69'
+      itype: '3'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Port Unreachable Response to Xprobe2 OS Fingerprint Scan"'
+      reference: url,doc.emergingthreats.net/2009298
+      rev: '6'
+      sid: '2009298'
+      within: '15'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

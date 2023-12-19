@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|0b 00 00 00|"'
+      - value: '"Windows|20|"'
+      - value: '"|00|"'
+      - value: '"|7c b4 ab b2 a5 7c|"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_01_07, former_category MALWARE, updated_at 2020_12_18
+      msg: '"ET TROJAN Win32.Nitol.K Variant CnC"'
+      reference: md5,56bff68317a0af08f749a1c717125cf3
+      rev: '3'
+      sid: '2022337'
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

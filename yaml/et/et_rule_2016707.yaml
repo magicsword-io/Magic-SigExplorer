@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"svchost.exe"'
+      - value: '"User-Agent|3a| Mozilla/4.0 (compatible|3b| MSIE 5.01|3b| Windows
+          NT 5.0)"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_04_01, former_category MALWARE, updated_at 2020_09_18
+      msg: '"ET TROJAN Win32/Enchanim Checkin"'
+      reference: md5,539d3b15e9c3882ac70bb1ac7f90a837
+      rev: '2'
+      sid: '2016707'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

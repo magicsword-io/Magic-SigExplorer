@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|securedesk|03|one|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_11_23, deployment Perimeter,
+        former_category MALWARE, malware_family SideCopy, signature_severity Major,
+        updated_at 2021_11_23
+      msg: '"ET TROJAN SideCopy Related Domain in DNS Lookup (securedesk .one)"'
+      reference: md5,a42ea41f21e36173bb0fc268262a15ae
+      rev: '2'
+      sid: '2034538'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

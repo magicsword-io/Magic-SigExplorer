@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '32764'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"ScMM"'
+      flow: established,to_server
+      isdataat: 9,relative
+      metadata: created_at 2014_01_04, updated_at 2014_01_04
+      msg: '"ET EXPLOIT MMCS service (Big Endian)"'
+      reference: url,github.com/elvanderb/TCP-32764
+      rev: '2'
+      sid: '2017924'
+    protocol: tcp
+    source:
+      network: any
+      port: any

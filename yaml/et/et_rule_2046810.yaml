@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/MSHTML_"'
+      - value: '"/start.xml"'
+      flow: established,to_server
+      flowbits: set,ET.CVE-2023-36884.Storm-0978
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_07_12, cve CVE_2023_36884, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, tag Storm_0978, updated_at 2023_08_02, reviewed_at 2023_10_06
+      msg: '"ET EXPLOIT Possible Storm-0978 CVE-2023-36884 Exploitation Attempt M1"'
+      pcre: '"/\/start\.xml$/U"'
+      reference: cve,2023-36884
+      rev: '2'
+      sid: '2046810'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

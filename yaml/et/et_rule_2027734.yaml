@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|www.yopmail.com|0d 0a|"'
+      - value: '"/es/inbox.php?login="'
+      - value: '"&p="'
+      - value: '"&d=&ctrl=&scrl=&spam=true&yf="'
+      - value: '!"Referer|3a 20|"'
+      distance: '1'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_07_19, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, tag RAT, updated_at
+        2020_08_31
+      msg: '"ET TROJAN Proyecto RAT Variant - Yopmail Login attempt (set)"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/spam-campaign-targets-colombian-entities-with-custom-proyecto-rat-email-service-yopmail-for-cc/
+      rev: '2'
+      sid: '2027734'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      within: '29'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

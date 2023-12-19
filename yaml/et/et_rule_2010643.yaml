@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '5'
+        value: '"USER "'
+      - value: '"administrator"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Multiple FTP Administrator Login Attempts from Single Source
+        - Possible Brute Force Attempt"'
+      reference: url,doc.emergingthreats.net/2010643
+      rev: '3'
+      sid: '2010643'
+      special_options:
+      - nocase
+      - nocase
+      threshold: type threshold, track by_src, count 5, seconds 60
+      within: '25'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".js?cp="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_10_03, updated_at 2020_09_21
+      msg: '"ET CURRENT_EVENTS DotkaChef EK initial landing from Oct 02 2013 mass-site
+        compromise EK campaign"'
+      pcre: '"/\/[A-F0-9]{8}\.js\?cp=/U"'
+      rev: '1'
+      sid: '2017555'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '514'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00|root|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-SERVICES rsh root"'
+      pcre: '"/^(\d{1,5})?\x00?[^\x00]+?\x00root\x00/i"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20130109-lms
+      rev: '17'
+      sid: '610'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

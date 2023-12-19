@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"clsid"'
+      - value: '"2745E5F5-D234-11D0-847A-00C04FD7BB08"'
+      - value: '"|2e|AddContextRef"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_12_23, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX WMITools ActiveX Remote Code Execution"'
+      pcre: '"/<object\s*[^>]*\s*classid\s*=\s*[\x22|\x27]\s*clsid\s*\x3a\s*{?\s*2745E5F5-D234-11D0-847A-00C04FD7BB08\s*}?(.*)\>/si"'
+      reference: url,www.exploit-db.com/exploits/15809/
+      rev: '2'
+      sid: '2012097'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

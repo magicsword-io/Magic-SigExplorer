@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| MSID ["'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_10_13
+      msg: '"ET TROJAN Downloader-5265/Torpig/Anserin/Sinowal Unique UA (MSID)"'
+      reference: url,doc.emergingthreats.net/2003590
+      rev: '8'
+      sid: '2003590'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

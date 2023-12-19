@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"c|3A 5C|"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR BackConstruction 2.1 Connection"'
+      rev: '11'
+      sid: '152'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: 5401:5402

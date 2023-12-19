@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c 74 69 74 6c 65 3e 50 72 d0 be ce bd d0 b5 20 ce a5 d0 be cf 85
+          72 20 c6 96 64 d0 b5 6e 74 69 74 79|"'
+      - value: '"<form action=need.php"'
+      - value: '"method=post"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_03_23, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_03_23
+      msg: '"ET CURRENT_EVENTS UK GOV Identity Verification Phishing Landing"'
+      rev: '2'
+      sid: '2029702'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

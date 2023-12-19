@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a 20|PHP/5."'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2016_01_12,
+        deployment Perimeter, signature_severity Major, tag User_Agent, updated_at
+        2020_06_17
+      msg: '"ET WEB_SPECIFIC_APPS Invalid/Suspicious User-Agent (PHP)"'
+      pcre: '"/^\{\d(\|\d){1,}\}\.\{\d(\|\d){1,}\}\{\d(\|\d){1,}\}/R"'
+      rev: '2'
+      sid: '2022350'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"my $processo"'
+      - value: '"my @adms="'
+      - value: '"my @canais="'
+      - value: '"|23|gh|30|sts"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2014_08_19, updated_at 2020_08_19
+      msg: '"ET TROJAN ShellBot.C retrieval"'
+      reference: url,pastebin.com/C0arvGxU
+      rev: '1'
+      sid: '2018953'
+      special_options:
+      - file_data
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

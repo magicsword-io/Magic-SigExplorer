@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/updaterinfo.bin",fast_pattern,nocase'
+      - value: '"User-Agent: wget"'
+      - value: '"Referer:"'
+      - value: '"/updater/",within 50'
+      - value: '!"Accept-Encoding"'
+      - value: '!"Accept-"'
+      - value: '!"Content-"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zacinlo outbound connection"'
+      reference: url,labs.bitdefender.com/2018/06/six-years-and-counting-inside-the-complex-zacinlo-ad-fraud-operation/
+      rev: '2'
+      service: http
+      sid: '49789'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

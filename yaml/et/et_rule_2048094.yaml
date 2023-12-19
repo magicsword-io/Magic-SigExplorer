@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|act|22 0d 0a 0d
+          0a|send_message|0d 0a|--"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|hwid|22 0d 0a
+          0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|lid|22 0d 0a 0d
+          0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22 3b|"'
+      fast_pattern: 36,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_09_15, deployment Perimeter, former_category
+        MALWARE, malware_family lumma, confidence High, signature_severity Critical,
+        updated_at 2023_09_15, reviewed_at 2023_09_15
+      msg: '"ET TROJAN [ANY.RUN] Win32/Lumma Stealer Exfiltration"'
+      reference: url,app.any.run/tasks/409f5138-3853-4910-80d4-3c380b969274
+      rev: '1'
+      sid: '2048094'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      threshold: type limit,seconds 30,count 1,track by_dst
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

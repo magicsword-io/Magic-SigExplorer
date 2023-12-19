@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"redim"'
+      - value: '"Preserve"'
+      - value: '"VBScript"'
+      - value: '"chrw"'
+      - value: '"32767"'
+      - value: '"chrw"'
+      - value: '"2176"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2016_05_06, cve CVE_2014_6332, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible Internet Explorer VBscript failure to handle error
+        case information disclosure CVE-2014-6332 Common Construct M2"'
+      rev: '1'
+      sid: '2022797'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

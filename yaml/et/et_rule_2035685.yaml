@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0e|eternitypr.net"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_31, deployment Perimeter,
+        signature_severity Major, updated_at 2022_03_31
+      msg: '"ET TROJAN Observed Win32/Eternity Stealer Domain (eternitypr .net in
+        TLS SNI)"'
+      reference: url,twitter.com/James_inthe_box/status/1509271782578040832
+      rev: '2'
+      sid: '2035685'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

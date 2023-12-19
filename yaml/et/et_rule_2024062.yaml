@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8880'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"SOAPAction|3a| |22|urn:AdminService|22|"'
+      - value: '"<objectname xsi|3a|type=|22|ns1|3a|javax.management.ObjectName|22|>"'
+      - value: '"vcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbn"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product IBM_Websphere, attack_target Server, created_at 2017_03_15,
+        cve CVE_2015_7450, deployment Perimeter, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2019_10_08
+      msg: '"ET EXPLOIT IBM WebSphere - RCE Java Deserialization"'
+      reference: cve,2015-7450
+      rev: '2'
+      sid: '2024062'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

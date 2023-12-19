@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"404"'
+      - value: '"|00|"'
+      - value: '"|00|MZ"'
+      - value: '"This program must be run under Win32"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_30, deployment Perimeter, malware_family
+        Sharik, malware_family Smoke_Loader, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_03
+      msg: '"ET TROJAN Sharik/Smoke Loader Receiving Payload"'
+      reference: md5,65c7426b056482fcda962a7a14e86601
+      rev: '1'
+      sid: '2023567'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

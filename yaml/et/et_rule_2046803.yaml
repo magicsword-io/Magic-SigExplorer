@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 08|tryno.ru"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_11, deployment Perimeter,
+        malware_family Cinoshi_Clipper, performance_impact Low, signature_severity
+        Major, updated_at 2023_07_11
+      msg: '"ET TROJAN Cinoshi Clipper Domain  (tryno .ru) in TLS SNI"'
+      reference: url,blog.cyble.com/2023/03/23/cinoshi-project-and-the-dark-side-of-free-maas/
+      rev: '1'
+      sid: '2046803'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

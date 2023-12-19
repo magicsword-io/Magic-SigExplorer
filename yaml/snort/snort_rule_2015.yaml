@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A0|",depth 4,offset 12'
+      - value: '"|00 00 00 02|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC portmap UNSET attempt UDP 111"'
+      reference: cve,2011-0321
+      rev: '14'
+      service: sunrpc
+      sid: '2015'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

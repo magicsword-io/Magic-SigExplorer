@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SIP_SERVERS
+      port: $SIP_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"INVITE",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-VOIP inbound INVITE message"'
+      reference: url,www.ietf.org/rfc/rfc3261.txt
+      rev: '8'
+      service: sip
+      sid: '11968'
+      sip_method: invite
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

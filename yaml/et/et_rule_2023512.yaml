@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '6379'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        value: '"*"'
+      - value: '"|0D 0A|set|0D 0A|"'
+      - value: '"ssh-rsa "'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_11_15, deployment Datacenter,
+        signature_severity Major, tag SCAN_Redis_SSH, updated_at 2016_11_15
+      msg: '"ET EXPLOIT REDIS Attempted SSH Key Upload"'
+      reference: url,antirez.com/news/96
+      rev: '1'
+      sid: '2023512'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

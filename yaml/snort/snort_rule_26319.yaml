@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|C:|5C|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC file path used as User-Agent - potential Trojan"'
+      pcre: '"/^User\x2dAgent\x3a\x20c\x3a\x5c[^\r\n]*?\.exe\r\n/im"'
+      reference: url,www.virustotal.com/en/file/5dd932e083cf9d910bc43bb998983f5ec35691c1b84708a355f7c46b358fa375/analysis/
+      rev: '3'
+      service: http
+      sid: '26319'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

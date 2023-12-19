@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"SF Installer"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, updated_at 2020_10_12, mitre_tactic_id TA0009,
+        mitre_tactic_name Collection, mitre_technique_id T1005, mitre_technique_name
+        Data_from_local_system
+      msg: '"ET MALWARE Surfaccuracy.com Spyware Install User-Agent (SF Installer)"'
+      reference: url,doc.emergingthreats.net/2003428
+      rev: '17'
+      sid: '2003428'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

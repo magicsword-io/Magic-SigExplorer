@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: '[!$HTTP_PORTS,1024:]'
+    details:
+      classtype: not-suspicious
+      contents:
+      - depth: '20'
+        value: '"Swarm|20|protocol"'
+      dsize: <100
+      flow: established,to_server
+      metadata: created_at 2019_07_31, updated_at 2019_07_31
+      msg: '"ET POLICY Windows Update P2P Activity"'
+      rev: '2'
+      sid: '2027766'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

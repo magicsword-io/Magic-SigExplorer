@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '27'
+        value: '"/meimaii/meimaii.html?user="'
+      - value: '"&computer="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_08_29, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_08_29
+      msg: '"ET TROJAN Win32/Meimaii Checkin"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,4f8148aa011570d9fc0541ea325e6139
+      rev: '1'
+      sid: '2038666'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

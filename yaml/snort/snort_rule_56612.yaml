@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Sec-Fetch-Dest:",nocase'
+      - value: '"empty",within 10,nocase'
+      - value: '"request_origin=user",fast_pattern,nocase'
+      - value: '"parent_request_id=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Rat.Tool.FeyeYelp variant outbound beacon attempt"'
+      pcre: '"/parent_request_id=[^&\x3B]{128}/i"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56612'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

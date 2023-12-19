@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|55 04 03|"'
+      - value: '"|1a|Let''s Encrypt Authority X3"'
+      - value: '"|0e|iplocation.com"'
+      distance: '1'
+      flow: from_server,established
+      metadata: attack_target Client_Endpoint, created_at 2019_02_05, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Minor,
+        tag IP_address_lookup_website, updated_at 2020_11_04
+      msg: '"ET POLICY Observed External IP Lookup SSL Cert"'
+      rev: '2'
+      sid: '2026882'
+      within: '27'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 30<=>65
+      classtype: misc-activity
+      contents:
+      - value: '"/atJs/v",fast_pattern'
+      - value: '"/Client/",within 8,distance 1'
+      - value: '!"Accept"'
+      - value: '!"User-Agent"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Eorezo outbound connection"'
+      reference: url,www.virustotal.com/en/file/a31d47e5d6885c32cad2fb5799033982e7f9d070ed350cd2025dd8594d067651/analysis/1426449407/
+      rev: '2'
+      service: http
+      sid: '34236'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|76 69 65 77 2d 73 6f 75 72 63 65 3a|"'
+      - value: '"|61 70 70 6c 69 63 61 74 69 6f 6e 2f 78 2d 6d 6f 7a 2d 70 6c 61 79
+          70 72 65 76 69 65 77 2d 70 64 66 6a 73|"'
+      - value: '"|73 61 6e 64 62 6f 78 43 6f 6e 74 65 78 74|"'
+      - value: '"return "'
+      fast_pattern: 15,20
+      flow: established,from_server
+      metadata: created_at 2015_08_10, cve CVE_2015_4495, updated_at 2022_03_17
+      msg: '"ET EXPLOIT Possible Firefox PDF.js Same-Origin-Bypass CVE-2015-4495 M1"'
+      pcre: '"/\We[\s\x22\x27,+]*?v[\s\x22\x27,+]*?a[\s\x22\x27,+]*?l\W/"'
+      reference: cve,2015-4495
+      rev: '1'
+      sid: '2021601'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

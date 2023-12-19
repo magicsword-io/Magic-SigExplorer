@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"k1="'
+      - value: '"&k2="'
+      - value: '"&k3="'
+      - value: '"&k4="'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_05, deployment Perimeter, former_category
+        MALWARE, malware_family APT28, signature_severity Major, tag c2, updated_at
+        2023_02_16, former_sid 2823642, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN APT28 DealersChoice CnC Beacon Response"'
+      pcre: '"/&k3=\d+&k4=\d+$/"'
+      reference: url,researchcenter.paloaltonetworks.com/2016/10/unit42-dealerschoice-sofacys-flash-player-exploit-platform/
+      rev: '1'
+      sid: '2044216'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

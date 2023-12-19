@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/fpcount.exe",fast_pattern,nocase'
+      - value: '"Digits=",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS fpcount attempt"'
+      reference: cve,1999-1376
+      rev: '21'
+      service: http
+      sid: '1012'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/slock.php?ip="'
+      - value: '"&&user="'
+      - value: '"&&host="'
+      - value: '"&&domain="'
+      - value: '"&&domain="'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|20|NT|20|10|2e|0|3b
+          20|WOW64|3b 20|Trident|2f|7|2e|0|3b 20|rv|3a|11|2e|0|29 20|like|20|Gecko|0d
+          0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_29, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag Ransomware,
+        updated_at 2021_10_29, mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id
+        T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN slock Ransomware CnC Activity"'
+      reference: md5,45a430e2bcba867f4d8a537354a98a73
+      rev: '2'
+      sid: '2034291'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|zpwibfsmoowehdsm|05|onion|00|"'
+      distance: '0'
+      metadata: created_at 2014_07_15, updated_at 2020_09_17
+      msg: '"ET TROJAN DNS Possible User trying to visit POSHCODER.A .onion link outside
+        of torbrowser"'
+      reference: md5,01f4b1d9b2aafb86d5ccfa00e277fb9d
+      rev: '2'
+      sid: '2018679'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: any
+      port: any

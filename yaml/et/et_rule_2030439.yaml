@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|CODE|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_01, deployment Perimeter, former_category
+        USER_AGENTS, signature_severity Informational, updated_at 2020_07_01
+      msg: '"ET USER_AGENTS Observed Suspicious UA (CODE)"'
+      reference: md5,f5ee4c578976587586202c15e98997ed
+      rev: '2'
+      sid: '2030439'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

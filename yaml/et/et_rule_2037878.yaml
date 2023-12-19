@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"username="'
+      - value: '"&password="'
+      - depth: '20'
+        value: '"POST|20|/comm/data.php|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_08_01, former_category PHISHING, updated_at 2022_08_01
+      msg: '"ET CURRENT_EVENTS Successful Commerce Bank Phish 2022-07-30"'
+      reference: md5,998520fc60bf156455dc09286d7436e1
+      rev: '1'
+      sid: '2037878'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

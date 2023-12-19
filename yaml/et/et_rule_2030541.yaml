@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"cmd{background-color|3a|"'
+      - value: '"SCROLLBAR-DARKSHADOW-COLOR|3a|"'
+      - value: '"<body style=|22|FILTER|3a 20|progid|3a|DXImageTransform.Microsoft.Gradient("'
+      - value: '"gradientType=0,startColorStr="'
+      - value: '"<input name=''envlpass'' type=''password''"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_07_16, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Major, updated_at 2020_07_16
+      msg: '"ET WEB_CLIENT Generic Webshell Password Prompt Accessed on External Compromised
+        Server"'
+      rev: '2'
+      sid: '2030541'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

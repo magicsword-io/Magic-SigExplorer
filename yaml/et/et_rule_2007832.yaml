@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/firststart.php?pid="'
+      - value: '"&dt="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_09_02
+      msg: '"ET TROJAN Theoreon.com Related Trojan Checkin"'
+      reference: url,doc.emergingthreats.net/2007832
+      rev: '3'
+      sid: '2007832'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

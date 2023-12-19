@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '3306'
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|01|",depth 1,offset 3'
+      - value: '"root|00|",within 5,distance 5,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MYSQL 4.0 root login attempt"'
+      rev: '9'
+      service: mysql
+      sid: '3456'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

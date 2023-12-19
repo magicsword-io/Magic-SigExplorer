@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|59 47 00 0b 00 00 00 00 00 12 00 00 00 00|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET CHAT Yahoo IM Unavailable Status"'
+      reference: url,doc.emergingthreats.net/2001427
+      rev: '6'
+      sid: '2001427'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

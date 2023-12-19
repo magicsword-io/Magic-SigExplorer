@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"function Invoke-Inveigh"'
+      - value: '".PARAMETER Challenge"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_09_01, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_09_01
+      msg: '"ET INFO Inveigh Proxy Powershell Script Retrieval (Inbound)"'
+      reference: url,github.com/Kevin-Robertson/Inveigh
+      rev: '1'
+      sid: '2038707'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"banks"'
+      - value: '"username="'
+      - value: '"questions.html"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_11, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET CURRENT_EVENTS Successful Generic Banking Phish 2022-01-11"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+&forgot_nextButton=/Hmi"'
+      reference: md5,ed0fb4e78b838c7d9884691efa434dd7
+      rev: '3'
+      sid: '2034895'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

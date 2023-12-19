@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9000'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"eval -i 1 --|0d 0a|ZmlsZV9wdXRfY29udGVudH"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2018_07_09, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Low, signature_severity Major,
+        updated_at 2018_07_18
+      msg: '"ET EXPLOIT xdebug OS Command Execution"'
+      reference: url,exploit-db.com/exploits/44568/
+      rev: '2'
+      sid: '2025794'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"pk",depth 2'
+      - value: '"R|00|e|00|q|00|u|00|e|00|s|00|t|00|",fast_pattern,nocase'
+      - value: '"|00|a|00|r|00|g|00|"'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CowerSnail command and control response detected"'
+      reference: url,www.virustotal.com/#/file/3fb8a4d2ed4f662a4cb4270bb5f488b79c8758aa6fc5c8b119c78fba38d6b7d1/detection
+      rev: '1'
+      service: irc
+      sid: '46872'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '20480'

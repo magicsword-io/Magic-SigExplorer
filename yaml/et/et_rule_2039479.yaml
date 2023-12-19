@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/register.php"'
+      - value: '"/register.php"'
+      - depth: '16'
+        value: '"data|3d 0a|Host|20|Name|3a|"'
+      - value: '"OS|20|Name|3a|"'
+      - value: '"OS|20|Version|3a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_19, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence Medium, signature_severity Major,
+        updated_at 2022_10_19
+      msg: '"ET TROJAN Suspected Polonium CnC Initial Checkin M2"'
+      pcre: '"/Content-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,afd04a701ab4f65ceaa3660cded3bb9a
+      rev: '1'
+      sid: '2039479'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

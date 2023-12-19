@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '33'
+        value: '"GET /dlink/hwiz.html HTTP/1.0|0d 0a 0d 0a|"'
+      - value: '!"|0d 0a|Host|3a| "'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN dlink router access attempt"'
+      reference: url,doc.emergingthreats.net/2008945
+      rev: '4'
+      sid: '2008945'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

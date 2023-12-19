@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<script>a=|22|http|3a|//"'
+      - value: '"/tttttt"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_03_10, former_category EXPLOIT_KIT, updated_at 2012_03_10
+      msg: '"ET CURRENT_EVENTS Likely Scalaxy Exploit Kit URL template download"'
+      rev: '2'
+      sid: '2014362'
+      special_options:
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

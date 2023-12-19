@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '"|22|Metabase|22 2c 22|"'
+      - value: '"|22|setup|2d|token|22 3a 22|"'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2023_08_02, cve CVE_2023_38646,
+        deployment Perimeter, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_08_02
+      msg: '"ET WEB_SPECIFIC_APPS Metabase Setup-Token Information Disclosure - Required
+        for CVE-2023-38646"'
+      pcre: '"/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\x22/R"'
+      reference: cve,2023-38646
+      rev: '1'
+      sid: '2047018'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

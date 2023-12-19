@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!-- saved from url=(0014)about|3a|internet -->"'
+      - value: '"getEnvInfo"'
+      - value: '"getPlatform"'
+      - value: '"<embed"'
+      flow: established,from_server
+      metadata: created_at 2015_08_04, former_category CURRENT_EVENTS, updated_at
+        2015_08_04
+      msg: '"ET CURRENT_EVENTS HT SWF Exploit RIP"'
+      pcre: '"/^(?=[^>]*?\ssrc\s*?=\s*?[\x22\x27][^\x22\x27]*?\.swf[\x22\x27])(?=[^>]*?\swidth\s*?=\s*?[\x22\x27]0[\x22\x27])[^>]*?\sheight\s*?=\s*?[\x22\x27]0[\x22\x27]/Ri"'
+      rev: '1'
+      sid: '2021595'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

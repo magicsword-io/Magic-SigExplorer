@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/admin/?"'
+      - value: '"a=doExportPack"'
+      - depth: '6'
+        value: '"appno="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_31, cve CVE_2019_16997, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_01_31
+      msg: '"ET EXPLOIT MetInfo 7.0 SQL Injection (CVE-2019-16997)"'
+      pcre: '"/appno=[^&=]*(?:union|select|update|insert|delete)/Pi"'
+      reference: cve,2019-16997
+      rev: '2'
+      sid: '2035019'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

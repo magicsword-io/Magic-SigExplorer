@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Google page"'
+      flow: to_server,established
+      metadata: created_at 2011_05_31, updated_at 2020_04_24
+      msg: '"ET USER_AGENTS Suspicious user agent (Google page)"'
+      rev: '3'
+      sid: '2017067'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

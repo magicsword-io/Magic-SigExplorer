@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&fff="'
+      - value: '"&coid="'
+      - value: '"do="'
+      - value: '"&IP="'
+      - value: '"lct="'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_09_10
+      msg: '"ET TROJAN FakeYak or Related Infection Checkin 1"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Rogue%3aWin32%2fFakeYak
+      rev: '2'
+      sid: '2011396'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

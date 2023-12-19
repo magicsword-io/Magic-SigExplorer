@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,1,relative,little,post_offset -6
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST|20|"'
+      - value: '"HTTP/1."'
+      - value: '!"Accept"'
+      - value: '!"Content-Type|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '"|20 28|compatible|3b| MSIE 6.0|3b| Win32|29 0d 0a|HOST|3a|"'
+      - value: '"|0d 0a 0d 0a|"'
+      distance: '0'
+      fast_pattern: 12,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2015_04_13, deployment Perimeter, former_category
+        MALWARE, malware_family Nuclear, signature_severity Critical, tag Exploit_Kit,
+        tag Nuclear, updated_at 2020_11_05
+      msg: '"ET TROJAN Possible APT30 or Win32/Nuclear HTTP Framework POST"'
+      reference: url,www2.fireeye.com/rs/fireye/images/rpt-apt30.pdf
+      rev: '3'
+      sid: '2020898'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

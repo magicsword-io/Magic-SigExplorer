@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|HTTPTool/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_16, deployment Perimeter, signature_severity
+        Major, updated_at 2020_03_16
+      msg: '"ET TROJAN HTTPTool User-Agent"'
+      reference: md5,6526946c39fd53dd813a8a206446e491
+      rev: '2'
+      sid: '2029637'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

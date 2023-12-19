@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/images/m.php?id=",fast_pattern,nocase'
+      - value: '"|3B 20|MSIE 6.0|3B 20|"'
+      - value: '!"Referer|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kazy/FakeAV Checkin with IE6 User-Agent"'
+      reference: url,www.virustotal.com/en/file/b288d6eadc9d4bca710f73e850a0901cf5fe62c775350c9a30ebaf9a05097a0f/analysis/1367713929/
+      rev: '2'
+      service: http
+      sid: '26578'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

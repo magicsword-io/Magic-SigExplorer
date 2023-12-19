@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/trackerphp/announce.php?"'
+      - value: '"?port="'
+      - value: '"&peer_id="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category P2P, updated_at 2020_09_14
+      msg: '"ET P2P Bittorrent P2P Client HTTP Request"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2006375
+      rev: '5'
+      sid: '2006375'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

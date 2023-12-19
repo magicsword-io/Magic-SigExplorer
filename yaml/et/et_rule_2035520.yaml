@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Host|3a 20|webhook.site|0d 0a|"'
+      - value: '"login"'
+      - value: '"pass"'
+      - value: '"new_pass"'
+      - value: '"conf_pass"'
+      - value: '"frge.io"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_03_17, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET CURRENT_EVENTS Successful TA422 Credential Phish 2022-03-17 M1"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+frge\.io/Hmi"'
+      reference: url,cert.gov.ua/article/37788
+      rev: '2'
+      sid: '2035520'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

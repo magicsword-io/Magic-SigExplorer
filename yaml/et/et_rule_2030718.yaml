@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<script language=javascript>document.write(unescape("'
+      - value: '"%3Ctitle%3ELoading%2099%...%3C/title%3E%20%3Cscript"'
+      - value: '"var%20LIB_view%20%3D%20%27PGRpdiBjbGFzcz0iY29udGFpbm"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.appspothosted
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_08_21, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_08_21
+      msg: '"ET CURRENT_EVENTS Adobe Shared Document Phishing Landing on Appspot Hosting"'
+      rev: '2'
+      sid: '2030718'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

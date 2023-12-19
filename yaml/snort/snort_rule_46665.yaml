@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/DigitalGuardian/Management/ServerSettingsPDFTemplates.aspx",fast_pattern,nocase'
+      - value: '"inputFilePath",nocase'
+      - value: '".asp",distance 0,nocase'
+      - value: '"Content-Disposition",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Digital Guardian Management Console arbitrary file upload
+        attempt"'
+      pcre: '"/name\s*=\s*[\x22\x27]inputFilePath[\x22\x27]\x3b((?!^--).)*?filename\s*=\s*[\x22\x27]\S+?\x2easpx?[\x22\x27][\r\n]{2,}/ims"'
+      reference: cve,2018-10173
+      rev: '1'
+      service: http
+      sid: '46665'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|aqsatv.ps"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2017_02_06, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        updated_at 2020_08_04
+      msg: '"ET POLICY Hamas Terrorist Propaganda TV Channel (aqsatv.ps)"'
+      reference: url,nctc.gov/site/groups/hamas.html
+      rev: '3'
+      sid: '2023874'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-Library|3a| Indy 9"'
+      - value: '"Maquina.."'
+      - value: '"Vers|e3|o do Windows"'
+      - value: '"Microsoft Windows"'
+      - value: '"Mac Address.."'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Banker.Delf Infection - Sending Initial Email to Owner"'
+      reference: url,doc.emergingthreats.net/2002976
+      rev: '8'
+      sid: '2002976'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

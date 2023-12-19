@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"ls%20-l",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP ls 20-l"'
+      rev: '12'
+      service: http
+      sid: '1118'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

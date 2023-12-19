@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"pathToIndex="'
+      - value: '".php?"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Loggix Project RFI Attempt"'
+      pcre: '"/\.php(\?|.*\x26)pathToIndex=(https?|ftps?)\:\/\/[^\x26\x3B]+\?\?/iU"'
+      reference: url,doc.emergingthreats.net/2010530
+      rev: '5'
+      sid: '2010530'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

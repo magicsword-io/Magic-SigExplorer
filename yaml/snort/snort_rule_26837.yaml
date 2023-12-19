@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<|5C 5C 5C|>IDLE<|5C 5C 5C|>",depth 18'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC BitBot Idle C2 response"'
+      rev: '3'
+      service: http
+      sid: '26837'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

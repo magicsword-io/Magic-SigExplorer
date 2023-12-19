@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '11211'
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '7'
+        value: '"|00 00 00 00 00 01 00|"'
+      - value: '"|0d 0a|"'
+      distance: '0'
+      flowbits: set,ET.memcached.ddos
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Linux, attack_target Server, created_at 2018_03_01, deployment Perimeter,
+        former_category DOS, performance_impact Low, signature_severity Major, updated_at
+        2020_08_19
+      msg: '"ET DOS Possible Memcached DDoS Amplification Query (set)"'
+      reference: url,blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/
+      rev: '2'
+      sid: '2025401'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 100, seconds 60, track by_dst
+      within: '20'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

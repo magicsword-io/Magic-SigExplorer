@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/dash/post_data/"'
+      - value: '"WindowsPowerShell"'
+      - value: '"|22|lang|22 3a|"'
+      - value: '"|22|cpu|22 3a|"'
+      - value: '"|22|name|22 3a|"'
+      - value: '"|22|av|22 3a|"'
+      - value: '"|22|os|22 3a 20 22|Microsoft Windows"'
+      - value: '"|22|gpu|22 3a|"'
+      - value: '"|22|uuid|22 3a|"'
+      - value: '"|22|domain|22 3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_20, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_03_20
+      msg: '"ET TROJAN Unknown Powershell Profiler Exfiltrating System Data"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+WindowsPowerShell/Hmi"'
+      reference: md5,cd07abe72f907943923528c4931ede0b
+      rev: '1'
+      sid: '2044702'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

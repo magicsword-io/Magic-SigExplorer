@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_test: 1,&,1,0,relative
+      classtype: attempted-dos
+      contents:
+      - depth: '1'
+        value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|00|"'
+      distance: '21'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS DCERPC invalid bind attempt"'
+      rev: '5'
+      sid: '2102190'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

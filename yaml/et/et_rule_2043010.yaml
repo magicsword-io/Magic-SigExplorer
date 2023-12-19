@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/remote_agent.php?"'
+      - value: '"action=polldata"'
+      - value: '"local_data_ids|5b 5d 3d|"'
+      - value: '"host_id="'
+      - value: '"poller_id|3d|"'
+      - value: '"X-Forwarded-For"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_12_26, cve CVE_2022_46169, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, confidence High,
+        signature_severity Major, updated_at 2022_12_26
+      msg: '"ET EXPLOIT Possible Cacti Unauthenticated RCE Inbound M1 (CVE-2022-46169)"'
+      pcre: '"/poller_id\x3d(?:[\x60\x3b\x7c\x26]|%60|%3b|%7c|%26|(?:[\x3c\x3e\x24]|%3c|%3e|%24)(?:\x28|%28))/Ui"'
+      reference: cve,2022-46169
+      rev: '1'
+      sid: '2043010'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

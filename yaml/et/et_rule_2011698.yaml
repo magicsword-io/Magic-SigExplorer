@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"http|3a| -J-jar -J|5C 5C 5C 5C|"'
+      - value: '".launch("'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Java Web Start Command Injection (.jar)"'
+      pcre: '"/http\x3a -J-jar -J\x5C\x5C\x5C\x5C\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\x5C\x5C[^\n]*\.jar/i"'
+      reference: url,doc.emergingthreats.net/2011698
+      rev: '6'
+      sid: '2011698'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

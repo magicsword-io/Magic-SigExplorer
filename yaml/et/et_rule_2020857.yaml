@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/setup_dns.exe"'
+      - depth: '29'
+        value: '"getpage=|2e 2e|/html/setup/dns.htm"'
+      - value: '"resolver|3a|settings/nameserver1="'
+      distance: '0'
+      fast_pattern: 9,20
+      flow: to_server,established
+      metadata: created_at 2015_04_08, updated_at 2020_09_14
+      msg: '"ET EXPLOIT Belkin Wireless G Router DNS Change POST Request"'
+      reference: url,www.exploit-db.com/exploits/3605
+      rev: '3'
+      sid: '2020857'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      urilen: '22'
+    protocol: tcp
+    source:
+      network: any
+      port: any

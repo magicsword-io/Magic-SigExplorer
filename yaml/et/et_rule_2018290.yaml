@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"<title>CFM shell"'
+      flow: established,from_server
+      metadata: created_at 2014_03_18, updated_at 2014_03_18
+      msg: '"ET WEB_SERVER WEBSHELL CFM Shell Access"'
+      reference: url,blog.spiderlabs.com/2014/03/coldfusion-admin-compromise-analysis-cve-2010-2861.html
+      rev: '1'
+      sid: '2018290'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

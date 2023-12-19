@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|mail|06|"'
+      - value: '"|07|cpuproc|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_07_25, deployment Perimeter, former_category
+        MALWARE, malware_family QuadAgent, performance_impact Low, signature_severity
+        Major, updated_at 2022_07_21
+      msg: '"ET TROJAN OilRig QUADAGENT DNS Tunneling"'
+      pcre: '"/^\d{6}/Ri"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/07/unit42-oilrig-targets-technology-service-provider-government-agency-quadagent/
+      rev: '2'
+      sid: '2025894'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+      threshold: type limit, count 1, seconds 60, track by_src
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

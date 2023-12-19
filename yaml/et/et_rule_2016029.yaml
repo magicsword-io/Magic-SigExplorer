@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe"'
+      - value: '"Host|3a 20|"'
+      - value: '".ru|0d 0a|"'
+      distance: '7'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_12_13, updated_at 2020_09_25
+      msg: '"ET TROJAN Kelihos.K Executable Download DGA"'
+      pcre: '"/^Host\x3a\x20(?:u(?:wf(?:ekfyj|ubpeb)|d(?:xowub|zycaf)|h(?:duxic|zubvo)|x(?:fokur|osgik)|celgos|ggifym|mpefan|qlahaf)|s(?:u(?:t(?:fasof|imjy)|kbewli)|i(?:ttanyg|webheb|hemuj)|e(?:suhror|xjereh)|o(?:haxim|qvaqo)|axyjuw)|r(?:i(?:zsebym|firac|sytfa|trios)|e(?:bfelqi|kvyfo)|u(?:xymqic|jfeag)|y(?:buhoq|kafeh)|acadpuh)|j(?:y(?:meegom|vvozoz|kyvca|torqu)|a(?:mwazer|ibzup)|e(?:btelyx|dytlu)|o(?:dkymy|kenqi))|o(?:t(?:geguuz|xolpow|pipug)|q(?:lapjim|jogxi)|cgaextu|gdowkys|jpaxlam|vquqaip|smuryf)|i(?:r(?:ojvuqu|hegre)|v(?:kikcop|nuvuk)|hmytog|kevzaq|mgohut|pdehas|wvahin|zxirfy)|b(?:y(?:(?:cmolh|vbym)y|gotbys|jlegta)|i(?:pulte|wuvba)|o(?:pwyeb|wbaiv))|p(?:e(?:dugtap|gyrgun|vhyvys)|y(?:nxomoj|ykxug)|a(?:gube|waha)v|ogwytfy)|d(?:e(?:afesqy|hjujuq)|o(?:hwapih|xilik)|a(?:lwoza|rabub)|inymak)|t(?:a(?:hfifak|ixcih)|i(?:wciwu|koqo)x|ecviqir|ozfyma|uriwil)|g(?:i(?:jevsog|nnyjyb)|olhysux|ywilhof|azuzoz|edopan|ubahvi)|y(?:(?:n(?:japru|kicy)|kocna)r|bsahov|dabxag|xyqwiz|zsabuq)|h(?:a(?:hsekju|poneg)|e(?:ztymut|dybih)|uquqxov|itakat)|w(?:a(?:pifnu|rkafo)c|e(?:tifjam|fecfo)|ibveces|yjenqo)|a(?:d(?:nedat|tesok)|qzepylu|baxhad|smukuf|wewsip)|l(?:u(?:(?:fseki|pylzu)m|ditla)|eqgugom|opoqyv)|z(?:u(?:pivzed|qijcel)|aefofin|idamuk|ylhomu)|v(?:u(?:njuet|ohsub)|ijsixem|otqygiq|euwhyz)|m(?:u(?:zupdyg|hipew|wosiv)|osjinme|abuhos)|x(?:o(?:fsimi|gitaj|moqol)|ikmonej|enacoz)|f(?:e(?:vnotow|tucxo)|i(?:dedhah|xavpu))|k(?:u(?:btyhuz|irfufo)|ejejib|ycufvy)|n(?:(?:iliqri|obzeky)x|eluzjiv)|c(?:ylqiduh|aqxaro|itsibe)|q(?:aijroke|iquzcy|uohdit)|e(?:gnisje|stesgo|vdyvaz))\.ru\r$/Hm"'
+      rev: '2'
+      sid: '2016029'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

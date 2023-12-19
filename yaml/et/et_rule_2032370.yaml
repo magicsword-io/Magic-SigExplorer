@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/mpp/"'
+      - value: '!"Referer|3a|"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2016_02_08, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_08_12
+      msg: '"ET WEB_CLIENT Common /mpp/ Phishing URI Structure 2016-02-08"'
+      pcre: '"/(?:\/mpp\/[0-9a-f]{32}\/|\/[0-9a-f]{32}\/mpp\/)/Ui"'
+      rev: '2'
+      sid: '2032370'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

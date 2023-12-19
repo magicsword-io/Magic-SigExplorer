@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Log|20|In|20 7c 20|Benefit|20|Programs|20|Online</title>"'
+      - value: '"div|20|id|3d 22|Div"'
+      - value: '"|3c|form|20|action|3d 22 22|"'
+      - value: '"onClick|3d 22|sendEmail|28 29 22|"'
+      - value: '"name|3d 22|Submit|22 20|type|3d 22|button|22 20|value|3d 22|Please|20|wait|2e
+          2e 2e 22|"'
+      - value: '"EDD will connect to your Mail service to authenticate and secure
+          your Online Access with your Email."'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_16, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_03_16
+      msg: '"ET CURRENT_EVENTS EDD Credential Phish Landing Page M2 2023-03-16"'
+      rev: '1'
+      sid: '2044647'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

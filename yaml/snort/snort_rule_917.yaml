@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"CFUSION_DBCONNECTIONS_FLUSH|28 29|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Adobe Coldfusion db connections flush attempt"'
+      reference: cve,1999-0760
+      rev: '16'
+      service: http
+      sid: '917'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

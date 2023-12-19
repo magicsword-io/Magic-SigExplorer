@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '".digitaloceanspaces.com|0d 0a|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_04_01, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, performance_impact Low, signature_severity
+        Informational, updated_at 2021_04_01
+      msg: '"ET INFO Terse Request for EXE from DigitalOcean Spaces"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.digitaloceanspaces\.com/Hmi"'
+      rev: '2'
+      sid: '2032359'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

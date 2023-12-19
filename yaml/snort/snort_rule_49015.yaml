@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '20256'
+    details:
+      byte_test: 1,=,102,2
+      classtype: attempted-recon
+      contents:
+      - value: '"|0C|",depth 1,offset 18'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SCADA PCOM Get PLC Name binary request"'
+      reference: url,unitronicsplc.com
+      rev: '2'
+      sid: '49015'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

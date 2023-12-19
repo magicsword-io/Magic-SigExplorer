@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"PASS",nocase'
+      flow: to_server,established
+      isdataat: 50,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-POP PASS overflow attempt"'
+      pcre: '"/^PASS\s[^\n]{50}/ims"'
+      reference: nessus,10325
+      rev: '25'
+      service: pop3
+      sid: '1634'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

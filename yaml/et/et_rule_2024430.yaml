@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        offset: '4'
+        value: '"|ff|SMB|32 00 00 00 00 18 07 c0|"'
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 08 ff fe 00 08|"'
+      - value: '"|0f 0c 00 00 10 01 00 00 00 00 00 00 00 f2 00 00 00 00 00 0c 00 42
+          00 00 10 4e 00 01 00 0e 00 0d 10 00|"'
+      distance: '2'
+      flow: to_server,established
+      isdataat: 1000,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_27, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2017_07_06
+      msg: '"ET EXPLOIT Possible ETERNALBLUE Exploit M3 MS17-010"'
+      rev: '3'
+      sid: '2024430'
+      special_options:
+      - fast_pattern
+      threshold: type both, track by_src, count 10, seconds 1
+      within: '34'
+    protocol: tcp
+    source:
+      network: any
+      port: any

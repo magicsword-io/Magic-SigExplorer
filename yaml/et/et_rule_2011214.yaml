@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/ardeaCore/lib/core/ardeaInit.php?"'
+      - value: '"pathForArdeaCore="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS ArdeaCore pathForArdeaCore Parameter Remote File
+        Inclusion Attempt"'
+      pcre: '"/pathForArdeaCore=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2011214
+      rev: '3'
+      sid: '2011214'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

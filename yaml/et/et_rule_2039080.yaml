@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content|2d|Type|3a 20|text|2f|plain|0d 0a|"'
+      - value: '"|25 7b 20 5b|System|2e|Text|2e|Encoding|5d 3a 3a|UTF8|2e|GetString|28
+          5b|System|2e|Convert|5d 3a 3a|ToInt32|28 24 5f 2c|2|29 29 20 7d|"'
+      - value: '"|3b 28 5b|system|2e|String|5d 3a 3a|Join|28 27 27 2c 20 24|"'
+      distance: '0'
+      fast_pattern: 56,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_03, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_03, reviewed_at
+        2023_10_04
+      msg: '"ET ATTACK_RESPONSE VBA/Subdoc.B Obfuscated Payload Inbound"'
+      pcre: '"/\x24[0-9A-Za-z]{1,5}\x3d\x28\x27?(?:[0-9]{8}\x2c){4,}/"'
+      reference: md5,9a6d8883adc662b4f53cd0b9cd1b28c3
+      rev: '2'
+      sid: '2039080'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

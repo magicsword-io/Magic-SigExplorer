@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?"'
+      - value: '"/0"'
+      - value: '"=0000"'
+      - value: '"=?"'
+      - value: '!"Referer|3a|"'
+      - value: '"Accept"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.Vawtrak
+      metadata: attack_target Client_Endpoint, created_at 2015_08_25, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_01,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Vawtrak/NeverQuest CnC Beacon"'
+      pcre: '"/\.php\?[a-z]+=0000[a-fA-F0-9]{4}&[a-z]+=\?[A-F0-9]+&[a-z]=\d{4}&[a-z]=\d{4}$/U"'
+      reference: md5,1b820dda5833f802be829d468884884e
+      rev: '1'
+      sid: '2025089'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

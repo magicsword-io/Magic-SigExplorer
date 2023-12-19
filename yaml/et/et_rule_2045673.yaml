@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[22,80,443]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|44 30 cd 9f 5e 14 27 66|"'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_11, deployment Perimeter,
+        former_category MALWARE, malware_family BPFDoor, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_05_11
+      msg: '"ET TROJAN BPFDoor V2 UDP Magic Packet Inbound"'
+      reference: url,www.deepinstinct.com/blog/bpfdoor-malware-evolves-stealthy-sniffing-backdoor-ups-its-game
+      rev: '1'
+      sid: '2045673'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

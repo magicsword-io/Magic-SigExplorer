@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Location|3a 20|http"'
+      - value: '"Location|3a 20|http"'
+      flow: to_client,established
+      flowbits: isset,ET.genericphish
+      metadata: attack_target Client_Endpoint, created_at 2016_05_26, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_11_12, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Generic Phish 2016-05-26"'
+      pcre: '"/^(?:s)?\x3a\/\/[^\/]*(?:(?:t(?:dcanadatrust|escobank|radekey)|r(?:ealtyexecutive|bcd)s|x(?:finity|oom)|ourtime)\.com|a(?:s(?:perasoft\.com|b\.co\.nz)|(?:ccesbankplc|nz)\.com|mazon\.co\.uk|ruba\.it)|m(?:(?:icrosoftstore|organstanley|sn)\.com|a(?:de-in-china\.com|il\.ru))|s(?:(?:eniorpeoplemeet|cotiabank)\.com|antander\.co\.uk|uddenlink\.net)|c(?:o(?:(?:ldwellbankerpreviews|x)\.com|mpresso\.co\.th)|fapubs\.org)|w(?:e(?:althmanagement\.com|bmail\.sfr\.fr)|ww-01\.ibm\.com)|l(?:(?:endingtree|loydsbank)\.com|abanquepostale\.mobi)|v(?:(?:aluewalk|ideotron)\.com|erifyemailaddress\.org)|n(?:a(?:tionwide\.co\.uk|vyfederal\.org)|etsuite\.com)|b(?:a(?:nquepopulaire\.fr|9hus\.in)|iztree\.com)|i(?:nternetbanking\.caixa\.gov\.br|cloud\.com)|d(?:iscoverbank\.com|hl\.co\.uk)|k(?:iwibank\.co\.nz|eybank\.com)|fidelitybank\.ng|paypal\.fr|ebay\.it)\/?/Ri"'
+      rev: '4'
+      sid: '2032681'
+      special_options:
+      - http_stat_code
+      - http_header
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

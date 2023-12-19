@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"POST /selects?dram=1"'
+      - value: '"|0d 0a 0d 0a|img="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2022_12_15, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2022_12_15
+      msg: '"ET TROJAN GoLinux/GoTrim CnC Checkin"'
+      pcre: '"/^[a-f0-9]{100}/R"'
+      reference: url,www.fortinet.com/blog/threat-research/gotrim-go-based-botnet-actively-brute-forces-wordpress-websites
+      rev: '1'
+      sid: '2042951'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

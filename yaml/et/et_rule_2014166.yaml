@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"[UPDATE]|0D 0A|VER ="'
+      - value: '"URL ="'
+      - value: '"[PATTERN]|0D 0A|VER ="'
+      - value: '"URL ="'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2012_01_28, former_category MALWARE, updated_at 2012_01_28
+      msg: '"ET TROJAN W32/Mentory CnC Server Providing Update Details"'
+      reference: md5,6724bb601611dcc0140960c59c7b3393
+      rev: '1'
+      sid: '2014166'
+      special_options:
+      - file_data
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

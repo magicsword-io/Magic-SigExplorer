@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/icon.php"'
+      flow: established,to_server
+      metadata: created_at 2012_10_10, former_category EXPLOIT_KIT, tag TDS, updated_at
+        2012_10_10
+      msg: '"ET CURRENT_EVENTS BegOpEK - TDS - icon.php"'
+      rev: '1'
+      sid: '2015789'
+      urilen: '9'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

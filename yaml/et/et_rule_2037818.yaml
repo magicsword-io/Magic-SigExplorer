@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        value: '"|09 00|"'
+      - value: '"|00 30 00 30 00 30 00 30 00 30 00 30 00 30 00 00|"'
+      distance: '5'
+      flow: established,to_server
+      isdataat: '!2,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_07_25, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_07_25
+      msg: '"ET TROJAN VBS/Agent.6B29!tr CnC Checkin"'
+      reference: url,twitter.com/James_inthe_box/status/1550569477439270912
+      rev: '1'
+      sid: '2037818'
+      special_options:
+      - fast_pattern
+      within: '40'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

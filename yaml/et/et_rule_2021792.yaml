@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|gameofthrones|04|ddns|03|net|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2015_09_17, deployment Perimeter, malware_family
+        Gh0st, malware_family PCRAT, signature_severity Critical, tag PCRAT, tag Gh0st,
+        tag RAT, updated_at 2020_09_17
+      msg: '"ET TROJAN Iron Tiger Gh0ST/PlugX/Various Backdoors DNS Lookup (gameofthrones.ddns.net)"'
+      reference: url,trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-operation-iron-tiger.pdf
+      rev: '2'
+      sid: '2021792'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '12'
+        value: '"/api/general"'
+      - value: '"Host|3a 20|www.bypass.cn|0d 0a|"'
+      - depth: '5'
+        value: '"type="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_09_29, deployment Perimeter,
+        deployment SSLDecrypt, former_category ADWARE_PUP, performance_impact Low,
+        signature_severity Minor, updated_at 2023_09_29, reviewed_at 2023_09_29
+      msg: '"ET MALWARE Bypass Ticket Monitoring Activity (POST)"'
+      pcre: '"/\/general$/U"'
+      reference: md5,8feb11d15b708736189779ddc51a4a0a
+      rev: '1'
+      sid: '2048364'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

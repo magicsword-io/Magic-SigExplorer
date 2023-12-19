@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Zollard|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string - Linux.Trojan.Zollard"'
+      reference: url,www.virustotal.com/en/file/d757aa51974806e5402fb8a5c930518bf9ba0b2fd62f74e0f4c33d85bce08ada/analysis/
+      rev: '5'
+      service: http
+      sid: '28852'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

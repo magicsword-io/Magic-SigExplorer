@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '873'
+    details:
+      classtype: string-detect
+      contents:
+      - value: '"--backup-dir",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER rsync backup-dir directory traversal attempt"'
+      pcre: '"/--backup-dir\s+\x2e\x2e\x2f/"'
+      reference: nessus,12230
+      rev: '8'
+      sid: '2561'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

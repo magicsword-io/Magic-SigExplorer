@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"Mozilla/5.0 (iPhone"'
+      - value: '" OS 4_"'
+      - value: '!"OS 4_2_1 like"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_07_30, updated_at 2020_04_20
+      msg: '"ET POLICY SSL MiTM Vulnerable iOS 4.x CDMA iPhone device"'
+      pcre: '"/OS 4_2_[0-9] like/H"'
+      reference: url,en.wikipedia.org/wiki/IOS_version_history
+      rev: '3'
+      sid: '2013336'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, count 1, seconds 600, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

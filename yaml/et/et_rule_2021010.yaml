@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"dpbmluZXQuZGxs"'
+      flow: established,to_server
+      metadata: created_at 2015_04_24, updated_at 2015_04_24
+      msg: '"ET TROJAN Email Contains wininet.dll Call - Potentially Dridex MalDoc
+        2"'
+      rev: '1'
+      sid: '2021010'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

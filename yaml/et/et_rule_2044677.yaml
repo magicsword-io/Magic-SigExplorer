@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '541'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|17 03 01 01 d8 54 2f 31|"'
+      dsize: '20'
+      flow: established,to_server
+      metadata: affected_product Fortigate, attack_target Networking_Equipment, created_at
+        2023_03_17, deployment Perimeter, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_03_17
+      msg: '"ET TROJAN Fortigate TABLEFLIP Backdoor Trigger - Magic Number Sequence"'
+      reference: url,www.mandiant.com/resources/blog/fortinet-malware-ecosystem
+      rev: '1'
+      sid: '2044677'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<?xml"'
+      - value: '"<?mso-application progid=|22|Word.Document|22|?>"'
+      - value: '"macrosPresent=|22|yes|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_03_10, updated_at 2015_03_10
+      msg: '"ET TROJAN Possible malicious Office doc hidden in XML file"'
+      reference: url,trustwave.com/Resources/SpiderLabs-Blog/Attackers-concealing-malicious-macros-in-XML-files/
+      rev: '1'
+      sid: '2020657'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

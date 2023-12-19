@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|LockXLS"'
+      flow: established,to_server
+      metadata: created_at 2011_10_01, former_category TROJAN, updated_at 2020_08_13
+      msg: '"ET USER_AGENTS W32/OnlineGames User-Agent (LockXLS)"'
+      rev: '2'
+      sid: '2013724'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

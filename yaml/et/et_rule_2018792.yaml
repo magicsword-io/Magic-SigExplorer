@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/message.php"'
+      - value: '"|20|Android|20|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_07_28, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_09_25, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Worm.AndroidOS.Selfmite.a Checkin"'
+      reference: url,computerworld.com/s/article/9249430/Self_propagating_SMS_worm_Selfmite_targets_Android_devices
+      rev: '1'
+      sid: '2018792'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '12'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

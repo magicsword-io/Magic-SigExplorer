@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/cmd.exe"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER cmd.exe In URI - Possible Command Execution Attempt"'
+      reference: url,doc.emergingthreats.net/2009361
+      rev: '6'
+      sid: '2009361'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

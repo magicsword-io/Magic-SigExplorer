@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"OMeterObeseArmad",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING Ping-O-MeterWindows"'
+      rev: '11'
+      sid: '378'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

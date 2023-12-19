@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: unsuccessful-user
+      contents:
+      - value: '"|FF|SMBs",depth 5,offset 4'
+      - value: '"m|00 00 C0|",within 4'
+      detection_filter: track by_dst,count 10,seconds 60
+      flow: to_client,established,no_stream
+      metadata: ruleset community
+      msg: '"NETBIOS SMB repeated logon failure"'
+      rev: '14'
+      sid: '2923'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '139'

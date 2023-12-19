@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/page_"'
+      - value: '".html"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      - value: '"User-Agent|3a| Mozilla/4.0 (compatible|3b| MSIE 8.0"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2015_06_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_01,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Backdoor.Elise CnC Beacon 1 M1"'
+      pcre: '"/\/[a-f0-9]{8}\/page_\d{8,10}\.html$/Ui"'
+      reference: url,github.com/pan-unit42/iocs/tree/master/lotusblossom
+      rev: '3'
+      sid: '2021274'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

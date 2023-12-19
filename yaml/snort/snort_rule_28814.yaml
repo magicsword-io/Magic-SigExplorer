@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/post.aspx?forumID=",fast_pattern,nocase'
+      - value: '"|0D 0A|URL: http",depth 11,offset 17'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gozi/Neverquest variant outbound connection"'
+      pcre: '"/^(?!\d{17}|[A-F]{17})[A-F0-9]{17}/"'
+      reference: url,www.virustotal.com/en/file/b78c5c53d3b54acbca2b344a779528f0408258b6ac12899c860d99bf563e883a/analysis/
+      rev: '3'
+      service: http
+      sid: '28814'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

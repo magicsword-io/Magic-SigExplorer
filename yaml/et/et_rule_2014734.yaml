@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"d8|3a|announce"'
+      - value: '!"mapfactor.com"'
+      flow: established,to_client
+      metadata: created_at 2012_05_11, updated_at 2012_05_11
+      msg: '"ET P2P BitTorrent - Torrent File Downloaded"'
+      rev: '3'
+      sid: '2014734'
+      special_options:
+      - file_data
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

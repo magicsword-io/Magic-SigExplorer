@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '67'
+    details:
+      byte_test: 1,>,6,2
+      classtype: misc-activity
+      contents:
+      - value: '"|01|",depth 1'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER bootp hardware address length overflow"'
+      reference: cve,1999-0798
+      rev: '10'
+      sid: '1939'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

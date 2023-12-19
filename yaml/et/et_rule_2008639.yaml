@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?dn"'
+      - value: '"&flrdr="'
+      - value: '"&nxte="'
+      - value: '!"User-Agent|3a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, signature_severity Major, tag Trojan_Downloader, updated_at
+        2020_09_13
+      msg: '"ET TROJAN Tibs Trojan Downloader"'
+      reference: url,doc.emergingthreats.net/2008639
+      rev: '5'
+      sid: '2008639'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

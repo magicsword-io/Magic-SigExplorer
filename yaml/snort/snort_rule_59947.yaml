@@ -1,0 +1,20 @@
+- rule:
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"${"'
+      - value: '"sun.misc.Unsafe",distance 0,fast_pattern'
+      - value: '"|28|",distance 0'
+      - value: '"}",distance 0'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-WEBAPP Atlassian Confluence OGNL expression injection attempt"'
+      pcre: '"/\x24\x7b[^\x7d]*?sun\x2emisc\x2eUnsafe[^\x7d]*?\x28/i"'
+      reference: cve,2022-26134
+      rev: '1'
+      sid: '59947'
+      special_options:
+      - http_uri
+    protocol: http

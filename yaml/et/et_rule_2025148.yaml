@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?machine_id="'
+      - value: '"&x64"'
+      - value: '"&version="'
+      - value: '"&video_card="'
+      - value: '"&cpu="'
+      - value: '"&junk="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_13, deployment Perimeter, former_category
+        MALWARE, malware_family Bot_Sezin, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_24
+      msg: '"ET TROJAN Win32/Bot.Sezin CnC Checkin"'
+      reference: md5,73611bd5d1d0ad865cd26b003aa525b4
+      rev: '2'
+      sid: '2025148'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

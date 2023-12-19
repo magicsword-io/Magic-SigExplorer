@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".bmp.gz"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_08_27, updated_at 2020_09_20
+      msg: '"ET TROJAN Win64/Vabushky.A Malicious driver download"'
+      pcre: '"/\/[a-z]{2,3}\/(?:\d{3,4}x\d{3,4}|default)\.bmp\.gz$/Ui"'
+      reference: url,welivesecurity.com/2013/08/27/the-powerloader-64-bit-update-based-on-leaked-exploits/
+      rev: '1'
+      sid: '2017377'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"webdav.cloudme.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_12_11, updated_at 2020_09_28
+      msg: '"ET POLICY HTTP Request to WebDAV CloudMe Service"'
+      pcre: '"/^Host\x3a[^\r\n]+?webdav\.cloudme\.com[^\r\n]*?\r?$/Hmi"'
+      reference: url,securelist.com/blog/research/68083/cloud-atlas-redoctober-apt-is-back-in-style/
+      rev: '2'
+      sid: '2019914'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

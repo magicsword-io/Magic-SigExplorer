@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"return |22|DIRECT|22|",fast_pattern,nocase'
+      - value: '".com.br",nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Potential Bancos Brazilian Banking Trojan Browser Proxy Autoconfig
+        File"'
+      pcre: '"/\x22[a-z\d\x2e\x2d]{1,10}\x22\s{0,3}\+\s{0,3}\x22[a-z\d\x2e\x2d]{1,10}\x22\s{0,3}\+\s{0,3}\x22[a-z\d\x2e\x2d]{1,10}\x22/i"'
+      rev: '1'
+      service: http
+      sid: '27204'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

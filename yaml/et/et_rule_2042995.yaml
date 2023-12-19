@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"asdasda"'
+      - value: '"POST /verst HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"User-Agent|3a 20|"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_22, deployment Perimeter,
+        former_category MALWARE, malware_family Gamaredon, confidence High, signature_severity
+        Major, updated_at 2023_04_04, reviewed_at 2023_12_11
+      msg: '"ET TROJAN Gamaredon APT Related Activity (POST)"'
+      pcre: '"/^Host\x3a\x20\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\r\n/Hm"'
+      reference: url,github.com/pan-unit42/iocs/blob/master/Gamaredon/Gamaredon_IoCs_DEC2022.txt
+      rev: '2'
+      sid: '2042995'
+      special_options:
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

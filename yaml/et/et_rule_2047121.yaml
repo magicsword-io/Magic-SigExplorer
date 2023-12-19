@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|11|cryptoanalyzetech|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_07, deployment Perimeter,
+        former_category MALWARE, confidence High, signature_severity Major, tag TA401,
+        updated_at 2023_07_07, reviewed_at 2023_09_19, former_sid 2854763
+      msg: '"ET TROJAN DNS Query for TA401 Controlled Domain (cryptoanalyzetech .com)"'
+      reference: url,github.com/Insikt-Group/Research/blob/master/BlueCharlie%2C%20Previously%20Tracked%20as%20TAG-53%2C%20Continues%20to%20Deploy%20New%20Infrastructure%20in%202023/BlueCharlie%2C%20Previously%20Tracked%20as%20TAG-53%2C%20Continues%20to%20Deploy%20New%20Infrastructure%20in%202023.csv
+      rev: '1'
+      sid: '2047121'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

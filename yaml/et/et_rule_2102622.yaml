@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat_utl.drop_an_object"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2019_10_08
+      msg: '"GPL SQL dbms_repcat_utl.drop_an_object buffer overflow attempt"'
+      pcre: '"/\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})/si"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck97.html
+      rev: '4'
+      sid: '2102622'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

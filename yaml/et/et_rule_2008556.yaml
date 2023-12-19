@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CWD C|3a 5c|WINDOWS|5c|system32|5c|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ATTACK_RESPONSE, updated_at
+        2022_04_13
+      msg: '"ET ATTACK_RESPONSE FTP CWD to windows system32 - Suspicious"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008556
+      rev: '8'
+      sid: '2008556'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

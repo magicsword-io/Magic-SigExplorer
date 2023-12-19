@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"|4F 00 72 00 69 00 67 00 69 00 6E 00 61 00 6C 00 46 00 69 00 6C 00
+          65 00 6E 00 61 00 6D 00 65 00 00 00 50 00 57 00 44 00 55 00 4D 00 50 00
+          34 00 2E 00 65 00 78 00 65|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT PWDump4 Password dumping exe copied to victim"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008444
+      rev: '3'
+      sid: '2008444'
+    protocol: tcp
+    source:
+      network: any
+      port: any

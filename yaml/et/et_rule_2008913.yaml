@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/1.0 (compatible|3b| MSIE 8.0|3b|"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category TROJAN, signature_severity Major, tag
+        User_Agent, updated_at 2020_10_17
+      msg: '"ET USER_AGENTS Suspicious User-Agent (Trojan.Hijack.IrcBot.457 related)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008913
+      rev: '10'
+      sid: '2008913'
+      special_options:
+      - http_header
+      threshold: type limit, count 2, track by_src, seconds 300
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

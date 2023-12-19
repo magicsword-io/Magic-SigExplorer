@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /index.php?id=",depth 18'
+      - value: '"HTTP/1.1|0D 0A|",within 10,distance 11,nocase'
+      - value: '"Cookie:"'
+      - value: '!"=",within 50'
+      - value: '!"|3B|",within 50'
+      flow: to_server,established
+      isdataat: 50,relative
+      metadata: impact_flag red,policy max-detect-ips drop,policy security-ips drop,ruleset
+        community
+      msg: '"MALWARE-CNC Win.Trojan.PLEAD downloader outbound connection"'
+      reference: url,blog.jpcert.or.jp/2018/06/plead-downloader-used-by-blacktech.html
+      rev: '2'
+      sid: '47557'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".zip|22 0d 0a|Content-Type: application/zip|0d 0a 0d 0a|PK"'
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b| boundary=---------------------"'
+      - value: '"Content-Disposition|3a| form-data|3b| name=|22|file|22 3b 20|"'
+      - value: '"Log.txt"'
+      - value: '"PK"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_11, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, signature_severity Major,
+        updated_at 2020_06_24
+      msg: '"ET TROJAN MASSLOGGER Client Data Exfil (POST)"'
+      pcre: '"/\.php$/U"'
+      reference: md5,8a1ba030a3bcfde60ad2e067fec8b773
+      rev: '4'
+      sid: '2030154'
+      special_options:
+      - fast_pattern
+      - http_method
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

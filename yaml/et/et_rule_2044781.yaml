@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"id|3d 25|computername|25 3b|timeout"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_03_27, deployment Perimeter,
+        former_category MALWARE, malware_family Bitter, signature_severity Major,
+        updated_at 2023_04_04
+      msg: '"ET TROJAN Possible Bitter APT Activity (GET)"'
+      pcre: '"/id\x3d\x25computername\x25\x3btimeout$/U"'
+      reference: md5,cce89f4956a5c8b1bec82b21e371645b
+      rev: '2'
+      sid: '2044781'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

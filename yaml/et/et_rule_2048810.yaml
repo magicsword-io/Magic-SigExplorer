@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|g2care|02|cc|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_10_23, deployment Perimeter,
+        signature_severity Major, updated_at 2023_10_23, reviewed_at 2023_10_23
+      msg: '"ET CURRENT_EVENTS DNS Query to TOAD Domain (g2care .cc)"'
+      rev: '1'
+      sid: '2048810'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

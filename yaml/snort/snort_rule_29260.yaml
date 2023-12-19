@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/novredir_inf.php?apt/login.jsp?=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Graftor variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a46c3fee842f1ded35b6a4e003c0e6ea62ee66d354d4b826b4c3e5aa9310b3ba/analysis/
+      rev: '2'
+      service: http
+      sid: '29260'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

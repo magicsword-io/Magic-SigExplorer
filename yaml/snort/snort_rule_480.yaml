@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"89|3A 3B|<=>?",depth 100'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING speedera"'
+      rev: '9'
+      sid: '480'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

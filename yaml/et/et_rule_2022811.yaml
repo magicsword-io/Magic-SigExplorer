@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx?"'
+      - value: '"Content-Type|3a| application/x-www-form-urlencoded"'
+      - value: '"User-Agent|3a| Mozilla/5.0 (Windows|3b| U|3b| Windows NT 6.1|3b|
+          ru|3b| rv|3a|1.9.2.3) Gecko/20100401 Firefox/4.0 (.NET CLR 3.5.30729)|0d
+          0a|"'
+      - depth: '3'
+        value: '"id="'
+      fast_pattern: 84,20
+      flow: established,to_server
+      metadata: created_at 2016_05_17, former_category MALWARE, updated_at 2020_07_15
+      msg: '"ET TROJAN MSIL/Spy.Banker.DH Checkin"'
+      pcre: '"/\.aspx\?$/U"'
+      reference: md5,39519ff5bddd6d0eee032232349fe0a6
+      rev: '2'
+      sid: '2022811'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

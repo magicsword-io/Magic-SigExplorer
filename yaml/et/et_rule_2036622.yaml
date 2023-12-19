@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|kleinm|02|de|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_18, deployment Perimeter,
+        malware_family PowerShell_CustomRAT, performance_impact Low, signature_severity
+        Major, updated_at 2022_05_18
+      msg: '"ET TROJAN Powershell/CustomRAT CnC Domain in DNS Lookup (kleinm .de)"'
+      reference: url,blog.malwarebytes.com/threat-intelligence/2022/05/custom-powershell-rat-targets-germans-seeking-information-about-the-ukraine-crisis/
+      rev: '2'
+      sid: '2036622'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

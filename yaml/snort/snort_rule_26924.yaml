@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 255<=>260
+      classtype: trojan-activity
+      contents:
+      - value: '"= HTTP/1.",fast_pattern,nocase'
+      - value: '".php?"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Potential Gozi Trojan HTTP Header Structure"'
+      pcre: '"/^\/[a-z]{2,20}\.php\?[a-z]{2,10}\x3d[a-zA-Z0-9\x2f\x2b]+\x3d$/"'
+      rev: '3'
+      service: http
+      sid: '26924'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_uri
+      - http_header
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

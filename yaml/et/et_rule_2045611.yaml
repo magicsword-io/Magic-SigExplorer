@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[$HTTP_PORTS,9191]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '15'
+        value: '"POST /app HTTP/"'
+      - value: '"Cookie|3a 20|JSESSIONID|3d|"'
+      - value: '"service|3d|"'
+      - value: '"inputUsername"'
+      - value: '"inputPassword"'
+      - value: '"|3d|import"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product HTTP_Server, attack_target Web_Server, created_at
+        2023_05_05, deployment Perimeter, deployment Internal, deployment SSLDecrypt,
+        former_category MALWARE, confidence High, signature_severity Major, tag Papercut_MF_NG,
+        updated_at 2023_05_05
+      msg: '"ET TROJAN Papercut MF/NG User/Group Sync Python Backdoor Trigger"'
+      reference: url,vulncheck.com/blog/papercut-rce
+      rev: '1'
+      sid: '2045611'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

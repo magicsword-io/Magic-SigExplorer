@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"D0CF11E0A1B11AE1"'
+      - value: '"ffffffffff74303074"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_07_17, cve CVE_2015_2424, former_category MALWARE,
+        updated_at 2015_07_17
+      msg: '"ET TROJAN Possible CVE-2015-2424 RTF Dropping Sofacy"'
+      reference: url,isightpartners.com/2015/07/microsoft-office-zero-day-cve-2015-2424-leveraged-by-tsar-team/
+      rev: '1'
+      sid: '2021431'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<html><body><script>|0A|var ",fast_pattern'
+      - value: '"document.createElement(",within 80'
+      - value: '".setAttribute(|22|archive|22|, ",within 65'
+      - value: '".setAttribute(|22|codebase|22|, ",within 65'
+      - value: '".setAttribute(|22|id|22|, ",within 65'
+      - value: '".setAttribute(|22|code|22|, ",within 65'
+      - value: '"|22|)|3B 0A|document.body.appendChild(",within 65'
+      - value: '"</script>|0A|</body>|0A|</html>|0A 0A|"'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Unknown Malvertising exploit kit stage-1 redirect"'
+      rev: '3'
+      service: http
+      sid: '27086'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

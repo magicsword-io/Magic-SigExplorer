@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php?cmd=getinstallconfig"'
+      fast_pattern: 10,20
+      flow: established,to_server
+      metadata: created_at 2013_05_21, updated_at 2020_04_27
+      msg: '"ET TROJAN Trojan.BlackRev Download Executable"'
+      pcre: '"/\/gate\.php\?cmd=getinstallconfig$/U"'
+      reference: url,ddos.arbornetworks.com/2013/05/the-revolution-will-be-written-in-delphi/
+      rev: '4'
+      sid: '2016902'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

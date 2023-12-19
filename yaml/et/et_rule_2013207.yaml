@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '18'
+        value: '"/geo/productid.php"'
+      - value: '"adobe.com"'
+      - value: '"Opera/"'
+      - value: '"Pesto/"'
+      flow: established,to_server
+      metadata: created_at 2011_07_06, updated_at 2020_04_21
+      msg: '"ET TROJAN Trojan Internet Connectivity Check"'
+      rev: '4'
+      sid: '2013207'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

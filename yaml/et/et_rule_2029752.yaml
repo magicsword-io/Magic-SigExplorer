@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|Http-connect|0d 0a|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_03_30,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Informational,
+        updated_at 2020_03_30
+      msg: '"ET USER_AGENTS Observed Suspicious UA (Http-connect)"'
+      rev: '2'
+      sid: '2029752'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

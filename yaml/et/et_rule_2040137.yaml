@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"action|3d 22 2e 2f|index.aspx?code="'
+      - value: '"id=|22|form1|22 3e|"'
+      - value: '"YOU''VE BEEN <br |2f|>PHISHED!<|2f|span>"'
+      - value: '"Company-wide simulation|20|"'
+      - value: '"PLEASE DO NOT TELL YOUR <br |2f|>CO-WORKERS ABOUT THIS <br |2f|>PHISHING
+          SIMULATION"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_11_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category INFO, signature_severity Informational,
+        updated_at 2022_11_28
+      msg: '"ET INFO Suspected Phishing Simulation Service Activity"'
+      rev: '1'
+      sid: '2040137'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|00 a8 ef 2b a4 7e 63 82 e4|"'
+      flow: established,to_client
+      metadata: affected_product Redis, attack_target Server, created_at 2023_08_07,
+        deployment Perimeter, former_category MALWARE, malware_family p2pinfect, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_08_07
+      msg: '"ET TROJAN Redis-p2pinfect TLS Certificate Serial Number Observed in SSL
+        Certificate"'
+      reference: url,www.cadosecurity.com/redis-p2pinfect/
+      rev: '1'
+      sid: '2047069'
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: 60100:60150

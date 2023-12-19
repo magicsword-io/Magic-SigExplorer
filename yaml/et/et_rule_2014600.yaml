@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|01 00 00 00|"'
+      - value: '!"|00|"'
+      - value: '"|00|"'
+      - value: '"|00|"'
+      - value: '"|00 00 00 00 00|Windows|20|"'
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      - value: '"|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      distance: '12'
+      dsize: '1028'
+      flow: from_client,established
+      metadata: created_at 2012_04_17, former_category MALWARE, updated_at 2020_08_19
+      msg: '"ET TROJAN Win32/Nitol.A Checkin"'
+      rev: '6'
+      sid: '2014600'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

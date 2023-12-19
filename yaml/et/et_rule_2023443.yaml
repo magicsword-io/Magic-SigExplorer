@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[23,2323]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"klv123|0d 0a|"'
+      dsize: '8'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2016_10_26,
+        deployment Datacenter, signature_severity Major, updated_at 2016_10_26
+      msg: '"ET TROJAN Possible Linux.Mirai Login Attempt (klv123)"'
+      reference: url,krebsonsecurity.com/2016/10/who-makes-the-iot-things-under-attack
+      rev: '2'
+      sid: '2023443'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

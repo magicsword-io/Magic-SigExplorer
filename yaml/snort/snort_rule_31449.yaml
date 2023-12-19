@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <20
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|macrotest|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.CryptoWall downloader attempt"'
+      pcre: '"/\x2f(css|upload)\x2f[a-z]{2}[0-9]{3}\x2eccs/"'
+      reference: url,www.virustotal.com/en/file/e370c1fc6e7e289523fdf2f090edb7885f8d0de1b99be0164dafffeca9914b10/analysis/
+      rev: '2'
+      service: http
+      sid: '31449'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

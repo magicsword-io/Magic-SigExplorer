@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".doc",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY Microsoft Office Word file download request"'
+      pcre: '"/\x2edoc([\?\x5c\x2f]|$)/ims"'
+      reference: url,en.wikipedia.org/wiki/Microsoft_word
+      rev: '25'
+      service: http
+      sid: '15587'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

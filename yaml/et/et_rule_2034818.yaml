@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        value: '"|30|"'
+      - value: '"|04 0d|javaClassName"'
+      - value: '"|04 12|javaSerializedData"'
+      - value: '"|ac ed|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_12_21, cve CVE_2021_44228,
+        deployment Perimeter, deployment Internal, former_category POLICY, signature_severity
+        Informational, updated_at 2021_12_21
+      msg: '"ET POLICY Serialized Java Object returned via LDAPv3 Response"'
+      reference: cve,2021-44228
+      rev: '2'
+      sid: '2034818'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: any
+      port: any

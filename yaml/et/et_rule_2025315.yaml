@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"This program cannot be run in DOS mode"'
+      dsize: '>768'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2018_02_06, deployment Perimeter,
+        former_category POLICY, signature_severity Major, updated_at 2022_03_28
+      msg: '"ET POLICY Possible Windows Binary Observed in SSL/TLS Certificate"'
+      reference: url,www.fidelissecurity.com/threatgeek/2018/02/exposing-x509-vulnerabilities
+      rev: '2'
+      sid: '2025315'
+      special_options:
+      - nocase
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,4433,4443]'

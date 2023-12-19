@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|application|2f|x-shockwave-flash"'
+      - depth: '3'
+        value: '"FWS"'
+      - value: '"cmd.exe|20 2f|c"'
+      distance: '0'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2019_08_02, cve CVE_2018_15982,
+        deployment Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_31
+      msg: '"ET EXPLOIT Possible Inbound Flash Exploit (CVE-2018-15982)"'
+      reference: url,www.malware-traffic-analysis.net/2019/08/01/index.html
+      rev: '2'
+      sid: '2027789'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

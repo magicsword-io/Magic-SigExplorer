@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '!"<html"'
+      - value: '"|3a 3a|GetTypeFromCLSID"'
+      - value: '"|5b|Guid|5d 27 7b|DCB00C01-570F-4A9B-8D69-199FDBA5723B|7d 27 29 29|.IsConnectedToInternet"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_05_29, deployment Perimeter, former_category
+        INFO, performance_impact Low, signature_severity Major, tag PowerShell, tag
+        T1086, updated_at 2023_04_20
+      msg: '"ET ATTACK_RESPONSE PowerShell Internet Connectivity Check via Network
+        GUID Inbound"'
+      reference: md5,036180b14dce975a055e62902e5f3567
+      rev: '3'
+      sid: '2027394'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

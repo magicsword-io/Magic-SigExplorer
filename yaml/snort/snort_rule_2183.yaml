@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Content-Transfer-Encoding",nocase'
+      - value: '"|3A|",distance 0'
+      - value: '!"|0A|",within 100'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail Content-Transfer-Encoding overflow attempt"'
+      pcre: '"/^\s*Content-Transfer-Encoding\s*\x3A[^\n]{100}/im"'
+      reference: url,www.cert.org/advisories/CA-2003-12.html
+      rev: '16'
+      service: smtp
+      sid: '2183'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

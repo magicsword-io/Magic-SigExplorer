@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Transfer-Encoding: chunked|0D 0A 0D 0A 0D 0A|",nocase'
+      flow: to_server,established
+      isdataat: '!0,relative'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"POLICY-OTHER Chunked-Encoding transfer with no data attempt"'
+      reference: nessus,10932
+      rev: '26'
+      service: http
+      sid: '1807'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

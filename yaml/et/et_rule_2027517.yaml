@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"GET"'
+      - value: '".jsp?view="'
+      - value: '"&os="'
+      - value: '"&address="'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2019_06_26, cve CVE_2017_12615, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Moderate, signature_severity Major, updated_at
+        2020_11_17
+      msg: '"ET EXPLOIT Tomcat File Upload Payload Request (CVE-2017-12615)"'
+      reference: url,forums.juniper.net/t5/Threat-Research/Anatomy-of-the-Bulehero-Cryptomining-Botnet/ba-p/458787
+      rev: '3'
+      sid: '2027517'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

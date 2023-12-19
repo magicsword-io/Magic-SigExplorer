@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/notify/"'
+      - depth: '8'
+        value: '"defacer|3d|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ATTACK_RESPONSE, updated_at
+        2020_08_24
+      msg: '"ET ATTACK_RESPONSE Zone-H.org defacement notification"'
+      pcre: '"/\/notify\/(single|mass)$/iU"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001616
+      rev: '13'
+      sid: '2001616'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

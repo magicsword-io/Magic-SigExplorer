@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|portmap|02|io|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_09_01, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_09_01, reviewed_at 2023_09_01
+      msg: '"ET INFO DNS Query for Port Mapping/Tunneling Service Domain (.portmap
+        .io)"'
+      reference: url,portmap.io
+      rev: '1'
+      sid: '2047871'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

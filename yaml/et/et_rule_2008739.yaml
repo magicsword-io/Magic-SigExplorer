@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"If-None-Match|3A| |22|60794|2D|12b3|2D|e4169440|22|"'
+      flow: established,to_server
+      flowbits: isset,ET.ms08067_header
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Conficker/MS08-067 Worm Traffic Outbound"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008739
+      rev: '6'
+      sid: '2008739'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

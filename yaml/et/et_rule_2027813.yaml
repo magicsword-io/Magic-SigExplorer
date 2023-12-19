@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|49 42 d4 b5 38 70 fe 86 2a 4e d2 73 0d 95 79 e5|"'
+      dsize: '16'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_07, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Nyanw0rm, updated_at 2019_08_07
+      msg: '"ET TROJAN Nyanw0rm CnC Keep-Alive (Outbound) M2"'
+      reference: md5,5c12015ebeb755c0b6029468a13e59a9
+      rev: '2'
+      sid: '2027813'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

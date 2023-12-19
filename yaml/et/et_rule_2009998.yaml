@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/smilebox/SmileboxInstaller.exe"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_02
+      msg: '"ET POLICY Smilebox Spyware Download"'
+      reference: url,doc.emergingthreats.net/2009998
+      rev: '9'
+      sid: '2009998'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

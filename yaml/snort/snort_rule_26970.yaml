@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Cookie: cache=cc2=",fast_pattern,nocase'
+      - value: '"cache=cc2="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Pirminay variant outbound connection"'
+      pcre: '"/Host\x3a\x20\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\r\n/"'
+      reference: url,www.virustotal.com/en/file/97f97c2126ed6ffc447a5f8c72d504679129a38f8a62e4678321f9a8057c3307/analysis/
+      rev: '2'
+      service: http
+      sid: '26970'
+      special_options:
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

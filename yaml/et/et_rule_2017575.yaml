@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/upgrade.php"'
+      - value: '"Origin|3a|"'
+      - value: '"&customerid="'
+      - value: '"&htmlsubmit="'
+      - value: '"username"'
+      - value: '"confirmpassword"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_10_10, updated_at 2020_09_21
+      msg: '"ET WEB_SPECIFIC_APPS Possible VBulletin Unauthorized Admin Account Creation"'
+      reference: url,blog.imperva.com/2013/10/threat-advisory-a-vbulletin-exploit-administrator-injection.html
+      rev: '1'
+      sid: '2017575'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - nocase
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 1024:65535
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '2'
+        value: '"|e3 0d|"'
+      dsize: <20
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Edonkey Publicize File ACK"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003311
+      rev: '3'
+      sid: '2003311'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: 1024:65535

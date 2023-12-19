@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '80'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"<STREAMQUOTE>",nocase'
+      - value: '!"</STREAMQUOTE>",within 1040,nocase'
+      flow: to_server,established
+      isdataat: 1040,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER esignal STREAMQUOTE buffer overflow attempt"'
+      reference: cve,2004-1868
+      rev: '9'
+      sid: '2489'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

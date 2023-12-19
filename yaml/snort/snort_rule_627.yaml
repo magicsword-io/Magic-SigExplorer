@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      ack: '0'
+      classtype: attempted-recon
+      contents:
+      - value: '"AAAAAAAAAAAAAAAA",depth 16'
+      flags: 12FSU
+      flow: stateless
+      metadata: ruleset community
+      msg: '"INDICATOR-SCAN cybercop os SFU12 probe"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '13'
+      sid: '627'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

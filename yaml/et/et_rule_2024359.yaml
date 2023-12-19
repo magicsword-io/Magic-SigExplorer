@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|593268796479677a4d6a63324e79|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_06_07,
+        deployment Perimeter, former_category CURRENT_EVENTS, malware_family Exploit_Kit,
+        signature_severity Major, tag Exploit_Kit_Sundown, updated_at 2017_06_07
+      msg: '"ET CURRENT_EVENTS SunDown EK RIP Landing M3 B641"'
+      pcre: '"/(?:NocncoMjE3Ni|Y2hydygyMTc2K|jaHJ3KDIxNzYp)/"'
+      rev: '1'
+      sid: '2024359'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

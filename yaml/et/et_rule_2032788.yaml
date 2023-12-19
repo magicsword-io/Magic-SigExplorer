@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".png"'
+      - depth: '4'
+        value: '"cid="'
+      - value: '"&host="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded"'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_20, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        signature_severity Major, tag CardSkimmer, updated_at 2021_04_20
+      msg: '"ET TROJAN Magecart/Skimmer - _try_action Exfil Attempt"'
+      pcre: '"/\.png$/U"'
+      reference: url,lukeleal.com/research/posts/cdn-frontend-skimmer/
+      rev: '2'
+      sid: '2032788'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

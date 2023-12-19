@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"verify:OK"'
+      flow: established,to_client
+      flowbits: set,ET.CVE-2020-22253_stage2
+      metadata: attack_target IoT, created_at 2022_12_02, cve CVE_2020_22253, deployment
+        Perimeter, former_category EXPLOIT, confidence High, signature_severity Major,
+        updated_at 2022_12_02
+      msg: '"ET EXPLOIT Xiongmai/HiSilicon DVR - Successful Auth - Possilbe CVE-2020-22253
+        Attempt"'
+      reference: cve,2020-22253
+      rev: '1'
+      sid: '2041647'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '9530'

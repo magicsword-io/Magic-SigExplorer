@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: '[82.163.143.135,82.163.142.137]'
+      port: '53'
+    details:
+      classtype: trojan-activity
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2018_01_16, deployment Perimeter, former_category TROJAN, malware_family Mami,
+        performance_impact Moderate, signature_severity Major, updated_at 2018_01_16
+      msg: '"ET TROJAN OSX/Mami Possible DNS Query to Evil DNS Server"'
+      reference: url,objective-see.com/blog/blog_0x26.html
+      rev: '2'
+      sid: '2025200'
+      threshold: type limit, track by_src, count 1, seconds 60
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

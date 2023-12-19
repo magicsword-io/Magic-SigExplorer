@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"var translate_dict = {"'
+      - value: '"VERIFICATION_CODE"'
+      - value: '"VERIFICATION_CODE_REQUIRED"'
+      - value: '"NOT_BEGIN_OR_END_WITH_SPACE"'
+      - value: '"USERNAME_ALL_NUMERIC"'
+      - value: '"PASSWORDS_DONT_MATCH"'
+      - value: '"PWD_HINT_REQUIRED"'
+      - value: '"PASSWORD_MATCHES_USERNAME"'
+      - value: '"REQUEST_PASSWORD_RESET"'
+      - value: '"ENTER_VALID_VERIFICATION_CODE"'
+      - value: '"PASSWORD_MATCH_HINT"'
+      - value: '"Your work here is done"'
+      - value: '"Yikes! Something''s gone wrong."'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2015_11_05, former_category PHISHING, updated_at 2015_11_05
+      msg: '"ET CURRENT_EVENTS Outlook WebApp Phish Landing 2015-11-05"'
+      rev: '1'
+      sid: '2031691'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

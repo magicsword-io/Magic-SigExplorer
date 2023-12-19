@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"versiya="'
+      - value: '"comp="'
+      - value: '"id="'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_03_29, deployment Perimeter, former_category
+        MALWARE, malware_family Stealer, updated_at 2020_10_21
+      msg: '"ET TROJAN Win32/Pterodo.NG Checkin 2"'
+      reference: md5,a7183477c46a767a72caebee066dce39
+      rev: '4'
+      sid: '2034344'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

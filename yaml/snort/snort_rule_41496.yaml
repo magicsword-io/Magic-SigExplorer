@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-json/",fast_pattern,nocase'
+      - value: '"id=",nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP WordPress get_post authentication bypass attempt"'
+      pcre: '"/[?&]id=[^&]*?[^\d&]/i"'
+      reference: url,wordpress.org/news/2017/01/wordpress-4-7-2-security-release/
+      rev: '2'
+      service: http
+      sid: '41496'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

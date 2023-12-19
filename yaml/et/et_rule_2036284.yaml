@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,0,little,from_beginning,post_offset 4
+      classtype: trojan-activity
+      contents:
+      - offset: '5'
+        value: '"fldr="'
+      flow: established,from_server
+      isdataat: '!1,relative'
+      metadata: created_at 2016_02_17, former_category MALWARE, updated_at 2016_02_17
+      msg: '"ET TROJAN MSIL/Crimson Receiving Command (folders list)"'
+      reference: md5,94d29dded4dfd920fc4153f18e82fc6c
+      rev: '2'
+      sid: '2036284'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

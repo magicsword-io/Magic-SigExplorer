@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - depth: '10'
+        value: '"/download/"'
+      - value: '".exe"'
+      - value: '"Host|3a 20|www.seetrol."'
+      flow: established,to_server
+      metadata: created_at 2021_09_09, former_category POLICY, updated_at 2021_09_09
+      msg: '"ET POLICY Seetrol Software Download (GET)"'
+      pcre: '"/\.exe$/U"'
+      rev: '1'
+      sid: '2033917'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

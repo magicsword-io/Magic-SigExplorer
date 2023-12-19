@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/vendor/phpdocumentor/reflection-docblock/tests/phpDocumentor/Reflection/DocBlock/Tag/LinkTagTeet.php",fast_pattern,nocase'
+      - value: '"down_url=",nocase'
+      - value: '"|3A|/"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Tpshop remote file include attempt"'
+      pcre: '"/[?&]down_url=[^&]*?(http|ftp)/i"'
+      reference: url,seclists.org/fulldisclosure/2018/May/11
+      rev: '1'
+      service: http
+      sid: '49838'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

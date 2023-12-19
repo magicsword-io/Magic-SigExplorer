@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '2048'
+    details:
+      byte_test: 4,>,32,16
+      classtype: attempted-user
+      contents:
+      - value: '"|00 00 00 08|",depth 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER squid WCCP I_SEE_YOU message overflow attempt"'
+      reference: cve,2005-0095
+      rev: '10'
+      sid: '3089'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|X-Client-Id|3a 20|"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0(Windows NT|20|"'
+      - value: '"POST /index.php HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_14, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2023_05_15, reviewed_at 2023_09_12
+      msg: '"ET TROJAN Win32/DarkWatchman Activity (POST)"'
+      pcre: '"/\x0d\x0aX-Client-Id\x3a\x20[a-z0-9]{8}\r\n/H"'
+      reference: md5,2ccc9637823753de9cdcdf76a1d22725
+      rev: '4'
+      sid: '2035186'
+      special_options:
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

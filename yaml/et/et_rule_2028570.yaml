@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/_isolated_codes/C0n_eections/"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_09_10, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag TransparentTribe,
+        updated_at 2020_09_02
+      msg: '"ET TROJAN Possible TransparentTribe APT CnC Activity"'
+      reference: url,mp.weixin.qq.com/s/pJ-rnzB7VMZ0feM2X0ZrHA
+      rev: '2'
+      sid: '2028570'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"User-Agent"'
+      - value: '"/logs.php?&prog=",fast_pattern,nocase'
+      - value: '"&url="'
+      - value: '"&user=",distance 0'
+      - value: '"&pass=",distance 0'
+      - value: '"&comp=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Nimisi variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a1f8f8b509001e5bca811a168455a89517000a2534d271018c0c87c6210bd69f/analysis/
+      rev: '2'
+      service: http
+      sid: '36108'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

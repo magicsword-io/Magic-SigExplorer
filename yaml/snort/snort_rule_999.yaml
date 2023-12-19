@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/scripts/iisadmin/bdir.htr",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS bdir access"'
+      reference: bugtraq,2280
+      rev: '19'
+      service: http
+      sid: '999'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!DOCTYPE html>|0d 0a|<html>|0d 0a|<head>|0d 0a|<meta charset =|20
+          22|UTF-8|22|>|0d 0a|<script>|0d 0a|if (window.ActiveXObject|20 7c 7c 20
+          22|ActiveXObject|22 20|in window){"'
+      - value: '"</html>|0d 0a|<body>|0d 0a|</body>"'
+      distance: '0'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_14, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT_KIT, signature_severity Major, updated_at 2019_11_14
+      msg: '"ET CURRENT_EVENTS Possible PurpleFox EK Framework Landing"'
+      rev: '2'
+      sid: '2028974'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

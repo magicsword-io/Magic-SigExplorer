@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/monitor.php?",fast_pattern'
+      - value: '"myid=",distance 0'
+      - value: '"&ip=",distance 0'
+      - value: '"&cgminer=",distance 0'
+      - value: '"&operatingsystem=",distance 0'
+      - value: '!"Content-Length|3A 20|"'
+      - value: '!"Content-Type|3A 20|"'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE MinerDeploy monitor request attempt"'
+      reference: url,www.virustotal.com/en/file/06033b08afd30b413cce3b9a169cb8396fe34865f3bacd436c652dbb469ced62/analysis/
+      rev: '2'
+      service: http
+      sid: '31531'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?"'
+      - value: '"lang="'
+      - value: '"&pal="'
+      - value: '"&bay="'
+      - value: '"&gold="'
+      - value: '"&id="'
+      - value: '"&param="'
+      - value: '"&socksport="'
+      - value: '"&httpport="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Cashout Proxy Bot reg_DST"'
+      reference: url,doc.emergingthreats.net/2008248
+      rev: '3'
+      sid: '2008248'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

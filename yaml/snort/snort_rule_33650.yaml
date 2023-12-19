@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '9'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/preview/"'
+      - value: '"Content-Length: 157|0D 0A|"'
+      - value: '!"User-Agent|3A 20|"'
+      - value: '"|00 80 00 00 00|",depth 5,offset 24'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Tinba outbound connection"'
+      reference: url,www.virustotal.com/en/file/8eb2c85abe7acee219e344ae0592a2b1c159bdafa037be39ac062bdaeeb1f621/analysis/
+      rev: '3'
+      service: http
+      sid: '33650'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

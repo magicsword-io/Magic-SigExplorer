@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"PHP Uploader - By Phenix-TN & Mr.Anderson"'
+      - value: '"<input type=|22|submit|22 20|value=|22|File Reload|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_05_26, deployment Perimeter, signature_severity Critical,
+        updated_at 2020_05_26
+      msg: '"ET WEB_SERVER Generic PHP Uploader Accessed on Internal Server"'
+      rev: '2'
+      sid: '2030213'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/downloadlicenses.cgi?cmd=download"'
+      - value: '"&txtVLSAuthCode="'
+      - value: '"%3b"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Pulse_Secure, created_at 2020_08_27, cve CVE_2020_8218,
+        deployment Perimeter, deployment Internal, deployment SSLDecrypt, former_category
+        EXPLOIT, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET EXPLOIT Possible Pulse Secure VPN RCE Inbound (CVE-2020-8218)"'
+      reference: url,www.gosecure.net/blog/2020/08/26/forget-your-perimeter-rce-in-pulse-connect-secure/
+      rev: '2'
+      sid: '2030804'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

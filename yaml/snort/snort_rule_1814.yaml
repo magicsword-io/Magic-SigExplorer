@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"/StreamingStatistics"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP CISCO VoIP DOS ATTEMPT"'
+      reference: nessus,11013
+      rev: '15'
+      service: http
+      sid: '1814'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

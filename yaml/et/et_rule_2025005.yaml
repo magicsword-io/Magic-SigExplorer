@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Location|3a 20|http"'
+      - value: '"Location|3a 20|http"'
+      - value: '!"domain=.facebook.com|3b|"'
+      flow: to_client,established
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_01_14, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_28, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Possible Successful Generic Phish Jan 14 2016"'
+      pcre: '"/^(?:s)?\x3a\/\/[^\/]*(?:(?:a(?:m(?:ericanexpress|azon)|(?:dob|ppl)e|libaba|ol)|r(?:e(?:gions|max)|bcroyalbank)|f(?:irst-online|acebook|edex)|m(?:icrosoft(?:online)?|atch)|u(?:s(?:bank|aa|ps)|ps)|(?:technologyordi|googl)e|na(?:twest|ver)|d(?:ropbox|hl)|yahoo(?:mail)?|1(?:26|63)|keybank|qq)\.com|i(?:n(?:t(?:ertekgroup\.org|uit\.com)|vestorjunkie\.com|g\.nl)|c(?:icibank\.com|scards\.nl)|mpots\.gouv\.fr|rs\.gov)|c(?:(?:h(?:ristianmingl|as)e|apitalone(?:360)?|ibcfcib|panel)\.com|om(?:mbank\.com\.au|cast\.net)|redit-agricole\.fr)|b(?:a(?:nkofamerica\.com|rclays\.co\.uk)|(?:igpond|t)\.com|luewin\.ch)|o(?:(?:utlook|ffice)\.com|range\.(?:co\.uk|fr)|nline\.hmrc\.gov\.uk)|s(?:(?:(?:aatchiar|untrus)t|c)\.com|ecure\.lcl\.fr|parkasse\.de)|h(?:a(?:lifax(?:-online)?\.co\.uk|waiiantel\.net)|otmail\.com)|p(?:(?:rimelocation|aypal)\.com|ostbank\.de)|l(?:i(?:nkedin|ve)\.com|abanquepostale\.fr)|we(?:llsfargo\.com|stpac\.co\.nz)|etisalat\.ae)\/?/Ri"'
+      rev: '13'
+      sid: '2025005'
+      special_options:
+      - http_stat_code
+      - http_header
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

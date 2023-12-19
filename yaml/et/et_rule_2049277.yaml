@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '16'
+        value: '"/stm.cgi?auth|3d|00"'
+      flow: established,to_server
+      metadata: attack_target ICS, created_at 2023_11_21, deployment Perimeter, deployment
+        Internal, former_category WEB_SPECIFIC_APPS, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_11_21
+      msg: '"ET WEB_SPECIFIC_APPS Tinycontrol LAN Controller v3 Authentication Bypass
+        Attempt"'
+      reference: url,www.zeroscience.mk/en/vulnerabilities/ZSL-2023-5787.php
+      rev: '1'
+      sid: '2049277'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

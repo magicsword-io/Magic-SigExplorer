@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/OptimizerPro.exe"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_07_21, former_category ADWARE_PUP, updated_at 2020_09_17
+      msg: '"ET MALWARE PUP Optimizer Pro Adware Download"'
+      pcre: '"/\/OptimizerPro\.exe$/Ui"'
+      reference: url,malwr.com/analysis/NjdkMTczMDQ0MDQ0NGNmZWE0OTgzYTY2YzU5OGY2YmI/
+      rev: '2'
+      sid: '2018743'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

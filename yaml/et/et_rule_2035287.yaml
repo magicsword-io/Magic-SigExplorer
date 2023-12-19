@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"|09 00|"'
+      - value: '"|05 00 00|"'
+      - value: '"|0c 00|"'
+      - value: '"|15 00 00 00 00 00 00 00 15 00 00 00|"'
+      - value: '"|15 00 00 00 00 00 00 00 15 00 00 00|"'
+      - value: '"|03 00 00 00|"'
+      distance: '10'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Server, created_at 2022_02_25, deployment Internal, former_category EXPLOIT,
+        signature_severity Major, updated_at 2022_02_25
+      msg: '"ET EXPLOIT Suspicious SVCCTL CreateService Command via SMB - Observed
+        Zerologon Post Compromise Activity"'
+      pcre: '"/^(?:[A-Z]\x00){20}\x00\x00/R"'
+      reference: md5,59e7f22d2c290336826700f05531bd30
+      rev: '2'
+      sid: '2035287'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: any
+      port: any

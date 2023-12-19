@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '57'
+        value: '"<script language=|22|javascript|22| type=|22|text/javascript|22|>var
+          "'
+      - value: '"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="'
+      - value: '"var o1,o2,o3,h1,h2,h3,h4,bits,i"'
+      distance: '0'
+      fast_pattern: 11,20
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_11_05, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Obfuscated Phishing Landing 2015-11-05"'
+      rev: '1'
+      sid: '2031698'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

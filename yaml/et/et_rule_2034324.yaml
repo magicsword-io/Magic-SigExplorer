@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '65'
+        value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary=SendFileZIPBoundary|0d
+          0a|"'
+      - value: '"ser-Agent|3a 20|uploader|0d 0a|"'
+      - value: '"form-data|3b 20|name=|22|fileToUpload|22 3b 20|filename=|22|zipfile.zip"'
+      fast_pattern: 33,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_27, deployment Perimeter, former_category
+        MALWARE, malware_family CollectorStealer, signature_severity Major, updated_at
+        2020_07_27
+      msg: '"ET TROJAN Win32/CollectorStealer CnC Exfil M3"'
+      reference: md5,fe15986992ef7dd209047deec2851e2e
+      rev: '2'
+      sid: '2034324'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

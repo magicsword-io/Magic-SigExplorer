@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|55 04 03|"'
+      - value: '"|0b|*.onion.pet"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2019_01_15,
+        deployment Perimeter, former_category POLICY, performance_impact Low, signature_severity
+        Informational, updated_at 2020_09_16
+      msg: '"ET POLICY Observed SSL Cert (Tor Proxy Domain (.onion. pet))"'
+      rev: '2'
+      sid: '2026808'
+      special_options:
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|asushotfix|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2019_03_25, former_category TROJAN, malware_family ShadowHammer,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN ShadowHammer DNS Lookup"'
+      reference: url,motherboard.vice.com/en_us/article/pan9wn/hackers-hijacked-asus-software-updates-to-install-backdoors-on-thousands-of-computers
+      rev: '2'
+      sid: '2027109'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

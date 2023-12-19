@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/login.uix"'
+      - value: '"username="'
+      - value: '!"|0A|"'
+      fast_pattern: only
+      flow: to_server,established
+      isdataat: 250,relative
+      metadata: created_at 2010_09_23, updated_at 2020_09_17
+      msg: '"GPL SQL Oracle iSQLPlus login.uix username overflow attempt"'
+      pcre: '"/username=[^&\x3b\r\n]{250}/smi"'
+      reference: url,www.nextgenss.com/advisories/ora-isqlplus.txt
+      rev: '4'
+      sid: '2102703'
+      special_options:
+      - http_uri
+      - nocase
+      - nocase
+      within: '250'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

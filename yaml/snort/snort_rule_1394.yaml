@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE x86 inc ecx NOOP"'
+      rev: '17'
+      sid: '1394'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

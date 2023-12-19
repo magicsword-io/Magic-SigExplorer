@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/download.asp?p=",nocase'
+      - value: '" Java/1.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT Redkit exploit kit payload request"'
+      pcre: '"/\/download\.asp\?p\=\d$/i"'
+      reference: url,www.invincea.com/2014/02/ekia-citadel-a-k-a-the-malware-the-popped-fazio-mechanical/
+      rev: '2'
+      service: http
+      sid: '29864'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

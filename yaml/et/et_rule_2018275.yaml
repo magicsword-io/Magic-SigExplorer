@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      byte_test: 1,!&,128,2
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        offset: '4'
+        value: '"|00 01 00 00 00 00 00 00 38|"'
+      metadata: created_at 2014_03_14, updated_at 2014_03_14
+      msg: '"ET TROJAN Linux/Onimiki DNS trojan activity long format (Outbound)"'
+      pcre: '"/^[a-z0-9]{23}[a-f0-9]{33}.[a-z0-9\-_]+.[a-z0-9\-_]+\x00\x00\x01\x00\x01/Rsi"'
+      reference: url,github.com/eset/malware-ioc
+      rev: '8'
+      sid: '2018275'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

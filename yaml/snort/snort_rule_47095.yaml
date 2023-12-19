@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/installended",fast_pattern,nocase'
+      - value: '"de=",nocase'
+      - value: '"_v=",nocase'
+      - value: '"_s=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Win.Adware.Pbot variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/5e3dc49c1f4b57ab27000befd128fad77eba9a6e07f8766c7e1393cae890fdf6/detection
+      rev: '2'
+      service: http
+      sid: '47095'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

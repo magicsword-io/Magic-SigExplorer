@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Upload File : <input type=|22|file|22 20|name=|22|file|22|"'
+      - value: '">Name</center></td>"'
+      - value: '">Size</center></td>"'
+      - value: '">Permissions</center></td>"'
+      - value: '">Options</center></td>"'
+      - value: '"<option value=|22|delete|22|>Delete</option>"'
+      - value: '"<option value=|22|chmod|22|>Chmod</option>"'
+      - value: '"<option value=|22|rename|22|>Rename</option>"'
+      - value: '"<form method=|22|POST|22 20|action=|22|?option&path="'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_24, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_24
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on Compromised External Server"'
+      rev: '2'
+      sid: '2030019'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

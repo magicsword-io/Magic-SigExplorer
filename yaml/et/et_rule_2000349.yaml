@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: '!6666:7000'
+    details:
+      classtype: non-standard-protocol
+      contents:
+      - depth: '8'
+        value: '"PRIVMSG "'
+      - value: '" |3a|.DCC SEND"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2023_11_13
+      msg: '"ET POLICY IRC DCC file transfer request on non-std port"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000349
+      rev: '13'
+      sid: '2000349'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

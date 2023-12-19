@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|team-meet|06|online|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_07, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_07, reviewed_at 2023_11_07
+      msg: '"ET TROJAN Lazarus CnC Domain in DNS Lookup (team-meet .online)"'
+      reference: url,twitter.com/tiresearch1/status/1721811568814624831
+      rev: '1'
+      sid: '2049105'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

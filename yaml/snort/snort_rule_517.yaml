@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '177'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 00 03 00 01 00|",fast_pattern,nocase'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"X11 xdmcp query"'
+      rev: '7'
+      sid: '517'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

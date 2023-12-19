@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/stream?id="'
+      - value: '"googleusercontent.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2011_06_06, updated_at 2020_04_20
+      msg: '"ET POLICY Google Music Streaming"'
+      reference: url,music.google.com/about
+      rev: '5'
+      sid: '2012935'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

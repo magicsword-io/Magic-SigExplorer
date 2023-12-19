@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?"'
+      - value: '"c="'
+      - value: '"&v="'
+      - value: '"&b="'
+      - value: '"&id="'
+      - value: '"&cnt="'
+      - value: '"&q="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Nebuler/Dialer.qn HTTP Request - Checkin"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2006-051916-2518-99&tabid=2
+      rev: '8'
+      sid: '2007743'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

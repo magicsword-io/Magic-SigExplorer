@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"KEEPALIVE"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_25, deployment Perimeter, performance_impact
+        Low, signature_severity Major, updated_at 2016_08_25
+      msg: '"ET TROJAN Backdoor.Win32.DarkComet Keepalive Outbound"'
+      pcre: '"/^KEEPALIVE\d+$/"'
+      reference: md5,d4f949f268d00522cfbae5d18cbce933
+      rev: '1'
+      sid: '2023091'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

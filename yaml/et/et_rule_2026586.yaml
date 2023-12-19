@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"SC.OP_packet_"'
+      dsize: '13'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_07, deployment Perimeter, former_category
+        TROJAN, performance_impact Moderate, signature_severity Major, updated_at
+        2020_11_10
+      msg: '"ET TROJAN JavaRAT Requesting Screen Size"'
+      reference: md5,9a33176dd80de6f49099a148a2df3491
+      rev: '3'
+      sid: '2026586'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

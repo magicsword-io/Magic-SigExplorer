@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"|4139 2f55 647c c126 8775 8f|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_10_02, deployment Perimeter, former_category
+        MALWARE, malware_family Remcos, signature_severity Major, updated_at 2022_04_18
+      msg: '"ET TROJAN [PTsecurity] Win32/Remcos RAT Checkin 51"'
+      reference: md5,4f3cc55c79b37a52d8f087dbf7093dcd
+      rev: '2'
+      sid: '2026433'
+      stream_size: server,=,1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

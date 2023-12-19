@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - offset: '5'
+        value: '"|70 6f 6e 67|"'
+      - value: '"|1a 0a|"'
+      - value: '"|22 03|"'
+      - value: '"|2a 20|"'
+      - value: '"|32 06|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2023_02_02
+      msg: '"ET INFO RustDesk Peer Discovery (pong)"'
+      rev: '1'
+      sid: '2044074'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '21119'

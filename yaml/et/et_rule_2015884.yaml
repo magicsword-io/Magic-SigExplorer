@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<applet"'
+      - value: '"a.Test"'
+      flow: established,to_client
+      metadata: created_at 2012_11_14, former_category EXPLOIT_KIT, updated_at 2012_11_14
+      msg: '"ET CURRENT_EVENTS CritXPack Landing Page"'
+      rev: '1'
+      sid: '2015884'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

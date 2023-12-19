@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/includes/hnmain.inc.php3?"'
+      - value: '"config[incdir]="'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SPECIFIC_APPS HotNews hnmain.inc.php3 incdir Parameter Remote
+        File Inclusion Attempt"'
+      pcre: '"/config\[incdir\]=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,doc.emergingthreats.net/2011161
+      rev: '3'
+      sid: '2011161'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"77 105 99 114 111 115 111 102 116 32 87 105 110 100 111 119 115 32"'
+      - value: '"40 99 41 32 77 105 99 114 111 115 111 102 116 32 67 111 114 112 111
+          114 97 116 105 111 110 46 32 65 108 108 32 114 105 103 104 116 115 32 114
+          101 115 101 114 118 101 100 46"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2022_11_29, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_11_29
+      msg: '"ET INFO Microsoft cmd.exe Banner Output - Decimal Encoded"'
+      rev: '1'
+      sid: '2040360'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

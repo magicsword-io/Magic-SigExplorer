@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/process_ad.php?fileDel="'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_21, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN WooSIP Downloader CnC DeleteFileOnServer"'
+      reference: md5,1cd356ab1943f120b04ad21afd9dcdb3
+      rev: '2'
+      sid: '2025166'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

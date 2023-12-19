@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"beef.websocket.send"'
+      - value: '"beef.encode.base64.encode"'
+      flow: established,from_server
+      metadata: affected_product Windows_Client_Apps, attack_target Client_Endpoint,
+        created_at 2017_06_19, deployment Perimeter, former_category WEB_CLIENT, performance_impact
+        Moderate, signature_severity Major, updated_at 2017_06_19
+      msg: '"ET WEB_CLIENT Possible BeEF Module in use"'
+      pcre: '"/^\s*?\(/Rs"'
+      rev: '1'
+      sid: '2024415'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"cgi-bin/index.php"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|3b|charset=utf-8|0d
+          0a|"'
+      - depth: '2'
+        value: '"0="'
+      - value: '"&1="'
+      - value: '"&2=enc02"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2021_04_15, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        tag CardSkimmer, updated_at 2023_04_05
+      msg: '"ET TROJAN Magecart/Skimmer - AngryBeaver Exfil Attempt"'
+      pcre: '"/cgi-bin\/index\.php$/U"'
+      reference: url,lukeleal.com/research/posts/magento2-angrybeaver-skimmer/
+      rev: '3'
+      sid: '2032769'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

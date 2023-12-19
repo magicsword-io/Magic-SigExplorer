@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Temporarily unable to load your account"'
+      - value: '"Temporarily unable to load your account"'
+      - value: '"confirm your informations"'
+      - value: '"fix this problem"'
+      - value: '"access to your account"'
+      distance: '0'
+      fast_pattern: 5,20
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_10_16, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2022_03_17, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Paypal Account Phish 2015-10-16"'
+      reference: md5,ce07d8a671e2132f404e13ff8e1959b5
+      rev: '1'
+      sid: '2031687'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

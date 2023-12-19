@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|1d|uniqueupdatesfrtetheupdateing|04|live|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_05_06, deployment Perimeter, signature_severity Major, updated_at 2022_05_06
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Origami.b / Donot DNS Lookup"'
+      reference: md5,350204a366fd3a2b1b9b80e6891c0df3
+      rev: '2'
+      sid: '2036500'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '36'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

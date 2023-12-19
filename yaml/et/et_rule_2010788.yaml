@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '250'
+        value: '"|0d 0a 0d 0a|command|7c|"'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET TROJAN Knockbot Proxy Response From Controller (empty command)"'
+      reference: url,doc.emergingthreats.net/2010788
+      rev: '4'
+      sid: '2010788'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

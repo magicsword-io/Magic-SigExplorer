@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|D9 74 24 F4 5B 81 73 13|"'
+      - value: '"|83 EB FC E2 F4|"'
+      distance: '0'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SHELLCODE Rothenburg Shellcode"'
+      reference: url,doc.emergingthreats.net/2009247
+      rev: '3'
+      sid: '2009247'
+    protocol: tcp
+    source:
+      network: any
+      port: any

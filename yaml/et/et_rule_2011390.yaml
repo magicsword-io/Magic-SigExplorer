@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/rfiinc.txt"'
+      - value: '"Host|3A| cirt.net"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Server, created_at 2010_09_28,
+        deployment Datacenter, signature_severity Major, tag Remote_File_Include,
+        updated_at 2020_05_04
+      msg: '"ET SCAN Nikto Scan Remote File Include Retrieval"'
+      reference: url,cirt.net/nikto2
+      rev: '2'
+      sid: '2011390'
+      special_options:
+      - http_uri
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: any

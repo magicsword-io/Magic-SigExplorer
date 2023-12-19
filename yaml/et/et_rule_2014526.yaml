@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|50 4B 03 04 14 00 08 00 08 00|"'
+      flow: established,to_client
+      flowbits: isset,et.exploitkitlanding
+      metadata: created_at 2012_04_06, former_category EXPLOIT_KIT, updated_at 2012_04_06
+      msg: '"ET CURRENT_EVENTS Exploit Kit Delivering JAR Archive to Client"'
+      rev: '1'
+      sid: '2014526'
+      special_options:
+      - file_data
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

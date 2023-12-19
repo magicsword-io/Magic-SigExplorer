@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"POST|20|/|20|"'
+      - value: '"The|20|HWID|20|is|3a 20|"'
+      - value: '"|20|And|20|the|20|decryption|20|key|20|is|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, former_category
+        MALWARE, malware_family plutocrypt, performance_impact Low, confidence High,
+        signature_severity Critical, updated_at 2023_04_17
+      msg: '"ET TROJAN PlutoCrypt Decryption Key Exfil"'
+      reference: url,0xtoxin-labs.gitbook.io/malware-analysis/malware-analysis/plutocrypt-a-cryptojoker-ransomware-variant
+      rev: '1'
+      sid: '2044974'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

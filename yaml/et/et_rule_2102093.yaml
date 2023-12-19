@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,2048,12,relative
+      classtype: rpc-portmap-decode
+      contents:
+      - depth: '5'
+        offset: '16'
+        value: '"|00 01 86 A0 00|"'
+      - value: '"|00 00 00 05|"'
+      - depth: '4'
+        offset: '8'
+        value: '"|00 00 00 00|"'
+      distance: '3'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0028, updated_at 2010_09_23
+      msg: '"GPL RPC portmap proxy integer overflow attempt TCP"'
+      reference: cve,2003-0028
+      rev: '6'
+      sid: '2102093'
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

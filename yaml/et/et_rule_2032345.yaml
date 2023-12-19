@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|brian|0f|krebsonsecurity|03|top|00|"'
+      distance: '1'
+      metadata: created_at 2021_03_29, former_category WEB_CLIENT, updated_at 2021_03_29
+      msg: '"ET WEB_CLIENT Exchange Webshell CnC Domain in DNS Lookup"'
+      reference: url,krebsonsecurity.com/2021/03/no-i-did-not-hack-your-ms-exchange-server/
+      rev: '2'
+      sid: '2032345'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '27'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

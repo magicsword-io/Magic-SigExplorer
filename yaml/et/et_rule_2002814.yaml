@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '7'
+        value: '"$MyINFO"'
+      flow: from_client,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Direct Connect Traffic (client-server)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2002814
+      rev: '5'
+      sid: '2002814'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

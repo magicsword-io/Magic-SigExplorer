@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (X11|3b 20|Ubuntu|3b 20|Linux i686|3b
+          20|rv|3a|45.0) Gecko/20100101 Firefox/45.0"'
+      - depth: '4'
+        value: '"xyz="'
+      - value: '"|7c|"'
+      - value: '"|7c|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_01_05, deployment Perimeter, former_category
+        MALWARE, malware_family MedusaHTTP, performance_impact Moderate, signature_severity
+        Major, updated_at 2022_05_03, reviewed_at 2023_12_13
+      msg: '"ET TROJAN MedusaHTTP CnC Checkin"'
+      reference: url,www.arbornetworks.com/blog/asert/medusahttp-ddos-slithers-back-spotlight
+      rev: '2'
+      sid: '2025187'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

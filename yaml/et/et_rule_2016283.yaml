@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/users/users.php?"'
+      - value: '"type="'
+      - value: '"keyword="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_01_25, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2022_04_18
+      msg: '"ET WEB_SPECIFIC_APPS Openconstructor CMS keyword Parameter Cross Site
+        Scripting Attempt"'
+      pcre: '"/keyword\x3d.+(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|c(?:hange|lick)|(?:un)?load|focus|mouse|blur|key)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.com/files/115284/Openconstructor-CMS-3.12.0-Reflected-XSS.html
+      rev: '3'
+      sid: '2016283'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

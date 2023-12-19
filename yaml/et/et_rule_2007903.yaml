@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"210D0CBC-8B17-48D1-B294-1A338DD2EB3A"'
+      - value: '"0x40000"'
+      - value: '"Url"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX 4XEM VatDecoder VatCtrl Class ActiveX Control Url Property
+        Buffer Overflow Vulnerability"'
+      reference: url,doc.emergingthreats.net/2007903
+      rev: '19'
+      sid: '2007903'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

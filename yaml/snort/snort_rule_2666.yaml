@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"PASS",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-POP PASS format string attempt"'
+      pcre: '"/^PASS\s+[^\n]*?%/ims"'
+      reference: cve,2004-0777
+      rev: '9'
+      service: pop3
+      sid: '2666'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

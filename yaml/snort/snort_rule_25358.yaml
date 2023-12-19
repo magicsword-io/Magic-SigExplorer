@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Acunetix-",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: set,acunetix-scan
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"APP-DETECT Acunetix web vulnerability scan attempt"'
+      reference: url,www.acunetix.com
+      rev: '5'
+      service: http
+      sid: '25358'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

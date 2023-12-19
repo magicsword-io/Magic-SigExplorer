@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/parse_xml.cgi",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP streaming server parse_xml.cgi access"'
+      reference: cve,2003-0423
+      rev: '14'
+      service: http
+      sid: '2086'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

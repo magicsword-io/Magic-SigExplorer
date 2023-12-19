@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '20'
+        value: '"GET / HTTP/1.1|0d 0a 0d 0a 0d 0a|"'
+      dsize: '20'
+      flow: to_server,established
+      metadata: created_at 2014_10_03, updated_at 2014_10_03
+      msg: '"ET DOS Terse HTTP GET Likely AnonGhost DDoS tool"'
+      rev: '2'
+      sid: '2019349'
+      threshold: type both,track by_dst,count 500,seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/rpc"'
+      - value: '"Accept-Language|3a 20|en-GB|3b|q=0.9,|20|*|3b|q=0.7|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_10, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Cobalt_Strike,
+        signature_severity Major, tag c2, updated_at 2021_11_10, mitre_tactic_id TA0011,
+        mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Activity (GET)"'
+      pcre: '"/\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nAccept-Encoding\x3a\x20[^\r\n]+\r\nAccept-Language\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\n/"'
+      reference: url,www.cert.ssi.gouv.fr/uploads/CERTFR-2021-CTI-009.pdf
+      rev: '2'
+      sid: '2034402'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      urilen: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

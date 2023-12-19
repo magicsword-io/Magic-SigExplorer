@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '23'
+        value: '"/path/DeviceManager.php"'
+      - depth: '5'
+        value: '"func="'
+      - value: '"&deviceid="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_08_04, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2022_05_03, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/Spy.Kasandra.A Checkin"'
+      reference: md5,6df6553b115d9ed837161a9e67146ecf
+      rev: '1'
+      sid: '2018888'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

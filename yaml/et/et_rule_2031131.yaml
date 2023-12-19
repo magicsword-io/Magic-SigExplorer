@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '42'
+        value: '"|04 19 00 00 00 1a 00 00 00 17 25 75 73 65 72 70 72 6f 66 69 6c 65
+          25 5c 44 6f 63 75 6d 65 6e 74 73 00 00 00 08 55 54 43 2d 2d|"'
+      dsize: '1051'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2020_10_28, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_10_28
+      msg: '"ET TROJAN Win32/Ficker Stealer Activity M2"'
+      reference: url,app.any.run/tasks/228c144e-90a0-4e8f-87d8-102bc04b0335/
+      rev: '1'
+      sid: '2031131'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

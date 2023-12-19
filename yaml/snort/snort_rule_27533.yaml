@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '8'
+      classtype: trojan-activity
+      contents:
+      - value: '"/000.jpg",fast_pattern,nocase'
+      - value: '"HTTP/1.0|0D 0A|Host: "'
+      - value: '!"|3A 20|",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Potential Win.Trojan.Kraziomel Download - 000.jpg"'
+      reference: url,www.virustotal.com/en/file/33525f8cf5ca951095d4af7376e026821b81557526d4846916805387fb9c5bb2/analysis/
+      rev: '4'
+      service: http
+      sid: '27533'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

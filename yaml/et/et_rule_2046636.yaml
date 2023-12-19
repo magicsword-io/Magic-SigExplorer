@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"lofter.com"'
+      - value: '"lofter.com"'
+      - value: '"a63855"'
+      - value: '"a6"'
+      distance: '14'
+      flow: established,to_client
+      flowbits: isset,ET.blackmoon
+      metadata: attack_target Client_Endpoint, created_at 2023_06_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        Medium, signature_severity Major, updated_at 2023_06_23
+      msg: '"ET TROJAN Suspected Blackmoon Related Activity (Response)"'
+      reference: url,threatpost.com/blackmoon-banking-trojan-using-new-infection-technique/125425/
+      rev: '1'
+      sid: '2046636'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_cookie
+      - file_data
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

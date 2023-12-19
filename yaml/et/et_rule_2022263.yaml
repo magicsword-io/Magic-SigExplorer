@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"O|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_12_15, updated_at 2020_10_05
+      msg: '"ET EXPLOIT Joomla RCE M2 (Serialized PHP in UA)"'
+      pcre: '"/^User-Agent\x3a[^\r\n]*\bO\x3a\d+\x3a[^\r\n]*?\{[^\r\n]*?\}/Hmi"'
+      reference: url,blog.sucuri.net/2015/12/remote-command-execution-vulnerability-in-joomla.html
+      rev: '1'
+      sid: '2022263'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

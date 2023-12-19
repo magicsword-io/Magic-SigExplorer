@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|06|update|0b|facebookint|07|workers|03|dev|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_08_25, deployment Perimeter,
+        former_category MALWARE, malware_family Winnti_related, performance_impact
+        Low, signature_severity Major, updated_at 2021_08_25
+      msg: '"ET TROJAN SparklingGoblin/Winnti Group SideWalk Domain in DNS Lookup"'
+      reference: url,www.welivesecurity.com/2021/08/24/sidewalk-may-be-as-dangerous-as-crosswalk/
+      rev: '2'
+      sid: '2033784'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '32'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

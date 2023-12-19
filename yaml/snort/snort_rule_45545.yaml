@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/screens/",nocase'
+      - value: '"/",within 1,distance 8'
+      - value: '"==",within 2,distance 6'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Osx.Trojan.SHLayer variant outbound connection"'
+      reference: url,www.virustotal.com/gui/file/f5d76324cb8fcae7f00b6825e4c110ddfd6b32db452f1eca0f4cff958316869c/detection
+      rev: '3'
+      service: http
+      sid: '45545'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

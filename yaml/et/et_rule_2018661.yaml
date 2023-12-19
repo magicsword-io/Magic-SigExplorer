@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/soft"'
+      - value: '".dll"'
+      - depth: '32'
+        value: '"Accept|3a 20|*/*|0d 0a|Connection|3a 20|Close|0d 0a|"'
+      - value: '"User-Agent|3a|"'
+      - value: '!"Referer"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_07_10, updated_at 2020_09_25
+      msg: '"ET TROJAN Win32/Zemot Config Download"'
+      pcre: '"/\/soft(?:32|64)\.dll$/Ui"'
+      reference: md5,5a99a6a6cd8600ea88a8fcc1409b82f4
+      rev: '2'
+      sid: '2018661'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

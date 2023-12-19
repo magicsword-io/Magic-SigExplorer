@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"aim|3A|goaway?message=",nocase'
+      flow: to_client,established
+      isdataat: 500,relative
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-OTHER AOL Instant Messenger goaway message buffer overflow attempt"'
+      pcre: '"/\x22aim\x3Agoaway\x3Fmessage\x3D[^\x22]{500}|\x27aim\x3Agoaway\x3Fmessage\x3D[^\x27]{500}|aim\x3Agoaway\x3Fmessage\x3D[^\s]{500}/i"'
+      reference: cve,2004-0636
+      rev: '14'
+      service: http
+      sid: '3085'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

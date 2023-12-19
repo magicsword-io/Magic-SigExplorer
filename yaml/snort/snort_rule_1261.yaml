@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4242'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|7F FF FB|x|7F FF FB|x|7F FF FB|x|7F FF FB|x"'
+      - value: '"@|8A FF C8|@|82 FF D8 3B|6|FE 03 3B|v|FE 02|"'
+      flow: to_server,established
+      isdataat: '1000'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER AIX pdnsd overflow"'
+      reference: cve,1999-0745
+      rev: '15'
+      sid: '1261'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

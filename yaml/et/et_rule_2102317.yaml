@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"E cvs server|3A| warning|3A| cannot make directory CVS in /"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0977, updated_at 2010_09_23
+      msg: '"GPL MISC CVS non-relative path error response"'
+      reference: cve,2003-0977
+      rev: '5'
+      sid: '2102317'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

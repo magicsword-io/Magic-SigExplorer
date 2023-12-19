@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|fromsmash.co"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_06_06, deployment Perimeter,
+        former_category INFO, signature_severity Informational, tag SSL_Malicious_Cert,
+        updated_at 2022_06_06
+      msg: '"ET INFO Observed Anonymous File Sharing Service in SSL Cert (fromsmash
+        .co)"'
+      rev: '1'
+      sid: '2036871'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

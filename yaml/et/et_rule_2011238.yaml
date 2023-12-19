@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.0 |28|SP3 WINLD|29 0d 0a|"'
+      fast_pattern: 23,14
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE User-Agent (Mozilla/4.0 (SP3 WINLD))"'
+      reference: url,doc.emergingthreats.net/2011238
+      rev: '6'
+      sid: '2011238'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

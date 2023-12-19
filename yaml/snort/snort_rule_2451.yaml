@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"YMSG",depth 4,nocase'
+      - value: '"|00|J",depth 2,offset 10'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL Yahoo IM voicechat"'
+      rev: '9'
+      sid: '2451'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5050'

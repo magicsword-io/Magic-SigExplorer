@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '20'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/uplink.php?logo.jpg",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/5.0"'
+      - value: '"token=",depth 6'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Linkup outbound connection"'
+      reference: url,blog.emsisoft.com/2014/02/03/malware-analysis-ransomware-linkup-blocks-dns-and-mines-bitcoins/
+      rev: '4'
+      service: http
+      sid: '29666'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

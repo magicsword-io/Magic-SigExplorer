@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/stuffer/login.php"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_03, deployment Perimeter, deployment SSLDecrypt,
+        former_category PHISHING, signature_severity Major, updated_at 2023_11_03,
+        reviewed_at 2023_11_03
+      msg: '"ET CURRENT_EVENTS SWAT USA Drop Login Panel"'
+      reference: url,krebsonsecurity.com/2023/11/russian-reshipping-service-swat-usa-drop-exposed/
+      rev: '1'
+      sid: '2049075'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      urilen: '18'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

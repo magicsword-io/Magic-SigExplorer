@@ -1,0 +1,59 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Microsoft Internet Explorer"'
+      - value: '!"bbc.co.uk|0d 0a|"'
+      - value: '!"vmware.com|0d 0a|"'
+      - value: '!"rc.itsupport247.net|0d 0a|"'
+      - value: '!"msn.com|0d 0a|"'
+      - value: '!"msn.es|0d 0a|"'
+      - value: '!"live.com|0d 0a|"'
+      - value: '!"gocyberlink.com|0d 0a|"'
+      - value: '!"ultraedit.com|0d 0a|"'
+      - value: '!"windowsupdate.com"'
+      - value: '!"cyberlink.com"'
+      - value: '!"lenovo.com"'
+      - value: '!"itsupport247.net|0d 0a|"'
+      - value: '!"msn.co.uk|0d 0a|"'
+      - value: '!"support.weixin.qq.com"'
+      fast_pattern: 11,25
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category HUNTING, updated_at 2020_08_31
+      msg: '"ET USER_AGENTS Suspicious User Agent (Microsoft Internet Explorer)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2002400
+      rev: '35'
+      sid: '2002400'
+      special_options:
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      threshold: type limit, track by_src, count 2, seconds 360
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

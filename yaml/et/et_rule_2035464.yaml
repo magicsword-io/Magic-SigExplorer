@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -16
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"discordapp.com"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_15, former_category INFO, signature_severity Informational,
+        updated_at 2022_09_21
+      msg: '"ET INFO Observed Discord Domain (discordapp .com in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0e|.\x2e)discordapp\.com/R"'
+      reference: md5,03f93498e1006ffa3a1f9fcb6170525a
+      rev: '4'
+      sid: '2035464'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

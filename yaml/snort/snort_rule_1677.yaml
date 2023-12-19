@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '" where ",nocase'
+      - value: '" like ''%''",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE select like ''%'' attempt"'
+      rev: '7'
+      sid: '1677'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

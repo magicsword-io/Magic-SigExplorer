@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"0FGZpxWY29ldzN3X0VGbwBXYf9"'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_07_26, updated_at 2013_07_26
+      msg: '"ET CURRENT_EVENTS Possible Java Applet JNLP applet_ssv_validated in Base64
+        2 (Reversed)"'
+      reference: url,immunityproducts.blogspot.fr/2013/04/yet-another-java-security-warning-bypass.html
+      rev: '4'
+      sid: '2017203'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

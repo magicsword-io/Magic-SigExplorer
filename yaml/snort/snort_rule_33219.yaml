@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '9'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/2ldr.php",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/4.0|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Gamarue variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/eefe5370b09a32a7b295c136073a8560958c4a58822a7da5b501a10543266c6e/analysis/1421697833/
+      rev: '3'
+      service: http
+      sid: '33219'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

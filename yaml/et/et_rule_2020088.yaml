@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"SERVICE_NAME|3a|"'
+      - value: '"TYPE"'
+      - value: '"SERVICE_EXIT_CODE"'
+      distance: '0'
+      flow: established
+      metadata: created_at 2015_01_05, updated_at 2015_01_05
+      msg: '"ET ATTACK_RESPONSE SysInternals sc.exe Output Outbound"'
+      rev: '1'
+      sid: '2020088'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

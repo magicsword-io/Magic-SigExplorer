@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '!"<html"'
+      - value: '"|29 20|at|20|"'
+      - value: '"|20 5b|ether|5d 20|on|20|"'
+      distance: '17'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_29, deployment Perimeter,
+        former_category ATTACK_RESPONSE, performance_impact Low, confidence Low, signature_severity
+        Major, tag WebShell, updated_at 2023_11_29, mitre_tactic_id TA0003, mitre_tactic_name
+        Persistence, mitre_technique_id T1505, mitre_technique_name Server_Software_Component
+      msg: '"ET ATTACK_RESPONSE Possible arp command output via HTTP (Linux Style)"'
+      rev: '1'
+      sid: '2049391'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS

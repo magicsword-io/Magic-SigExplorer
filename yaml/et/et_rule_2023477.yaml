@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"PP|3b 20|nhash="'
+      - value: '"PHPSESSID="'
+      - value: '"AAAAAAAAAAAAAAA"'
+      - value: '"PP|3b 20|nhash="'
+      - value: '"|3b 20|chash="'
+      distance: '0'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target Client_and_Server, created_at
+        2016_11_02, deployment Perimeter, former_category MALWARE, malware_family
+        Linux_Moose, performance_impact Low, signature_severity Major, updated_at
+        2020_10_07
+      msg: '"ET TROJAN Moose CnC Request M1"'
+      reference: url,gosecure.net/2016/11/02/exposing-the-ego-market-the-cybercrime-performed-by-the-linux-moose-botnet/
+      rev: '2'
+      sid: '2023477'
+      special_options:
+      - http_method
+      - http_header
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      urilen: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

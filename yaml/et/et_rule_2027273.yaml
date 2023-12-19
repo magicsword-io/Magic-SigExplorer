@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|file|22 3b 20|filename=|22|Encrypted.zip|22
+          0d 0a|Content-Type|3a 20|application/octet-stream|0d 0a 0d 0a|"'
+      - value: '!"PK"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept|3a|"'
+      fast_pattern: 52,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_04_24, deployment Perimeter, former_category
+        MALWARE, malware_family BALDR, performance_impact Low, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET TROJAN Baldr Stealer Checkin M2"'
+      reference: md5,216a00647603b66967cda5d91638f18a
+      rev: '3'
+      sid: '2027273'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      within: '25'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

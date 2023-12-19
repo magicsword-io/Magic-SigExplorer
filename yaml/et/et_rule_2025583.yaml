@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '10'
+        value: '"|c1 da 92 95 85 91 91 99 99 91|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_05_23, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET TROJAN [PTsecurity] PS/TrojanDownloader.Agent.NNR XORed Zip payload
+        (key 0x91)"'
+      reference: url,dctoralves.wordpress.com/2018/05/03/phishing-report-policia-civil/
+      rev: '3'
+      sid: '2025583'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

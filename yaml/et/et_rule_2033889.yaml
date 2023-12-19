@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/?id="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        tag FIN7, updated_at 2021_09_02
+      msg: '"ET TROJAN FIN7 JSSLoader Variant Activity (GET)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,bf23c48d111f5a2d3169062428940b1c
+      rev: '1'
+      sid: '2033889'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

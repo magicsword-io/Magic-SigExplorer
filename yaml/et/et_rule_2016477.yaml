@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|48 54 54 50 2f 31 2e 30 20 32 30 30 20 4f 4b 0d 0a|"'
+      - value: '"|43 6f 6e 74 65 6e 74 2d 4c 65 6e 67 74 68 3a 20 31 0d 0a|"'
+      - value: '"|43 6f 6e 65 63 74 69 6f 6e 3a 20 4b 65 65 70 2d 41 6c 69 76 65 0d
+          0a|"'
+      - value: '"|53 65 74 2d 43 6f 6f 6b 69 65 3a|"'
+      - value: '"|0d 0a 20 31|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2013_02_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2013_02_22,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1071, mitre_technique_name Application_Layer_Protocol
+      msg: '"ET TROJAN CommentCrew Possible APT c2 communications html return 1"'
+      rev: '3'
+      sid: '2016477'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '80'

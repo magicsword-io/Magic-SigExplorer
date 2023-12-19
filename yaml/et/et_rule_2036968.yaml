@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '9'
+        value: '"/PROJECT_"'
+      - value: '"_"'
+      - value: '!".asp"'
+      - value: '!".htm"'
+      - value: '!".php"'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_13, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Gallium, signature_severity
+        Major, updated_at 2022_06_13
+      msg: '"ET TROJAN PingPull Related Activity (POST)"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,7e01d776a0eb044a11bf91f3a68ce6f5
+      rev: '1'
+      sid: '2036968'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      within: '33'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

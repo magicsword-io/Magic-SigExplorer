@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|yoozmall|05|world|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_01_20, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Major, updated_at 2023_01_20
+      msg: '"ET MOBILE_MALWARE Trojan-Spy.AndroidOS.SmsThief.ta CnC Domain in DNS
+        Lookup"'
+      reference: md5,8658ac2b2cf5941ea829cb62cd3ff972
+      rev: '1'
+      sid: '2043376'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

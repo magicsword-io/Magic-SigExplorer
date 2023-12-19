@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/gsb/datetime.php"'
+      - value: '"delBackupName"'
+      - value: '"backupRestoreFormSubmitted"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2010_0369, updated_at 2022_05_03
+      msg: '"ET WEB_SERVER LANDesk Command Injection Attempt"'
+      reference: url,doc.emergingthreats.net/2010863
+      rev: '8'
+      sid: '2010863'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

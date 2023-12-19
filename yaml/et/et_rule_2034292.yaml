@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?AT="'
+      - value: '"Microsoft Windows"'
+      - value: '"&MD="'
+      - value: '!"&"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_29, deployment Perimeter, former_category
+        MALWARE, malware_family Casbaneiro, performance_impact Low, signature_severity
+        Major, tag Banker, updated_at 2021_10_29
+      msg: '"ET TROJAN Casbaneiro CnC Host Checkin M2"'
+      reference: md5,6716f7a0e6f96617c9ba4b47ff9f41eb
+      rev: '2'
+      sid: '2034292'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

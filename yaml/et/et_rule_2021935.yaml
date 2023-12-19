@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|googlemanage|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2015_10_08, updated_at 2020_09_17
+      msg: '"ET TROJAN Possible PlugX DNS Lookup (googlemanage.com)"'
+      reference: url,volexity.com/blog/?p=179
+      rev: '2'
+      sid: '2021935'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

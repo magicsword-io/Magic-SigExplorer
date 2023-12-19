@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|22|username|22 3a 20 22|BleachGap|20|"'
+      - value: '"|22|name|22 3a 20 22|Hacker$quad|22|"'
+      - value: '"discord.gg"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_07, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        tag Ransomware, updated_at 2021_09_07, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN BleachGap Ransomware Checkin (POST)"'
+      reference: md5,4809f621c6dbaf0c93f1a92def0f592e
+      rev: '1'
+      sid: '2033902'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

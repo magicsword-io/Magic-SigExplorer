@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/board/logo_adm_org.gif"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_07, deployment Perimeter, former_category
+        MALWARE, malware_family MagicRAT, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2022_09_07
+      msg: '"ET TROJAN Win32/MagicRAT Additional Payload URI M3"'
+      reference: md5,b4c9b903dfd18bd67a3824b0109f955b
+      rev: '1'
+      sid: '2038769'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      urilen: '23'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

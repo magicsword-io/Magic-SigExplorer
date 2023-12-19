@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|car-service|06|effers|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2017_05_04, deployment Perimeter,
+        former_category TROJAN, malware_family Turla, malware_family Snake, performance_impact
+        Low, signature_severity Critical, tag APT, tag RUAPT, updated_at 2020_09_17
+      msg: '"ET TROJAN Turla Snake OSX DNS Lookup (car-service .effers.com)"'
+      reference: url,blog.fox-it.com/2017/05/03/snake-coming-soon-in-mac-os-x-flavour/
+      rev: '2'
+      sid: '2024271'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/real_estate/index.php?"'
+      - value: '"option=com_jomestate"'
+      - value: '"task="'
+      flow: established,to_server
+      metadata: created_at 2010_10_25, updated_at 2020_09_03
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_jomestate Parameter Remote File Inclusion
+        Attempt"'
+      pcre: '"/task=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,inj3ct0r.com/exploits/12835
+      rev: '2'
+      sid: '2011847'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

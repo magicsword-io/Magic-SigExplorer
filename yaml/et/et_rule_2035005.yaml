@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"org.apache.spark.deploy.DeployMessages$RegisterApplication"'
+      - value: '"spark.driver.port="'
+      - value: '"-XX:OnOutOfMemoryError="'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: isnotset,ET.ApacheSpark_CE
+      metadata: attack_target Server, created_at 2022_01_28, cve CVE_2020_9480, deployment
+        Internal, deployment Datacenter, former_category EXPLOIT, signature_severity
+        Major, updated_at 2022_01_28
+      msg: '"ET EXPLOIT Apache Spark RPC - Unauthenticated RegisterApplication Request
+        - RCE Attempt (CVE-2020-9480)"'
+      pcre: '"/^\d+..(?:[\x60\x3b\x7c]|%60|%3b|%7c|%26|(?:[\x3c\x3e\x24]|%3c|%3e|%24)(?:\x28|%28))-XX:OnOutOfMemoryError=/R"'
+      reference: url,github.com/ayoul3/sparky/
+      rev: '2'
+      sid: '2035005'
+    protocol: tcp
+    source:
+      network: any
+      port: any

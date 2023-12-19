@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/Recoveries/Browser.txt",fast_pattern,nocase'
+      - value: '!"User-Agent"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.iSpySoft variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/84409422426933e6f1ea227f042ff56d1f6686873454959d2e3308b9f5daac61/analysis/
+      rev: '2'
+      service: http
+      sid: '37521'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

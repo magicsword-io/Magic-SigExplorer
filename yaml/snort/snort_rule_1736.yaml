@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/squirrelspell/modules/check_me.mod.php",fast_pattern,nocase'
+      - value: '"SQSPELL_APP[",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP squirrel mail spell-check arbitrary command attempt"'
+      reference: bugtraq,3952
+      rev: '16'
+      service: http
+      sid: '1736'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

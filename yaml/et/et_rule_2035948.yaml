@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|iplogger|03|org|00|"'
+      distance: '0'
+      metadata: created_at 2017_11_27, former_category POLICY, updated_at 2020_09_15
+      msg: '"ET POLICY IP Check Domain (iplogger .org in DNS Lookup)"'
+      rev: '1'
+      sid: '2035948'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

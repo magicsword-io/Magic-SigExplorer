@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"root"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER root query"'
+      rev: '11'
+      sid: '323'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

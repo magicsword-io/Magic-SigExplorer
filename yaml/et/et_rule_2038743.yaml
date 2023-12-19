@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"|7b 22|ok|22 3a|true,|22|result|22 3a|"'
+      - value: '"|7b 30 2e|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Host|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_06, deployment Perimeter,
+        former_category MALWARE, malware_family OldGremlin, malware_family TinyNode,
+        signature_severity Major, updated_at 2022_09_06
+      msg: '"ET TROJAN Suspected Win32/TinyNode Activity (Outbound)"'
+      pcre: '"/^[0-9]{15,16}\x7d$/R"'
+      reference: url,blog.group-ib.com/oldgremlin_comeback
+      rev: '1'
+      sid: '2038743'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

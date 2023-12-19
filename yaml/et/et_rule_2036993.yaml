@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"GET /"'
+      - value: '"2E"'
+      - value: '"2E"'
+      - value: '"2E"'
+      - value: '"HTTP/1."'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '"|0d 0a|User-Agent|3a 20|"'
+      - value: '"Windows NT"'
+      - value: '"00000000000000000000"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_05_05, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_06,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Win32/Upgilf CnC Beacon"'
+      pcre: '"/^GET \/[A-F0-9]+\x20HTTP\/1\./"'
+      reference: md5,c049f2884bf2dfca9496f075216af431
+      rev: '1'
+      sid: '2036993'
+      within: '14'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

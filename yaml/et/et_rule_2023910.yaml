@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"STOR|20|"'
+      - value: '".bin|0d 0a|"'
+      dsize: 55<>65
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_07_17, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN CosmicDuke Exfiltrating Data via FTP STOR"'
+      pcre: '"/^[a-z0-9]{1,10}[A-F0-9]+\.bin\r\n$/R"'
+      reference: md5,5080bc705217c614b9cbf67a679979a8
+      rev: '2'
+      sid: '2023910'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

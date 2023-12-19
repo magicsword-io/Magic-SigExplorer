@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,0,relative,little
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00|",depth 1'
+      - value: '"|FF|SMB",within 4,distance 3'
+      - value: '"2",depth 1,offset 39'
+      - value: '"|01 00|",within 2,distance 29'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"NETBIOS SMB-DS Trans2 FIND_FIRST2 andx attempt"'
+      pcre: '"/^(\x75|\x2d|\x2f|\x73|\xa2|\x2e|\x24|\x74)/Rs"'
+      rev: '11'
+      service: netbios-ssn
+      sid: '3142'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

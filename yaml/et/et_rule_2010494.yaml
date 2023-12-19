@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 1,<,0xfb,0,little
+      classtype: attempted-recon
+      contents:
+      - offset: '4'
+        value: '"|ff 15 04 23 32 38 30 30 30|"'
+      dsize: <251
+      flow: from_server,established
+      metadata: created_at 2010_07_30, former_category SCAN, updated_at 2017_05_11
+      msg: '"ET SCAN Multiple MySQL Login Failures Possible Brute Force Attempt"'
+      reference: url,doc.emergingthreats.net/2010494
+      rev: '5'
+      sid: '2010494'
+      threshold: type threshold, track by_src, count 5, seconds 120
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '3306'

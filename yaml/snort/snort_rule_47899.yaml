@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/khc?",depth 5'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.OilRig variant outbound connection"'
+      pcre: '"/\x2fkhc\x3f[A-F0-9]{3,84}$/"'
+      reference: url,www.virustotal.com/#/file/055b7607848777634b2b17a5c51da7949829ff88084c3cb30bcb3e58aae5d8e9
+      rev: '2'
+      service: http
+      sid: '47899'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

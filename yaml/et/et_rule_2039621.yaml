@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GET"'
+      - depth: '34'
+        value: '"/api/v1/collections?asset_owner=0x"'
+      - value: '"Host|3a 20|api.opensea.io|0d 0a|"'
+      fast_pattern: 2,20
+      flow: established,to_server
+      metadata: created_at 2022_11_02, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, signature_severity Informational, updated_at 2022_11_02
+      msg: '"ET INFO OpenSea API Query NFT Discovery Details (GET)"'
+      rev: '1'
+      sid: '2039621'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

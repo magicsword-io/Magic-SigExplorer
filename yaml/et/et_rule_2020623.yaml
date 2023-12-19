@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"eval(function(p,a,c"'
+      - value: '"|7C|FindProxyForURL|7C|"'
+      - value: '"|7c|proxy|7c|"'
+      - value: '"|7c|credicard|7c|"'
+      flow: established,to_client
+      metadata: created_at 2015_03_05, updated_at 2015_03_05
+      msg: '"ET CURRENT_EVENTS Possible Tsukuba Banker Edwards Packed proxy.pac"'
+      reference: url,securityintelligence.com/tsukuba-banking-trojan-phishing-in-japanese-waters
+      rev: '2'
+      sid: '2020623'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|18|netfoundationmtgcorp.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_09_15, deployment Perimeter,
+        former_category MALWARE, malware_family Cobalt_Strike, signature_severity
+        Major, updated_at 2021_09_15, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Observed Malicious SSL Cert (CobaltStrike CnC)"'
+      reference: url,twitter.com/benkow_/status/1437376463305596929
+      rev: '1'
+      sid: '2033951'
+      special_options:
+      - nocase
+      within: '25'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

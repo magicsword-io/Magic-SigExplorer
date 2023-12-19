@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-Language|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '!"User-Agent|3a 20|LogitechUpdate"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_06_10, updated_at 2020_11_12
+      msg: '"ET TROJAN Possible Dridex Download URI Struct with no referer"'
+      pcre: '"/\/\d+\/\d+\.exe$/U"'
+      rev: '5'
+      sid: '2021245'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

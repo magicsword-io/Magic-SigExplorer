@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/sync"'
+      - value: '"/?rmbs="'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.1|3b| WOW64) AppleWebKit/537.17
+          (KHTML, like Gecko) Chrome/24.0.1312.57 Safari/537.17|0d 0a|"'
+      - value: '!"Referer|3A|"'
+      flow: established,to_server
+      metadata: created_at 2015_02_17, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/MultiPlug.Adware Adfraud Traffic"'
+      reference: url,blogs.cisco.com/security/talos/bad-browser-plug-ins
+      rev: '2'
+      sid: '2020457'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

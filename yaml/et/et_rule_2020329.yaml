@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/action.php?action="'
+      - value: '"&sent_all="'
+      - value: '"&sent_success="'
+      - value: '"&active_connections="'
+      - value: '"&queue_connections="'
+      - value: '"User-Agent|3a 20|Send Mail|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_01_29, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2022_05_03,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Unknown Mailer CnC Beacon 2"'
+      reference: md5,57e546330fd3a4658dff0e29cbb98214
+      rev: '1'
+      sid: '2020329'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"*************CD-Key Pack**************"'
+      - value: '"|0d 0a|Microsoft Windows Product ID CD Key|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Backdoor.Win32.VB.cfi (related) System Info Upload via FTP"'
+      reference: url,doc.emergingthreats.net/2008005
+      rev: '4'
+      sid: '2008005'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

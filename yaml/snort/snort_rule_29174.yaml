@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: fortis|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string fortis"'
+      reference: url,www.virustotal.com/en/file/92614908e7842e0dfa72ecfee868b06017b5cc445f201874776583f754b137a3/analysis/
+      rev: '3'
+      service: http
+      sid: '29174'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

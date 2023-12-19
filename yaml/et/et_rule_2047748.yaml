@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/client"'
+      - value: '"Connection|3a 20|Upgrade|0d 0a|Upgrade|3a 20|websocket|0d 0a|Sec|2d|WebSocket|2d|Version|3a
+          20|13|0d 0a|Sec|2d|WebSocket|2d|Key|3a|"'
+      - value: '"Sec|2d|WebSocket|2d|Protocol|3a 20|rust|2d|websocket|2c 20|ping|0d
+          0a|Host|3a 20|"'
+      fast_pattern: 29,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_24, deployment Perimeter, former_category
+        MALWARE, confidence Medium, signature_severity Critical, tag TA444, updated_at
+        2023_08_24, reviewed_at 2023_08_24, former_sid 2855179
+      msg: '"ET TROJAN Win32/CosmicRust TA444 CnC Activity (GET)"'
+      rev: '1'
+      sid: '2047748'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/cfg",fast_pattern,nocase'
+      - value: '"process=password",nocase'
+      - value: '"password1=",nocase'
+      - value: '"password2=",nocase'
+      - value: '"button=",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP MikroTik RouterOS cross site request forgery attempt"'
+      reference: cve,2015-2350
+      rev: '3'
+      service: http
+      sid: '44790'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

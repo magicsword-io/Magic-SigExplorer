@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/force-download.php?file="'
+      - depth: '200'
+        value: '"|2e 2e 2f|"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2012_12_21, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Amateur Photographer Image Gallery file parameter
+        Local File Inclusion Attempt"'
+      reference: url,packetstormsecurity.org/files/117463/Amateur-Photographers-Image-Gallery-0.9a-XSS-SQL-Injection.html
+      rev: '1'
+      sid: '2016078'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

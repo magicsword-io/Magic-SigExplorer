@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|E7 03 00 00|"'
+      - value: '"|48 0F AE|"'
+      - value: '"|48 0F AE 3D|"'
+      - value: '"|48 98|"'
+      - value: '"|0F 01 F9|"'
+      - value: '"|0F 01 F9|"'
+      distance: '30'
+      flow: established,from_server
+      flowbits: isset,ET.http.binary
+      metadata: attack_target Client_Endpoint, created_at 2018_01_10, cve CVE_2017_5753,
+        deployment Perimeter, former_category EXPLOIT, malware_family Spectre_Exploit,
+        performance_impact Low, signature_severity Major, updated_at 2018_02_02
+      msg: '"ET EXPLOIT Possible Spectre PoC Download In Progress"'
+      pcre: '"/^[\x30-\x3f\x7D]/Rs"'
+      reference: cve,2017-5715
+      rev: '3'
+      sid: '2025196'
+      special_options:
+      - file_data
+      within: '9'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"H|00|%|00|x|00|w|00 90 00 90 00 90 00 90 00 90 00|3|00 C0 00|P|00|h|00|.|00|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SQL MSSQL shellcode attempt 2"'
+      rev: '7'
+      sid: '2100693'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9080'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '46'
+        value: '"GET|20|/qsrserver/device/getThumbnail?sourceUri=|22|"'
+      - value: '"|3b|"'
+      - value: '"&targetUri="'
+      - value: '"&scaleType="'
+      distance: '0'
+      fast_pattern: 3,20
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_03_18, cve CVE_2018_17173, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_19
+      msg: '"ET EXPLOIT Possible LG SuperSign EZ CMS 2.5 RCE (CVE-2018-17173)"'
+      reference: cve,2018-17173
+      rev: '2'
+      sid: '2027089'
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

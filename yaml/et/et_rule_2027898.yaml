@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '10'
+        value: '"[CFG]|0d 0a|di="'
+      - value: '"|0d 0a|cn="'
+      - value: '"|0d 0a|du="'
+      - value: '"|0d 0a|int="'
+      - value: '"|0d 0a|rip="'
+      - value: '"|0d 0a|rpo="'
+      - value: '"|0d 0a|scr_dur="'
+      - value: '"|0d 0a|scr_int="'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_08_20, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_09_01
+      msg: '"ET TROJAN BalkanDoor CnC Checkin - Server Response"'
+      reference: md5,f70ef75fb0a51b05c43aaec973ac0bc1
+      rev: '2'
+      sid: '2027898'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

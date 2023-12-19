@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"get-001.php"'
+      - value: '"type|3d 22|email|22|"'
+      - value: '"type|3d 22|password|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_24, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_05_24
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-05-24"'
+      rev: '1'
+      sid: '2036669'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

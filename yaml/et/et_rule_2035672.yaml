@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"executeCmd|28|request.getParameter|28|"'
+      flow: to_server,established
+      metadata: created_at 2022_03_31, former_category INFO, confidence Medium, updated_at
+        2022_03_31
+      msg: '"ET WEB_SERVER Common JSP WebShell String Observed in HTTP Header M2"'
+      rev: '2'
+      sid: '2035672'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

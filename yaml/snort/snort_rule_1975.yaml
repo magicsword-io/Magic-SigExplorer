@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"DELE",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-FTP DELE overflow attempt"'
+      pcre: '"/^DELE(?!\n)\s[^\n]{100}/im"'
+      reference: nessus,11755
+      rev: '27'
+      service: ftp
+      sid: '1975'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,14 @@
+- rule:
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HttpBrowser/1.0",fast_pattern,nocase'
+      flow: to_server,established
+      gid: '1'
+      http_header: field user-agent
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC HttpBrowser User-Agent outbound communication attmept"'
+      rev: '4'
+      service: http
+      sid: '42886'
+    protocol: http

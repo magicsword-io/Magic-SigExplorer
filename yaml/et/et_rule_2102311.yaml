@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_test: 1,&,16,1,relative
+      classtype: misc-attack
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C|PIPE|5C 00 05 00 0B|"'
+      - value: '"|98 D0 FF|k|12 A1 10|6|98|3F|C3 F8|~4Z"'
+      distance: '29'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0812, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS DCERPC Workstation Service bind attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-049.mspx
+      rev: '8'
+      sid: '2102311'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

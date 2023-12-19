@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"host="'
+      - value: '"port="'
+      - value: '"request=|22|GET"'
+      - value: '"whoami"'
+      flow: established,to_server
+      metadata: created_at 2022_01_10, former_category ATTACK_RESPONSE, updated_at
+        2022_01_10
+      msg: '"ET ATTACK_RESPONSE Possible ELEFANTE/ElephantBeetle Enumeration Activity
+        M1"'
+      reference: url,blog.sygnia.co/elephant-beetle-an-organized-financial-theft-operation
+      rev: '1'
+      sid: '2034864'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: trojan-activity
+      contents:
+      - value: '"/search.php",fast_pattern,nocase'
+      - value: '"as_ft="'
+      - value: '"as_q="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Rootkit.Sednit variant outbound connection"'
+      reference: url,virustotal.com/en/file/471fbdc52b501dfe6275a32f89a8a6b02a2aa9a0e70937f5de610b4185334668/analysis/1480953133/
+      rev: '4'
+      service: http
+      sid: '40911'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

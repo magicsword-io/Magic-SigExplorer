@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/diffs/"'
+      - value: '"''"'
+      - value: '"|3B|",distance 0'
+      - value: '"''",distance 1'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP BitKeeper arbitrary command attempt"'
+      reference: bugtraq,6588
+      rev: '9'
+      service: http
+      sid: '2068'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

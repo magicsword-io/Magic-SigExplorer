@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<audio autoplay="'
+      - value: '"<source src="'
+      - value: '"err.mp3|22|"'
+      - value: '"audio/mpeg"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_08_12, deployment Perimeter, former_category WEB_CLIENT, performance_impact
+        Low, signature_severity Major, tag Phishing, updated_at 2020_07_27
+      msg: '"ET WEB_CLIENT Tech Support Phone Scam Landing (err.mp3) 2016-08-12"'
+      rev: '1'
+      sid: '2023055'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

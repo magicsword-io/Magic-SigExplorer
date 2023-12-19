@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>HOME|20 2d 20|BEZPIECZE|26|amp|3b 23|x143|3b|STWA ADMIN JEDNOSTKA</title>"'
+      - value: '"method|3d 22|post|22|"'
+      - value: '"encType|3d 22|multipart/form-data|22|"'
+      - value: '"id|3d 22|rJ6e8Wwhpou|22|"'
+      - value: '"novalidate|3d 22 22|"'
+      distance: '0'
+      flow: established, from_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_01, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2022_05_03, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Observed Possible Phishing Landing Page 2021-06-29"'
+      rev: '1'
+      sid: '2033216'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

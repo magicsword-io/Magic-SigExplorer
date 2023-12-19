@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"Content-Length|3A|",nocase'
+      - value: '!"|0D|",within 10'
+      - value: '!"|0A|",within 10'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP HTTP request with negative Content-Length attempt"'
+      pcre: '"/Content-Length\x3A\s*[2-9][0-9]{9}/i"'
+      reference: cve,2017-1000470
+      rev: '36'
+      service: http
+      sid: '2278'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

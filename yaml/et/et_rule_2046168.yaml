@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PUT"'
+      - depth: '2'
+        value: '"/|28|"'
+      - value: '"|29|"'
+      - value: '"/.json?print=silent"'
+      - value: '"|7b 22 64 65 74 61 69 6c 22 3a 22|"'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '14'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_06_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        Medium, signature_severity Critical, updated_at 2023_06_08
+      msg: '"ET TROJAN CMDEmber Backdoor Style Request"'
+      pcre: '"/\/\.json\?print=silent$/U"'
+      reference: url,www.sentinelone.com/labs/wip26-espionage-threat-actors-abuse-cloud-infrastructure-in-targeted-telco-attacks/
+      rev: '1'
+      sid: '2046168'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      within: '19'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

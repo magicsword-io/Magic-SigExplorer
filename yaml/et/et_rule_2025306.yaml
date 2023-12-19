@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".logo_banque"'
+      - value: '",.authentif p.num_carte"'
+      - value: '"<title"'
+      - value: '"Authentification"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_05, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_05
+      msg: '"ET CURRENT_EVENTS Banque Populaire Phishing Landing 2018-02-05"'
+      rev: '2'
+      sid: '2025306'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/bbs/info.asp"'
+      - value: '!"User-Agent|3a| "'
+      flow: established,to_server
+      metadata: created_at 2012_03_09, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Yayih.A Checkin"'
+      reference: url,contagiodump.blogspot.com/2012/03/mar-2-cve-2012-0754-irans-oil-and.html
+      rev: '2'
+      sid: '2014336'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Command completed",fast_pattern,nocase'
+      flow: established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE command completed"'
+      pcre: '"/^Command\s+?completed\b/ms"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms00-078
+      rev: '21'
+      service: http
+      sid: '494'
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

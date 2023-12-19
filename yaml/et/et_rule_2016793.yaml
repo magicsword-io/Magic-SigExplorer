@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"/index.php?"'
+      - value: '"JnN1cmk9"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2013_04_27, updated_at 2020_04_24
+      msg: '"ET TROJAN Linux Backdoor Linux/Cdorked.A Redirect 1"'
+      pcre: '"/^Location\x3a\x20\s*?https?\:\/\/[a-f0-9]{16}\.[^\r\n]+?\/index\.php\?[a-z]=(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})\r$/Hmi"'
+      reference: url,welivesecurity.com/2013/04/26/linuxcdorked-new-apache-backdoor-in-the-wild-serves-blackhole/
+      rev: '5'
+      sid: '2016793'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

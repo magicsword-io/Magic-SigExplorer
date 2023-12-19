@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '4506'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"_send_pub"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Server, created_at 2020_05_01,
+        cve CVE_2020_11651, deployment Perimeter, signature_severity Major, updated_at
+        2020_05_01
+      msg: '"ET EXPLOIT Possible SaltStack Authentication Bypass CVE-2020-11651 M2"'
+      reference: cve,2020-11651
+      rev: '2'
+      sid: '2030072'
+    protocol: tcp
+    source:
+      network: any
+      port: any

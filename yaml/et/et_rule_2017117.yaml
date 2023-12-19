@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"cGRwZD17dmVyc2lvbjoiMC4"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_07_09, former_category EXPLOIT_KIT, updated_at 2013_07_09
+      msg: '"ET CURRENT_EVENTS Cool Exploit Kit Plugin-Detect July 08 2013"'
+      rev: '1'
+      sid: '2017117'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"GET /wpad.dat HTTP/1.1"'
+      flow: established,to_server
+      metadata: created_at 2016_06_23, updated_at 2020_09_14
+      msg: '"ET INFO WinHttp AutoProxy Request wpad.dat Possible BadTunnel"'
+      reference: url,ietf.org/rfc/rfc1002.txt
+      rev: '1'
+      sid: '2022913'
+    protocol: tcp
+    source:
+      network: any
+      port: any

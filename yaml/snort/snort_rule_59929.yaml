@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<%"'
+      - value: '"java.util.*"'
+      - value: '"extends ClassLoader",fast_pattern,nocase'
+      - value: '"defineClass"'
+      - value: '"getInstance(|22|AES|22|)"'
+      - value: '"decodeBuffer",distance 0'
+      flow: to_client,established
+      gid: '1'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Jsp.Webshell.Behinder download attempt"'
+      reference: url,community.atlassian.com/t5/Confluence-discussions/CVE-2022-26134-Critical-severity-unauthenticated-remote-code/td-p/20456533
+      rev: '2'
+      service: http
+      sid: '59929'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

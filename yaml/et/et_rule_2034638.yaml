@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '![443,80]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|13 11 18 19 01 68|"'
+      dsize: '6'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2021_12_09, deployment SSLDecrypt, former_category MALWARE, signature_severity
+        Minor, updated_at 2021_12_09
+      msg: '"ET TROJAN ELF/MooBot Mirai DDoS Variant CnC Checkin M3"'
+      reference: url,blog.netlab.360.com/ddos-botnet-moobot-en/
+      rev: '2'
+      sid: '2034638'
+      stream_size: server,<,5
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

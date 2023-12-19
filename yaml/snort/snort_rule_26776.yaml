@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"cmd=gravar&dados=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Blocker variant outbound connection POST"'
+      reference: url,www.virustotal.com/en/file/c157a06965bf9edc101350c6122d108ccb1d99600cbb6967ef41dfed255f2009/analysis/
+      rev: '3'
+      service: http
+      sid: '26776'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

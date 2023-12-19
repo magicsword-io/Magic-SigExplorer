@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '3306'
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '4'
+        offset: '3'
+        value: '"|03|"'
+      - value: '"SELECT data FROM"'
+      - value: '"INTO DUMPFILE"'
+      - value: '"c|3a|/windows/system32/"'
+      - value: '".exe"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_12_06, updated_at 2012_12_06
+      msg: '"ET EXPLOIT MySQL Server for Windows Remote SYSTEM Level Exploit (Stuxnet
+        Techique DUMP INTO executable)"'
+      pcre: '"/SELECT data FROM [^\x20]+?\x20INTO DUMPFILE [\x27\x22]c\x3a\/windows\/system32\/[a-z0-9_-]+?\.exe[\x27\x22]/i"'
+      reference: url,seclists.org/fulldisclosure/2012/Dec/att-13/
+      rev: '4'
+      sid: '2015995'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"javaClassName",fast_pattern,nocase'
+      - value: '"javaCodeBase"'
+      - value: '"objectClass"'
+      - value: '"javaFactory"'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE JNDI LDAP searchResEntry dynamic code download attempt"'
+      reference: url,blog.talosintelligence.com/2021/12/apache-log4j-rce-vulnerability.html
+      rev: '5'
+      service: ldap
+      sid: '58801'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[389,1389]'

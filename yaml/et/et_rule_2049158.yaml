@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".requestinspector.com|0d 0a|"'
+      - value: '"LS0tLS0tLS0gC"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2023_10_19, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        performance_impact Low, confidence High, signature_severity Critical, updated_at
+        2023_10_19, former_sid 2855435
+      msg: '"ET TROJAN Win32/TA402 Checkin"'
+      pcre: '"/LS0tLS0tLS0gC[a-zA-Z0-9\+\/]{1,200}(?:KQogLS0tLS0tIApWZXJzaW9uOi|kKIC0tLS0tLSAKVmVyc2lvbjog|pCiAtLS0tLS0gClZlcnNpb246I)/P"'
+      rev: '1'
+      sid: '2049158'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

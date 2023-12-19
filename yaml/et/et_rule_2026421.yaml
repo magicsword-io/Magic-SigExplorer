@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/"'
+      - value: '".html"'
+      - value: '"/"'
+      - value: '".html"'
+      - depth: '18'
+        value: '"{|22|mode|22 3a|10,|22|key|22 3a 22|"'
+      - depth: '6'
+        value: '"token="'
+      - value: '"Content-Type|3a 20|text/plain|3b|charset=UTF-8"'
+      distance: '26'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_09_27, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag Underminer_EK, updated_at 2020_08_25
+      msg: '"ET CURRENT_EVENTS Underminer EK Key POST"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+(?![a-z]{26}|[0-9]{26})[a-z0-9]{26}\.html/Hmi"'
+      rev: '2'
+      sid: '2026421'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - http_cookie
+      - http_header
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

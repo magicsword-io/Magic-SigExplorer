@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"EXEC"'
+      - value: '"xp_cmdshell"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER Attempt To Access MSSQL xp_cmdshell Stored Procedure Via
+        URI"'
+      reference: url,doc.emergingthreats.net/2009815
+      rev: '5'
+      sid: '2009815'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

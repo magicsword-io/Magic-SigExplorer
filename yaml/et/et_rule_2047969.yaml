@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|15|xn--tradgsvews-0ubd3y|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_09_07, deployment Perimeter, malware_family AMOS_Stealer, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_09_07, reviewed_at
+        2023_09_07
+      msg: '"ET TROJAN Atomic macOS (AMOS) Stealer Payload Delivery Domain in DNS
+        Lookup (xn--tradgsvews-0ubd3y .com)"'
+      reference: url,www.malwarebytes.com/blog/threat-intelligence/2023/09/atomic-macos-stealer-delivered-via-malvertising
+      rev: '1'
+      sid: '2047969'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '27'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

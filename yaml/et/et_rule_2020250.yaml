@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|demon|04|4irc|03|com|00|"'
+      distance: '0'
+      metadata: created_at 2015_01_23, updated_at 2020_09_17
+      msg: '"ET TROJAN Scieron DNS Lookup (demon.4irc.com)"'
+      reference: url,symantec.com/connect/blogs/scarab-attackers-took-aim-select-russian-targets-2012
+      rev: '2'
+      sid: '2020250'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

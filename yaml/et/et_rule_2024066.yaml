@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        value: '"data=domain%253a"'
+      - value: '"%250auser"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2017_03_16, deployment Perimeter, former_category
+        MALWARE, malware_family MagikPOS, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_04
+      msg: '"ET TROJAN MagikPOS Downloader Checkin"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/majikpos-combines-pos-malware-and-rats/
+      rev: '2'
+      sid: '2024066'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

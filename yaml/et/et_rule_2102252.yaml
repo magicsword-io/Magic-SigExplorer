@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_test: 1,&,1,0,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB%"'
+      - value: '"&|00|"'
+      - value: '"|5C 00|P|00|I|00|P|00|E|00 5C 00|"'
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|B8|J|9F|M|1C|}|CF 11 86 1E 00| |AF|n|7C|W"'
+      distance: '29'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2003_0528, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS DCERPC Remote Activation bind attempt"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS03-039.mspx
+      rev: '15'
+      sid: '2102252'
+      special_options:
+      - nocase
+      - nocase
+      tag: session,5,packets
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

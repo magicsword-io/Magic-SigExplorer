@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: '69'
+    details:
+      classtype: successful-admin
+      contents:
+      - depth: '2'
+        value: '"|00 01|"'
+      - offset: '2'
+        value: '"admin.dll"'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL TFTP GET Admin.dll"'
+      reference: url,www.cert.org/advisories/CA-2001-26.html
+      rev: '5'
+      sid: '2101289'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: any
+      port: any

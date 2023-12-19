@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-mail|0d 0a|"'
+      - value: '"?"'
+      - value: '"&pid="'
+      - value: '"&encoding"'
+      - value: '"="'
+      - value: '"&username="'
+      - value: '"&unsubscribe="'
+      - value: '"&pathOWA="'
+      - value: '"-mail"'
+      distance: '32'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2023_08_23, deployment Perimeter, deployment SSLDecrypt, former_category PHISHING,
+        malware_family Ferest_Smuggler, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_08_23, reviewed_at 2023_08_23
+      msg: '"ET CURRENT_EVENTS Ferest Smuggler Request M2"'
+      pcre: '"/\?(?P<variable>[a-f0-9]{32})(?P=variable)\&pid=(?P=variable){2}&encoding(?P=variable)=(?P=variable){2}&username=(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}={2})\&unsubscribe=(?P=variable)\&pathOWA=(?P=variable)-mail$/U"'
+      reference: url,medium.com/@thrunter/cyberuptive-identifies-and-disrupts-ferest-smuggler-a-mass-credential-harvesting-campaign-22875c563854
+      rev: '1'
+      sid: '2047706'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

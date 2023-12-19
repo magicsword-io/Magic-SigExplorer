@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '".war?cmd="'
+      - value: '"&winurl="'
+      - value: '"&linurl="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_01_12, updated_at 2020_10_05
+      msg: '"ET WEB_SERVER WEBSHELL JSP/Backdoor Shell Access"'
+      pcre: '"/\.war\?cmd=[a-zA-Z0-9+/=]+&winurl=[a-zA-Z0-9+/=]*&linurl=[a-zA-Z0-9+/=]*/U"'
+      reference: url,blog.malwaremustdie.org/2016/01/mmd-0049-2016-case-of-java-trojan.html
+      rev: '2'
+      sid: '2022348'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

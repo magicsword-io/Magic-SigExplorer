@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/status.php?r="'
+      - depth: '22'
+        value: '"id=1&op=report&status="'
+      - value: '"Accept|3a 20|text/html, application/xhtml+xml, */*|0d 0a|"'
+      - value: '"Accept-Encoding|3a 20|gzip, deflate|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_28, deployment Perimeter,
+        former_category MALWARE, malware_family TA410, signature_severity Major, updated_at
+        2022_04_28
+      msg: '"ET TROJAN TA410 APT LookBack Client HTTP Activity (POST)"'
+      pcre: '"/\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+\r\nCache-Control\x3a\x20[^\r\n]+\r\n\r\n$/H"'
+      reference: url,www.welivesecurity.com/2022/04/27/lookback-ta410-umbrella-cyberespionage-ttps-activity/
+      rev: '2'
+      sid: '2036412'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

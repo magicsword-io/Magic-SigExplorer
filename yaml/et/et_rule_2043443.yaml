@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '20'
+        value: '"/x/data-verify?type="'
+      - value: '"&content="'
+      - value: '"User-Agent|3a 20|okhttp/"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2023_01_23, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Gigabud, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_01_23
+      msg: '"ET MOBILE_MALWARE Android/Gigabud CnC Check-in M2"'
+      reference: url,blog.cyble.com/2023/01/19/gigabud-rat-new-android-rat-masquerading-as-government-agencies/
+      rev: '1'
+      sid: '2043443'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

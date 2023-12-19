@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ALLO",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP ALLO overflow attempt"'
+      pcre: '"/^ALLO(?!\n)\s[^\n]{200}/ims"'
+      reference: nessus,14598
+      rev: '12'
+      service: ftp
+      sid: '2449'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

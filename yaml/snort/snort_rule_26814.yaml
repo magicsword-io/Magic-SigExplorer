@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '17'
+      classtype: trojan-activity
+      contents:
+      - value: '"/linkendorse.html",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"EXPLOIT-KIT Blackholev2 exploit kit Initial Gate from Linked-In Mailing
+        Campaign"'
+      rev: '3'
+      service: http
+      sid: '26814'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ETag|3a 20|"'
+      - value: '"75BCD15"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2014_10_31, updated_at 2019_10_08
+      msg: '"ET TROJAN Win32/Hikit Server Authentication Response"'
+      pcre: '"/^ETag\x3a\x20\x22\d+75BCD15\d+\x3a[a-f0-9]{1,6}/mi"'
+      reference: url,www.novetta.com/files/9914/1446/8050/Hikit_Analysis-Final.pdf
+      rev: '2'
+      sid: '2019621'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

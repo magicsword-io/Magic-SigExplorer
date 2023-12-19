@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/wp-content/plugins/my___fb/meme"'
+      - depth: '32'
+      - value: '".php"'
+      - value: '"email="'
+      - value: '"&pass="'
+      distance: '0'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_16, deployment Perimeter, former_category
+        PHISHING, signature_severity Critical, tag Phishing, updated_at 2023_04_04,
+        mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Facebook Credential Phish 2021-11-16"'
+      pcre: '"/\.php$/U"'
+      reference: md5,fdf21f9bdab460feed2f3fccde59b650
+      rev: '3'
+      sid: '2034487'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

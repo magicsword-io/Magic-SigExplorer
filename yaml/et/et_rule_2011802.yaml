@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $DNS_SERVERS
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|localhost"'
+      distance: '1'
+      metadata: created_at 2010_10_13, updated_at 2019_09_03
+      msg: '"ET DNS DNS Lookup for localhost.DOMAIN.TLD"'
+      rev: '4'
+      sid: '2011802'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: '![$SMTP_SERVERS,$DNS_SERVERS]'
+      port: any

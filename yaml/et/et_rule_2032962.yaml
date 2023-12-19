@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '",|20|,"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_05_17, cve CVE_2021_31166, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_05_17
+      msg: '"ET EXPLOIT Windows HTTP Protocol Stack UAF/RCE (CVE-2021-31166), http.sys
+        DOS (CVE-2022-21907) Inbound"'
+      pcre: '"/^Accept-Encoding\x3a\x20[^\r\n]+,\x20,/Hmi"'
+      reference: cve,2021-31166
+      rev: '1'
+      sid: '2032962'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

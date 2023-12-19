@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|24 7b|jndi|3a|corba|3a|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_14, cve CVE_2021_44228, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_12_14
+      msg: '"ET EXPLOIT Possible Apache log4j RCE Attempt (tcp corba) (CVE-2021-44228)"'
+      reference: cve,2021-44228
+      rev: '1'
+      sid: '2034714'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

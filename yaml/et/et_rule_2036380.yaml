@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<!-- saved from url=("'
+      - value: '")http://localhost:"'
+      - value: '"microsoft_logo.svg"'
+      - value: '"Your account or password is incorrect. Please try again using your
+          password."'
+      - value: '"type=|22|password|22|"'
+      - value: '"/index_files/home.js"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_26, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_26
+      msg: '"ET CURRENT_EVENTS Microsoft Account Credential Phish Landing Page 2022-04-26"'
+      rev: '1'
+      sid: '2036380'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      - nocase
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

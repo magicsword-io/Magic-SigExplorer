@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer"'
+      - value: '".php?"'
+      - value: '"=v"'
+      - depth: '5'
+        value: '"data="'
+      - value: '"wget"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_01_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET TROJAN Win32.Renos/Artro Trojan Checkin M1"'
+      pcre: '"/^data=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/P"'
+      reference: url,www.securelist.com/en/analysis/204792172/The_Advertising_Botnet
+      rev: '18'
+      sid: '2013186'
+      special_options:
+      - http_method
+      - http_header
+      - http_uri
+      - http_uri
+      - http_client_body
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

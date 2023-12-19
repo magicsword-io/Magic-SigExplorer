@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|38 00 00 00 F5 13 89 53|",depth 8'
+      flow: to_server,established
+      isdataat: '!60'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.NanoBot/Perseus initial outbound connection"'
+      reference: url,www.virustotal.com/en/file/4b16d1e205f198222bd2b2bb8dbd55886a9e2b79de484eec0d8cce5db376d3c8/analysis/
+      rev: '4'
+      sid: '39581'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

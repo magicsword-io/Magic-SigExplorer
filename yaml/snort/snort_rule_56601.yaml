@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type: text/json|0D 0A|"'
+      - value: '"Server: Microsoft-IIS/10.0|0D 0A|"'
+      - value: '"X-Powered-By: ASP.NET|0D 0A|"'
+      - value: '"Cache-Control: no-cache, no-store, max-age=0, must-revalidate|0D
+          0A|"'
+      - value: '"Pragma: no-cache|0D 0A|"'
+      - value: '"X-Frame-Options: SAMEORIGIN|0D 0A|"'
+      - value: '"Content-Type: image/gif"'
+      - value: '"|01 00 01 00 00 02 01 44 00 3B|"'
+      - value: '"|FF FF FF 21 F9 04 01 00 00 00 2C 00 00 00 00|"'
+      - value: '"|47 49 46 38 39 61 01 00 01 00 80 00 00 00 00|"'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.CSBundle_Original Stager 2 download attempt"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56601'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

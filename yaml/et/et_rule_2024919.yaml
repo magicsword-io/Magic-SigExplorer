@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/supervisor/adcommand.cgi"'
+      - value: '"DoShellCmd"'
+      flow: to_server,established
+      metadata: attack_target IoT, created_at 2017_10_25, deployment Perimeter, former_category
+        EXPLOIT, signature_severity Major, updated_at 2020_08_13
+      msg: '"ET EXPLOIT AVTECH Authenticated Command Injection in adcommand.cgi"'
+      reference: url,github.com/Trietptm-on-Security/AVTECH
+      rev: '2'
+      sid: '2024919'
+      special_options:
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_client_body
+      urilen: '33'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"OutOfBox"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET EZsetup account attempt"'
+      reference: nessus,11244
+      rev: '17'
+      service: telnet
+      sid: '710'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

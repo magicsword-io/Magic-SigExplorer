@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      bufferlen: '6'
+      classtype: trojan-activity
+      contents:
+      - value: '"/webhp HTTP/1.1|0D 0A|Accept: */*|0D 0A|Connection: Close|0D 0A|User-Agent:
+          Mozilla/4.0 (",fast_pattern,nocase'
+      - value: '"|3B| MSIE "'
+      - value: '"google."'
+      - value: '!"Accept-"'
+      - value: '"NID=",depth 4'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/ef4e0ccc49decb41f213a20f61d92374c3b97497105d7c20e7284f65055d2ccb/analysis/
+      rev: '1'
+      service: http
+      sid: '29395'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+      - http_header
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

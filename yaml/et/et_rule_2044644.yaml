@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|18|Domain Control Validated"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0f|*.opendrive.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_03_16, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        tag SSL_Malicious_Cert, updated_at 2023_03_16, reviewed_at 2023_10_23
+      msg: '"ET INFO Observed OpenDrive Cloud Storage SSL Cert"'
+      rev: '1'
+      sid: '2044644'
+      special_options:
+      - fast_pattern
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| Nmap NSE"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_05_04
+      msg: '"ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap NSE)"'
+      reference: url,doc.emergingthreats.net/2009359
+      rev: '4'
+      sid: '2009359'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

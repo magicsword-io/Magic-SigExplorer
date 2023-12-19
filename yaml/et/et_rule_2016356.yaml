@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"js.pd.js"'
+      - value: '"|7C|applet|7C|"'
+      flow: established,to_client
+      metadata: created_at 2013_02_07, former_category EXPLOIT_KIT, updated_at 2013_02_07
+      msg: '"ET CURRENT_EVENTS CritXPack - Landing Page - Received"'
+      rev: '1'
+      sid: '2016356'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

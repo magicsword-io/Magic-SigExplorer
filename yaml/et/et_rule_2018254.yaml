@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe"'
+      - value: '" MSIE "'
+      - depth: '5'
+        value: '"Host|3a|"'
+      - value: '"Connection|3a 20|close|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_12, former_category MALWARE, performance_impact
+        Significant, updated_at 2023_03_10
+      msg: '"ET TROJAN Possible Graftor EXE Download Common Header Order"'
+      pcre: '"/^Host\x3a[^\r\n]+\r\nAccept-Language\x3a[^\r\n]+\r\nAccept\x3a[^\r\n]+\r\nAccept-Encoding\x3a[^\r\n]+\r\nConnection\x3a\x20close\r\nUser-Agent\x3a[^\r\n]+\r\n(?:\r\n)?$/H"'
+      reference: md5,5d9d5b9089ad464e51ff391b14da1953
+      rev: '2'
+      sid: '2018254'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

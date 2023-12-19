@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '32000'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Username|3A|",nocase'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Xtramail Username overflow attempt"'
+      pcre: '"/^Username\:[^\n]{100}/ims"'
+      reference: nessus,10323
+      rev: '14'
+      sid: '1636'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"WhatsUp - A Netw",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING WhatsupGold Windows"'
+      rev: '10'
+      sid: '482'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

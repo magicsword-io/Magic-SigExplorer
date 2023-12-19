@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"PROPFIND"'
+      - value: '"D|3A|propfind xmlns|3A|D=|22|DAV|3A 22|><D|3A|allprop/></D|3A|propfind>"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Possible DavTest WebDav Vulnerability Scanner Initial Check Detected"'
+      reference: url,doc.emergingthreats.net/2011088
+      rev: '4'
+      sid: '2011088'
+      special_options:
+      - http_method
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

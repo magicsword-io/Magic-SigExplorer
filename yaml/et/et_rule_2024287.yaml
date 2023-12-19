@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[16992,16993,623,664]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"Authorization|3a 20|Digest"'
+      - value: '"username=|22|"'
+      - value: '"response="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_05_10, cve CVE_2017_5689, deployment Internal,
+        former_category EXPLOIT, performance_impact Moderate, signature_severity Major,
+        updated_at 2020_08_06
+      msg: '"ET EXPLOIT Intel AMT Login Attempt Detected (CVE 2017-5689)"'
+      pcre: '"/^\s*\x22{2}/R"'
+      reference: cve,2017-5689
+      rev: '1'
+      sid: '2024287'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

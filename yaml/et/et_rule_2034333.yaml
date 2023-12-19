@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '"agentAutoRegisterKey="'
+      - value: '"webhookSecret="'
+      - value: '"|20|tokenGenerationKey="'
+      flow: established,from_server
+      flowbits: isset,ET.gocd.auth
+      metadata: attack_target Server, created_at 2021_11_02, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2021_11_02
+      msg: '"ET EXPLOIT GoCD Authentication Bypass Successful Leak"'
+      reference: url,attackerkb.com/topics/ShpnUFlqDz/pre-auth-takeover-of-build-pipelines-in-gocd-cve-2021-43287/rapid7-analysis
+      rev: '1'
+      sid: '2034333'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any

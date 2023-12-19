@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|deportes24-7|03|com"'
+      distance: '1'
+      metadata: attack_target Client_and_Server, created_at 2022_01_13, deployment
+        Perimeter, former_category MALWARE, malware_family Pegasus, signature_severity
+        Major, tag Targeted, tag APT, updated_at 2022_01_13
+      msg: '"ET TROJAN Possible Pegasus Related DNS Lookup (deportes24-7 .com)"'
+      reference: url,citizenlab.ca/2022/01/project-torogoz-extensive-hacking-media-civil-society-el-salvador-pegasus-spyware/
+      rev: '1'
+      sid: '2034919'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

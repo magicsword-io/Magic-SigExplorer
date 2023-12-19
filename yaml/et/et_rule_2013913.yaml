@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/update/utu.dat"'
+      flow: to_server,established
+      metadata: created_at 2011_11_16, former_category MALWARE, updated_at 2020_09_01
+      msg: '"ET TROJAN Request for utu.dat Likely Ponmocup checkin"'
+      reference: md5,6fd8cdee653c0fde769e6c48d65e28bd
+      rev: '3'
+      sid: '2013913'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

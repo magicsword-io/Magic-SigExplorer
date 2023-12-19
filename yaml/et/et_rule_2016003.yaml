@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/includes/ajax_list_tree.php?"'
+      - value: '"root_folder_path="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_12_08, updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS ViArt Shop Evaluation ajax_list_tree.php Remote
+        File Inclusion Attempt"'
+      pcre: '"/root\_folder\_path=\s*(?:(?:ht|f)tps?|data|php)\x3a\//Ui"'
+      reference: url,packetstormsecurity.org/files/116871/ViArt-Shop-Evaluation-4.1-Remote-File-Inclusion.html
+      rev: '1'
+      sid: '2016003'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

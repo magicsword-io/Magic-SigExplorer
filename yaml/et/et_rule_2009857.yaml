@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"17A54E7D-A9D4-11D8-9552-00E04CB09903"'
+      - value: '"SceneURL"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2010_07_30, former_category ACTIVEX, confidence High, updated_at
+        2019_09_27
+      msg: '"ET ACTIVEX Awingsoft Web3D Player Remote Buffer Overflow"'
+      reference: url,doc.emergingthreats.net/2009857
+      rev: '11'
+      sid: '2009857'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

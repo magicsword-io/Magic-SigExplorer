@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|22|eva|22|+|22|l|22|"'
+      flow: established,from_server
+      metadata: created_at 2013_07_27, deployment alert_only, former_category INFO,
+        updated_at 2013_07_27
+      msg: '"ET ATTACK_RESPONSE Obfuscated Eval String 7"'
+      rev: '2'
+      sid: '2017219'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

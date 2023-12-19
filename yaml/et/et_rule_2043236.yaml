@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '27'
+        value: '"/php/notification.php?name="'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&code="'
+      - value: '"&addin=SearchText"'
+      - value: '"&win_un="'
+      - value: '"&win_ud="'
+      - value: '"UA-CPU|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_01_06
+      msg: '"ET TROJAN O97M/Sadoca.C!ml Checkin"'
+      reference: md5,994496d735aa645c1cf79966912a5eb9
+      rev: '1'
+      sid: '2043236'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

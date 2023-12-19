@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"221 Goodbye happy r00ting",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER known malicious FTP quit banner - Goodbye happy r00ting"'
+      reference: url,taosecurity.blogspot.com/2006/01/nepenthes-discoveries-earlier-today-i.html
+      rev: '7'
+      service: ftp
+      sid: '21256'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '21'

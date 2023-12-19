@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Microsoft Office Existence Discovery|0d 0a|"'
+      fast_pattern: 30,20
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_14, deployment Perimeter, signature_severity
+        Informational, updated_at 2020_07_14
+      msg: '"ET INFO Possible Malicious Document Request to NOIP DynDNS Domain"'
+      pcre: '"/\.(?:s(?:e(?:rve(?:(?:(?:(?:counterstri|qua)k|exchang|gam)e|h(?:alflife|umour|ttp)|p(?:ics|2p)|sarcasm|ftp|irc).com|m(?:inecraft.net|p3.com)|b(?:eer.com|log.net))|curitytactics.com)|tufftoread.com|ytes.net)|m(?:y(?:securitycamera.(?:com|net|org)|(?:activedirectory|vnc).com|(?:mediapc|effect|psx).net|d(?:issent.net|dns.me)|ftp.(?:biz|org))|lbfan.org|mafan.biz)|d(?:(?:itchyourip|amnserver|ynns).com|dns(?:.(?:net|me)|king.com)|ns(?:iskinky.com|for.me)|vrcam.info)|h(?:o(?:(?:mesecurity(?:ma|p)c|sthampster).com|pto.(?:org|me))|ealth-carereform.com)|c(?:(?:o(?:uchpotatofries|llegefan)|able-modem).org|iscofreak.com)|p(?:(?:rivatizehealthinsurance|gafan).net|oint(?:2this.com|to.us))|f(?:reedynamicdns.(?:net|org)|antasyleague.cc)|(?:(?:3utiliti|quicksyt)es|onthewifi).com|b(?:logsyte.com|ounceme.net|rasilia.me)|n(?:et-freaks.com|flfan.org|hlfan.net)|re(?:ad-books.org|directme.net)|u(?:nusualperson.com|fcfan.org)|(?:eating-organic|viewdns).net|w(?:orkisboring.com|ebhop.me)|g(?:eekgalaxy.com|olffan.us)|ilovecollege.info|loginto.me|access.ly|zapto.org)(\x3a\d{1,5})?$/Hm"'
+      rev: '2'
+      sid: '2030506'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

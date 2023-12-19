@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        offset: '4'
+        value: '"ExPu"'
+      - value: '"|90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_05_21, deployment Internal, former_category
+        TROJAN, malware_family ExtraPulsar, signature_severity Major, updated_at 2019_05_22
+      msg: '"ET TROJAN Suspected ExtraPulsar Backdoor"'
+      reference: url,github.com/zerosum0x0/smbdoor
+      rev: '3'
+      sid: '2027370'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"viewbox "'
+      - value: '"fill"'
+      - value: '"url("'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2016_05_04, cve CVE_2016_3718, updated_at 2020_10_06
+      msg: '"ET WEB_SERVER ImageMagick CVE-2016-3718 SSRF Inbound (mvg + fill + url)"'
+      pcre: '"/url\(\s*https?\x3a\/\//Pi"'
+      rev: '2'
+      sid: '2022791'
+      special_options:
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

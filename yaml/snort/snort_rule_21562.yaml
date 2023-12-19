@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3A 20|Mozilla/4.0|0D 0A|"'
+      - value: '"smk=",depth 4'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bredolab variant outbound connection"'
+      reference: url,www.virustotal.com/file/9384733182a6cbe5236b9b253d1f070570b7f6b6ff31aa86be253421f4c5c645/analysis/
+      rev: '6'
+      service: http
+      sid: '21562'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

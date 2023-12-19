@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"rc4=function|28|key,str|29|"'
+      - value: '"key.charCodeAt|28|i%key.length|29|"'
+      - value: '"String.fromCharCode|28|str.charCodeAt|29|"'
+      - value: '"decodeBase64=function"'
+      - value: '"b64block="'
+      distance: '0'
+      fast_pattern: 8,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_02_18, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2019_02_18
+      msg: '"ET TROJAN Possible SharpShooter Framework Generated Script"'
+      reference: url,blog.morphisec.com/sharpshooter-pen-testing-framework-used-in-attacks
+      rev: '2'
+      sid: '2026918'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|00 00 de c0|"'
+      - value: '"ver="'
+      - value: '"|0a|domain="'
+      - value: '"|0a|pc="'
+      - value: '"|0a|geo="'
+      - value: '"|0a|os="'
+      - value: '"|0a|rights="'
+      - value: '"|0a|proxyenabled="'
+      - value: '"|0a|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_08, deployment Perimeter, former_category
+        MALWARE, malware_family SDBbot, performance_impact Moderate, signature_severity
+        Major, updated_at 2022_03_24
+      msg: '"ET TROJAN Win32/SDBbot CnC Checkin"'
+      reference: md5,892be85dc60df6bc82568384e83b9b4c
+      rev: '2'
+      sid: '2031217'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

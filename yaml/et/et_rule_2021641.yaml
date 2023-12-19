@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"(Charon|3b| Inferno)"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_08_18, former_category TROJAN, updated_at 2022_05_03
+      msg: '"ET TROJAN LokiBot User-Agent (Charon/Inferno)"'
+      pcre: '"/^User-Agent\x3a[^\r\n]+\x28Charon\x3b Inferno\x29\r?$/Hmi"'
+      rev: '4'
+      sid: '2021641'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"console.portal?"'
+      - value: '".sh.ShellSession|28|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2020_10_30, cve CVE_2020_14882, deployment Perimeter, deployment
+        Internal, former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_06
+      msg: '"ET WEB_SPECIFIC_APPS Possible Oracle WebLogic RCE Inbound M1 (CVE-2020-14882)"'
+      reference: cve,2020-14883
+      rev: '3'
+      sid: '2031143'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"---!!!INSERTED!!!---"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_08_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_08_28,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Alphacrypt/TeslaCrypt Ransomware CnC Beacon Response"'
+      reference: md5,ee90ec9935c7b8e1a5dad364d4545851
+      rev: '5'
+      sid: '2021724'
+      special_options:
+      - file_data
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

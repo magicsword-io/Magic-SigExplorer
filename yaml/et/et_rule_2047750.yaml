@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c 3c|BASE64|5f|START|3e 3e|TVqQAAMAAAAEAAAA"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_25, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Major, updated_at 2023_08_25,
+        reviewed_at 2023_08_25
+      msg: '"ET TROJAN Base64 Encoded MZ In Image"'
+      reference: url,cyble.com/blog/threat-actor-employs-powershell-backed-steganography-in-recent-spam-campaigns
+      rev: '1'
+      sid: '2047750'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

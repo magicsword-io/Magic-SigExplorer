@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/public/code/cp_html2xhtmlbasic.php?"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2022_05_03
+      msg: '"ET WEB_SPECIFIC_APPS Possible AIOCP cp_html2xhtmlbasic.php Remote File
+        Inclusion Attempt"'
+      pcre: '"/\x2Ephp\x3F.{0,300}\x3D(http\x3A|ftp\x3A|https\x3A|ftps\x3A)/Ui"'
+      reference: url,doc.emergingthreats.net/2010080
+      rev: '6'
+      sid: '2010080'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

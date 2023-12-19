@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Online Banking Identity Verification Process</TITLE>"'
+      - value: '"name=KONICHIWA1"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_02, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_02
+      msg: '"ET CURRENT_EVENTS Wells Fargo Phishing Landing 2018-02-02 M6"'
+      rev: '2'
+      sid: '2025297'
+      special_options:
+      - file_data
+      within: '250'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

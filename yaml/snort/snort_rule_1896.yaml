@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '749'
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|FF FF|KADM0.0A|00 00 FB 03|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE kadmind buffer overflow attempt"'
+      reference: url,www.kb.cert.org/vuls/id/875073
+      rev: '12'
+      sid: '1896'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

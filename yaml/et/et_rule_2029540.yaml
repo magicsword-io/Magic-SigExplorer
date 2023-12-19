@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/ecp/"'
+      - value: '"__VIEWSTATEGENERATOR="'
+      - value: '"__VIEWSTATE="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target SMTP_Server,
+        created_at 2020_02_26, cve CVE_2020_0688, deployment Perimeter, deployment
+        SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact Low, signature_severity
+        Major, updated_at 2020_03_02
+      msg: '"ET WEB_SPECIFIC_APPS Possible Attempted Microsoft Exchange RCE (CVE-2020-0688)"'
+      reference: url,www.trustedsec.com/blog/detecting-cve-20200688-remote-code-execution-vulnerability-on-microsoft-exchange-server/
+      rev: '3'
+      sid: '2029540'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      urilen: '>600'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

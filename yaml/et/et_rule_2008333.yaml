@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/upd/check?"'
+      - value: '"&fxp="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Lop.gfr/Swizzor HTTP Update/Checkin (usually host-domain-lookup.com
+        related)"'
+      reference: url,doc.emergingthreats.net/2008333
+      rev: '3'
+      sid: '2008333'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

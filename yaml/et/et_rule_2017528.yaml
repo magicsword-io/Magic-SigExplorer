@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3A| Wordpress/"'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2013_09_30, deployment Datacenter, former_category
+        WEB_SERVER, signature_severity Major, tag Wordpress, updated_at 2020_08_06
+      msg: '"ET WEB_SERVER UA WordPress probable DDOS-Attack"'
+      reference: url,pastebin.com/NP64hTQr
+      rev: '3'
+      sid: '2017528'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

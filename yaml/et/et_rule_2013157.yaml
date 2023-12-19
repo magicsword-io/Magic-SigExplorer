@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/wp-content/plugins/flash-album-gallery/lib/hitcounter.php?"'
+      - value: '"pid="'
+      - value: '"UNION"'
+      - value: '"SELECT"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, affected_product Wordpress,
+        affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2011_07_01,
+        deployment Datacenter, signature_severity Major, tag SQL_Injection, tag Wordpress,
+        updated_at 2020_04_20
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress plugin Flash Album Gallery pid Parameter
+        UNION SELECT SQL Injection Attempt"'
+      pcre: '"/UNION.+SELECT/Ui"'
+      reference: url,htbridge.ch/advisory/sql_injection_in_grand_flash_album_gallery_wordpress_plugin.html
+      rev: '1'
+      sid: '2013157'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

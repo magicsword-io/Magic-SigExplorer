@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 10 00 01 c0 0c 00 10 00 01 00 00 00 01|"'
+      - value: '"1"'
+      - value: '"E6NZxA"'
+      distance: '2'
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2022_03_18, deployment Perimeter, deployment Internal, former_category MALWARE,
+        malware_family B1txor20, performance_impact Low, signature_severity Major,
+        updated_at 2022_03_18
+      msg: '"ET TROJAN Linux/B1txor20 Backdoor DNS Tunnel Activity M3"'
+      reference: md5,43fcb5f22a53a88e726ebef46095cd6b
+      rev: '2'
+      sid: '2035529'
+      special_options:
+      - fast_pattern
+      within: '6'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

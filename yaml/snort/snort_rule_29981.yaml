@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ie-error.gif?action=utility",fast_pattern,nocase'
+      - value: '"&os="'
+      - value: '"&error=",distance 0'
+      - value: '"&rnd=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Tiny variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/d446e176ba2141d0e7ae0799335fdd98f94d5e6b41c88083f4a3d3c04805a721/analysis/
+      rev: '2'
+      service: http
+      sid: '29981'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

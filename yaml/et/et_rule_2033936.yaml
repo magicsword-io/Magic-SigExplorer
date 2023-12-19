@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"&pass="'
+      - value: '"&cookie="'
+      - value: '"&cc="'
+      - value: '"&chrome="'
+      - value: '"&firefox="'
+      - value: '"&binancepass="'
+      - value: '"&paypalpass="'
+      - value: '"&hwid="'
+      - value: '"&bit="'
+      - value: '"PK|03 04|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2021_09_13
+      msg: '"ET TROJAN Win32/GenKryptik.FKJZ CnC Exfil"'
+      reference: md5,b369e6f7f7ed1771110e9017741be7b3
+      rev: '1'
+      sid: '2033936'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

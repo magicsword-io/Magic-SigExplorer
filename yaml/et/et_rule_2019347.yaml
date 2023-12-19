@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"GET AAAAAAAA HTTP/1.1"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"|0d 0a|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2014_10_03, updated_at 2014_10_03
+      msg: '"ET DOS HTTP GET AAAAAAAA Likely FireFlood"'
+      rev: '2'
+      sid: '2019347'
+      threshold: type both,track by_dst,count 500,seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/themes/dt-chocolate/thumb.php?"'
+      - value: '"src="'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, affected_product Wordpress,
+        affected_product Wordpress_Plugins, attack_target Web_Server, created_at 2013_02_01,
+        deployment Datacenter, signature_severity Major, tag XSS, tag Cross_Site_Scripting,
+        tag Wordpress, updated_at 2022_03_17
+      msg: '"ET WEB_SPECIFIC_APPS WordPress Chocolate WP Theme src Cross Site Scripting
+        Attempt"'
+      pcre: '"/src\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,securityfocus.com/bid/57541/
+      rev: '1'
+      sid: '2016337'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '8080'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"javax.faces.ViewState"'
+      - value: '"|3a|"'
+      - value: '"|22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2021_10_27, cve CVE_2020_12133, former_category EXPLOIT,
+        updated_at 2023_04_06
+      msg: '"ET EXPLOIT Furukawa Electric ConsciusMAP 2.8.1 Java Deserialization Remote
+        Code Execution (CVE-2020-12133)"'
+      pcre: '"/\x2f(?:FURUKAWA|APROS)\x2f/Ui"'
+      reference: cve,2020-12133
+      rev: '2'
+      sid: '2034260'
+      special_options:
+      - http_method
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

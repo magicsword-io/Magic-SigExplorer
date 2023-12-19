@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/ms/flush"'
+      - value: '!"User-Agent|3a| "'
+      flow: established,to_server
+      metadata: created_at 2013_01_16, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN Red October/Win32.Digitalia Checkin cgi-bin/ms/flush"'
+      pcre: '"/\/cgi-bin\/ms\/flush$/Ui"'
+      reference: url,www.securelist.com/en/analysis/204792262/Red_October_Diplomatic_Cyber_Attacks_Investigation
+      rev: '2'
+      sid: '2016218'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

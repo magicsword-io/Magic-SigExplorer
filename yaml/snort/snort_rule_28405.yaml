@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>90'
+      classtype: trojan-activity
+      contents:
+      - value: '"/p.ashx?prd=",fast_pattern'
+      - value: '"&pixGuid=",distance 0'
+      - value: '"&ver=",distance 0'
+      - value: '"&rnd=",distance 0'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kazy variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/a064a1d3d8b9d8ab649686b7fb01e0631e569412388084f5c391722c98660763/analysis/
+      rev: '2'
+      service: http
+      sid: '28405'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

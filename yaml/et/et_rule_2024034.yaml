@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"%25252f..%25252f..%25252f..%25252f..%25252f..%25252f..%25252f"'
+      - value: '"javascript%253aeval"'
+      - value: '"help|3a 2f 2f|"'
+      flow: established,from_server
+      metadata: affected_product Mac_OSX, affected_product Safari, attack_target Client_Endpoint,
+        created_at 2017_03_08, cve CVE_2017_2361, deployment Perimeter, former_category
+        WEB_CLIENT, performance_impact Low, signature_severity Major, updated_at 2017_03_08
+      msg: '"ET WEB_CLIENT Possible MacOSX HelpViewer 10.12.1 XSS Arbitrary File Execution
+        and Arbitrary File Read (CVE-2017-2361)"'
+      pcre: '"/document\s*\.\s*location\s*?\x3d\s*?[\x27\x22]help\x3a\/\/\/[^\x3b]+?\%25252f\.\.\%25252f\.\.\%25252f\.\.\%25252f/"'
+      reference: url,exploit-db.com/exploits/41443/
+      rev: '1'
+      sid: '2024034'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

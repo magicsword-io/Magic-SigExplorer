@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/TargetUploadGps.aspx"'
+      - value: '"tmac="'
+      - value: '"&JZ="'
+      flow: to_server,established
+      metadata: created_at 2014_10_01, updated_at 2020_05_12
+      msg: '"ET MOBILE_MALWARE iOS/Xsser sending GPS info"'
+      reference: url,lacoon.com/lacoon-discovers-xsser-mrat-first-advanced-ios-trojan/
+      rev: '1'
+      sid: '2019332'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

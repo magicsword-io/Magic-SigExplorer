@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"200"'
+      - value: '"Cannot modify header information - headers already sent by"'
+      - value: '"PUBG"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_06, deployment Perimeter, former_category
+        PHISHING, performance_impact Moderate, signature_severity Major, updated_at
+        2023_03_06
+      msg: '"ET CURRENT_EVENTS PUBG Credential Phish 2023-03-06"'
+      rev: '1'
+      sid: '2044447'
+      special_options:
+      - http_stat_code
+      - file_data
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"expn",fast_pattern,nocase'
+      - value: '"*@"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Vintra Mailserver expn *@"'
+      pcre: '"/^expn\s+\*@/ims"'
+      reference: cve,1999-1200
+      rev: '13'
+      service: smtp
+      sid: '1450'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

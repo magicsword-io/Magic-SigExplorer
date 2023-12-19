@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/ap.php"'
+      - depth: '5'
+        value: '"user|3d|"'
+      - value: '"TargetID|3d|"'
+      - value: '"SystemInformation|3d|Windows%20"'
+      - value: '"max_size_of_file|3d|"'
+      - value: '"size_of_hdd|3d|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_11_21, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Major, updated_at 2022_11_21
+      msg: '"ET TROJAN Win32/Filecoder.OJC CnC Checkin"'
+      pcre: '"/TargetID\x3d[A-F0-9]{24}/P"'
+      reference: md5,dea5df7e709f087f2c1d03046f38efe7
+      rev: '1'
+      sid: '2039815'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

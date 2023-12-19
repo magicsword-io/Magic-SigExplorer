@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3a 20|x-msdos-program"'
+      - depth: '13'
+        value: '"MZ|0a|Sinkholed|0a|"'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_05_25, deployment Perimeter, former_category
+        TROJAN, signature_severity Major, updated_at 2022_05_03
+      msg: '"ET TROJAN Known Sinkhole Response Header INetSim"'
+      rev: '2'
+      sid: '2025585'
+      special_options:
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"prototype"'
+      - value: '"DOMImplementation"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2016_02_16, cve CVE_2016_0063, deployment
+        Perimeter, former_category WEB_CLIENT, confidence Medium, signature_severity
+        Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Internet Explorer Memory Corruption Vulnerability (CVE-2016-0063)"'
+      pcre: '"/^\s*\([^\)]*\)\s*\.\s*prototype\s*\.\s*(?:hasFeature|isPrototypeOf)/Rsi"'
+      reference: cve,2016-0063
+      rev: '1'
+      sid: '2022523'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

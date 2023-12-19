@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/mod_"'
+      - value: '"/soft"'
+      - value: '".dll",fast_pattern,nocase'
+      - value: '"Connection|3A 20|Close|0D 0A|"'
+      - value: '"Cache-Control|3A 20|no-cache|0D 0A|"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zemot configuration download attempt"'
+      pcre: '"/\x2fsoft(64|32)\x2edll$/"'
+      reference: url,www.virustotal.com/en/file/8ba8292eaa47967618c2376afe524736f4fa7eec15ed9cca17abfca692d26fe4/analysis/
+      rev: '2'
+      service: http
+      sid: '32072'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

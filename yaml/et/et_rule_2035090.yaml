@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"otp="'
+      flow: established,to_server
+      metadata: created_at 2022_02_03, former_category POLICY, updated_at 2022_02_03
+      msg: '"ET POLICY Http Client Body contains otp= in cleartext"'
+      rev: '1'
+      sid: '2035090'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

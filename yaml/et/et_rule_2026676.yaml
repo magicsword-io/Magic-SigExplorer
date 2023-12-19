@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3a 3a|FromBase64String|28|"'
+      - value: '"Set-Content"'
+      - value: '"C|3a 5c|Windows|5c|Temp"'
+      - value: '"-Encoding"'
+      - value: '"|0a 0a|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_29, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, tag PowerShell,
+        tag Obfuscated, updated_at 2020_08_27
+      msg: '"ET CURRENT_EVENTS Inbound PowerShell Saving Base64 Decoded Payload to
+        Temp M2 2018-11-29"'
+      pcre: '"/^(?P<content>\$[a-z0-9]{1,15})\s*=\s*\[System\.Convert\]::FromBase64String\(\$[a-z0-9]{1,15}\)\s*Set-Content\s*(?:-Path\s*C:\\Windows\\Temp\\[a-z0-9]{1,15}\.vbe\s*|-Value\s*(?P=content)\s*|-Encoding\s*Byte){3}/Ri"'
+      reference: url,www.clearskysec.com/muddywater-operations-in-lebanon-and-oman/
+      rev: '2'
+      sid: '2026676'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22'
+    details:
+      classtype: network-scan
+      contents:
+      - depth: '13'
+        value: '"SSH-2.0-PUTTY"'
+      flow: established,to_server
+      metadata: created_at 2014_12_05, former_category SCAN, updated_at 2017_12_01
+      msg: '"ET SCAN SSH BruteForce Tool with fake PUTTY version"'
+      rev: '2'
+      sid: '2019876'
+      threshold: type limit, track by_src, count 1, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

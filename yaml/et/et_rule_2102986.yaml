@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,0,little,relative
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB"'
+      - depth: '1'
+        offset: '39'
+        value: '"|A2|"'
+      - value: '"|5C|winreg|00|"'
+      distance: '51'
+      flow: established,to_server
+      flowbits: set,smb.tree.create.winreg
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS winreg andx create tree attempt"'
+      pcre: '"/^(\x75|\x2d|\x2f|\x73|\x2e|\x24|\x74)/sR"'
+      rev: '4'
+      sid: '2102986'
+      special_options:
+      - nocase
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

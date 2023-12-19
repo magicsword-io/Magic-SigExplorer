@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/base_stat_common.php"'
+      - value: '"BASE_path="'
+      flow: to_server,established
+      metadata: affected_product Any, attack_target Server, created_at 2010_09_23,
+        deployment Datacenter, signature_severity Major, tag Remote_File_Include,
+        updated_at 2020_05_13
+      msg: '"ET WEB_SPECIFIC_APPS BASE base_stat_common.php remote file include"'
+      pcre: '"/BASE_path=(?:(?:ht|f)tps?|data|php)/Ui"'
+      reference: url,secunia.com/advisories/20300/
+      rev: '5'
+      sid: '2019524'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

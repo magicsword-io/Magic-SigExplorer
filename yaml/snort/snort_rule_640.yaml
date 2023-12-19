@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"O|FF FB 82|O|FF FB 82|O|FF FB 82|O|FF FB 82|",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE AIX NOOP"'
+      rev: '11'
+      sid: '640'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

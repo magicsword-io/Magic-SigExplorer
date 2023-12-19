@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '".php?hwid="'
+      - value: '"User-Agent|3a 20|EnAgent|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_09, deployment Perimeter,
+        former_category GAMES, signature_severity Informational, updated_at 2023_02_09
+      msg: '"ET GAMES Multiple Game Cheat Application Activity"'
+      reference: url,www.virustotal.com/gui/file/1276331d3b61566b027ab4a76c0ac0d2e0b7650a7a2891f50bd0ce8cf72c6218/behavior
+      rev: '1'
+      sid: '2044163'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

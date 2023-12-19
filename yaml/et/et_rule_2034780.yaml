@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|74 33 20 31 32 2e 32 2e 31 0a 41 53 3a 32 35 35|"'
+      - value: '"javax.management.BadAttributeValueExpException"'
+      - value: '"weblogic.common.internal.PackageInfo"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_20, cve CVE_2020_2555, deployment
+        Perimeter, former_category EXPLOIT, signature_severity Major, updated_at 2021_12_20
+      msg: '"ET EXPLOIT Oracle Coherence Deserialization RCE (CVE-2020-2555)"'
+      reference: cve,2020-2555
+      rev: '1'
+      sid: '2034780'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

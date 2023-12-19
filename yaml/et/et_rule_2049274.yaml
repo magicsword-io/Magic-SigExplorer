@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"|3b 20|yie10|3b 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      flowbits: set,ET.wikiloader
+      metadata: attack_target Client_Endpoint, created_at 2023_11_21, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, confidence Medium, signature_severity
+        Major, updated_at 2023_11_21
+      msg: '"ET TROJAN WikiLoader Activity M3 (GET)"'
+      pcre: '"/^Accept[^\r\n]+\r\nCookie[^\r\n]+\r\n/Hm"'
+      reference: url,securityintelligence.com/x-force/wailingcrab-malware-misues-mqtt-messaging-protocol/
+      rev: '1'
+      sid: '2049274'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

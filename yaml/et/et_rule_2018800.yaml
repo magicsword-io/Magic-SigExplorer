@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3A| chroot-apach0day"'
+      fast_pattern: 12,16
+      flow: established,to_server
+      metadata: created_at 2014_07_29, updated_at 2020_05_01
+      msg: '"ET SCAN Chroot-apache0day Unknown Web Scanner User Agent"'
+      reference: url,isc.sans.edu/forums/diary/Interesting+HTTP+User+Agent+chroot-apach0day+/18453
+      rev: '3'
+      sid: '2018800'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

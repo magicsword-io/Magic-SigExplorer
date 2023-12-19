@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|nebibizi|02|ru|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_06_02, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag Gamaredon, updated_at
+        2023_06_02
+      msg: '"ET TROJAN Observed DNS Query to Gamaredon Domain (nebibizi .ru)"'
+      reference: url,twitter.com/Cyber0verload/status/1664621238671536132
+      rev: '1'
+      sid: '2046066'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

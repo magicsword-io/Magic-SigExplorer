@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"opener.location = gourl|3b|"'
+      - value: '"onbeforeunload=function()"'
+      - value: '"Press ESC, to close this page!"'
+      - value: '"Scanning... <strong>Folders"'
+      - value: '"Scanning... <strong>Documents"'
+      - value: '"Scanning... <strong>System Files"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_08_19, deployment Perimeter, signature_severity Minor, updated_at 2020_08_19
+      msg: '"ET WEB_CLIENT Tech Support Scam Landing 2020-08-19"'
+      rev: '2'
+      sid: '2030704'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '"RETR",nocase'
+      - value: '"shadow"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP shadow retrieval attempt"'
+      pcre: '"/^RETR[^\n]*shadow$/ims"'
+      rev: '11'
+      service: ftp
+      sid: '1928'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

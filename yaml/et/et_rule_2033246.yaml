@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"SMB"'
+      - value: '"|00 00|"'
+      - value: '"|10 00 00 00|"'
+      - value: '"|59 00|"'
+      - value: '"|5c|spool|5c|drivers|5c|x64|5c|3|5c|old|5c|"'
+      distance: '14'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2021_07_06, cve 2021_34527, former_category POLICY, updated_at 2021_07_08
+      msg: '"ET POLICY [MS-RPRN] Windows Printer Spooler Activity - AddPrinterDriverEx
+        with Suspicious Filepath"'
+      rev: '3'
+      sid: '2033246'
+      within: '2'
+    protocol: tcp
+    source:
+      network: any
+      port: any

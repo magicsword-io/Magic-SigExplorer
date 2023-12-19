@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"/directory.php"'
+      - value: '"dir="'
+      - value: '"|3B|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP directory.php arbitrary command attempt"'
+      reference: nessus,11017
+      rev: '12'
+      service: http
+      sid: '1815'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

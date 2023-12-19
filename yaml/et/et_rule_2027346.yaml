@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"config.xml"'
+      - value: '"|3c|script|3e 0a|"'
+      - value: '"import|20|org|2e|buildobjects|2e|process|2e|ProcBuilder"'
+      - value: '"|40|Grab|28 27|org|2e|buildobjects|3a|jproc|3a|"'
+      - value: '"|27 29 0a|"'
+      - value: '"print|20|new|20|ProcBuilder|28 22 2f|"'
+      - value: '"|22 29 2e|run|28 29|"'
+      - value: '"|2e|getOutputString|28|"'
+      - value: '"|3c 2f|script|3e|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2019_05_10, cve CVE_2019_100300,
+        deployment Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_19
+      msg: '"ET WEB_SPECIFIC_APPS Jenkins RCE CVE-2019-1003000"'
+      reference: url,github.com/adamyordan/cve-2019-1003000-jenkins-rce-poc
+      rev: '2'
+      sid: '2027346'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

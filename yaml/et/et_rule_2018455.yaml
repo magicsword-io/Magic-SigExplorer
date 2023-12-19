@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,>,224,0,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|"'
+      - value: '"|00 04 c3 16 1a|"'
+      - value: '!"|0e|anubisnetworks|03|com|00|"'
+      - value: '!"|05|mpsmx|03|net|00|"'
+      - value: '!"|09|mailspike|03|com|00|"'
+      - value: '!"|09|mailspike|03|org|00|"'
+      distance: '4'
+      metadata: created_at 2014_05_08, former_category MALWARE, updated_at 2022_07_13
+      msg: '"ET TROJAN DNS Reply Sinkhole - Anubis - 195.22.26.192/26"'
+      rev: '6'
+      sid: '2018455'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      threshold: type limit, track by_src, seconds 60, count 1
+      within: '5'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

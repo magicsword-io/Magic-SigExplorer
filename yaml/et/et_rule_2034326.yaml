@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Internal Revenue Service"'
+      - value: '".php"'
+      - value: '"name|3d 22|amount|22 20|value|3d 22 22|"'
+      - value: '"id|3d 22|edit|2d|submit|2d|pup|2d|efile|2d|provider|2d|search|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_02, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2021_11_02
+      msg: '"ET CURRENT_EVENTS IRS Payment Credential Phish Form"'
+      reference: md5,55d8e8f74231e50c479d11683c7ab889
+      rev: '1'
+      sid: '2034326'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

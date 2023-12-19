@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '389'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|30 84 00 00 00 2d 02 01 01 63 84 00 00 00 24 04 00 0a 01 00|"'
+      dsize: '52'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Linux, attack_target Server, created_at 2017_08_16, deployment Perimeter,
+        former_category DOS, performance_impact Significant, signature_severity Major,
+        updated_at 2017_08_16
+      msg: '"ET DOS CLDAP Amplification Reflection (PoC based)"'
+      reference: url,packetstormsecurity.com/files/139561/LDAP-Amplication-Denial-Of-Service.html
+      rev: '1'
+      sid: '2024584'
+      special_options:
+      - fast_pattern
+      threshold: type both, count 100, seconds 60, track by_src
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '389'

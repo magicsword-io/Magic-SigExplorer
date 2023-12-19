@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?action="'
+      - value: '"&v="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_08_18
+      msg: '"ET TROJAN Koobface HTTP Request (2)"'
+      pcre: '"/\?action=\w+gen&v=\d/U"'
+      reference: url,doc.emergingthreats.net/2010150
+      rev: '4'
+      sid: '2010150'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PK"'
+      - value: '"pdf.exe"'
+      distance: '42'
+      flow: established,to_client
+      metadata: created_at 2014_02_27, updated_at 2014_02_27
+      msg: '"ET TROJAN Zeus Spam Campaign pdf.exe In ZIP - 26th Feb 2014"'
+      rev: '2'
+      sid: '2018182'
+      special_options:
+      - file_data
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" Java/1."'
+      flow: to_server,established
+      metadata: created_at 2013_03_15, updated_at 2020_09_03
+      msg: '"ET INFO Java Request to DynDNS Pro Dynamic DNS Domain"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.(?:i(?:s(?:-(?:a(?:-(?:(?:(?:h(?:ard-work|unt)e|financialadviso)r|d(?:e(?:mocrat|signer)|octor)|t(?:e(?:acher|chie)|herapist)|r(?:epublican|ockstar)|n(?:ascarfan|urse)|anarchist|musician)\.com|c(?:(?:(?:ubicle-sla|onservati)ve|pa)\.com|a(?:ndidate\.org|terer\.com)|hef\.(?:com|net|org)|elticsfan\.org)|l(?:i(?:ber(?:tarian|al)\.com|nux-user\.org)|(?:a(?:ndscap|wy)er|lama)\.com)|p(?:(?:ersonaltrain|hotograph|lay)er\.com|a(?:inter\.com|tsfan\.org))|b(?:(?:(?:ookkeep|logg)er|ulls-fan)\.com|ruinsfan\.org)|s(?:o(?:cialist\.com|xfan\.org)|tudent\.com)|g(?:eek\.(?:com|net|org)|(?:reen|uru)\.com)|knight\.org)|n-(?:a(?:c(?:t(?:ress|or)|countant)|(?:narch|rt)ist)|en(?:tertain|gine)er)\.com)|(?:into-(?:(?:car(?:toon)?|game)s|anime)|(?:(?:not-)?certifie|with-theban)d|uberleet|gone)\.com|(?:very-(?:(?:goo|ba)d|sweet|evil|nice)|found)\.org|s(?:aved\.org|lick\.com)|l(?:eet\.com|ost\.org)|by\.us)|a-(?:geek\.(?:com|net|org)|hockeynut\.com)|t(?:eingeek|mein)\.de|smarterthanyou\.com)|n-the-band\.net|amallama\.com)|f(?:rom-(?:(?:i[adln]|w[aivy]|o[hkr]|[hr]i|d[ce]|k[sy]|p[ar]|s[cd]|t[nx]|v[at]|fl|ga|ut)\.com|m(?:[adinost]\.com|e\.org)|n(?:[cdehjmv]\.com|y\.net)|a(?:[klr]\.com|z\.net)|c(?:[at]\.com|o\.net)|la\.net)|or(?:-(?:(?:(?:mor|som|th)e|better)\.biz|our\.info)|got\.h(?:er|is)\.name)|uettertdasnetz\.de|tpaccess\.cc)|s(?:e(?:l(?:ls(?:-(?:for-(?:less|u)\.com|it\.net)|yourhome\.org)|fip\.(?:info|biz|com|net|org))|rve(?:bbs\.(?:com|net|org)|ftp\.(?:net|org)|game\.org))|(?:aves-the-whales|pace-to-rent|imple-url)\.com|crapp(?:er-site\.net|ing\.cc)|tuff-4-sale\.(?:org|us)|hacknet\.nu)|d(?:o(?:es(?:ntexist\.(?:com|org)|-it\.net)|ntexist\.(?:com|net|org)|omdns\.(?:com|org))|yn(?:a(?:lias\.(?:com|net|org)|thome\.net)|-o-saur\.com|dns\.ws)|ns(?:alias\.(?:com|net|org)|dojo\.(?:com|net|org))|vrdns\.org)|h(?:o(?:me(?:linux\.(?:com|net|org)|unix\.(?:com|net|org)|(?:\.dyn)?dns\.org|ftp\.(?:net|org)|ip\.net)|bby-site\.(?:com|org))|ere-for-more\.info|am-radio-op\.net)|b(?:log(?:dns\.(?:com|net|org)|site\.org)|(?:uyshouses|roke-it)\.net|arrel?l-of-knowledge\.info|oldlygoingnowhere\.org|etter-than\.tv)|g(?:o(?:tdns\.(?:com|org)|\.dyndns\.org)|ame-(?:server\.cc|host\.org)|et(?:myip\.com|s-it\.net)|roks-th(?:is|e)\.info)|e(?:st-(?:(?:a-la-ma(?:is|si)|le-patr)on|mon-blogueur)\.com|ndof(?:internet\.(?:net|org)|theinternet\.org))|l(?:e(?:btimnetz|itungsen)\.de|ikes(?:candy|-pie)\.com|and-4-sale\.us)|m(?:i(?:sconfused\.org|ne\.nu)|yp(?:hotos\.cc|ets\.ws)|erseine\.nu)|w(?:ebhop\.(?:info|biz|net|org)|ritesthisblog\.com|orse-than\.tv)|t(?:eaches-yoga\.com|raeumtgerade\.de|hruhere\.net)|k(?:icks-ass\.(?:net|org)|nowsitall\.info)|o(?:ffice-on-the\.net|n-the-web\.tv)|(?:neat-url|cechire)\.com|podzone\.(?:net|org)|at-band-camp\.net|readmyblog\.org)(\x3a\d{1,5})?\r$/Hmi"'
+      rev: '1'
+      sid: '2016580'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"Referer|3A 20|"'
+      - value: '"Accept|3A| */*|0D 0A|Accept-Language|3A| en-us|0D 0A|Content-Type|3A|
+          application/octet-stream|0D 0A|Content-Length|3A| ",depth 93'
+      - value: '"Connection|3A| Keep-Alive|0D 0A|Cache-Control|3A| no-cache|0D 0A|",distance
+          0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Pushdo variant outbound connection"'
+      rev: '8'
+      service: http
+      sid: '29891'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST /logs_files HTTP/1.1"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_22, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family SideCopy, signature_severity
+        Major, updated_at 2022_03_22
+      msg: '"ET TROJAN Sidecopy APT Backdoor Related Activity (POST)"'
+      pcre: '"/^Host[^\r\n]+\r\nContent-Length[^\r\n]+\r\nExpect[^\r\n]+\r\nConnection[^\r\n]+\r\n\r\n$/Hm"'
+      reference: url,twitter.com/bofheaded/status/1505928947955302401
+      rev: '2'
+      sid: '2035558'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

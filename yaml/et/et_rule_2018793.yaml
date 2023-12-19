@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php"'
+      - value: '"Content-Type|3a|"'
+      - value: '"Content-Length|3a| "'
+      - value: '!"Host|3a 20|antia|2d|client|2d|log|2e|puzzleplusgames|2e|net"'
+      - value: '!"Referer"'
+      - value: '!"User-Agent|3a| "'
+      - value: '!"Cache-Control|3a| "'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a| "'
+      flow: established,to_server
+      metadata: created_at 2014_07_28, former_category MALWARE, updated_at 2021_12_29
+      msg: '"ET TROJAN EUPUDS.A Requests for Boleto replacement"'
+      pcre: '"/^[a-f0-9]{8}\x3d(?:[A-Za-z0-9-_]{4})*(?:[A-Za-z0-9-_]{2}==|[A-Za-z0-9-_]{3}=|[A-Za-z0-9-_]{4})$/Pi"'
+      reference: url,blogs.rsa.com/wp-content/uploads/2015/07/Bolware-Fraud-Ring-RSA-Research-July-2-FINALr2.pdf
+      rev: '3'
+      sid: '2018793'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

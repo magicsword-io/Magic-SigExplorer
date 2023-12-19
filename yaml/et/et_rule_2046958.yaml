@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|"'
+      - value: '"9"'
+      - value: '"999999"'
+      - value: '"9"'
+      distance: '25'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter,
+        deployment Internal, former_category MALWARE, malware_family PupyRat, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_07_31
+      msg: '"ET TROJAN Pupy DNS Request with SPI M1"'
+      pcre: '"/^..\x01.\x00\x01\x00\x00\x00\x00\x00.\x08[a-z0-8\-]{7}9[\x20-\x35](?:[a-z0-8\-]{8}){3,7}[a-z0-8\-]{2}9{6}[\x08-\x35](?:[a-z0-8\-]{8}){1,7}(?:[a-z0-8\-]{2}9{6}|[a-z0-8\-]{4}9{4}|[a-z0-8\-]{5}9{3}|[a-z0-8\-]{7}9)?[^\x00]/"'
+      reference: url,insights.infoblox.com/resources-whitepaper/infoblox-whitepaper-decoy-dog-is-no-ordinary-pupy-distinguishing-malware-via-dns
+      rev: '1'
+      sid: '2046958'
+      special_options:
+      - fast_pattern
+      within: '57'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

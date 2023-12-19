@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/plugins/framework/script/content.hts",fast_pattern,nocase'
+      - value: '"ExecuteFile",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER HP Web JetAdmin ExecuteFile admin access"'
+      reference: bugtraq,10224
+      rev: '8'
+      sid: '2655'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"n|00|o|00|t|00|_|00|s|00|l|00|i|00|v|00|e|00|r"'
+      metadata: attack_target Client_Endpoint, created_at 2023_01_24, deployment Internal,
+        former_category MALWARE, malware_family Sliver, performance_impact Low, confidence
+        Medium, signature_severity Major, updated_at 2023_01_24
+      msg: '"ET TROJAN SLIVER Framework SMB CreateService Default ServiceName"'
+      reference: url,github.com/BishopFox/sliver
+      rev: '1'
+      sid: '2043459'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe HTTP/1.1|0D 0A|User-Agent: Mozilla/",fast_pattern,nocase'
+      - value: '"|3B| MSIE "'
+      - value: '!"Accept"'
+      - value: '"|29 0D 0A|Host: ",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kazy variant outbound connection"'
+      pcre: '"/^GET\x20\x2f[a-z]{1,12}\.exe\x20HTTP\x2f1\.1\r\nUser\x2dAgent\x3a\x20Mozilla\x2f[\x20-\x7e]{10,100}\)\r\nHost\x3a\x20[a-z0-9\x2e\x2d]{6,32}\r\nConnection\x3a\x20Keep\x2dAlive\r\n\r\n$/"'
+      reference: url,www.virustotal.com/en/file/a064a1d3d8b9d8ab649686b7fb01e0631e569412388084f5c391722c98660763/analysis/
+      rev: '2'
+      service: http
+      sid: '28406'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

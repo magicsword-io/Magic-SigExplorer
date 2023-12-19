@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|Simple Bot v"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_12_31, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, signature_severity Informational,
+        updated_at 2020_12_31
+      msg: '"ET USER_AGENTS Suspicious User-Agent Simple Bot"'
+      reference: md5,3cf04350400299844abb17a0e1640975
+      rev: '2'
+      sid: '2031471'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

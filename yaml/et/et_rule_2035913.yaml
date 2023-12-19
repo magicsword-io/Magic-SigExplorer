@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|mert|04|my03|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_13, deployment Perimeter, former_category
+        MALWARE, malware_family HeaderTip, performance_impact Low, signature_severity
+        Major, updated_at 2022_04_13
+      msg: '"ET TROJAN Scarab APT - HeaderTip CnC Domain in DNS Lookup (mert .my03
+        .com)"'
+      reference: md5,acd062593f70c00e310c47a3e7873df4
+      rev: '2'
+      sid: '2035913'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '15'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

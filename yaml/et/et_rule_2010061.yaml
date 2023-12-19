@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/InternetAntivirus"'
+      - value: '".exe"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN Likely Fake Antivirus Download InternetAntivirusPro.exe"'
+      reference: url,doc.emergingthreats.net/2010061
+      rev: '7'
+      sid: '2010061'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

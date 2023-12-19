@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 9a 8c 66 af c0 4a 11 9e 3f 40 88 12 2c 3a 4a 84 65 38 b0 b4 08
+          0b af db ce 02 94 34 5f 22|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN HackerDefender Root Kit Remote Connection Attempt Detected"'
+      reference: url,doc.emergingthreats.net/2001743
+      rev: '8'
+      sid: '2001743'
+      special_options:
+      - rawbytes
+      tag: session, 20, packets
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"verint="'
+      - value: '"&uid="'
+      - value: '"&wv="'
+      - value: '"&report="'
+      - value: '"&abbr="'
+      - value: '"&pid="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_04_21
+      msg: '"ET TROJAN WindowsEnterpriseSuite FakeAV Reporting via POST"'
+      pcre: '"/verint=\d+&uid=\d+&wv=[A-Za-z0-9]+&report=\d+&abbr=[A-Za-z0-9]+&pid=\d/P"'
+      reference: url,doc.emergingthreats.net/2010247
+      rev: '6'
+      sid: '2010247'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

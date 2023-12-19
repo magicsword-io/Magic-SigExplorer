@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"@"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER redirection attempt"'
+      reference: nessus,10073
+      rev: '15'
+      sid: '330'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

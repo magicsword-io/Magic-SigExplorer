@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '16'
+        value: '"|3d fa 61 3c 79 ee de ea 18 90 08 95 55 44 8d 41|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_12, deployment Perimeter, former_category
+        MALWARE, malware_family ursnif, performance_impact Low, signature_severity
+        Major, updated_at 2020_04_15
+      msg: '"ET TROJAN [PTsecurity] Ursnif Encoded Payload Inbound"'
+      reference: url,github.com/ptresearch/AttackDetection
+      rev: '2'
+      sid: '2024837'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

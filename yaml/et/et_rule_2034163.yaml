@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|02|TX"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|05|Texas"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0c|serviceswork"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|00|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|10|serviceswork.net"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_10_11, deployment Perimeter,
+        former_category MALWARE, malware_family Fin12, signature_severity Major, tag
+        SSL_Malicious_Cert, updated_at 2021_10_11
+      msg: '"ET TROJAN Observed Malicious FIN12 Related SSL Cert (serviceswork .net)"'
+      reference: md5,f1c35cf848d984785e9c0621958fe5ae
+      rev: '2'
+      sid: '2034163'
+      special_options:
+      - fast_pattern
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

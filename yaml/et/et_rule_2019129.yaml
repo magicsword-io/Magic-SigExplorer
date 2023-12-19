@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"HOST|3a|"'
+      - value: '"www.google.com|0d 0a 0d 0a|"'
+      - depth: '10'
+        offset: '39'
+        value: '"|00 00 00 00 00 00 00 00 00 00|"'
+      flow: established,to_server
+      metadata: created_at 2012_06_12, updated_at 2020_11_03
+      msg: '"ET TROJAN Backdoor.Win32/Dervec.gen Connectivity Check to Google"'
+      reference: md5,5eaae2d6a4b5d338b83ea5d97af93672
+      rev: '9'
+      sid: '2019129'
+      special_options:
+      - http_header
+      - http_header
+      within: '19'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

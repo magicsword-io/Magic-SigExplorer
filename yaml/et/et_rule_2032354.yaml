@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '11'
+        value: '"/search/?q="'
+      - value: '"&go=Search&qs=bs&form="'
+      - depth: '4'
+        value: '"DUP="'
+      - value: '"&T="'
+      - value: '"&A="'
+      - value: '"&IG"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_30, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2022_03_24,
+        reviewed_at 2023_08_22, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Cobalt Strike Beacon (Bing Profile)"'
+      pcre: '"/\&IG$/C"'
+      reference: md5,18b0ca0508f92c5ac6e75b9865b77a51
+      rev: '2'
+      sid: '2032354'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

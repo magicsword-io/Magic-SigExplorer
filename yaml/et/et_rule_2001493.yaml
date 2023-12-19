@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|IST|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2023_11_13
+      msg: '"ET MALWARE ISearchTech.com XXXPornToolbar Activity (IST)"'
+      reference: url,doc.emergingthreats.net/2001493
+      rev: '38'
+      sid: '2001493'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

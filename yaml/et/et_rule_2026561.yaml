@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[2375,2376]'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '5'
+        value: '"POST|20|"'
+      - value: '"/containers/create|20|HTTP/"'
+      - value: '"|0d 0a|User-Agent|3a 20|Docker-Client"'
+      - value: '"|0d 0a 0d 0a 7b 22|Hostname|22 3a 22|"'
+      - value: '!"|0d 0a|Referer|3a|"'
+      distance: '0'
+      fast_pattern: 7,20
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_10_29, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        tag Docker, updated_at 2020_09_16
+      msg: '"ET INFO External Host Creating Docker Container"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/misconfigured-container-abused-to-deliver-cryptocurrency-mining-malware/
+      rev: '3'
+      sid: '2026561'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

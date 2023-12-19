@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"pageid="'
+      - value: '"mailform_send="'
+      - value: '"confirm_value="'
+      - value: '"mailform_1="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_11_19, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_11_07
+      msg: '"ET WEB_SPECIFIC_APPS SiteloomCMS mailform_1 variable Cross Site Scripting
+        Attempt"'
+      pcre: '"/mailform_1\x3d.+(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,packetstormsecurity.org/1008-exploits/siteloomcms-xss.txt
+      rev: '2'
+      sid: '2011927'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

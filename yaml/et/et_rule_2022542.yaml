@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '10'
+        offset: '2'
+        value: '"|83 80 00 01 00 00 00 00 00 00|"'
+      flow: from_server
+      isdataat: '2049'
+      metadata: created_at 2016_02_18, cve CVE_2015_7547, updated_at 2016_02_18
+      msg: '"ET EXPLOIT Possible 2015-7547 PoC Server Response"'
+      pcre: '"/^(?:.[a-z0-9-]{2,}){2,}\x00\x00(?:\x01|\x1c)/Ri"'
+      reference: cve,2015-7547
+      rev: '1'
+      sid: '2022542'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

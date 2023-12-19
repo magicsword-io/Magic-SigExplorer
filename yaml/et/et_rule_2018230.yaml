@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api.php"'
+      - depth: '20'
+        value: '"YWx0X2FwaV9iYXNlX3Vy"'
+      flow: to_server
+      metadata: created_at 2014_03_06, former_category MALWARE, updated_at 2020_04_28
+      msg: '"ET TROJAN SMSHoax Riskware checkin"'
+      reference: md5,4b779acb1a0e726cee73fc2ca8a6a0be
+      rev: '1'
+      sid: '2018230'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

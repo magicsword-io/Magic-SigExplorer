@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '515'
+    details:
+      classtype: system-call-detect
+      contents:
+      - value: '"psfile=|22|`"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER LPD dvips remote command execution attempt"'
+      reference: nessus,11023
+      rev: '10'
+      sid: '1821'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

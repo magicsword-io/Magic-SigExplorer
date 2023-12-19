@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/action?dns_status=1&dns_poll_timeout="'
+      - value: '"&id="'
+      - value: '"&dns_serv_ip_1="'
+      - value: '"&dns_serv_ip_2="'
+      - value: '"&dns_serv_ip_3="'
+      - value: '"&dns_serv_ip_4="'
+      - value: '"&priority=1&cmdadd=add"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2019_08_23, deployment Perimeter,
+        former_category EXPLOIT, performance_impact Moderate, signature_severity Major,
+        updated_at 2022_03_24
+      msg: '"ET EXPLOIT DSLink 260E Router DNS Changer Exploit Attempt"'
+      reference: url,csirt.bank.gov.ua/en/news/44
+      rev: '2'
+      sid: '2027908'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

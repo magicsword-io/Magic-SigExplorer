@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '110'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"V|0E|1|C0 B0 3B 8D|~|12 89 F9 89 F9|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0006, updated_at 2010_09_23
+      msg: '"GPL POP3 x86 SCO overflow"'
+      reference: cve,1999-0006
+      rev: '11'
+      sid: '2100289'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

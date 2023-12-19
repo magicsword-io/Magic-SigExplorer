@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<!-- saved from url=("'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_31, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_02_15
+      msg: '"ET CURRENT_EVENTS Cloned Website Phishing Landing - Saved Website Comment
+        Observed"'
+      pcre: '"/^\s*?\d+?\s*?\)(?:https://(?:w(?:ww(?:\.(?:(?:bankofamerica|paypal|ups|wellsfargo)\.com|a(?:dobecloud\.com|mazon\.co\.jp)|tax\.service\.gov\.uk|cibc\.mobi)|1\.royalbank\.com)|ebmail\.(?:i(?:llinois|ndstate)\.ed|optusnet\.com\.a)u)|(?:s(?:i(?:tekey\.bankofamerica|gnin\.ebay)|ecure(?:\.bankofamerica|05c\.chase))|login\.(?:(?:microsoftonlin|liv)e|verizonwireless|alibaba)|my\.screenname\.aol)\.com|(?:(?:ex(?:change\.(?:louisvill|purdu)|mail\.oregonstat)e|owa\.uaa\.alaska)\.ed|ib\.nab\.com\.a)u|voscomptesenligne\.labanquepostale\.fr|auth\.centurylink\.net)|/logon/logon/chaseOnline|#www\.kucoin\.com)/Rsi"'
+      rev: '3'
+      sid: '2025281'
+      special_options:
+      - file_data
+      within: '300'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

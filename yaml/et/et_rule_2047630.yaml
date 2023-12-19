@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '10'
+        offset: '0'
+        value: '"|7B 22|result|22 3A|"'
+      - value: '"|22|error|22 3A 22|"'
+      - value: '"|22 2C 22|action|22 3A 22|result|22|"'
+      - value: '"|22|uuid4|22|"'
+      - value: '"|22|version|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2023_08_11, deployment Perimeter, former_category MALWARE, malware_family
+        Adload, signature_severity Major, updated_at 2023_08_11
+      msg: '"ET TROJAN MacOS/Adload Proxy Node Response"'
+      reference: url,cybersecurity.att.com/blogs/labs-research/mac-systems-turned-into-proxy-exit-nodes-by-adload
+      rev: '1'
+      sid: '2047630'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[7000:7002]'

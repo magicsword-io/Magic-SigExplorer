@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|26 20|copy|20|c|3a 5c|windows|5c|system32|5c|curl|2e|exe"'
+      - value: '"|22|User|2d|Agent|3a 20|curl|22|"'
+      - value: '"|26 20|Autoit3|2e|exe"'
+      - value: '"|2e|au3"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2023_09_15, former_category MALWARE, updated_at 2023_09_18,
+        reviewed_at 2023_09_18
+      msg: '"ET TROJAN DarkGate AutoIt Downloader"'
+      reference: url,0xtoxin.github.io/threat%20breakdown/DarkGate-Camapign-Analysis/
+      rev: '2'
+      sid: '2048098'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

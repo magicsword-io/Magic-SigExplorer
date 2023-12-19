@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|2B|CSCOE|2B 2F|files|2F|browse|2E|html"'
+      - value: '"code|3D|init"'
+      - value: '"path|3D|ftp"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, cve CVE_2009_1203,
+        deployment Perimeter, signature_severity Major, tag Phishing, updated_at 2020_11_07
+      msg: '"ET WEB_SERVER Possible Cisco Adaptive Security Appliance Web VPN FTP
+        or CIFS Authentication Form Phishing Attempt"'
+      reference: url,doc.emergingthreats.net/2010457
+      rev: '5'
+      sid: '2010457'
+      special_options:
+      - nocase
+      - http_raw_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

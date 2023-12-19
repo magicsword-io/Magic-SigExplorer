@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/profiles.php?profiles="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_05_20, deployment Perimeter,
+        former_category MALWARE, malware_family Bitter, signature_severity Major,
+        updated_at 2022_05_20
+      msg: '"ET TROJAN Bitter APT Related Activity (GET)"'
+      pcre: '"/^Host[^\r\n]+\r\nConnection[^\r\n]+\r\n\r\n$/H"'
+      reference: url,twitter.com/k3yp0d/status/1527656133837594624
+      rev: '1'
+      sid: '2036645'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Insane Network vs 4.0 by Suid Flow|0A 0D|www.blackcode.com|0A 0D|[r00t]|23|",depth
+          62'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Insane Network 4.0 connection port 63536"'
+      rev: '10'
+      sid: '3016'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '63536'

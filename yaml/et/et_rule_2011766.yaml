@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|0d 0a|User-Agent|3A| sundayddr"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Modified Sipvicious User-Agent Detected (sundayddr)"'
+      reference: url,doc.emergingthreats.net/2011766
+      rev: '5'
+      sid: '2011766'
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '873'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '5'
+        value: '"|23|list"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL EXPLOIT rsyncd module list access"'
+      rev: '3'
+      sid: '2102047'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

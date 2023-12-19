@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename=|22|screenshot_"'
+      - value: '".jpeg|22|"'
+      - value: '"POST"'
+      - value: '".php?action=upload&host="'
+      - value: '"@"'
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_31, deployment Perimeter, former_category
+        TROJAN, malware_family MSIL_L4L, performance_impact Low, signature_severity
+        Major, updated_at 2020_10_21
+      msg: '"ET TROJAN MSIL.L4L Stealer Screenshot Exfiltration"'
+      reference: md5,918ffdba1014ec647ae24ddc9de9fde9
+      rev: '2'
+      sid: '2028930'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: '873'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"cmi/var/ssh/root/authorized_keys"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: set,ET.F5.key
+      metadata: created_at 2014_08_29, updated_at 2019_10_08
+      msg: '"ET EXPLOIT F5 BIG-IP rsync cmi authorized_keys access attempt"'
+      reference: url,www.security-assessment.com/files/documents/advisory/F5_Unauthenticated_rsync_access_to_Remote_Root_Code_Execution.pdf
+      rev: '3'
+      sid: '2019088'
+    protocol: tcp
+    source:
+      network: any
+      port: any

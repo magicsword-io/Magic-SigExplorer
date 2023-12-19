@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/pushAgent"'
+      - value: '"Accept|3a 20|*/*|0d|"'
+      - value: '"Accept-Encoding|3a 20|gzip,|20|deflate|0d|"'
+      - value: '"Connection|3a 20|Keep-Alive|0d|"'
+      - value: '"User-Agent|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cache"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_14, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag Donot, tag
+        APT_C_35, updated_at 2020_09_16
+      msg: '"ET TROJAN Donot (APT-C-35) Stage 1 Requesting Main Payload"'
+      reference: url,ti.360.net/blog/articles/donot-group-is-targeting-pakistani-businessman-working-in-china-en/
+      rev: '2'
+      sid: '2026729'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

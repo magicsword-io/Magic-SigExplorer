@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"Location|3a|"'
+      - value: '"Location|3a|"'
+      fast_pattern: only
+      flow: from_server,established
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2016_12_19, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_08_26, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Generic Phish (302) 2016-12-16"'
+      pcre: '"/^\s*(?:\./|\.\./)*(?:s(?:e(?:curity(?:-check|cvv)|rver|condpage)|uccess)|l(?:o(?:ad(?:ing|er)|g(?:off))|iamg)|d(?:e(?:livery|tails)|one|hl)|i(?:d(?:entity)?|ndex2|i)|p(?:ro(?:cess(?:ing)?|file)|hone|ass|in|ayment)|w(?:e(?:iter|bsc)|ait)|t(?:hanky[o0]u|racking)|v(?:alidate|erify?|bv)|L(?:oginVerification|L1|2|ogin2)|f(?:orward|irst|in(?:al|ish))|b(?:illing2?|ank)|e(?:rror|xcel|nd)|questions|1loader|account|recova|confirm|outlook|update(?:bill|card)?|good|SS|verification|qes|upgrade2?|activation|check(?:ing)?|ex|indexx|warning|re(?:name|try))\./Ri"'
+      rev: '26'
+      sid: '2029657'
+      special_options:
+      - http_stat_code
+      - http_header
+      - http_header
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

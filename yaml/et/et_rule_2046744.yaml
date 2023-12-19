@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx"'
+      - depth: '22'
+        value: '"|5f 5f|EVENTTARGET|3d 26 5f 5f|FILE|3d|"'
+      - value: '"HRJ|3d|"'
+      - value: '"|26|ZSnXu=Login"'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Microsoft_IIS, attack_target Web_Server, created_at
+        2023_07_06, deployment Perimeter, deployment Internal, deployment SSLDecrypt,
+        former_category WEB_SERVER, malware_family ASPXSPY, performance_impact Low,
+        confidence High, signature_severity Major, tag WebShell, updated_at 2023_07_06
+      msg: '"ET TROJAN ASPXSPY Webshell Login Attempt"'
+      pcre: '"/\.aspx$/U"'
+      reference: md5,2ef7bb0d9763cf38977182d65173d1b0
+      rev: '1'
+      sid: '2046744'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

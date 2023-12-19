@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"|0d 0a|Cookie\: "'
+      - value: '"admin-access="'
+      - value: '"e107language_"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category WEB_SPECIFIC_APPS, updated_at
+        2017_05_11
+      msg: '"ET WEB_SPECIFIC_APPS e107 CMS backdoor access admin-access cookie and
+        HTTP POST"'
+      pcre: '"/Cookie: .*admin-access=/i"'
+      reference: url,doc.emergingthreats.net/2010719
+      rev: '3'
+      sid: '2010719'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

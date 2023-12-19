@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"clsid"'
+      - value: '"15DBC3F9-9F0A-472E-8061-043D9CEC52F0"'
+      - value: '"extSetOwner"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_10_29, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2019_09_27
+      msg: '"ET ACTIVEX Trend Micro Internet Security Pro 2010 ActiveX extSetOwner
+        Remote Code Execution Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*15DBC3F9-9F0A-472E-8061-043D9CEC52F0/si"'
+      reference: url,www.exploit-db.com/trend-micro-internet-security-pro-2010-activex-extsetowner-remote-code-execution/
+      rev: '1'
+      sid: '2011867'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

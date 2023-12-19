@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|paste|06|debian|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_17, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2023_07_17, reviewed_at 2023_12_15
+      msg: '"ET INFO Pastebin Related Domain in DNS Lookup"'
+      rev: '1'
+      sid: '2046824'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

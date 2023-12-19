@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"DNNPersonalization="'
+      - value: '"DNNPersonalization="'
+      - value: '"ObjectStateFormatter"'
+      - value: '"ObjectDataProvider"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_04_27, cve CVE_2017_9822, deployment Datacenter, former_category
+        WEB_SPECIFIC_APPS, signature_severity Minor, updated_at 2020_11_04
+      msg: '"ET WEB_SPECIFIC_APPS DNN DNNPersonalization Cookie RCE Attempt (CVE-2017-9822)"'
+      reference: url,f5.com/labs/articles/threat-intelligence/cyber-security/zealot-new-apache-struts-campaign-uses-eternalblue-and-eternalsynergy-to-mine-monero-on-internal-networks?sf176487178
+      rev: '1'
+      sid: '2025545'
+      special_options:
+      - fast_pattern
+      - http_cookie
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

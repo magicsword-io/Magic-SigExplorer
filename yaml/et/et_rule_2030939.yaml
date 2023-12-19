@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '16'
+        value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|54 0b 54|"'
+      - value: '"|08 00|"'
+      - value: '"|01|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2020_10_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, signature_severity Major,
+        updated_at 2020_10_01
+      msg: '"ET TROJAN TA428 Infostealer CnC Host Checkin"'
+      reference: url,vblocalhost.com/uploads/VB2020-20.pdf
+      rev: '2'
+      sid: '2030939'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

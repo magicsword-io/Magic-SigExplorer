@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<applet"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_11_01, former_category EXPLOIT_KIT, updated_at 2012_11_01
+      msg: '"ET CURRENT_EVENTS Sakura/RedKit obfuscated URL"'
+      pcre: '"/^((?!<\/applet>).)+?\/.{1,12}\/.{1,12}\x3a.{1,12}p.{1,12}t.{1,12}t.{1,12}h/Rs"'
+      rev: '2'
+      sid: '2015858'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

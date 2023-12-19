@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '19'
+        value: '"/install.php?affid="'
+      - depth: '5'
+        value: '"|64 61 74 61 3d|"'
+      - value: '"|30 31 30|"'
+      - value: '"|31|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2011_03_16, former_category TROJAN, updated_at 2020_08_24
+      msg: '"ET TROJAN Hiloti loader installed successfully request"'
+      rev: '3'
+      sid: '2012513'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

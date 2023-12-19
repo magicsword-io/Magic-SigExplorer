@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 10.0|3b 20|Win64|3b 20|x64)
+          AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4044.74 Safari/537.36|0d
+          0a|"'
+      - value: '!"Referer"'
+      - value: '"GET /marrketend.png"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_08_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Lazarus, signature_severity
+        Major, updated_at 2022_08_08
+      msg: '"ET TROJAN Lazarus APT Related Activity (GET)"'
+      reference: url,twitter.com/h2jazi/status/1555205042331947011
+      rev: '1'
+      sid: '2037957'
+      special_options:
+      - http_header
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

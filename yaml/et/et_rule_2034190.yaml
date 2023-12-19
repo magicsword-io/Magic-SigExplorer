@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2e|php"'
+      - value: '"onSubmit|3d 22|return|20|validateMyForm|28 29 3b 22|"'
+      - value: '"id|3d 27 5f|form|5f|"'
+      - value: '"enctype|3d 27|multipart|2f|form|2d|data|27|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_10_12, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2021_10_13
+      msg: '"ET CURRENT_EVENTS Generic Phishkit Landing Page M2"'
+      reference: md5,3112bc432450ae3d08a0491ccaaf914d
+      rev: '2'
+      sid: '2034190'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

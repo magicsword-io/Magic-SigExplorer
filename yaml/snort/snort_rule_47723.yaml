@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/site/gate.php?i=eyAiYWN0aW9uIjog",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.MysteryBot outbound connection"'
+      reference: url,www.virustotal.com/en/file/334f1efd0b347d54a418d1724d51f8451b7d0bebbd05f648383d05c00726a7ae/analysis/
+      rev: '1'
+      service: http
+      sid: '47723'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

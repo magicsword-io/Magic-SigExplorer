@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sys.dbms_repcat_conf.add_delete_resolution",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE sys.dbms_repcat_conf.add_delete_resolution buffer overflow
+        attempt"'
+      pcre: '"/((\w+)[\r\n\s]*\x3a=[\r\n\s]*(\x27[^\x27]{1075,}\x27|\x22[^\x22]{1075,}\x22)[\r\n\s]*\x3b.*(sname|oname)[\r\n\s]*=>[\r\n\s]*\2|(sname|oname)\s*=>\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})|\(\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})|\(\s*(\x27[^\x27]*\x27|\x22[^\x22]+\x22)\s*,\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,}))/is"'
+      reference: url,www.appsecinc.com/resources/alerts/oracle/2004-0001/25.html
+      rev: '4'
+      sid: '2858'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

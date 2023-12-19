@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|ramblercloud|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_09_07, deployment Perimeter,
+        former_category MALWARE, malware_family TontoTeam, signature_severity Major,
+        updated_at 2022_09_07
+      msg: '"ET TROJAN Chinese Based APT Related Domain in DNS Lookup (ramblercloud
+        .com)"'
+      reference: url,www.ptsecurity.com/ww-en/analytics/pt-esc-threat-intelligence/apt31-cloud-attacks/
+      rev: '1'
+      sid: '2038752'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

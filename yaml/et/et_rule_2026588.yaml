@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"-Agent|3a 20|Kraken web request agent/"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_09, deployment Perimeter, former_category
+        TROJAN, malware_family Ransomware, malware_family Kraken_Ransomware, signature_severity
+        Major, tag Ransomware, updated_at 2020_08_27
+      msg: '"ET TROJAN MSIL.Kraken.v2 HTTP Pattern"'
+      reference: url,securingtomorrow.mcafee.com/mcafee-labs/fallout-exploit-kit-releases-the-kraken-ransomware-on-its-victims/
+      rev: '1'
+      sid: '2026588'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

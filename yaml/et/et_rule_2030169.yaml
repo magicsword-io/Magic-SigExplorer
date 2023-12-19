@@ -1,0 +1,43 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      - value: '"GET"'
+      - value: '".6.jpg"'
+      - value: '"User-Agent|3a 20|MSIE|28|6.00.2900.5512|20 28|"'
+      - value: '"|3b 20|NT|28|"'
+      - value: '"|29 3b 20|AV|28|"'
+      - value: '"|29 3b 20|OV|28|"'
+      - value: '"|29 3b 20|NA|28|"'
+      - value: '"VR|28|PH"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2020_05_15, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_10
+      msg: '"ET TROJAN Suspected USBFERRY CnC"'
+      reference: url,documents.trendmicro.com/assets/Tech-Brief-Tropic-Trooper-s-Back-USBferry-Attack-Targets-Air-gapped-Environments.pdf
+      rev: '3'
+      sid: '2030169'
+      special_options:
+      - http_header
+      - http_header
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|libsfml-network/"'
+      fast_pattern: 8,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_14, deployment Perimeter, former_category
+        USER_AGENTS, performance_impact Low, signature_severity Minor, updated_at
+        2020_08_27
+      msg: '"ET USER_AGENTS SFML User-Agent (libsfml-network)"'
+      reference: url,github.com/SFML
+      rev: '2'
+      sid: '2026914'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

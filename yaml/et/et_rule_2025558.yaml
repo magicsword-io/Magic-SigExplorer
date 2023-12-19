@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '5'
+        value: '"<?xml"'
+      - value: '"|22|JScript|22|><![CDATA[ eval("'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_05_03, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, updated_at 2020_11_16
+      msg: '"ET CURRENT_EVENTS [PTsecurity] Possible Malicious (HTA-VBS-PowerShell)
+        obfuscated command"'
+      pcre: '"/%comSpec%\s\/c\s(?:(?:\\x50)|(?:\\x70)|[Pp])\^?(?:(?:\\x4f)|(?:\\x5f)|[Oo])\^?(?:(?:\\x57)|(?:\\x77)|[Ww])\^?(?:(?:\\x45)|(?:\\x65)|[Ee])\^?(?:(?:\\x52)|(?:\\x72)|[Rr])\^?(?:(?:\\x53)|(?:\\x73)|[Ss])\^?(?:(?:\\x48)|(?:\\x68)|[Hh])\^?(?:(?:\\x45)|(?:\\x65)|[Ee])\^?(?:(?:\\x4c)|(?:\\x6c)|[Ll])\^?(?:(?:\\x4c)|(?:\\x6c)|[Ll])\^?(?:(?:\\x2e)|\.)\^?(?:(?:\\x45)|(?:\\x65)|[Ee])\^?(?:(?:\\x58)|(?:\\x78)|[Xx])\^?(?:(?:\\x45)|(?:\\x65)|[Ee])\^?\s/R"'
+      rev: '2'
+      sid: '2025558'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

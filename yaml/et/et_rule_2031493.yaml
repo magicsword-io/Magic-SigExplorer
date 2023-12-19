@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"lnstagram"'
+      - value: '"</title>"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_01_07, deployment Perimeter, former_category PHISHING, signature_severity
+        Minor, updated_at 2021_01_07
+      msg: '"ET CURRENT_EVENTS Possible Instagram Phishing or Scam Landing Page"'
+      rev: '2'
+      sid: '2031493'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

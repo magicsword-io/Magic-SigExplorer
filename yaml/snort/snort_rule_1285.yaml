@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/msdac/",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS msdac access"'
+      reference: nessus,11032
+      rev: '20'
+      service: http
+      sid: '1285'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

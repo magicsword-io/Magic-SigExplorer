@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>0'
+      classtype: attempted-admin
+      contents:
+      - value: '" () {",depth 50'
+      - value: '!"HTTP/"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-OTHER Bash CGI environment variable injection attempt"'
+      reference: cve,2014-7169
+      rev: '2'
+      service: http
+      sid: '32335'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

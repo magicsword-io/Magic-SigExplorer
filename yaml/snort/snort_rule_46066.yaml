@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/football/goal",fast_pattern,nocase'
+      - value: '"ball="'
+      - value: '"score="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.yty second stage downloader initial outbound connection"'
+      reference: url,www.arbornetworks.com/blog/asert/donot-team-leverages-new-modular-malware-framework-south-asia/
+      rev: '1'
+      service: http
+      sid: '46066'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

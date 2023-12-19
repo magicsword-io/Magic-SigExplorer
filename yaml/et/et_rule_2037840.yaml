@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"8tLS0t"'
+      - value: '"WinHttpRequest"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_07_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_07_28
+      msg: '"ET TROJAN Win32/Unknown VBScript Backdoor Activity (GET)"'
+      pcre: '"/^Connection\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,e8aa5c0309cbc1966674b110a4afd83a
+      rev: '1'
+      sid: '2037840'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

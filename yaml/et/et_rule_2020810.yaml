@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a|"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 7.0|3b| MSIE 6.0|3b|
+          Windows NT 5.1|3b| .NET CLR 2.0.50727)"'
+      fast_pattern: 37,20
+      flow: established,to_server
+      metadata: created_at 2015_03_31, updated_at 2020_05_21
+      msg: '"ET TROJAN Volatile Cedar Win32.Explosive Fake User-Agent"'
+      reference: url,checkpoint.com/downloads/volatile-cedar-technical-report.pdf
+      rev: '1'
+      sid: '2020810'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

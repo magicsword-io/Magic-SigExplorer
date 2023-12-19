@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '12'
+        value: '"|7b 22|jsonrpc|22 3a 22|"'
+      - value: '"/getEnterpriseUser|22|"'
+      - value: '",|22|params|22 3a 7b 22|id|22 3a|"'
+      - value: '"POST"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2019_10_31, cve CVE_2019_5533, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2019_10_31
+      msg: '"ET EXPLOIT VMware VeloCloud Authorization Bypass (CVE-2019-5533)"'
+      pcre: '"/^(?P<num_value>\d+)\x7d,\x22id\x22\x3a(?P=num_value)/R"'
+      reference: cve,2019-5533
+      rev: '2'
+      sid: '2028928'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_method
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

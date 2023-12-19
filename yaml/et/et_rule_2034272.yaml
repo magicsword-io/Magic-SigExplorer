@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"url|3d 25|25"'
+      - value: '"&mb_id="'
+      - value: '"&mb_password="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_10_27, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, updated_at 2021_10_27
+      msg: '"ET CURRENT_EVENTS Successful Generic Credential Phish Activity POST"'
+      reference: md5,9939c621f58183455bf56914c3957e51
+      rev: '1'
+      sid: '2034272'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

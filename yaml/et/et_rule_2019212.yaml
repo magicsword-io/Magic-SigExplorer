@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"php?-d|20|allow_url"'
+      - value: '"auto_prepend_file|3d|php|3a 2f|"'
+      - depth: '7'
+        value: '"<?php|0d 0a|"'
+      flow: to_server,established
+      metadata: created_at 2014_09_22, updated_at 2020_05_08
+      msg: '"ET TROJAN Bossabot DDoS tool RFI attempt"'
+      reference: url,cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-1823
+      rev: '1'
+      sid: '2019212'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wp-includes",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Potential hostile executable served from compromised or malicious
+        WordPress site attempt"'
+      pcre: '"/(exe|dll|scr|rar|ps1|bat)$/i"'
+      reference: url,blog.avast.com/2013/05/03/regents-of-louisiana-spreading-sirefef-malware
+      rev: '2'
+      service: http
+      sid: '44470'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

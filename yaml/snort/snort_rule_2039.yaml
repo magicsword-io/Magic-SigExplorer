@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '67'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|01|",depth 1'
+      - value: '"|0C|",distance 240'
+      - value: '"%",distance 0'
+      - value: '"%",within 8,distance 1'
+      - value: '"%",within 8,distance 1'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER bootp hostname format string attempt"'
+      reference: nessus,11312
+      rev: '12'
+      sid: '2039'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

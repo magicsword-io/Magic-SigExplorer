@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '8'
+        value: '"/jquery-"'
+      - value: '".min.js"'
+      - depth: '9'
+        value: '"__cfduid="'
+      - value: '"Referer|3a 20|http|3a|//code.jquery.com/|0d 0a|Accept"'
+      - value: '"Accept|3a 20|text/html,application/xhtml+xml,application/xml|3b|q=0.9,*/*|3b|q=0.8|0d
+          0a|"'
+      - value: '"Accept-Encdoing|3a 20|gzip, deflate|0d 0a|"'
+      distance: '0'
+      fast_pattern: 20,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_09_22, deployment Perimeter, former_category
+        MALWARE, malware_family Cobalt_Strike, signature_severity Major, updated_at
+        2022_03_24, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1001, mitre_technique_name Data_Obfuscation
+      msg: '"ET TROJAN Cobalt Strike Malleable C2 JQuery Custom Profile M2"'
+      pcre: '"/^__cfduid=[A-Za-z0-9_-]{171}$/Cs"'
+      reference: md5,8c9903db02a29847d04d0fd81dd67046
+      rev: '3'
+      sid: '2033658'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_cookie
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

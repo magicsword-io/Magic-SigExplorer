@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/set.cgi",fast_pattern,nocase'
+      - value: '"n=TLNET_EN",nocase'
+      - value: '"v=1",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Belkin N750 F9K1103 wireless router remote telnet enable
+        attempt"'
+      reference: cve,2018-1146
+      rev: '2'
+      service: http
+      sid: '46519'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

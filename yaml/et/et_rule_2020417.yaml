@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|mango7u3rivtwxy7"'
+      distance: '0'
+      metadata: created_at 2015_02_12, updated_at 2020_09_01
+      msg: '"ET POLICY Middle Earth Illegal Marketplace Tor Hidden Service DNS Query"'
+      rev: '2'
+      sid: '2020417'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

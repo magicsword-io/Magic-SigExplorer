@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"8_=_8"'
+      dsize: <25
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_09_15, deployment Perimeter, former_category
+        MALWARE, malware_family Luminosity_Link, signature_severity Major, updated_at
+        2019_09_28
+      msg: '"ET TROJAN LuminosityLink - Outbound Data Channel CnC Delimiter"'
+      reference: md5,ab03070048fdbadbb901ec75b8f9f2e9
+      rev: '1'
+      sid: '2023242'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

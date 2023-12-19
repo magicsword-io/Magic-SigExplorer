@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php"'
+      - value: '"empix="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_04_18, updated_at 2022_05_03
+      msg: '"ET TROJAN Jembot PHP Webshell (system command)"'
+      reference: url,lab.onsec.ru/2012/04/find-new-web-bot-jembot.html?m=1
+      rev: '3'
+      sid: '2014614'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

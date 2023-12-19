@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,0, little, from_beginning, post_offset -1
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|1b 00 00 00|"'
+      dsize: '27'
+      flow: established,to_client
+      isdataat: '!2,relative'
+      metadata: attack_target Client_and_Server, created_at 2022_11_23, deployment
+        Perimeter, former_category MALWARE, performance_impact Significant, confidence
+        High, signature_severity Major, updated_at 2023_09_13, reviewed_at 2023_09_13
+      msg: '"ET TROJAN Win32/Gh0st RAT Variant CnC Checkin response"'
+      pcre: '"/(?:\x01\x00\x01$|\x00{3}$)/"'
+      reference: md5,77bd9926a4b41c14259e20c1f90e22aa
+      rev: '2'
+      sid: '2039834'
+      stream_size: server,=,28
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

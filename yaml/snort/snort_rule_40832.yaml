@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"silence_keylogger|0D 0A|",depth 19,offset 4'
+      flow: to_client,established
+      isdataat: '!23'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Houdini variant keylogger inbound init command
+        attempt"'
+      reference: url,attack.mitre.org/techniques/T1056
+      rev: '5'
+      sid: '40832'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

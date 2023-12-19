@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"vbscript"'
+      - value: '"|22|4D5A90"'
+      - value: '!"|22|"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2015_04_11,
+        deployment Perimeter, former_category CURRENT_EVENTS, signature_severity Major,
+        tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY EXE Embeded in Page Likely Evil M1"'
+      pcre: '"/^[a-f0-9]{500}/Rsi"'
+      rev: '1'
+      sid: '2020893'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?id="'
+      - value: '"/"'
+      - value: '"<script"'
+      distance: '-17'
+      flow: established,from_server
+      metadata: created_at 2014_02_01, former_category CURRENT_EVENTS, updated_at
+        2014_02_01
+      msg: '"ET CURRENT_EVENTS Malicious Redirect 8x8 script tag"'
+      pcre: '"/^(?:(?!<\/script>).)*?\ssrc\s*?=\s*?[\x22\x27][^\x22\x27]+?\/[a-z0-9A-Z]{8}\.php\?id=\d{6,9}[\x22\x27]/Rsi"'
+      rev: '3'
+      sid: '2018053'
+      special_options:
+      - file_data
+      - nocase
+      within: '1'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

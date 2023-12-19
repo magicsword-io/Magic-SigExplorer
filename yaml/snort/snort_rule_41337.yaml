@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GZIPOK|3A 20|",fast_pattern,nocase'
+      - value: '"CompGZ|3A 20|"'
+      - value: '"ReqType|3A 20|"'
+      - value: '".do"'
+      - value: '!"Accept"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Andr.Trojan.Sysch variant outbound connection"'
+      reference: url,virustotal.com/en/file/82da35ab3b0a47fe8de8b0cc24d53711e17960f5887a16769e76650d9556b399/analysis/1484684069/
+      rev: '3'
+      service: http
+      sid: '41337'
+      special_options:
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

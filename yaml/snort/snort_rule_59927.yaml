@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"java.io.FileOutputStream",fast_pattern,nocase'
+      - value: '"<%"'
+      - value: '"request",within 100'
+      - value: '"write"'
+      - value: '"getParameter",within 100'
+      flow: to_server,established
+      gid: '1'
+      isdataat: '!600'
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Jsp.Webshell.TinyUploader upload attempt"'
+      reference: url,community.atlassian.com/t5/Confluence-discussions/CVE-2022-26134-Critical-severity-unauthenticated-remote-code/td-p/20456533
+      rev: '2'
+      service: http
+      sid: '59927'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

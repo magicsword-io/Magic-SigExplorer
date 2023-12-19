@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|07|Arizona"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|0a|Scottsdale"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|06|Amazon"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|0f|Starfield Class"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|blackrato.ga"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|07|Arizona"'
+      - value: '"|06 03 55 04 07|"'
+      - value: '"|0a|Scottsdale"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|06|Amazon"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|0f|Starfield Class"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|blackrato.ga"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2020_11_25, deployment
+        Perimeter, former_category MALWARE, malware_family Blackrota, performance_impact
+        Low, signature_severity Major, tag SSL_Malicious_Cert, updated_at 2020_11_25,
+        mitre_tactic_id TA0042, mitre_tactic_name Resource_Development, mitre_technique_id
+        T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (Blackrota)"'
+      reference: url,blog.netlab.360.com/blackrota-an-obfuscated-backdoor-written-in-go-en/
+      rev: '2'
+      sid: '2031236'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"/d/"'
+      - value: '".jpg"'
+      - value: '!"Referer|3a|"'
+      - value: '"Host|3a 20|www.google.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_08_01, former_category MALWARE, updated_at 2022_03_24
+      msg: '"ET TROJAN StealRat Checkin"'
+      pcre: '"/^\/d\/[a-z]+\d+\.jpg$/U"'
+      rev: '1'
+      sid: '2017263'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

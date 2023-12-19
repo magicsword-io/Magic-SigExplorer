@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        value: '"GET"'
+      - value: '"4D53473A213A"'
+      - value: '"20457865637574656420417320"'
+      - value: '"0D0A|20|HTTP|2f|"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_03_13, deployment Perimeter, former_category
+        MALWARE, malware_family Retadup, performance_impact Low, signature_severity
+        Major, updated_at 2022_03_24
+      msg: '"ET TROJAN Win32/Retadup CnC Checkin M2"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/monero-mining-retadup-worm-goes-polymorphic-gets-an-autohotkey-variant/
+      rev: '2'
+      sid: '2027078'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

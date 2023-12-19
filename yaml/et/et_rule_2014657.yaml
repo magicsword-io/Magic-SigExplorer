@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?"'
+      - value: '"x=x"'
+      - value: '"&u="'
+      - value: '"&s="'
+      - value: '"&id="'
+      - value: '"&file="'
+      - value: '".pdf"'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2012_04_30, former_category EXPLOIT_KIT, updated_at 2020_04_21
+      msg: '"ET CURRENT_EVENTS Unkown exploit kit pdf download"'
+      rev: '2'
+      sid: '2014657'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

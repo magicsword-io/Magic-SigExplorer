@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Kanzas City"'
+      - value: '"System IT Inc"'
+      - value: '"|55 04 03|"'
+      - value: '"|06|server"'
+      distance: '1'
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2021_06_30, deployment Perimeter,
+        former_category MALWARE, malware_family Ransomware, performance_impact Low,
+        signature_severity Major, updated_at 2021_06_30
+      msg: '"ET TROJAN REvil Exfil SFTP Certificate Inbound"'
+      reference: url,thedfirreport.com/2021/03/29/sodinokibi-aka-revil-ransomware/
+      rev: '1'
+      sid: '2033205'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

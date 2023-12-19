@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|00 bd 98 61 ee 0e 3e d9 1d|"'
+      - value: '"|55 04 06|"'
+      - value: '"|02|GB"'
+      - value: '"|55 04 08|"'
+      - value: '"|09|Berkshire"'
+      - value: '"|55 04 07|"'
+      - value: '"|07|Newbury"'
+      - value: '"|55 04 0a|"'
+      - value: '"|0e|My Company Ltd"'
+      distance: '1'
+      flow: from_server,established
+      metadata: attack_target Client_and_Server, created_at 2018_11_13, deployment
+        Perimeter, former_category MALWARE, performance_impact Low, signature_severity
+        Major, tag SSL_Malicious_Cert, updated_at 2020_08_27, mitre_tactic_id TA0042,
+        mitre_tactic_name Resource_Development, mitre_technique_id T1587, mitre_technique_name
+        Develop_Capabilities
+      msg: '"ET TROJAN Observed Malicious SSL Cert (MageCart Group 1/2 CnC)"'
+      reference: url,go.flashpoint.com/docs/inside-magecart-by-Flashpoint-and-RiskIQ
+      rev: '2'
+      sid: '2026589'
+      special_options:
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

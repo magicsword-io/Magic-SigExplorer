@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"method=devicestatus"'
+      - offset: '19'
+        value: '"&app_key="'
+      - value: '"&imei="'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2014_08_18, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_10_13, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android/Locker.B Checkin 2"'
+      pcre: '"/\.php$/U"'
+      reference: url,malware.dontneedcoffee.com/2014/08/scarepackageknstant.html
+      rev: '2'
+      sid: '2018946'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

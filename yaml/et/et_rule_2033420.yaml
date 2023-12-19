@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"efkezwpdxpsq3l"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2021_07_26, former_category MALWARE, signature_severity Major, updated_at
+        2021_07_26, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1071, mitre_technique_name Application_Layer_Protocol
+      msg: '"ET TROJAN Anchor_DNS stickseed Variant CnC Checkin"'
+      pcre: '"/\.[dghbcijklmnfqrwxyz23stuopaev4569]{26}\.[a-z0-9_-]{1,50}\.[a-z]{2,8}\x00/"'
+      rev: '2'
+      sid: '2033420'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|4e 00 74 00 44 00 75 00 6d 00 70 00 53 00 76 00 63 00 2e 00 65 00
+          78 00 65 00|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET EXPLOIT NTDump.exe Service Started port 139"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001053
+      rev: '8'
+      sid: '2001053'
+    protocol: tcp
+    source:
+      network: any
+      port: any

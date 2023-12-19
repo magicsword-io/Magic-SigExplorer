@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"infected|20|you|20|with|20|a|20|malware"'
+      - value: '"malware|20|gave|20|me|20|full"'
+      - value: '"collected|20|everything|20|private|20|from|20|you"'
+      - value: '"FEW|20|EMBARASSING|20|VIDEOS"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_06_06, deployment Perimeter, former_category
+        TROJAN, malware_family Phorpiex, performance_impact Low, signature_severity
+        Major, tag SpamBot, updated_at 2019_06_06
+      msg: '"ET TROJAN Win32/Phorpiex Template 4 Active - Outbound Malicious Email
+        Spam"'
+      rev: '2'
+      sid: '2027438'
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

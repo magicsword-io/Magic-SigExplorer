@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<script"'
+      - value: '"ARR_SIZE ="'
+      - value: '"function search_corrupted_array()"'
+      - value: '"//msfvenom -p"'
+      - value: '"windows/exec cmd="'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_05, deployment Perimeter, signature_severity
+        Major, updated_at 2019_11_05
+      msg: '"ET CURRENT_EVENTS Possible MSFVenom Exploit via Browser"'
+      rev: '2'
+      sid: '2028940'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

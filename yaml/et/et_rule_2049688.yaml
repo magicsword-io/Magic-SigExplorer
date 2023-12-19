@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -10
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"axile.su"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_12_13, deployment Perimeter,
+        signature_severity Major, updated_at 2023_12_13
+      msg: '"ET TROJAN Observed Axile Stealer Domain (axile .su in TLS SNI)"'
+      pcre: '"/^(?:\x00\x08|.\x2e)axile\.su/R"'
+      reference: url,twitter.com/suyog41/status/1734227876604784777
+      rev: '1'
+      sid: '2049688'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

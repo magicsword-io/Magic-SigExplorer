@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      byte_extract: 2,12,byte0,relative
+      byte_test: 2,=,byte0,30,relative
+      classtype: trojan-activity
+      contents:
+      - value: '!"Referer|3a|"'
+      - value: '!"|00|"'
+      - depth: '2'
+        value: '"|61 3d|"'
+      flow: established,to_server
+      isdataat: '!32,relative'
+      metadata: attack_target Client_Endpoint, created_at 2017_10_17, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, signature_severity Major,
+        updated_at 2020_08_13
+      msg: '"ET TROJAN Trojan.JS.Agent.dwz Checkin"'
+      reference: md5,f886dbf6bd47a0a015ef40fc2bed03a2
+      rev: '1'
+      sid: '2024848'
+      special_options:
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

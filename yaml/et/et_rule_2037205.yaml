@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,1,relative, post_offset -15
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"attemplate.com"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_29, deployment Perimeter, deployment SSLDecrypt,
+        former_category INFO, signature_severity Informational, updated_at 2022_06_29
+      msg: '"ET INFO Observed Microsoft Attack Simulation Training SSL Cert (attemplate
+        .com)"'
+      pcre: '"/^(?:\x0e|\x2e)attemplate.com/R"'
+      reference: url,docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulation-training-get-started
+      rev: '1'
+      sid: '2037205'
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/verifica/index.php?id=",fast_pattern,nocase'
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)|0D 0A 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Sodebral variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/e0290c3900445dc00ca24888924e37fa6ac17ecaddc60591e32b81536b9f5ef7/analysis/
+      rev: '3'
+      service: http
+      sid: '32606'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

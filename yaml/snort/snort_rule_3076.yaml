@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"UNSUBSCRIBE",nocase'
+      flow: to_server,established
+      isdataat: '100'
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP UNSUBSCRIBE overflow attempt"'
+      pcre: '"/^\w+\s+UNSUBSCRIBE\s[^\n]{100}/ims"'
+      reference: nessus,15867
+      rev: '14'
+      service: imap
+      sid: '3076'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/instapi.php?idMk="'
+      - value: '"&state=",distance 0'
+      - value: '"&idTime=",distance 0'
+      - value: '"&idA2=",distance 0'
+      - value: '"&xVal=",distance 0'
+      - value: '"User-Agent|3A| NSIS_ToolkitOffers (Mozilla)",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Vittalia adware outbound connection - pre install"'
+      reference: url,www.virustotal.com/en/file/9cdb2b3095cfb94cf8f6204d0f073674dd808b0f742a16216c2f06cf3b5afd50/analysis/1378700802/
+      rev: '3'
+      service: http
+      sid: '27915'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

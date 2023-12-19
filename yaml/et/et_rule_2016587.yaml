@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"applet"'
+      - value: '"u33&299"'
+      - value: '"u3v7"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_03_15, former_category EXPLOIT_KIT, updated_at 2013_03_15
+      msg: '"ET CURRENT_EVENTS Redkit Landing Page URL March 03 2013"'
+      rev: '5'
+      sid: '2016587'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

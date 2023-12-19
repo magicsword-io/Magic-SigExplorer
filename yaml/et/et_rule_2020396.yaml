@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"[0]|0d 0a|LP="'
+      - value: '"|0a|VID="'
+      - value: '!"Referer|3a|"'
+      - value: '"POST"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_02_11, former_category MALWARE, updated_at 2020_05_15
+      msg: '"ET TROJAN Win32/Rovnix.J Checkin 2"'
+      reference: md5,9471e926eda81b4f797b6cfe273e4e79
+      rev: '3'
+      sid: '2020396'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_method
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

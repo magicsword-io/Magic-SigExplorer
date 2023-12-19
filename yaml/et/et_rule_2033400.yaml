@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?u="'
+      - value: '"_"'
+      - value: '"&i="'
+      - value: '"User-Agent|3a 20|WinHTTP|0d 0a|"'
+      - depth: '12'
+        value: '"p=<br><mark>"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_06, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2020_07_06
+      msg: '"ET TROJAN W32/Echmark/MarkiRAT CnC Host Checkin"'
+      reference: url,securelist.com/ferocious-kitten-6-years-of-covert-surveillance-in-iran/102806/
+      rev: '2'
+      sid: '2033400'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

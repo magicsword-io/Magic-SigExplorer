@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|jimbeam|04|live|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_01_25, deployment Perimeter,
+        former_category MALWARE, malware_family APT28, signature_severity Major, updated_at
+        2022_01_25
+      msg: '"ET TROJAN Suspected APT28 Related Domain in DNS Lookup (jimbeam .live)"'
+      reference: url,www.trellix.com/en-gb/about/newsroom/stories/threat-labs/prime-ministers-office-compromised.html
+      rev: '2'
+      sid: '2034968'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

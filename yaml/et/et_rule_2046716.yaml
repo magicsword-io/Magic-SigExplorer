@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '9'
+        value: '"@IDEVSD|3a 20|"'
+      - value: '"|0a|"'
+      dsize: '12'
+      flow: established,to_client
+      flowbits: set,ET.IDriveConnection
+      isdataat: '!1,relative'
+      metadata: attack_target Client_and_Server, created_at 2023_07_03, deployment
+        Perimeter, former_category INFO, performance_impact Low, confidence High,
+        signature_severity Informational, updated_at 2023_07_03
+      msg: '"ET INFO IDrive Backup Connection"'
+      reference: url,www.idrive.com
+      rev: '1'
+      sid: '2046716'
+      special_options:
+      - fast_pattern
+      stream_size: server,<,15
+      threshold: type limit, count 1, seconds 600, track by_dst
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

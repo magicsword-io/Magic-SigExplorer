@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '"&c="'
+      - value: '"&p1="'
+      - value: '"&p2="'
+      - value: '"&p3="'
+      flow: established,to_server
+      metadata: created_at 2012_11_21, former_category CURRENT_EVENTS, updated_at
+        2020_08_24
+      msg: '"ET ATTACK_RESPONSE WSO - WebShell Activity - POST structure"'
+      pcre: '"/a=(?:S(?:e(?:lfRemove|cInfo)|tringTools|afeMode|ql)|(?:Bruteforc|Consol)e|FilesMan|Network|Logout|Php)/P"'
+      rev: '2'
+      sid: '2015906'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

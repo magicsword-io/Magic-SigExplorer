@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|Origin|3a 20|http|3a 2f 2f|azjaaxhscvupcszfrvtdygdhdfid|0d
+          0a|"'
+      fast_pattern: 25,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_04_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family MageCart, confidence
+        High, signature_severity Major, updated_at 2023_04_28
+      msg: '"ET TROJAN MageCart Skimmer Header Observed Outbound"'
+      reference: url,malwarebytes.com/blog/threat-intelligence/2023/04/kritec-art
+      rev: '1'
+      sid: '2045244'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

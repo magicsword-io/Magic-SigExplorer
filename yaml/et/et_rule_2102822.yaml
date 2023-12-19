@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sys.dbms_repcat_fla_mas.publish_flavor_definition"'
+      flow: to_server,established
+      isdataat: 1075,relative
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2010_09_23
+      msg: '"GPL SQL sys.dbms_repcat_fla_mas.publish_flavor_definition buffer overflow
+        attempt"'
+      pcre: '"/\(\s*(\x27[^\x27]{1075,}|\x22[^\x22]{1075,})/si"'
+      reference: url,www.appsecinc.com/resources/alerts/oracle/2004-0001/25.html
+      rev: '3'
+      sid: '2102822'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

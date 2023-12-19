@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|33 ff|"'
+      - value: '"|89 37|"'
+      - value: '"|8b f3 45 85|"'
+      - value: '"|74|"'
+      - value: '"|4c 8b df 49|"'
+      - value: '"|c1 e3 04 48|"'
+      - value: '"|8b cb 4c 03|"'
+      - value: '"|d8|"'
+      distance: '1'
+      flow: established,to_server
+      flowbits: isset,ET.smb.binary
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_29, deployment Internal, signature_severity
+        Major, updated_at 2020_01_29
+      msg: '"ET TROJAN Mimikatz x64 Executable Transfer Over SMB"'
+      reference: url,github.com/gentilkiwi/mimikatz
+      rev: '2'
+      sid: '2029331'
+      within: '4'
+    protocol: tcp
+    source:
+      network: any
+      port: any

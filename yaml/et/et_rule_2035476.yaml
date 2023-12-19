@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '18'
+        value: '"|89|PNG|0d 0a 1a 0a 00 00 00 0d|IHDR|00 00|"'
+      dsize: '>11'
+      flow: established,to_server
+      flowbits: set,ET.tcpraw.png
+      metadata: attack_target Client_Endpoint, created_at 2022_03_16, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2022_05_23
+      msg: '"ET INFO PNG image exfiltration over raw TCP"'
+      reference: md5,a271e5179f0a98a295736bd7a41a39fc
+      rev: '3'
+      sid: '2035476'
+      stream_size: server,<,160
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '![80,8080]'

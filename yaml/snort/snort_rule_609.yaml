@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '514'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"-froot|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-SERVICES rsh froot"'
+      rev: '10'
+      sid: '609'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

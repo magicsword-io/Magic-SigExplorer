@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"GET"'
+      - value: '"/random"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_09_29
+      msg: '"ET SCAN Grendel-Scan Web Application Security Scan Detected"'
+      pcre: '"/\x2Frandom\w+?\x2E(?:c(?:f[cm]|gi)|ht(?:ml?|r)|(?:ws|x)dl|a(?:sp|xd)|p(?:hp3|l)|bat|swf|vbs|do)/Ui"'
+      reference: url,doc.emergingthreats.net/2009481
+      rev: '9'
+      sid: '2009481'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      threshold: type threshold, track by_dst, count 20, seconds 40
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

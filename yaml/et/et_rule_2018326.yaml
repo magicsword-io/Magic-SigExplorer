@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".php"'
+      - value: '"option="'
+      - value: '"&task="'
+      - value: '"&plugin=imgmanager"'
+      - value: '"&file="'
+      - value: '"&version="'
+      - value: '"&cid="'
+      - value: '"folderRename"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_03_26, updated_at 2020_09_24
+      msg: '"ET WEB_SPECIFIC_APPS JCE Joomla Extension"'
+      reference: url,blog.spiderlabs.com/2014/03/honeypot-alert-jce-joomla-extension-attacks.html
+      rev: '2'
+      sid: '2018326'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

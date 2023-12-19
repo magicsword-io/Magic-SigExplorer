@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '587'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3a 20|application/x-zip-compressed|3b 0d 0a|"'
+      - value: '"name|3d 22|Files.zip|22 0d 0a|"'
+      - value: '"Content-Transfer-Encoding|3a 20|base64|0d 0a|"'
+      - value: '"Content-Disposition|3a 20|attachment|3b 0d 0a|"'
+      - value: '"filename|3d 22|Files.zip|22 0d 0a 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2023_02_06,
+        deployment Perimeter, former_category INFO, performance_impact Low, confidence
+        Medium, signature_severity Informational, updated_at 2023_02_06
+      msg: '"ET INFO Possible SMTP Data Exfiltration - File Attachment Named Files.zip"'
+      reference: md5,1d9be2dfd54bf4a986c6cd1b7b630750
+      rev: '1'
+      sid: '2044136'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

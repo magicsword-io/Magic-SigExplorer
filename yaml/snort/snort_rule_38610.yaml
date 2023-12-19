@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GODZILLA=",fast_pattern,nocase'
+      - value: '"GODZILLA="'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Godzilla downloader successful base64 binary download"'
+      reference: url,www.virustotal.com/en/file/f597634ff5e2623baff35d99bfdb2aac1725c9f49805b4903c13093c43172cb7/analysis/1461593386
+      rev: '2'
+      service: http
+      sid: '38610'
+      special_options:
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

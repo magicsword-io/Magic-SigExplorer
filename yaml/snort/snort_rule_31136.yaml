@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[16464,16465,16470,16471]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|28 94 8D AB|",depth 4,offset 4'
+      dsize: '16'
+      flow: to_server
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ZeroAccess inbound connection"'
+      reference: url,www.virustotal.com/file/50cdd9f6c5629630c8d8a3a4fe7d929d3c6463b2f9407d9a90703047e7db7ff9/analysis/
+      rev: '3'
+      sid: '31136'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

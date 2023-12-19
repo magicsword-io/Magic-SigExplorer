@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '9'
+        value: '"/cgi-bin/"'
+      - value: '"$IFS"'
+      - value: '"|3b|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Netgear_Router, attack_target Networking_Equipment,
+        created_at 2016_12_12, deployment Perimeter, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_03
+      msg: '"ET EXPLOIT Netgear R7000 Command Injection Exploit"'
+      reference: url,www.kb.cert.org/vuls/id/582384
+      rev: '2'
+      sid: '2023628'
+      special_options:
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

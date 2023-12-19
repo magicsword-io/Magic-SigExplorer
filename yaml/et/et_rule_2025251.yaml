@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?p="'
+      - value: '"User-Agent|3a 20|curl/"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name=|22|msg|22|"'
+      - value: '"|0d 0a|Downloading files|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2018_01_25, deployment Perimeter, former_category MALWARE, performance_impact
+        Moderate, signature_severity Major, updated_at 2020_08_24
+      msg: '"ET TROJAN ELF/TooEasy Miner CnC Checkin"'
+      reference: md5,dc62dd14321dfa9f14c094a7b1e20979
+      rev: '2'
+      sid: '2025251'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

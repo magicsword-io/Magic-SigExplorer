@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/Online%20Scheduling%20System/login.php"'
+      - depth: '9'
+        value: '"username="'
+      - value: '"&password="'
+      - value: '"&lgn=Login"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Web_Server, created_at 2020_05_04, deployment Perimeter, signature_severity
+        Major, updated_at 2022_03_24
+      msg: '"ET EXPLOIT Online Scheduling System 1.0 - Authentication Bypass Attempt"'
+      reference: url,www.exploit-db.com/exploits/48409
+      rev: '2'
+      sid: '2030094'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/client/instagram_native/login_with_status.json"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_28, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2019_10_28
+      msg: '"ET TROJAN Instagram Like Bot (like4u) CnC Activity M2"'
+      reference: md5,673652533091319b83a02fd82026f826
+      rev: '2'
+      sid: '2028916'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

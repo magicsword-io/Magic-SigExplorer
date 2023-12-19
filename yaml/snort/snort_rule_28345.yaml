@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"ps=|22|split|22 3B|asd=function()",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"INDICATOR-OBFUSCATION Javascript obfuscation - split - seen in IFRAMEr
+        Tool attack"'
+      reference: url,attack.mitre.org/techniques/T1140
+      rev: '3'
+      service: http
+      sid: '28345'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

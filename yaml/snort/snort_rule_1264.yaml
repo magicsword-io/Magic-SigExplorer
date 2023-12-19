@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '111'
+    details:
+      byte_jump: 4,4,relative,align
+      classtype: rpc-portmap-decode
+      contents:
+      - value: '"|00 01 86 A0|",depth 4,offset 16'
+      - value: '"|00 00 00 03|",within 4,distance 4'
+      - value: '"|00 01 86 BA|",within 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC portmap bootparam request TCP"'
+      rev: '21'
+      service: sunrpc
+      sid: '1264'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"{|22|alias|22|:|22|apx|22|,|22|prefix|22|:|22 22|,|22|suffix|22|:null,|22|suggestions|22|:[],|22|responseId|22|:|22|15QE9JX9CKE2P|22|,|22|addon|22|:
+          |22|",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.CSBundle_Original Server 3 inbound beacon attempt"'
+      reference: url,www.fireeye.com/blog/threat-research/2020/12/unauthorized-access-of-fireeye-red-team-tools.html
+      rev: '1'
+      service: http
+      sid: '56602'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

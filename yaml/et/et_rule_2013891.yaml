@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|38 0d ff 0a d7 ee 9d d7 ec 59 13 56|"'
+      dsize: '12'
+      flow: from_client,established
+      metadata: created_at 2011_11_09, former_category MALWARE, updated_at 2011_11_09
+      msg: '"ET TROJAN Backdoor.Win32.Svlk Client Checkin"'
+      reference: md5,c929e8c75901c7e50685df0445a38bd0
+      rev: '1'
+      sid: '2013891'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

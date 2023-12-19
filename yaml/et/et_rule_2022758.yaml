@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"POST"'
+      - value: '".cgi"'
+      - value: '"%74%74%63%70%5f%69%70%3d%2d%68%20%60"'
+      - value: '"Authorization|3a| Basic"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2016_04_25, updated_at 2020_10_06
+      msg: '"ET EXPLOIT Linksys Router Unauthenticated Remote Code Execution"'
+      reference: url,sans.org/reading-room/whitepapers/malicious/analyzing-backdoor-bot-mips-platform-35902
+      rev: '1'
+      sid: '2022758'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

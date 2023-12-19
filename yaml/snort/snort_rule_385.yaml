@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP traceroute"'
+      rev: '8'
+      sid: '385'
+      ttl: '1'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

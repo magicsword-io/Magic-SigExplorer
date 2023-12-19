@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|stat|11|trackstatisticsss|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2020_05_06, deployment Perimeter,
+        deployment SSLDecrypt, former_category CURRENT_EVENTS, performance_impact
+        Low, signature_severity Major, updated_at 2020_11_17
+      msg: '"ET CURRENT_EVENTS SEO Injection/Fraud Domain in DNS Lookup (stat.trackstatisticsss
+        .com)"'
+      reference: url,www.wordfence.com/blog/2020/05/nearly-a-million-wp-sites-targeted-in-large-scale-attacks/
+      rev: '2'
+      sid: '2030118'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

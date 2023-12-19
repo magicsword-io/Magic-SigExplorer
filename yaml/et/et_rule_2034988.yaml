@@ -1,0 +1,42 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '13'
+        value: '"/upload?tags="'
+      - value: '"&pass="'
+      - value: '"&cookie="'
+      - value: '"&cc="'
+      - value: '"&hwid="'
+      - value: '"&ip="'
+      - value: '"User-Agent|3a 20|ureq/"'
+      - value: '"form-data|3b 20|name=|22|document|22 3b 20|filename="'
+      - value: '"Content-Type|3a 20|application/x-ms-dos-executable"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_01_27
+      msg: '"ET TROJAN Win32/GrandaMisha Sending System Information (POST)"'
+      reference: url,twitter.com/benkow_/status/1486700404482134021
+      rev: '1'
+      sid: '2034988'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

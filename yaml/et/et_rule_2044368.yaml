@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '21'
+        value: '"/troep/mon/mon.php?n="'
+      - value: '"&u="'
+      - value: '"&v="'
+      - value: '"&a="'
+      - value: '"&i="'
+      - value: '"Mozilla|2f|4|2e|0|20 28|compatible|3b 20|Win32|3b 20|WinHttp|2e|WinHttpRequest|2e|5|29|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_27, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_02_27
+      msg: '"ET TROJAN Win32/VB.AAF Checkin"'
+      pcre: '"/User-Agent\x3a\x20Mozilla\x2f4\x2e0\x20\x28compatible\x3b\x20Win32\x3b\x20WinHttp\x2eWinHttpRequest\x2e5\x29/Hi"'
+      reference: md5,15df8f4bd6fbd26558fe210031d281ec
+      rev: '1'
+      sid: '2044368'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      threshold: type limit, track by_src, seconds 180, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

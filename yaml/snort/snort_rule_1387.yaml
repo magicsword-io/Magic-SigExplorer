@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"r|00|a|00|i|00|s|00|e|00|r|00|r|00|o|00|r|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SQL raiserror possible buffer overflow"'
+      reference: nessus,11217
+      rev: '13'
+      sid: '1387'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

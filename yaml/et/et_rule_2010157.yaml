@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"User-Agent|3a| XXX|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2010_07_30,
+        deployment Perimeter, former_category HUNTING, signature_severity Informational,
+        tag User_Agent, updated_at 2020_10_14
+      msg: '"ET POLICY Suspicious User-Agent (XXX) Often Sony Update Related"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2010157
+      rev: '7'
+      sid: '2010157'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

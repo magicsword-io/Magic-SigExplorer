@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|PX|20 7c 20|Logs|20 7c 20|Client Name|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_02, deployment Perimeter, former_category
+        MALWARE, malware_family AgentTesla, performance_impact Low, signature_severity
+        Major, updated_at 2019_10_02
+      msg: '"ET TROJAN Win32/Phoenix Keylogger SMTP Exfil - Logs"'
+      reference: url,twitter.com/P3pperP0tts/status/1166325490858303491
+      rev: '2'
+      sid: '2028645'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

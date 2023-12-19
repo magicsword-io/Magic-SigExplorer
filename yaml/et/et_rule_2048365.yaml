@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"X-Qlik-"'
+      - value: '"|0D 0A|Content-Length|3a| 0|0D 0A|"'
+      - value: '"|0D 0A 0D 0A|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: 1,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Qlik_Sense_Enterprise, attack_target Client_Endpoint, created_at 2023_09_29,
+        cve CVE_2023_41265, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Major, updated_at 2023_09_29, reviewed_at 2023_09_29
+      msg: '"ET WEB_SPECIFIC_APPS Possible DoubleQlik RCE via HTTP Request Tunneling
+        Payload (CVE-2023-41265)"'
+      reference: url,praetorian.com/blog/doubleqlik-bypassing-the-original-fix-for-cve-2023-41265/
+      rev: '1'
+      sid: '2048365'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

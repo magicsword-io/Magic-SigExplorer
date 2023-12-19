@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Referer|3a|"'
+      - value: '".php?cookie=1"'
+      fast_pattern: only
+      flow: established,to_server
+      flowbits: set,ET.Anuna.Backdoor
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2016_09_28,
+        deployment Perimeter, malware_family Anuna, signature_severity Major, updated_at
+        2020_10_07
+      msg: '"ET TROJAN Anuna PHP Backdoor Attempt"'
+      pcre: '"/\.php\?cookie=1$/U"'
+      rev: '1'
+      sid: '2023305'
+      special_options:
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

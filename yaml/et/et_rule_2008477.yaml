@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"PC="'
+      - value: '"&USER="'
+      - value: '"&HASH="'
+      - value: '"&DADOS="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Banload POST Checkin (dados)"'
+      reference: url,doc.emergingthreats.net/2008477
+      rev: '5'
+      sid: '2008477'
+      special_options:
+      - nocase
+      - http_method
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

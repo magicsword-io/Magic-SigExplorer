@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '69'
+        value: '"|0a 3c|html|3e 0a 3c|head|3e 3c|title|3e 20|Response|20 3c 2f|title|3e
+          3c 2f|head|3e 0a 3c|body|3e 3c|code|20|id|3d 22|code|22 3e|"'
+      fast_pattern: 15,20
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2023_08_16, deployment
+        Perimeter, deployment SSLDecrypt, former_category MALWARE, performance_impact
+        Low, confidence High, signature_severity Critical, tag TA402, updated_at 2023_08_16,
+        reviewed_at 2023_08_16, former_sid 2855110
+      msg: '"ET TROJAN Win32/TA402 CnC Response M1"'
+      rev: '1'
+      sid: '2049154'
+      special_options:
+      - http_stat_code
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

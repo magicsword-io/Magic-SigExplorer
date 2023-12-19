@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Ahhhh My Mouth Is Open"'
+      flow: to_client
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR DeepThroat 3.1 Server Response on port 4120"'
+      reference: nessus,10053
+      rev: '12'
+      sid: '1984'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '4120'

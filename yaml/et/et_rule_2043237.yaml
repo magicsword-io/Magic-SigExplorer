@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '587'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|40|pcomail|2e|com|3e 0d 0a|Subject|3a 0d 0a 20 3d 3f|UTF|2d|8|3f|B|3f|7"'
+      - value: '"To|3a 20|"'
+      - value: '"@pcomail.com"'
+      - value: '"UmVtb3RlIFV0aWxpdGllc+"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_01_06
+      msg: '"ET TROJAN Remote Utility Access Tool Key SMTP Exfil"'
+      reference: md5,305d37bb6e5c51191508761cee43f0e0
+      rev: '1'
+      sid: '2043237'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

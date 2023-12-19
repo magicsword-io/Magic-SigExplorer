@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"GET"'
+      - depth: '18'
+        value: '"/cgi-bin/login.cgi"'
+      - value: '"&src=|2e 2e 2f 2e 2e 2f 2e 2e 2f|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_03_18, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET EXPLOIT Possible WePresent WIPG1000 File Inclusion"'
+      pcre: '"/^\/cgi-bin\/login\.cgi$/U"'
+      rev: '2'
+      sid: '2027091'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

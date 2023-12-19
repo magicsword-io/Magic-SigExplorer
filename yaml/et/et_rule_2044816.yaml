@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|officestoragebox|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_03_29, deployment Perimeter,
+        performance_impact Low, signature_severity Critical, updated_at 2023_03_29
+      msg: '"ET TROJAN Possible 3CX Supply Chain Attack (2023-03-29) Domain Indiciator
+        in DNS Lookup (officestoragebox .com)"'
+      reference: url,www.reddit.com/r/crowdstrike/comments/125r3uu/20230329_situational_awareness_crowdstrike/
+      rev: '1'
+      sid: '2044816'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

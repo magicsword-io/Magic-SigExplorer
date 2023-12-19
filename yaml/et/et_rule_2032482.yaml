@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|githack"'
+      - value: '!"|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_05, deployment Perimeter, former_category
+        EXPLOIT_KIT, malware_family PurpleFox, signature_severity Major, tag Exploit_Kit,
+        updated_at 2021_04_05
+      msg: '"ET CURRENT_EVENTS Suspicious GitHack DNS Request - Possible PurpleFox
+        EK"'
+      rev: '2'
+      sid: '2032482'
+      special_options:
+      - fast_pattern
+      within: '5'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

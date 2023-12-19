@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/_api/web/siteusers"'
+      - value: '"Authorization: Bearer "'
+      - value: '"alg=none"'
+      flow: established,to_server
+      msg: '"Potential SharePoint JWT Token Bypass Attempt (CVE-2023-29357)"'
+      reference: url,https://github.com/Chocapikk/CVE-2023-29357
+      rev: '1'
+      sid: '1000010'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

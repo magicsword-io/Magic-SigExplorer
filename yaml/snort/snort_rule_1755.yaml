@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"PARTIAL",nocase'
+      - value: '"BODY[",distance 0,nocase'
+      flow: to_server,established
+      isdataat: 1024,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP partial body buffer overflow attempt"'
+      pcre: '"/\sPARTIAL.*?BODY\[[^\]]{1024}/ims"'
+      reference: nessus,10966
+      rev: '24'
+      service: imap
+      sid: '1755'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

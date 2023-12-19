@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: '[!208.87.232.0/21,!216.115.208.0/20,!216.219.112.0/20,!66.151.158.0/24,!66.151.150.160/27,!66.151.115.128/26,!64.74.80.0/24,!202.173.24.0/21,!67.217.64.0/19,!78.108.112.0/20,!68.64.0.0/19,!206.183.100.0/22,!173.199.0.0/18,!103.15.16.0/22,!180.153.30.0/23,!140.207.108.0/23,!23.239.224.0/19,!185.36.20.0/22,!8.28.150.0/24,!54.208.0.0/15,!54.248.0.0/15,!70.42.29.0/27,!72.5.190.0/24,!104.129.194.0/24,!104.129.200.0/24,!199.168.148.0/24,!199.168.151.0/24,!216.52.207.64/26,$EXTERNAL_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.0 (compatible|29 0d 0a|"'
+      - value: '!"citrixonline.com"'
+      - depth: '6'
+        value: '!"/?rnd="'
+      fast_pattern: 18,20
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE User-Agent (Mozilla/4.0 (compatible))"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008974
+      rev: '15'
+      sid: '2008974'
+      special_options:
+      - http_header
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

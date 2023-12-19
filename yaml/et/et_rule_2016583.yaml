@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '" Java/1."'
+      flow: to_server,established
+      metadata: created_at 2013_03_15, former_category HUNTING, updated_at 2020_09_02
+      msg: '"ET INFO SUSPICIOUS Java Request to DNSDynamic Dynamic DNS Domain"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.(?:d(?:ns(?:d(?:ynamic\.(?:com|net)|\.(?:info|me))|api\.info|get\.org|53\.biz)|dns01\.com)|(?:f(?:lashserv|e100|tp21)|adultdns|mysq1|wow64)\.net|(?:(?:ima|voi)p01|(?:user|ole)32|kadm5)\.com|t(?:tl60\.(?:com|org)|empors\.com|ftpd\.net)|s(?:sh(?:01\.com|22\.net)|ql01\.com)|http(?:(?:s443|01)\.com|80\.info)|n(?:s360\.info|tdll\.net)|x(?:ns01\.com|64\.me)|craftx\.biz)(\x3a\d{1,5})?\r$/Hmi"'
+      rev: '1'
+      sid: '2016583'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

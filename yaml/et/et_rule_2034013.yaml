@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '23'
+        value: '"/Prod/api/pctt/devices/"'
+      - depth: '12'
+        value: '"{|22|MemberID|22 3a|"'
+      - value: '"|22 2c 22|DeviceName|22 3a 22|"'
+      - value: '"|22 2c 22|DeviceDescription|22 3a 22|"'
+      - value: '"|22 2c 22|SoftwareVersion|22 3a 22|"'
+      - value: '!"Referer"'
+      - value: '!"User-Agent"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_09_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_09_23
+      msg: '"ET TROJAN MSIL/Monitor.PCTattletale.A Checkin (POST)"'
+      pcre: '"/\/devices\/$/U"'
+      reference: url,www.vice.com/en/article/m7ezj8/stalkerware-leaking-phone-screenshots-pctattletale
+      rev: '2'
+      sid: '2034013'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

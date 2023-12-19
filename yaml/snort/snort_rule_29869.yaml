@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"facebook.com.exe",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Napolar phishing attack"'
+      reference: url,www.virustotal.com/en/file/58762cf6aa8eea5744716986773a2c22ae7412eae634be7bed648c96465bc8ef/analysis/
+      rev: '4'
+      service: http
+      sid: '29869'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

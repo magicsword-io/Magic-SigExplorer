@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '47'
+        offset: '1'
+        value: '"ordata|00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      dsize: '100'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_03, deployment Perimeter, former_category
+        MALWARE, malware_family SystemBC, signature_severity Major, updated_at 2021_02_02
+      msg: '"ET TROJAN Win32/SystemBC CnC Checkin"'
+      reference: md5,b8fb4ba9ef16fcaa442c2857bb045640
+      rev: '2'
+      sid: '2031599'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

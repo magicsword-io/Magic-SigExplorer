@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wav.exe"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_02_05, updated_at 2020_09_25
+      msg: '"ET TROJAN W32/Zeus.InfoStealer Infection Campaign Wav.exe Request"'
+      rev: '2'
+      sid: '2018082'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

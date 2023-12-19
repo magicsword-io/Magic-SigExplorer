@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '!"ABCDEFGHIJKLMNOPQRSTUVWABCDEFGHI",depth 32'
+      - value: '!"0123456789abcdefghijklmnopqrstuv",depth 32'
+      - value: '!"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",depth 36'
+      - value: '!"WANG2"'
+      - value: '!"cacti-monitoring-system",depth 65'
+      - value: '!"SolarWinds",depth 72'
+      fragbits: '!M'
+      icode: '0'
+      itype: '8'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-ICMP Unusual PING detected"'
+      reference: url,krebsonsecurity.com/2014/01/a-first-look-at-the-target-intrusion-malware/
+      rev: '3'
+      sid: '29456'
+    protocol: icmp
+    source:
+      network: $HOME_NET
+      port: any

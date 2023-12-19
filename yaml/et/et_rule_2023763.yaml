@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|eidk|05|hopto|03|org"'
+      distance: '0'
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2017_01_24, deployment Perimeter, malware_family Quimitchin, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN OSX Backdoor Quimitchin DNS Lookup"'
+      reference: md5,e4744b9f927dc8048a19dca15590660c
+      rev: '2'
+      sid: '2023763'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

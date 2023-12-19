@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: 6666:7000
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"USER|20|"'
+      - value: '" 0 0 |3a|"'
+      - value: '"|0a|"'
+      flow: to_server,established
+      flowbits: set,is_proto_irc
+      metadata: created_at 2013_07_13, former_category CHAT, updated_at 2017_11_28
+      msg: '"ET CHAT IRC USER Likely bot with 0 0 colon checkin"'
+      rev: '1'
+      sid: '2025066'
+      special_options:
+      - nocase
+      within: '40'
+    protocol: tcp
+    source:
+      network: any
+      port: any

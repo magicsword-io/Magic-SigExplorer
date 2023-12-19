@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '512'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|00|"'
+      - value: '"|00|",distance 33'
+      - value: '"|00|",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-SERVICES rexec password overflow attempt"'
+      rev: '6'
+      sid: '2114'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

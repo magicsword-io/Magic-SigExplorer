@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-filename-detect
+      contents:
+      - value: '".forward"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP .forward"'
+      rev: '12'
+      service: ftp
+      sid: '334'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

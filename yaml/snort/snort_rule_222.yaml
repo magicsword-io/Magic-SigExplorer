@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"AAAAAAAAAA",fast_pattern,nocase'
+      icmp_id: '0'
+      itype: '0'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP tfn2k icmp possible communication"'
+      reference: cve,2000-0138
+      rev: '10'
+      sid: '222'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

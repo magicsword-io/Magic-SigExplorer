@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3a 3a|FromBase64String"'
+      - value: '"-Path|20|C|3a 5c|windows|5c|temp|5c|"'
+      - value: '"start-process|20|c|3a 5c|windows|5c|system32|5c|wscript.exe|20|-ArgumentList|20
+          22|c|3a 5c|windows|5c|temp|5c|"'
+      - value: '".vbe|22|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_29, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, tag PowerShell,
+        tag Obfuscated, updated_at 2020_11_18
+      msg: '"ET CURRENT_EVENTS Inbound PowerShell Executing Base64 Decoded VBE from
+        Temp 2018-11-29"'
+      reference: url,www.clearskysec.com/muddywater-operations-in-lebanon-and-oman/
+      rev: '2'
+      sid: '2026677'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

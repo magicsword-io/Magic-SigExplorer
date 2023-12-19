@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '8084'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '10'
+        value: '"/data?mac="'
+      - value: '"&ip="'
+      - value: '"&id=10010"'
+      - value: '"Accept-Language|3a 20|zh-cn|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_23, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence Medium, signature_severity Major,
+        updated_at 2023_03_23
+      msg: '"ET TROJAN TrojanDownloader:Win32/Sinresby.B Checkin"'
+      pcre: '"/&id=10010$/U"'
+      reference: md5,dfc6273c39ef1acd9e25816974a74b3c
+      rev: '1'
+      sid: '2044757'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"2p/"'
+      - value: '!"Accept-Language"'
+      - value: '!"Referer|3A|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_05_08, updated_at 2020_09_25
+      msg: '"ET TROJAN Upatre Downloader 2p (Zeus) May 07 2014"'
+      pcre: '"/\/p?2p\/[a-z]{3}$/U"'
+      rev: '4'
+      sid: '2018453'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/StoreCSVS/InstantOrder.asmx",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS /StoreCSVS/InstantOrder.asmx request"'
+      rev: '16'
+      service: http
+      sid: '1626'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

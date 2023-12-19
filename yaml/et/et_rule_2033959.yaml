@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|duckdns|03|org"'
+      distance: '1'
+      fast_pattern: only
+      metadata: attack_target Client_Endpoint, created_at 2021_09_16, deployment Perimeter,
+        former_category HUNTING, performance_impact Moderate, signature_severity Major,
+        updated_at 2021_09_16
+      msg: '"ET INFO DNS Lookup for 8+ hexadecimal only duckdns domain"'
+      pcre: '"/[\x08-\xff][a-f0-9]{8,}\x07duckdns\x03org/"'
+      reference: url,raw.githubusercontent.com/MISP/misp-warninglists/main/lists/dynamic-dns/list.json
+      rev: '2'
+      sid: '2033959'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

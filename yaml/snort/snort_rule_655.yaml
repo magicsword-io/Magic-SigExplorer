@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|0A|D/"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail 8.6.9 exploit"'
+      reference: cve,1999-0204
+      rev: '16'
+      service: smtp
+      sid: '655'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '113'

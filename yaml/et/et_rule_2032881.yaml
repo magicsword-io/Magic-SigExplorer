@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|3b 20|RDP Wrapper Library configuration"'
+      - value: '"LogFile=|5c|rdpwrap.txt"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_04_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category POLICY, signature_severity Informational,
+        updated_at 2021_04_27
+      msg: '"ET INFO RDP Wrapper Download (ini)"'
+      reference: url,github.com/asmtron/rdpwrap
+      rev: '1'
+      sid: '2032881'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

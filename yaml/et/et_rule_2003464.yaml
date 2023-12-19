@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"220 "'
+      - depth: '40'
+        value: '"--warFTPd "'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Unusual FTP Server Banner (warFTPd)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2003464
+      rev: '5'
+      sid: '2003464'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: '21'

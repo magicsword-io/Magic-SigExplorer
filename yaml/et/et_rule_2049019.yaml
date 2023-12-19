@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|coupang-networks|04|pics|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_01, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_01, reviewed_at 2023_12_13
+      msg: '"ET TROJAN DNS Query to SockRacket/KANDYKORN Domain (coupang-networks
+        .pics)"'
+      reference: url,www.elastic.co/security-labs/elastic-catches-dprk-passing-out-kandykorn
+      rev: '1'
+      sid: '2049019'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

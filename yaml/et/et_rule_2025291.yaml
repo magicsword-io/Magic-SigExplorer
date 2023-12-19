@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"=|3b 20|"'
+      - value: '"=|3b 20|"'
+      - value: '"=|3b|"'
+      - value: '"Cache-Control|3a 20|no-cache|0d 0a|Connection|3a 20|Keep-Alive|0d
+          0a|Pragma|3a 20|no-cache|0d 0a|Accept|3a 20|"'
+      - value: '"=|3b 0d 0a|Host|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_02, deployment Perimeter, former_category
+        MALWARE, malware_family elise, signature_severity Major, tag c2, updated_at
+        2022_05_03, mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Backdoor.Elise CnC Beacon 2 M2"'
+      pcre: '"/^\/[a-z]{3,6}\/[a-z]{3,6}\.[a-z]{3}$/U"'
+      reference: url,community.rsa.com/community/products/netwitness/blog/2018/01/30/apt32-continues-asean-targeting
+      rev: '2'
+      sid: '2025291'
+      special_options:
+      - http_method
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

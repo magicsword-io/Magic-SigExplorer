@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"substr{"'
+      flow: to_server,established
+      metadata: affected_product Wordpress, attack_target Web_Server, created_at 2017_05_05,
+        cve CVE_2016_10033, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Major, updated_at 2020_08_05
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress Host Header Injection (CVE-2016-10033)
+        M3"'
+      pcre: '"/^Host\x3a[^\r\n]+?[\x28\x29\x27\x22\x7b\x7d]/Hmi"'
+      reference: url,exploitbox.io/vuln/WordPress-Exploit-4-6-RCE-CODE-EXEC-CVE-2016-10033.html
+      rev: '1'
+      sid: '2024279'
+      special_options:
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

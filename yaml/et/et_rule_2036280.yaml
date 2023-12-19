@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PUT"'
+      - depth: '10'
+        value: '"DAV2"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_04_20, deployment Perimeter,
+        former_category MALWARE, signature_severity Critical, updated_at 2022_04_20
+      msg: '"ET TROJAN Win32/STEALBIT Data Exfiltration Tool Activity (PUT)"'
+      pcre: '"/^\/[A-F0-9]{33}$/U"'
+      reference: url,www.cybereason.com/blog/research/threat-analysis-report-inside-the-lockbit-arsenal-the-stealbit-exfiltration-tool
+      rev: '3'
+      sid: '2036280'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

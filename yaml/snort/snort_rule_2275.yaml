@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"Authentication unsuccessful",offset 54,nocase'
+      detection_filter: track by_dst,count 5,seconds 60
+      flow: to_client,established,no_stream
+      metadata: ruleset community
+      msg: '"SERVER-MAIL AUTH LOGON brute force attempt"'
+      reference: url,attack.mitre.org/techniques/T1110
+      rev: '12'
+      service: smtp
+      sid: '2275'
+    protocol: tcp
+    source:
+      network: $SMTP_SERVERS
+      port: '25'

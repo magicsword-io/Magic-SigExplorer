@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|laborer-posted|02|nl|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2023_08_01, deployment Perimeter, performance_impact Low, confidence High,
+        signature_severity Major, tag Bahamut, updated_at 2023_08_01, reviewed_at
+        2023_10_06
+      msg: '"ET TROJAN Bahamut APT Group CnC Domain in DNS Lookup (laborer-posted
+        .nl)"'
+      reference: url,www.cyfirma.com/outofband/apt-bahamut-targets-individuals-with-android-malware-using-spear-messaging/
+      rev: '1'
+      sid: '2047016'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

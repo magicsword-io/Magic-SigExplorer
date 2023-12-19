@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '" /HTTP/1.",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP websitepro path access"'
+      reference: nessus,10303
+      rev: '18'
+      service: http
+      sid: '811'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Server.CreateObject"'
+      - value: '"KComWExec.execCmd",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy connectivity-ips drop,policy
+        max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Revil Kaseya ransomware log clearing http upload"'
+      reference: url,www.huntress.com/blog/rapid-response-kaseya-vsa-mass-msp-ransomware-incident
+      rev: '2'
+      service: http
+      sid: '57879'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

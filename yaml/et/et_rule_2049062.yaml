@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|insightinteriors|02|im|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_11_03, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Informational, updated_at 2023_11_03, reviewed_at 2023_12_04
+      msg: '"ET TROJAN Suspected Higaisa APT Related Domain in DNS Lookup (insightinteriors
+        .im)"'
+      rev: '1'
+      sid: '2049062'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '21'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

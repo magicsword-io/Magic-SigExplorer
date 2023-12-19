@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/forum.php"'
+      - value: '"Content-Type|3a| multipart/form-data|3b| boundary=1BEF0A57BE110FD467A"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Asprox Form Submission to C&C"'
+      reference: url,doc.emergingthreats.net/2009054
+      rev: '6'
+      sid: '2009054'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|43 72 65 61 74 65 54 65 78 74 46 69 6c 65 28 44 72 6f 70 50 61 74
+          68|"'
+      - value: '"|57 53 48 73 68 65 6c 6c 2e 52 75 6e 20 44 72 6f 70 50 61 74 68 2c
+          20 30|"'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_09, deployment Perimeter, malware_family
+        Ramnit, performance_impact Moderate, signature_severity Major, updated_at
+        2016_08_09
+      msg: '"ET TROJAN RAMNIT.A M1"'
+      reference: url,www.microsoft.com/security/portal/threat/Encyclopedia/Entry.aspx?Name=Virus%3AWin32%2FRamnit.A
+      rev: '1'
+      sid: '2023028'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

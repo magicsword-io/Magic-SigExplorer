@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '70'
+        value: '"|6A 04|Host|20 27|"'
+      - value: '"|27 20|is not allowed to connect to this MySQL server"'
+      distance: '0'
+      flow: from_server,established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Non-Allowed Host Tried to Connect to MySQL Server"'
+      reference: url,doc.emergingthreats.net/2010493
+      rev: '2'
+      sid: '2010493'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '3306'

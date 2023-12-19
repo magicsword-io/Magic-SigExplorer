@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"PRIVMSG",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER eMule buffer overflow attempt"'
+      pcre: '"/^PRIVMSG\s+[^\s]+\s+\x3a\s*\x01SENDLINK\x7c[^\x7c]{69}/ims"'
+      reference: nessus,12233
+      rev: '10'
+      sid: '2584'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: 6666:6669

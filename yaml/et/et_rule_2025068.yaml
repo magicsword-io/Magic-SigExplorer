@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|28 00 00 00 00 01 00 00|"'
+      flow: established,from_server
+      flowbits: noalert
+      metadata: created_at 2014_10_30, former_category MALWARE, updated_at 2017_11_28
+      msg: '"ET TROJAN Win32/Ropest.H CnC - INBOUND set"'
+      reference: md5,a0d843b52e33ba4f1dc72f5a28729806
+      rev: '1'
+      sid: '2025068'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

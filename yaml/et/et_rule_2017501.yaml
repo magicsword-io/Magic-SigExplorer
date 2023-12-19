@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"unescape"'
+      - value: '"|22 5f|u"'
+      flow: established,from_server
+      metadata: created_at 2013_09_20, deployment alert_only, former_category INFO,
+        updated_at 2013_09_20
+      msg: '"ET ATTACK_RESPONSE Probably Evil Long Unicode string only string and
+        unescape 3"'
+      pcre: '"/^[a-f0-9]{4}([\%\\]u[a-f0-9]{4}){20}/Ri"'
+      rev: '2'
+      sid: '2017501'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

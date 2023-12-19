@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|heil_moloch|0d 0a|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_03_06, deployment Perimeter, signature_severity
+        Major, updated_at 2020_03_06
+      msg: '"ET TROJAN Legion Loader Activity Observed (heil_moloch)"'
+      reference: md5,20d30443181cd84b81f5e041b0eb5143
+      rev: '2'
+      sid: '2029585'
+      special_options:
+      - nocase
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

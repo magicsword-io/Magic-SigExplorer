@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"JOIN #biz abc|0D 0A|",depth 15'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Worm.Neeris IRCbot variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/0a8f320fc7535f164bbd9d0e462fd459c55ff448cf5e84dc2115f2f4aa800e6b/analysis/1387176826/
+      rev: '3'
+      service: irc
+      sid: '28986'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

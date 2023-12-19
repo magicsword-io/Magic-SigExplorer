@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|win02|03|xyz|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_30, deployment Perimeter, performance_impact
+        Low, signature_severity Major, updated_at 2023_01_30
+      msg: '"ET TROJAN ConnectWise ScreenConnect Payload Delivery Domain (win02 .xyz)
+        in DNS Lookup"'
+      reference: url,www.silentpush.com/blog/silent-push-uncovers-a-large-phishing-operation-featuring-amazon-geek-squad-mcafee-microsoft-norton-and-paypal-domains
+      rev: '1'
+      sid: '2044025'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

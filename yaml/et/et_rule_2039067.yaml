@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|send|03|vis|02|ee|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_09_30, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_09_30
+      msg: '"ET INFO Anonymous File Sharing Service Domain in DNS Lookup (send .vis
+        .ee)"'
+      rev: '1'
+      sid: '2039067'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

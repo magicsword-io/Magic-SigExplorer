@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Server|3a 20|Microsoft-IIS/"'
+      - value: '"|3c|HTML|3e 3c|HEAD|3e 3c|title|3e|invoice|3c 2f|title|3e 3c 2f|HEAD|3e
+          20 3c|body bgcolor|3d 22 23|808080|22 3e|Not Found |21 21 21 21 3c|div|3e
+          3c 2f|div|3e 3c 2f|body|3e 3c 2f|HTML|3e|"'
+      fast_pattern: 54,20
+      flow: established,to_client
+      flowbits: isset,ET.BellaCiao.UA
+      metadata: affected_product Microsoft_IIS, attack_target Web_Server, created_at
+        2023_05_31, deployment Perimeter, deployment SSLDecrypt, former_category MALWARE,
+        malware_family BellaCiao, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_05_31
+      msg: '"ET TROJAN BellaCiao ASPX Backdoor Response"'
+      reference: url,www.bitdefender.com/blog/businessinsights/unpacking-bellaciao-a-closer-look-at-irans-latest-malware/
+      rev: '1'
+      sid: '2045977'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

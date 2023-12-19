@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/com_xmovie/helpers/img.php?"'
+      - value: '"file="'
+      - depth: '200'
+        value: '"../"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2011_01_07, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Component com_xmovie file Parameter Local
+        File Inclusion Attempt"'
+      reference: url,packetstormsecurity.org/files/view/96996/xmovie-fli.txt
+      rev: '3'
+      sid: '2012166'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

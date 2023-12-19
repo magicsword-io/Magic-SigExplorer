@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"HTTP/1.0"'
+      - value: '"User-Agent|3a| VBTagEdit"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Generic Trojan Checkin (UA VBTagEdit)"'
+      reference: url,doc.emergingthreats.net/2010439
+      rev: '6'
+      sid: '2010439'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

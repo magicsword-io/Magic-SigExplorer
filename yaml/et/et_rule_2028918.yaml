@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|01 00 00 00 98|"'
+      dsize: '5'
+      flow: established,to_server
+      flowbits: isset,ET.NetwireRAT.Client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_29, deployment Perimeter, former_category
+        MALWARE, malware_family Netwire_RAT, performance_impact Moderate, signature_severity
+        Major, updated_at 2019_10_29
+      msg: '"ET TROJAN Netwire RAT Client Check-in (socket created)"'
+      reference: md5,b0e58a8f45a3e45fd7ee2b4cc20474b3
+      rev: '2'
+      sid: '2028918'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

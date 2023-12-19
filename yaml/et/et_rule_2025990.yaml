@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|celasllc.com"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_08_15, deployment Perimeter, former_category
+        MALWARE, malware_family JEUSD, performance_impact Low, signature_severity
+        Major, tag Lazarus, updated_at 2022_03_13
+      msg: '"ET TROJAN SSL Cert Associated with Lazarus Downloader (JEUSD)"'
+      reference: url,crt.sh/?id=492527550
+      rev: '2'
+      sid: '2025990'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

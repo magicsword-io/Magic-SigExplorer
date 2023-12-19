@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '12'
+        value: '"POST|20|/wsman?"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2019_01_23, deployment Internal, former_category
+        POLICY, performance_impact Low, signature_severity Major, updated_at 2020_08_27
+      msg: '"ET POLICY WinRM wsman Access - Possible Lateral Movement"'
+      reference: url,attack.mitre.org/techniques/T1028/
+      rev: '2'
+      sid: '2026849'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

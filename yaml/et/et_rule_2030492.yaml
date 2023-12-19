@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|grab|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_07_10,
+        deployment Perimeter, former_category USER_AGENTS, signature_severity Informational,
+        updated_at 2020_07_10
+      msg: '"ET USER_AGENTS Observed Suspicious UA (grab)"'
+      rev: '2'
+      sid: '2030492'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

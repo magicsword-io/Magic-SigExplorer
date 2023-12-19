@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      byte_jump: 2,34,little,relative
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMBu"'
+      - value: '"D|24 00|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB D$ share access"'
+      rev: '13'
+      sid: '2100536'
+      special_options:
+      - nocase
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

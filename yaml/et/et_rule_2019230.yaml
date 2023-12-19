@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,&,2,3
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '4'
+        value: '"|00 01 00 00 00 01|"'
+      - value: '"|03|com"'
+      - value: '"|0c|"'
+      - value: '!"|08|sophosxl|03|"'
+      distance: '-17'
+      metadata: created_at 2014_09_24, updated_at 2014_09_24
+      msg: '"ET TROJAN Possible Tinba DGA NXDOMAIN Responses"'
+      pcre: '"/^[a-z]{12}/R"'
+      reference: url,garage4hackers.com/entry.php?b=3086
+      rev: '2'
+      sid: '2019230'
+      special_options:
+      - fast_pattern
+      threshold: type both, track by_src, count 50, seconds 10
+      within: '1'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

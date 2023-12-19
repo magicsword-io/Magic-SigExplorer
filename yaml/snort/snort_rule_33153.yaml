@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '17'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/01/WindowsUpdate",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Heur variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/2fb5c3859df3b46cc7e2e2176654cb7e5f739f2bc9faf3e813736b37c6d3b6bc/analysis/
+      rev: '3'
+      service: http
+      sid: '33153'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

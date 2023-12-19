@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?info="'
+      - value: '"|3a 3a|"'
+      - value: '"|4f 4e 4c 25 35 43 6e|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2016_01_06, former_category MALWARE, updated_at 2020_06_17
+      msg: '"ET TROJAN Cryptojoker Checkin"'
+      pcre: '"/\x4f\x4e\x4c\x25\x35\x43\x6e$/I"'
+      reference: md5,bca6c1fa9b9a8bf60eecbd91e08d1323
+      rev: '1'
+      sid: '2022333'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_raw_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

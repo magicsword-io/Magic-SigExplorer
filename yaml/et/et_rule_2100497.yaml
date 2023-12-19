@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"1 file|28|s|29| copied"'
+      fast_pattern: only
+      flow: established
+      metadata: created_at 2010_09_23, cve CVE_2000_0884, updated_at 2010_09_23
+      msg: '"GPL ATTACK_RESPONSE file copied ok"'
+      reference: cve,2000-0884
+      rev: '14'
+      sid: '2100497'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

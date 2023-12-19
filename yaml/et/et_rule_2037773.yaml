@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|saleforces|0d|s3-accelerate|09|amazonaws|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_07_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_07_15
+      msg: '"ET CURRENT_EVENTS Sliver Related Domain in DNS Lookup"'
+      reference: url,mobile.twitter.com/ESETresearch/status/1547943014860894210
+      rev: '1'
+      sid: '2037773'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '40'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

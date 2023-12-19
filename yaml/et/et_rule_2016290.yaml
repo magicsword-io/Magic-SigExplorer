@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/post_message_form.asp?"'
+      - value: '"ForumID="'
+      - value: '"ThreadPage="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_01_25, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_23
+      msg: '"ET WEB_SPECIFIC_APPS web wiz forums ThreadPage Parameter Cross Site Scripting
+        Attempt"'
+      pcre: '"/ThreadPage\x3d.+(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|c(?:hange|lick)|(?:un)?load|focus|mouse|blur|key)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.com/files/115886/Web-Wiz-Forums-10.03-Cross-Site-Scripting.html
+      rev: '2'
+      sid: '2016290'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

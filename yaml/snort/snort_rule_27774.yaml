@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3B| name=|22|arquivo|22 3B| filename=|22|C:|5C|",fast_pattern,nocase'
+      - value: '"_.log|22 0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC RDN Banker Data Exfiltration"'
+      reference: url,attack.mitre.org/techniques/T1020
+      rev: '3'
+      service: http
+      sid: '27774'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

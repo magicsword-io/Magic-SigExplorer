@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|3b 3b|"'
+      - value: '"|3b 3b 2f 2e|"'
+      - value: '"|2e 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_27, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2023_02_27
+      msg: '"ET INFO User-Agent with Non Standard Characters"'
+      pcre: '"/^User-Agent|3a 20|[^\r\n]+\x3b\x3b[^\r\n]+\x3b\x3b\x2f\x2e[^\r\n]+\x2e\r\n/H"'
+      rev: '1'
+      sid: '2044354'
+      special_options:
+      - http_header
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

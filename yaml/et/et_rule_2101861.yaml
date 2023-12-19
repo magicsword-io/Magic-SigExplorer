@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: default-login-attempt
+      contents:
+      - value: '"Authorization|3A| YWRtaW46YWRtaW4"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2020_04_20
+      msg: '"GPL POLICY Linksys router default username and password login attempt"'
+      reference: nessus,10999
+      rev: '11'
+      sid: '2101861'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

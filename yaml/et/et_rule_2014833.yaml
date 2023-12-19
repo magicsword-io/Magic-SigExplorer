@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"00165752-B1BA-11CE-ABC6-F5B2E79D9E3F"'
+      - value: '".AppName"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_06_01, deployment Perimeter, former_category
+        ACTIVEX, confidence High, signature_severity Major, tag ActiveX, updated_at
+        2016_07_01
+      msg: '"ET ACTIVEX Possible LEADTOOLS ActiveX Raster Twain AppName Method Access
+        Buffer Overflow"'
+      reference: url,packetstormsecurity.org/files/93252/LEADTOOLS-ActiveX-Raster-Twain-16.5-Buffer-Overflow.html
+      rev: '3'
+      sid: '2014833'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00 01 00 00 00 78 9c|"'
+      dsize: <56
+      flow: established,to_client
+      isdataat: '!56'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_10_06, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, updated_at 2023_10_06,
+        reviewed_at 2023_10_06
+      msg: '"ET TROJAN [ANY.RUN] Win32/Gh0stRat Keep-Alive"'
+      reference: url,community.emergingthreats.net/t/gh0strat/1017
+      rev: '1'
+      sid: '2048478'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

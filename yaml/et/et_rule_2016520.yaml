@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<#a#p#p#l#e#t#"'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_03_05, former_category EXPLOIT_KIT, updated_at 2013_03_05
+      msg: '"ET CURRENT_EVENTS Probable Sakura exploit kit landing page obfuscated
+        applet tag Mar 1 2013"'
+      rev: '4'
+      sid: '2016520'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

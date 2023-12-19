@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"_helper.jar",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY Microsoft Client Agent Helper JAR file download request"'
+      pcre: '"/agent_(win|lin|mac)_helper\.jar$/is"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS11-079
+      rev: '19'
+      service: http
+      sid: '20260'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

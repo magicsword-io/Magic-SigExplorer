@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '46'
+        value: '"/mnt_ping.cgi?isSubmit=1&addrType=3&pingAddr=|3b|"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_12_16,
+        cve CVE_2019_18396, deployment Perimeter, signature_severity Major, updated_at
+        2020_10_26
+      msg: '"ET EXPLOIT Technicolor TD5130v2/TD5336 Router RCE CVE-2019-118396/CVE-2017-14127
+        (Outbound)"'
+      reference: cve,2017-14127
+      rev: '2'
+      sid: '2029154'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

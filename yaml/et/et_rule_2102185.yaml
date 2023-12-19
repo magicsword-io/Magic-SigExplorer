@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,1023,0,relative
+      classtype: misc-attack
+      contents:
+      - depth: '5'
+        offset: '12'
+        value: '"|00 01 86 A5 00|"'
+      - value: '"|00 00 00 01|"'
+      - depth: '4'
+        offset: '4'
+        value: '"|00 00 00 00|"'
+      distance: '3'
+      metadata: created_at 2010_09_23, cve CVE_2003_0252, updated_at 2010_09_23
+      msg: '"GPL RPC mountd UDP mount path overflow attempt"'
+      reference: nessus,11800
+      rev: '8'
+      sid: '2102185'
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

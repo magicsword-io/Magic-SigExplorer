@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/CreatingUserAccounts.aspx"'
+      - value: '"CreateUserStepContainer"'
+      - value: '"UserName="'
+      - value: '"%00"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_01_03, cve CVE_2011_3416, updated_at 2020_04_20
+      msg: '"ET WEB_SERVER ASP.NET Forms Authentication Bypass"'
+      pcre: '"/UserName\x3d[^\x26]+\x2500/"'
+      reference: cve,2011-3416
+      rev: '2'
+      sid: '2014100'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

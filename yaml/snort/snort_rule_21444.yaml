@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Mozilla/4.0 (compatible|3B 20|)",fast_pattern,nocase'
+      - value: '"HOST|3A|"'
+      - value: '!"X-BlueCoat-Via",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.TDSS variant outbound connection"'
+      reference: url,www.virustotal.com/file/75e8b49e1d316f28363cccb697cfd2ebca3122dba3dba321dba6391b49fc757e/analysis/
+      rev: '13'
+      service: http
+      sid: '21444'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

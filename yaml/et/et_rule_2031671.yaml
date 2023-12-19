@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/ui/vropspluginui/rest/services/uploadova"'
+      - value: '"|0d 0a|.|2f|"'
+      flow: established,to_server
+      metadata: affected_product VMware, attack_target Server, created_at 2021_02_25,
+        cve CVE_2021_21972, deployment Perimeter, deployment Internal, deployment
+        SSLDecrypt, former_category EXPLOIT, signature_severity Major, updated_at
+        2021_02_25
+      msg: '"ET EXPLOIT Inbound VMware vCenter RCE Attempt M4 (CVE-2021-21972)"'
+      reference: cve,2021-21972
+      rev: '2'
+      sid: '2031671'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

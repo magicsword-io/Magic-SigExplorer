@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"function getSystemInfo"'
+      - value: '"OnChatTextKeyDown"'
+      - value: '"function scrollcheck"'
+      - value: '"function callconv"'
+      - value: '"function istyping"'
+      - value: '"function dochat"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_07_18, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Minor, tag Phishing, updated_at 2020_08_10
+      msg: '"ET WEB_CLIENT Tech Support Scam Landing Jul 19 2017"'
+      rev: '2'
+      sid: '2024480'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

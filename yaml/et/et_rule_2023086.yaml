@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|06 01 04 01 09 09 83 6B|"'
+      - value: '"|81 10 81 10 81 10 81 10 81 10 81 10 81 10 81 10|"'
+      metadata: affected_product Cisco_ASA, attack_target Server, created_at 2016_08_25,
+        cve CVE_2016_6366, deployment Datacenter, former_category EXPLOIT, performance_impact
+        Low, confidence High, signature_severity Critical, updated_at 2016_08_25
+      msg: '"ET EXPLOIT CISCO FIREWALL SNMP Buffer Overflow Extrabacon (CVE-2016-6366)"'
+      pcre: '"/^(?:\x01(?:(?:\x01(?:(?:\x04(?:(?:\x03(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b])?)?|\x04(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b])?)?|\x01(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a])?)?|\x02(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a])?)?))?|\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c])?|\x02(?:[\x01\x02\x03\x04])?|\x03(?:[\x01\x02])?))?|\x03(?:(?:\x03(?:\x01(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e])?)?)?|\x01(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10\x11\x12\x13])?|\x02(?:[\x01\x02])?))?|\x05(?:(?:\x02(?:\x01(?:[\x01\x02\x03\x04\x05\x06\x07])?)?|\x01(?:[\x01\x02\x03])?))?|\x02(?:(?:[\x01\x02]|\x03(?:\x01(?:[\x01\x02\x03])?)?))?|\x06(?:\x01(?:[\x01\x02\x03\x05\x06\x07\x08\x09\x0a\x0b])?)?|\x07(?:[\x01\x02])?|\x04))?|\x02(?:(?:\x02(?:[\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c])?|(?:\x01)?\x01))?)/Rsi"'
+      reference: cve,2016-6366
+      rev: '1'
+      sid: '2023086'
+      special_options:
+      - fast_pattern
+      within: '160'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

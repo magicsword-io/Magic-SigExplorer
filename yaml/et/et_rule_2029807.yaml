@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/cgi-bin/mainfunction.cgi"'
+      - value: '"action=login&keyPath="'
+      - value: '"&loginUser="'
+      - value: '"&loginPwd="'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Linux, attack_target Networking_Equipment, created_at
+        2020_04_03, cve CVE_2020_8515, deployment Perimeter, former_category EXPLOIT,
+        signature_severity Minor, updated_at 2020_04_03
+      msg: '"ET EXPLOIT Multiple DrayTek Products Pre-authentication Remote RCE Inbound
+        (CVE-2020-8515) M2"'
+      reference: url,www.exploit-db.com/exploits/48268
+      rev: '2'
+      sid: '2029807'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

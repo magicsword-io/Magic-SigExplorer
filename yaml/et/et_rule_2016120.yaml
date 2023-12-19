@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/pages/links.php?"'
+      - value: '"configpath="'
+      flow: established,to_server
+      metadata: created_at 2012_12_29, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Wiki Web Help configpath parameter Remote File Inclusion
+        Attempt"'
+      pcre: '"/configpath=\s*(?:(?:ht|f)tps?|data|php)\x3a\//Ui"'
+      reference: url,packetstormsecurity.org/files/116202/Wiki-Web-Help-0.3.11-Remote-File-Inclusion.html
+      rev: '1'
+      sid: '2016120'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

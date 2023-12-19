@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"script language=javascript>document.write(unescape("'
+      - value: '"href%3D%22https%3A//fonts.googleapis.com/"'
+      - value: '"stylesheet%22%3E%20%3Cscript%20src%3D%22https%3A//kit.fontawesome.com/"'
+      - value: '"____rdr%20%3D%20%27https%3A//www.office.com/"'
+      - value: '"var%20LIB_view%20%3D%20%27PGRpdiBjbGFzcz0iY"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_04_06, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2021_04_06
+      msg: '"ET CURRENT_EVENTS Office Related Appspot Hosted Shared Document Phishing
+        Landing"'
+      rev: '2'
+      sid: '2032512'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

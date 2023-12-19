@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: '[$HTTP_PORTS,7547]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Cookie|3a| C"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2015_01_06, updated_at 2015_01_06
+      msg: '"ET EXPLOIT Possible Misfortune Cookie - SET"'
+      pcre: '"/^[0-9][^=]/R"'
+      reference: url,mis.fortunecook.ie/too-many-cooks-exploiting-tr069_tal-oppenheim_31c3.pdf
+      rev: '1'
+      sid: '2020100'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

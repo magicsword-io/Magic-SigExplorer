@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|C8 6A CD E5 F1 2C B0 16 E6 F2 36 7B 41 2E 7F 4B C4 27 13 CF F3 1F
+          FF 2B A8 2B 3A FE 09 77 BE CE 29 00 00 BA 0F 91 03 00 00|"'
+      - value: '!"|00 00|"'
+      - value: '"|00 00 BA 0F 16 01 00 00|"'
+      distance: '913'
+      flow: established,from_server
+      metadata: created_at 2016_06_29, cve CVE_2016_2209, former_category EXPLOIT,
+        confidence High, updated_at 2016_06_29
+      msg: '"ET EXPLOIT Possible CVE-2016-2209 Symantec PowerPoint Parsing Buffer
+        Overflow M1"'
+      reference: url,bugs.chromium.org/p/project-zero/issues/detail?id=823&q=
+      rev: '1'
+      sid: '2022923'
+      special_options:
+      - file_data
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

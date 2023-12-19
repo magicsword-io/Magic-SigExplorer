@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"|1b 17 e9 e9 e9 e9|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2017_06_14, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_08_19,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN DPRK HIDDEN COBRA Botnet C2 Host Beacon"'
+      reference: url,www.us-cert.gov/ncas/alerts/TA17-164A
+      rev: '2'
+      sid: '2024383'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

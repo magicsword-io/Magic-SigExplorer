@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"gesundheit!"'
+      icmp_id: '668'
+      itype: '0'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP Stacheldraht client check gag"'
+      reference: cve,2000-0138
+      rev: '13'
+      sid: '236'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

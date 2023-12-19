@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"SELECT"'
+      - value: '"information_schema.columns"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_08_19, updated_at 2013_08_19
+      msg: '"ET WEB_SERVER ATTACKER SQLi - SELECT and Schema Columns"'
+      rev: '1'
+      sid: '2017337'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

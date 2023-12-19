@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|http|08|ddspadus|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_10_15, deployment Perimeter,
+        signature_severity Major, updated_at 2021_10_15
+      msg: '"ET TROJAN Win32/MysterySnail RAT CnC Domain in DNS Lookup"'
+      reference: md5,e2f2d2832da0facbd716d6ad298073ca
+      rev: '2'
+      sid: '2034197'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '19'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

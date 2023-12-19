@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"RMDIR"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL FTP RMDIR overflow attempt"'
+      pcre: '"/^RMDIR\s[^\n]{100}/smi"'
+      reference: bugtraq,819
+      rev: '7'
+      sid: '2101942'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

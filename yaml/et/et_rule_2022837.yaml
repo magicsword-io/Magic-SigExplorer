@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"00"'
+      - value: '"00000"'
+      - value: '"232A"'
+      distance: '0'
+      fast_pattern: only
+      metadata: attack_target Client_Endpoint, created_at 2016_05_24, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2019_10_08,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN PowerShell/Agent.A DNS File Transfer CnC Beacon"'
+      pcre: '"/^[0-9A-Z]+232A/R"'
+      reference: url,www.fireeye.com/blog/threat-research/2016/05/targeted_attacksaga.html
+      rev: '2'
+      sid: '2022837'
+      within: '2'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

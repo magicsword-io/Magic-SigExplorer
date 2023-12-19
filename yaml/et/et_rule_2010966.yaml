@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"SHOW"'
+      - value: '"CUR"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_14
+      msg: '"ET WEB_SERVER SHOW CURDATE/CURTIME SQL Injection Attempt in URI"'
+      pcre: '"/SHOW.+CUR(DATE|TIME)/Ui"'
+      reference: url,doc.emergingthreats.net/2010966
+      rev: '3'
+      sid: '2010966'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

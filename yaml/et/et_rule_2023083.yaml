@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|20|HTTP/1.1|0d 0a|Host|3a 20|"'
+      - value: '"GET"'
+      - value: '!"Accept"'
+      - value: '!"Connection|3a|"'
+      - value: '!"Cache-Control|3a|"'
+      - value: '!"Pragma|3a|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_22, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, tag Ransomware, updated_at 2023_05_03,
+        mitre_tactic_id TA0040, mitre_tactic_name Impact, mitre_technique_id T1486,
+        mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Alfa/Alpha Ransomware Checkin"'
+      pcre: '"/^GET\x20\/[A-F0-9]{32}\x20HTTP\/1\.1\r\nHost\x3a\x20[^\r\n]+\r\n\r\n$/"'
+      reference: url,www.bleepingcomputer.com/news/security/new-alfa-or-alpha-ransomware-from-the-same-devs-as-cerber/
+      rev: '1'
+      sid: '2023083'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      urilen: '33'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

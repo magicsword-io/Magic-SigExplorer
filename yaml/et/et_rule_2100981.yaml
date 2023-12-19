@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/..%c0%af../"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_0884, updated_at 2020_04_22
+      msg: '"GPL EXPLOIT unicode directory traversal attempt"'
+      reference: nessus,10537
+      rev: '14'
+      sid: '2100981'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

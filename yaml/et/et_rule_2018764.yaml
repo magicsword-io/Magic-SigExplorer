@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Length|3a| 0|0d 0a|Content-Type|3a| text/html|0d 0a 0d 0a|"'
+      fast_pattern: 11,20
+      flow: established,from_server
+      flowbits: isset,ET.zbot.ua.2106509
+      metadata: created_at 2013_04_26, former_category MALWARE, updated_at 2020_04_30
+      msg: '"ET TROJAN W32/Zbot.Variant CnC Response"'
+      reference: md5,0c4d7d9138de7d7919e3b3c33ac2f851
+      rev: '3'
+      sid: '2018764'
+      special_options:
+      - http_stat_code
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

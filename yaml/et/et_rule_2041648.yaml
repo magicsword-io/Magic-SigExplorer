@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"Open:OK"'
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2020-22253_stage2
+      metadata: attack_target IoT, created_at 2022_12_02, cve CVE_2020_22253, former_category
+        EXPLOIT, confidence High, updated_at 2022_12_02
+      msg: '"ET EXPLOIT Xiongmai/HiSilicon DVR - Successful Telnet Opening - Successful
+        CVE-2020-22253 Attempt"'
+      reference: cve,2020-22253
+      rev: '1'
+      sid: '2041648'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '9530'

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/winter/zxd.php?TIe=",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.BitterRAT variant outbound connection"'
+      reference: url,virustotal.com/#/file/121a0e5e66cc7bdc78387b2e67222eb0349ca038e5aced3ed0eccb167106a40e
+      rev: '1'
+      service: http
+      sid: '48878'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

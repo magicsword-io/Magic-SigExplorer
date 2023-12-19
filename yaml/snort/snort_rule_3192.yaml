@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '".wmz",fast_pattern,nocase'
+      - value: '"Content-Disposition|3A|",nocase'
+      - value: '"filename=",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows Media Player directory traversal via Content-Disposition
+        attempt"'
+      pcre: '"/filename=[^\x3b\x3a\r\n]*(\x25\x2e\x25\x2e\x25\x5c|\x25\x32\x65\x25\x35\x63|\x2e\x2e\x5c)[^\x3b\x3a\r\n]*\x2ewmz/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-017
+      rev: '19'
+      service: http
+      sid: '3192'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

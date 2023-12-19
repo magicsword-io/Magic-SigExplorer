@@ -1,0 +1,47 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<tr><td>Current Path : <a href=|22|?path=/"'
+      - value: '"<tr class=|22|first|22|>"'
+      - value: '"<td><center>File/Folder Name</center></td>"'
+      - value: '"<td><center>Size</center></td>"'
+      - value: '"<td><center>Permissions</center></td>"'
+      - value: '"<td><center>Options</center></td>"'
+      - value: '"<td><center><form method=|22|POST|22 20|action=|22|?option&path="'
+      - value: '"<td><a href=|22|?filesrc="'
+      - value: '"<option value=|22|delete|22|>Delete</option>"'
+      - value: '"<option value=|22|chmod|22|>Chmod</option>"'
+      - value: '"<option value=|22|rename|22|>Rename</option>"'
+      - value: '"<option value=|22|edit|22|>Edit</option>"'
+      distance: '0'
+      fast_pattern: 33,20
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_13, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_13
+      msg: '"ET WEB_SERVER Generic Mini Webshell Accessed on Internal Compromised
+        Server"'
+      rev: '2'
+      sid: '2029889'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

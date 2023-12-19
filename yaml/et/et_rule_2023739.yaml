@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe???????????????"'
+      - value: '"WinHttp.WinHttpRequest."'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_01_12,
+        deployment Perimeter, malware_family Maldoc, performance_impact Low, signature_severity
+        Major, tag MalDoc, updated_at 2020_10_07
+      msg: '"ET TROJAN Maldoc Second Stage VBS Downloader with URL Padding"'
+      pcre: '"/\.exe\?+$/Ui"'
+      reference: md5,57ce6f966c6b441fe82a211647c6e863
+      rev: '1'
+      sid: '2023739'
+      special_options:
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

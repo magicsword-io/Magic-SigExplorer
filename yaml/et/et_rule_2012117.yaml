@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: successful-recon-limited
+      contents:
+      - value: '"lan_mac|3A 3A|"'
+      - value: '"wlan_mac|3A 3A|"'
+      - value: '"lan_ip|3A 3A|"'
+      - value: '"mem_info|3A 3A|"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: isset,et.ddwrt.infodis
+      metadata: created_at 2010_12_30, updated_at 2010_12_30
+      msg: '"ET WEB_SERVER Successful DD-WRT Information Disclosure"'
+      reference: url,www.exploit-db.com/exploits/15842/
+      rev: '2'
+      sid: '2012117'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"firebasestorage.googleapis.com|0d 0a|"'
+      - depth: '6'
+        value: '"/v0/b/"'
+      - value: '".appspot.com/"'
+      - value: '"email="'
+      - value: '"@"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_11_18, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_11_18
+      msg: '"ET CURRENT_EVENTS Generic Personalized Google Firebase Hosted Phishing
+        Landing"'
+      rev: '2'
+      sid: '2031212'
+      special_options:
+      - http_header
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

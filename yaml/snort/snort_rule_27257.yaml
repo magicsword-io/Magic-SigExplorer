@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '7'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Firefox/3.",fast_pattern,nocase'
+      - value: '!"Accept-Language:"'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kryptic 7-byte URI Invalid Firefox Headers - no
+        Accept-Language"'
+      pcre: '"/^\/[A-Z]{6}$/"'
+      reference: url,www.virustotal.com/en/file/8c1ff08a25b93da66921c75d0d21a9c08c5d3d36b95f9eaf113ecd84fa452944/analysis/1374505566/
+      rev: '5'
+      service: http
+      sid: '27257'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_header
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

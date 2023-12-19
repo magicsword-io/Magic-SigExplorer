@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"cookie|3a 20|3cx_auth_id="'
+      - depth: '12'
+        value: '"3cx_auth_id="'
+      - value: '"|3b|__tutma=true"'
+      fast_pattern: only
+      flow: to_server,established
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2023_03_31, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_04_03, reviewed_at 2023_12_01
+      msg: '"ET TROJAN Observed 3CX Supply Chain Attack Cookie M2"'
+      reference: url,objective-see.org/blog/blog_0x73.html
+      rev: '2'
+      sid: '2044849'
+      special_options:
+      - nocase
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

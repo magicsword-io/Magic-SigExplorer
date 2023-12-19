@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"$PEBytes"'
+      - value: '"$PEBytes0=|22|TV"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_02_16, deployment Perimeter, malware_family
+        MAGICHOUND_FETCH, signature_severity Major, updated_at 2017_02_16
+      msg: '"ET TROJAN Likely MAGICHOUND.FETCH Receiving PowerSploit PowerShell over
+        HTTP"'
+      reference: url,github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1
+      rev: '1'
+      sid: '2023949'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

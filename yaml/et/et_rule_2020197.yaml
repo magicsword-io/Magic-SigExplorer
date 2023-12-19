@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".exe?mode="'
+      - value: '"&sf="'
+      - value: '"&browser="'
+      - value: '"&useragent="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2015_01_16, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/iBryte.Adware Installer Download"'
+      reference: md5,4c80e5f72a2ab8324b981e37b3b0e5d1
+      rev: '4'
+      sid: '2020197'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

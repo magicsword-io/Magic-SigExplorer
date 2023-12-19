@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '3'
+        value: '"/@/"'
+      - value: '"/tele.txt"'
+      - value: '"Host|3a 20|microsoft-updates.servehttp.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_20, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_20
+      msg: '"ET TROJAN Suspected DonotGroup Dropper Activity"'
+      reference: md5,f23dd9acbf28f324b290b970fbc40b30
+      rev: '1'
+      sid: '2033363'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

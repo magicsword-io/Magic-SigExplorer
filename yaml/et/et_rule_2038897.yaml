@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|05 38 6b f4 62 f4 9f 3f 35 2f 6e e6|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_09_19, deployment Perimeter,
+        former_category MALWARE, malware_family WarzoneRAT, signature_severity Major,
+        updated_at 2022_09_19
+      msg: '"ET TROJAN Warzone RAT Response (Inbound)"'
+      reference: url,go.recordedfuture.com/hubfs/reports/cta-2022-0919.pdf
+      rev: '1'
+      sid: '2038897'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

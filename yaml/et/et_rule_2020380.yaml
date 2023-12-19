@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.0 |28|compatible|3b| MSIE 8.0|3b| Windows
+          NT 6.1|3b| WOW64|3b| Trident/4.0|3b| SLCC2|3b| .NET CLR 2.0.50727|3b| .NET
+          CLR 3.5.30729|3b| .NET CLR 3.0.30729|3b| Media Center PC 6.0|29 0d 0a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Host|3a 20|iecvlist.microsoft.com"'
+      fast_pattern: 83,20
+      flow: established,to_server
+      metadata: created_at 2015_02_06, updated_at 2020_10_15
+      msg: '"ET TROJAN Possible Deep Panda User-Agent"'
+      reference: md5,5acc539355258122f8cdc7f5c13368e1
+      rev: '2'
+      sid: '2020380'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

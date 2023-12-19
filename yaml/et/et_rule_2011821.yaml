@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: denial-of-service
+      contents:
+      - value: '"User-agent|3a| Mozilla/5.0 (Windows|3b| U|3b| Windows NT 5.1|3b|
+          ru|3b| rv|3a|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2010_10_18, updated_at 2020_05_06
+      msg: '"ET DOS User-Agent used in known DDoS Attacks Detected outbound"'
+      reference: url,www.linuxquestions.org/questions/linux-security-4/massive-ddos-need-advice-help-795298/
+      rev: '3'
+      sid: '2011821'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

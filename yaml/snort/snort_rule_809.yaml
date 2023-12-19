@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/whois_raw.cgi?"'
+      - value: '"|0A|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP whois_raw.cgi arbitrary command execution attempt"'
+      reference: url,attack.mitre.org/techniques/T1065
+      rev: '20'
+      service: http
+      sid: '809'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

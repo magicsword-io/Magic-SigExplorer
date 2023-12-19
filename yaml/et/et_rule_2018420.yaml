@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/AppEn.php"'
+      - depth: '10'
+        value: '"parameter="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_04_25, former_category MALWARE, updated_at 2020_09_24
+      msg: '"ET TROJAN hacker87 checkin"'
+      reference: md5,0d7dd2a6c69f2ae7e575ee8640432c4b
+      rev: '1'
+      sid: '2018420'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

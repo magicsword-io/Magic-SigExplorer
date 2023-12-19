@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Q0QwMD"'
+      - value: '"DRDAwM"'
+      - value: '"NEMDAx"'
+      distance: '2725'
+      flow: established,to_client
+      flowbits: set,et.exploitkitlanding
+      metadata: attack_target Client_Endpoint, created_at 2023_08_28, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, performance_impact Low, confidence
+        High, signature_severity Informational, tag HTML_Smuggling, updated_at 2023_10_10,
+        reviewed_at 2023_10_10
+      msg: '"ET INFO Base64 Encoded ISO File in HTML Body (Magic Bytes)"'
+      reference: url,urlscan.io/result/98d7e72b-67b8-4d7c-9735-c27525b0a550/#transactions
+      rev: '2'
+      sid: '2047788'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '100'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

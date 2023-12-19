@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '".cda",nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"FILE-MULTIMEDIA Nullsoft Winamp cda file name overflow attempt"'
+      pcre: '"/(\x5c[^\x5c]{16,}|\x2f[^\x2f]{16,})\.cda$/ims"'
+      reference: nessus,15817
+      rev: '11'
+      service: http
+      sid: '3088'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

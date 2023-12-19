@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/?id"'
+      - value: '"&rnd="'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Windows NT"'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, updated_at 2020_09_14
+      msg: '"ET TROJAN Sality Variant Downloader Activity (3)"'
+      pcre: '"/\/\?id(\d+)?&rnd=\d+$/U"'
+      reference: md5,438bcb3c4a304b65419674ce8775d8a3
+      rev: '3'
+      sid: '2011338'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

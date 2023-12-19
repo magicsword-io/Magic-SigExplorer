@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"id=|22|Anonisma"'
+      - value: '"class=|22|Anonisma"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_12_01, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2016_07_01
+      msg: '"ET CURRENT_EVENTS Anonisma Phishing Landing 2015-12-01"'
+      rev: '1'
+      sid: '2031705'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

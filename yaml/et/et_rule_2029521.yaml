@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0a|vosmas.icu"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, attack_target Web_Server, created_at
+        2020_02_20, deployment Perimeter, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2020_02_20
+      msg: '"ET TROJAN Observed PHPs Labyrinth Stage2 CnC Domain in TLS SNI"'
+      reference: url,blog.prevailion.com/2020/02/phps-labyrinth-weaponized-wordpress.html
+      rev: '2'
+      sid: '2029521'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '443'

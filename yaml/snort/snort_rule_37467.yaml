@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/rss/feed/stream",fast_pattern,nocase'
+      - value: '"|3F|",depth 1,offset 2'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Vawtrak variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/6ADFAFFEA064A9F89064FBA300CDFCD7634CFD06802BF250FA1B070CABFBEBF5/analysis/
+      rev: '2'
+      service: http
+      sid: '37467'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

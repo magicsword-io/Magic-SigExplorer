@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|01|d|01|v|00 00 05 00 01|"'
+      distance: '0'
+      isdataat: '!1,relative'
+      metadata: attack_target Client_Endpoint, created_at 2016_05_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2022_03_24,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Backdoor.Darpapox/Jaku CNAME CnC Beacon (WinVer 10.0)"'
+      reference: url,www.forcepoint.com/sites/default/files/resources/files/report_jaku_analysis_of_botnet_campaign_en_0.pdf
+      rev: '2'
+      sid: '2022787'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

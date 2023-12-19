@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|community-pools|05|mysrv|05|cloud|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_06_29, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2023_06_29
+      msg: '"ET INFO DERO Crypto Mining Related Domain in DNS Lookup"'
+      reference: url,www.crowdstrike.com/blog/crowdstrike-discovers-first-ever-dero-cryptojacking-campaign-targeting-kubernetes
+      rev: '1'
+      sid: '2046700'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '29'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

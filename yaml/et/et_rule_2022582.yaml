@@ -1,0 +1,45 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/ping"'
+      - value: '"User-Agent|3a 20|Java/"'
+      - depth: '4'
+        value: '"uid="'
+      - value: '"&group="'
+      - value: '"&lan="'
+      - value: '"&nameAtPc="'
+      - value: '"&os="'
+      - value: '"&country="'
+      - value: '"&uptime="'
+      - value: '"&installDate="'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2016_03_02, former_category MALWARE, updated_at 2020_11_02
+      msg: '"ET TROJAN jFect HTTP CnC Checkin"'
+      reference: md5,d19261cf449afc52532028cca110eb36
+      rev: '1'
+      sid: '2022582'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

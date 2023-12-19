@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|07|Acme Co"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|07|Acme Co"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_and_Server, created_at 2021_09_20, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, signature_severity
+        Informational, tag SSL_Malicious_Cert, updated_at 2023_02_16, reviewed_at
+        2023_08_29, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Observed Suspicious SSL Cert (Acme Co)"'
+      reference: url,github.com/DeimosC2
+      rev: '6'
+      sid: '2037960'
+      threshold: type limit, count 1, seconds 60, track by_src
+      within: '8'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

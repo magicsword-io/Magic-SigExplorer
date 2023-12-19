@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"gp-warning-img.png"'
+      flow: established,to_server
+      metadata: created_at 2015_03_19, former_category CURRENT_EVENTS, updated_at
+        2020_09_01
+      msg: '"ET WEB_CLIENT Fake Windows Security Warning - png"'
+      rev: '2'
+      sid: '2020711'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

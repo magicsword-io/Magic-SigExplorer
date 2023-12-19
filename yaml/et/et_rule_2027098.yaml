@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"GET"'
+      - depth: '17'
+        value: '"/getpage.gch?pid="'
+      - value: '"&Host=|3b|"'
+      - value: '"&DataBlockSize="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2019_03_19, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_08_28
+      msg: '"ET EXPLOIT Possible ZTE ZXV10 H108L Router Root RCE Attempt"'
+      reference: url,github.com/stasinopoulos/ZTExploit/blob/master/ZTExploit_Source/ztexploit.py
+      rev: '2'
+      sid: '2027098'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

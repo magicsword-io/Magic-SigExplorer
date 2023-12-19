@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"/ping/installping.aspx"'
+      - value: '"shortname="'
+      - value: '"&os="'
+      - value: '"&parents="'
+      - value: '"&browserNames="'
+      - value: '"&DefaultBrowserName="'
+      - value: '"&langid="'
+      - value: '"&installdate="'
+      - value: '".installiq.com|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_03_05, deployment Perimeter,
+        former_category POLICY, signature_severity Major, tag c2, updated_at 2020_09_23,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET POLICY W32/Installiq.Adware Install Information Beacon"'
+      reference: md5,d28e9e62c83ef2308ddcdbad91fe9cb9
+      rev: '2'
+      sid: '2018210'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

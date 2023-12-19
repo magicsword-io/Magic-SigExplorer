@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '18'
+        value: '"/gate.php?ownerid="'
+      - value: '"&buildid="'
+      - value: '"&username="'
+      - value: '"&country="'
+      - value: '"&ipaddr="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_15, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_06_15
+      msg: '"ET TROJAN Win32/Tiggre!rfn Zipped Exfil"'
+      reference: md5,57a3a3efdab58faf1249b718769d8622
+      rev: '1'
+      sid: '2037003'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

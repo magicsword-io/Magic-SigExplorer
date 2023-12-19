@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3f|locale|3d|en"'
+      - depth: '12'
+        value: '"|7b 22|channel|22 3a 22|"'
+      - value: '"Content-Type|3a 20|application/json|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"User-Agent|3a 20|Mozilla|2f|5|2e|0|20 28|Windows|20|NT|20|10|2e|0|3b
+          20|Win64|3b 20|x64|29 20|AppleWebKit|2f|537|2e|36|20 28|KHTML|2c 20|like|20|Gecko|29
+          20|Chrome|2f|90|2e|0|2e|4430|2e|93|20|Safari|2f|537|2e|36|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_15, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family BrutalRatel, signature_severity Major,
+        updated_at 2022_09_15
+      msg: '"ET TROJAN Brute Ratel CnC Activity (json-c2) M2"'
+      reference: url,ruteratel.com/tabs/ratelserver/c4profiles/
+      rev: '1'
+      sid: '2038844'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      urilen: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

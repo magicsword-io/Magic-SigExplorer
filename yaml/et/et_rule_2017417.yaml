@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"P[endof]"'
+      dsize: '8'
+      flow: from_server,established
+      metadata: created_at 2012_07_31, former_category MALWARE, updated_at 2012_07_31
+      msg: '"ET TROJAN Bladabindi/njrat CnC Keep-Alive (INBOUND)"'
+      reference: url,www.fireeye.com/blog/technical/botnet-activities-research/2012/09/the-story-behind-backdoorlv.html
+      rev: '9'
+      sid: '2017417'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

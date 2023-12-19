@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"User-Agent|3a 20|Hello-World|0d 0a|"'
+      fast_pattern: 5,20
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2019_06_21,
+        deployment Perimeter, former_category HUNTING, performance_impact Low, signature_severity
+        Informational, updated_at 2020_09_17
+      msg: '"ET USER_AGENTS Observed Suspicious UA (Hello-World)"'
+      rev: '2'
+      sid: '2027504'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

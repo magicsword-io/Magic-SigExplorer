@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '9'
+        value: '"REGISTER "'
+      - value: '"User-Agent|3a| Hacker"'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN SIP erase_registrations/add registrations attempt"'
+      reference: url,doc.emergingthreats.net/2008640
+      rev: '5'
+      sid: '2008640'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

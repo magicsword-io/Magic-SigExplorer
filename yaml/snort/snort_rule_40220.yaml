@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_test: 4,>,2000,4,relative
+      classtype: attempted-recon
+      contents:
+      - value: '"|0B 10 05 00|",depth 8,offset 16'
+      dsize: '>2000'
+      flow: to_client
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-OTHER Cisco IOS Group-Prime memory disclosure exfiltration attempt"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20160916-ikev1
+      rev: '6'
+      sid: '40220'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '[500,848,4500,4848]'

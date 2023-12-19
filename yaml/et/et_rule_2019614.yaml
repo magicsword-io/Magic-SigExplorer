@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"A|00|u|00|t|00|o|00|E|00|x|00|e|00|c"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2014_10_31, updated_at 2019_10_08
+      msg: '"ET POLICY Office Document Download Containing AutoExec Macro"'
+      reference: url,support.microsoft.com/kb/286310
+      rev: '1'
+      sid: '2019614'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

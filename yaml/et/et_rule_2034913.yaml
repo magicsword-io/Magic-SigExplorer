@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Dalvik/"'
+      - value: '"POST /p.php HTTP/1.1"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2022_01_13, deployment Perimeter,
+        former_category MOBILE_MALWARE, signature_severity Major, updated_at 2022_01_13
+      msg: '"ET MOBILE_MALWARE Android/FluBot Trojan Sending Information (POST)"'
+      pcre: '"/^Host\x3a\x20[a-z]{15}\.(?:ru|su|cn)$/Hm"'
+      reference: url,www.f5.com/labs/articles/threat-intelligence/flubots-authors-employ-creative-and-sophisticated-techniques-to-achieve-their-goals-in-version-50-and-beyond
+      rev: '2'
+      sid: '2034913'
+      special_options:
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

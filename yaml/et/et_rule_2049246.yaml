@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"location|3a 20|https|3a 2f 2f|run.mocky.io/v3/"'
+      flow: established,to_client
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2023_11_16,
+        deployment Perimeter, deployment SSLDecrypt, former_category HUNTING, performance_impact
+        Low, confidence Medium, signature_severity Informational, updated_at 2023_11_16
+      msg: '"ET INFO 302 Redirect to run .mocky .io"'
+      rev: '1'
+      sid: '2049246'
+      special_options:
+      - http_stat_code
+      - http_header
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Expect: 100-continue",fast_pattern,nocase'
+      - value: '"id=",depth 3'
+      - value: '"&pc="'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.yty file exfiltration outbound request"'
+      reference: url,www.arbornetworks.com/blog/asert/donot-team-leverages-new-modular-malware-framework-south-asia/
+      rev: '4'
+      service: http
+      sid: '46070'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

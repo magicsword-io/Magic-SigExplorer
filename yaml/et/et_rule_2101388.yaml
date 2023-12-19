@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1900'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"Location|3A|"'
+      isdataat: 128,relative
+      metadata: created_at 2010_09_23, cve CVE_2001_0876, updated_at 2010_09_23
+      msg: '"GPL MISC UPnP Location overflow"'
+      pcre: '"/^Location\x3a[^\n]{128}/smi"'
+      reference: cve,2001-0876
+      rev: '14'
+      sid: '2101388'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '60'
+        value: '"GET / HTTP/1.1|0d 0a|Accept|3a| */*|0d 0a|Connection|3a| Close|0d
+          0a|User-Agent|3a| "'
+      - value: '"|0d 0a|Host|3a| www.bing.com"'
+      - value: '!"|0d 0a|Referer|3a| "'
+      - value: '"|3a| no-cache"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2011_08_30, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Zeus Bot GET to Bing checking Internet connectivity"'
+      reference: url,lists.emergingthreats.net/pipermail/emerging-sigs/2010-October/009807.html
+      rev: '1'
+      sid: '2013488'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

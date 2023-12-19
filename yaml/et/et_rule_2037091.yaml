@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"PK|03 04|"'
+      - value: '"Steam_htmlcache.txt"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_22, deployment Perimeter,
+        former_category HUNTING, performance_impact Low, signature_severity Major,
+        tag Stealer, updated_at 2023_04_06, reviewed_at 2023_08_21
+      msg: '"ET INFO Suspicious Zipped Filename in Outbound POST Request (Steam_htmlcache.txt)"'
+      rev: '5'
+      sid: '2037091'
+      special_options:
+      - http_method
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

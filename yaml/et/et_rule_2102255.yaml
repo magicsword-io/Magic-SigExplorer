@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,8,relative,align
+      classtype: misc-attack
+      contents:
+      - depth: '4'
+        offset: '16'
+        value: '"|00 01 87 88|"'
+      - value: '"|00 00 00 01 00 00 00 01|"'
+      - value: '"|00 00 00 00|"'
+      distance: '4'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL RPC sadmind query with root credentials attempt TCP"'
+      rev: '5'
+      sid: '2102255'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

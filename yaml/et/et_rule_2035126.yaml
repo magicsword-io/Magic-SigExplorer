@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|17|unicast.censurfridns.dk"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_02_08, deployment Perimeter,
+        former_category POLICY, signature_severity Informational, tag DoH, updated_at
+        2022_02_08
+      msg: '"ET INFO UncensoredDNS DNS Over HTTPS Certificate Inbound"'
+      rev: '2'
+      sid: '2035126'
+      special_options:
+      - fast_pattern
+      within: '24'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

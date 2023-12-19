@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Chr(CInt(ns(i)) Xor n)"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2015_02_25,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2019_09_27
+      msg: '"ET CURRENT_EVENTS DRIVEBY [PwC CTD] -- MultiGroup - TH3BUG and Non-Targetted
+        Groups Watering Hole Deobfuscation function"'
+      reference: url,pwc.blogs.com/cyber_security_updates/2014/10/scanbox-framework-whosaffected-and-whos-using-it-1.html
+      rev: '1'
+      sid: '2020563'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

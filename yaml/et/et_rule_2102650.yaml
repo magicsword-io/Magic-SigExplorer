@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"connect_data"'
+      - value: '"|28|user="'
+      - value: '!"|22|"'
+      - value: '!"|29|"'
+      flow: to_server,established
+      isdataat: 1000,relative
+      metadata: created_at 2010_09_23, former_category SQL, confidence High, updated_at
+        2022_05_02
+      msg: '"GPL SQL user name buffer overflow attempt"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck62.html
+      rev: '4'
+      sid: '2102650'
+      special_options:
+      - nocase
+      - nocase
+      within: '1000'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/office19/process-handler.php"'
+      - value: '"Email="'
+      - value: '"&password="'
+      fast_pattern: 9,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_06_22, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Major, updated_at 2022_06_22
+      msg: '"ET CURRENT_EVENTS Successful Phish OWA Credentials 2022-06-20"'
+      reference: md5,02cf30398983560f6ff99f7f464a0c12
+      rev: '1'
+      sid: '2037094'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '17'
+        value: '"/qscope/ithankyou"'
+      flow: established,to_server
+      metadata: created_at 2016_05_17, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Successful QuizScope Installation"'
+      reference: md5,4dae2a394b792c36936a88cfc296f9b9
+      rev: '2'
+      sid: '2022812'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

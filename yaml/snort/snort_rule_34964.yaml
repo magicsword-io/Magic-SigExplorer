@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3A 20|Sendori-Client-Win32",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Win.Adware.Sendori user-agent detection"'
+      reference: url,www.virustotal.com/en/file/26ee215c531b6c50d28ef9b9a48db05b08139e460b997167de1813484beb7a9e/analysis/
+      rev: '2'
+      service: http
+      sid: '34964'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

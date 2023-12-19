@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|"'
+      - value: '"SGF3a0V5ZSBLZXlsb2dnZXIg"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_09_30, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2015_09_30,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Hawkeye Keylogger SMTP Beacon"'
+      reference: md5,dfc2c23663122ac9fc25b708f278c147
+      rev: '2'
+      sid: '2021871'
+      within: '45'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

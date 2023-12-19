@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"tempuri.org|2f|"'
+      - value: '"|2f|MSValue"'
+      - value: '"|7c 2a 2e 74 78 74 2c 2a 2e 64 6f 63 2a 2c 2a 2e 72 64 70|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_11_22, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_11_22
+      msg: '"ET TROJAN MetaStealer Activity (Response)"'
+      reference: md5,cacc36c274c33415c479947893cb4631
+      rev: '1'
+      sid: '2049282'
+      special_options:
+      - fast_pattern
+      within: '20'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

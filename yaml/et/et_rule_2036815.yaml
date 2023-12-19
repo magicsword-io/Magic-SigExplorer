@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/bonita/loginservice"'
+      - value: '"username=install"'
+      - value: '"password=install"'
+      flow: established,to_server
+      flowbits: set,ET.BonitaDefaultCreds
+      metadata: attack_target Server, created_at 2022_06_03, cve CVE_2022_25237, deployment
+        Perimeter, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Minor, updated_at 2022_06_03
+      msg: '"ET WEB_SPECIFIC_APPS Bonitasoft Default User Login Attempt M1 (Possible
+        Staging for CVE-2022-25237)"'
+      reference: cve,2022-25237
+      rev: '1'
+      sid: '2036815'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

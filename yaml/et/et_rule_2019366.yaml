@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3a| 2Downloadz.com Agent|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2014_10_08, updated_at 2020_05_12
+      msg: '"ET POLICY 2Downloadz.com File Sharing User-Agent"'
+      rev: '1'
+      sid: '2019366'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '16'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/forum/image.php",fast_pattern,nocase'
+      - value: '"|0D 0A|User-Agent: Mozilla/4.0|0D 0A|"'
+      - value: '"|0D 0A|Content-Type: application/x-www-form-urlencoded|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Androm variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/38c7d403660c98ceb0246192d7d89cd66e126c6721008f6b347d4d53b4dc063b/analysis/
+      rev: '2'
+      service: http
+      sid: '34958'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

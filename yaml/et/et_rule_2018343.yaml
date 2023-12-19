@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: any
+      port: '5000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '34'
+        value: '"GET /webman/info.cgi?host= HTTP/1."'
+      flow: established,to_server
+      metadata: created_at 2014_04_02, former_category SCAN, updated_at 2020_09_23
+      msg: '"ET CURRENT_EVENTS Hikvision DVR attempted Synology Recon Scan"'
+      reference: url,isc.sans.edu/forums/diary/More+Device+Malware+This+is+why+your+DVR+attacked+my+Synology+Disk+Station+and+now+with+Bitcoin+Miner/17879
+      rev: '1'
+      sid: '2018343'
+    protocol: tcp
+    source:
+      network: any
+      port: any

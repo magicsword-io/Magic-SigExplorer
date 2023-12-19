@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|0d 0a|X-Ldap-Template|3a 20|"'
+      - value: '"|28 7c|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_04_12, deployment Perimeter,
+        former_category EXPLOIT, signature_severity Major, updated_at 2022_04_18,
+        reviewed_at 2023_09_01
+      msg: '"ET EXPLOIT Possible NGINX Reference LDAP Query Injection Attack"'
+      reference: url,github.com/nginxinc/nginx-ldap-auth/issues/93
+      rev: '3'
+      sid: '2035897'
+      special_options:
+      - fast_pattern
+      - nocase
+      - http_header
+      - http_header
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

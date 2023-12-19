@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/bhanx.php?"'
+      - value: '"adv="'
+      - value: '"&code1="'
+      - value: '"&code2="'
+      - value: '"&id="'
+      - value: '"&p="'
+      flow: established,to_server
+      metadata: created_at 2011_03_08, updated_at 2020_04_21
+      msg: '"ET TROJAN TrojanDownloader Win32/Harnig.gen-P Reporting"'
+      reference: md5,40d1819b9c3c85e1f3b7723c7a9118ad
+      rev: '4'
+      sid: '2012438'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

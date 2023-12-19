@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3B| name=|22|bot_id|22 0D 0A 0D 0A|"'
+      - value: '" name=|22|os_version|22 0D 0A 0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2012_02_21, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Backdoor.Win32.RShot HTTP Checkin"'
+      reference: md5,c0aadd5594d340d8a4909d172017e5d0
+      rev: '2'
+      sid: '2014269'
+      special_options:
+      - nocase
+      - http_method
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

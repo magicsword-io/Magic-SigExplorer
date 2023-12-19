@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Temporary Redirect",fast_pattern,nocase'
+      - value: '"307",depth 3'
+      - value: '"Temporary Redirect",nocase'
+      flags: AF
+      flow: to_client,established
+      fragbits: '!DMR'
+      id: '13330'
+      metadata: ruleset community
+      msg: '"POLICY-OTHER Sandvine PacketLogic http redirection attempt"'
+      reference: url,github.com/citizenlab/badtraffic
+      rev: '3'
+      service: http
+      sid: '45983'
+      special_options:
+      - http_stat_code
+      - http_stat_msg
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

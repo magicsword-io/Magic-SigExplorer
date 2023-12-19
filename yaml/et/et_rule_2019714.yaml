@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"/"'
+      - value: '".exe"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"download.bitdefender.com|0d 0a|"'
+      - value: '!".appspot.com|0d 0a|"'
+      - value: '!"kaspersky.com|0d 0a|"'
+      - value: '!".sophosxl.net"'
+      - value: '!"koggames"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2014_11_15, former_category CURRENT_EVENTS, updated_at
+        2020_09_16
+      msg: '"ET CURRENT_EVENTS Terse alphanumeric executable downloader high likelihood
+        of being hostile"'
+      pcre: '"/\/[A-Z]?[a-z]{1,3}[0-9]?\.exe$/U"'
+      rev: '7'
+      sid: '2019714'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

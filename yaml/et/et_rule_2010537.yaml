@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"option=com_zcalendar"'
+      - value: '"eid="'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Joomla Component com_zcalendar (eid) Blind SQL Injection
+        Attempt"'
+      pcre: '"/(\?|&)eid=[^\s\x26\x3B\x2f]*[\s\x2f]/iU"'
+      reference: url,doc.emergingthreats.net/2010537
+      rev: '3'
+      sid: '2010537'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

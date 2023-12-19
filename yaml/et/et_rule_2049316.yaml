@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|application/x-mswinurl|0d 0a|"'
+      - value: '"[InternetShortcut]"'
+      - value: '"URL=file://"'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_27, cve CVE_2023_36025, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, confidence Low, signature_severity
+        Major, updated_at 2023_12_06
+      msg: '"ET TROJAN WebDAV Retrieving .exe from .url M1 (CVE-2023-36025)"'
+      reference: cve,2023-36025
+      rev: '2'
+      sid: '2049316'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

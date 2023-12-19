@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[25,587]'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '10'
+        value: '"AUTH|20|ntlm|20|"'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2019_04_04, deployment
+        Perimeter, former_category POLICY, performance_impact Low, signature_severity
+        Minor, updated_at 2019_04_04
+      msg: '"ET POLICY Outbound SMTP NTLM Authentication Observed"'
+      pcre: '"/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=|[A-Z0-9+/]{4})$/Ri"'
+      rev: '2'
+      sid: '2027152'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

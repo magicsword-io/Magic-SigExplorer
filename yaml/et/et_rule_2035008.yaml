@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ruleConfiguration"'
+      - value: '"encryptor"'
+      - value: '"|22|dataSourceConfiguration|22 3a 20 22 21 21|com|2e|sun|2e|rowset|2e|JdbcRowSetImpl|5c|n"'
+      - value: '"dataSourceName:"'
+      - value: '"Object"'
+      - value: '"POST|20|/api/schema|20|HTTP/1.1"'
+      distance: '0'
+      fast_pattern: 30,20
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_01_28, cve CVE_2020_1947, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_01_28
+      msg: '"ET EXPLOIT Possible Apache ShardingSphere RCE Attempt (CVE-2020-1947)
+        (PoC Based)"'
+      reference: cve,2020-1947
+      rev: '2'
+      sid: '2035008'
+      special_options:
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      within: '60'
+    protocol: tcp
+    source:
+      network: any
+      port: any

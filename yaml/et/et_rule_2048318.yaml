@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"User-Agent|3a 20|Mozilla/5.0 (Windows NT 6.1|3b 20|WOW64|3b 20|Trident/7.0|3b
+          20|rv|3a|11.0) like Gecko|0d 0a|"'
+      - depth: '30'
+        value: '"&session="'
+      - value: '"|35 33 37 39 37 33 37 34 36 35 36 64 32 30 34 39 36 34 36 63 36 35
+          32 30 35 30 37 32 36 66 36 33 36 35 37 33 37 33 30 64 30 61|"'
+      - value: '!"|2e|"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_08_30, deployment Perimeter,
+        former_category MALWARE, malware_family AtlasCross, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_08_30, reviewed_at
+        2023_08_30, former_sid 2855191
+      msg: '"ET TROJAN Maldoc Sending Windows System Information (POST)"'
+      pcre: '"/^\x26(?:(id|token))\x3d/P"'
+      reference: md5,7195d7e4926a0a85fbe81e40ab7c0ca4
+      rev: '1'
+      sid: '2048318'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_uri
+      - http_header
+      within: '200'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

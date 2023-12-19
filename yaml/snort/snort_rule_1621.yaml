@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"CMD",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP CMD overflow attempt"'
+      pcre: '"/^CMD(?!\n)\s[^\n]{200}/ims"'
+      rev: '20'
+      service: ftp
+      sid: '1621'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

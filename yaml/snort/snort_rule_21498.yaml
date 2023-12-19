@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"<?xml",depth 50,nocase'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,policy security-ips alert,ruleset community
+      msg: '"FILE-IDENTIFY XML file magic detected"'
+      rev: '16'
+      service: ftp-data,http,imap,pop3
+      sid: '21498'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

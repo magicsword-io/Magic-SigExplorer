@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|note.youdao.com|0d 0a|"'
+      - value: '"&shareKey=f83f6c6da089d58ea8538c71344b8e64 HTTP/1.0|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_05_25, deployment Perimeter,
+        former_category MALWARE, malware_family SiMayRAT, signature_severity Major,
+        updated_at 2022_05_25
+      msg: '"ET TROJAN Win32/SiMay RAT Activity M2 (GET)"'
+      reference: url,www.sentinelone.com/wp-content/uploads/2022/04/SiMay-RAT.pdf
+      rev: '1'
+      sid: '2036679'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '500'
+    details:
+      byte_test: 2,>,768,0,relative
+      classtype: attempted-user
+      contents:
+      - depth: '10'
+        offset: '8'
+        value: '"|00 00 00 00 00 00 00 00 01 10|"'
+      - value: '"|80 02 00|"'
+      - value: '"|80 04 00 01 00 06|"'
+      distance: '1'
+      dsize: '>828'
+      metadata: affected_product Cisco_PIX, attack_target Networking_Equipment, created_at
+        2016_09_29, cve CVE_2016_6415, deployment Datacenter, performance_impact Low,
+        signature_severity Major, updated_at 2016_09_29
+      msg: '"ET EXPLOIT Possible Cisco IKEv1 Information Disclosure Vulnerability
+        CVE-2016-6415"'
+      reference: cve,2016-6415
+      rev: '1'
+      sid: '2023311'
+      special_options:
+      - fast_pattern
+      within: '6'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

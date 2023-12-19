@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php",fast_pattern,nocase'
+      - value: '"GUID=",depth 122'
+      - value: '"BUILD=",depth 122'
+      - value: '"INFO=",depth 122'
+      - value: '"IP=",depth 122'
+      - value: '"TYPE=",depth 122'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Hancitor variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/5ec4ba1a97500e664af6896f4c02846ca6777e671bb600103dc8d49224e38f48/analysis/1469201551/
+      rev: '2'
+      service: http
+      sid: '39800'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,1024,20,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 01 87 99|",depth 4,offset 12'
+      - value: '"|00 00 01 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC snmpXdmi overflow attempt UDP"'
+      reference: url,www.cert.org/advisories/CA-2001-05.html
+      rev: '21'
+      sid: '2045'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

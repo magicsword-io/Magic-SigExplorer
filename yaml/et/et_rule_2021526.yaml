@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"*"'
+      - value: '"MHZ|00 00 00 00|"'
+      - value: '"MB|00 00 00 00|"'
+      - value: '"|28|null|29 00 00 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2015_07_23, former_category MALWARE, updated_at 2015_07_23
+      msg: '"ET TROJAN Linux/ChinaZ 2.0 DDoS Bot Checkin 3"'
+      pcre: '"/^\d+/R"'
+      reference: url,blog.malwaremustdie.org/2015/06/the-elf-chinaz-reloaded.html
+      rev: '2'
+      sid: '2021526'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

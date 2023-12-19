@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/gm-2-b2.php",fast_pattern,nocase'
+      - value: '"b2inc="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP b2 cafelog gm-2-b2.php remote file include attempt"'
+      pcre: '"/b2inc=(https?|ftps?|php)/i"'
+      reference: nessus,11667
+      rev: '14'
+      service: http
+      sid: '2143'
+      special_options:
+      - http_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

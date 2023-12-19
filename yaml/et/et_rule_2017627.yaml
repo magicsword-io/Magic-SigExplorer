@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"QXNka"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2013_10_22, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2017_04_10,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Kegotip CnC Beacon"'
+      reference: url,www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=PWS%3AWin32%2FKegotip.C
+      rev: '3'
+      sid: '2017627'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

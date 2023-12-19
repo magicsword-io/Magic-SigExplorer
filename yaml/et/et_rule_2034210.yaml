@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/dxb/mx_cmd.php"'
+      flow: established,to_server
+      metadata: created_at 2021_10_17, former_category MALWARE, updated_at 2021_10_17
+      msg: '"ET TROJAN Jasper URI Path Observed M1"'
+      pcre: '"/\/dxb\/mx_cmd\.php$/U"'
+      rev: '1'
+      sid: '2034210'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

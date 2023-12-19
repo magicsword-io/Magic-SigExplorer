@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!139'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '2'
+        value: '"|12 12|"'
+      - value: '!"|12 12|"'
+      - value: '"|12 12|"'
+      - value: '!"|12 12|"'
+      - value: '"|12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12|"'
+      distance: '2'
+      flow: to_server,established
+      metadata: created_at 2014_09_22, former_category MALWARE, updated_at 2014_09_22
+      msg: '"ET TROJAN Backdoor.Win32.PcClient.bal CnC (OUTBOUND) 2"'
+      pcre: '"/[^\x12][^\x4e\x38\x39\x2f\x6e\x28\x29\x30\x2d\x2e\x2c\x3e\x31\x18][\x40-\x48\x4a-\x4d\x31-\x34\x3a-\x3c\x3f\x50-\x5f\x60-\x6c\x6f\x73-\x7f\x70\x71\x20-\x27\x2a\x2b]{1,14}\x12/R"'
+      reference: md5,00ccc1f7741bb31b6022c6f319c921ee
+      rev: '4'
+      sid: '2019202'
+      within: '2'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

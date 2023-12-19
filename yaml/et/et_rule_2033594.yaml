@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/expres.php?op=2"'
+      - value: '"Mozilla/4.0|20|(compatible|3b 20|Win32|3b 20|WinHttp.WinHttpRequest.5)"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_07_28, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_28
+      msg: '"ET TROJAN Kimsuky Related Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Mozilla\/4\.0\x20\(compatible\x3b\x20Win32\x3b\x20WinHttp\.WinHttpRequest\.5\)/Hmi"'
+      reference: md5,be4ab3c46d87b1900137647814f0f305
+      rev: '1'
+      sid: '2033594'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '16'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

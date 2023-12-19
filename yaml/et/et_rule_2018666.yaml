@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,&,2,3
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        offset: '4'
+        value: '"|00 01 00 00 00 01|"'
+      metadata: created_at 2014_07_11, former_category MALWARE, updated_at 2014_07_11
+      msg: '"ET TROJAN Possible Zeus P2P Variant DGA NXDOMAIN Responses July 11 2014"'
+      pcre: '"/^..[\x0d-\x20](?=\d{0,27}[a-z])(?=[a-z]{0,27}\d)[a-z0-9]{21,28}(?:\x03(?:biz|com|net|org))\x00\x00\x01\x00\x01/Rs"'
+      reference: md5,5e5e46145409fb4a5c8a004217eef836
+      rev: '4'
+      sid: '2018666'
+      threshold: type both, track by_dst, count 12, seconds 120
+    protocol: udp
+    source:
+      network: any
+      port: '53'

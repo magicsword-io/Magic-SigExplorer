@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET|20 2f|"'
+      - value: '"sys|3a 20|"'
+      - value: '"|0d 0a|p|3a 20|x"'
+      - value: '"|0d 0a|c|3a 20|"'
+      - value: '"|0d 0a|user-agent|3a 20|"'
+      - value: '"|0d 0a|u|3a 20|"'
+      - value: '"|0d 0a|token|3a 20 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_28, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_09_28
+      msg: '"ET TROJAN Win32/Variant.Babar.74963 CnC Exfil"'
+      reference: md5,d74c346206d98d7816d42f03c29d6ae5
+      rev: '1'
+      sid: '2039019'
+      special_options:
+      - fast_pattern
+      threshold: type limit, seconds 30, count 1, track by_src
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

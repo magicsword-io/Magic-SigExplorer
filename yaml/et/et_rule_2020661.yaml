@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 1,37,relative
+      byte_test: 1,<,4,0,relative
+      classtype: bad-unknown
+      contents:
+      - depth: '2'
+        value: '"|16 03|"'
+      - value: '"|02|"'
+      - value: '"|00 19|"'
+      distance: '3'
+      flow: established,from_server
+      metadata: created_at 2015_03_11, cve CVE_2015_0204, updated_at 2015_03_11
+      msg: '"ET EXPLOIT FREAK Weak Export Suite From Server (CVE-2015-0204)"'
+      reference: cve,2015-1637
+      rev: '3'
+      sid: '2020661'
+      special_options:
+      - fast_pattern
+      threshold: type limit,track by_dst,count 1,seconds 1200
+      within: '2'
+    protocol: tcp
+    source:
+      network: any
+      port: '[21,25,110,143,443,465,587,636,989:995,5061,5222]'

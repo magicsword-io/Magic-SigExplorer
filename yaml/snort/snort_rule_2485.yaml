@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"0534CF61-83C5-4765-B19B-45F7A4E135D0",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-PLUGINS Symantec Norton Internet Security 2004 ActiveX clsid
+        access"'
+      reference: cve,2004-0363
+      rev: '19'
+      service: ftp-data,http,imap,pop3
+      sid: '2485'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

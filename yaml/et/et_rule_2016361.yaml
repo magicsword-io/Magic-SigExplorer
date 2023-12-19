@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"CAFEEFAC-00"'
+      - value: '"-FFFF-ABCDEFFEDCBA"'
+      distance: '7'
+      flow: established,to_client
+      metadata: created_at 2013_02_07, updated_at 2013_02_07
+      msg: '"ET INFO JAVA - ClassID"'
+      rev: '1'
+      sid: '2016361'
+      special_options:
+      - file_data
+      within: '18'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

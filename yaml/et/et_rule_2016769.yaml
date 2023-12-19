@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3a|some_magic_code1"'
+      distance: '9'
+      flow: established,to_client
+      isdataat: '!1,relative'
+      metadata: created_at 2013_04_19, updated_at 2019_09_28
+      msg: '"ET TROJAN Win32/Enchanim Check-in Response"'
+      reference: url,www.seculert.com/blog/2013/04/magic-persistent-threat.html
+      rev: '1'
+      sid: '2016769'
+      special_options:
+      - file_data
+      within: '29'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

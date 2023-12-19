@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"MAIL FROM: <Reademal.com>|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.HW32 variant spam attempt"'
+      reference: url,www.virustotal.com/en/file/e69b310dff09830641d4b9682375ce3df503674d23c429bd7847979ea9250b2b/analysis/
+      rev: '2'
+      service: smtp
+      sid: '31507'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

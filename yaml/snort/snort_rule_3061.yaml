@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3632'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"DIST00000001",depth 12,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"APP-DETECT distccd remote command execution attempt"'
+      reference: url,distcc.samba.org/security.html
+      rev: '5'
+      sid: '3061'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

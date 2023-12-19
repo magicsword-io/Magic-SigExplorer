@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|text/html"'
+      - value: '"<title>Login to continue"'
+      - value: '"Global E-mail Server"'
+      - value: '"Synchronize your e-mail"'
+      - value: '"avoid deactivation"'
+      - value: '"registered email"'
+      - value: '"enter the matching password"'
+      - value: '"Synchronize My Account"'
+      distance: '0'
+      flow: from_server,established
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2016_07_15,
+        deployment Perimeter, former_category PHISHING, performance_impact Low, signature_severity
+        Major, tag Phishing, updated_at 2020_07_17
+      msg: '"ET CURRENT_EVENTS Synchronize Email Account Phishing Landing 2016-07-15"'
+      rev: '1'
+      sid: '2032028'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

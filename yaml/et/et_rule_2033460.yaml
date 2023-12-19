@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/WEB-INF/web.xml"'
+      - depth: '8'
+        value: '"/%u002e/"'
+      flow: established,to_server
+      flowbits: set,ET.2021.34429.attempt
+      metadata: created_at 2021_07_27, cve CVE_2021_34429, updated_at 2021_07_27
+      msg: '"ET WEB_SPECIFIC_APPS Jetty WEB-INF Information Leak Attempt Inbound (CVE-2021-34429)"'
+      reference: cve,2021-34429
+      rev: '2'
+      sid: '2033460'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

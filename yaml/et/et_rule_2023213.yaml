@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"SESSIONNAME"'
+      - value: '"USERNAME"'
+      - value: '"ID"'
+      - value: '"STATE"'
+      - value: '"TYPE"'
+      - value: '"DEVICE"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2016_09_15, deployment Perimeter, deployment
+        Datacenter, performance_impact Low, signature_severity Critical, updated_at
+        2016_09_15
+      msg: '"ET TROJAN Windows qwinsta Microsoft Windows DOS prompt command exit OUTBOUND"'
+      rev: '1'
+      sid: '2023213'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

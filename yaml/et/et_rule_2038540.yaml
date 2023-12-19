@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '1'
+        value: '"|00 00 00 02|guid|00 25 00 00 00|"'
+      - value: '"|00 02|hostname"'
+      - value: '"|00 02|lan"'
+      - value: '"|00 02|type"'
+      - value: '"login"'
+      - value: '"|00 02|username"'
+      - value: '"|00 02|version"'
+      distance: '0'
+      flow: to_server,established
+      metadata: attack_target Client_and_Server, created_at 2022_08_16, deployment
+        Perimeter, former_category MALWARE, malware_family Rshell, performance_impact
+        Low, signature_severity Major, updated_at 2022_08_16
+      msg: '"ET TROJAN RShell Backdoor Initial CnC Checkin"'
+      pcre: '"/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/R"'
+      reference: url,www.trendmicro.com/en_us/research/22/h/irontiger-compromises-chat-app-Mimi-targets-windows-mac-linux-users.html
+      rev: '1'
+      sid: '2038540'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

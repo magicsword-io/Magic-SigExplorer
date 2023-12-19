@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|link|20|href|3d 22 22 20|rel|3d 22|shortcut|20|icon|22 20 2f
+          3e|"'
+      - value: '"document|2e|write|28|"'
+      - value: '"atob|28|"'
+      - value: '"PHNjcmlwdD5ldmFsKGZ1bmN0aW9uKCRuYnJ1dCw"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_06_01, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2021_06_01, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS PerSwaysion Landing Page M3"'
+      reference: url,blog.group-ib.com/perswaysion
+      rev: '2'
+      sid: '2033063'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '150'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

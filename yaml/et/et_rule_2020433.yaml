@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/index.php/customer/do_it"'
+      - value: '"User-Agent|3a 20|Internet|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"pn="'
+      - value: '"&data="'
+      flow: to_server,established
+      metadata: created_at 2015_02_17, former_category MALWARE, updated_at 2020_05_15
+      msg: '"ET TROJAN Likely Arid Viper APT Advtravel Campaign POST"'
+      reference: url,www.trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp-operation-arid-viper.pdf
+      rev: '4'
+      sid: '2020433'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

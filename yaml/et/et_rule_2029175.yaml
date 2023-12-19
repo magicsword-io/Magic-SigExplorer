@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/ccbill/whereami.cgi?g="'
+      - value: '"http"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target IoT, created_at 2019_12_16,
+        deployment Perimeter, signature_severity Minor, updated_at 2020_10_26
+      msg: '"ET EXPLOIT CCBill Online Payment Systems RCE (Inbound)"'
+      reference: url,unit42.paloaltonetworks.com/mirai-variant-echobot-resurfaces-with-13-previously-unexploited-vulnerabilities/
+      rev: '2'
+      sid: '2029175'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

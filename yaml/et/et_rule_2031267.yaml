@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"HTTP/1."'
+      - value: '"Accept-Ranges: bytes"'
+      - value: '"Age: 5806"'
+      - value: '"Cache-Control: public,max-age=31536000"'
+      - value: '"Content-Encoding: gzip"'
+      - value: '"Content-Length: 256398"'
+      - value: '"Content-Type: application/javascript"'
+      - value: '"Server: UploadServer"'
+      - value: '"Vary: Accept-Encoding, Fastly-SSL"'
+      - value: '"x-api-version: F-X"'
+      - value: '"x-cache: HIT"'
+      - value: '"x-Firefox-Spdy: h2"'
+      - value: '"x-nyt-route: vi-assets"'
+      - value: '"x-served-by: cache-mdw17344-MDW"'
+      - value: '"x-timer: S1580937960.346550,VS0,VE0"'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_08, deployment Perimeter, former_category
+        CURRENT_EVENTS, signature_severity Major, tag c2, updated_at 2020_12_09, mitre_tactic_id
+        TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id T1041, mitre_technique_name
+        Exfiltration_Over_C2_Channel
+      msg: '"ET CURRENT_EVENTS [Fireeye] Backdoor.HTTP.BEACON.[CSBundle NYTIMES Server]"'
+      reference: url,github.com/fireeye/red_team_tool_countermeasures
+      rev: '2'
+      sid: '2031267'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

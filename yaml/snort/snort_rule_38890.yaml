@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?fname=Hawkeye_Keylogger",fast_pattern,nocase'
+      - value: '"&data="'
+      - value: '!"User-Agent"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Kirts exfiltration attempt"'
+      reference: url,www.virustotal.com/en/file/f81128f3b9c0347f4ee5946ecf9a95a3d556e8e3a4742d01e5605f862e1d116d/analysis/1462888129/
+      rev: '3'
+      service: http
+      sid: '38890'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/container.php?"'
+      - value: '"theme_directory="'
+      - value: '"../"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2010_07_30, deployment Datacenter, signature_severity Major, tag Local_File_Inclusion,
+        updated_at 2020_04_19
+      msg: '"ET WEB_SPECIFIC_APPS Acute Control Panel container.php theme_directory
+        parameter local file inclusion"'
+      reference: url,doc.emergingthreats.net/2009377
+      rev: '7'
+      sid: '2009377'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/5.0|20 28|Windows NT 6.1|3b 20|WOW64|3b
+          20|rv|3a|68.0|29 09 09 09 20 20 20 20|Gecko/20100101|20|Firefox/68.0|0d
+          0a|"'
+      fast_pattern: 44,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_09_11, deployment Perimeter,
+        former_category USER_AGENTS, performance_impact Low, confidence Medium, signature_severity
+        Informational, updated_at 2023_09_11, reviewed_at 2023_09_11
+      msg: '"ET USER_AGENTS Observed Reconnaissance Related UA"'
+      reference: url,www.cisa.gov/news-events/cybersecurity-advisories/aa23-144a
+      rev: '1'
+      sid: '2047994'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

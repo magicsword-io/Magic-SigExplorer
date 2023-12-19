@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '14'
+        value: '"/setup/dir.txt"'
+      - value: '"User-Agent|3a 20|DragonRajaOrigin|0d 0a|"'
+      fast_pattern: 10,20
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_08, deployment Perimeter, former_category
+        GAMES, performance_impact Low, signature_severity Major, updated_at 2020_07_08
+      msg: '"ET GAMES Dragon Raja Activity"'
+      reference: md5,33200121c71932220c67b9f3ccc57d60
+      rev: '2'
+      sid: '2030484'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|cdnmobile|02|io|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_07_15, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_07_15
+      msg: '"ET TROJAN Candiru Spyware CnC Domain in DNS Lookup (cdnmobile .io)"'
+      reference: url,citizenlab.ca/2021/07/hooking-candiru-another-mercenary-spyware-vendor-comes-into-focus/
+      rev: '2'
+      sid: '2033330'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

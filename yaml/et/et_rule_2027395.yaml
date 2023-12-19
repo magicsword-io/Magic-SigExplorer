@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|75 63 65 73|"'
+      dsize: '4'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_05_29, deployment Perimeter, former_category MALWARE, performance_impact
+        Significant, signature_severity Major, updated_at 2019_05_31
+      msg: '"ET TROJAN Linux/HiddenWasp CnC Request (set)"'
+      reference: md5,5b134e0a1a89a6c85f13e08e82ea35c3
+      rev: '3'
+      sid: '2027395'
+      special_options:
+      - fast_pattern
+      stream_reassemble: enable,client
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"xwork"'
+      - value: '"MethodAccessor"'
+      - value: '"denyMethodExecution"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_05_24, updated_at 2020_09_18
+      msg: '"ET WEB_SERVER Apache Struts Possible xwork Disable Method Execution"'
+      reference: url,struts.apache.org/development/2.x/docs/s2-013.html
+      rev: '1'
+      sid: '2016920'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

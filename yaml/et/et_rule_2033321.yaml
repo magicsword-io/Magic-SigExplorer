@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"RhinoSoft"'
+      - value: '"Serv-U"'
+      - value: '"\\r\\nCRhinoUintAttr\\r\\nLastHour\\r\\n"'
+      - value: '".Archive"'
+      - value: '"Serv-U-Tray.exe"'
+      - value: '"window.close|28 29|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2021_07_14, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_07_14
+      msg: '"ET TROJAN Suspected Solarwinds Serv-U Backdoor (Incoming)"'
+      reference: url,www.cadosecurity.com/post/triage-analysis-of-serv-u-ftp-user-backdoor-deployed-by-cve-2021-35211
+      rev: '2'
+      sid: '2033321'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| pavuk"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_05_04
+      msg: '"ET SCAN Pavuk User Agent Detected - Website Mirroring Tool for Off-line
+        Analysis"'
+      reference: url,doc.emergingthreats.net/2009827
+      rev: '4'
+      sid: '2009827'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

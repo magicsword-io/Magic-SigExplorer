@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|08|!|02 80 08|!|02 80 08|!|02 80 08|!|02 80|",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE HP-UX NOOP"'
+      rev: '12'
+      sid: '642'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"rcpt to|3A|",nocase'
+      - value: '"decode",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL Sendmail RCPT TO decode attempt"'
+      pcre: '"/^rcpt to\:\s*decode/ims"'
+      reference: cve,1999-0203
+      rev: '23'
+      service: smtp
+      sid: '664'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

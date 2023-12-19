@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/registerSession.py?"'
+      - value: '"proj="'
+      - value: '"&country="'
+      - value: '"&lang="'
+      - value: '"&channel="'
+      - value: '"source="'
+      - value: '"User-Agent|3a| NSIS_Inetc (Mozilla)"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_10_19
+      msg: '"ET MALWARE MSIL.Amiricil.gen HTTP Checkin"'
+      reference: md5,af0bbdf6097233e8688c5429aa97bbed
+      rev: '6'
+      sid: '2011677'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

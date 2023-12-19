@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Type|3A 20|text/plain"'
+      - value: '"MZ",depth 2'
+      - value: '"PE|00 00|",within 4,distance -64'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,policy security-ips alert,ruleset community
+      msg: '"INDICATOR-COMPROMISE Content-Type text/plain containing Portable Executable
+        data"'
+      reference: url,www.virustotal.com/en/file/fc25709c4e05dbfbcc6ae0cf8a7c06e80156ae05179203021838259aeda9801a/analysis/1461600547/
+      rev: '5'
+      service: ftp-data,http,imap,pop3
+      sid: '38619'
+      special_options:
+      - http_header
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

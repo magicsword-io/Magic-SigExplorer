@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 10080:10081
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Amanda",fast_pattern,nocase'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN Amanda client-version request"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '10'
+      sid: '634'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

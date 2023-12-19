@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET /i.php?i="'
+      - value: '"User-Agent|3a 20|Windows Installer|0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_28, deployment Perimeter,
+        former_category MALWARE, malware_family PurpleFox, signature_severity Major,
+        updated_at 2022_02_28
+      msg: '"ET TROJAN Win32/PurpleFox Related Activity (GET)"'
+      pcre: '"/Connection\x3a\x20[^\r\n]+\r\nAccept\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n\r\n$/H"'
+      reference: url,twitter.com/Max_Mal_/status/1498351091066589184
+      rev: '2'
+      sid: '2035313'
+      special_options:
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

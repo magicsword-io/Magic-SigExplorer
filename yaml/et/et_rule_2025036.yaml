@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"|41 00 00 00 85|"'
+      dsize: '69'
+      flow: established,to_client
+      flowbits: isset,ET.NetwireRAT.Client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_29, deployment Perimeter, former_category
+        TROJAN, malware_family Netwire_RAT, signature_severity Major, updated_at 2022_08_10
+      msg: '"ET TROJAN Netwire RAT Check-in 2"'
+      reference: url,www.circl.lu/pub/tr-23/
+      rev: '2'
+      sid: '2025036'
+      stream_size: server,<,72
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

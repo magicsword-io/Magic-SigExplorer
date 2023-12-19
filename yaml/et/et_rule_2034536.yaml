@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|29 20|leee Maxwe|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_11_23, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2022_04_18
+      msg: '"ET TROJAN W32/Snojan.BNQKZQH User-Agent"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x29\x20leee Maxwe/Hmi"'
+      reference: md5,83d2fa0e16b39ee2280dea9d8f89aa48
+      rev: '3'
+      sid: '2034536'
+      special_options:
+      - fast_pattern
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

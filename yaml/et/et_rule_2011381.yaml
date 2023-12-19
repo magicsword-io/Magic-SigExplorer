@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '"/refund_request.php?"'
+      - value: '"orderid="'
+      - value: '"INSERT"'
+      - value: '"INTO"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_09_28, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_02
+      msg: '"ET WEB_SPECIFIC_APPS iScripts MultiCart orderid Parameter INSERT INTO
+        SQL Injection Attempt"'
+      pcre: '"/INSERT.+INTO/Ui"'
+      reference: bugtraq,41377
+      rev: '3'
+      sid: '2011381'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

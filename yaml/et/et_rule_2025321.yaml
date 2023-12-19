@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"Host|3a 20|signin.eby.de."'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_02_07, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_08_24
+      msg: '"ET CURRENT_EVENTS Ebay Phishing Landing 2018-02-07"'
+      pcre: '"/^Host\x3a\x20signin\.eby\.de\.[a-z0-9]{15}\./Hmi"'
+      rev: '2'
+      sid: '2025321'
+      special_options:
+      - http_method
+      - http_header
+      threshold: type limit, track by_src, count 1, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

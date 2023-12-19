@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0e|seestatreading|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_08, deployment Perimeter, malware_family
+        Cobalt_Strike, signature_severity Major, updated_at 2023_06_08
+      msg: '"ET TROJAN Cobalt Strike Domain in DNS Lookup"'
+      reference: url,www.virustotal.com/gui/file/d662f84331fad63aa8a15638278506e240977b64c062c31424760a423832bbe2/details
+      rev: '1'
+      sid: '2046171'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

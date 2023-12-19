@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|3c|html|3e 3c|head|3e 3c|script|20|src|3d 27|"'
+      - value: '"Aes|2e|Ctr|2e|decrypt|28|"'
+      - value: '"document|2e|write|28|output|29|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2021_09_14, deployment Perimeter, former_category PHISHING, performance_impact
+        Low, signature_severity Minor, updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS Client Cloaking Javascript Observed"'
+      pcre: '"/^(?:[^0-9][a-zA-Z0-9_$]{1,254}),\s*(?:[^0-9][a-zA-Z0-9_$]{1,254}),\s*256\)\x3b/Ri"'
+      reference: url,unit42.paloaltonetworks.com/javascript-based-phishing/
+      rev: '1'
+      sid: '2033947'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

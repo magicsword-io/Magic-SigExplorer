@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: network-scan
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a| crimscanner/"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2020_05_04
+      msg: '"ET SCAN crimscanner User-Agent detected"'
+      reference: url,doc.emergingthreats.net/2010954
+      rev: '6'
+      sid: '2010954'
+      special_options:
+      - http_method
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '5'
+        value: '"/v?m="'
+      - value: '"&i="'
+      - value: '"Accept|3a 20|application/octet-stream,application/xhtml|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_10_01, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_10_01
+      msg: '"ET TROJAN SLOTHFULMEDIA RAT CnC (POST)"'
+      reference: md5,448838b2a60484ee78c2198f2c0c9c85
+      rev: '2'
+      sid: '2030960'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

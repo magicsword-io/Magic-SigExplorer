@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[8443,9090]'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"/servlet/ConsoleServlet?ActionType=ConsoleLog"'
+      - value: '"Content-Type|3a| text/xml|0d 0a|"'
+      - value: '"|3c 21|DOCTYPE"'
+      - value: '"http|3a|//127.0.0.1|3a|9090/servlet/ConsoleServlet?ActionType=ConfigServer&action=test_av&SequenceNum="'
+      - value: '"&Parameter="'
+      flow: established,to_server
+      metadata: created_at 2014_02_26, cve CVE_2013_5014, updated_at 2020_04_28
+      msg: '"ET WEB_SPECIFIC_APPS Symantec Endpoint Manager XXE RCE Attempt"'
+      reference: url,cxsecurity.com/issue/WLB-2014020199
+      rev: '3'
+      sid: '2018176'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

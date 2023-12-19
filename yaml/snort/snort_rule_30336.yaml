@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/b/index.php?id=",fast_pattern,nocase'
+      - value: '"&sent="'
+      - value: '"&notsent=",distance 0'
+      - value: '"&stat=",distance 0'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Linux.Trojan.Calfbot outbound connection"'
+      reference: url,www.welivesecurity.com/wp-content/uploads/2014/03/operation_windigo.pdf
+      rev: '2'
+      service: http
+      sid: '30336'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

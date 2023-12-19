@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '6'
+        value: '"DEBUG "'
+      - value: '"|0d 0a|Command|3a| "'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET SCAN DEBUG Method Request with Command"'
+      reference: url,doc.emergingthreats.net/2008312
+      rev: '3'
+      sid: '2008312'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

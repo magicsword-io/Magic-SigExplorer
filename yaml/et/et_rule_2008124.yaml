@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"NICK "'
+      - value: '"USA"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET TROJAN Likely Bot Nick in IRC (USA +..)"'
+      reference: url,doc.emergingthreats.net/2008124
+      rev: '5'
+      sid: '2008124'
+      within: '10'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

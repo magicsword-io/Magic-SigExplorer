@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -7
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"lk.tc"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_04, deployment Perimeter, former_category
+        INFO, signature_severity Informational, updated_at 2022_04_04
+      msg: '"ET INFO Observed URL Shortener Domain (lk .tc in TLS SNI)"'
+      pcre: '"/^(?:\x00\x05|.\x2e)lk\.tc/R"'
+      rev: '2'
+      sid: '2035743'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"ISSPNGRQ",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP ISS Pinger"'
+      rev: '8'
+      sid: '465'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

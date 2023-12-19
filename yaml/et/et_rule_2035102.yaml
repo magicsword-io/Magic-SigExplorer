@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"|2f|login|2f|doResetPassword|2e|html"'
+      - value: '"super|40|velocloud|2e|net"'
+      - value: '"|7b|CLEAR|7b|"'
+      - value: '"logicalId"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_04, cve CVE_2020_4001, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_02_04
+      msg: '"ET EXPLOIT VMware SD-WAN Orchestrator Authentication Bypass (CVE-2020-4001)"'
+      reference: cve,2020-4001
+      rev: '2'
+      sid: '2035102'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

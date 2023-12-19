@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"<title>Log4J Administration</title>"'
+      - value: '"Change Log Level To"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2014_03_04, former_category WEB_SERVER, updated_at 2019_10_08
+      msg: '"ET WEB_SERVER log4jAdmin access from non-local network Page Body (can
+        modify logging levels)"'
+      reference: url,gist.github.com/iamkristian/943918
+      rev: '1'
+      sid: '2018203'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

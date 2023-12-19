@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/awstats/awstats.pl?config="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2008_3714, updated_at 2020_09_10
+      msg: '"ET WEB_SPECIFIC_APPS Possible AWStats awstats.pl Cross-Site Scripting
+        Attempt"'
+      pcre: '"/(onmouse|onkey|onload=|onblur=|ondragdrop=|onclick=|alert|<script|<img|<src)/Ui"'
+      reference: url,doc.emergingthreats.net/2010082
+      rev: '3'
+      sid: '2010082'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

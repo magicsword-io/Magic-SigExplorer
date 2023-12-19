@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Mailer By ME</title>"'
+      - value: '"<form id=|22|form1|22 20|name=|22|form1|22 20|method=|22|post|22|"'
+      - value: '"<input type=|22|hidden|22 20|name=|22|vai|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_10_19, deployment Perimeter, signature_severity Major, tag Phishing,
+        updated_at 2020_10_19
+      msg: '"ET CURRENT_EVENTS Generic Mailer Accessed on External Compromised Server"'
+      rev: '2'
+      sid: '2031029'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        offset: '4'
+        value: '"|ff|SMB|2f 00 00 00 00|"'
+      - value: '"NTLMSSP|00 03 00 00 00 01 00 01 00|"'
+      - value: '"|00 00 00 00 49 00 00 00|"'
+      - value: '"|00 00 00 00 48 00 00 00|"'
+      - value: '"|00 00 00 00 48 00 00 00|"'
+      - value: '"|00 00 00 00 48 00 00 00|"'
+      - value: '"|00 00 00 00 49 00 00 00|"'
+      - value: '"|00 00 00 00 00 00 00 00 00|"'
+      distance: '4'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: attack_target SMB_Server, created_at 2017_04_17, deployment Internal,
+        former_category EXPLOIT, signature_severity Critical, updated_at 2022_05_03
+      msg: '"ET EXPLOIT Possible ECLIPSEDWING RPCTOUCH MS08-067"'
+      rev: '3'
+      sid: '2024214'
+      special_options:
+      - fast_pattern
+      within: '9'
+    protocol: tcp
+    source:
+      network: any
+      port: any

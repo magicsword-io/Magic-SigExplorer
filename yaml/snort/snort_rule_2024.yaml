@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,4,relative,align
+      byte_test: 4,>,128,0,relative
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 86 AB|",depth 4,offset 16'
+      - value: '"|00 00 00 01|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC RQUOTA getquota overflow attempt TCP"'
+      reference: cve,1999-0974
+      rev: '13'
+      sid: '2024'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

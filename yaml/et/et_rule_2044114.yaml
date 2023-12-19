@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '427'
+    details:
+      byte_jump: 2,19,relative,little
+      byte_test: 2,>=,256,0,relative
+      classtype: attempted-admin
+      contents:
+      - depth: '2'
+        value: '"|02 08|"'
+      - value: '"|01|:/"'
+      dsize: '>280'
+      flow: established,to_server
+      metadata: affected_product VMware, attack_target Server, created_at 2023_02_03,
+        cve CVE_2021_21974, deployment Perimeter, deployment Internal, deployment
+        Datacenter, former_category EXPLOIT, performance_impact Low, confidence High,
+        signature_severity Major, updated_at 2023_02_03
+      msg: '"ET EXPLOIT VMWare ESXi 6.7.0 OpenSLP Remote Code Execution Attempt -
+        Directory Agent Advertisement Heap Overflow (CVE-2021-21974)"'
+      reference: cve,2021-21974
+      rev: '1'
+      sid: '2044114'
+    protocol: tcp
+    source:
+      network: any
+      port: any

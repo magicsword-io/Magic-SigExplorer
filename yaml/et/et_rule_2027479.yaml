@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".aspx"'
+      - value: '"multipart|2f|form-data|3b|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b|"'
+      - value: '"TREK"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_06_17, deployment Perimeter, former_category MALWARE, malware_family
+        TREKX, performance_impact Low, signature_severity Major, tag Chafer, tag APT39,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN Chafer Win32/TREKX Uploading to CnC"'
+      pcre: '"/^[\x20-\x7e\r\n]{0,13}[^\x20-\x7e\r\n]/Rs"'
+      reference: url,securityintelligence.com/posts/observations-of-itg07-cyber-operations/
+      rev: '2'
+      sid: '2027479'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

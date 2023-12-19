@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"Mediapartners-Google"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2021_05_18, deployment Perimeter,
+        former_category SCAN, signature_severity Informational, tag WebCrawler, updated_at
+        2022_05_03, mitre_tactic_id TA0043, mitre_tactic_name Reconnaissance, mitre_technique_id
+        T1593, mitre_technique_name Search_Open_Websites
+      msg: '"ET SCAN Google Webcrawler User-Agent (Mediapartners-Google)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Mediapartners-Google/Hmi"'
+      rev: '1'
+      sid: '2032978'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

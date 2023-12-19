@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/wp-content/plugins/yousaytoo-auto-publishing-plugin/yousaytoo.php?"'
+      - value: '"submit="'
+      flow: established,to_server
+      metadata: affected_product Wordpress, affected_product Wordpress_Plugins, attack_target
+        Web_Server, created_at 2012_04_16, deployment Datacenter, signature_severity
+        Major, tag Wordpress, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS Wordpress yousaytoo-auto-publishing plugin submit
+        Cross-Site Scripting Attempt"'
+      pcre: '"/submit\x3d +(script|onmouse[a-z]+|onkey[a-z]+|onload|onunload|ondragdrop|onblur|onfocus|onclick|ondblclick|onsubmit|onreset|onselect|onchange|style\x3D)/Ui"'
+      reference: url,packetstormsecurity.org/files/108470/wpystap-xss.txt
+      rev: '2'
+      sid: '2014589'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

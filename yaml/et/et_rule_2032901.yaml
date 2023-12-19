@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS,$SMTP_SERVERS]'
+      port: '[25,26,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"MAIL|20|FROM"'
+      - value: '"AUTH="'
+      - value: '"+0A"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target SMTP_Server, created_at 2021_05_04, cve CVE_2020_28021,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, updated_at 2021_05_04
+      msg: '"ET EXPLOIT Exim New-Line Injection into Spool Header File Inbound M2
+        (CVE-2020-28021)"'
+      pcre: '"/^[^\+]+(?:\+[A-F0-9]{2}){4,}/R"'
+      reference: cve,2020-28021
+      rev: '2'
+      sid: '2032901'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

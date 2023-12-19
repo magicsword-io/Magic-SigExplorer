@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1434'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|04|",depth 1'
+      - value: '"Qh.dll",fast_pattern,nocase'
+      - value: '"sock"'
+      - value: '"send"'
+      flow: to_server
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-OTHER SQL Slammer worm propagation attempt inbound"'
+      reference: cve,2002-0649
+      rev: '2'
+      sid: '28555'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

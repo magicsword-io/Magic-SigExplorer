@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Updates downloader"'
+      flow: to_server,established
+      metadata: created_at 2013_11_16, updated_at 2020_08_17
+      msg: '"ET TROJAN Downloader (P2P Zeus dropper UA)"'
+      rev: '4'
+      sid: '2017726'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

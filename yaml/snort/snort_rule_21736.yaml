@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".jif",fast_pattern,nocase'
+      - value: '"Content-Disposition: attachment|3B|"'
+      - value: '"filename=",nocase'
+      flow: to_client,established
+      flowbits: noalert
+      metadata: policy balanced-ips alert,policy max-detect-ips alert,policy security-ips
+        alert,ruleset community
+      msg: '"FILE-IDENTIFY JPG file attachment detected"'
+      pcre: '"/filename=[^\n]*\x2ejif/i"'
+      rev: '12'
+      service: imap,pop3
+      sid: '21736'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[110,143]'

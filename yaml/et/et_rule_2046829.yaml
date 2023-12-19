@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/m/momoveto"'
+      - value: '"st="'
+      - value: '"|22 3e 3c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2023_07_18, deployment Perimeter,
+        deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence Medium, signature_severity Major, updated_at 2023_07_18
+      msg: '"ET WEB_SPECIFIC_APPS Zimbra XSS via momoveto"'
+      reference: url,twitter.com/_JohnHammond/status/1679606263162994689/
+      rev: '1'
+      sid: '2046829'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

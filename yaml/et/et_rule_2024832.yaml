@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|00 00 0b|formyip.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2017_10_10, former_category POLICY, updated_at 2022_03_24
+      msg: '"ET POLICY Observed IP Lookup Domain (formyip .com in TLS SNI)"'
+      rev: '1'
+      sid: '2024832'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

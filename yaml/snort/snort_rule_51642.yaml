@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/link.php?",depth 13,fast_pattern'
+      - value: '"User-Agent: curl/"'
+      - value: '!"Referer",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Osx.Trojan.Gmera variant outbound connection"'
+      pcre: '"/^\/link\.php\?.{4,20}&\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"'
+      reference: url,www.virustotal.com/en/file/18e1db7c37a63d987a5448b4dd25103c8053799b0deea5f45f00ca094afe2fe7/analysis/
+      rev: '1'
+      service: http
+      sid: '51642'
+      special_options:
+      - http_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

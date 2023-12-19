@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|00 00 01|"'
+      - value: '"|00 65 00 0a 95 3a 10 8a 09 25 4e d7 94 5e e9 70 59 e2 95 79|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2015_09_25, former_category MALWARE, updated_at 2020_06_01
+      msg: '"ET TROJAN XcodeGhost CnC M2"'
+      rev: '1'
+      sid: '2021832'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

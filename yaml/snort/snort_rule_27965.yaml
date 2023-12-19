@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"insert into avs (id, pc,data,ref,country , id_user, mostrar)values(",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Eupuds variant connection"'
+      reference: url,www.virustotal.com/en/file/09f4611c05dcff55d4471b90d41b0fd3e6d3289f71321301751008dab75ded4d/analysis/
+      rev: '3'
+      service: http
+      sid: '27965'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

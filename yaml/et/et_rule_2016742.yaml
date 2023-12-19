@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '" filename=|22|%2e/files/"'
+      flow: established,to_client
+      metadata: created_at 2013_04_09, former_category MALWARE, updated_at 2022_04_18
+      msg: '"ET TROJAN Possible W32/Citadel Download From CnC Server Self Referenced
+        /files/ attachment"'
+      pcre: '"/\sfilename=\x22\%2e\/files\/[^\x22\x2f\r\n]+?\x22\r\n/H"'
+      reference: url,seifreed.es/docs/Citadel%20Trojan%20Report_eng.pdf
+      rev: '8'
+      sid: '2016742'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

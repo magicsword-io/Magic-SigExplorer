@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|gitea|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_06_09, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_06_09
+      msg: '"ET INFO Self-Hosted Git Service Domain in DNS Lookup (gitea .com)"'
+      rev: '1'
+      sid: '2036938'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

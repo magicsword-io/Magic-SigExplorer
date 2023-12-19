@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"URL=tel|3a|"'
+      - value: '"sms|3a|"'
+      - value: '"setTimeout"'
+      - value: '"window"'
+      - value: '"for"'
+      flow: established,from_server
+      metadata: affected_product iOS, attack_target Mobile_Client, created_at 2016_11_11,
+        deployment Perimeter, updated_at 2016_11_11
+      msg: '"ET MOBILE_MALWARE Possible iOS WebView Auto Dialer 1"'
+      pcre: '"/^\s*?\(\s*?(?P<var>[^\x3d\x3b\)\s]+)\s*?=\s*?0\s*?\x3b\s*?(?P=var)\s*?\<\s*?(?:0x)?\d{4,}\s*?\x3b\s*?(?P=var)\+\+\s*?\)\s*?\x7b\s*?(?P<var2>[^\x3d\x3b\)\s]+)\s*?=\s*?(?P=var2)\s*?\+\s*?[\x22\x27]\d+[\x22\x27]/Rsi"'
+      reference: url,www.mulliner.org/blog/blosxom.cgi/security/ios_WebView_auto_dialer.html
+      rev: '1'
+      sid: '2023500'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

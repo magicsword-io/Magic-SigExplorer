@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"Accept-Language|3a| "'
+      - value: '!"Referer|3a| "'
+      - value: '"|20|MSIE|20|"'
+      fast_pattern: only
+      flow: to_server,established
+      flowbits: noalert
+      metadata: created_at 2014_08_22, updated_at 2020_08_28
+      msg: '"ET TROJAN Probable OneLouder downloader (Zeus P2P)"'
+      pcre: '"/\/\d+$/U"'
+      rev: '5'
+      sid: '2018983'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      urilen: 2<>6
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

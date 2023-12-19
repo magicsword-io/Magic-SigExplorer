@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?"'
+      - value: '"=1&type=filter"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_13, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2019_12_13
+      msg: '"ET TROJAN Win32/Unk.BrowserStealer Data Exfil M3"'
+      pcre: '"/\.php\?(?:-[0-9]+|[A-F0-9]{32})=1&type=filter$/Usi"'
+      reference: md5,32642964fff0c97179d75086f515f5fe
+      rev: '2'
+      sid: '2029149'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '10991'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Linux|20|",depth 6,offset 17'
+      flow: to_server,established
+      isdataat: '!401'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Linux.Trojan.Elknot outbound connection"'
+      pcre: '"/Linux\x20\d\.[0-9]{1,2}\.[0-9]{1,2}/"'
+      reference: url,www.virustotal.com/en/file/13f13f4e214c2755235ba36643e4ab08d4ea679da008397b7a540e0d45e70ab2/analysis/
+      rev: '4'
+      sid: '30566'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

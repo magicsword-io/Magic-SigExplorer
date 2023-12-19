@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"() {"'
+      - value: '"}",within 25'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-OTHER Bash environment variable injection attempt"'
+      pcre: '"/^[\w\x2d\x5f]+?\x3a\s*?\x28\x29\s\x7b/im"'
+      reference: cve,2014-7169
+      rev: '2'
+      service: smtp
+      sid: '32366'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

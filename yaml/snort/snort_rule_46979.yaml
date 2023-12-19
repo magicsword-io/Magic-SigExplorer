@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: <10
+      classtype: misc-activity
+      contents:
+      - value: '"Host: "'
+      - value: '"|0D 0A|",within 14'
+      - value: '"OPTIONS"'
+      - value: '"User-Agent: Microsoft Office "'
+      - value: '"Discovery|0D 0A|",within 25'
+      - value: '!"Accept"'
+      - value: '!"Referer|3A|"'
+      - value: '!"Cookie|3A|"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-COMPROMISE Microsoft Office Discovery User-Agent to a potential
+        URL shortener service"'
+      reference: url,virustotal.com/en/file/d615a205d92898896b0f553a027ffd9b7b7cde0c29ebe0b1f9364e1cf2831236/analysis/
+      rev: '2'
+      service: http
+      sid: '46979'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

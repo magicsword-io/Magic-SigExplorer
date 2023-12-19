@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '!"Referer|3a 20|"'
+      - depth: '2'
+        value: '"v="'
+      - value: '"&c="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_03_04, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_28,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Qakbot.Bot Version 8 CnC Beacon"'
+      pcre: '"/^\/[b-u][A-Za-z0-9]{6,25}\.php$/U"'
+      reference: md5,749a7bf2ad84212bd78e46d240a4f434
+      rev: '2'
+      sid: '2018204'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      urilen: 7<>32
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '0'
+        value: '"GET /api/push?token=TPRI&msg="'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - value: '"Version|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_09_19, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_09_19
+      msg: '"ET TROJAN Win32/Covagent Checkin"'
+      reference: md5,61e41ce10b04124f590524c79f8a0fe7
+      rev: '1'
+      sid: '2038901'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

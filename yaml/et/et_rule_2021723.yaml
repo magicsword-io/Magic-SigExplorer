@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/r.php?"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - depth: '12'
+        value: '"User-Agent|3a 20|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_08_27, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_10_05,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN AlphaCrypt CnC Beacon 3"'
+      pcre: '"/\/r\.php\?[A-F0-9]+=?$/U"'
+      reference: md5,0a4d0e5d0b69560414bbd20127bd8176
+      rev: '4'
+      sid: '2021723'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      urilen: '>250'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

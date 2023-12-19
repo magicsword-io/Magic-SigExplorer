@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: network-scan
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|allports|07|exposed"'
+      distance: '1'
+      metadata: created_at 2021_03_17, updated_at 2021_03_17
+      msg: '"ET SCAN DNS Query for allports.exposed"'
+      reference: url,blackhillsinfosec.com/poking-holes-in-the-firewall-egress-testing-with-allports-exposed/
+      rev: '2'
+      sid: '2032091'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"img="'
+      - value: '"&name="'
+      flow: established,to_server
+      flowbits: set,ET.slightpulseM2
+      metadata: attack_target Server, created_at 2021_05_05, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2021_05_05
+      msg: '"ET TROJAN [FIREEYE] SLIGHTPULSE Webshell Activity M2 (set) M1"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/04/suspected-apt-actors-leverage-bypass-techniques-pulse-secure-zero-day.html
+      rev: '2'
+      sid: '2032910'
+      special_options:
+      - http_method
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

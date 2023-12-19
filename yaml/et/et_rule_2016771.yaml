@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"set_url "'
+      - value: '"|0d 0a|data_before|0d 0a|"'
+      - value: '"|0d 0a|data_end|0d 0a|"'
+      - value: '"|0d 0a|data_inject|0d 0a|"'
+      - value: '"|0d 0a|data_end|0d 0a|"'
+      - value: '"|0d 0a|data_after|0d 0a|"'
+      - value: '"|0d 0a|data_end|0d 0a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2013_04_19, former_category MALWARE, updated_at 2013_04_19
+      msg: '"ET TROJAN Win32/Enchanim C2 Injection Download"'
+      reference: url,www.seculert.com/blog/2013/04/magic-persistent-threat.html
+      rev: '4'
+      sid: '2016771'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

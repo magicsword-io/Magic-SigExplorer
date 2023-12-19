@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"E Fatal error, aborting.",fast_pattern,nocase'
+      - value: '"|3A| no such user"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE CVS invalid user authentication response"'
+      rev: '9'
+      sid: '2008'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '2401'

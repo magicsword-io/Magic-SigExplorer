@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<AD>"'
+      - value: '"<TIPAD>"'
+      - value: '"<POPUP>"'
+      - value: '"<REG>HKEY_LOCAL_MACHINE|5c|SOFTWARE|5c|Microsoft|5c|Windows|5c|CurrentVersion|5c|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2013_12_20, former_category MALWARE, updated_at 2013_12_20
+      msg: '"ET TROJAN W32/GMUnpacker.Downloader Download Instructions Response From
+        CnC"'
+      reference: md5,43e89125ad40b18d22e01f997da8929a
+      rev: '1'
+      sid: '2017891'
+      special_options:
+      - file_data
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Clientx|2c 20|Version="'
+      - value: '"ProClient.Data"'
+      - value: '"data|05|bytes"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_09_10, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2019_09_10
+      msg: '"ET TROJAN [TGI] BlackRAT Checkin"'
+      reference: md5,7aa313d007a538f7453a0f0f3b76ba1f
+      rev: '2'
+      sid: '2028564'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

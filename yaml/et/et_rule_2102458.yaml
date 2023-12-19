@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '4'
+        value: '"YMSG"'
+      - depth: '2'
+        offset: '10'
+        value: '"|00 98|"'
+      flow: from_server,established
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL CHAT Yahoo IM successful chat join"'
+      rev: '5'
+      sid: '2102458'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '5050'

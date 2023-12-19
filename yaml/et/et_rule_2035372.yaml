@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"J1c2VybmFtZV9hdHRyaWJ1dGUiO"'
+      - depth: '14'
+        value: '"/index_sso.php"'
+      - value: '"zbx_session="'
+      - value: '"J1c2VybmFtZV9hdHRyaWJ1dGUiO"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2022_03_02, cve CVE_2022_23131, updated_at 2022_03_02
+      msg: '"ET EXPLOIT Zabbix v5.4.0 - 5.4.8 SSO/SALM Auth Bypass (CVE-2022-23131)
+        M2"'
+      pcre: '"/(?:InNhbWxfZGF0YS|JzYW1sX2RhdGEi|ic2FtbF9kYXRhI)/C"'
+      reference: cve,2022-23131
+      rev: '2'
+      sid: '2035372'
+      special_options:
+      - http_uri
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: any
+      port: any

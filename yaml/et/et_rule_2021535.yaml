@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Document Shared</title>"'
+      - value: '"name=|22|GENERATOR|22 22|>"'
+      - value: '"name=|22|HOSTING|22 22|>"'
+      - value: '"Login with your email"'
+      - value: '"Choose your email provider"'
+      distance: '0'
+      fast_pattern: 10,20
+      flow: to_client,established
+      metadata: created_at 2015_07_27, former_category CURRENT_EVENTS, updated_at
+        2022_03_17
+      msg: '"ET CURRENT_EVENTS Google Drive Phishing Landing M1 July 24 2015"'
+      rev: '2'
+      sid: '2021535'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"= unescape|28|"'
+      - value: '"|5C|u"'
+      - value: '"|5C|u"'
+      flow: established,to_client
+      metadata: created_at 2011_03_22, updated_at 2011_03_22
+      msg: '"ET SHELLCODE Unescape Variable Unicode Shellcode"'
+      pcre: '"/var\x20[a-z,0-9]{1,30}\x20\x3D\x20unescape\x28.\x5Cu[a-f,0-9]{2,4}\x5Cu[a-f,0-9]{2,4}/i"'
+      reference: url,www.symantec.com/avcenter/reference/evolving.shell.code.pdf
+      rev: '1'
+      sid: '2012535'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

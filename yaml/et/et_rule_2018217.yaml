@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".serveblog.net"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_05, updated_at 2020_09_23
+      msg: '"ET INFO HTTP Connection To DDNS Domain serveblog.net"'
+      pcre: '"/Host\x3A[^\r\n]*\x2serveblog\x2Enet/H"'
+      reference: url,isc.sans.edu/diary/Fiesta!/17739
+      rev: '1'
+      sid: '2018217'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

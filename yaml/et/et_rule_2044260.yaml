@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"WindowsPowerShell/"'
+      - depth: '34'
+        value: '"|0D 0A 0D 0A 20 20 20 20|Directory|3a 20|C|3a 5c|Users|5c|admin|5c|"'
+      - value: '"|0d 0a|Mode|20 20|"'
+      - value: '"|20 20 20|LastWriteTime|20 20 20 20|"'
+      - value: '"| 20 20|Length|20|Name|20 20|"'
+      - value: '"Authorization"'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_21, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, signature_severity Major, updated_at 2023_02_21
+      msg: '"ET TROJAN Villain C2 Framework CnC Exfil (POST)"'
+      reference: md5,c08cd421d6f47dcaa2c30395ddf057d8
+      rev: '1'
+      sid: '2044260'
+      special_options:
+      - http_method
+      - http_header
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

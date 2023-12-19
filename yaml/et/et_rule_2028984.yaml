@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '14'
+        value: '"|00|<EOM>Windows|20|"'
+      - value: '"<EOM>"'
+      - value: '"<EOM>"'
+      - value: '"<EOM>"'
+      - value: '"<EOF>"'
+      distance: '0'
+      dsize: <250
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_15, deployment Perimeter, former_category
+        MALWARE, malware_family 1xxbot, signature_severity Major, updated_at 2022_03_24
+      msg: '"ET TROJAN Win32/1xxbot CnC Checkin"'
+      reference: md5,9eb50c6cdb59d11b01ca9f069e8ba79d
+      rev: '2'
+      sid: '2028984'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

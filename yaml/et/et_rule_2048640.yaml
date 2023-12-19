@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/home.sel"'
+      flow: established,to_server
+      metadata: affected_product Schweitzer_Engineering_Laboratories_SEL_Series, attack_target
+        ICS, created_at 2023_10_18, deployment Perimeter, deployment Internal, former_category
+        SCADA, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_10_18
+      msg: '"ET SCADA [nsacyber/ELITEWOLF] Schweitzer Engineering Laboraties SEL-series
+        Possible Unauthorized Access - Request for home.sel"'
+      reference: url,github.com/nsacyber/ELITEWOLF
+      rev: '1'
+      sid: '2048640'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

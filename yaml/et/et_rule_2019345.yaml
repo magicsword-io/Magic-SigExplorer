@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_extract: 1,0,size,relative
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 00 00|"'
+      - value: '!"|00|"'
+      - value: '"|00|"'
+      distance: size
+      flow: from_server,established
+      flowbits: isset,FakeIEMinimal
+      metadata: created_at 2014_10_03, former_category CURRENT_EVENTS, updated_at
+        2014_10_03
+      msg: '"ET CURRENT_EVENTS Possible CryptoLocker TorComponent DL"'
+      pcre: '"/^.\x00\x00\x00[a-z0-9]+?\x00/s"'
+      reference: url,malware-traffic-analysis.net/2014/10/01/index.html
+      rev: '1'
+      sid: '2019345'
+      special_options:
+      - file_data
+      within: '1'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

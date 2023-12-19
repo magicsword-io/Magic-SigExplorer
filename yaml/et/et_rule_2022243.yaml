@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"|55 73 65 72 2d 41 67 65 6e 74 3a 20 63 6f 6d 6d 69 78|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2015_12_11, updated_at 2020_10_05
+      msg: '"ET SCAN COMMIX Command injection scan attempt"'
+      reference: url,github.com/stasinopoulos/commix/blob/master/README.md
+      rev: '1'
+      sid: '2022243'
+      special_options:
+      - http_header
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

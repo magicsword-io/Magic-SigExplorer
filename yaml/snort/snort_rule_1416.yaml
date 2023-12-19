@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: 255.255.255.255
+      port: '162'
+    details:
+      classtype: attempted-recon
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-SNMP broadcast trap"'
+      reference: cve,2002-0013
+      rev: '18'
+      service: snmp
+      sid: '1416'
+    protocol: udp
+    source:
+      network: any
+      port: any

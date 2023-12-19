@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<script",nocase'
+      - value: '"ActiveXObject",nocase'
+      - value: '"WScript.Shell",fast_pattern,nocase'
+      - value: '"p o w e r s h e l l",nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Dropper malicious script download attempt"'
+      reference: url,virustotal.com/#/file/76afa767b0374bde95d9a93074aceaec88228ba234caa13dd01313076baf02ee/detection
+      rev: '1'
+      service: ftp-data,http,imap,pop3
+      sid: '46742'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        value: '"GET /pages/"'
+      - value: '"/"'
+      distance: '13'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_02_10, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, performance_impact Low, signature_severity
+        Informational, updated_at 2021_12_23
+      msg: '"ET POLICY Observed KnowBe4/Popcorn Training Simulated Phish Landing Page
+        M5"'
+      pcre: '"/^[A-Za-z0-9+\/]{50,}={0,2} HTTP\//R"'
+      rev: '3'
+      sid: '2031609'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 1, seconds 120
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|mediadownload|05|space|00|"'
+      distance: '0'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2019_06_19, deployment Perimeter, former_category MOBILE_MALWARE, malware_family
+        Android_SpyAgent, signature_severity Critical, tag Android, updated_at 2020_09_17
+      msg: '"ET MOBILE_MALWARE Android/Spy.Agent.ANA (mediadownload .space in DNS
+        Lookup)"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/mobile-cyberespionage-campaign-bouncing-golf-affects-middle-east/
+      rev: '1'
+      sid: '2027493'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

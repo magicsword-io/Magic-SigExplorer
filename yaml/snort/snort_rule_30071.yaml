@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '21'
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/android/sms/ping.php",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|Apache-HttpClient|2F|"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER ANDR.Trojan.iBanking outbound connection attempt"'
+      reference: url,www.virustotal.com/en/file/38f6fccfc8a31306c0a03cad6908c148e8506fd70ce03165fd89e18113b68e02/analysis/
+      rev: '2'
+      service: http
+      sid: '30071'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

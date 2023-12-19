@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"uname"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER successful gobbles ssh exploit uname"'
+      reference: nessus,11031
+      rev: '17'
+      sid: '1811'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '22'

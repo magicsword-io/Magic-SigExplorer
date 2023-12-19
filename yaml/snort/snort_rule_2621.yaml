@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"dbms_repcat_sna_utl.register_flavor_change",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE dbms_repcat_sna_utl.register_flavor_change buffer overflow
+        attempt"'
+      pcre: '"/\(\s*(\x27[^\x27]{1024,}|\x22[^\x22]{1024,})/is"'
+      reference: url,www.appsecinc.com/Policy/PolicyCheck97.html
+      rev: '5'
+      sid: '2621'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

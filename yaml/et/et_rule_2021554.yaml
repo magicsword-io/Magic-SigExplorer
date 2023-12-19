@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"Content-Type|3a 20|application/xml"'
+      - depth: '21'
+        value: '"<?xml version=|22|1.0|22|?>"'
+      - value: '"10a7d030-1a61-11e3-beea-001c42e2a08b"'
+      distance: '24'
+      flow: to_server,established
+      metadata: created_at 2015_07_31, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Potao CnC"'
+      rev: '1'
+      sid: '2021554'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

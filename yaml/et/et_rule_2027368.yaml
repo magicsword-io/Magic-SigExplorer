@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[$HTTP_PORTS,8082]'
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '27'
+        value: '"POST /servlet/UploadServlet"'
+      - value: '"Destination-Dir|3a 20|tftpRoot"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b|"'
+      - value: '"String(|22|/bin/"'
+      - value: '"new Socket(|22|"'
+      - value: '"Runtime.getRuntime().exec("'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      metadata: attack_target Server, created_at 2019_05_20, cve CVE_2019_1821, deployment
+        Perimeter, deployment Datacenter, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET WEB_SPECIFIC_APPS Cisco Prime Infrastruture RCE - CVE-2019-1821"'
+      reference: url,tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190515-pi-rce
+      rev: '2'
+      sid: '2027368'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

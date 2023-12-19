@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - depth: '4'
+        value: '"|01 01 00 44|"'
+      - value: '"|00 01 00 08|"'
+      distance: '16'
+      metadata: created_at 2014_08_07, updated_at 2014_08_07
+      msg: '"ET INFO Session Traversal Utilities for NAT (STUN Binding Response)"'
+      reference: url,tools.ietf.org/html/rfc5389
+      rev: '2'
+      sid: '2018908'
+      threshold: type limit, track by_src, count 1, seconds 60
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

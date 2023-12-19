@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Java/1."'
+      flow: established,to_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_10_17, former_category EXPLOIT_KIT, updated_at 2020_09_13
+      msg: '"ET CURRENT_EVENTS Magnitude EK (formerly Popads) Java Exploit 32-32 byte
+        hex java payload request Oct 16 2013"'
+      pcre: '"/^\/(?:[\/_]*?[a-f0-9][\/_]*?){64}$/U"'
+      rev: '8'
+      sid: '2017603'
+      special_options:
+      - http_header
+      urilen: '>64'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '2021'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '40'
+        value: '"|5b bf cd bb a7 b6 cb 5d 0d 0a c3 fc c1 ee 3d c9 cf cf df cd a8 d6
+          aa 0d 0a cd e2 cd f8 49 50 3d|"'
+      - value: '"|0d 0a bc c6 cb e3 bb fa c3 fb b3 c6 3d|"'
+      - value: '"|0d 0a b2 d9 d7 f7 cf b5 cd b3 3d|"'
+      - value: '"|0d 0a bb fa c6 f7 c2 eb 3d|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_23, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, confidence High, signature_severity Minor,
+        updated_at 2023_03_23
+      msg: '"ET MALWARE Win32/Packed.FlyStudio.AA Checkin"'
+      reference: md5,339ed706f35500780ab3417025e44b59
+      rev: '1'
+      sid: '2044756'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 180, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5001'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|FF 01 00 00 00 00 01|"'
+      flow: to_server,established
+      isdataat: 512,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Bontago Game Server Nickname buffer overflow"'
+      reference: url,aluigi.altervista.org/adv/bontagobof-adv.txt
+      rev: '7'
+      sid: '3455'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

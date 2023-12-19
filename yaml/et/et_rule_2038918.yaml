@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"form-data|3b 20|name=|22|files|5b 5d 22 3b 20|"'
+      - value: '!"Referer|3a 20|"'
+      fast_pattern: 6,20
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_09_21, deployment Perimeter,
+        former_category MALWARE, malware_family Cryptbot, signature_severity Major,
+        updated_at 2022_09_21
+      msg: '"ET TROJAN Win32/Cryptbotv2 CnC Activity (POST) M1"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\n/Hm"'
+      reference: url,twitter.com/abuse_ch/status/1572477247780446209
+      rev: '1'
+      sid: '2038918'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

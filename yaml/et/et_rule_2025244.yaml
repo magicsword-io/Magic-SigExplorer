@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>AT&amp|3b|T - Login</title>"'
+      - value: '".php|22 20|method=|22|post|22 20|id=|22|LoginForm|22 20 20|focus=|22|userid|22
+          20|name=|22|LoginForm|22 20|type=|22|com.sbc.idm.igate_edam.forms.LoginFormBean|22|>"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_23, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_23
+      msg: '"ET CURRENT_EVENTS AT&T Phishing Landing 2018-01-23"'
+      rev: '3'
+      sid: '2025244'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

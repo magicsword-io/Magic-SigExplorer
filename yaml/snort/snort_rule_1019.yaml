@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"CiWebHitsFile=",nocase'
+      - value: '"CiRestriction=none",fast_pattern,nocase'
+      - value: '"ciHiliteType=Full",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS Malformed Hit-Highlighting Argument File Access Attempt"'
+      pcre: '"/CiWebHitsFile=\/?([^\r\n\x3b\&]*\.\.\/)?/i"'
+      reference: url,www.securityfocus.com/archive/1/43762
+      rev: '30'
+      service: http
+      sid: '1019'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

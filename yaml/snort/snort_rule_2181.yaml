@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|13|BitTorrent protocol",depth 20'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PUA-P2P BitTorrent transfer"'
+      rev: '8'
+      sid: '2181'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

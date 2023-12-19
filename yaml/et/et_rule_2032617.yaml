@@ -1,0 +1,51 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '11'
+        value: '"authmethod="'
+      - value: '"&locale="'
+      - value: '"&pagegentime="'
+      - value: '"&LOB="'
+      - value: '"&hiddenuri="'
+      - value: '"&usr_name="'
+      - value: '"&usr_password="'
+      distance: '0'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_31, deployment Perimeter, former_category
+        PHISHING, signature_severity Critical, tag Phishing, updated_at 2020_09_17,
+        mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Chase Phish 2016-10-31"'
+      pcre: '"/\.php$/U"'
+      rev: '1'
+      sid: '2032617'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

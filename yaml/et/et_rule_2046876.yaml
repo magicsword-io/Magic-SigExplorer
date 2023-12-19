@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/printing/register"'
+      - value: '"firstname"'
+      - value: '"lastname"'
+      - value: '"address"'
+      - value: '"city"'
+      - value: '"state"'
+      distance: '0'
+      metadata: affected_product Web_Browser_Plugins, attack_target Client_Endpoint,
+        created_at 2023_07_20, deployment Perimeter, former_category EXPLOIT, signature_severity
+        Major, tag XSS, updated_at 2023_07_20
+      msg: '"ET EXPLOIT Possible PaulPrinting CMS Cross-Site Scripting - Inbound"'
+      reference: url,seclists.org/fulldisclosure/2023/Jul/36
+      rev: '1'
+      sid: '2046876'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

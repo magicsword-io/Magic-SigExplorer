@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"wMKBUqjC7ZMG5A5g"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_02_18, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family JEUSD, performance_impact Low, signature_severity
+        Major, tag Lazarus, updated_at 2021_02_18
+      msg: '"ET TROJAN AppleJeus - JMT Trading CnC Activity (Windows Variant)"'
+      pcre: '"/^Content-Type\x3a\x20[^\r\n]+wMKBUqjC7ZMG5A5g/Hmi"'
+      reference: md5,48971e0e71300c99bb585d328b08bc88
+      rev: '2'
+      sid: '2031623'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

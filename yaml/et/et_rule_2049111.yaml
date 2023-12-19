@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -20
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"safemeeting.online"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_07, deployment Perimeter,
+        signature_severity Major, updated_at 2023_11_07, reviewed_at 2023_11_07
+      msg: '"ET TROJAN Observed Lazarus Domain (safemeeting .online in TLS SNI)"'
+      pcre: '"/^(?:\x00\x12|.\x2e)safemeeting\.online/R"'
+      reference: url,twitter.com/tiresearch1/status/1721811568814624831
+      rev: '1'
+      sid: '2049111'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/setup/setup-s/%u002e%u002e/%u002e%u002e/user-create.jsp"'
+      - value: '"csrf="'
+      - value: '"username="'
+      - value: '"password="'
+      - value: '"passwordConfirm="'
+      - value: '"isadmin=on"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2023_08_31, cve CVE_2023_32315, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_08_31, reviewed_at
+        2023_08_31
+      msg: '"ET WEB_SPECIFIC_APPS Openfire Authentication Bypass With RCE (CVE-2023-32315)"'
+      reference: cve,2023-32315
+      rev: '1'
+      sid: '2047862'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_raw_uri
+      - http_raw_uri
+      - http_raw_uri
+      - http_raw_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

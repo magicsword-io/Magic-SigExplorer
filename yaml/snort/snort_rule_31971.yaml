@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '>60'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".. HTTP/1.",fast_pattern,nocase'
+      - value: '"Connection|3A 20|Keep-Alive|0D 0A|"'
+      flow: to_server,established
+      flowbits: noalert
+      metadata: policy max-detect-ips alert,ruleset community
+      msg: '"EXPLOIT-KIT Astrum exploit kit multiple exploit download request"'
+      pcre: '"/\x2f[\w\x2d]*\x2e\x2e$/m"'
+      reference: url,malware.dontneedcoffee.com/2014/09/astrum-ek.html
+      rev: '9'
+      service: http
+      sid: '31971'
+      special_options:
+      - http_uri
+      - pkt_data
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"?q=7B226964223A22"'
+      - value: '"222C2268776964223A22"'
+      - value: '"227D"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept"'
+      - value: '!"User-Agent|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_01_05, deployment Perimeter, former_category
+        MALWARE, malware_family Jupyter, signature_severity Major, updated_at 2021_01_05
+      msg: '"ET TROJAN Jupyter Stealer Reporting System Information M2"'
+      reference: md5,a9c8b293fdb84ceb9478f8043ff19b71
+      rev: '2'
+      sid: '2031481'
+      special_options:
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

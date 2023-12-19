@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/exe.exe"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Suspicious exe.exe request - possible downloader/Oficla"'
+      pcre: '"/\/exe\.exe$/Ui"'
+      reference: url,doc.emergingthreats.net/2010741
+      rev: '4'
+      sid: '2010741'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

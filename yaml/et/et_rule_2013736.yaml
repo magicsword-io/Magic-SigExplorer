@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"<OBJECT "'
+      - value: '"classid"'
+      - value: '"CLSID"'
+      - value: '"3310FA24-A027-47B3-8C49-1091077317E9"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_10_04, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET SCADA Sunway ForceControl Activex Control Remote Code Execution Vulnerability
+        2"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*3310FA24-A027-47B3-8C49-1091077317E9/si"'
+      reference: bugtraq,49747
+      rev: '4'
+      sid: '2013736'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

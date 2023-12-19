@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| {"'
+      - value: '!"Host|3a| directory.gladinet.com|0d 0a|"'
+      - value: '!"ff.avast.com|0d 0a|"'
+      - value: '!"ispringsolutions.com|0d 0a|"'
+      - value: '!"cdn.download.comodo.com|0d 0a|"'
+      - value: '!"liveupdate.symantec.com|0d 0a|"'
+      - value: '!"liveupdate.norton.com|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2021_03_23
+      msg: '"ET MALWARE klm123.com Spyware User Agent"'
+      pcre: '"/User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}/iH"'
+      reference: url,doc.emergingthreats.net/2007616
+      rev: '15'
+      sid: '2007616'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

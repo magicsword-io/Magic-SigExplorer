@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - depth: '105'
+        value: '"service|3A|thc|3A 2F 2F|"'
+      - value: '"service|3A|thc"'
+      flags: PA
+      flow: to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Amap TCP Service Scan Detected"'
+      reference: url,doc.emergingthreats.net/2010371
+      rev: '2'
+      sid: '2010371'
+      within: '40'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"unescape|28|"'
+      - value: '"|5C|x"'
+      - value: '"|5C|x"'
+      - value: '"|5C|x"'
+      - value: '"|5C|x"'
+      distance: '2'
+      flow: established,to_client
+      metadata: created_at 2011_07_14, updated_at 2011_07_14
+      msg: '"ET SHELLCODE Unescape Hex Obfuscated Content"'
+      pcre: '"/unescape\x28(\x22|\x27)\x5Cx[a-f,0-9]{2}\x5Cx[a-f,0-9]{2}\x5Cx[a-f,0-9]{2}/smi"'
+      rev: '2'
+      sid: '2013272'
+      special_options:
+      - fast_pattern
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

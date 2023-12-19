@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/report.php?user_id="'
+      - value: '"&status="'
+      - value: '"&country_id="'
+      - value: '"User-Agent|3a| Windows Internet|0d 0a|"'
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2010_07_30, deployment Perimeter,
+        former_category ADWARE_PUP, updated_at 2020_08_31, mitre_tactic_id TA0009,
+        mitre_tactic_name Collection, mitre_technique_id T1005, mitre_technique_name
+        Data_from_local_system
+      msg: '"ET MALWARE Xpire.info Spyware Install Reporting"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=TrojanDownloader%3AWin32%2FZdesnado.AD&ThreatID=-2147454482
+      rev: '10'
+      sid: '2001472'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

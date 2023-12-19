@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/userlogin.php"'
+      - depth: '9'
+        value: '"username="'
+      - value: '"&password="'
+      - depth: '11'
+        value: '"POST|20|/rbfcu"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_10_31, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2022_10_31
+      msg: '"ET CURRENT_EVENTS Successful RBFCU Credential Phish 2022-10-31"'
+      pcre: '"/\/userlogin\.php$/U"'
+      reference: md5,56191863d2a45e93d84d647fc034927c
+      rev: '1'
+      sid: '2039608'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

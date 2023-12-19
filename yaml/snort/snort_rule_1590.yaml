@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/faqmanager.cgi?",nocase'
+      - value: '"toc=",distance 0,nocase'
+      - value: '"|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP faqmanager.cgi arbitrary file access attempt"'
+      reference: nessus,10837
+      rev: '18'
+      service: http
+      sid: '1590'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

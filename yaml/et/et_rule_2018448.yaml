@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/0001"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_05_05, former_category MALWARE, updated_at 2020_09_24
+      msg: '"ET TROJAN Sefnit Checkin"'
+      pcre: '"/^\/j\/[a-f0-9]{8}[\x2d\x5f]?[a-f0-9]{4}[\x2d\x5f]?[a-f0-9]{4}[\x2d\x5f]?[a-f0-9]{4}[\x2d\x5f]?[a-f0-9]{12}\/0001\/?$/U"'
+      reference: url,www.facebook.com/notes/protect-the-graph/sefnit-is-back/1448087102098103
+      rev: '3'
+      sid: '2018448'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

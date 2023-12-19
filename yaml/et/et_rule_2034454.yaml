@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/nia_munoz_monitoring_system/admin/uploads"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_13, cve CVE_2021_42671, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2021_11_13
+      msg: '"ET EXPLOIT Possible Engineers Online Portal System Access Control Bypass
+        (CVE-2021-42671)"'
+      reference: cve,2021-42671
+      rev: '1'
+      sid: '2034454'
+      special_options:
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

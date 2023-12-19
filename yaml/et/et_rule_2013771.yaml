@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '30'
+        value: '"Ypmw1Syv023QZD"'
+      flow: established,to_server
+      metadata: created_at 2011_10_14, former_category MALWARE, updated_at 2011_10_14
+      msg: '"ET TROJAN Win32.Cerberus RAT Checkin Outbound"'
+      reference: md5,76e084e9420bfaa31c0f0bf000f1c301
+      rev: '4'
+      sid: '2013771'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

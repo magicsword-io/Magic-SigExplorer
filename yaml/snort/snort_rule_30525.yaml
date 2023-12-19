@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[21,25,443,465,636,992,993,995,2484]'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|18 03 03 00 40|",depth 5'
+      flow: to_server,established
+      isdataat: '!69'
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-OTHER OpenSSL TLSv1.2 heartbeat read overrun attempt"'
+      reference: cve,2014-0160
+      rev: '4'
+      service: ssl
+      sid: '30525'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

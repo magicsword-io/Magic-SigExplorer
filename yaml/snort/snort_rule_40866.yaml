@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1040'
+    details:
+      byte_test: 4,>=,0x0264,4,big
+      classtype: attempted-user
+      contents:
+      - value: '"|01 01 00|",depth 3'
+      dsize: '>336'
+      flow: to_server
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-OTHER TP-Link TDDP SET_CONFIG type buffer overflow attempt"'
+      reference: url,www.coresecurity.com/advisories/tp-link-tddp-multiple-vulnerabilities
+      rev: '3'
+      sid: '40866'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

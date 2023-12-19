@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"document.body.appendChild(cobj)"'
+      - value: '"document.getElementById|28 22|suv|22 29|.innerHTML"'
+      - value: '"new|20|Array|28|"'
+      flow: from_server,established
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2010_11_06, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Firefox Interleaving document.write and appendChild Overflow
+        (POC SPECIFIC)"'
+      reference: url,blog.mozilla.com/security/2010/10/26/critical-vulnerability-in-firefox-3-5-and-firefox-3-6/
+      rev: '2'
+      sid: '2011893'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

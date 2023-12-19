@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9251'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|01 00 00 00|",depth 4'
+      - value: '"|7C|",distance 0'
+      - value: '"|09|",within 50'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER QNAP transcode server command injection attempt"'
+      reference: url,www.qnap.com/en-us/
+      rev: '3'
+      sid: '44971'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

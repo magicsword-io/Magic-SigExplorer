@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"550 5.7.1",depth 70'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"SERVER-MAIL SMTP relaying denied"'
+      reference: url,mail-abuse.org/tsi/ar-fix.html
+      rev: '17'
+      service: smtp
+      sid: '567'
+    protocol: tcp
+    source:
+      network: $SMTP_SERVERS
+      port: '25'

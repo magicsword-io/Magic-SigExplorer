@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"SELECT"'
+      - value: '"SLEEP|28|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2013_05_29, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_08_03
+      msg: '"ET WEB_SERVER SQL Injection Select Sleep Time Delay"'
+      pcre: '"/\bSELECT.*?\bSLEEP\x28/Ui"'
+      reference: url,pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet
+      rev: '2'
+      sid: '2016935'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

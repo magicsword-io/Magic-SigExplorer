@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '31'
+        value: '"/MID/32546678/dn.php?client_id="'
+      - value: '"&prefix="'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_25, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_03_25
+      msg: '"ET TROJAN Konni Related Activity"'
+      reference: md5,c578189efd31c06b494b78c168cf84dd
+      rev: '2'
+      sid: '2032329'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

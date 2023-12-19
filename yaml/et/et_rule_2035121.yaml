@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '15'
+        value: '"api.ipstack.com"'
+      - value: '"?access_key=5b9ed178f9687b4a92d196168c0282ca="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_27, deployment Perimeter, former_category
+        MALWARE, malware_family Molerats, signature_severity Major, updated_at 2021_12_27
+      msg: '"ET TROJAN TA402/Molerats External IP Lookup Activity"'
+      rev: '2'
+      sid: '2035121'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

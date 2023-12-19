@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get_file_info.php?id="'
+      - value: '"User-Agent|3a| tiny-dl"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2013_05_23, deployment Perimeter, former_category
+        ADWARE_PUP, malware_family Loadmoney, performance_impact Low, signature_severity
+        Minor, tag Loadmoney, updated_at 2020_08_31
+      msg: '"ET MALWARE Loadmoney.A Checkin 4"'
+      reference: url,www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=PUA:Win32/LoadMoney
+      rev: '3'
+      sid: '2024253'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

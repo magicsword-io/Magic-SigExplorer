@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|33 00|FCC"'
+      dsize: '5'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_09_30, deployment Perimeter, former_category
+        MALWARE, malware_family S400, signature_severity Major, tag RAT, updated_at
+        2021_09_30
+      msg: '"ET TROJAN S400 RAT Client Checkin"'
+      reference: md5,41ca8d5782ef5ac7a371b44f51dc48d9
+      rev: '1'
+      sid: '2034063'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

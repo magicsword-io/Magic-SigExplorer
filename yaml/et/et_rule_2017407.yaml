@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".getVersion"'
+      - value: '"|22|PGFwcGxld"'
+      - value: '"|22|PGFwcGxld"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_09_03, updated_at 2013_09_03
+      msg: '"ET CURRENT_EVENTS Sakura Landing with Applet Aug 30 2013"'
+      rev: '1'
+      sid: '2017407'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

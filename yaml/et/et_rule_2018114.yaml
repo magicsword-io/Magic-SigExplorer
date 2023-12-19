@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|5ji235jysrvwfgmb|05|onion|00|"'
+      distance: '0'
+      metadata: created_at 2014_02_12, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN DNS Query for Known Chewbacca CnC Server"'
+      reference: url,symantec.com/security_response/earthlink_writeup.jsp?docid=2013-121813-2446-99
+      rev: '3'
+      sid: '2018114'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

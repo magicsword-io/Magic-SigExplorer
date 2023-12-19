@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '7'
+        value: '"|2c 45 32 4d f1 38 55|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_10_24, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, updated_at
+        2020_08_24
+      msg: '"ET CURRENT_EVENTS Qtloader encrypted check-in Oct 19 M1"'
+      reference: md5,4f03e360be488a3811d40c113292bc01
+      rev: '3'
+      sid: '2024908'
+      special_options:
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

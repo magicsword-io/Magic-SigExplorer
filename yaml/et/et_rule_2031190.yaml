@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"|22|action|22 3a 22|"'
+      - value: '"|22 3a 5b 22 24 5c 5c|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2020_11_09, cve CVE_2020_10204, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category EXPLOIT, signature_severity
+        Major, updated_at 2020_11_09
+      msg: '"ET EXPLOIT Nexus Repository Manager EL Injection to RCE Inbound (CVE-2020-10204)"'
+      reference: cve,2020-10204
+      rev: '2'
+      sid: '2031190'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

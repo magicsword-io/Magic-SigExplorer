@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"GET"'
+      - value: '"/php.gp?ip"'
+      - value: '"User-Agent|3a 20|"'
+      - value: '"curl/"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_13, deployment Perimeter,
+        former_category HUNTING, performance_impact Low, signature_severity Informational,
+        updated_at 2023_11_13
+      msg: '"ET INFO curl UA Querying External IP (geoplugin .net)"'
+      pcre: '"/Host\x3a\x20(?:(www\.)?)geoplugin.net\r\n/Hm"'
+      reference: md5,d70405777ea19bb1e778ddffea8f8577
+      rev: '1'
+      sid: '2049166'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '10'
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

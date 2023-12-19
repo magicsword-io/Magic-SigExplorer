@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NICK New|7B|"'
+      flow: to_server,established
+      metadata: created_at 2013_05_14, updated_at 2013_05_14
+      msg: '"ET TROJAN Worm.Win32.Ngrbot.lof Join IRC channel"'
+      pcre: '"/^\S{2,3}\x2d(XP|2K3|VIS|2K8|W7|ERR)\w?\x2d\w+?\x7D\w+?\r\n?/Ri"'
+      reference: md5,dd05fcd2368d8d410a5b85e8d504a435
+      rev: '3'
+      sid: '2016849'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: 1024:65535
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '3'
+        value: '"|00 00 04|"'
+      - value: '"|00 00 00 00 00|"'
+      - value: '"|02 05 21 04|"'
+      distance: '4'
+      dsize: '80'
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Vuze BT UDP Connection (3)"'
+      reference: url,doc.emergingthreats.net/2010142
+      rev: '4'
+      sid: '2010142'
+      threshold: type limit, track by_dst, count 10, seconds 600
+      within: '4'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - offset: '2'
+        value: '"/0000"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: created_at 2015_01_09, former_category TROJAN, updated_at 2020_05_14
+      msg: '"ET TROJAN Vawtrak/NeverQuest Posting Data"'
+      pcre: '"/^\/[^\x2f]+\/0000[A-F0-9]{4}\/0[0-2]\/[A-F0-9]{8}$/Ui"'
+      reference: md5,1a5ee37a6075b5a95faf8f07ad060cc9
+      rev: '2'
+      sid: '2025087'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

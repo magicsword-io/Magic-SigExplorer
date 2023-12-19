@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[23,2323]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"xc3511|0d 0a|"'
+      dsize: '8'
+      flow: to_server,established
+      metadata: affected_product DVR, attack_target IoT, created_at 2016_10_10, deployment
+        Datacenter, malware_family ddos_bot, performance_impact Low, signature_severity
+        Major, updated_at 2016_11_08
+      msg: '"ET TROJAN Linux.Mirai Login Attempt (xc3511)"'
+      reference: url,www.flashpoint-intel.com/when-vulnerabilities-travel-downstream
+      rev: '4'
+      sid: '2023333'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

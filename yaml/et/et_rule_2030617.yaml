@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"copyright infringement"'
+      - value: '"Instagram account"'
+      - value: '"powered-by-000webhost"'
+      - value: '"title=|22|Hosted on free web hosting 000webhost"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_07_30, deployment Perimeter, former_category PHISHING, signature_severity
+        Major, tag Phishing, updated_at 2020_07_30
+      msg: '"ET CURRENT_EVENTS Instagram Fake Copyright Infringement Hosted on 000webhostapp"'
+      rev: '2'
+      sid: '2030617'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

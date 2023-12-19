@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1024:65535
+    details:
+      bufferlen: '159'
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| Mozilla/5.0 (Windows|3B| U|3B| MSIE 9.0|3B| Windows
+          NT 9.0|3B| en-US)|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!276'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fakeavlock variant outbound connection"'
+      pcre: '"/\x2f[A-F0-9]{158}/"'
+      reference: url,www.virustotal.com/file/c49f7dbc036ad0a86df02cbbde00cb3b3fbd651d82f6c9c5a98170644374f64f/analysis/
+      rev: '9'
+      service: http
+      sid: '25675'
+      special_options:
+      - http_header
+      - http_raw_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

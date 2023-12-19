@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".cz.cc|0D 0A|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_28, updated_at 2020_05_06
+      msg: '"ET POLICY HTTP Request to a *.cz.cc domain"'
+      rev: '5'
+      sid: '2011375'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

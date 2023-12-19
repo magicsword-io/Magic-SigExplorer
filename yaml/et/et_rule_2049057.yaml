@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|0d 0a 00 08|HTTP"'
+      - value: '"/tmui/"'
+      - value: '"POST"'
+      - depth: '6'
+        value: '"/tmui/"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!518,relative'
+      metadata: attack_target Networking_Equipment, created_at 2023_11_03, cve CVE_2023_46747,
+        deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, confidence Medium, signature_severity Major, updated_at 2023_11_10, reviewed_at
+        2023_11_09
+      msg: '"ET EXPLOIT F5 BIG-IP - Unauthenticated RCE via AJP Smuggling Request
+        (CVE-2023-46747)"'
+      reference: cve,2023-46747
+      rev: '3'
+      sid: '2049057'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

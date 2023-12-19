@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Volume Serial Number"'
+      flow: established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE directory listing"'
+      rev: '12'
+      sid: '1292'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

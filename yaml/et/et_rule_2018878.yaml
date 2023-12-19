@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '".tor4u.net"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_08_01, updated_at 2022_03_24
+      msg: '"ET POLICY tor4u tor2web .onion Proxy domain in SNI"'
+      reference: md5,de81fab8ec96bef76db828f4c1a42e4d
+      rev: '1'
+      sid: '2018878'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"x|00|p|00|_|00|s|00|p|00|r|00|i|00|n|00|t|00|f|00|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-MSSQL xp_sprintf possible buffer overflow"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS01-060
+      rev: '16'
+      sid: '704'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|40 00 00 00 fe 31 80 44 e7 eb 4a 77|"'
+      dsize: '68'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_04_23, deployment Perimeter, signature_severity
+        Major, updated_at 2020_04_28
+      msg: '"ET TROJAN NanoCore RAT CnC 27"'
+      reference: md5,aa73e99d7e1d62265f75ccc0443a1a7f
+      rev: '3'
+      sid: '2029996'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A|Accept: text/html, */*|0D 0A|Accept-Encoding: identity|0D
+          0A|User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| WOW64|3B| rv:12.0) Gecko/20100101
+          Firefox/12.0|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '"A=",depth 2'
+      - value: '".php"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Agent-ALPW variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/6452bea82dbef796eaed8d2403ffa7141e4379bb052fdb7b63a21400c04b0334/analysis/
+      rev: '2'
+      service: http
+      sid: '34996'
+      special_options:
+      - http_header
+      - http_client_body
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

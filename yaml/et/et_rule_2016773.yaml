@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/index.aspx?i="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_04_19, former_category MALWARE, updated_at 2020_10_08
+      msg: '"ET TROJAN Mutter Backdoor Checkin"'
+      pcre: '"/^(Host\x3a [^\r\n]+?\r\nConnection\x3a Keep-Alive|Connection\x3a Keep-Alive\r\nHost\x3a
+        [^\r\n]+?)\r\n(\r\n)?$/Hi"'
+      reference: url,fireeye.com/blog/technical/malware-research/2013/04/the-mutter-backdoor-operation-beebus-with-new-targets.html
+      rev: '2'
+      sid: '2016773'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

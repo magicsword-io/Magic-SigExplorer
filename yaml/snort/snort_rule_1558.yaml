@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"whois|3A|//",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Delegate whois overflow attempt"'
+      reference: nessus,10054
+      rev: '12'
+      service: http
+      sid: '1558'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '32691'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '10'
+        offset: '12'
+        value: '"|d3 c3 bb a7 bd f8 c8 eb 7c 7c|"'
+      - value: '"|7c 7c 7c 7c 49 4f 7c 7c 31 31 31|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_09, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2023_03_09
+      msg: '"ET TROJAN Win32/Packed.BlackMoon.A Checkin"'
+      reference: md5,d90196ad534e1729c33bd1a83352b972
+      rev: '1'
+      sid: '2044553'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

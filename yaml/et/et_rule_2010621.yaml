@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"User-Agent|3a| CZ32ts|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_05_04
+      msg: '"ET WEB_SERVER SQL Injection Attempt (Agent CZ32ts)"'
+      reference: url,www.Whitehatsecurityresponse.blogspot.com
+      rev: '5'
+      sid: '2010621'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

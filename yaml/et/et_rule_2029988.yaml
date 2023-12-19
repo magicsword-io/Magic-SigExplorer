@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - depth: '28'
+        value: '"/albatross/saml/idpSelection"'
+      - value: '"id="'
+      - value: '"userName="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2020_04_21, deployment Perimeter,
+        deployment Datacenter, deployment SSLDecrypt, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2020_04_21
+      msg: '"ET EXPLOIT Possible IBM Data Risk Manager Authentication Bypass - Session
+        ID Assignment"'
+      reference: url,github.com/pedrib/PoC/blob/master/advisories/IBM/ibm_drm/ibm_drm_rce.md
+      rev: '2'
+      sid: '2029988'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

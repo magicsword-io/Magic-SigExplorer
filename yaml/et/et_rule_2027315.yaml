@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"wp-admin/admin-post.php?swp_debug=load_options&swp_url="'
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, created_at 2019_05_03, cve CVE_2019_9978,
+        deployment Perimeter, former_category WEB_CLIENT, performance_impact Low,
+        signature_severity Major, updated_at 2020_08_28
+      msg: '"ET WEB_CLIENT Attempted RCE in Wordpress Social Warfare Plugin Inbound
+        (CVE-2019-9978)"'
+      pcre: '"/&swap_url=https?:\/\//U"'
+      reference: url,www.exploit-db.com/exploits/46794
+      rev: '2'
+      sid: '2027315'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

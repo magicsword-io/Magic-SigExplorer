@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"X-Real-IP"'
+      - value: '"api_key=edd1c9f034335f136f87ad84b625c8f1"'
+      - value: '"script"'
+      - value: '"POST /apisix/batch-requests HTTP/1.1"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_02_22, cve CVE_2022_24112, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, tag Exploit, updated_at 2022_02_22
+      msg: '"ET EXPLOIT Apache APISIX Admin API Authentication Bypass (CVE-2022-24112)
+        M2"'
+      reference: cve,2022-24112
+      rev: '1'
+      sid: '2035273'
+      special_options:
+      - nocase
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

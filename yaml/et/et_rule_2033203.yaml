@@ -1,0 +1,49 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"_2B"'
+      - value: '"_2B"'
+      - value: '!"&"'
+      - value: '!"?"'
+      - value: '!"="'
+      - depth: '7'
+        value: '!"/tr/v1/"'
+      - value: '!".surveymonkey.com|0d 0a|"'
+      - value: '!"cisco.com|0d 0a|"'
+      - value: '!"trendmicro.com|0d 0a|"'
+      - value: '!"User-Agent|3a 20|TMUFE"'
+      - value: '"Connection|3a 20|Keep-Alive|0d 0a|"'
+      - value: '!"Referer|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_06_29, deployment Perimeter, former_category
+        MALWARE, malware_family ursnif, performance_impact Moderate, signature_severity
+        Major, updated_at 2023_03_10
+      msg: '"ET TROJAN Ursnif Variant CnC Beacon - URI Struct M1 (_2B)"'
+      rev: '7'
+      sid: '2033203'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

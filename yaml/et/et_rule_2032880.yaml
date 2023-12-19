@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|3a 3a 20|Automatic RDP Wrapper installer and updater"'
+      - value: '"|3a 3a 20|Location of new/updated rdpwrap.ini files"'
+      - value: '"set rdpwrap_ini_update_github_1=|22|"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_04_27, deployment Perimeter,
+        deployment SSLDecrypt, former_category POLICY, updated_at 2021_04_27
+      msg: '"ET INFO RDP Wrapper Download (bat)"'
+      reference: url,github.com/asmtron/rdpwrap
+      rev: '1'
+      sid: '2032880'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '22222'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"ABCJZDATEIV",depth 11'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC RUX the Tick upload/execute arbitrary file"'
+      rev: '6'
+      sid: '3012'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '21'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"STOR Screenshot from|3A 20|",fast_pattern'
+      - value: '"|29|.png",within 80'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.FTPKeyLogger outbound connection"'
+      reference: url,www.virustotal.com/en/file/44f956d41f5aea97884f88f60c1e28dc246b4b7318a87b332367e7f0476ca8fc/analysis/1459279340/
+      rev: '2'
+      service: ftp
+      sid: '38387'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

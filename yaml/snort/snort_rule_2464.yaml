@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      byte_test: 1,>,32,44
+      classtype: attempted-admin
+      ip_proto: '88'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER Ethereal EIGRP prefix length overflow attempt"'
+      reference: cve,2004-0367
+      rev: '10'
+      sid: '2464'
+    protocol: ip
+    source:
+      network: any
+      port: any

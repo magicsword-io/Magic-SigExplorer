@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '100'
+        value: '"-----BEGIN CERTIFICATE-----|0d 0a|TVqQ"'
+      flow: established,to_client
+      isdataat: 1000,relative
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_15, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2022_05_03
+      msg: '"ET TROJAN Observed Certificate Base64 Encoded Executable Inbound"'
+      rev: '3'
+      sid: '2029280'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

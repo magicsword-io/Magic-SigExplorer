@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|55 04 08|"'
+      - value: '"|06|hacked"'
+      - value: '"|01 09 01|"'
+      - value: '"|10|hackking@126.com"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2015_06_26, cve CVE_2015_1427,
+        deployment Perimeter, former_category CURRENT_EVENTS, signature_severity Major,
+        tag SSL_Malicious_Cert, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS Possible Elasticsearch CVE-2015-1427 Exploit Campaign
+        SSL Certificate"'
+      reference: url,blog.malwaremustdie.org/2015/06/mmd-0034-2015-new-elf.html
+      rev: '1'
+      sid: '2021351'
+      within: '17'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

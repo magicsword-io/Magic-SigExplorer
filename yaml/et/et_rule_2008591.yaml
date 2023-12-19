@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"r|be|bloop|00|dV"'
+      - value: '"Ares|00 0a|"'
+      distance: '16'
+      dsize: <70
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Ares Server Connection"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2008591
+      rev: '3'
+      sid: '2008591'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '1024:'

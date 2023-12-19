@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - depth: '69'
+        offset: '17'
+        value: '"Content-Type|3a 20|text/javascript|0d 0a|Server|3a 20|Apache/2.2.3
+          (CentOS)|0d 0a|Pragma|3a|"'
+      - value: '"|0d 0a|Expires|3a 20|0|0d 0a|"'
+      - value: '!"Set-Cookie|3a 20|"'
+      - value: '!"X-Powered-By|3a 20|"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_06_23, deployment Perimeter, former_category
+        ATTACK_RESPONSE, performance_impact Moderate, signature_severity Major, updated_at
+        2020_11_05
+      msg: '"ET ATTACK_RESPONSE Possible BeEF HTTP Headers Inbound"'
+      rev: '1'
+      sid: '2024421'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

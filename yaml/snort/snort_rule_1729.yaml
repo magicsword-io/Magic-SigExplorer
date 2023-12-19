@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"JOIN "'
+      flow: to_server,established
+      isdataat: '!139'
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL IRC channel join"'
+      pcre: '"/(&|#|\+|!)/R"'
+      rev: '16'
+      sid: '1729'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

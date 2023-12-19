@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/attach"'
+      - value: '"ip="'
+      - value: '"&serial="'
+      - value: '"&name="'
+      - value: '"&os="'
+      - value: '"&user_token="'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_27, deployment Perimeter, former_category
+        MALWARE, confidence High, signature_severity Critical, updated_at 2023_11_27
+      msg: '"ET TROJAN SysJoker Host Details Exfil (POST)"'
+      reference: url,intezer.com/blog/research/wildcard-evolution-of-sysjoker-cyber-threat
+      rev: '1'
+      sid: '2049299'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

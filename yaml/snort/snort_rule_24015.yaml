@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Google page|0D 0A|",fast_pattern,nocase'
+      - value: '".asp?"'
+      - value: '"mac=",within 4'
+      - value: '"&ver=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Magania variant outbound connection"'
+      reference: url,www.virustotal.com/file/6a813f96bb65367a8b5c5ba2937c773785a0a0299032a6c77b9b0862be8bdb71/analysis/
+      rev: '8'
+      service: http
+      sid: '24015'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

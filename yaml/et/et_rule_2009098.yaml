@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '41170'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '1'
+        value: '"|3d|"'
+      - value: '"|d9|"'
+      - value: '"|ed bb|"'
+      distance: '13'
+      dsize: <24
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET P2P Manolito Ping"'
+      reference: url,doc.emergingthreats.net/2009098
+      rev: '3'
+      sid: '2009098'
+      threshold: type limit, track by_src, seconds 300, count 1
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: 1024:65535

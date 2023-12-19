@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/cc.php"'
+      - value: '"v="'
+      - value: '"&rnd="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Densmail.com Related Trojan Checkin"'
+      pcre: '"/v=\d+&rnd=\d/Ui"'
+      reference: url,doc.emergingthreats.net/2007822
+      rev: '4'
+      sid: '2007822'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|01|s|03|yam|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_10, deployment Perimeter,
+        signature_severity Informational, updated_at 2023_05_10
+      msg: '"ET INFO URL Shortener Service Domain in DNS Lookup (s .yam .com)"'
+      rev: '1'
+      sid: '2045631'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

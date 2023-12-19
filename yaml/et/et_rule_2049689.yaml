@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api.php"'
+      - value: '"name|3d 22|userApiKey|22 0d 0a 0d 0a|"'
+      - value: '"name|3d 22|action|22 0d 0a 0d 0a|get"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_12_13, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, confidence High, signature_severity Critical, updated_at
+        2023_12_13
+      msg: '"ET TROJAN Axile Stealer CnC Activity (POST)"'
+      pcre: '"/name\x3d\x22action\x22\x0d\x0a\x0d\x0aget(?:UserInfo|BuildInfo|UserTelegram|ClientInstall|UploadLogs|ClientUpdateStatus)\x0d\x0a\x2d\x2d\x2d/P"'
+      reference: url,twitter.com/suyog41/status/1734227876604784777
+      rev: '1'
+      sid: '2049689'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      urilen: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

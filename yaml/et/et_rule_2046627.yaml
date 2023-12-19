@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Welcome to Node.js"'
+      flow: established,to_server
+      metadata: attack_target Client_and_Server, created_at 2023_06_22, deployment
+        Perimeter, former_category HUNTING, performance_impact Low, confidence High,
+        signature_severity Major, tag Node_Reverse_Shell, updated_at 2023_06_22
+      msg: '"ET INFO Possible Node.js REPL Shell Banner - Reverse Shell"'
+      reference: url,nodejs.dev/en/learn/how-to-use-the-nodejs-repl/
+      rev: '1'
+      sid: '2046627'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

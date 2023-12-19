@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '139'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00|",depth 1'
+      - value: '"|FF|SMB2",depth 5,offset 4'
+      - value: '"|5C 00|S|00|t|00|a|00|r|00|t|00| |00|M|00|e|00|n|00|u|00 5C 00|P|00|r|00|o|00|g|00|r|00|a|00|m|00|s|00
+          5C 00|S|00|t|00|a|00|r|00|t|00|u|00|p",distance 0,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows SMB startup folder unicode access"'
+      reference: url,attack.mitre.org/techniques/T1060
+      rev: '12'
+      sid: '2177'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

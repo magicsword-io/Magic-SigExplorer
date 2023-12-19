@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 17|24xpixeladvertising.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_01_19, deployment Perimeter, malware_family
+        BatLoader, performance_impact Low, signature_severity Major, updated_at 2023_01_19
+      msg: '"ET TROJAN Observed BatLoader Domain (24xpixeladvertising .com) in TLS
+        SNI"'
+      reference: url,www.trendmicro.com/en_us/research/23/a/batloader-malware-abuses-legitimate-tools-uses-obfuscated-javasc.html
+      rev: '1'
+      sid: '2043357'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

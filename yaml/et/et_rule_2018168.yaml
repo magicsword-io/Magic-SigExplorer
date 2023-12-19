@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/thumb.php?"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_02_22, cve CVE_2014_1610, updated_at 2020_04_28
+      msg: '"ET WEB_SPECIFIC_APPS MediaWiki thumb.php RCE"'
+      pcre: '"/[&?](?:(?:p|%[57]0)(?:(?:a|%[46]1)(?:g|%[46]7)(?:e|%[46]5))?|(?:w|%[57]7)(?:(?:i|%[46]9)(?:d|%[64]4)(?:t|%[57]4)(?:h|%[64]8))?)(?:\s|%20)*?(?:%3d|=)(?:\s|%20)*?(?:\d|%3[0-9])+?(?:\x3b|%3[bB]|%26)/Ii"'
+      reference: cve,2014-1610
+      rev: '2'
+      sid: '2018168'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

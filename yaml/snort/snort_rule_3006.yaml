@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"|00 E1|..|B4 00 00 00|",depth 8'
+      flow: to_client
+      isdataat: 160,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-OTHER Volition Freespace 2 buffer overflow attempt"'
+      reference: bugtraq,9785
+      rev: '7'
+      sid: '3006'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: '7808'

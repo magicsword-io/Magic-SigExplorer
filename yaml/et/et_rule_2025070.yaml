@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|FF D9 23|"'
+      - value: '"$|3a|1|3a|$"'
+      distance: '0'
+      flow: from_server,established
+      flowbits: isset,ET.Zberp
+      metadata: created_at 2016_04_06, former_category TROJAN, updated_at 2017_11_29
+      msg: '"ET TROJAN Win32/Atraps Receiving Config via Image File (steganography)"'
+      pcre: '"/^[A-Za-z0-9+/=]+\x24\x3a\d+\x3a\x24$/R"'
+      reference: md5,3dce01df285b3570738051672664068d
+      rev: '2'
+      sid: '2025070'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"AUTHENTICATE"'
+      flow: established,to_server
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, cve CVE_1999_0005, updated_at 2010_09_23
+      msg: '"GPL IMAP authenticate overflow attempt"'
+      pcre: '"/\sAUTHENTICATE\s[^\n]{100}/smi"'
+      reference: nessus,10292
+      rev: '12'
+      sid: '2101844'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

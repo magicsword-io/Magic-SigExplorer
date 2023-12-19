@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"Shell enroute......."'
+      - value: '"Microsoft Windows "'
+      - value: '"Copyright |28|c|29| 20"'
+      - value: '"Microsoft Corp"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2014_12_09, updated_at 2014_12_09
+      msg: '"ET WEB_SERVER Insomnia Shell Outbound CMD Banner"'
+      reference: url,www.insomniasec.com/releases
+      rev: '1'
+      sid: '2019900'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '!21:23'

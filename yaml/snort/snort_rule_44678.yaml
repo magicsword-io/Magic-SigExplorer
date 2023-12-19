@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A| NetSupport Manager/",fast_pattern,nocase'
+      - value: '"CMD="'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-OTHER NetSupport Manager RAT outbound connection detected"'
+      reference: url,www.virustotal.com/#/file/b87ef28981defd135496e25233cc7a47a376a75ddea97fcd4c0927995dd22e47/detection
+      rev: '3'
+      service: http
+      sid: '44678'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

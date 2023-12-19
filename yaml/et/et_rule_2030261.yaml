@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/mnt_ping.cgi"'
+      - depth: '32'
+        value: '"isSubmit=1&addrType=3&pingAddr=|3b|"'
+      flow: to_server,established
+      metadata: affected_product Linux, attack_target IoT, created_at 2020_06_08,
+        deployment Perimeter, former_category EXPLOIT, signature_severity Major, updated_at
+        2020_06_08
+      msg: '"ET EXPLOIT Technicolor TD5130.2 - Remote Command Execution"'
+      reference: url,www.exploit-db.com/exploits/47651
+      rev: '2'
+      sid: '2030261'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

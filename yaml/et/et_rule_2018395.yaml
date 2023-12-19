@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '2'
+        offset: '2'
+        value: '"od"'
+      - value: '".exe"'
+      - value: '!"User-Agent|3a|"'
+      - depth: '5'
+        value: '"Host|3a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_04_16, updated_at 2020_09_15
+      msg: '"ET TROJAN  Possible Kelihos.F EXE Download Common Structure 2"'
+      pcre: '"/^\/[mp]od[12]\/[^\/]+?\.exe$/Ui"'
+      reference: md5,9db28205c8dd40efcf7f61e155a96de5
+      rev: '3'
+      sid: '2018395'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_header
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

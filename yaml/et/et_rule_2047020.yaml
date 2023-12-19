@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"HKLM|3a 5c|SOFTWARE|5c|Veeam|5c|Veeam|20|Backup|20|and|20|Replication|5c|"'
+      - value: '"|24|SqlDatabaseName"'
+      - value: '"|24|SqlInstanceName"'
+      - value: '"|24|SqlServerName"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_08_02, deployment Perimeter,
+        deployment SSLDecrypt, former_category HUNTING, confidence High, signature_severity
+        Informational, updated_at 2023_08_02
+      msg: '"ET INFO Veeam Credential Recovery Script Inbound"'
+      reference: url,github.com/sadshade/veeam-creds/tree/main
+      rev: '1'
+      sid: '2047020'
+      special_options:
+      - file_data
+      threshold: type limit,track by_src,seconds 600, count 1
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

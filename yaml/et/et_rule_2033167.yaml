@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Subject|3a 20|Passwords:::"'
+      - value: '"CompName|3a 20|"'
+      - value: '"Windows|20|Version|3a 20|"'
+      - value: '"Url"'
+      - value: '"============================="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_23, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_08_24
+      msg: '"ET TROJAN a310Logger Stealer Exfil (SMTP)"'
+      reference: url,app.any.run/tasks/f403243a-ee3c-4797-ba30-616c766d6005/
+      rev: '3'
+      sid: '2033167'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

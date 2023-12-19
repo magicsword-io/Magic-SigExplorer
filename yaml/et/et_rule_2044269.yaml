@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|f0559838|04|xsph|02|ru|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_21, deployment Perimeter, malware_family
+        Gamaredon, performance_impact Low, signature_severity Major, updated_at 2023_02_21
+      msg: '"ET TROJAN Gamaredon C2 Domain (f0559838 .xsph .ru) in DNS Lookup"'
+      reference: url,mrtiepolo.medium.com/russian-apt-gamaredon-exploits-hoaxshell-to-target-ukrainian-organizations-173427d4339b
+      rev: '1'
+      sid: '2044269'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

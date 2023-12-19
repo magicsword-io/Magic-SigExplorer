@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,-17,relative,from_beginning,little
+      byte_test: 1,&,16,3,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB"'
+      - depth: '1'
+        offset: '39'
+        value: '"%"'
+      - value: '"&|00|"'
+      - value: '"|5C|PIPE|5C 00|"'
+      - value: '"|05|"'
+      - value: '"|0B|"'
+      - value: '"|A0 01 00 00 00 00 00 00 C0 00 00 00 00 00 00|F"'
+      distance: '29'
+      flow: established,to_server
+      flowbits: noalert
+      isdataat: 4,relative
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS ISystemActivator little endian andx bind attempt"'
+      pcre: '"/^(\x75|\x2d|\x2f|\x73|\xa2|\x2e|\x24|\x74)/sR"'
+      rev: '4'
+      sid: '2103406'
+      special_options:
+      - nocase
+      within: '16'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

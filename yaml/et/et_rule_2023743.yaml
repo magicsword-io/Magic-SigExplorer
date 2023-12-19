@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|77 69 6e 64 6f 77 2e 63 68 72 6f 6d 65|"'
+      - value: '"|77 69 6e 64 6f 77 2e 63 68 72 6f 6d 65 2e 77 65 62 73 74 6f 72 65|"'
+      - value: '"|2e 6d 61 74 63 68 28 2f 3e 28 5c 77 3f 5c 73 3f 2e 2a 3f 29 3c 2f
+          67 29|"'
+      - value: '"|5b 69 5d 2e 72 65 70 6c 61 63 65 28 65 76 61 6c 28|"'
+      - value: '"unescape"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_01_17,
+        deployment Perimeter, malware_family EITest, signature_severity Major, updated_at
+        2019_10_08
+      msg: '"ET CURRENT_EVENTS EITest SocEng Inject Jan 15 2017 M1"'
+      pcre: '"/^\s*\([^\x29]*(?:\%2F|\/)(?:\%5B|\[)(?:\%5E|^)(?=[^\x29]*(?:%3C|\<))(?=[^\x29]*(?:%3E|\>))(?=[^\x29]*(?:\%5C|\\)(?:\%6E|n))/Rsi"'
+      rev: '1'
+      sid: '2023743'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

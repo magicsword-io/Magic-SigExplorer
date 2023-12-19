@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"filename="'
+      - value: '"bomgar-scc-"'
+      - value: '".exe"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2011_11_08, updated_at 2011_11_08
+      msg: '"ET POLICY Bomgar Remote Assistance Tool Download"'
+      reference: url,www.bomgar.com
+      rev: '1'
+      sid: '2013867'
+      special_options:
+      - http_header
+      - http_header
+      - nocase
+      - fast_pattern
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

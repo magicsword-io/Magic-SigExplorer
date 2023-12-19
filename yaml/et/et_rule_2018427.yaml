@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"|41 00 00 00 05|"'
+      dsize: '69'
+      flow: established,to_client
+      flowbits: isset,ET.NetwireRAT.Client
+      metadata: attack_target Client_Endpoint, created_at 2014_04_28, deployment Perimeter,
+        former_category MALWARE, malware_family Netwire_RAT, signature_severity Major,
+        updated_at 2022_08_09
+      msg: '"ET TROJAN Netwire RAT Check-in"'
+      reference: url,unit42.paloaltonetworks.com/new-release-decrypting-netwire-c2-traffic/
+      rev: '6'
+      sid: '2018427'
+      stream_size: server,<,72
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '![22,23,25,80,139,443,445]'

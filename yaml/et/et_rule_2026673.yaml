@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/data2.php?"'
+      - value: '"Upgrade|3a 20|websocket|0d 0a|Connection|3a 20|Upgrade|0d 0a 0d 0a|"'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_11_29, deployment Perimeter, former_category
+        TROJAN, malware_family IcedID, signature_severity Major, updated_at 2020_09_16
+      msg: '"ET TROJAN IcedID WebSocket Request"'
+      pcre: '"/\/data2\.php\?[A-F0-9]{16}$/U"'
+      reference: md5,b17a729efb71d1781405c6c00052c85e
+      rev: '1'
+      sid: '2026673'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

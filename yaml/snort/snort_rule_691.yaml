@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"9 |D0 00 92 01 C2 00|R|00|U|00|9 |EC 00|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE shellcode attempt"'
+      rev: '9'
+      sid: '691'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

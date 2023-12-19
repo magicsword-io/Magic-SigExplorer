@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/xampp/showcode.php?"'
+      - value: '"TEXT[global-showcode]="'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_09_09
+      msg: '"ET WEB_SPECIFIC_APPS XAMPP showcode.php TEXT Parameter Cross Site Scripting
+        Attempt"'
+      pcre: '"/(onmouse|onkey|onload=|onblur=|ondragdrop=|onclick=|alert|<script|<img|<src)/Ui"'
+      reference: url,doc.emergingthreats.net/2011138
+      rev: '3'
+      sid: '2011138'
+      special_options:
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

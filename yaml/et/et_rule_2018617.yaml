@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '22'
+        value: '"/Installer/Flow?pubid="'
+      - value: '"&distid="'
+      - value: '"&productid="'
+      - value: '"&subpubid="'
+      - value: '"&campaignid="'
+      - value: '"&networkid="'
+      - value: '"&dfb="'
+      - value: '"&os="'
+      - value: '"&version="'
+      - value: '"Chrome/18.0.1025.142 Safari/535.19|0d 0a|Host|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_01_14, former_category ADWARE_PUP, updated_at 2016_06_22
+      msg: '"ET MALWARE Downloader.NSIS.OutBrowse.b Checkin"'
+      reference: url,sophos.com/en-us/threat-center/threat-analyses/adware-and-puas/OutBrowse%20Revenyou/detailed-analysis.aspx
+      rev: '5'
+      sid: '2018617'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

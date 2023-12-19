@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Accept-Encoding|3A| identity, *|3B|q=0|0D 0A|",fast_pattern,nocase'
+      - value: '"|3B| MSIE "'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Zeus encrypted POST Data exfiltration"'
+      pcre: '"/[^ -~\r\n]{4}/"'
+      reference: url,www.virustotal.com/en/file/8825abfca1a6d843ce5670858886cb63bb1317ddbb92f91ffd46cfdcaba9ac00/analysis/
+      rev: '5'
+      service: http
+      sid: '27919'
+      special_options:
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

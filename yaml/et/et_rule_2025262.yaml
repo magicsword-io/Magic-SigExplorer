@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Dear <b id=|22|accessreturn|22|>User</b>,"'
+      - value: '"<b>Ticket|20 3a 20|#"'
+      - value: '"<b>For This Reason|20 3a 20|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_29, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2018_01_29
+      msg: '"ET CURRENT_EVENTS Paypal Phishing Landing 2018-01-29"'
+      rev: '2'
+      sid: '2025262'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

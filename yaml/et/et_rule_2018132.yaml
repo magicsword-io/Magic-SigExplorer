@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/tmUnblock.cgi"'
+      flow: to_server,established
+      metadata: created_at 2014_02_13, updated_at 2020_07_07
+      msg: '"ET WORM TheMoon.linksys.router 2"'
+      reference: url,devttys0.com/2014/02/wrt120n-fprintf-stack-overflow/
+      rev: '4'
+      sid: '2018132'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

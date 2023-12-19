@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"111SA"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_08_21, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_21
+      msg: '"ET TROJAN Mekotio HTTP Method (111SA)"'
+      reference: url,www.welivesecurity.com/2020/08/13/mekotio-these-arent-the-security-updates-youre-looking-for/
+      rev: '2'
+      sid: '2030719'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/autoupdate/versaoatual.txt"'
+      - value: '"Mozilla/3.0 (compatible|3b| Indy Library)"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_01, deployment Perimeter, former_category
+        MALWARE, malware_family Dropper, performance_impact Low, signature_severity
+        Major, updated_at 2020_11_05
+      msg: '"ET TROJAN Trojan-Dropper.Delf Checkin"'
+      reference: md5,52765b346c12d55e255a669bb8cfebb8
+      rev: '1'
+      sid: '2025283'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

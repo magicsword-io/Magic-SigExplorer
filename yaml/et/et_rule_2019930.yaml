@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '[139,445]'
+    details:
+      byte_test: 1,&,0x80,6,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|FF|SMB"'
+      - value: '"_AutoShare$"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_12_13, updated_at 2014_12_13
+      msg: '"ET TROJAN Possible Net Crawler SMB Share Access ascii (Operation Cleaver)"'
+      reference: url,www0.cylance.com/assets/Cleaver/Cylance_Operation_Cleaver_Report.pdf
+      rev: '1'
+      sid: '2019930'
+    protocol: tcp
+    source:
+      network: any
+      port: any

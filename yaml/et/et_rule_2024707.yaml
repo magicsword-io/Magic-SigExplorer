@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '!"X-Apple-I-Request-ID|3a|"'
+      - value: '"<title>Manage your Apple ID</title>"'
+      fast_pattern: 7,20
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_09_15, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_11_17
+      msg: '"ET CURRENT_EVENTS Possible Apple Phishing Landing - Title over non SSL"'
+      rev: '3'
+      sid: '2024707'
+      special_options:
+      - http_header
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

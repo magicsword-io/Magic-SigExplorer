@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"<title>Flash Player Update</title>"'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_08_31, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, updated_at 2017_08_31
+      msg: '"ET WEB_CLIENT Fake Adobe Flash Update Landing - Title over non SSL"'
+      rev: '3'
+      sid: '2024644'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

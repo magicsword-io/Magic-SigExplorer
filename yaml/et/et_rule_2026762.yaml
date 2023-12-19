@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"User-Agent|3a 20|Mozilla|20|v5.1|20 28|Windows"'
+      - depth: '6'
+        value: '"regid="'
+      - value: '"%20FIXED,%20TOTAL|3a|%20"'
+      - value: '"%0AHost%20Name|3a|%20%20%20%20%20%20"'
+      - value: '"%0AOS%20Name|3a|%20%20%20%20%20"'
+      - value: '"%0AOS%20Version|3a|%20%20%20%20%20%20"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_01_07, deployment Perimeter, former_category
+        MALWARE, malware_family Zebrocy, malware_family Zekapab, performance_impact
+        Low, signature_severity Major, tag APT28, updated_at 2020_08_27
+      msg: '"ET TROJAN APT28 Zebrocy/Zekapab Reporting to CnC M3"'
+      reference: url,unit42.paloaltonetworks.com/dear-joohn-sofacy-groups-global-campaign/
+      rev: '2'
+      sid: '2026762'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      threshold: type limit, count 1, seconds 30, track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

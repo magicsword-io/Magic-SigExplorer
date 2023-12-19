@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|39 34 41 35 41 44 30 41 45 46 36 39|"'
+      dsize: '12'
+      flow: to_server,established
+      flowbits: isset,ET.DarkCometJoin
+      metadata: created_at 2011_07_18, updated_at 2011_07_18
+      msg: '"ET TROJAN DarkComet-RAT server join acknowledgement"'
+      reference: url,anubis.iseclab.org/?action=result&task_id=1a7326f61fef1ecb4ed4fbf3de3f3b8cb&format=txt
+      rev: '3'
+      sid: '2013284'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

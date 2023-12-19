@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/reglages/Menu_Plugins/"'
+      - value: '"/reglages/Menu_Plugins/"'
+      - value: '"|2e|php?p=|2e 2e 2f|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Wordpress_Plugins, attack_target Web_Server, created_at
+        2022_05_31, deployment Perimeter, deployment SSLDecrypt, former_category EXPLOIT,
+        performance_impact Low, signature_severity Major, updated_at 2022_05_31
+      msg: '"ET EXPLOIT WordPress Plugin video-synchro-pdf 1.7.4 - Local File Inclusion"'
+      reference: url,www.exploit-db.com/exploits/50844
+      rev: '1'
+      sid: '2036727'
+      special_options:
+      - http_raw_uri
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

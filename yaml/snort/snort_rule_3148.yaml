@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows HTML Help hhctrl.ocx clsid access attempt"'
+      reference: url,www.ngssoftware.com/advisories/ms-winhlp.txt
+      rev: '21'
+      service: http
+      sid: '3148'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

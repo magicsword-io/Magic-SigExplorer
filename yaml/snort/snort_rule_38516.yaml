@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|61 63 36 62 66 34 64 30 66 35 36 30 30 30 34 36 32 37 31 31 30 33
+          39 39|",fast_pattern,nocase'
+      detection_filter: track by_src,count 1000,seconds 1
+      dsize: '24'
+      flow: to_server,no_stream
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Sweeper outbound connection"'
+      reference: url,www.virustotal.com/en/file/38221267218184b17a78d8814d1bd06b12143be859488ae15ca0d754f32d60fc/analysis/1460472611/
+      rev: '4'
+      sid: '38516'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

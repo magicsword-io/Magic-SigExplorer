@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"&id="'
+      - value: '"&inst="'
+      - value: '"&net"'
+      - value: '"&cmd=cfg"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_02_27, former_category MALWARE, updated_at 2020_09_18
+      msg: '"ET TROJAN W32/Caphaw CnC Configuration File Request"'
+      reference: url,www.welivesecurity.com/2013/02/25/caphaw-attacking-major-european-banks-with-webinject-plugin/
+      rev: '1'
+      sid: '2016508'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

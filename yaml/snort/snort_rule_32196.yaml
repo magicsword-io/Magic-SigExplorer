@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"form-data|3B| name=|22|PLUG|22 0D 0A|",fast_pattern,nocase'
+      - value: '"form-data|3B| name=|22|PC|22 0D 0A|"'
+      - value: '"form-data|3B| name=|22|SEG|22 0D 0A|",distance 0'
+      - value: '"User-Agent: Mozilla/3.0 (compatible|3B| Indy Library)|0D 0A|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Graftor variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/f7215718184d5fa1a2057e5dd714d3cdbd00fe924334ecdd3cd5662c3c284d90/analysis/
+      rev: '2'
+      service: http
+      sid: '32196'
+      special_options:
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"cmd=getload&login="'
+      flow: established,to_server
+      metadata: created_at 2011_12_09, updated_at 2020_04_20
+      msg: '"ET TROJAN Smokeloader getload Command"'
+      reference: url,symantec.com/security_response/writeup.jsp?docid=2011-100515-1838-99&tabid=2
+      rev: '1'
+      sid: '2014012'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

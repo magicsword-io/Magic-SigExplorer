@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 86 A5|",depth 4,offset 16'
+      - value: '"|00 00 00 05|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 8'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-RPC mountd TCP export request"'
+      rev: '14'
+      sid: '574'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

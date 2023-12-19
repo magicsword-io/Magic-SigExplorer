@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '31789'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"A",depth 1'
+      flags: A+
+      flow: stateless
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR hack-a-tack attempt"'
+      rev: '13'
+      sid: '614'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '31790'

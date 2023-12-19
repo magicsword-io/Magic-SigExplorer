@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '27'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|11 10 10 01 22 32 21 52|"'
+      dsize: '8'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2018_12_10, deployment Perimeter, former_category MALWARE, malware_family
+        Samba, performance_impact Low, signature_severity Major, updated_at 2018_12_10
+      msg: '"ET TROJAN ELF/Samba CnC Checkin"'
+      reference: url,www.guardicore.com/2018/11/butter-brute-force-ssh-attack-tool-evolution
+      rev: '1'
+      sid: '2026717'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

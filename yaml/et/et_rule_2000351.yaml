@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '!6661:6668'
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '8'
+        value: '"JOIN|20 3a 20|#"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2023_11_13
+      msg: '"ET TROJAN IRC Channel join on non-standard port"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000351
+      rev: '12'
+      sid: '2000351'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"%PDF-"'
+      - value: '"obj"'
+      flow: established,from_server
+      metadata: created_at 2013_12_24, former_category INFO, updated_at 2013_12_24
+      msg: '"ET CURRENT_EVENTS Possible PDF Dictionary Entry with Hex/Ascii replacement"'
+      pcre: '"/^[\r\n\s]*?<<(?:(?!>>).)+?\/[a-zA-Z\d]*?#(?:[46][1-9a-fA-F]|[57][\daA])(?:[a-zA-Z\d])*?#(?:[46][1-9a-fA-F]|[57][\daA])/Rsi"'
+      rev: '3'
+      sid: '2017899'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

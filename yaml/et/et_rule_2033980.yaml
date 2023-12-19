@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|javan-demsky|07|website|00|"'
+      distance: '1'
+      metadata: attack_target Mobile_Client, created_at 2021_09_17, deployment Perimeter,
+        former_category MOBILE_MALWARE, signature_severity Major, updated_at 2021_09_17
+      msg: '"ET MOBILE_MALWARE APT-C-23 Related CnC Domain in DNS Lookup (javan-demsky
+        .website)"'
+      reference: url,blog.cyble.com/2021/09/15/apt-c-23-using-new-variant-of-android-spyware-to-target-users-in-the-middle-east/
+      rev: '2'
+      sid: '2033980'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '22'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

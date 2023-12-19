@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"NtZCAvYyBwb3dlcnNoZWxsLmV4Z"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2018_07_12, deployment Datacenter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Major, updated_at 2018_07_18
+      msg: '"ET WEB_SPECIFIC_APPS cmd powershell base64 encoded to Web Server 2"'
+      rev: '1'
+      sid: '2025828'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

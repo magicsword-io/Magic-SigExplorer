@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"window.open|28 22|readme.eml|22|",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"FILE-OTHER readme.eml autoload attempt"'
+      reference: url,www.cert.org/advisories/CA-2001-26.html
+      rev: '16'
+      service: http
+      sid: '1290'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".xla"'
+      flow: to_server,established
+      metadata: created_at 2016_07_13, former_category INFO, updated_at 2020_07_17
+      msg: '"ET INFO SUSPICIOUS Excel Add-in Download M2"'
+      pcre: '"/Content-Disposition\x3a[^\r\n]*?\.xla[\s\x22\x27]/Hi"'
+      reference: url,blogs.mcafee.com/mcafee-labs/patch-now-simple-office-protected-view-bypass-could-have-big-impact/
+      rev: '1'
+      sid: '2022966'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3B 20|Windows NT 5.0|0D 0A|Host:",fast_pattern,nocase'
+      - value: '" HTTP/1.1|0D 0A|Connection: Keep-Alive|0D 0A|Accept: */*|0D 0A|User-Agent:
+          Mozilla/"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Agent.DF - User-Agent Missing Bracket"'
+      reference: url,www.virustotal.com/en/file/b9587fc86f1459ccf7b096b6bf68b4fcc165946a86f3ed9ce84c61907aa99dae/analysis/1386599712/
+      rev: '2'
+      service: http
+      sid: '28977'
+      special_options:
+      - http_header
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0d|s-p-o-o-f-e-d|07|h-o-s-t|04|name"'
+      distance: '0'
+      metadata: created_at 2015_08_19, former_category CURRENT_EVENTS, updated_at
+        2020_09_17
+      msg: '"ET TROJAN Likely Linux/Tsunami DDoS Attack Participation (s-p-o-o-f-e-d.h-o-s-t.name)"'
+      reference: md5,c01991d55133d0057c9b721bb141a5d9
+      rev: '2'
+      sid: '2021691'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type limit,track by_src,count 3,seconds 60
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

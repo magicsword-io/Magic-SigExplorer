@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"530 ",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP Bad login"'
+      pcre: '"/^530\s+(Login|User)/ims"'
+      rev: '15'
+      service: ftp
+      sid: '491'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '21'

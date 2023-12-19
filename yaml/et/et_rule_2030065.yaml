@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<form method=post style=|22|font-family:fantasy|3b 22|>"'
+      - value: '"Password: <input type=password name=pass style=|22|background-color|3a|whitesmoke|3b|border|3a|1px
+          solid #FFF|3b 22|><input type=submit value=''>>'' style=|22|border|3a|none|3b|background-color|3a|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2020_04_29, deployment Perimeter, signature_severity Major, updated_at
+        2020_04_29
+      msg: '"ET WEB_CLIENT Generic Webshell Accessed on External Server"'
+      rev: '2'
+      sid: '2030065'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

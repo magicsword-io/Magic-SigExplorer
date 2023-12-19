@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Cinco Network, Inc.",depth 32'
+      itype: '8'
+      metadata: ruleset community
+      msg: '"PROTOCOL-ICMP PING Sniffer Pro/NetXRay network scan"'
+      rev: '8'
+      sid: '484'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

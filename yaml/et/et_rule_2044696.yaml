@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"d1="'
+      - value: '"&unit="'
+      - value: '"Content|2d|Type|3a 20|application|2f|x|2d|www|2d|form|2d|urlencoded|0d
+          0a|"'
+      - value: '"Content|2d|Length|3a 20|31|0d 0a|"'
+      - value: '!"Referer"'
+      distance: '10'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_03_20, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_03_20
+      msg: '"ET TROJAN Win32/Amadey Host Fingerprint Exfil (POST) M2"'
+      pcre: '"/^d1=[0-9]{10}&unit=[0-9]{12}$/P"'
+      reference: url,twitter.com/0xToxin/status/1637786881780850688
+      rev: '1'
+      sid: '2044696'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

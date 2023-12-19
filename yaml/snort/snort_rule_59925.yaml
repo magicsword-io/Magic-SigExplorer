@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '".action",nocase'
+      - value: '"getRuntime"'
+      - value: '"exec",within 15'
+      flow: to_server,established
+      gid: '1'
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"SERVER-WEBAPP Multiple products OGNL expression injection attempt"'
+      rev: '2'
+      service: http
+      sid: '59925'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

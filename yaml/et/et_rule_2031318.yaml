@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/api/jsonws/expandocolumn/update-column"'
+      - value: '"userOverridesAsString=HexAsciiSerializedMap"'
+      flow: established,to_server
+      metadata: created_at 2020_12_11, cve CVE_2020_7961, deployment Perimeter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_12_11
+      msg: '"ET CURRENT_EVENTS 401TRG Liferay RCE (CVE-2020-7961)"'
+      reference: url,www.synacktiv.com/en/publications/how-to-exploit-liferay-cve-2020-7961-quick-journey-to-poc.html
+      rev: '2'
+      sid: '2031318'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

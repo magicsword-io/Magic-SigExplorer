@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a20|Mozilla|2f|4.0|2028|compatible|3b20|MSIE|20|6.0|
+          3b2020|Windows|20|NT|20|5.1|3b 20|SV1|3b20|.NET|20|CLR|20|1.1.4322| 3b20|.NET|20|CLR|20|2.0.50727|290d0a|Host|3a20|"'
+      - value: '"|0d 0a|Accept|3a 20 2a 2f 2a|"'
+      fast_pattern: 37,18
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category TROJAN, malware_family Bancos,
+        tag Banking_Trojan, updated_at 2020_04_21
+      msg: '"ET TROJAN TSPY_BANKER.IDV/Infostealer.Bancos Module Download"'
+      reference: url,doc.emergingthreats.net/2009447
+      rev: '6'
+      sid: '2009447'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

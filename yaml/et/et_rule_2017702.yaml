@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '!"|0d 0a|Referer|3a|"'
+      - value: '"User-Agent|3a 20|lynx|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2013_11_11, former_category MALWARE, updated_at 2022_04_18
+      msg: '"ET TROJAN Possible Trojan.APT.9002 POST"'
+      pcre: '"/^\/[a-f0-9]+\s/R"'
+      reference: url,www.fireeye.com/blog/technical/cyber-exploits/2013/11/operation-ephemeral-hydra-ie-zero-day-linked-to-deputydog-uses-diskless-method.html
+      rev: '3'
+      sid: '2017702'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '3'
+        offset: '5'
+        value: '"SMB"'
+      - value: '"{57D2DE92-CE17-4A57-BFD7-CD3C6E965C6A}"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_06_10, updated_at 2015_06_10
+      msg: '"ET TROJAN Possible Duqu 2.0 Accessing SMB/SMB2 Named Pipe (ASCII) 6"'
+      reference: url,securelist.com/blog/research/70504/the-mystery-of-duqu-2-0-a-sophisticated-cyberespionage-actor-returns/
+      rev: '1'
+      sid: '2021235'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

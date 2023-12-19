@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"name=|22|proclist|22|"'
+      - value: '"svchost.exe"'
+      - value: '"name=|22|sysinfo|22|"'
+      - value: '"ipconfig"'
+      - value: '"net view /all"'
+      - value: '"nltest"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_11_27, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_11_27
+      msg: '"ET TROJAN Win32/Trickbot Data Exfiltration"'
+      reference: md5,f99adab7b2560097119077b99aceb40d
+      rev: '2'
+      sid: '2031241'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/blogs/default.php?"'
+      - value: '"inc_path="'
+      flow: established,to_server
+      metadata: created_at 2012_03_06, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS b2evolution inc_path Parameter Remote File inclusion
+        Attempt"'
+      pcre: '"/inc_path=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/100798/b2evolution-4.0.5-Remote-File-Inclusion.html
+      rev: '2'
+      sid: '2014321'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

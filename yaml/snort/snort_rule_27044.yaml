@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: pb|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string pb - Htbot"'
+      reference: url,www.virustotal.com/en/file/36802c72d1d5addc87d16688dcb37b680fd48f832fa7b93c15cf4f426aa3f0a7/analysis/
+      rev: '3'
+      service: http
+      sid: '27044'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"goform/setUsbUnload"'
+      - value: '"deviceName="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_11_17, cve CVE_2020_10987, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_05_03
+      msg: '"ET EXPLOIT Possible Tenda OS Command Injection (CVE-2020-10987) (POST)"'
+      pcre: '"/goform\/setUsbUnload$/Ui"'
+      reference: cve,2020-10987
+      rev: '1'
+      sid: '2034490'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

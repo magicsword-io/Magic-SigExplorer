@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '3306'
+    details:
+      classtype: attempted-admin
+      contents:
+      - offset: '4'
+        value: '"|03|"'
+      - value: '"unhex"'
+      - value: '"67656e6572616c5f6c6f675f66696c65"'
+      - value: '"2e636e66"'
+      - value: '"6e6d616c6c6f635f6c6962"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product MySQL, attack_target Server, created_at 2016_09_13,
+        cve CVE_2016_6662, deployment Datacenter, updated_at 2016_09_13
+      msg: '"ET EXPLOIT Possible MySQL CVE-2016-6662 Attempt"'
+      reference: url,legalhackers.com/advisories/MySQL-Exploit-Remote-Root-Code-Execution-Privesc-CVE-2016-6662.html
+      rev: '1'
+      sid: '2023201'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

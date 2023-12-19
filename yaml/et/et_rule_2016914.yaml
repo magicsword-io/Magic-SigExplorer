@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/smadstat.php?mac="'
+      - value: '"&key="'
+      - value: '"&name="'
+      - value: '"&os="'
+      - value: '"&build="'
+      - value: '"&old="'
+      - value: '"&comp="'
+      - value: '"User-Agent|3a| Smart-RTP|0d 0a|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_05_23, former_category MALWARE, updated_at 2020_09_18
+      msg: '"ET TROJAN Trojan.Win32.Antavmu.guw Checkin"'
+      reference: md5,a80f33c94c44556caa2ef46cd5eb863c
+      rev: '1'
+      sid: '2016914'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

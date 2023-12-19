@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: any
+      port: $SSH_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - offset: '6'
+        value: '"|14|"'
+      - value: '"roaming@appgate.com"'
+      - value: '!"AppGateSSH_5.2"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2016_01_15, cve CVE_2016_0777, updated_at 2016_01_15
+      msg: '"ET EXPLOIT Possible CVE-2016-0777 Client Sent Roaming Resume Request"'
+      reference: url,www.qualys.com/2016/01/14/cve-2016-0777-cve-2016-0778/openssh-cve-2016-0777-cve-2016-0778.txt
+      rev: '2'
+      sid: '2022370'
+    protocol: tcp
+    source:
+      network: any
+      port: any

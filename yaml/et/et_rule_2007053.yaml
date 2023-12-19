@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/ad.asp?"'
+      - value: '"cat_id="'
+      - value: '"UPDATE"'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Enthrallweb eClassifieds SQL Injection Attempt --
+        ad.asp cat_id UPDATE"'
+      pcre: '"/UPDATE.+SET/Ui"'
+      reference: url,doc.emergingthreats.net/2007053
+      rev: '7'
+      sid: '2007053'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

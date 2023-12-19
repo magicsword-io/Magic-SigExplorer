@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"javascript|3A|//",fast_pattern,nocase'
+      - value: '"document.cookie",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"BROWSER-FIREFOX Mozilla 1.0 Javascript arbitrary cookie access attempt"'
+      reference: cve,2002-2314
+      rev: '18'
+      service: http
+      sid: '1841'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - offset: '4'
+        value: '"/custom-report-example/"'
+      - value: '"|2e 2e 5c 2e 2e 5c 2e 2e 5c|deployment|5c|sharp|5c|icons|5c|home|2d|app|2e|png"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Web_Server, created_at 2023_08_11, cve CVE_2023_39143, deployment Perimeter,
+        deployment Internal, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS,
+        performance_impact Low, confidence High, signature_severity Major, updated_at
+        2023_08_11
+      msg: '"ET WEB_SPECIFIC_APPS PaperCut NG/MF Directory Traversal/File Upload Vulnerability
+        Check (CVE-2023-39143)"'
+      reference: cve,2023-39143
+      rev: '1'
+      sid: '2047632'
+      special_options:
+      - fast_pattern
+      - http_raw_uri
+      threshold: type limit, count 1, seconds 300, track by_src
+    protocol: tcp
+    source:
+      network: any
+      port: any

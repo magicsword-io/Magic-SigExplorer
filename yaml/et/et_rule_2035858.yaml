@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0c|ordns.he.net"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_04_07, deployment Perimeter, former_category INFO,
+        signature_severity Minor, updated_at 2022_04_07
+      msg: '"ET INFO Observed Ordns DNS over HTTPS Domain (Ordns .he .net in TLS SNI)"'
+      reference: url,www.blackhillsinfosec.com/dns-over-https-for-cobalt-strike
+      rev: '1'
+      sid: '2035858'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

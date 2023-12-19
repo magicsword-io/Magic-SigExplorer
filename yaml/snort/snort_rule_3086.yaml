@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/app_sta.stm",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP 3Com 3CRADSL72 ADSL 11g Wireless Router app_sta.stm access
+        attempt"'
+      reference: cve,2004-1596
+      rev: '10'
+      service: http
+      sid: '3086'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

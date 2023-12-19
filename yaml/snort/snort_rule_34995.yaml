@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0D 0A|Accept: text/html, */*|0D 0A|Accept-Encoding: identity|0D
+          0A|User-Agent: Mozilla/5.0 (Windows NT 6.1|3B| WOW64|3B| rv:12.0) Gecko/20100101
+          Firefox/12.0|0D 0A 0D 0A|",fast_pattern,nocase'
+      - value: '".php HTTP/1.1|0D 0A|Content-Type: text/html|0D 0A|Host: "'
+      - value: '".php"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banbra HTTP Header Structure"'
+      reference: url,www.virustotal.com/en/file/078f4f7bbd0a7fc3f1934a4988997e9f3b69ca8b9dc1bfd37a6c85b44fb50b48/analysis/
+      rev: '2'
+      service: http
+      sid: '34995'
+      special_options:
+      - http_header
+      - pkt_data
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

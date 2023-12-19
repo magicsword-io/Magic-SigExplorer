@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/check_value.php"'
+      - value: '!"User-Agent|3A|"'
+      - depth: '12'
+        value: '"identifiant="'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2014_05_05, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_04_29,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN W32/Karagany.Downloader CnC Beacon"'
+      reference: url,vrt-blog.snort.org/2014/05/continued-analysis-of-lightsout-exploit.html
+      rev: '1'
+      sid: '2018443'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

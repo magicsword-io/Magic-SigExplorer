@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"q|00 FB 00|{|00 AB 00|q|00 FB 00|{|00 AB 00|q|00 FB 00|{|00 AB 00|q|00
+          FB 00|{|00 AB 00|"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL SHELLCODE x86 0x71FB7BAB NOOP unicode"'
+      rev: '4'
+      sid: '2102313'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: $SHELLCODE_PORTS

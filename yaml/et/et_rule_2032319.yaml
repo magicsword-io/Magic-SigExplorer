@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - value: '"name=|22|info|22 0d 0a|"'
+      - value: '"name=|22|debug1|22 0d 0a|"'
+      - value: '"name=|22|debug2|22 0d 0a|"'
+      - value: '"filename=|22|"'
+      - value: '"Content-Type|3a 20|multipart/form-data|3b 20|boundary=---------------------------"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_24, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_03_24
+      msg: '"ET TROJAN Win32/Girostat Stealer (POST)"'
+      pcre: '"/\.php$/U"'
+      reference: md5,934058124782476cdbe7866c4ceed167
+      rev: '2'
+      sid: '2032319'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

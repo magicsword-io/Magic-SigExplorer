@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"d|00|o|00|n|00|e|00|"'
+      dsize: '8'
+      flow: established,to_client
+      flowbits: isset,ET.tcpraw.png
+      metadata: attack_target Client_Endpoint, created_at 2022_03_16, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_16
+      msg: '"ET TROJAN rat-test CnC Response"'
+      reference: url,twitter.com/James_inthe_box/status/1501604645759709186
+      rev: '2'
+      sid: '2035477'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

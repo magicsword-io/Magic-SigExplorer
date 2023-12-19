@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '161'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ILMI"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SNMP Attempted UDP Access Attempt to Cisco IOS 12.1 Hidden Read/Write
+        Community String ILMI"'
+      reference: url,doc.emergingthreats.net/2011011
+      rev: '3'
+      sid: '2011011'
+      special_options:
+      - nocase
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

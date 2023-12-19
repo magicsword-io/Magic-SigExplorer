@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/downloads/IPFilter"'
+      - value: '".exe"'
+      - depth: '18'
+        value: '"User-Agent|3a| AutoIt"'
+      flow: established,to_server
+      metadata: created_at 2013_05_14, former_category MALWARE, updated_at 2020_04_24
+      msg: '"ET TROJAN Trojan-Downloader.Win32.AutoIt.mj Checkin"'
+      pcre: '"/\/downloads\/IPFilter\.exe$/Ui"'
+      reference: md5,4a77d3575845cf24b72400816d0b95c2
+      rev: '1'
+      sid: '2016844'
+      special_options:
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

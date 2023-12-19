@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?mailid="'
+      - value: '"&action=inbox&param="'
+      - value: '"&session="'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_03, deployment Perimeter,
+        former_category MALWARE, malware_family Andariel, malware_family TA430, confidence
+        Medium, signature_severity Major, updated_at 2023_02_03
+      msg: '"ET TROJAN TA430/Andariel ACRES Backdoor Activity (GET)"'
+      reference: md5,c027d641c4c1e9d9ad048cda2af85db6
+      rev: '1'
+      sid: '2044086'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      within: '20'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

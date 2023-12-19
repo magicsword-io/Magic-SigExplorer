@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '10'
+      classtype: trojan-activity
+      contents:
+      - value: '"/post/echo",fast_pattern,nocase'
+      - value: '!"User-Agent:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Jackpos outbound connection"'
+      reference: url,www.virustotal.com/en/file/39c13ee490a2c4cf6f3aafe92734edbf2373f25cc6fab8e15cd4cf590f1abdf1/analysis
+      rev: '3'
+      service: http
+      sid: '29817'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

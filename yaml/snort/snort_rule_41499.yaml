@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 3,>,200,1
+      classtype: attempted-dos
+      contents:
+      - value: '"|FE|SMB|40 00|",depth 6,offset 4'
+      - value: '"|03 00|",within 2,distance 6'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy connectivity-ips drop,policy max-detect-ips
+        drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-SAMBA Microsoft Windows SMBv2/SMBv3 Buffer Overflow attempt"'
+      reference: cve,2017-0016
+      rev: '6'
+      sid: '41499'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[139,445]'

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|80 02|",depth 2'
+      - value: '"|02|",distance 4'
+      flow: to_client
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"INDICATOR-SCAN xtacacs failed login response"'
+      reference: url,attack.mitre.org/techniques/T1046
+      rev: '9'
+      sid: '2041'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '49'

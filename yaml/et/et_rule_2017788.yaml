@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|7b 22|success|22 3A|1,|22|message|22 3A 22|Product successfully
+          updated.|22|}"'
+      flow: established,to_client
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2013_11_28, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2016_07_01
+      msg: '"ET MOBILE_MALWARE Android.KorBanker Successful Fake Banking App Install
+        CnC Server Acknowledgement"'
+      reference: md5,a68bbfe91fab666daaf2c070db00022f
+      rev: '2'
+      sid: '2017788'
+      special_options:
+      - file_data
+      within: '55'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

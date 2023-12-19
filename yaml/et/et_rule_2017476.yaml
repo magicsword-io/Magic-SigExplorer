@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".classPK"'
+      - value: '".mp4PK"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2013_09_18,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2016_07_01
+      msg: '"ET CURRENT_EVENTS DRIVEBY SweetOrange - Java Exploit Downloaded"'
+      rev: '4'
+      sid: '2017476'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '80'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

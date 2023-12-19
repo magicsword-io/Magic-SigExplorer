@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"WindowsPowerShell"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_05_31, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence Medium, signature_severity
+        Major, updated_at 2023_05_31
+      msg: '"ET TROJAN [ANY.RUN] Observed Malicious Powershell Related Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+\r\n\r\n$/H"'
+      reference: md5,26c1f8c5631a5b633c324e7986dc7054
+      rev: '1'
+      sid: '2046046'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

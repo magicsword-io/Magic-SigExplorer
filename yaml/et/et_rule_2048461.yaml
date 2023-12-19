@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: successful-admin
+      contents:
+      - value: '"|3c|token|20|name|3d 22|"'
+      - value: '"creationTime|3d 22|"'
+      - value: '"value|3d 22|"'
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2023-42793
+      metadata: affected_product JetBrains_TeamCity, attack_target Web_Server, created_at
+        2023_10_05, cve CVE_2023_42793, deployment Perimeter, deployment Internal,
+        deployment SSLDecrypt, former_category EXPLOIT, performance_impact Low, signature_severity
+        Critical, updated_at 2023_10_05, reviewed_at 2023_10_05
+      msg: '"ET EXPLOIT JetBrains TeamCity Auth Bypass Successful Attempt (CVE-2023-42793)"'
+      reference: cve,2023-42793
+      rev: '1'
+      sid: '2048461'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: '[$HTTP_SERVERS,$HOME_NET]'
+      port: any

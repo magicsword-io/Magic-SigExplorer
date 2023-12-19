@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 2,>,513,-6,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|06 03 55 1d 1e|"'
+      - value: '"xn--"'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2022_11_01, cve CVE_2022_3602, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Significant, confidence
+        High, signature_severity Major, updated_at 2022_11_02
+      msg: '"ET EXPLOIT Possible OpenSSL Punycode Email Address Buffer Overflow Attempt
+        Inbound (CVE-2022-3602)"'
+      reference: cve,2022-3602
+      rev: '1'
+      sid: '2039618'
+      special_options:
+      - fast_pattern
+      within: '30'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

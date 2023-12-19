@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: any
+      port: '[139,445]'
+    details:
+      byte_test: 1,!&,0x80,6,relative
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        offset: '4'
+        value: '"|FF|SMB"'
+      - value: '"|00|_|00|A|00|u|00|t|00|o|00|S|00|h|00|a|00|r|00|e|00|$"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_12_13, updated_at 2014_12_13
+      msg: '"ET TROJAN Possible Net Crawler SMB Share Access unicode (Operation Cleaver)"'
+      reference: url,www0.cylance.com/assets/Cleaver/Cylance_Operation_Cleaver_Report.pdf
+      rev: '1'
+      sid: '2019929'
+    protocol: tcp
+    source:
+      network: any
+      port: any

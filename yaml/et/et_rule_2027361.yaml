@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '12'
+        value: '"|b0 1c 03 d4 90 38 41 d4 2a b4 80 7f|"'
+      - value: '"|04 00|"'
+      distance: '0'
+      dsize: <300
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_17, deployment Perimeter, former_category TROJAN, performance_impact
+        Low, signature_severity Major, tag APT, tag Winnti, updated_at 2022_03_24
+      msg: '"ET TROJAN Winnti Payload - XORed Check-in to Infected System (0xd4413890)"'
+      reference: url,medium.com/chronicle-blog/winnti-more-than-just-windows-and-gates-e4f03436031a
+      rev: '1'
+      sid: '2027361'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

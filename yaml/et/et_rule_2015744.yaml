@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"IsDebuggerPresent"'
+      - value: '!"|0d 0a|x-avast"'
+      flow: established,to_client
+      flowbits: isset,ET.http.binary
+      metadata: created_at 2012_09_28, former_category INFO, signature_severity Informational,
+        updated_at 2022_05_03
+      msg: '"ET INFO EXE IsDebuggerPresent (Used in Malware Anti-Debugging)"'
+      rev: '5'
+      sid: '2015744'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

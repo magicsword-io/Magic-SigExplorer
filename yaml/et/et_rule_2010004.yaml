@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"sp_start_job"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_07_30, updated_at 2020_05_04
+      msg: '"ET WEB_SERVER SQL sp_start_job attempt"'
+      reference: url,doc.emergingthreats.net/2010004
+      rev: '5'
+      sid: '2010004'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

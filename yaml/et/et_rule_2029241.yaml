@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|2f 50 30 75 72 57 61 31 74 33 5f 72 21 65 73 2f|"'
+      - value: '!"Referer|3a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_09, deployment Perimeter, former_category
+        MALWARE, malware_family TransparentTribe, signature_severity Major, updated_at
+        2020_01_09
+      msg: '"ET TROJAN APT/TransparentTribe Style Request"'
+      reference: md5,77549b8211c05fdf9114b09d38e88d98
+      rev: '2'
+      sid: '2029241'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

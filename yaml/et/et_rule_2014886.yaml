@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|3a|$INDEX_ALLOCATION"'
+      flow: established,to_server
+      metadata: created_at 2012_06_11, updated_at 2020_04_21
+      msg: '"ET WEB_SERVER IIS INDEX_ALLOCATION Auth Bypass Attempt"'
+      reference: url,lists.grok.org.uk/pipermail/full-disclosure/2012-June/087269.html
+      rev: '1'
+      sid: '2014886'
+      special_options:
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

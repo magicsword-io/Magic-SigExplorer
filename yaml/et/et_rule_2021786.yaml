@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?rnd="'
+      - value: '"&id="'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2015_09_16, updated_at 2020_10_05
+      msg: '"ET CURRENT_EVENTS Unknown Malicious Second Stage Download URI Struct
+        Sept 15 2015"'
+      pcre: '"/\.php\?rnd=\d+&id=[0-9A-F]{32,}$/U"'
+      rev: '1'
+      sid: '2021786'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+      urilen: '>46'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

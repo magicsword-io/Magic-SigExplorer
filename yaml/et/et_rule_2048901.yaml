@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '62520'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|40 00 00 00|"'
+      dsize: '4'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_10_25, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_10_25
+      msg: '"ET TROJAN [ANY.RUN] PureLogs Stealer C2 Connection M2"'
+      reference: url,app.any.run/tasks/babf3e14-a0f6-4d13-ac88-d75af6775b60
+      rev: '1'
+      sid: '2048901'
+      special_options:
+      - fast_pattern
+      stream_size: server,=,1
+      threshold: type limit, track by_src, seconds 360, count 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

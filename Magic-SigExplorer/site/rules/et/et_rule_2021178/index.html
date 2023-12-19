@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Et rule 2021178 - Magic SigExplorer</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Et rule 2021178";
+        var mkdocs_page_input_path = "rules/et/et_rule_2021178.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/rust.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Magic SigExplorer
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../snort/">Snort</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../et/">ET</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Magic SigExplorer</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Et rule 2021178</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="et-attack_response-metasploit-meterpreter-reverse-https-certificate">"ET ATTACK_RESPONSE Metasploit Meterpreter Reverse HTTPS certificate"</h2>
+<p><strong>SID:</strong> 2021178</p>
+<p><strong>Revision:</strong> 6</p>
+<p><strong>Class Type:</strong> trojan-activity</p>
+<p><strong>Metadata:</strong> affected_product Any, attack_target Client_and_Server, created_at 2015_06_03, deployment Perimeter, deployment Internet, deployment Internal, deployment Datacenter, signature_severity Critical, tag Metasploit, updated_at 2019_10_08</p>
+<p><strong>Reference:</strong> </p>
+<ul>
+<li><a href="https://blog.didierstevens.com/2015/05/11/detecting-network-traffic-from-metasploits-meterpreter-reverse-http-module">Link</a></li>
+</ul>
+<p><strong>Protocol:</strong> tcp</p>
+<p><strong>Source Network:</strong> $EXTERNAL_NET</p>
+<p><strong>Source Port:</strong> any</p>
+<p><strong>Destination Network:</strong> $HOME_NET</p>
+<p><strong>Destination Port:</strong> any</p>
+<p><strong>Flow:</strong> from_server,established</p>
+<p><strong>Contents:</strong></p>
+<ul>
+<li>
+<p>Value: "|A3 0D 30 0B 30 09 06 03 55 1D 13 04 02 30 00|"</p>
+</li>
+<li>
+<p>Value: "|16 03 03|"</p>
+</li>
+<li>
+<p>Value: "|30 0D 06 09 2A 86 48 86 F7 0D 01 01 0B 05 00 30|"</p>
+</li>
+<li>
+<p>Value: "|30 0D 06 09 2A 86 48 86 F7 0D 01 01 01 05 00 03 82|"</p>
+</li>
+<li>
+<p>Value: "|02 03 01 00 01 A3 0D 30 0B 30 09 06 03 55 1D 13 04 02 30 00 30 0D 06 09 2A 86 48 86 F7 0D 01 01 0B 05 00|"</p>
+</li>
+<li>
+<p>Value: !"|06|ubuntu"</p>
+</li>
+<li>
+<p>Value: !"|04|mint"</p>
+</li>
+<li>
+<p>Value: !"|a9 d5 73 d2 a0 a5 a1 69|"</p>
+</li>
+</ul>
+<p><strong>Within:</strong> 36</p>
+<p><strong>PCRE:</strong> "/^...\x30\x82..\x02\x82...{256,257}/Rs"</p>
+<p><strong>Special Options:</strong></p>
+<p><a href="https://github.com/magicsword-io/Magic-SigExplorer/tree/main/yaml/et_rule_2021178.yaml"><em>source</em></a></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

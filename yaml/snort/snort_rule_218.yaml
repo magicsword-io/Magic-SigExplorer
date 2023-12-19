@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"friday"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR MISC Solaris 2.5 attempt"'
+      rev: '8'
+      sid: '218'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

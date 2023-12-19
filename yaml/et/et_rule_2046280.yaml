@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '[25,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|75 73 74 61 72|"'
+      - value: '"|27 60|"'
+      - value: '"|60 27|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Barracuda_ESG, attack_target SMTP_Server, created_at
+        2023_06_15, cve CVE_2023_2868, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_06_15
+      msg: '"ET EXPLOIT Possible Barracuda Email Security Gateway Remote Code Execution
+        Attempt (CVE-2023-2868) M1"'
+      reference: cve,2023-2868
+      rev: '1'
+      sid: '2046280'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/plugins/DPGguestbook/guestbookaction.php?"'
+      - value: '"PathToRoot="'
+      flow: established,to_server
+      metadata: created_at 2012_06_01, updated_at 2020_04_21
+      msg: '"ET WEB_SPECIFIC_APPS DynPG CMS PathToRoot Parameter Remote File inclusion
+        Attempt"'
+      pcre: '"/PathToRoot=\s*(ftps?|https?|php)\:\//Ui"'
+      reference: url,packetstormsecurity.org/files/87907/DynPG-CMS-4.1.0-Remote-File-Inclusion.html
+      rev: '2'
+      sid: '2014836'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

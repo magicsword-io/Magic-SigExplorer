@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|Go-http-client/"'
+      - value: '"|0d 0a|Sharkflow|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_02_27, deployment Perimeter,
+        former_category MALWARE, malware_family Stealer, performance_impact Low, signature_severity
+        Major, updated_at 2020_02_27
+      msg: '"ET TROJAN GoLang Discord Token Grabber Exfil"'
+      pcre: '"/^Sharkflow\x3a\x20(?:mfa\.[\w-]{84}|[\w-]{24}\.[\w-]{6}\.[\w-]{27})\r$/Hm"'
+      reference: md5,1d2c1b88d8ae94c3f994d07451f6cc23
+      rev: '2'
+      sid: '2029542'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

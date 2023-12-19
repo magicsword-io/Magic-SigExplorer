@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"clsid"'
+      - value: '"5622772D-6C27-11D3-95E5-006008D14F3B"'
+      - value: '"Open"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2010_07_30, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET WEB_SPECIFIC_APPS Yahoo CD Player ActiveX Open Stack Overflow Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*5622772D-6C27-11D3-95E5-006008D14F3B/si"'
+      reference: url,doc.emergingthreats.net/2010945
+      rev: '2'
+      sid: '2010945'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

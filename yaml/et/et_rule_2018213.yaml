@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".myvnc.com"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_05, updated_at 2020_09_15
+      msg: '"ET INFO HTTP Connection To DDNS Domain Myvnc.com"'
+      pcre: '"/Host\x3A[^\r\n]*\x2Emyvnc.com/H"'
+      reference: url,labs.umbrella.com/2013/04/15/on-the-trail-of-malicious-dynamic-dns-domains/
+      rev: '1'
+      sid: '2018213'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

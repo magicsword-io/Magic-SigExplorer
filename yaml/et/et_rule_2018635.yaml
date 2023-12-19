@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '44'
+        value: '"Accept|3a 20|text/*,|20|application/*|0d 0a|User-Agent|3a 20|"'
+      - value: '!"Taitus"'
+      - value: '!"Sling/"'
+      - value: '!"sophosupd.com"'
+      - value: '!"sophosupd.net"'
+      - value: '!"Updexer/"'
+      - value: '!"Lightworks"'
+      fast_pattern: 11,20
+      flow: to_server,established
+      metadata: created_at 2014_07_03, former_category MALWARE, updated_at 2022_05_23
+      msg: '"ET TROJAN Common Upatre Header Structure 2"'
+      pcre: '"/^Accept\x3a\x20text\/\*,\x20application\/\*\r\nUser-Agent\x3a\x20[^\r\n]+\r\nHost\x3a[^\r\n]+\r\n(?:Pragma|Cache-Control)\x3a\x20no-cache\r\n(?:Connection\x3a
+        Keep-Alive\r\n)?(?:\r\n)?$/H"'
+      rev: '11'
+      sid: '2018635'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

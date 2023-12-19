@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"POST"'
+      - value: '"/uploadify.php"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_09_08, updated_at 2020_09_17
+      msg: '"ET POLICY Inbound /uploadify.php Access"'
+      reference: url,blog.sucuri.net/2012/06/uploadify-uploadify-and-uploadify-the-new-timthumb.html
+      rev: '1'
+      sid: '2015687'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

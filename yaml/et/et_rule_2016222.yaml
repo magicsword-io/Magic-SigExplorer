@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - depth: '7'
+        value: '"<title>"'
+      - value: '"GET"'
+      flow: established,to_server
+      metadata: created_at 2013_01_16, updated_at 2020_04_23
+      msg: '"ET SCAN GET with HTML tag in start of URI seen with PHPMyAdmin scanning"'
+      rev: '1'
+      sid: '2016222'
+      special_options:
+      - http_uri
+      - http_method
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

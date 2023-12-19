@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '".hopto.org"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_05, updated_at 2020_09_15
+      msg: '"ET INFO HTTP Connection To DDNS Domain Hopto.org"'
+      pcre: '"/Host\x3A[^\r\n]*\x2Ehopto\x2Eorg/H"'
+      reference: url,labs.umbrella.com/2013/04/15/on-the-trail-of-malicious-dynamic-dns-domains/
+      rev: '1'
+      sid: '2018216'
+      special_options:
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

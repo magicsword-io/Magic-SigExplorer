@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"some_magic_code1",depth 36'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Magic variant inbound connection"'
+      reference: url,www.seculert.com/blog/2013/04/magic-persistent-threat.html
+      rev: '3'
+      service: http
+      sid: '26467'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

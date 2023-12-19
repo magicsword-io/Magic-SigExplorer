@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '6464'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|45 36 27 18|"'
+      - value: '"|00 00 33 37 32 30 00 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_20, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_04_20
+      msg: '"ET TROJAN Win32/Injector.DYZG Variant Checkin"'
+      reference: md5,b08c4342d54b4c380c11640e39de10da
+      rev: '1'
+      sid: '2045121'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

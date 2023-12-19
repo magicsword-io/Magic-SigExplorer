@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"X-User-Agent|3a 20|"'
+      - value: '"POST /connect HTTP/1.1"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_11_28, deployment Perimeter,
+        former_category MALWARE, malware_family ViperSoftX, signature_severity Major,
+        updated_at 2022_11_28
+      msg: '"ET TROJAN Win32/ViperSoftX Stealer Activity M3 (POST)"'
+      pcre: '"/^X-User-Agent\x3a\x20[^\r\n]+\r\nHost\x3a\x20[^\r\n]+\r\nContent-Length\x3a\x20[^\r\n]+\r\nConnection\x3a\x20[^\r\n]+[\r\n]+$/H"'
+      reference: md5,d8f4fde20adbf45cff5c5413ef4b855d
+      rev: '1'
+      sid: '2040139'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

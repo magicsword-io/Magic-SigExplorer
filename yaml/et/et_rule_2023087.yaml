@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '9000'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '16'
+        offset: '3'
+        value: '"|20|/check|20|HTTP/1."'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2016_08_25, deployment Perimeter, deployment Datacenter, malware_family PNScan_2,
+        performance_impact Low, signature_severity Major, updated_at 2020_10_06
+      msg: '"ET TROJAN PNScan.2 Inbound Status Check - set"'
+      reference: url,vms.drweb.com/virus/?_is=1&i=7299536
+      rev: '1'
+      sid: '2023087'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

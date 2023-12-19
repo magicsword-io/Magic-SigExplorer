@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"ID3"'
+      - value: '"|FB FF|"'
+      distance: '0'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: affected_product Adobe_Flash, created_at 2018_08_10, deployment Perimeter,
+        former_category INFO, performance_impact Low, signature_severity Informational,
+        updated_at 2021_03_08
+      msg: '"ET INFO MP3 with ID3 in HTTP Flowbit Set"'
+      rev: '1'
+      sid: '2025986'
+      special_options:
+      - file_data
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

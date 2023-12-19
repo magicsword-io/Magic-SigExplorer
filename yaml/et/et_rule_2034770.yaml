@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"javaClassName"'
+      flow: established,to_client
+      flowbits: isset,ET.LDAPAnonBindRequest
+      metadata: attack_target Client_and_Server, created_at 2021_12_20, deployment
+        Perimeter, former_category POLICY, signature_severity Informational, updated_at
+        2021_12_20
+      msg: '"ET POLICY JavaClass Returned Via Anonymous Outbound LDAPv3 Bind Request"'
+      reference: url,ldap.com/ldapv3-wire-protocol-reference-bind/
+      rev: '2'
+      sid: '2034770'
+      special_options:
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

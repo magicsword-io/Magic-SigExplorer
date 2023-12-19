@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"Juniper Networks, Inc"'
+      - value: '"Version|3A|"'
+      - value: '"ScreenOS"'
+      distance: '0'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET WEB_SERVER Possible Successful Juniper NetScreen ScreenOS Firmware
+        Version Disclosure Attempt"'
+      reference: url,doc.emergingthreats.net/2010162
+      rev: '4'
+      sid: '2010162'
+      special_options:
+      - file_data
+      within: '100'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

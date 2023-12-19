@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"302"'
+      - value: '"location|3a 20|https|3a 2f 2f|run.mocky.io/v3/"'
+      fast_pattern: 14,20
+      flow: established,to_client
+      flowbits: isset,ET.TA422.Mockingbird
+      metadata: created_at 2023_11_16, former_category MALWARE, updated_at 2023_11_22,
+        former_sid 2855828
+      msg: '"ET TROJAN TA422 Related Activity M5"'
+      rev: '1'
+      sid: '2049288'
+      special_options:
+      - http_stat_code
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ALLO"'
+      flow: to_server,established
+      isdataat: 100,relative
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL FTP ALLO overflow attempt"'
+      pcre: '"/^ALLO\s[^\n]{100}/smi"'
+      reference: bugtraq,9953
+      rev: '2'
+      sid: '2102449'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

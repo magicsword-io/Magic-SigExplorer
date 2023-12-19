@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|jscloud|03|ink|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_10_06, deployment Perimeter,
+        signature_severity Major, updated_at 2023_10_06, reviewed_at 2023_11_17
+      msg: '"ET TROJAN Malicious Domain in DNS Lookup (jscloud .ink)"'
+      reference: url,securityintelligence.com/posts/x-force-uncovers-global-netscaler-gateway-credential-harvesting-campaign/
+      rev: '1'
+      sid: '2048473'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '13'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

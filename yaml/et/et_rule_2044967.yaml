@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/upload"'
+      - value: '"Host|3a 20|api.anonfiles.com|0d 0a|"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|file|22
+          3b 20|filename|3d 22|"'
+      - value: '"|00 24 00|HardwareDetails.txt"'
+      - value: '"|00 24 00|NetworkInformation.txt"'
+      - value: '"|00 24 00|Screenshot.jpg"'
+      fast_pattern: 1,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_17, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family TyphoonStealer, signature_severity
+        Major, updated_at 2023_04_17
+      msg: '"ET TROJAN TyphonStealer Exfil via AnonFiles (POST)"'
+      reference: md5,8581eae9949adfdce9a7bf6ae5ae0141
+      rev: '1'
+      sid: '2044967'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      urilen: '7'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

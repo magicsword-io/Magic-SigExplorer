@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0b|repairshopr|03|com|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2022_12_14, deployment Datacenter,
+        former_category INFO, malware_family SyncroMSP, performance_impact Low, signature_severity
+        Informational, tag RemoteAccessTool, updated_at 2022_12_14
+      msg: '"ET INFO Observed SyncroMSP Remote Management Software Domain in DNS Lookup
+        (repairshopr .com)"'
+      reference: url,syncromsp.com/security/
+      rev: '1'
+      sid: '2042878'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"PK"'
+      flow: established,from_server
+      flowbits: noalert
+      metadata: created_at 2013_11_25, updated_at 2013_11_25
+      msg: '"ET INFO Java Downloading Archive flowbit no alert"'
+      rev: '5'
+      sid: '2017748'
+      special_options:
+      - file_data
+      within: '2'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

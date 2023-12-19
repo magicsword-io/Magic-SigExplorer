@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"function unhideBody()"'
+      - value: '"var bodyElems = document.getElementsByTagName(|22|body|22|)|3b|"'
+      - value: '"bodyElems[0].style.visibility =|20 22|visible|22 3b|"'
+      - value: '"onload=|22|unhideBody()|22|"'
+      - value: '"method="'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_03_24, deployment Perimeter, signature_severity Minor, tag Phishing,
+        updated_at 2020_03_24
+      msg: '"ET CURRENT_EVENTS Common Unhidebody Function Observed in Phishing Landing"'
+      pcre: '"/^["'']?post/Ri"'
+      rev: '2'
+      sid: '2029732'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '12'
+        value: '"c3VjY2Vzcw=="'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_04_28,
+        deployment Perimeter, former_category HUNTING, signature_severity Informational,
+        updated_at 2021_04_28
+      msg: '"ET INFO Base64 Encoded Server Response (success)"'
+      rev: '1'
+      sid: '2032883'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

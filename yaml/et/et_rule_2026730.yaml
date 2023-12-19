@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"?selection="'
+      - value: '"User-Agent|3a 20|Mozilla/13.0|20 28|MSIE|20|7.0|3b 20|Windows|20|NT|20|6.0|29
+          0d|"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: 15,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_14, deployment Perimeter, former_category
+        MALWARE, malware_family DistTrack, malware_family Shamoon, performance_impact
+        Low, signature_severity Major, tag APT, tag Wiper, updated_at 2020_09_16
+      msg: '"ET TROJAN Shamoon V3 CnC Checkin"'
+      reference: url,researchcenter.paloaltonetworks.com/2018/12/shamoon-3-targets-oil-gas-organization/
+      rev: '2'
+      sid: '2026730'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

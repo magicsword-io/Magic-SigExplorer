@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3d 20 28 2f 2a 67 66 2a 2f 22 73 5c 78 37 35 62 73 22 29 2b 2f 2a
+          67 66 2a 2f 22 74 72 22 3b|"'
+      flow: established,from_server
+      flowbits: set,ET.RIGEKExploit
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_02_27,
+        deployment Perimeter, malware_family Exploit_Kit_RIG, performance_impact Low,
+        signature_severity Major, tag Exploit_kit_RIG, updated_at 2017_02_27
+      msg: '"ET CURRENT_EVENTS RIG EK Landing Feb 26 2016"'
+      rev: '2'
+      sid: '2024021'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

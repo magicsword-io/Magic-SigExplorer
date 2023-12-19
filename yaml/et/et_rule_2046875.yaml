@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0f|pan.tencent.com"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_20, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence High, signature_severity
+        Informational, tag FileSharing, updated_at 2023_07_20
+      msg: '"ET INFO File Sharing Domain (pan .tencent .com in TLS SNI)"'
+      reference: url,urlscan.io/result/e6d1a6ea-1dee-4f68-9b89-3ed24c1a4f46/
+      rev: '1'
+      sid: '2046875'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

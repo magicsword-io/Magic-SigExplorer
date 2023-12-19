@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"200"'
+      - value: '"The|20|zip|20|file|20|did|20|not|20|contain|20|an|20|entry"'
+      fast_pattern: 0,20
+      flow: established,to_client
+      flowbits: isset,ET.CVE-2023-22518.req
+      metadata: affected_product Atlassian_Confluence, attack_target Server, created_at
+        2023_11_06, cve CVE_2023_22518, deployment Perimeter, deployment Internal,
+        former_category EXPLOIT, confidence High, signature_severity Major, tag Exploit,
+        updated_at 2023_11_06, reviewed_at 2023_11_06
+      msg: '"ET EXPLOIT Successful Atlassian Confluence Improper Authentication Validation
+        Exploitation Attempt (CVE-2023-22518)"'
+      reference: cve,2023-22518
+      rev: '1'
+      sid: '2049097'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS

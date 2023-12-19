@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04 70 69 6e 67 03 61 64 6d|"'
+      - offset: '12'
+        value: '"|05|grp"'
+      distance: '15'
+      metadata: created_at 2016_02_23, former_category MALWARE, updated_at 2020_09_01
+      msg: '"ET TROJAN FrameworkPOS Covert DNS CnC Initial Check In"'
+      reference: md5,591e820591e10500fe939d6bd50e6776
+      rev: '2'
+      sid: '2022559'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

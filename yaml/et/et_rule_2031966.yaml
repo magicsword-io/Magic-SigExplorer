@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|0d 0a|Content-Type|3a 20|text/html"'
+      - value: '"<title>Navy Federal Credit Union"'
+      - value: '"Armed Forces Loans"'
+      distance: '0'
+      flow: to_client,established
+      metadata: attack_target Client_Endpoint, created_at 2016_02_01, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2020_06_18
+      msg: '"ET CURRENT_EVENTS Navy Federal Credit Union Phishing Landing 2016-01-30"'
+      rev: '1'
+      sid: '2031966'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

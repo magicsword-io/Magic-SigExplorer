@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|13 00 00 00|"'
+      - depth: '3'
+        offset: '5'
+        value: '"|00 00 00|"'
+      dsize: '12'
+      flow: established,to_server
+      flowbits: isset,ET.Netbooka.SessionIDSent
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_05_18, deployment Perimeter, former_category
+        MALWARE, malware_family NetDooka, performance_impact Significant, signature_severity
+        Major, tag RAT, updated_at 2022_09_29, reviewed_at 2023_09_01
+      msg: '"ET TROJAN Win32/NetDooka Framework RAT Sending File"'
+      reference: md5,e13d4a4b5eaef60643ce56013fe94344
+      rev: '5'
+      sid: '2036615'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

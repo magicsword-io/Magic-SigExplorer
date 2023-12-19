@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GeT"'
+      - depth: '200'
+        value: '"HttP"'
+      - value: '"|0d 0a|HoST|3a| "'
+      - value: '"UsER-AgENt|3a| |0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_11_02
+      msg: '"ET TROJAN Drop.Agent.bfsv HTTP Activity (UsER-AgENt)"'
+      reference: url,doc.emergingthreats.net/2010129
+      rev: '6'
+      sid: '2010129'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

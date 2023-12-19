@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[10909,10911]'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"rocketmqHome|3d 2d|c|20 24 40 7c|sh|20 2e 20|echo|20|"'
+      - value: '"|3b|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Apache_RocketMQ, attack_target Client_Endpoint, created_at
+        2023_09_07, cve CVE_2023_33246, deployment Perimeter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Major, updated_at 2023_09_07
+      msg: '"ET WEB_SPECIFIC_APPS Apache RocketMQ 5.1.0 Arbitrary Code Injection in
+        Broker Config (CVE-2023-33246)"'
+      reference: cve,2023-33246
+      rev: '1'
+      sid: '2047954'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/pspwebservices/service.asmx"'
+      - value: '"SOAPAction|30 20|"'
+      - value: '"SSCSM_TraceRecord"'
+      - value: '"<prgname>"'
+      - value: '"<macid>"'
+      - value: '"<cpuid>"'
+      - value: '"<sysname>"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_10_18, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Informational, updated_at
+        2019_10_18
+      msg: '"ET MALWARE SoftwareTracking Site - Install Report"'
+      reference: md5,740c2c6573066bf64718ea773f4ad9a7
+      rev: '2'
+      sid: '2028878'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

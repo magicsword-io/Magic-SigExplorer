@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        value: '"|30|"'
+      - value: '"|00 0b|iot/server"'
+      - value: '"|7b 0a 20 20 20 20 22 6d 73 67 22 3a 20 22|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: isset,ET.kumquat
+      metadata: attack_target Client_Endpoint, created_at 2023_02_02, deployment Perimeter,
+        former_category MALWARE, malware_family TA416, malware_family Kumquat, confidence
+        High, signature_severity Major, updated_at 2023_02_21, reviewed_at 2023_10_23
+      msg: '"ET TROJAN Win32/Kumquat Loader Activity (Publish)"'
+      pcre: '"/^[0-9]{1}/R"'
+      reference: md5,bff4ce3dbda522e92970c5d1d0471e63
+      rev: '2'
+      sid: '2044068'
+      special_options:
+      - fast_pattern
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

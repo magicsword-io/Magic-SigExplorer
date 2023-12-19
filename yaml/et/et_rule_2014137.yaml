@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3A 20|ISX Download DLL"'
+      fast_pattern: 12,16
+      flow: established,to_server
+      metadata: created_at 2012_01_18, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Common Adware Library ISX User Agent Detected"'
+      reference: url,www.dateiliste.com/d3files/tools/mphider/isxdl.htm
+      rev: '3'
+      sid: '2014137'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/api/agent/tabs/agentData"'
+      - value: '"|22|Task|20|Content|22|"'
+      - value: '"<?"'
+      - value: '"<!ENTITY|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_06_30, cve CVE_2022_28219, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_06_30
+      msg: '"ET EXPLOIT Possible ManageEngine ADAudit Plus XXE (CVE-2022-28219)"'
+      pcre: '"/\/api\/agent\/tabs\/agentData$/U"'
+      reference: cve,2022-28219
+      rev: '1'
+      sid: '2037217'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

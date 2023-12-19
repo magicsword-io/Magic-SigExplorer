@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '4080'
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/../../"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP iChat directory traversal attempt"'
+      reference: cve,1999-0897
+      rev: '12'
+      service: http
+      sid: '1604'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

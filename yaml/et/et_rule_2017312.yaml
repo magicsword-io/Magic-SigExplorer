@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|ppidn|03|net|00|"'
+      distance: '0'
+      metadata: created_at 2013_08_12, former_category MALWARE, updated_at 2023_05_15
+      msg: '"ET TROJAN Win32/Pift DNS TXT CnC Lookup ppidn.net"'
+      reference: md5,d3c6af8284276b11c2f693c1195b4735
+      rev: '6'
+      sid: '2017312'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

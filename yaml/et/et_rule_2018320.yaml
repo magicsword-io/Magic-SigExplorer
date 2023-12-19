@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/page_"'
+      - value: '"Cookie|3a 20|XX=0|3b 20|BX=0"'
+      flow: established,to_server
+      metadata: created_at 2014_03_26, updated_at 2014_03_26
+      msg: '"ET TROJAN Win32/Sisproc"'
+      reference: md5,aaf73666cbd750ed22b80ed836d2b1e4
+      rev: '1'
+      sid: '2018320'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

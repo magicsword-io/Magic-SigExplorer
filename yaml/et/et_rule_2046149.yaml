@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|3c 3f|xml|20|version|3d 22|"'
+      - value: '"Licensed|20|to|20|the|20|Apache|20|Software|20|Foundation|20 28|ASF|29
+          20|under|20|one|20|or|20|more|0a 20 20|contributor|20|license|20|agreements|2e|"'
+      - value: '"The|20|ASF|20|licenses|20|this|20|file|20|to|20|You|20|under|20|the|20|Apache|20|License|2c
+          20|Version"'
+      - value: '"aee/web-app_"'
+      - value: '"_"'
+      - value: '"|2e|xsd|22|"'
+      - value: '"|3c|display|2d|name|3e|"'
+      - value: '"|3c 2f|display|2d|name|3e|"'
+      - value: '"|3c|description|3e|"'
+      distance: '1'
+      flow: established,to_client
+      flowbits: isset,ET.GhostCat
+      metadata: affected_product Apache_Tomcat, attack_target Web_Server, created_at
+        2023_06_07, cve CVE_2020_1938, deployment Perimeter, former_category HUNTING,
+        confidence Medium, signature_severity Major, updated_at 2023_06_08, reviewed_at
+        2023_11_17
+      msg: '"ET INFO Possible [401TRG] GhostCat LFI Successful Exploit (CVE-2020-1938)"'
+      reference: url,trendmicro.com/en_us/research/20/c/busting-ghostcat-an-analysis-of-the-apache-tomcat-vulnerability-cve-2020-1938-and-cnvd-2020-10487.html
+      rev: '2'
+      sid: '2046149'
+      special_options:
+      - fast_pattern
+      within: '1'
+    protocol: tcp
+    source:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '8009'

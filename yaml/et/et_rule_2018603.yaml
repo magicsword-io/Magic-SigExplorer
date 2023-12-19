@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"c99shcook["'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_06_24, updated_at 2020_09_24
+      msg: '"ET WEB_SERVER c99 Shell Backdoor Var Override Client Body"'
+      pcre: '"/(?:^|&)c99shcook\[/Pi"'
+      reference: url,thehackerblog.com/every-c99-php-shell-is-backdoored-aka-free-shells/
+      rev: '1'
+      sid: '2018603'
+      special_options:
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

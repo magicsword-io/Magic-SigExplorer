@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"winver="'
+      - value: '"&sdsoft="'
+      - value: '"&webid="'
+      - value: '"&softid"'
+      - value: '"&usesnum="'
+      - value: '"&mac="'
+      - value: '"&filename="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_07_21, deployment Perimeter, former_category
+        ADWARE_PUP, performance_impact Low, signature_severity Minor, updated_at 2021_04_08
+      msg: '"ET MALWARE Downer.B Variant Checkin"'
+      reference: md5,b4188819a0da135ada42e2df4fa97619
+      rev: '3'
+      sid: '2030565'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

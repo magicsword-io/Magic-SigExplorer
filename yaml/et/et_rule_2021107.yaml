@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"background|3a 20|url(btn_search.png|29 2f 2a|tpa=http"'
+      fast_pattern: 15,20
+      flow: established,from_server
+      metadata: created_at 2015_05_15, updated_at 2022_03_17
+      msg: '"ET TROJAN Win32/Zemot Fake Search Page"'
+      reference: md5,38cad3170f85c4f9903574941bd282a8
+      rev: '1'
+      sid: '2021107'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

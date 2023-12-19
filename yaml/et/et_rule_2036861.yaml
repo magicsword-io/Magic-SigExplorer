@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,0,little,from_beginning, post_offset -1
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        offset: '4'
+        value: '"GET /?ocid="'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_21, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2017_09_14
+      msg: '"ET TROJAN Gh0st RAT Backdoor Checkin"'
+      reference: md5,1a5efd98ee8f8c69f2167ba91095835c
+      rev: '3'
+      sid: '2036861'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"rawcdn.githack.com|0d 0a|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_11_14, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT_KIT, signature_severity Major, updated_at 2020_10_21
+      msg: '"ET CURRENT_EVENTS Possible PurpleFox EK Framework URI Struct Flash Request"'
+      pcre: '"/^\/(?!(?:[a-z]{16}|[0-9]{16}))[a-zA-Z0-9]{16}\/[a-z.-]+\/[a-f0-9]{40}\/[a-z.-]+\/[a-z0-9]+\.swf$/U"'
+      rev: '2'
+      sid: '2028980'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      urilen: '>60'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

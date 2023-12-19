@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".jpg?v="'
+      - value: '"&d="'
+      - value: '!"c.shld.net|0d 0a|"'
+      - value: '!"scholtzskys.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_11_07, deployment Perimeter, former_category
+        TROJAN, performance_impact Low, signature_severity Critical, tag OceanLotus,
+        updated_at 2020_08_31
+      msg: '"ET TROJAN OceanLotus System Profiling JavaScript HTTP Request"'
+      pcre: '"/\.jpg\?v=\d+&d=(?!\d{8}T\d{6}Z)(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$/U"'
+      reference: url,www.volexity.com/blog/2017/11/06/oceanlotus-blossoms-mass-digital-surveillance-and-exploitation-of-asean-nations-the-media-human-rights-and-civil-society/
+      rev: '5'
+      sid: '2024969'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

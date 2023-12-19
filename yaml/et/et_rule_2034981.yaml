@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - depth: '19'
+        value: '"/attachments/token/"'
+      - value: '"/?name="'
+      - value: '"Host|3a 20|support.zoom.us|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_01_26, deployment Perimeter,
+        deployment SSLDecrypt, former_category POLICY, signature_severity Informational,
+        updated_at 2022_01_26
+      msg: '"ET POLICY File Shared via Zoom"'
+      rev: '1'
+      sid: '2034981'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

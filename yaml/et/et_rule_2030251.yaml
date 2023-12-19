@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|10|avaddonbotrxmuyl|05|onion|03|pet|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_06_05, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Avaddon, signature_severity
+        Major, tag Ransomware, updated_at 2020_11_17, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Observed DNS Query to known Avaddon Ransomware Payment Domain"'
+      reference: md5,c9ec0d9ff44f445ce5614cc87398b38d
+      rev: '2'
+      sid: '2030251'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

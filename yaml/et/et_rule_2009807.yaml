@@ -1,0 +1,78 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"IpAddr="'
+      - value: '"&OS="'
+      - value: '"&RegistryChanged="'
+      - value: '"&RegistryUpdate="'
+      - value: '"&NewInstallation="'
+      - value: '"&utilMissing="'
+      - value: '"&Basedir="'
+      - value: '"&BundleID="'
+      - value: '"&InitInstalled="'
+      - value: '"&Interval="'
+      - value: '"&LastInitRun="'
+      - value: '"&LastInitVer="'
+      - value: '"&LastSrngRun="'
+      - value: '"&LastUtilRun="'
+      - value: '"&SrngInstalled="'
+      - value: '"&SrngVer="'
+      - value: '"&UtilInstalled="'
+      - value: '"&UtilVer="'
+      - value: '"&PCID"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE 2020search/PowerSearch Toolbar Adware/Spyware - GET"'
+      reference: url,doc.emergingthreats.net/2009807
+      rev: '6'
+      sid: '2009807'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

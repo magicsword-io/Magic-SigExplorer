@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/id="'
+      - value: '"&rt="'
+      - value: '"AAAAAAAAAAA"'
+      - value: '!"Accept|3a 20|"'
+      - value: '!"Connection|3a 20|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2012_05_08, former_category MALWARE, updated_at 2020_04_22
+      msg: '"ET TROJAN Medfos/Midhos Checkin"'
+      reference: md5,63491dcc8e897bf442599febe48b824d
+      rev: '2'
+      sid: '2014722'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

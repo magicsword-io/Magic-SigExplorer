@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php?a1="'
+      - value: '"&a2="'
+      - value: '"&a3="'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2013_10_15, former_category MALWARE, updated_at 2020_10_05
+      msg: '"ET TROJAN W32.Nemim Checkin"'
+      pcre: '"/\.php\?a1=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})&a2=[a-f0-9]{32}&a3=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/Ui"'
+      reference: url,symantec.com/connect/blogs/infostealernemim-how-pervasive-infostealer-continues-evolve
+      rev: '3'
+      sid: '2017599'
+      special_options:
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

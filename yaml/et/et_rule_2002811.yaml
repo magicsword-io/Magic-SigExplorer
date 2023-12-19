@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '0'
+        value: '"220 Bot Server (Win32)"'
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Hostile FTP Server Banner (Bot Server)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2002811
+      rev: '5'
+      sid: '2002811'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: '21'

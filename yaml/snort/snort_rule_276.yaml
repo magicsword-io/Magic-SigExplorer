@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '7070'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"|FF F4 FF FD 06|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER RealNetworks Audio Server denial of service attempt"'
+      reference: nessus,10183
+      rev: '13'
+      sid: '276'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

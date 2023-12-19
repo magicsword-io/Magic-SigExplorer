@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Authorization|3A| Basic",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Samba SWAT Authorization port 901 overflow attempt"'
+      pcre: '"/^Authorization\x3a(\s*|\s*\r?\n\s+)Basic\s+=/ims"'
+      reference: cve,2004-0600
+      rev: '14'
+      service: http
+      sid: '2598'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

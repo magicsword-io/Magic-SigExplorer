@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"rtsp|3A|//",nocase'
+      flow: to_client,established
+      flowbits: isset,file.realplayer.playlist
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"FILE-MULTIMEDIA RealNetworks RealPlayer playlist rtsp URL overflow attempt"'
+      pcre: '"/^http\x3a\x2f\x2f[^\n]{400}/ims"'
+      reference: cve,2005-0755
+      rev: '23'
+      service: ftp-data,http,imap,pop3
+      sid: '2440'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $FILE_DATA_PORTS

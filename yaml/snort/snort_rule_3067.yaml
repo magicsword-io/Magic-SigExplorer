@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,256,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"EXAMINE",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP examine literal overflow attempt"'
+      pcre: '"/\sEXAMINE\s[^\n]*?\s\{/ims"'
+      reference: nessus,15867
+      rev: '12'
+      service: imap
+      sid: '3067'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

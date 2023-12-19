@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/my_cgi.cgi"'
+      - value: '"request=no_auth"'
+      - value: '"request=load_settings"'
+      - value: '"table_name=admin_user"'
+      - value: '"table_name=user_user"'
+      - value: '"table_name=wireless_settings"'
+      - value: '"table_name=wireless_security"'
+      - value: '"table_name=wireless_wpa_settings"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2018_07_10, deployment Datacenter, former_category
+        EXPLOIT, performance_impact Low, signature_severity Major, updated_at 2020_08_25
+      msg: '"ET EXPLOIT D-Link DIR601 2.02 Credential Disclosure"'
+      reference: url,exploit-db.com/exploits/45002/
+      rev: '2'
+      sid: '2025823'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

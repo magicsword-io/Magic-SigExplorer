@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Sinkholed by abuse.ch|0a|"'
+      dsize: '22'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: created_at 2015_01_21, former_category MALWARE, updated_at 2022_03_22
+      msg: '"ET TROJAN Known Sinkhole Response abuse.ch"'
+      rev: '2'
+      sid: '2020223'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

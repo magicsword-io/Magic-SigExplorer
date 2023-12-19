@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"JTNDJTNGeG1sJTIwdmVyc2lvbiUzRCUy"'
+      - value: '"/microsoft.jnlp"'
+      fast_pattern: only
+      flow: established,from_server
+      flowbits: set,et.exploitkitlanding
+      metadata: created_at 2013_09_17, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Unknown EK Fake Microsoft Security Update Applet Sep
+        16 2013"'
+      rev: '1'
+      sid: '2017468'
+      special_options:
+      - file_data
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

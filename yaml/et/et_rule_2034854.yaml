@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|07|i758769|0a|atwebpages|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_01_04, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2022_01_04
+      msg: '"ET TROJAN Konni Group CnC Domain in DNS Lookup"'
+      reference: url,cluster25.io/2022/01/03/konni-targets-the-russian-diplomatic-sector/
+      rev: '2'
+      sid: '2034854'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '24'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

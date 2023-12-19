@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/add_user.php?name="'
+      - value: '"&user=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.DesertFalcon variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/015fbc0b216d197136df8692b354bf2fc7bd6eb243e73283d861a4dbbb81a751/analysis/
+      rev: '2'
+      service: http
+      sid: '34310'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

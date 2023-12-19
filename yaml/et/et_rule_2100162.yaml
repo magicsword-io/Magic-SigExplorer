@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '24'
+        value: '"SIP/2.0 401 Unauthorized"'
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL VOIP SIP 401 Unauthorized Flood"'
+      rev: '5'
+      sid: '2100162'
+      threshold: type both, track by_dst, count 100, seconds 60
+    protocol: ip
+    source:
+      network: any
+      port: '5060'

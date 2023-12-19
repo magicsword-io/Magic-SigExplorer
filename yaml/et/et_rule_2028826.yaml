@@ -1,0 +1,46 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"?routestring"'
+      - value: '"ajax"'
+      - value: '"render"'
+      - value: '"widget_php"'
+      - value: '"&widgetConfig"'
+      - value: '"code"'
+      - value: '"echo"'
+      - value: '"shell_exec"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Server, created_at
+        2019_10_14, cve CVE_2019_16759, deployment Perimeter, deployment SSLDecrypt,
+        former_category EXPLOIT, performance_impact Low, signature_severity Major,
+        updated_at 2020_08_19
+      msg: '"ET EXPLOIT vBulletin 5.x Unauthenticated Remote Code Execution (CVE-2019-16759)
+        M3"'
+      reference: url,unit42.paloaltonetworks.com/exploits-in-the-wild-for-vbulletin-pre-auth-rce-vulnerability-cve-2019-16759/
+      rev: '2'
+      sid: '2028826'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

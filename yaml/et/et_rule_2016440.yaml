@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Mozilla/4.0 (compatible|3b| MSIE 5.00|3b| Windows 98) KSMM|0d 0a|"'
+      fast_pattern: 24,20
+      flow: established,to_server
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN SEASALT HTTP Checkin"'
+      reference: url,www.mandiant.com/apt1
+      rev: '1'
+      sid: '2016440'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '[$HTTP_PORTS,38987]'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '4'
+        value: '"POST"'
+      - value: '"NSEC-UID|3a 20|"'
+      - value: '"|0d 0a 0d 0a 3c|sessions|20|uid|3d 22|"'
+      - value: '"|22 20|user|3d 22|"'
+      - value: '"|2f 3e 3c 2f|sessions|3e|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_10_06, deployment Perimeter, former_category
+        POLICY, performance_impact Low, signature_severity Major, updated_at 2021_10_06
+      msg: '"ET POLICY NSecSoft Remote Monitoring Update/Download Activity M1"'
+      reference: md5,4a14459e5dbadb86417483dba7174ffa
+      rev: '2'
+      sid: '2034144'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

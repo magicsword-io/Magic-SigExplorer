@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"bm9uY2UyP"'
+      - value: '"cGx1Z2luP"'
+      - value: '".html"'
+      - value: '!"Referer"'
+      distance: '55'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_12_23, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2019_12_23
+      msg: '"ET TROJAN Win32/Valak - Plugin Data Exfil"'
+      pcre: '"/bm9uY2UyP[a-zA-Z0-9\/]{55,}cGx1Z2luP[a-zA-Z0-9\/]+\.html$/U"'
+      reference: url,medium.com/@prsecurity_/casual-analysis-of-valak-c2-3497fdb79bf7
+      rev: '2'
+      sid: '2029197'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      urilen: '>60'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

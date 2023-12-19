@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 6666:7000
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"USERHOST "'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"POLICY-SOCIAL IRC dns request"'
+      rev: '12'
+      sid: '1789'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

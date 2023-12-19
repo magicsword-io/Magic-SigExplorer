@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|mode|07|encagil|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2023_09_22, deployment Perimeter, malware_family
+        LuaDream, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2023_09_22, reviewed_at 2023_09_22
+      msg: '"ET TROJAN Sandman APT LuaDream Backdoor Domain in DNS Lookup (mode .encagil
+        .com)"'
+      reference: url,www.sentinelone.com/labs/sandman-apt-a-mystery-group-targeting-telcos-with-a-luajit-toolkit/
+      rev: '1'
+      sid: '2048215'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '18'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

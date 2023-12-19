@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '20'
+        value: '"in|7c 7c|Screen_Numbers|7c 7c|"'
+      - value: '"|7c|"'
+      dsize: <50
+      flow: established,from_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_05_11, deployment Perimeter, former_category
+        MALWARE, malware_family ModiRAT, signature_severity Major, updated_at 2020_11_12
+      msg: '"ET TROJAN MSIL/Modi RAT CnC Command Inbound (in)"'
+      reference: md5,ca075cb808eb6f69ab5ea82d7acb3f39
+      rev: '3'
+      sid: '2030141'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

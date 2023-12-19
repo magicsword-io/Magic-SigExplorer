@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"/uapi-cgi/viewer/simple_loglistjs.cgi?"'
+      - value: '"/bin/sh"'
+      flow: established,to_server
+      metadata: attack_target IoT, created_at 2018_07_02, cve CVE_2018_7520, deployment
+        Perimeter, former_category EXPLOIT, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_25
+      msg: '"ET EXPLOIT Geutebruck Remote Command Execution"'
+      reference: cve,2018-7520
+      rev: '2'
+      sid: '2025769'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

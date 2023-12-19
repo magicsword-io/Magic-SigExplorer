@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-dos
+      contents:
+      - depth: '6'
+        value: '"INVITE"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET VOIP INVITE Message Flood TCP"'
+      reference: url,doc.emergingthreats.net/2003192
+      rev: '4'
+      sid: '2003192'
+      threshold: type both , track by_src, count 100, seconds 60
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

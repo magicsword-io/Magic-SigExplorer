@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      classtype: misc-attack
+      contents:
+      - value: '"LOGIN",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-IMAP login literal buffer overflow attempt"'
+      pcre: '"/\sLOGIN\s[^\n]*?\{\s*(-|[3-9][0-9]{2}|2[6-9][0-9]|25[7-9]|[0-9]{4})/ims"'
+      reference: nessus,12532
+      rev: '24'
+      service: imap
+      sid: '1993'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

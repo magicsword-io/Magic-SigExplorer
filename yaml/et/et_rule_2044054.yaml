@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"wphrase="'
+      - value: '"&btn1="'
+      - depth: '20'
+        value: '"POST /meta/next.php|20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_02_01, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, signature_severity Major,
+        updated_at 2023_02_01
+      msg: '"ET CURRENT_EVENTS Successful Metamask Pass Phrase Phish 2023-02-01"'
+      reference: md5,d9c04e99213935f75f5881267a8317de
+      rev: '1'
+      sid: '2044054'
+      special_options:
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

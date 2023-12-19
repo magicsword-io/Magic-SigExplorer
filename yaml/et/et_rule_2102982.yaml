@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_jump: 2,7,little,relative
+      byte_test: 1,!&,128,6,relative
+      classtype: protocol-command-decode
+      contents:
+      - depth: '1'
+        value: '"|00|"'
+      - value: '"|FF|SMB"'
+      - depth: '1'
+        offset: '39'
+        value: '"u"'
+      - value: '"ADMIN|24 00|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, updated_at 2010_09_23
+      msg: '"GPL NETBIOS SMB-DS ADMIN$ andx share access"'
+      pcre: '"/^(\x2d|\x2f|\x73|\xa2|\x2e|\x24|\x74)/sR"'
+      rev: '4'
+      sid: '2102982'
+      special_options:
+      - nocase
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

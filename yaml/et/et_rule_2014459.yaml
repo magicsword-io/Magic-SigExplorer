@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - depth: '20'
+        value: '"POST /service HTTP/1"'
+      - value: '"|13|QVOD protocol|00 00 00 00 00 00 00 00 00 00 00 00 00 00|"'
+      flow: established,from_client
+      metadata: created_at 2012_04_03, updated_at 2020_04_21
+      msg: '"ET P2P QVOD P2P Sharing Traffic detected (tcp)"'
+      rev: '1'
+      sid: '2014459'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

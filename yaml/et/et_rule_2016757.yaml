@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST"'
+      - value: '"Content-Type|3a| application/x-www-form-urlencoded|0d 0a|"'
+      - value: '" MSIE "'
+      - value: '"|0d 0a 0d 0a|filename="'
+      - value: '"&data="'
+      - value: '!"Referer"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2013_04_16, former_category MALWARE, updated_at 2020_05_29
+      msg: '"ET TROJAN W32/Nymaim Checkin M2"'
+      pcre: '"/\r\n\r\nfilename=[a-z]+?\.[a-z]+?&data=/"'
+      rev: '8'
+      sid: '2016757'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

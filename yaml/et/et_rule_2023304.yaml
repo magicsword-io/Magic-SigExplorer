@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[23,2323,3323,4323]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"ECCHI"'
+      flow: to_server,established
+      flowbits: isset,ET.telnet.busybox
+      metadata: attack_target Server, created_at 2016_09_27, deployment Datacenter,
+        performance_impact Low, signature_severity Major, updated_at 2016_09_27
+      msg: '"ET TELNET busybox ECCHI hackers - Possible Brute Force Attack"'
+      reference: url,lists.emergingthreats.net/pipermail/emerging-sigs/2016-August/027524.html
+      rev: '1'
+      sid: '2023304'
+      threshold: type limit, count 1, track by_src, seconds 30
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

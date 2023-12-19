@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '88'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '30'
+        value: '"|05|"'
+      - value: '"|0a|"'
+      - value: '"Z"'
+      - value: '"|6C 69 6C 00|"'
+      distance: '4'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_12_08, deployment Perimeter, signature_severity
+        Major, updated_at 2020_12_08
+      msg: '"ET CURRENT_EVENTS [Fireeye] HackTool.TCP.Rubeus.[nonce]"'
+      reference: url,github.com/fireeye/red_team_tool_countermeasures
+      rev: '2'
+      sid: '2031266'
+      special_options:
+      - fast_pattern
+      within: '25'
+    protocol: tcp
+    source:
+      network: any
+      port: any

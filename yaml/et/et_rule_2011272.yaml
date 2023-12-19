@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"isInst="'
+      - value: '"lockcode="'
+      - value: '"PcType="'
+      - value: '"AvName="'
+      - value: '"ProCount="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN Win32/Chekafe.A or Related Infection Checkin"'
+      reference: url,doc.emergingthreats.net/2011272
+      rev: '3'
+      sid: '2011272'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

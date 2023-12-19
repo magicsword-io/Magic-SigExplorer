@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: '37777'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"|62 00 00 00|"'
+      - value: '"Protocol|3a 20|"'
+      - value: '"|0d 0a|"'
+      - value: '"Protocol|3a 20|"'
+      distance: '200'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_10_27, cve CVE_2020_5735, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, confidence High,
+        signature_severity Major, tag Exploit, updated_at 2021_10_27
+      msg: '"ET EXPLOIT Amcrest Camera and NVR Buffer Overflow Attempt (CVE-2020-5735)"'
+      reference: cve,2020-5735
+      rev: '2'
+      sid: '2034257'
+      special_options:
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

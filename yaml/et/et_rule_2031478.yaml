@@ -1,0 +1,48 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"."'
+      - value: '"User-Agent|3a 20|go-resty/"'
+      - value: '"|20|(https|3a|//github.com/go-resty/resty)|0d 0a|"'
+      - depth: '7'
+        value: '"{|22|id|22 3a 22|"'
+      - value: '"|22 2c 22|mac_name|22 3a 22|"'
+      - value: '"|22 2c 22|os_version|22 3a 22|"'
+      - value: '"|22 2c 22|user_name|22 3a 22|"'
+      - value: '"|22 2c 22|os|22 3a 22|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_01_05, deployment Perimeter, former_category
+        MALWARE, malware_family ElectroRAT, signature_severity Major, updated_at 2021_01_05
+      msg: '"ET TROJAN ElectroRAT CnC Checkin"'
+      reference: url,www.intezer.com/blog/research/operation-electrorat-attacker-creates-fake-companies-to-drain-your-crypto-wallets
+      rev: '2'
+      sid: '2031478'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - fast_pattern
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - http_header
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

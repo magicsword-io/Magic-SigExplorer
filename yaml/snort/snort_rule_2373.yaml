@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"XMKD",nocase'
+      flow: to_server,established
+      isdataat: 200,relative
+      metadata: ruleset community
+      msg: '"PROTOCOL-FTP XMKD overflow attempt"'
+      pcre: '"/^XMKD(?!\n)\s[^\n]{200}/ims"'
+      reference: cve,2001-1021
+      rev: '13'
+      service: ftp
+      sid: '2373'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

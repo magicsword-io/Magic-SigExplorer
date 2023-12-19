@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '17'
+      classtype: trojan-activity
+      contents:
+      - value: '"/second/game1.inf",fast_pattern,nocase'
+      - value: '"|3B 20|MSIE|20|"'
+      - value: '!"Accept-Language:"'
+      - value: '!"Referer:"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Banker variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/bf40d710dda1a3ada127d68b34b837eca03a28699cd858cda7d4a3e36690628a/analysis/
+      rev: '2'
+      service: http
+      sid: '31222'
+      special_options:
+      - http_raw_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

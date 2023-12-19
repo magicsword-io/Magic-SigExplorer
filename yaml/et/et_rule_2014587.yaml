@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"CLSID"'
+      - value: '"D9397163-A2DB-4A4A-B2C9-34E876AF2DFC"'
+      - value: '"SaveMiniLaunchFile("'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2012_04_16, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET ACTIVEX Possible Quest vWorkspace Broker Client ActiveX Control SaveMiniLaunchFile
+        Remote File Creation/Overwrite"'
+      reference: url,exploit-db.com/exploits/18704/
+      rev: '3'
+      sid: '2014587'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

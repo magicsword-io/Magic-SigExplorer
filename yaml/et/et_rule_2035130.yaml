@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".html?provider="'
+      - value: '"Windows|20|NT|20|7.1|3b 20|"'
+      - depth: '10'
+        value: '"wordpress_"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_02_08, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family Cobalt_Strike,
+        signature_severity Major, updated_at 2022_04_18, reviewed_at 2023_08_25
+      msg: '"ET TROJAN Cobalt Strike Activity (GET)"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+Windows\x20NT\x207\.1\x3b\x20/Hmi"'
+      reference: md5,b4c716f08907cd4e848bb9ab541dc449
+      rev: '2'
+      sid: '2035130'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

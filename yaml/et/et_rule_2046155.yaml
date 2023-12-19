@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '63'
+        value: '"gecko|3b|chromium|3b|download|3b|grabbers|3b|extensions|3b|processGrabber|3b|dll|3b|"'
+      - value: '"|0d 0d 0a 0a 0a|Firefox|0a 25|USERPROFILE|25|"'
+      distance: '0'
+      fast_pattern: 43,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_07, deployment Perimeter, former_category
+        MALWARE, malware_family ObserverStealer, confidence High, signature_severity
+        Critical, updated_at 2023_06_07
+      msg: '"ET TROJAN [ANY.RUN] Win32/ObserverStealer CnC Response"'
+      reference: url,app.any.run/tasks/5728c30e-00c1-4f87-9522-ff8b9e08fa32/
+      rev: '1'
+      sid: '2046155'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

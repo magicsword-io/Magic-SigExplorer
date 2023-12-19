@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"CONNECT"'
+      - depth: '11'
+        value: '"/update?id="'
+      - value: '"Proxy|2d|Connection|3a 20|Keep|2d|Alive"'
+      - value: '"Proxy|2d|Authorization|3a 20|Basic|20|"'
+      - value: '"Content|2d|Type|3a 20|text|2f|html|0d 0a|"'
+      - value: '"Content-Length|3a 20|0|0d 0a|"'
+      - value: '"User|2d|Agent|3a 20|Mozilla|2f|4|2e|0|20 28|compatible|3b 20|MSIE|0d
+          0a|"'
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_02_23, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_02_23, reviewed_at 2023_11_17
+      msg: '"ET TROJAN Win32/Plugx CnC Activity (CONNECT)"'
+      reference: md5,e832281f64504e3dce46860b605116a9
+      rev: '1'
+      sid: '2044311'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

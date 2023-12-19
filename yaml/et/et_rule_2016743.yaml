@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename=|22|%2e/files/conf.bin|22|"'
+      flow: established,to_client
+      metadata: created_at 2013_04_09, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN W32/Citadel Conf.bin Download From CnC Server"'
+      reference: url,seifreed.es/docs/Citadel%20Trojan%20Report_eng.pdf
+      rev: '1'
+      sid: '2016743'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - depth: '51'
+        value: '"|7b 22|public_key|22 3a 22|-----BEGIN|26 23 31 36 30 3b|PUBLIC|26
+          23 31 36 30 3b|KEY-----"'
+      - value: '"-----END|26 23 31 36 30 3b|PUBLIC|26 23 31 36 30 3b|KEY-----"'
+      - value: '"|22 2c 22|id|22 3a 22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_09_12, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, updated_at 2020_11_19
+      msg: '"ET TROJAN Win32/Filecoder.STOP Variant Public Key Download"'
+      reference: md5,c0672f0359afba1c24ab0f90f568bdc0
+      rev: '2'
+      sid: '2036335'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

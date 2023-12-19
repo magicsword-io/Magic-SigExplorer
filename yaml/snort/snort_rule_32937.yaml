@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"HTTP/1"'
+      - value: '"|E2 1D 49 49|",depth 4,fast_pattern'
+      - value: '"|49 49 49 49|",within 4,distance 4'
+      flow: established
+      metadata: impact_flag red,policy max-detect-ips drop,ruleset community
+      msg: '"MALWARE-TOOLS Win.Trojan.Wiper proxy communication attempt"'
+      reference: url,us-cert.gov/ncas/alerts/TA14-353A
+      rev: '2'
+      sid: '32937'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|17|doh.applied-privacy.net"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|US"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0d|Let''s Encrypt"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|02|R3"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_02_08, deployment Perimeter,
+        former_category POLICY, performance_impact Low, signature_severity Informational,
+        tag DoH, updated_at 2022_02_08
+      msg: '"ET INFO Applied Privacy DNS over HTTPS Certificate Inbound"'
+      rev: '2'
+      sid: '2035125'
+      special_options:
+      - fast_pattern
+      within: '3'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/gate.php",fast_pattern,nocase'
+      - value: '"163="'
+      - value: '"&x=",distance 0'
+      - value: '"&z=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.X-Mas variant keylogger outbound connection"'
+      reference: url,virustotal.com/en/file/b49d2b3c6978584408f3c668863cc88e892bd333a9db9c3de14964d59fc3298f/analysis/1484847208/
+      rev: '4'
+      service: http
+      sid: '41443'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

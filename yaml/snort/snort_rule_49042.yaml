@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: SpellingChecker/22",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"PUA-ADWARE Osx.Adware.FairyTail variant outbound connection detected"'
+      reference: url,virustotal.com/#/file/a9a7a1c48cd1232249336749f4252c845ce68fd9e7da85b6da6ccbcdc21bcf66
+      rev: '1'
+      service: http
+      sid: '49042'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

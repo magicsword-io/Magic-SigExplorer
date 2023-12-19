@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Content-Type|3a 20|application/x-sh"'
+      flow: established,from_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2021_03_02,
+        deployment Perimeter, former_category HUNTING, performance_impact Significant,
+        signature_severity Informational, updated_at 2022_04_22
+      msg: '"ET INFO Observed Interesting Content-Type Inbound (application/x-sh)"'
+      pcre: '"/^Content-Type\x3a\x20application/x-sh(?:\x3b|\r\n)/Hm"'
+      reference: url,developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+      rev: '3'
+      sid: '2031747'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

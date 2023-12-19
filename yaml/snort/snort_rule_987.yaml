@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '".htr",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"FILE-IDENTIFY .htr access file download request"'
+      pcre: '"/\x2ehtr([\?\x5c\x2f]|$)/ims"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms01-004
+      rev: '32'
+      service: http
+      sid: '987'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

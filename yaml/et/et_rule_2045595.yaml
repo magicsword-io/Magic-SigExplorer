@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"200"'
+      - value: '"$hunter = new HunterObfuscator"'
+      metadata: attack_target Client_Endpoint, created_at 2023_05_04, deployment Perimeter,
+        former_category WEB_CLIENT, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2023_05_04
+      msg: '"ET WEB_CLIENT Observed Hunter Obfuscator Code M2"'
+      reference: url,malwarebytes.com/blog/threat-intelligence/2023/03/hunter-skimmer
+      rev: '1'
+      sid: '2045595'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

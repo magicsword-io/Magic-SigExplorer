@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|04 1f 23 9d bd|"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|0c|assylias.Inc"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2015_03_23, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_04_18
+      msg: '"ET TROJAN Possible Adwind/jSocket SSL Cert (assylias.Inc)"'
+      reference: md5,b102c26e04e97bda97b11bfe7366e61e
+      rev: '2'
+      sid: '2020728'
+      special_options:
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

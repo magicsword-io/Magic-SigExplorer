@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: $ORACLE_PORTS
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"TIME_ZONE",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-ORACLE time_zone buffer overflow attempt"'
+      pcre: '"/TIME_ZONE\s*=\s*((\x27[^\x27]{1000,})|(\x22[^\x22]{1000,}))/ims"'
+      reference: url,www.nextgenss.com/advisories/ora_time_zone.txt
+      rev: '6'
+      sid: '2614'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

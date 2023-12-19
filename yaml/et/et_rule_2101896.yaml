@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '749'
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|FF FF|KADM0.0A|00 00 FB 03|"'
+      flow: established,to_server
+      metadata: created_at 2010_09_23, cve CVE_2002_1226, former_category EXPLOIT,
+        confidence High, updated_at 2010_09_23
+      msg: '"GPL EXPLOIT kadmind buffer overflow attempt"'
+      reference: url,www.kb.cert.org/vuls/id/875073
+      rev: '9'
+      sid: '2101896'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

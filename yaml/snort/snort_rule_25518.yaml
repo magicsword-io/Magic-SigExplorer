@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"User-Agent|3A|"'
+      - value: '"iPod",distance 0,fast_pattern'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-MOBILE Apple iPod User-Agent detected"'
+      pcre: '"/^User-Agent\x3a[^\r\n]*iPod/"'
+      rev: '5'
+      service: http
+      sid: '25518'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

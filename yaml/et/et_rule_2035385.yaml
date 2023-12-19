@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla/4.0|20|(compatible|3b 20|MSIE 6.0|3b 20|Windows|20|NT|20|5.0)|0d
+          0a|"'
+      - value: '"GET /conf.dat HTTP/1.1"'
+      - value: '!"Referer"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2022_03_03, deployment Perimeter,
+        former_category MALWARE, malware_family PurpleFox, signature_severity Major,
+        updated_at 2022_03_03
+      msg: '"ET TROJAN Win32/PurpleFox Retrieving File (GET)"'
+      reference: md5,57b8bccf9cb8592ae86b4453cf74b4e8
+      rev: '2'
+      sid: '2035385'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

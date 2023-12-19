@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/lua/network_load.lua"'
+      - value: '"session="'
+      - value: '"user="'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2018_07_03, cve CVE_2018_12520, deployment
+        Datacenter, former_category SCAN, performance_impact Low, signature_severity
+        Critical, updated_at 2020_08_25
+      msg: '"ET SCAN ntop-ng Authentication Bypass via Session ID Guessing"'
+      reference: url,exploit-db.com/exploits/44973/
+      rev: '2'
+      sid: '2025780'
+      special_options:
+      - http_uri
+      - http_cookie
+      - http_cookie
+      threshold: type threshold, track by_dst, count 255, seconds 10
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

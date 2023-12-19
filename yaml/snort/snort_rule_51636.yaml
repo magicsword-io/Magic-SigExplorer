@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"bi=",fast_pattern,nocase'
+      - value: '"/index.php",nocase'
+      - value: '"id=",nocase'
+      - value: '"sd=",nocase'
+      - value: '"vs=",nocase'
+      - value: '"ar=",nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Amadey botnet outbound connection"'
+      reference: url,www.virustotal.com/gui/file/ea09fb5b9c31bbf5817f22634f0ad837605a3352df099690d5e3a948bb719e83
+      rev: '3'
+      service: http
+      sid: '51636'
+      special_options:
+      - http_client_body
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|02 09 00|"'
+      - value: '"|06 03 55 04 06 13 02 41 55|"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '!"|0a|Some-State"'
+      distance: '1'
+      flow: established,from_server
+      metadata: attack_target Client_Endpoint, created_at 2014_12_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Moderate, signature_severity Major,
+        tag SSL_Malicious_Cert, updated_at 2022_06_27
+      msg: '"ET TROJAN Possible Dyre SSL Cert (fake state)"'
+      pcre: '"/^.{2}(?=[A-Z]{0,32}[^A-Z01])(?P<var>[^01]{4,33}[01]).+?\x06\x03\x55\x04\x08.{2}(?P=var)/Rs"'
+      rev: '6'
+      sid: '2019833'
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '[443,4443]'

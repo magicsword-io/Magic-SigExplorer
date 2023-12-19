@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|31 c0 50 68 2f 2f 73 68 68 2f 62 69 6e 89 e3 50 53 89 e1 b0 0b cd
+          80|"'
+      metadata: affected_product Linux, attack_target Server, created_at 2018_07_13,
+        deployment Perimeter, former_category SHELLCODE, performance_impact Low, updated_at
+        2018_07_13
+      msg: '"ET SHELLCODE Execve(/bin/sh) Shellcode"'
+      rev: '1'
+      sid: '2025695'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

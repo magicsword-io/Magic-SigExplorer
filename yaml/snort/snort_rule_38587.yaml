@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"307"'
+      - value: '"Temporary Redirect"'
+      - value: '"Set-Cookie|3A 20|DFSCOOK=",fast_pattern,nocase'
+      - value: '"Location: "'
+      - value: '"/api.php?d=",distance 0'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.DFSCook variant temporary redirect attempt"'
+      reference: url,www.virustotal.com/en/file/7a32e9d01e66f68461e410a29e38e147fb8a3d3695f1e55f4cf0d2ad789d5b2d/analysis/1460564508/
+      rev: '2'
+      service: http
+      sid: '38587'
+      special_options:
+      - http_stat_code
+      - http_stat_msg
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

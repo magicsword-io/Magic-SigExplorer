@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0f|securityupdated|03|com"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_20, deployment Perimeter, former_category
+        MALWARE, malware_family TURNEDUP, malware_family StoneDrill, performance_impact
+        Low, signature_severity Major, updated_at 2020_09_17
+      msg: '"ET TROJAN DNS Query For TURNEDUP.Backdoor CnC (securityupdated)"'
+      reference: url,go.recordedfuture.com/hubfs/reports/cta-2019-0626.pdf
+      rev: '2'
+      sid: '2024731'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

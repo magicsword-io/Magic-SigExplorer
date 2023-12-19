@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '139'
+    details:
+      classtype: attempted-user
+      contents:
+      - offset: '32'
+        value: '"x|00|p|00|_|00|p|00|r|00|i|00|n|00|t|00|s|00|t|00|a|00|t|00|e|00|m|00|e|00|n|00|t|00|s|00|"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2000_1086, former_category SQL, confidence
+        High, updated_at 2010_09_23
+      msg: '"GPL SQL xp_printstatements possible buffer overflow"'
+      reference: url,www.microsoft.com/technet/security/bulletin/MS00-092.mspx
+      rev: '10'
+      sid: '2100690'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '"/login.php5"'
+      - value: '"|3c 3f|php|20|system|28 24 5f|POST|5b 27|"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2022_03_07, cve CVE_2020_16152, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_03_07
+      msg: '"ET EXPLOIT Extreme Networks ExtremeWireless Aerohive HiveOS and IQ Engine
+        (Log Poisoning) (CVE-2020-16152) M1"'
+      reference: cve,2020-16152
+      rev: '1'
+      sid: '2035401'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

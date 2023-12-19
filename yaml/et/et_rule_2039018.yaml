@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|01|"'
+      - value: '"|0a|requestbin|03|net|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_09_27, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, confidence High, signature_severity
+        Informational, updated_at 2022_09_28, reviewed_at 2023_11_17
+      msg: '"ET ICMP_INFO DNSBin Demo (requestbin .net) - Data Exfil"'
+      reference: url,requestbin.net/dns
+      rev: '3'
+      sid: '2039018'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, seconds 180, count 1
+      within: '16'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

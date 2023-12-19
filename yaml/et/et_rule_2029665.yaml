@@ -1,0 +1,58 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"lsd="'
+      - value: '"&try_number="'
+      - value: '"&unrecognized_tries="'
+      - value: '"&prefill_contact_point="'
+      - value: '"&prefill_source="'
+      - value: '"&prefill_type="'
+      - value: '"&first_prefill_source="'
+      - value: '"&first_prefill_type="'
+      - value: '"&had_cp_prefilled="'
+      - value: '"&had_password_prefilled="'
+      - value: '!".facebook.com|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_01_25, deployment Perimeter, former_category PHISHING, signature_severity
+        Critical, tag Phishing, updated_at 2020_11_17, mitre_tactic_id TA0001, mitre_tactic_name
+        Initial_Access, mitre_technique_id T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Facebook Phish 2018-01-26"'
+      rev: '3'
+      sid: '2029665'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

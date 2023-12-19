@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/log/"'
+      - value: '"/?id="'
+      - value: '!"User-Agent|3a 20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"Host|3a 20|"'
+      flow: to_server,established
+      metadata: created_at 2014_08_12, updated_at 2020_05_01
+      msg: '"ET TROJAN Lurk Click fraud Template Request"'
+      pcre: '"/^\/log\/[0-9]+\/[0-9]+\/\?id=[0-9]+$/U"'
+      reference: url,secureworks.com/cyber-threat-intelligence/threats/malware-analysis-of-the-lurk-downloader/
+      rev: '1'
+      sid: '2018927'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"083B40D3-CCBA-11D2-AFE0-00C04F7993D6"'
+      - value: '".DeletePage"'
+      - value: '"<OBJECT"'
+      distance: '0'
+      flow: to_client,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_10_04, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2016_07_01
+      msg: '"ET SCADA PcVue Activex Control Insecure method (DeletePage)"'
+      pcre: '"/^[^>]*?classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*083B40D3-CCBA-11D2-AFE0-00C04F7993D6/Rsi"'
+      reference: url,exploit-db.com/exploits/17896
+      rev: '4'
+      sid: '2013731'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

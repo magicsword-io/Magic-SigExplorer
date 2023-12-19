@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '135'
+    details:
+      byte_jump: 4,8,relative,little,align
+      byte_test: 4,>,1024,0,relative,little
+      classtype: attempted-admin
+      contents:
+      - value: '"|04 00|",depth 2'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS DCERPC Messenger Service buffer overflow attempt"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS03-043
+      rev: '16'
+      sid: '2257'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

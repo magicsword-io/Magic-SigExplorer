@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"POST"'
+      - value: '"&Phone"'
+      - value: '"Number="'
+      flow: established,to_server
+      metadata: created_at 2011_07_06, former_category MOBILE_MALWARE, updated_at
+        2020_08_11
+      msg: '"ET POLICY Mobile Device Posting Phone Number"'
+      pcre: '"/\x26Phone(Number\x3D|\x5FNumber\x3D|\x2DNumber\x3D)/Ui"'
+      rev: '2'
+      sid: '2013208'
+      special_options:
+      - nocase
+      - http_method
+      - fast_pattern
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

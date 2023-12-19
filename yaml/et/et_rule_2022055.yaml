@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '4'
+        value: '"|50 4B 03 04|"'
+      flow: from_server,established
+      flowbits: noalert
+      metadata: created_at 2015_11_10, updated_at 2015_11_10
+      msg: '"ET INFO PK/Compressed doc/JAR header"'
+      rev: '1'
+      sid: '2022055'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

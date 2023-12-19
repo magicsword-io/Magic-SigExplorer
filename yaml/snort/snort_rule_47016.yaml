@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/www/",depth 5,fast_pattern'
+      - value: '"/00",distance 0'
+      - value: '!"Accept|3A|"'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Spyware.Invisimole CnC outbound connection"'
+      pcre: '"/\/www\/(%[A-F0-9]{2}){5,}\/00/"'
+      reference: url,www.virustotal.com/en/file/be554e706f6b8ab8f4bbea209b669e9dca98bf647faa55c46756f322dadab32f/analysis/
+      rev: '1'
+      service: http
+      sid: '47016'
+      special_options:
+      - http_uri
+      - http_header
+      - http_raw_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"http|3A 2F 2F|1.usa.gov"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"POLICY-SPAM 1.usa.gov URL in email, possible spam redirect"'
+      pcre: '"/http\x3A\x2f\x2f1\.usa\.gov\x2f[a-f0-9]{6,8}/ims"'
+      reference: url,www.symantec.com/connect/blogs/spam-gov-urls
+      rev: '4'
+      service: smtp
+      sid: '24598'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

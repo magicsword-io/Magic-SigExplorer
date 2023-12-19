@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"+="'
+      - value: '"Object"'
+      - value: '"defineProperties"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: affected_product iOS, affected_product Safari, attack_target Mobile_Client,
+        created_at 2016_11_07, cve CVE_2016_4657, deployment Perimeter, performance_impact
+        Low, signature_severity Major, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible iOS Pegasus Safari Exploit (CVE-2016-4657)"'
+      pcre: '"/^(?:\.|\[\s*?[\x22\x27])defineProperties\s*?\x28/Rsi"'
+      reference: url,blog.lookout.com/blog/2016/11/02/trident-pegasus-technical-details/
+      rev: '1'
+      sid: '2023484'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

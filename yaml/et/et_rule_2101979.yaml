@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"POST"'
+      - value: '"/perl/"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_2002_1436, updated_at 2020_04_20
+      msg: '"GPL WEB_SERVER perl post attempt"'
+      reference: nessus,11158
+      rev: '7'
+      sid: '2101979'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

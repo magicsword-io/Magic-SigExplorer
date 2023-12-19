@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Aldi Bot"'
+      flow: to_server,established
+      metadata: created_at 2011_09_24, former_category USER_AGENTS, updated_at 2020_10_17
+      msg: '"ET TROJAN Backdoor.Win32.Aldibot.A User-Agent (Aldi Bot)"'
+      reference: url,www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Trojan%3aWin32%2fAbot.gen!A
+      rev: '4'
+      sid: '2013747'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/0/ HTTP/1."'
+      - value: '"User-Agent: realupdate|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string - realupdate
+        - Win.Backdoor.Upatre"'
+      rev: '4'
+      service: http
+      sid: '33047'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

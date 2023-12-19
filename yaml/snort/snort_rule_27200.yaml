@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3B 20|MSIE 28|3B 20|",fast_pattern,nocase'
+      - value: '"User-Agent"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Meredrop variant outbound connection POST Request"'
+      pcre: '"/User\x2dAgent\x3a\x20[ -~]*?\.[A-Z\d]{8}\x2d[A-Z\d]{6}\x2d[A-Z\d]{6}\x2d[A-Z\d]{8}\x3b[
+        -~]*?\r\n/"'
+      reference: url,www.virustotal.com/en/file/dfb0050cb7fd6c879027cbecda703613b8d9fb2b2a5682478dbcd0518172302c/analysis/1373576492/
+      rev: '2'
+      service: http
+      sid: '27200'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content-Type|3a 20|image/png|0d 0a|"'
+      - depth: '5'
+        value: '"|24|path"'
+      - value: '".dll"'
+      - value: '"((Get-Item |24|path).Length -ge 30000)"'
+      flow: from_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_12_10, deployment Perimeter, former_category
+        MALWARE, signature_severity Major, updated_at 2023_04_04
+      msg: '"ET TROJAN PowerShell Script Downloading Emotet DLL"'
+      pcre: '"/\x24url[0-9]{1}\s=\s''(http|https):\/\/[^'']*\x27\x3b/i"'
+      reference: md5,c3cb504f97c7c7df9c25b0957dd60d9f
+      rev: '4'
+      sid: '2035000'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+      - nocase
+      within: '200'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

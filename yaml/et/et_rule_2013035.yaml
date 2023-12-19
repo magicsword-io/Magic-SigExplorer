@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|20|Java/"'
+      flow: established,to_server
+      flowbits: noalert
+      metadata: created_at 2011_06_16, updated_at 2021_12_14
+      msg: '"ET POLICY Java Client HTTP Request"'
+      rev: '2'
+      sid: '2013035'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

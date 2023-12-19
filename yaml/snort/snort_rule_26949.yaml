@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<applet width="'
+      - value: '"0",within 1,distance 1'
+      - value: '" height=",within 8,distance 1'
+      - value: '"0",within 1,distance 1'
+      - value: '" code=",within 6,distance 1'
+      - value: '"site.avi",within 8,distance 1,nocase'
+      - value: '" archive=",within 9,distance 1'
+      flow: to_client,established
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"EXPLOIT-KIT DotkaChef/Rmayana/DotCache exploit kit landing page"'
+      reference: url,www.basemont.com/new_exploit_kit_june_2013
+      rev: '4'
+      service: http
+      sid: '26949'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

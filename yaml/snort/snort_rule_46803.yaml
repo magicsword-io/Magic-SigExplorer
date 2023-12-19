@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/cgi-bin/write.cgi",fast_pattern,nocase'
+      - value: '"template=",nocase'
+      - value: '"../"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Anti-Web directory traversal attempt"'
+      pcre: '"/[?&]template=[^&]*?\x2e\x2e\x2f/i"'
+      reference: cve,2017-9097
+      rev: '1'
+      service: http
+      sid: '46803'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

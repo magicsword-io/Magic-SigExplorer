@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '81:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '6'
+        value: '"MINFO|7c|"'
+      dsize: <100
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2010_07_30
+      msg: '"ET TROJAN Turkojan C&C Info Command Response (MINFO)"'
+      reference: url,doc.emergingthreats.net/2008023
+      rev: '5'
+      sid: '2008023'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '5'
+        value: '"name="'
+      - value: '"&userid="'
+      - value: '"&other"'
+      distance: '4'
+      flow: established,to_server
+      metadata: created_at 2013_02_20, former_category MALWARE, updated_at 2020_04_23
+      msg: '"ET TROJAN Win32/Namsoth.A Checkin/NEWSREELS APT1 Related"'
+      pcre: '"/&userid=\d{4}&other=[MF]/P"'
+      reference: url,www.mandiant.com/apt1
+      rev: '2'
+      sid: '2016439'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

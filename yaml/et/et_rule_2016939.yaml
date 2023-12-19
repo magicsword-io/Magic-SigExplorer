@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"GET "'
+      - value: '"User-Agent|3a| Tesla"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_05_29, former_category MALWARE, updated_at 2020_11_05
+      msg: '"ET TROJAN Variant.Kazy.174106 Checkin"'
+      pcre: '"/^[^\r\n]+?\.php\?T=/R"'
+      reference: md5,ff7a263e89ff01415294470e1e52c010
+      rev: '1'
+      sid: '2016939'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

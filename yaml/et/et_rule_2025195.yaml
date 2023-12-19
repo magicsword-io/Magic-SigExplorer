@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|57 53 41 50 41 51|"'
+      - value: '"|0F AE F0|"'
+      - value: '"|0F AE|"'
+      - value: '"|0F AE F0 0F 31|"'
+      - value: '"|0F AE F0 0F 31|"'
+      distance: '17'
+      flow: established,from_server
+      flowbits: isset,ET.http.binary
+      metadata: attack_target Client_Endpoint, created_at 2018_01_10, cve CVE_2017_5754,
+        deployment Perimeter, former_category EXPLOIT, malware_family MeltDown_Exploit,
+        performance_impact Low, signature_severity Major, updated_at 2018_02_06
+      msg: '"ET EXPLOIT Possible MeltDown PoC Download In Progress"'
+      pcre: '"/^[\x30-\x3f\x7D]/Rs"'
+      reference: cve,2017-5754
+      rev: '3'
+      sid: '2025195'
+      special_options:
+      - file_data
+      within: '12'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|meta|20|name|3d 22|IMPORTANT|22 20|content|3d 22|This|20|page|20|is|20|part|20|of|20|a|20|simulated|20|phishing|20|attack|20|initiated|20|by|20|KnowBe4"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2021_01_12, deployment Perimeter,
+        deployment SSLDecrypt, former_category PHISHING, performance_impact Low, signature_severity
+        Informational, updated_at 2021_12_23
+      msg: '"ET POLICY Observed KnowBe4/Popcorn Training Simulated Phish Landing Page
+        M2"'
+      rev: '3'
+      sid: '2031517'
+      special_options:
+      - file_data
+      threshold: type limit, track by_dst, count 1, seconds 120
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

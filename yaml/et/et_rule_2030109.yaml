@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '18'
+        value: '"POST /s HTTP/1.1|0d 0a|"'
+      - depth: '9'
+        value: '"|57 7a 74 47 8c 44 c8 7c ed|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_05_05, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2020_05_05
+      msg: '"ET TROJAN nspps Backdoor - Sending SOCKS Details"'
+      reference: md5,435716b4f56cf94fdb7f6085dced41e5
+      rev: '2'
+      sid: '2030109'
+      special_options:
+      - http_client_body
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

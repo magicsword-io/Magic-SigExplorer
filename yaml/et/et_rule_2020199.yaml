@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"filename="'
+      - value: '"explorer.exe"'
+      flow: established,to_client
+      metadata: created_at 2015_01_16, updated_at 2020_05_14
+      msg: '"ET TROJAN Filename explorer.exe Download - Common Hostile Filename"'
+      pcre: '"/^Content-Disposition\x3a attachment\x3b filename=[\x27\x22]explorer\.exe[\x22\x27]\r\n/Hmi"'
+      rev: '5'
+      sid: '2020199'
+      special_options:
+      - http_header
+      - nocase
+      - http_header
+      - fast_pattern
+      within: '13'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

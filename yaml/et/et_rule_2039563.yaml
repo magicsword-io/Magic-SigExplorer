@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Host|3a 20|ip"'
+      - value: '".anysrc.net|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_and_Server, created_at
+        2022_10_25, deployment Perimeter, former_category POLICY, performance_impact
+        Low, confidence High, signature_severity Informational, updated_at 2022_10_25
+      msg: '"ET POLICY External IP Lookup (ip .anysrc .net)"'
+      rev: '1'
+      sid: '2039563'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|3c|html|20|xmlns|3d 22|http|3a 2f 2f|www|2e|w3|2e|org|2f|1999|2f|xhtml|22
+          3e 0a 3c|head|3e 0a 3c|meta|20|content|3d 22|text|2f|html|3b 20|charset|3d|utf|2d|8|22
+          20|http|2d|equiv|3d 22|Content|2d|Type|22 20 2f 3e 0a 3c|script|20|language|3d
+          22|VBScript|22 3e 0a|Function|20|"'
+      - value: '"|0a|Dim|20|"'
+      - value: '"Content|2d|Type|3a 20|application|2f|hta|0d 0a 0d 0a|"'
+      fast_pattern: 139,20
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_07, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_07
+      msg: '"ET TROJAN VBS/TrojanDownloader.Agent.XAO Payload Inbound"'
+      pcre: '"/(?:[a-zA-Z]{10,20})\x28\x29/R"'
+      reference: md5,3253c1ecf5312f6d863176f195d47d38
+      rev: '2'
+      sid: '2044909'
+      special_options:
+      - file_data
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

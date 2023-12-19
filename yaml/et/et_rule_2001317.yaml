@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"WebHancer Authority Server"'
+      flow: from_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2010_07_30
+      msg: '"ET MALWARE Webhancer Data Upload"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001317
+      rev: '9'
+      sid: '2001317'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0a|eternitypr|03|net"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_31, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_31
+      msg: '"ET TROJAN Win32/Eternity Stealer CnC Domain in DNS Lookup (eternitypr
+        .net)"'
+      reference: url,twitter.com/James_inthe_box/status/1509271782578040832
+      rev: '1'
+      sid: '2035684'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $TELNET_SERVERS
+      port: '23'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"satori"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-BACKDOOR MISC Linux rootkit satori attempt"'
+      reference: url,attack.mitre.org/techniques/T1014
+      rev: '12'
+      sid: '216'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

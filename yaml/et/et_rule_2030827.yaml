@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"/ln/core.png?"'
+      - value: '"Host|3a 20|t.amynx.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2020_09_02, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_02
+      msg: '"ET TROJAN Lemon_Duck CnC Activity"'
+      reference: url,github.com/sophoslabs/IoCs/blob/master/Trojan-LDMiner.csv
+      rev: '2'
+      sid: '2030827'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

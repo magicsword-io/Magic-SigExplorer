@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_test: 1,!=,0x4D,0,relative
+      classtype: misc-activity
+      contents:
+      - depth: '28'
+        value: '"-----BEGIN CERTIFICATE-----|0A|"'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_12_04, deployment Perimeter, former_category
+        INFO, performance_impact Moderate, signature_severity Informational, updated_at
+        2018_12_04
+      msg: '"ET INFO Certificate with Unknown Content M2"'
+      reference: url,blog.nviso.be/2018/07/31/powershell-inside-a-certificate-part-1/
+      rev: '2'
+      sid: '2026684'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

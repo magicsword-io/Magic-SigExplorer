@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '".asp.",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS asp-dot attempt"'
+      reference: nessus,10363
+      rev: '21'
+      service: http
+      sid: '997'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

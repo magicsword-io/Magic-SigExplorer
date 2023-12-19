@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!--gmail|20|"'
+      - value: '"uaXNv"'
+      flow: established,to_client
+      flowbits: isset,ET.wikiloader
+      metadata: attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, confidence
+        High, signature_severity Major, updated_at 2023_07_31
+      msg: '"ET TROJAN WikiLoader Activity M3 (Response)"'
+      reference: url,app.any.run/tasks/f98aa2c5-deae-408a-8e86-530e7961dfb6/
+      rev: '1'
+      sid: '2046969'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '70'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"PUT"'
+      - value: '"<title>.|3a 3a|[+] Defaced by "'
+      flow: established,to_server
+      metadata: created_at 2011_08_05, updated_at 2020_04_20
+      msg: '"ET WEB_SERVER PUT Website Defacement Attempt"'
+      rev: '1'
+      sid: '2013365'
+      special_options:
+      - http_method
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

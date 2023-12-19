@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|oz|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2020_04_20, deployment Perimeter,
+        former_category HUNTING, signature_severity Informational, updated_at 2020_04_20
+      msg: '"ET INFO Observed DNS Query for OpenNIC Alternative DNS TLD (.oz)"'
+      reference: url,wiki.opennic.org/opennic/dot
+      rev: '2'
+      sid: '2029955'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

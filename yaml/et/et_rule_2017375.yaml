@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<!--/"'
+      - value: '"="'
+      - value: '!"|22|"'
+      - value: '!"|27|"'
+      flow: from_server,established
+      metadata: created_at 2013_08_26, former_category CURRENT_EVENTS, updated_at
+        2013_08_26
+      msg: '"ET WEB_CLIENT CookieBomb Generic HTML Format"'
+      pcre: '"/^([a-f0-9]{2}[^\x22\x27a-f0-9]{0,10})?(?P<f>[a-f0-9]{2})(?P<sep>[^\x22\x27a-f0-9]{0,10})(?P<u>(?!(?P=f))[a-f0-9]{2})(?P=sep)(?P<n>(?!(?:(?P=f)|(?P=u)))[a-f0-9]{2})(?P=sep)(?P<c>(?!(?:(?P=f)|(?P=u)|(?P=n)))[a-f0-9]{2})(?P=sep)(?P<t>(?!(?:(?P=f)|(?P=u)|(?P=n)|(?P=c)))[a-f0-9]{2})(?P=sep)(?P<i>(?!(?:(?P=f)|(?P=u)|(?P=n)|(?P=c)|(?P=t)))[a-f0-9]{2})(?P=sep)(?P<o>(?!(?:(?P=f)|(?P=u)|(?P=n)|(?P=c)|(?P=t)|(?P=i)))[a-f0-9]{2})(?P=sep)(?P=n)(?P=sep)(?P<spc>[a-f0-9]{2})(?P=sep)([a-f0-9]{2}(?P=sep)){1,100}(?P=spc)/Ri"'
+      rev: '5'
+      sid: '2017375'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '500'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/bdir.htr",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS bdir.htr access"'
+      reference: nessus,10577
+      rev: '23'
+      service: http
+      sid: '1000'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

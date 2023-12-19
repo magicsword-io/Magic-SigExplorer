@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"screenshot_init|0D 0A|",depth 17,offset 4'
+      flow: to_client
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Houdini variant screenshot inbound init command
+        attempt"'
+      rev: '2'
+      sid: '40833'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

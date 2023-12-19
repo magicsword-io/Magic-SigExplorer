@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: not-suspicious
+      contents:
+      - value: '"Building configuration..."'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET POLICY Cisco Device New Config Built"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001240
+      rev: '9'
+      sid: '2001240'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23'

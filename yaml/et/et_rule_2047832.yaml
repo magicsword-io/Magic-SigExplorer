@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|08|spacedns|03|org|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2023_08_30, deployment Perimeter,
+        signature_severity Informational, tag DoH, updated_at 2023_08_30, reviewed_at
+        2023_08_30
+      msg: '"ET INFO Observed DNS over HTTPS Domain (spacedns .org)"'
+      reference: url,github.com/curl/curl/wiki/DNS-over-HTTPS
+      rev: '1'
+      sid: '2047832'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '14'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

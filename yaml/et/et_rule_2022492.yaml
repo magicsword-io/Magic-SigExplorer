@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/gate.php?id="'
+      - value: '"&ver="'
+      - value: '"&m="'
+      - value: '"User-Agent|3a 20|Mozilla|0d 0a|"'
+      - value: '"Connection|3a 20|Close|0d 0a|"'
+      - value: '!"Accept-"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2016_02_05, former_category MALWARE, updated_at 2023_03_10
+      msg: '"ET TROJAN Win32/Fluxer CnC Checkin"'
+      pcre: '"/&m=\d$/Ui"'
+      reference: md5,648f432b41f3bcebc1a599f529055cf0
+      rev: '1'
+      sid: '2022492'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

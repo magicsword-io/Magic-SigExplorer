@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"remetente=",depth 10'
+      - value: '"&destinatario=",distance 0'
+      - value: '"&assunto=",distance 0'
+      - value: '"&mensagem=",distance 0'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Brazilian Banking Trojan data theft"'
+      rev: '2'
+      service: http
+      sid: '27649'
+      special_options:
+      - http_method
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

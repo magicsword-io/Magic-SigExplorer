@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"|47 45 54 20 2f 73 70 61 63 65 20 20 48 54 54 50 2f 31 2e 30 0a 0a|"'
+      dsize: '22'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2020_05_06,
+        deployment Perimeter, former_category POLICY, signature_severity Informational,
+        updated_at 2020_05_06
+      msg: '"ET POLICY Observed iesnare/iovation Tracking Activity"'
+      rev: '1'
+      sid: '2030113'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

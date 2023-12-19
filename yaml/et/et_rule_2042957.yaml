@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0c|45.134.83.29"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|15|File Transfer Service"'
+      - value: '"|06 03 55 04 0b|"'
+      - value: '"|33|TLS Demo Cert, dnQualifier=mg3/mLPmK3YfX/MaJCs/mg=="'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_12_16, deployment Perimeter,
+        former_category MALWARE, malware_family TA416, malware_family MustangPanda,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2022_12_16
+      msg: '"ET TROJAN Observed Malicious Mustang Panda APT Related SSL Cert (File
+        Transfer Service)"'
+      reference: url,blogs.blackberry.com/en/2022/12/mustang-panda-uses-the-russian-ukrainian-war-to-attack-europe-and-asia-pacific-targets?s=09
+      rev: '1'
+      sid: '2042957'
+      special_options:
+      - fast_pattern
+      within: '52'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/usdeclar.txt"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_10_09, updated_at 2020_09_25
+      msg: '"ET TROJAN Gozi/Ursnif/Papras Connectivity Check"'
+      reference: url,csis.dk/en/csis/news/4472/
+      rev: '3'
+      sid: '2019380'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+      urilen: '13'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

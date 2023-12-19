@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '12'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/install.htm",fast_pattern,nocase'
+      - value: '!"Referer"'
+      - value: '!"Accept"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Fareit variant outbound connection - /install.htm
+        GET Encrypted Payload"'
+      pcre: '"/[^\r -~\n]{4}/"'
+      reference: url,www.virustotal.com/en/file/0682508f3d7c85e086055ce943aeaa634484d8e0cb22be776bac6930b00fae49/analysis/
+      rev: '2'
+      service: http
+      sid: '28117'
+      special_options:
+      - http_raw_uri
+      - http_method
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

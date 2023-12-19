@@ -1,0 +1,53 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '8'
+        value: '"/?email="'
+      - value: '"&response_type=code"'
+      - value: '"&scope="'
+      - value: '"&state=OpenIdConnect.AuthenticationProperties"'
+      - value: '"&response_mode=form_post&nonce="'
+      - value: '"&redirect_uri="'
+      - value: '"admin.microsoft.com"'
+      - value: '"landing"'
+      - value: '"&mkt="'
+      - value: '"&client-request-id="'
+      - value: '"&x-client-SKU="'
+      - value: '"&x-client-ver="'
+      - value: '"&sso_reload=trueSSSSSSS"'
+      - value: '"&client_id="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_03, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_10_03
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2022-10-03"'
+      pcre: '"/&sso_reload=trueSSSSSSS$/U"'
+      rev: '1'
+      sid: '2039081'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

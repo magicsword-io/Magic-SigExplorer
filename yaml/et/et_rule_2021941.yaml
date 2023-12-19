@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - depth: '1'
+        value: '"|16|"'
+      - value: '"OWASP Zed Attack Proxy Root CA"'
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2015_10_10, deployment Perimeter,
+        signature_severity Major, tag Web_Client_Attacks, updated_at 2016_07_01
+      msg: '"ET WEB_CLIENT Proxy - OWASP Zed Attack Proxy Certificate Seen"'
+      rev: '1'
+      sid: '2021941'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

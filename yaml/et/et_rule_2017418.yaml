@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"P[endof]"'
+      dsize: '8'
+      flow: to_server,established
+      metadata: created_at 2013_09_05, former_category MALWARE, updated_at 2013_09_05
+      msg: '"ET TROJAN Bladabindi/njrat CnC Keep-Alive (OUTBOUND)"'
+      reference: url,threatgeek.com/2013/07/njrat-detection-rules-using-yara-.html
+      rev: '2'
+      sid: '2017418'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

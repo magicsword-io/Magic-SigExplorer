@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/opened"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|buildName|22
+          0d 0a 0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|buildVersion|22
+          0d 0a 0d 0a|"'
+      - value: '"Content-Disposition|3a 20|form-data|3b 20|name|3d 22|uid|22 0d 0a
+          0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_07_31, deployment Perimeter,
+        former_category MALWARE, malware_family MacOS_Realst, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_07_31
+      msg: '"ET TROJAN MacOS/Realst CnC Checkin"'
+      pcre: '"/\x22uid\x22\x0d\x0a\x0d\x0a[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}/P"'
+      reference: md5,b56f0f689caf2997a67383d25ef9f64a
+      rev: '1'
+      sid: '2047005'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/ping.ashx?action=",fast_pattern,nocase'
+      - value: '"&usid="'
+      - value: '"&aff=",distance 0'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE Adware Goobzo/CrossRider variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/bace69ffe133e7693b3b77994a3c81e990288ca4b642cffe12938d705c7019df/analysis/
+      rev: '2'
+      service: http
+      sid: '33816'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

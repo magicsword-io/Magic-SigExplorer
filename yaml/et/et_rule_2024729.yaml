@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"process.start"'
+      - value: '"<service"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_09_20, cve CVE_2017_8759, deployment Perimeter,
+        former_category CURRENT_EVENTS, performance_impact Low, signature_severity
+        Critical, updated_at 2022_05_03
+      msg: '"ET CURRENT_EVENTS Possible CVE-2017-8759 Soap File DL Over FTP"'
+      pcre: '"/^(?:(?!<\/service>).)+?<soap\x3a\s*address[^>]+location=\s*[\x22\x27](?:(?!<\/service>).)+?<soap\x3a\s*address[^>]+location=\s*?\x22[^\x22]*\r?\n[^\x22]*?process\.start/Rsi"'
+      rev: '2'
+      sid: '2024729'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

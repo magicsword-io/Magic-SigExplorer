@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/?8080"'
+      - value: '"name=|22|action|22 0d 0a 0d 0a|"'
+      - value: '"name=|22|location|22 0d 0a 0d 0a|"'
+      - value: '!"Referer|3a 20|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_03_12, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN Gamut Spambot Checkin 2"'
+      pcre: '"/(?:winload(?:32)?|cmms)\x0d\x0a/P"'
+      reference: md5,f00f3f47062646f900aa327b1d5ca3a1
+      rev: '2'
+      sid: '2018257'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      urilen: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

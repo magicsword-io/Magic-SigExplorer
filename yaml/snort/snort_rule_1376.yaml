@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/?.jsp"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP jrun directory browse attempt"'
+      reference: cve,2001-1510
+      rev: '13'
+      service: http
+      sid: '1376'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

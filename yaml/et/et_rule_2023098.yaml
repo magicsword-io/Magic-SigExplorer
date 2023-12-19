@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|asrararabiya|02|co|00|"'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2016_08_25, deployment Perimeter,
+        malware_family Pegasus, performance_impact Low, signature_severity Major,
+        updated_at 2020_09_17
+      msg: '"ET TROJAN Possible Pegasus Related DNS Lookup (asrararabiya .co)"'
+      reference: url,citizenlab.org/2016/08/million-dollar-dissident-iphone-zero-day-nso-group-uae/
+      rev: '2'
+      sid: '2023098'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"wallets|3b 2a 3b 2d|"'
+      - value: '"|3b|Local|20|Extension|20|Settings"'
+      - value: '"azne|2e|exe|7c 25|TEMP|25 5c 7c|exe"'
+      - value: '"pm|2e|exe|7c 25|TEMP|25 5c 7c|exe"'
+      - value: '"cc|2e|exe|7c 25|TEMP|25 5c 7c|exe"'
+      - value: '"rc|2e|exe|7c 25|TEMP|25 5c 7c|exe"'
+      distance: '0'
+      flow: established,to_client
+      metadata: created_at 2022_06_06, updated_at 2022_06_06
+      msg: '"ET TROJAN Generic Stealer Config from Server"'
+      reference: md5,0a7b32e75a01764ef5389a1d9e72ed63
+      rev: '1'
+      sid: '2036883'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

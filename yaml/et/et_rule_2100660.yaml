@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"expn"'
+      - value: '"root"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0531, updated_at 2010_09_23
+      msg: '"GPL SMTP expn root"'
+      pcre: '"/^expn\s+root/smi"'
+      reference: nessus,10249
+      rev: '13'
+      sid: '2100660'
+      special_options:
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

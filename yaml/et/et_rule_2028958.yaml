@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"confirm.gif?f=2"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_11_11, deployment Perimeter, former_category MALWARE, malware_family
+        Titanium, performance_impact Low, signature_severity Major, tag PLATINUM,
+        updated_at 2019_11_11
+      msg: '"ET TROJAN Platinum APT - Titanium Payload CnC Checkin (x64)"'
+      pcre: '"/\.gif\?f=2$/U"'
+      reference: url,securelist.com/titanium-the-platinum-group-strikes-again/94961/
+      rev: '2'
+      sid: '2028958'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

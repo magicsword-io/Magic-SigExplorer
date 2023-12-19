@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".php"'
+      - value: '"Content|2d|Disposition|3a 20|form|2d|data|3b 20|name|3d 22|files|5b
+          5d 22 3b 20|filename|3d 22|"'
+      - value: '"Content-Type|3a 20|multipart|2f|form|2d|data|3b 20|boundary|3d|"'
+      fast_pattern: 32,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_27, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, confidence High, signature_severity Major, updated_at
+        2023_04_27
+      msg: '"ET TROJAN Win32/Cryptbotv2 CnC Activity (POST) M2"'
+      pcre: '"/\.php$/U"'
+      reference: url,twitter.com/Jane_0sint/status/1651554343563194368
+      rev: '1'
+      sid: '2045213'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

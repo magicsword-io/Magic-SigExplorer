@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '32'
+        value: '"Code?sslchannel=true&sessionid="'
+      - depth: '142'
+        value: '"vic_browser=n%2Fa&vic_os=n%2Fa&vic_screen=n%2Fa&vic_lang=n%2Fa&vic_flash=n%2Fa&vic_java=n%2Fa&vic_mime=n%2Fa&vic_plugins=n%2Fa&vic_fonts=n%2Fa"'
+      - value: '"=Submit&login_name="'
+      - value: '"&pin="'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.sparkassephishlanding
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_13, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_04_13
+      msg: '"ET CURRENT_EVENTS Successful Sparkasse Credential Phish M1 2022-04-13"'
+      rev: '1'
+      sid: '2035933'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

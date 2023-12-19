@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"Gootkit iframer component"'
+      flow: established,from_server
+      metadata: created_at 2010_09_28, updated_at 2019_09_27
+      msg: '"ET WEB_SERVER Local Website Infected By Gootkit"'
+      reference: url,doc.emergingthreats.net/2011285
+      rev: '2'
+      sid: '2011289'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS

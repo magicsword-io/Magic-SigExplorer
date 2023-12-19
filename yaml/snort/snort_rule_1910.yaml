@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,0,relative,align
+      byte_test: 4,>,1000,28,relative
+      classtype: misc-attack
+      contents:
+      - value: '"|00 01 86 E4|",depth 4,offset 12'
+      - value: '"|00 00 00 06|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      flow: to_server
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC CMSD udp CMSD_INSERT buffer overflow attempt"'
+      reference: url,www.cert.org/advisories/CA-99-08-cmsd.html
+      rev: '17'
+      sid: '1910'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

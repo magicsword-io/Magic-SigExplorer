@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '7001'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"=OIMINTERNAL"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Oracle_Identity_Manager, attack_target Web_Server,
+        created_at 2017_11_01, deployment Datacenter, former_category EXPLOIT, performance_impact
+        Low, signature_severity Critical, updated_at 2020_10_09
+      msg: '"ET EXPLOIT Possible Oracle Identity Manager Attempt to Logon with default
+        account"'
+      reference: url,oracle.com/technetwork/security-advisory/alert-cve-2017-10151-4016513.html
+      rev: '1'
+      sid: '2024941'
+    protocol: tcp
+    source:
+      network: any
+      port: any

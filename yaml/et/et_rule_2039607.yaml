@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      byte_jump: 4,0,little,from_beginning
+      classtype: trojan-activity
+      contents:
+      - value: '"IP|3d|"'
+      - value: '"IP|3d|"'
+      - value: '"|3d|Microsoft|20|Windows|20|"'
+      - value: '"|3d|C|3a 5c|"'
+      - value: '"|0d 0a 0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2022_10_31, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, confidence High, signature_severity Major,
+        updated_at 2022_10_31
+      msg: '"ET TROJAN Win32.Agent.OSCF CnC Checkin"'
+      reference: md5,38fdb5c2bf21500a888fa9b0d9649a19
+      rev: '1'
+      sid: '2039607'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

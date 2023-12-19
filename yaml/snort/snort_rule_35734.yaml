@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/BRS_03B_haveBackupFile_fileRestore.html",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear WNDR4700 and R6200 admin interface authentication
+        bypass attempt"'
+      reference: cve,2013-3071
+      rev: '4'
+      service: http
+      sid: '35734'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

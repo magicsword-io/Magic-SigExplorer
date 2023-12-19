@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"GNT",depth 3'
+      flow: to_client,established
+      flowbits: isset,backdoor.asylum.connect
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Asylum 0.1 connection"'
+      rev: '10'
+      sid: '3014'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '23432'

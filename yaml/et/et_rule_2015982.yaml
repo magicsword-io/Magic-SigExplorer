@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Host|3a 20|"'
+      - value: '"."'
+      - value: '"/js/java.js"'
+      distance: '2'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2012_12_04, updated_at 2020_09_17
+      msg: '"ET CURRENT_EVENTS Zuponcic Hostile JavaScript"'
+      pcre: '"/^Host\x3a\x20[a-z]{2}\./Hm"'
+      rev: '1'
+      sid: '2015982'
+      special_options:
+      - http_header
+      - http_header
+      - http_uri
+      urilen: '11'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

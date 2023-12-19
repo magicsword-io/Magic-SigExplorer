@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/a1stats/"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP a1stats access"'
+      reference: nessus,10669
+      rev: '14'
+      service: http
+      sid: '1731'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

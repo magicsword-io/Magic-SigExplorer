@@ -1,0 +1,44 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '!"User-Agent|3a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - value: '!"google."'
+      - value: '"hl="'
+      - value: '"source="'
+      - value: '"aq="'
+      - value: '"aqi="'
+      - value: '"aql="'
+      - value: '"oq="'
+      - depth: '49'
+        value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2015_03_24, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, tag c2, updated_at 2020_09_29,
+        mitre_tactic_id TA0011, mitre_tactic_name Command_And_Control, mitre_technique_id
+        T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Fileless infection dropped by EK CnC Beacon"'
+      rev: '1'
+      sid: '2020734'
+      special_options:
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

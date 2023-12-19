@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|0d 0a|User-Agent|3a 20|UserAgent|3a|Mozilla/5.0|20|(Windows|20|NT|20|6.1|3b
+          20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_04_06, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, malware_family DonotGroup,
+        performance_impact Low, signature_severity Major, updated_at 2021_04_06
+      msg: '"ET TROJAN Pult Downloader Activity"'
+      reference: url,twitter.com/ShadowChasing1/status/1379048935969316871
+      rev: '2'
+      sid: '2032525'
+      special_options:
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

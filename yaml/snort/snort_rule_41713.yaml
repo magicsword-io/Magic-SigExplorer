@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/Install/InstallWizard.aspx",fast_pattern,nocase'
+      - value: '"executeinstall"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP DotNetNuke installation attempt detected"'
+      reference: url,www.exploit-db.com/exploits/39777
+      rev: '2'
+      service: http
+      sid: '41713'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

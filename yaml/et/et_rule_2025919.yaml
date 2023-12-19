@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/customer-IDPP00"'
+      - value: '"/myaccount/signin/"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2018_07_30, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2020_08_25
+      msg: '"ET CURRENT_EVENTS Paypal Phishing Landing 2018-07-30"'
+      rev: '2'
+      sid: '2025919'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+      threshold: type limit, track by_dst, count 1, seconds 30
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

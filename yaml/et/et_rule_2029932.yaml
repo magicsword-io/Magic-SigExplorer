@@ -1,0 +1,35 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '8118'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '200'
+        value: '"/push/androidxml/"'
+      - depth: '200'
+        value: '"sim="'
+      - depth: '200'
+        value: '"tel="'
+      - depth: '200'
+        value: '"imsi="'
+      - depth: '200'
+        value: '"pid="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2011_03_10, deployment Perimeter, former_category MOBILE_MALWARE, tag Android,
+        updated_at 2020_04_19, mitre_tactic_id TA0037, mitre_tactic_name Command_And_Control,
+        mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET MOBILE_MALWARE Android Trojan MSO.PJApps checkin 1"'
+      reference: url,virus.netqin.com/en/android/MSO.PJApps.A
+      rev: '2'
+      sid: '2029932'
+      special_options:
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

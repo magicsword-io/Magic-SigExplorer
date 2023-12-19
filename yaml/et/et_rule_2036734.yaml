@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '4'
+        value: '"|09 12 3b 42|"'
+      - value: '"|33 a2 44|"'
+      - value: '"|01 86 73|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2019_02_21, deployment Perimeter, former_category
+        MALWARE, malware_family AveMaria, performance_impact Low, signature_severity
+        Major, tag RAT, updated_at 2022_03_07
+      msg: '"ET TROJAN Ave Maria/Warzone RAT Encrypted CnC Checkin"'
+      reference: md5,8322266fc84da79419adc44d3acc49c3
+      rev: '2'
+      sid: '2036734'
+      threshold: type limit, count 1, seconds 120, track by_src
+      within: '3'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

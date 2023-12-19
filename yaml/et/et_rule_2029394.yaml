@@ -1,0 +1,37 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|CN"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|07|neijing"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|28|Internet Widgits Pty Ltd, emailAddress=s"'
+      - value: '"|06 03 55 04 06|"'
+      - value: '"|02|CN"'
+      - value: '"|06 03 55 04 08|"'
+      - value: '"|07|neijing"'
+      - value: '"|06 03 55 04 0a|"'
+      - value: '"|28|Internet Widgits Pty Ltd, emailAddress=s"'
+      distance: '1'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2020_02_06, deployment Perimeter, former_category
+        MALWARE, performance_impact Low, signature_severity Major, tag SSL_Malicious_Cert,
+        updated_at 2022_05_03, mitre_tactic_id TA0042, mitre_tactic_name Resource_Development,
+        mitre_technique_id T1587, mitre_technique_name Develop_Capabilities
+      msg: '"ET TROJAN Malicious SSL Certificate detected (Patchwork CnC)"'
+      reference: url,twitter.com/blackorbird/status/1225002203221393411
+      rev: '3'
+      sid: '2029394'
+      within: '41'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

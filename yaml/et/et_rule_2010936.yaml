@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1521'
+    details:
+      classtype: bad-unknown
+      flags: S
+      flow: to_server
+      metadata: created_at 2010_07_30, former_category HUNTING, updated_at 2018_03_27
+      msg: '"ET SCAN Suspicious inbound to Oracle SQL port 1521"'
+      reference: url,doc.emergingthreats.net/2010936
+      rev: '3'
+      sid: '2010936'
+      threshold: type limit, count 5, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

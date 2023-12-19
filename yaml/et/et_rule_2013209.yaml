@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/wat.php"'
+      - value: '"incorporateapps.com"'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2011_07_06, deployment Perimeter, former_category MOBILE_MALWARE, signature_severity
+        Critical, tag Android, updated_at 2020_04_20
+      msg: '"ET MOBILE_MALWARE Android.Walkinwat Sending Data to CnC Server"'
+      pcre: '"/Host\x3A[^\r\n]*incorporateapps\x2Ecom/Hi"'
+      reference: url,blog.avast.com/2011/03/21/android-is-calling-walk-and-text-and-be-malicious/
+      rev: '1'
+      sid: '2013209'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

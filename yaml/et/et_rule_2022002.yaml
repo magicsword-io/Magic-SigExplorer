@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        value: '"NO|7C|CRYPTDESK*"'
+      flow: established,to_server
+      metadata: created_at 2015_10_26, updated_at 2015_10_26
+      msg: '"ET TROJAN LuminosityLink - Data Channel Client Request"'
+      rev: '1'
+      sid: '2022002'
+    protocol: tcp
+    source:
+      network: any
+      port: any

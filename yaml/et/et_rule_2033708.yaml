@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '5'
+        value: '"/ccom"'
+      - value: '".atwebpages.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_08_11, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_08_11
+      msg: '"ET TROJAN Unknown DPRK Threat Actor Activity (GET)"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+\.atwebpages\.com/Hmi"'
+      reference: md5,857a0eb7dcd9c63f4474a069012a3389
+      rev: '1'
+      sid: '2033708'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

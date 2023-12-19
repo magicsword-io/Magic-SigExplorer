@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"REVLOG / ",depth 9'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Netscape Enterprise DOS"'
+      reference: cve,2001-0251
+      rev: '15'
+      service: http
+      sid: '1047'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

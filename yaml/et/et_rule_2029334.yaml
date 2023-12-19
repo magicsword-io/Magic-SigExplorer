@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|89 71 04 89|"'
+      - value: '"|30 8d 04 bd|"'
+      - value: '"|8b 4d|"'
+      - value: '"|8b 45 f4 89 75|"'
+      - value: '"|89 01 85 ff 74|"'
+      distance: '1'
+      flow: established,to_client
+      flowbits: isset,ET.http.binary
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_01_29, deployment Perimeter, deployment Internal,
+        former_category MALWARE, signature_severity Major, updated_at 2021_04_28
+      msg: '"ET TROJAN Mimikatz x86 Executable Download Over HTTP"'
+      reference: url,github.com/gentilkiwi/mimikatz
+      rev: '2'
+      sid: '2029334'
+      within: '5'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

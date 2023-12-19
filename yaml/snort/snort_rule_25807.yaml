@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 95<=>102
+      classtype: trojan-activity
+      contents:
+      - value: '"|29 20|Chrome|2F|"'
+      - value: '!"|0A|Accept-Encoding|3A 20|"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Urausy Botnet variant outbound connection"'
+      pcre: '"/^\x2f[a-z\x2d\x5f]{90,97}\.php$/"'
+      reference: url,www.botnets.fr/index.php/Urausy
+      rev: '5'
+      service: http
+      sid: '25807'
+      special_options:
+      - http_raw_uri
+      - http_header
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

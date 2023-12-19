@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"UID: P002|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.ITranslator variant outbound connection"'
+      reference: url,www.virustotal.com/#/file/b73d436d7741f50d29764367cbecc4ee67412230ff0d66b7d1d0e4d26983824d/analysis
+      rev: '1'
+      service: http
+      sid: '48119'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

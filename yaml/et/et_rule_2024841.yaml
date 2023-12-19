@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Windows Defender</title>"'
+      - value: '"background-color|3a 20|#659e1d"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2017_10_13, deployment Perimeter, former_category WEB_CLIENT, signature_severity
+        Minor, tag Tech_Support_Scam, updated_at 2017_10_13
+      msg: '"ET WEB_CLIENT Microsoft Tech Support Scam Landing M1 Oct 13 2017"'
+      rev: '3'
+      sid: '2024841'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

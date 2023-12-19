@@ -1,0 +1,41 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '4'
+        value: '"/wp-"'
+      - value: '".php?login="'
+      - value: '".php?login="'
+      - depth: '6'
+        value: '"email="'
+      - value: '"pass"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2016_04_25, deployment Perimeter,
+        former_category PHISHING, signature_severity Critical, tag Phishing, updated_at
+        2020_07_07, mitre_tactic_id TA0001, mitre_tactic_name Initial_Access, mitre_technique_id
+        T1566, mitre_technique_name Phishing
+      msg: '"ET CURRENT_EVENTS Successful Adobe Online Document Phish 2016-04-25"'
+      pcre: '"/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/U"'
+      rev: '1'
+      sid: '2031985'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_header
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

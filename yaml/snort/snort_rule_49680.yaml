@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|40 74 6B 85 FF 7C 65 7F 04 85 F6 74 5F 8B 03 8B 40 04 8B 4C 18 38
+          0F B7 54 18 40 89 55 EC 8B 41|",fast_pattern,nocase'
+      flow: to_server,established
+      flowbits: isset,file.exe
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-CNC Win.Ransomware.Lockergoga binary download attempt"'
+      reference: url,bleepingcomputer.com/news/security/new-lockergoga-ransomware-allegedly-used-in-altran-attack/
+      rev: '1'
+      service: smtp
+      sid: '49680'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

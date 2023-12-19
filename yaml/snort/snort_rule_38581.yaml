@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|7B 5C|rtvpn",depth 7'
+      flow: to_server,established
+      flowbits: isset,file.rtf
+      metadata: policy balanced-ips drop,policy max-detect-ips drop,policy security-ips
+        drop,ruleset community
+      msg: '"FILE-OFFICE RFT document malformed header"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/ms15-033
+      rev: '2'
+      service: smtp
+      sid: '38581'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

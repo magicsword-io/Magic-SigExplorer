@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: '11'
+      classtype: web-application-attack
+      contents:
+      - value: '"/api/status",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Ubiquiti Networks UniFi Cloud Key Firm v0.6.1 Host Remote
+        Command Execution attempt"'
+      pcre: '"/^Host\x3A[^\x0a]*?([\x60\x3b\x7c]|[\x3c\x3e\x24]\x28|%60|%3b|%7c|%26|%3c%28|%3e%28|%24%28)/im"'
+      reference: url,cxsecurity.com/issue/WLB-2017080038
+      rev: '2'
+      service: http
+      sid: '43957'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

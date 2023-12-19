@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/ews/architext_query.pl",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP architext_query.pl access"'
+      reference: url,www2.fedcirc.gov/alerts/advisories/1998/txt/fedcirc.98.03.txt
+      rev: '18'
+      service: http
+      sid: '1173'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a| Mozilla/4.0 (compatible|3b| MSIE 6.0) WinNT 5.1|0d
+          0a|"'
+      fast_pattern: 37,21
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category USER_AGENTS, updated_at 2020_08_13
+      msg: '"ET TROJAN Vundo User-Agent Check-in"'
+      reference: url,doc.emergingthreats.net/2010490
+      rev: '6'
+      sid: '2010490'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

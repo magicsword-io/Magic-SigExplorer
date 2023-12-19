@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET / HTTP/1."'
+      - value: '"|0d 0a|Host|3a 20|www.bing.com|0d 0a 0d 0a|"'
+      distance: '1'
+      dsize: '38'
+      fast_pattern: 4,20
+      flow: established,to_server
+      metadata: affected_product Web_Browsers, affected_product Web_Browser_Plugins,
+        attack_target Client_Endpoint, created_at 2014_04_30, deployment Perimeter,
+        former_category WEB_CLIENT, signature_severity Major, tag Web_Client_Attacks,
+        updated_at 2022_03_17
+      msg: '"ET WEB_CLIENT SUSPICIOUS Possible automated connectivity check (www.bing.com)"'
+      rev: '1'
+      sid: '2018432'
+      threshold: type limit, count 1, seconds 300, track by_src
+      within: '24'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8080'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"whois|3A|//",nocase'
+      flow: to_server,established
+      isdataat: '1000'
+      metadata: ruleset community
+      msg: '"SERVER-OTHER delegate proxy overflow"'
+      reference: cve,2000-0165
+      rev: '15'
+      sid: '305'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

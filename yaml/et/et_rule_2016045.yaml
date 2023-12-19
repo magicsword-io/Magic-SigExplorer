@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/adm_program/modules/guestbook/guestbook_new.php?"'
+      - value: '"headline="'
+      fast_pattern: 30,18
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2012_12_14, deployment Datacenter, signature_severity Major, tag
+        XSS, tag Cross_Site_Scripting, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS Admidio headline parameter Cross Site Scripting
+        Attempt"'
+      pcre: '"/headline\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,packetstormsecurity.org/files/116155/Admidio-2.3.5-Cross-Site-Scripting-SQL-Injection.html
+      rev: '1'
+      sid: '2016045'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

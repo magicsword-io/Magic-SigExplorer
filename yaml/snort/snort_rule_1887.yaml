@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '443'
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"TERM=xterm",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-OTHER OpenSSL Worm traffic"'
+      reference: url,www.cert.org/advisories/CA-2002-27.html
+      rev: '9'
+      service: ssl
+      sid: '1887'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

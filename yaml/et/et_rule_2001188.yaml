@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"slsknet"'
+      flow: established
+      metadata: created_at 2010_07_30, updated_at 2019_09_27
+      msg: '"ET P2P Soulseek"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001188
+      rev: '7'
+      sid: '2001188'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

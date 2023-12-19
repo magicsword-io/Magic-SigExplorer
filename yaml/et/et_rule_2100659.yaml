@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"expn"'
+      - value: '"decode"'
+      flow: to_server,established
+      metadata: created_at 2010_09_23, cve CVE_1999_0096, updated_at 2010_09_23
+      msg: '"GPL SMTP expn decode"'
+      pcre: '"/^expn\s+decode/smi"'
+      reference: nessus,10248
+      rev: '10'
+      sid: '2100659'
+      special_options:
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

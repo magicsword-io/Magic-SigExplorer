@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/userFilterTableRpt.asp"'
+      - value: '"User-Agent|3a 20|curl/"'
+      flow: established,to_server
+      metadata: affected_product Kaseya_VSA, attack_target Web_Server, created_at
+        2021_07_06, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2023_03_10
+      msg: '"ET TROJAN Possible Kaseya VSA Exploit URI Structure Inbound"'
+      pcre: '"/\/userFilterTableRpt\.asp$/U"'
+      reference: url,www.huntress.com/blog/rapid-response-kaseya-vsa-mass-msp-ransomware-incident
+      rev: '1'
+      sid: '2033252'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

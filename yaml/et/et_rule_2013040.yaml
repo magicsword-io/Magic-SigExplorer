@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/ProtocolGW/"'
+      - value: '"filename="'
+      flow: established,to_server
+      metadata: affected_product Android, attack_target Client_Endpoint, created_at
+        2011_06_16, deployment Perimeter, signature_severity Critical, tag Android,
+        updated_at 2020_04_20
+      msg: '"ET MOBILE_MALWARE Android.Tonclank JAR File Download"'
+      reference: url,www.symantec.com/security_response/writeup.jsp?docid=2011-061012-4545-99&tabid=2
+      rev: '2'
+      sid: '2013040'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

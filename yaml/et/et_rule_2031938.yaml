@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '60000:'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '4'
+        value: '"|00 1a 00 0a|"'
+      - value: '"|ff ff 00 00|"'
+      dsize: '>16'
+      isdataat: '!1,relative'
+      metadata: attack_target Networking_Equipment, created_at 2021_03_11, cve CVE_2020_35232,
+        deployment Perimeter, deployment Internal, former_category EXPLOIT, confidence
+        High, signature_severity Major, updated_at 2023_04_05
+      msg: '"ET EXPLOIT Possible NSDP (Netgear) Unauthenticated Buffer Overflow (CVE-2020-35232)"'
+      reference: cve,2020-35232
+      rev: '3'
+      sid: '2031938'
+      special_options:
+      - fast_pattern
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

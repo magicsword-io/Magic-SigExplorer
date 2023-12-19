@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"NICK "'
+      - value: '"|5b|"'
+      distance: '1'
+      flow: established,to_server
+      metadata: created_at 2013_11_15, updated_at 2013_11_15
+      msg: '"ET TROJAN Athena Bot Nick in IRC"'
+      pcre: '"/^[A-Z]{3}\|[UA]\|[DL]\|W([78]|_XP|VIS)\|x(86|64)\|/R"'
+      reference: md5,859c2fec50ba1212dca9f00aa4a64ec4
+      rev: '3'
+      sid: '2017716'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/index_small.php"'
+      - depth: '24'
+        value: '"Cache-Control|3a 20|no-cache"'
+      - value: '"Connection|3a 20|Close"'
+      - value: '"Pragma|3a 20|no-cache"'
+      - value: '"Accept|3a 20|text/html, application/xhtml+xml, */*"'
+      - value: '"Accept-Language|3a 20|en-US"'
+      - value: '"Host|3a 20|"'
+      - value: '!"Referer|3a|"'
+      - value: '!"User-Agent|3a|"'
+      flow: established, to_server
+      metadata: created_at 2019_03_04, former_category TROJAN, updated_at 2020_08_27
+      msg: '"ET TROJAN [PTsecurity] Win32/Spy.RTM/Redaman IP Check"'
+      rev: '1'
+      sid: '2027025'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

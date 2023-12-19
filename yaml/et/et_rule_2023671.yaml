@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      byte_jump: 4,58,relative,little
+      classtype: trojan-activity
+      contents:
+      - value: '"MZ"'
+      - value: '"PE|00 00|"'
+      distance: '-64'
+      flow: from_server,established
+      flowbits: isset,et.IE7.NoRef.NoCookie
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_12_19, deployment Perimeter, malware_family
+        Trojan_Kwampirs, signature_severity Major, updated_at 2020_08_18
+      msg: '"ET TROJAN JS/WSF Downloader Dec 08 2016 M3"'
+      pcre: '"/Content-Disposition\x3a[^\r\n]+\.(?:jpe?g|gif|png)/Hmi"'
+      rev: '2'
+      sid: '2023671'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '4'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

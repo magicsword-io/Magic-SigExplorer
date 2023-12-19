@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"W3LL Store"'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2023_04_25, deployment Perimeter,
+        former_category PHISHING, confidence Medium, signature_severity Major, updated_at
+        2023_04_25
+      msg: '"ET CURRENT_EVENTS W3LL STORE Credential Phish Landing Page 2023-04-25"'
+      rev: '1'
+      sid: '2045187'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"win32=FFD8FFE000104A464946",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Spyware.Autoit outbound connection"'
+      reference: url,www.virustotal.com/en/file/8ac4e164b463c313af059760ce1f830c19b0d5a280ec80554e8f77939143e24e
+      rev: '2'
+      service: http
+      sid: '46416'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

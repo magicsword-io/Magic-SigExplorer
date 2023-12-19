@@ -1,0 +1,16 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"G|FF 04 1F|G|FF 04 1F|G|FF 04 1F|G|FF 04 1F|",fast_pattern,nocase'
+      metadata: ruleset community
+      msg: '"INDICATOR-SHELLCODE Digital UNIX NOOP"'
+      rev: '12'
+      sid: '641'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: any

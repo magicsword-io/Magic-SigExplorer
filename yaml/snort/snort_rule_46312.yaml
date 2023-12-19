@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/cgi-bin/NETGEAR_WNR2000.cfg",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Netgear WNR2000 information disclosure attempt"'
+      reference: url,www.netgear.com/home/products/networking/wifi-routers/WNR2000.aspx
+      rev: '3'
+      service: http
+      sid: '46312'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

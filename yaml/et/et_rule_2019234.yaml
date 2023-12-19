@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|25|28|25|29|25|20|25|7b|25|20"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2014_09_25, cve CVE_2014_6271, updated_at 2020_09_25
+      msg: '"ET WEB_SERVER Possible CVE-2014-6271 Attempt in Client Body 2"'
+      pcre: '"/(:?(:?\x5e|%5e)|(:?[=?&]|\x25(:?3d|3f|26)))\s*?(:?%28|\x28)(:?%29|\x29)(:?%20|\x20)(:?%7b|\x7b)(:?%20|\x20)/Pi"'
+      reference: url,blogs.akamai.com/2014/09/environment-bashing.html
+      rev: '3'
+      sid: '2019234'
+      special_options:
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

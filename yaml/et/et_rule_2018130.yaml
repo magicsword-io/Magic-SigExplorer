@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|85 19 00 00 25 04 00 00 00 00|"'
+      - value: '"|40 00 00 00 00|"'
+      distance: '1'
+      dsize: '16'
+      flow: established,from_server
+      metadata: created_at 2014_02_13, updated_at 2014_02_13
+      msg: '"ET TROJAN W32/Trojan-Gypikon Server Check-in Response"'
+      reference: md5,792b725b6a2a52e4eecde846b39eea7d
+      rev: '3'
+      sid: '2018130'
+      within: '6'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

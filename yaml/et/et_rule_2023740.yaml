@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/inst.exe"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Cookie|3a|"'
+      - value: '!"Accept-"'
+      - value: '"User-Agent|3a|"'
+      - value: '"Accept|3a|"'
+      - value: '!"360safe.com|0d 0a|"'
+      - value: '!"qhcdn.com|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, affected_product
+        Web_Browser_Plugins, attack_target Client_Endpoint, created_at 2017_01_13,
+        deployment Perimeter, former_category TROJAN, malware_family Pony, signature_severity
+        Major, updated_at 2020_11_04
+      msg: '"ET TROJAN Possible Pony Payload DL"'
+      pcre: '"/\/inst\.exe$/U"'
+      reference: md5,62e7a146079f99ded1a6b8f2db08ad18
+      rev: '2'
+      sid: '2023740'
+      special_options:
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

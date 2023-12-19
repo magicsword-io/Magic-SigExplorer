@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"qarallax.com|0d 0a|"'
+      - value: '"User-Agent|3a 20|Java/"'
+      flow: to_server,established
+      metadata: created_at 2016_06_08, updated_at 2020_07_14
+      msg: '"ET TROJAN Qarallax RAT Downloading Modules"'
+      reference: url,labsblog.f-secure.com/2016/06/07/qarallax-rat-spying-on-us-visa-applicants/
+      rev: '1'
+      sid: '2022881'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

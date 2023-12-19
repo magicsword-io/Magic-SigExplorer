@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"|3B|"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER remote command execution attempt"'
+      reference: cve,1999-0150
+      rev: '15'
+      sid: '326'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

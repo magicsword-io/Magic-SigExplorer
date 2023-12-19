@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"|20|IP|20|"'
+      - value: '"|20 2e 20 2e 20 2e 20 2e 20 2e 20|"'
+      - value: '"DNS-"'
+      - value: '"|20 2e 20 2e 20 2e 20 3a 20|"'
+      - value: '"|0d 0a 20 20 20|DHCP|20|"'
+      distance: '0'
+      flow: established,from_server
+      flowbits: isset,ET.sarwent.1
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2020_02_17, deployment Perimeter, former_category
+        MALWARE, malware_family Sarwent, performance_impact Low, signature_severity
+        Major, updated_at 2020_08_19
+      msg: '"ET TROJAN Win32/Sarwent Initial Checkin CnC Response"'
+      pcre: '"/^(?:[a-f0-9]{2}-){5}[a-f0-9]{2}/R"'
+      rev: '2'
+      sid: '2029475'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

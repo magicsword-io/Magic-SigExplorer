@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"POST"'
+      - value: '"|3c 2f|wsse|3a|Username|3e 20 3c|wsse|3a|Password|3e|"'
+      - value: '"|3c|config|2d|data|3e 20 3c|cli|2d|config|2d|data|2d|block|3e|"'
+      - value: '"|3c 2f|configApply|3e|"'
+      flow: established,to_server
+      metadata: attack_target Networking_Equipment, created_at 2023_10_30, cve CVE_2023_20198,
+        deployment Perimeter, deployment SSLDecrypt, former_category INFO, confidence
+        Medium, signature_severity Informational, updated_at 2023_10_30, reviewed_at
+        2023_10_30
+      msg: '"ET INFO Cisco IOS XE Web Server Config Change in SOAP (CVE-2023-20198)
+        (Outbound)"'
+      reference: cve,2023-20198
+      rev: '1'
+      sid: '2048944'
+      special_options:
+      - http_method
+      - http_client_body
+      - http_client_body
+      - fast_pattern
+      - http_client_body
+      threshold: type limit,seconds 300,count 1,track by_src
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"FromBase64String"'
+      - value: '"H4sIAI"'
+      - value: '"GzipStream"'
+      distance: '0'
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_04_18, deployment Perimeter, former_category
+        TROJAN, malware_family PowerShell, performance_impact Moderate, signature_severity
+        Major, tag PowerShell, updated_at 2017_04_18
+      msg: '"ET TROJAN Possible Malicious Gzip PowerShell over HTTP"'
+      rev: '1'
+      sid: '2024221'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

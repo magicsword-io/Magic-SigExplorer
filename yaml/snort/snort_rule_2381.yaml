@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"HEAD"'
+      - value: '"|3A|/",offset 11'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,policy security-ips drop,ruleset community
+      msg: '"SERVER-WEBAPP Checkpoint Firewall-1 HTTP parsing format string vulnerability
+        attempt"'
+      pcre: '"/^[^\x3a\x3f]{11,}\x3a\x2f/ims"'
+      reference: nessus,12084
+      rev: '21'
+      service: http
+      sid: '2381'
+      special_options:
+      - http_method
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

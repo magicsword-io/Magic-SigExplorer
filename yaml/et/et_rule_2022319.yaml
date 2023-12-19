@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/windowslogo.jpg"'
+      - value: '"/winborder.html"'
+      - value: '"bug1.html"'
+      - value: '"infected your system"'
+      - value: '"TCP connection already exists"'
+      - value: '"TOLL FREE"'
+      distance: '0'
+      flow: to_client,established
+      metadata: created_at 2015_12_30, former_category WEB_CLIENT, updated_at 2015_12_30
+      msg: '"ET WEB_CLIENT Tech Support Phone Scam Landing Dec 30 M1"'
+      rev: '2'
+      sid: '2022319'
+      special_options:
+      - file_data
+      - fast_pattern
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

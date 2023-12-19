@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"GET"'
+      - value: '".jsp?cmd=netstat|2b|"'
+      flow: established,to_server
+      metadata: attack_target Web_Server, created_at 2022_06_16, deployment Perimeter,
+        former_category WEB_SERVER, signature_severity Major, updated_at 2022_06_16
+      msg: '"ET WEB_SERVER Suspected Webshell netstat Command (Inbound)"'
+      reference: url,thedfirreport.com/2022/06/06/will-the-real-msiexec-please-stand-up-exploit-leads-to-data-exfiltration/
+      rev: '1'
+      sid: '2037013'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

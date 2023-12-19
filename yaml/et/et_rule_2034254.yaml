@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"|06 81 da 91 ce c7 9f 43|"'
+      - value: '"|14 00|"'
+      distance: '4'
+      dsize: <200
+      metadata: attack_target Client_Endpoint, created_at 2021_10_26, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_10_26
+      msg: '"ET TROJAN Win32/WinDealer CnC Activity (Checkin)"'
+      reference: md5,5a7a90ceb6e7137c753d8de226fc7947
+      rev: '1'
+      sid: '2034254'
+      special_options:
+      - fast_pattern
+      within: '4'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

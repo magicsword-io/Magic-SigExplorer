@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"new XMLHttpRequest|28|"'
+      - value: '"file|3A|//",nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"BROWSER-OTHER Mozilla Netscape XMLHttpRequest local file read attempt"'
+      reference: cve,2002-0354
+      rev: '13'
+      service: http
+      sid: '1735'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

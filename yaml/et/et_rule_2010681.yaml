@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"Pinging from Delphi code written"'
+      fast_pattern: only
+      icode: '0'
+      itype: '8'
+      metadata: created_at 2010_07_30, former_category SCAN, updated_at 2017_05_11
+      msg: '"ET SCAN ICMP Delphi Likely Precursor to Scan"'
+      reference: url,doc.emergingthreats.net/2010681
+      rev: '4'
+      sid: '2010681'
+    protocol: icmp
+    source:
+      network: $EXTERNAL_NET
+      port: any

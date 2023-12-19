@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/2/files/download"'
+      - value: '"Authorization|3a 20|Bearer|20|FLtUsbS3oqcAAAAAAAAAAZ_86BAKGkKPNHeBSV8ETDcqFjlDgagrviCEw0VV6Ecn|0d
+          0a|"'
+      - value: '"/Energy/staging/debugps"'
+      - value: '"Host|3a 20|content.dropboxapi.com|0d 0a|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_23, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2021_06_23
+      msg: '"ET TROJAN Maldoc Downloading from Dropbox via API"'
+      reference: md5,f123a68eea92b34d76f0ca0b677419bd
+      rev: '1'
+      sid: '2033170'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

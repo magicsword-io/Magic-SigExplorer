@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '13'
+        offset: '2'
+        value: '"|00 00 00|ent2rmezi="'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_04_18, deployment Perimeter, former_category
+        MALWARE, malware_family Crimson, signature_severity Major, tag c2, updated_at
+        2022_04_18, reviewed_at 2023_10_04
+      msg: '"ET TROJAN MSIL/Crimson Rat CnC Server Response"'
+      reference: url,twitter.com/0xrb/status/1515979150515122178
+      rev: '2'
+      sid: '2036242'
+      special_options:
+      - fast_pattern
+      threshold: type limit, track by_src, count 5, seconds 600
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '1024:'

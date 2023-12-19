@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|02|cz|02|cc|00|"'
+      distance: '0'
+      metadata: created_at 2010_09_28, former_category HUNTING, updated_at 2020_09_15
+      msg: '"ET DNS DNS Query for Suspicious .cz.cc Domain"'
+      reference: url,sign.kaffenews.com/?p=104
+      rev: '4'
+      sid: '2011410'
+      special_options:
+      - fast_pattern
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

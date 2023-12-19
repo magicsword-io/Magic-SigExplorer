@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - depth: '2'
+        value: '"/v"'
+      - value: '".asp"'
+      - value: '"User-Agent|3a 20|Mozilla/3.0 (compatible|3b| Indy Library|29 0d 0a|"'
+      fast_pattern: 32,20
+      flow: established,to_server
+      metadata: created_at 2016_04_01, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE Win32/SmartTab PUP Install Activity 2"'
+      pcre: '"/\/v\d\/[^.]+\.asp$/Ui"'
+      reference: md5,84fcdf1cd6dc3ee71686835f9489752c
+      rev: '2'
+      sid: '2022694'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

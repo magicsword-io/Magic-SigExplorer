@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"<title>Mail |3a 3a 20|Welcome to Admin Portal</title>"'
+      - value: '"Kindly update your information"'
+      - value: '"Email Address"'
+      - value: '"Confirm Password"'
+      distance: '0'
+      fast_pattern: 10,20
+      flow: established,to_client
+      metadata: created_at 2015_08_21, former_category PHISHING, updated_at 2022_03_17
+      msg: '"ET CURRENT_EVENTS Horde Webmail Phishing Landing 2015-08-21"'
+      rev: '2'
+      sid: '2031725'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

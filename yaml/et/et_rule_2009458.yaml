@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/index.php?action=add&a="'
+      - value: '"&c="'
+      - value: '"&u="'
+      - value: '"&l="'
+      - value: '"&p="'
+      - value: '!"Host|3a| whos.amung.us"'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, former_category MALWARE, updated_at 2020_11_02
+      msg: '"ET TROJAN Win32/Sisron/BackDoor.Cybergate.1 Checkin"'
+      reference: url,doc.emergingthreats.net/2009458
+      rev: '8'
+      sid: '2009458'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

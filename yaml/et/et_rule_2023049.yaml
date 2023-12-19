@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/dw.php"'
+      - value: '!"Referer|3a|"'
+      - depth: '13'
+        value: '"Accept|3a 20|*/*|0d 0a|"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_08_11, deployment Perimeter, former_category
+        MALWARE, malware_family MONSOON, malware_family Tinytyphon, signature_severity
+        Major, tag c2, updated_at 2020_10_06, mitre_tactic_id TA0011, mitre_tactic_name
+        Command_And_Control, mitre_technique_id T1041, mitre_technique_name Exfiltration_Over_C2_Channel
+      msg: '"ET TROJAN Monsoon Tinytyphon CnC Beacon GET"'
+      pcre: '"/\/dw\.php$/U"'
+      reference: url,blogs.forcepoint.com/security-labs/monsoon-analysis-apt-campaign
+      rev: '1'
+      sid: '2023049'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

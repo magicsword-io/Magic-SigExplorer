@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"MKD  ",depth 5,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"INDICATOR-COMPROMISE FTP ''MKD  '' possible warez site"'
+      rev: '11'
+      service: ftp
+      sid: '547'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

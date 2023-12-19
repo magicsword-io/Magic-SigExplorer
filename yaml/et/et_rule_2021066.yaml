@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '1720'
+    details:
+      classtype: misc-attack
+      contents:
+      - depth: '8'
+        offset: '14'
+        value: '"|28 06|cisco|00|"'
+      - value: '"|b8 00 00 27 05|ooh323|06|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_05_07, updated_at 2020_08_19
+      msg: '"ET VOIP Possible Misuse Call from Cisco ooh323"'
+      reference: url,videonationsltd.co.uk/2015/04/h-323-cisco-spam-calls/
+      rev: '1'
+      sid: '2021066'
+      within: '60'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

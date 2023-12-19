@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"search"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER search query"'
+      reference: cve,1999-0259
+      rev: '16'
+      sid: '322'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|0a|Cookie|3a 20|JSESSIONID=../"'
+      flow: established,to_server
+      metadata: affected_product Tomcat, attack_target Server, created_at 2020_06_05,
+        cve CVE_2020_9484, deployment Perimeter, former_category EXPLOIT, performance_impact
+        Low, signature_severity Major, updated_at 2020_06_05
+      msg: '"ET EXPLOIT Attempted Directory Traversal via HTTP Cookie (CVE-2020-9484)"'
+      pcre: '"/^JSESSIONID=\.\.\//C"'
+      reference: cve,2020-9484
+      rev: '2'
+      sid: '2030256'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

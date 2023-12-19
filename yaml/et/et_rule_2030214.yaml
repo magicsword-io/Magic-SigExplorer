@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"href=|22|/public/campaign/"'
+      - value: '!"/awareness/"'
+      - value: '"src=|22|/public/campaign/"'
+      - value: '"no connection or relationship between the trademark owner and"'
+      - value: '"|20|customer|2e 3c 2f|span|3e|"'
+      distance: '0'
+      fast_pattern: 41,20
+      flow: established,to_client
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2020_05_26, deployment Perimeter, former_category PHISHING, malware_family
+        Lucy, signature_severity Minor, tag Phishing, updated_at 2022_12_20
+      msg: '"ET CURRENT_EVENTS Lucy Security Phishing Landing Page M1"'
+      rev: '3'
+      sid: '2030214'
+      special_options:
+      - file_data
+      - nocase
+      - nocase
+      within: '50'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

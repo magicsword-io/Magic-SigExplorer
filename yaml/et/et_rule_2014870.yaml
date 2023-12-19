@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"|c1 00 8b 3c 3c 88 11 d1 3e f6 63 ec df 40|"'
+      - value: '"Microsoft Root Authority"'
+      - value: '"Microsoft Enforced Licensing Intermediate PCA"'
+      - value: '"|61 1a 02 b7 00 02 00 00 00 12|"'
+      - value: '"Microsoft Enforced Licensing Registration Authority CA"'
+      distance: '378'
+      flow: established,from_server
+      metadata: created_at 2012_06_08, updated_at 2012_06_08
+      msg: '"ET POLICY SN and CN From MS TS Revoked Cert Chain Seen"'
+      reference: md5,1f61d280067e2564999cac20e386041c
+      rev: '3'
+      sid: '2014870'
+      within: '54'
+    protocol: tcp
+    source:
+      network: any
+      port: $HTTP_PORTS

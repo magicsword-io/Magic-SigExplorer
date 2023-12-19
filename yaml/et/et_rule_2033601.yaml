@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/api/v1/users/admin?fields="'
+      - value: '"privilege"'
+      - value: '"Authorization|3a 20|Basic|20|YWRtaW4"'
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_07_28, deployment Perimeter,
+        deployment Internal, former_category EXPLOIT, signature_severity Major, tag
+        Exploit, updated_at 2021_07_28
+      msg: '"ET EXPLOIT Apache Ambari Default Credentials Attempt"'
+      reference: url,docs.cloudera.com/HDPDocuments/Ambari-2.7.4.0/bk_ambari-installation/content/log_in_to_apache_ambari.html
+      rev: '1'
+      sid: '2033601'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: any
+      port: any

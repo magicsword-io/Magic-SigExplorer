@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '143'
+    details:
+      byte_test: 5,>,256,0,relative,string,dec
+      classtype: misc-attack
+      contents:
+      - value: '"LIST",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-IMAP list literal overflow attempt"'
+      pcre: '"/\sLIST\s[^\n]*?\s\{/ims"'
+      reference: nessus,10374
+      rev: '24'
+      service: imap
+      sid: '1845'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

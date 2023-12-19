@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '548'
+    details:
+      byte_jump: 2,1,relative
+      classtype: attempted-admin
+      contents:
+      - value: '"|00 02|",depth 2'
+      - value: '"?",within 1,distance 14'
+      - value: '"cleartxt passwrd",nocase'
+      flow: to_server,established
+      isdataat: 2,relative
+      metadata: ruleset community
+      msg: '"SERVER-OTHER AFP FPLoginExt username buffer overflow attempt"'
+      reference: url,www.atstake.com/research/advisories/2004/a050304-1.txt
+      rev: '7'
+      sid: '2545'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

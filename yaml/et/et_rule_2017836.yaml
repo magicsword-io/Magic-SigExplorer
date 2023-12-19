@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".bin"'
+      - value: '!"Referer|3a|"'
+      - value: '!"Accept-"'
+      - depth: '32'
+        value: '"Accept|3a| */*|0d 0a|Connection|3a| Close|0d 0a|"'
+      - value: '" MSIE "'
+      - value: '!"passport.net|0d0a|"'
+      flow: established,to_server
+      metadata: created_at 2013_12_12, former_category TROJAN, updated_at 2022_05_03
+      msg: '"ET TROJAN Possible Zbot Activity Common Download Struct"'
+      pcre: '"/^User-Agent\x3a[^\r\n]*?\sMSIE\s/Hm"'
+      rev: '4'
+      sid: '2017836'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

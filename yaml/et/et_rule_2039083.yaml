@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"post.php"'
+      - value: '"Purchase Order Excel Portal"'
+      - value: '"id|3d 22|email|22|"'
+      - value: '"id|3d 22|psw|22|"'
+      - value: '"id|3d 22|step|22|"'
+      - value: '"console|2e|log|28|location|2e|search|29 3b|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_03, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2022_10_03
+      msg: '"ET CURRENT_EVENTS Microsoft Excel Credential Phish Landing Page 2022-10-03"'
+      rev: '1'
+      sid: '2039083'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

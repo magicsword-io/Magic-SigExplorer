@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|GroUndHog|08|MapSnode|03|CoM"'
+      distance: '0'
+      metadata: created_at 2015_07_20, former_category MALWARE, updated_at 2020_09_17
+      msg: '"ET TROJAN Likely Linux/IptabLesX C2 Domain Lookup (GroUndHog.MapSnode.CoM)"'
+      rev: '2'
+      sid: '2021444'
+      special_options:
+      - fast_pattern
+      - nocase
+      threshold: type both,track by_src,count 10,seconds 120
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

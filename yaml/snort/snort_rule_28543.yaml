@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      bufferlen: '1'
+      classtype: trojan-activity
+      contents:
+      - value: '"GET / HTTP/1.1|0D 0A|User-Agent: Mozilla/4.0 (compatible|3B| MSIE
+          7.0|3B| Windows NT 5.1|3B| Trident/4.0)|0D 0A|Host: www.ask.com|0D 0A|Cache-Control:
+          no-cache|0D 0A 0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      isdataat: '!139'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Conficker variant outbound connection"'
+      reference: url,www.sans.org/security-resources/malwarefaq/conficker-worm.php
+      rev: '3'
+      service: http
+      sid: '28543'
+      special_options:
+      - http_raw_uri
+      - pkt_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|getfreshnews|03|com|00|"'
+      distance: '0'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2018_02_02, deployment Perimeter, former_category
+        TROJAN, performance_impact Moderate, signature_severity Major, updated_at
+        2020_09_16
+      msg: '"ET TROJAN Observed ExecPS/Cobolt Domain (getfreshnews .com in DNS Lookup)"'
+      reference: md5,5d4d3ba6823a07f070f5a42cbcc7a5c8
+      rev: '2'
+      sid: '2025304'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

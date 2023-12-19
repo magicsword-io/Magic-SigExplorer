@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/ip/?client=sp",fast_pattern,nocase'
+      - value: '"User-Agent|3A 20|NSIS_Inetc (Mozilla)|0D 0A|"'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PUA-ADWARE SuperOptimizer geolocation request"'
+      reference: url,www.virustotal.com/en/file/1df4d1f316bd526e56b5fa0f84704bac365484c049e6a7c76145cb45e5e32049/analysis/1426449377/
+      rev: '2'
+      service: http
+      sid: '34146'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

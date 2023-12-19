@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"|00 01 86 A2|",depth 4,offset 12'
+      - value: '"|00 00 00 02|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC rusers query UDP"'
+      reference: cve,1999-0626
+      rev: '12'
+      sid: '612'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

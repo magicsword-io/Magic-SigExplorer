@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '1024:'
+    details:
+      classtype: trojan-activity
+      contents:
+      - offset: '8'
+        value: '"|00 01 00 00 00|"'
+      - value: '"|7c|Windows|20|"'
+      - value: '"|7c 0b|"'
+      distance: '0'
+      flow: established,to_server
+      isdataat: '!1,relative'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_06_01, deployment Perimeter, former_category
+        MALWARE, malware_family PandoraHVNC, signature_severity Major, tag RAT, updated_at
+        2022_06_01
+      msg: '"ET TROJAN Pandorahvnc/Pikolo RAT Checkin Activity"'
+      reference: url,blog.nsfocus.net/darkcasino-apt-evilnum
+      rev: '1'
+      sid: '2036741'
+      special_options:
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"PUT"'
+      - value: '".jspx/"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Apache_Tomcat, attack_target Web_Server, created_at
+        2017_10_05, cve CVE_2017_12617, deployment Datacenter, former_category WEB_SPECIFIC_APPS,
+        signature_severity Major, updated_at 2020_10_09
+      msg: '"ET WEB_SPECIFIC_APPS Apache Tomcat Possible CVE-2017-12617 JSP Upload
+        Bypass Attempt"'
+      pcre: '"/\.jspx\/[^\x2f]*$/Ui"'
+      reference: cve,2017-12615
+      rev: '4'
+      sid: '2024809'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

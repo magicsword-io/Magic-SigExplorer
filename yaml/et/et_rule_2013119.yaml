@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"31AE647D-11D1-4E6A-BE2D-90157640019A"'
+      fast_pattern: only
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2011_06_24, deployment Perimeter, signature_severity
+        Major, tag ActiveX, updated_at 2019_10_08
+      msg: '"ET ACTIVEX Easewe FTP OCX ActiveX Control EaseWeFtp.ocx Remote Code Execution
+        Attempt"'
+      pcre: '"/<OBJECT\s+[^>]*classid\s*=\s*[\x22\x27]?\s*clsid\s*\x3a\s*\x7B?\s*31AE647D-11D1-4E6A-BE2D-90157640019A.+(Execute|Run|CreateLocalFile|CreateLocalFolder|DeleteLocalFile)/smi"'
+      reference: bid,48393
+      rev: '1'
+      sid: '2013119'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

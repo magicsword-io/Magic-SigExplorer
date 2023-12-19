@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/add.php",fast_pattern,nocase'
+      - value: '"id="'
+      - value: '"code="'
+      - value: '"sdata="'
+      - value: '"name="'
+      - value: '"md5="'
+      - value: '"dlen="'
+      - value: '!"Connection"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Satana ransomware outbound connection"'
+      reference: url,www.virustotal.com/en/file/683a09da219918258c58a7f61f7dc4161a3a7a377cf82a31b840baabfb9a4a96/analysis/1477327210/
+      rev: '3'
+      service: http
+      sid: '40541'
+      special_options:
+      - http_uri
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

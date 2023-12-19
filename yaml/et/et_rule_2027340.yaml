@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '24'
+        value: '"aaaabbbbccccdddd|00 00 00 00 00 00 00 00|"'
+      - value: '"|00 00 04 00 00 00|"'
+      distance: '2'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_09, deployment Perimeter, deployment Internal, former_category TROJAN,
+        malware_family ElectricFish, performance_impact Low, signature_severity Major,
+        tag APT, tag T1090, tag connection_proxy, updated_at 2019_05_09
+      msg: '"ET TROJAN Win32/ElectricFish Authentication Packet Observed"'
+      reference: url,www.us-cert.gov/ncas/analysis-reports/AR19-129A
+      rev: '2'
+      sid: '2027340'
+      special_options:
+      - fast_pattern
+      within: '6'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

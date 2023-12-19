@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent: Mazilla/5.0|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC User-Agent known malicious user-agent string - Mazilla/5.0
+        - Win.Backdoor.Upatre"'
+      rev: '4'
+      service: http
+      sid: '33207'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

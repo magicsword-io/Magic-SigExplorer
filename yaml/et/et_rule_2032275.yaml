@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"HEAD"'
+      - value: '"/tmp?q=6"'
+      - value: '"|20|Office|20|"'
+      - value: '!"Referer|3a 20|"'
+      - value: '!"Accept"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_03_22, deployment Perimeter,
+        former_category MALWARE, malware_family Kimsuky, performance_impact Low, signature_severity
+        Major, updated_at 2021_03_22
+      msg: '"ET TROJAN Kimsuky Maldoc Activity"'
+      pcre: '"/^User-Agent\x3a\x20[^\r\n]+\x20Office\x20/Hmi"'
+      reference: md5,1670bb091dba017606ea5e763072d45f
+      rev: '2'
+      sid: '2032275'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

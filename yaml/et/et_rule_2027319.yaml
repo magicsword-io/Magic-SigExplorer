@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"User-Agent|3a 20|Python-urllib/"'
+      - value: '"&mvr="'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Mac_OSX, attack_target Client_Endpoint, created_at
+        2019_05_06, deployment Perimeter, former_category ADWARE_PUP, performance_impact
+        Low, signature_severity Major, tag Adware, updated_at 2020_11_18
+      msg: '"ET MALWARE OSX ADWARE/AD Injector"'
+      pcre: '"/[a-fA-F0-9]{8}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{4}\-[a-fA-F0-9]{12}/U"'
+      reference: url,objective-see.com/blog/blog_0x3F.html
+      rev: '3'
+      sid: '2027319'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_uri
+      within: '5'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

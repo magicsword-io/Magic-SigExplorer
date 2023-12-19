@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GOOGLE.com?</title>"'
+      - value: '"view shared document"'
+      - value: '"ValidateFormYahoo"'
+      - value: '"ValidateFormGmail"'
+      - value: '"ValidateFormHotmail"'
+      - value: '"ValidateFormAol"'
+      - value: '"ValidateFormOther"'
+      distance: '0'
+      fast_pattern: only
+      flow: to_client,established
+      metadata: affected_product Web_Browsers, attack_target Client_Endpoint, created_at
+        2015_07_24, deployment Perimeter, former_category CURRENT_EVENTS, signature_severity
+        Minor, tag Phishing, updated_at 2019_10_08
+      msg: '"ET CURRENT_EVENTS Google Drive Phishing Landing Jul 24 2015"'
+      rev: '2'
+      sid: '2025682'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

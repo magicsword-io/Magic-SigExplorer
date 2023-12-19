@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"/foxweb.exe",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"SERVER-IIS foxweb.exe access"'
+      reference: nessus,11939
+      rev: '13'
+      service: http
+      sid: '2321'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

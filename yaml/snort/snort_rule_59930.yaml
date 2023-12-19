@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"java.util.*"'
+      - value: '"java.io.FileOutputStream",distance 0'
+      - value: '"request.getParameter(|22|name|22|)",within 200,fast_pattern'
+      - value: '"request.getParameter(|22|contentString|22|)"'
+      flow: to_client,established
+      gid: '1'
+      isdataat: '!300,relative'
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-BACKDOOR Jsp.Webshell.Noop download attempt"'
+      reference: url,community.atlassian.com/t5/Confluence-discussions/CVE-2022-26134-Critical-severity-unauthenticated-remote-code/td-p/20456533
+      rev: '2'
+      service: http
+      sid: '59930'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

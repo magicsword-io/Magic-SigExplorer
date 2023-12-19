@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Cookie|3a 20|_gads="'
+      - value: '"GET"'
+      - depth: '7'
+        value: '"_gads="'
+      - value: '"_gat="'
+      - value: '"_ga="'
+      - value: '"_u="'
+      - value: '"_io="'
+      - value: '"_gid="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_03_17, deployment Perimeter, former_category
+        MALWARE, malware_family IcedID, performance_impact Low, confidence High, signature_severity
+        Critical, updated_at 2023_07_21
+      msg: '"ET TROJAN Win32/IcedID Request Cookie"'
+      reference: url,www.fireeye.com/blog/threat-research/2021/02/melting-unc2198-icedid-to-ransomware-operations.html
+      rev: '5'
+      sid: '2032086'
+      special_options:
+      - fast_pattern
+      - http_method
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+      - http_cookie
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

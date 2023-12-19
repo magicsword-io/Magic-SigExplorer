@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '8009'
+    details:
+      classtype: attempted-admin
+      contents:
+      - depth: '2'
+        value: '"|12 34|"'
+      - value: '"|00 08|HTTP/1.1|00|"'
+      - value: '"javax.servlet.include.path_info|00|"'
+      - value: '"javax.servlet.include.request_uri|00|"'
+      - value: '"javax.servlet.include.servlet_path|00|"'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.GhostCat
+      metadata: affected_product Apache_Tomcat, attack_target Web_Server, created_at
+        2020_02_25, cve CVE_2020_1938, deployment Perimeter, former_category EXPLOIT,
+        signature_severity Major, updated_at 2023_06_08
+      msg: '"ET EXPLOIT [401TRG] GhostCat LFI Attempt Inbound (CVE-2020-1938)"'
+      reference: url,www.tenable.com/blog/cve-2020-1938-ghostcat-apache-tomcat-ajp-file-readinclusion-vulnerability-cnvd-2020-10487
+      rev: '3'
+      sid: '2029533'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: any

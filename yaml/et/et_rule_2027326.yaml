@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[139,445]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '8'
+        value: '"SMB"'
+      - value: '"g|00|r|00|u|00|n|00|t|00|s|00|v|00|c|00|"'
+      - value: '!"|00 22 00|g|00|r|00|u|00|n|00|t|00|s|00|v|00|c|00 22 00|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, created_at
+        2019_05_07, deployment Perimeter, deployment Internal, former_category MALWARE,
+        malware_family Covenant, performance_impact Low, signature_severity Major,
+        updated_at 2023_08_24, reviewed_at 2023_08_24
+      msg: '"ET TROJAN Covenant .NET Framework P2P C&C Protocol Gruntsvc Named Pipe
+        Interaction"'
+      reference: url,posts.specterops.io/designing-peer-to-peer-command-and-control-ad2c61740456
+      rev: '3'
+      sid: '2027326'
+      special_options:
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: any
+      port: any

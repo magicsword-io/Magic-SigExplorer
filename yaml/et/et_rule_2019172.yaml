@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '9'
+        value: '"VERSONEX|3a|"'
+      - value: '"|7c|Hacker|00 00 00|"'
+      distance: '0'
+      dsize: '1024'
+      flow: established,to_server
+      metadata: created_at 2014_08_19, former_category MALWARE, updated_at 2014_08_19
+      msg: '"ET TROJAN Linux.DDoS Checkin"'
+      reference: md5,0eab12cebbf1c8f25d82c65f34aab9d7
+      rev: '4'
+      sid: '2019172'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php/Child_Page?"'
+      - value: '"cmd=new_section"'
+      - value: '"section="'
+      flow: established,to_server
+      metadata: created_at 2012_12_29, updated_at 2020_04_22
+      msg: '"ET WEB_SPECIFIC_APPS gpEasy CMS index.php file XSS Attempt"'
+      pcre: '"/section\x3d.+?(?:on(?:(?:s(?:elec|ubmi)|rese)t|d(?:blclick|ragdrop)|(?:mouse|key)[a-z]|c(?:hange|lick)|(?:un)?load|focus|blur)|s(?:cript|tyle=))/Ui"'
+      reference: url,1337day.com/exploit/19949
+      rev: '1'
+      sid: '2016115'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

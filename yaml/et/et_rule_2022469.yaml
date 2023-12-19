@@ -1,0 +1,38 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php"'
+      - depth: '5'
+        value: '"mode="'
+      - value: '"&uid="'
+      - value: '"&osname="'
+      - value: '"&compname="'
+      distance: '0'
+      flow: established,to_server
+      flowbits: set,ET.centerpos
+      metadata: created_at 2016_01_29, former_category MALWARE, updated_at 2020_10_28
+      msg: '"ET TROJAN CenterPOS CnC"'
+      pcre: '"/\.php$/U"'
+      reference: url,www.fireeye.com/blog/threat-research/2016/01/centerpos_an_evolvi.html
+      rev: '1'
+      sid: '2022469'
+      special_options:
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+      - nocase
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

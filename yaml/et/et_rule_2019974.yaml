@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/config-from-production"'
+      - depth: '7'
+        value: '"{|22|os|22 3A 22|"'
+      - value: '"|22|lang|22 3A 22|"'
+      - value: '"|22|uid|22 3A 22|"'
+      - value: '"|22|prod|22 3A 22|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2014_12_18, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE PUP W32/DownloadGuide.D"'
+      reference: md5,294752c7c4fcf4252a9e99bb4df7ff5c
+      rev: '2'
+      sid: '2019974'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

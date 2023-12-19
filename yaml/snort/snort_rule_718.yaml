@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"Login incorrect"'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-TELNET login incorrect"'
+      rev: '16'
+      service: telnet
+      sid: '718'
+    protocol: tcp
+    source:
+      network: $TELNET_SERVERS
+      port: '23'

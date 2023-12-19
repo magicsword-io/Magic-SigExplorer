@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '" EMF",depth 4,offset 40'
+      flow: to_server,established
+      flowbits: isset,file.emf
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"FILE-IMAGE Microsoft emf file download request"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS06-001
+      rev: '2'
+      service: smtp
+      sid: '33740'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"nimh.gov.vn|0d 0a|"'
+      - depth: '6'
+        value: '"email="'
+      - value: '"&password="'
+      distance: '0'
+      metadata: attack_target Client_Endpoint, created_at 2023_07_18, deployment Perimeter,
+        former_category PHISHING, signature_severity Major, tag Phishing, updated_at
+        2023_07_18
+      msg: '"ET CURRENT_EVENTS Vietnamese Govt Credential Phish M1 2023-07-18"'
+      pcre: '"/^Host\x3a\x20[^\r\n]+nimh\.gov\.vn/Hmi"'
+      rev: '1'
+      sid: '2046857'
+      special_options:
+      - http_method
+      - http_header
+      - fast_pattern
+      - http_client_body
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

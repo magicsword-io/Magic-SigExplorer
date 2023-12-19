@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"X-CSRF-TOKEN|3a 20|"'
+      - value: '"Cookie|3a 20|"'
+      - depth: '11'
+        value: '"CSRF-TOKEN="'
+      - value: '"==|3b 20|LANG=en-US"'
+      distance: '86'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_01_04, deployment Perimeter,
+        former_category MALWARE, malware_family Rhadamanthys, performance_impact Low,
+        signature_severity Major, updated_at 2023_01_04
+      msg: '"ET TROJAN Rhadamanthys Stealer - Payload Download Request"'
+      pcre: '"/X-CSRF-TOKEN\x3a\x20(?P<string>[a-zA-Z0-9\+\/]{86}\x3d\x3d)[\r\n]+Cookie\x3a\x20CSRF-TOKEN\x3d(?P=string)\x3b\x20LANG\x3den-US[\r\n]+$/D"'
+      reference: md5,6c7f6d2ac093abd0edcd16e29de79dd5
+      rev: '1'
+      sid: '2043202'
+      special_options:
+      - http_method
+      - http_header
+      - http_header
+      - http_cookie
+      - http_cookie
+      within: '15'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

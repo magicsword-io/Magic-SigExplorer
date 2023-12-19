@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $SMTP_SERVERS
+      port: '25'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"javascript|3A|//",fast_pattern,nocase'
+      - value: '"document.cookie",nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"BROWSER-FIREFOX Mozilla 1.0 Javascript arbitrary cookie access attempt"'
+      reference: cve,2002-2314
+      rev: '3'
+      service: smtp
+      sid: '32244'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

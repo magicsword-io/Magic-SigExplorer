@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Ouija"'
+      - value: '!"OuijaBoardWigi"'
+      flow: established,to_server
+      metadata: affected_product Linux, attack_target Client_Endpoint, created_at
+        2019_11_18, deployment Perimeter, former_category MALWARE, signature_severity
+        Major, updated_at 2022_05_03
+      msg: '"ET TROJAN ELF/Mirai Variant UA Outbound (Ouija_x.86)"'
+      rev: '6'
+      sid: '2028990'
+      special_options:
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|cxks8|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_03_28, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2022_03_28
+      msg: '"ET TROJAN PlugX Related Domain in DNS Lookup (cxks8 .com)"'
+      reference: url,twitter.com/0xrb/status/1508330395250868229
+      rev: '2'
+      sid: '2035627'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '11'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

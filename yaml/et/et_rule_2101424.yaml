@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: shellcode-detect
+      contents:
+      - value: '"|EB 0C EB 0C EB 0C EB 0C EB 0C EB 0C EB 0C EB 0C|"'
+      fast_pattern: only
+      metadata: created_at 2010_09_23, updated_at 2019_10_08
+      msg: '"GPL SHELLCODE x86 0xEB0C NOOP"'
+      rev: '8'
+      sid: '2101424'
+    protocol: ip
+    source:
+      network: $EXTERNAL_NET
+      port: $SHELLCODE_PORTS

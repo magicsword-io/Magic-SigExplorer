@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"PK",depth 2'
+      - value: '"DeltaTicket_ET-RM-",distance 0,nocase'
+      - value: '".exe",distance 0,nocase'
+      flow: to_client,established
+      metadata: impact_flag red,policy balanced-ips drop,policy max-detect-ips drop,policy
+        security-ips drop,ruleset community
+      msg: '"MALWARE-OTHER Fake Delta Ticket HTTP Response phishing attack"'
+      reference: url,www.satinfo.es/blog/tag/deltaticket_et-rm-0hj423891156-exe
+      rev: '3'
+      service: http
+      sid: '32008'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

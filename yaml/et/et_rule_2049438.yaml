@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"207"'
+      - value: '"|3d 22|DAV|3a 22 3e|"'
+      - value: '"response>"'
+      - value: '"href>"'
+      - value: '":href>"'
+      - value: '"status>HTTP/1.1 200 OK"'
+      - value: '"getcontenttype>application/"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.PROPFIND
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_11_30, deployment Perimeter, deployment SSLDecrypt,
+        former_category HUNTING, signature_severity Informational, updated_at 2023_11_30
+      msg: '"ET INFO Successful PROPFIND Response for Application Media Type"'
+      reference: url,datatracker.ietf.org/doc/html/rfc4918#section-9.1
+      rev: '1'
+      sid: '2049438'
+      special_options:
+      - http_stat_code
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/index.php?p=showMyAllVideos"'
+      - depth: '32'
+      - value: '"Dalvik"'
+      fast_pattern: 12,20
+      flow: established,to_server
+      metadata: attack_target Mobile_Client, created_at 2020_04_20, deployment Perimeter,
+        former_category MOBILE_MALWARE, performance_impact Low, signature_severity
+        Major, updated_at 2020_04_20
+      msg: '"ET MOBILE_MALWARE Suspected PROJECTSPY CnC (video)"'
+      pcre: '"/showMyAllVideos$/U"'
+      reference: url,blog.trendmicro.com/trendlabs-security-intelligence/coronavirus-update-app-leads-to-project-spy-android-and-ios-spyware/
+      rev: '2'
+      sid: '2029981'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

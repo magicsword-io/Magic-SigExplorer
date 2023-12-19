@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"Server|3A| eMule",fast_pattern,nocase'
+      flow: to_client,established
+      metadata: ruleset community
+      msg: '"PUA-P2P eDonkey server response"'
+      reference: url,www.emule-project.net
+      rev: '9'
+      sid: '2587'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: '4711'

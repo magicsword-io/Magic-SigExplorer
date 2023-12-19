@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '[25,587]'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|28 29 20 7b|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_10_10, cve CVE_2014_6271, updated_at 2019_10_08
+      msg: '"ET EXPLOIT Possible Postfix CVE-2014-6271 attempt"'
+      pcre: '"/^[a-z-]+\s*?\x3a\s*?[^\r\n]*?\x28\x29\x20\x7b.*\x3b.*\x7d\s*\x3b(?!=[\r\n])/mi"'
+      reference: cve,2014-6271
+      rev: '4'
+      sid: '2019389'
+    protocol: tcp
+    source:
+      network: any
+      port: any

@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"|3c|bean"'
+      - value: '"|22|java|2e|lang|2e|ProcessBuilder|22|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Server, created_at 2023_11_02, deployment Perimeter,
+        former_category INFO, performance_impact Low, confidence Low, signature_severity
+        Informational, updated_at 2023_11_29, reviewed_at 2023_11_02
+      msg: '"ET INFO Remote Spring Application XML Configuration Containing ProcessBuilder
+        Downloaded"'
+      reference: cve,2023-46604
+      rev: '2'
+      sid: '2049046'
+      special_options:
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '445'
+    details:
+      byte_test: 1,&,0x01,5,relative
+      classtype: attempted-dos
+      contents:
+      - depth: '5'
+        offset: '4'
+        value: '"|FF|SMB|73|"'
+      - value: '"|ff 00|"'
+      - value: '"|84|"'
+      - value: '"NTLMSSP"'
+      distance: '25'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2016_11_11, cve CVE_2017_0004, deployment Perimeter,
+        deployment Datacenter, former_category DOS, performance_impact Low, confidence
+        Medium, signature_severity Major, updated_at 2017_01_12
+      msg: '"ET DOS Microsoft Windows LSASS Remote Memory Corruption (CVE-2017-0004)"'
+      reference: url,technet.microsoft.com/library/security/MS17-004
+      rev: '3'
+      sid: '2023497'
+      special_options:
+      - fast_pattern
+      within: '64'
+    protocol: tcp
+    source:
+      network: any
+      port: any

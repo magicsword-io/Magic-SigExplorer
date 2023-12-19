@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"DEXT87"'
+      flow: to_client,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Darkhotel response connection attempt"'
+      pcre: '"/DEXT87(no|up|\d+\x2e\d+\x2e\d+\x2e\d+)/i"'
+      reference: url,securelist.com/files/2014/11/darkhotelappendixindicators_kl.pdf
+      rev: '2'
+      service: http
+      sid: '32827'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

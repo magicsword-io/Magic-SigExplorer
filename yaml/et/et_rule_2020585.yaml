@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|65 82 a5 7c|"'
+      - value: '"|90 90 90 90 90|"'
+      distance: '0'
+      flow: to_server,established
+      metadata: created_at 2015_03_03, updated_at 2020_08_19
+      msg: '"ET EXPLOIT PCMan FTP Server 2.0.7 Remote Command Execution"'
+      reference: url,exploit-db.com/exploits/36078
+      rev: '2'
+      sid: '2020585'
+      special_options:
+      - fast_pattern
+      within: '10'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '"/ldr.sh"'
+      - value: '!"Referer|3a 20|"'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2021_06_04, deployment Perimeter,
+        former_category MALWARE, performance_impact Low, signature_severity Major,
+        updated_at 2021_06_04
+      msg: '"ET TROJAN sysrv.ELF Exploit Success Payload Request"'
+      pcre: '"/^User-Agent\x3a\x20(?:curl|wget)_?(?:c(?:ve_20(?:1(?:(?:7_1161|8_760)0|9_10758)|20_16846)|url_xxljobUnauth)|tp5)$/Hmi"'
+      reference: url,blogs.juniper.net/en-us/threat-research/sysrv-botnet-expands-and-gains-persistence
+      rev: '2'
+      sid: '2033094'
+      special_options:
+      - http_method
+      - fast_pattern
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-activity
+      contents:
+      - value: '"propfind",nocase'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows WebDAV propfind access"'
+      pcre: '"/<a\x3a\s*propfind.*?xmlns\x3a\s*a=[\x21\x22]?DAV[\x21\x22]?/Ri"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-030
+      rev: '24'
+      service: http
+      sid: '1079'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

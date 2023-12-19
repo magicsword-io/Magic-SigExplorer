@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|0c|igconsulting|02|pe"'
+      distance: '1'
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_04_21, deployment Perimeter, former_category
+        PHISHING, signature_severity Minor, updated_at 2021_04_21
+      msg: '"ET CURRENT_EVENTS Observed DNS Query to Phishing Domain (igconsulting.
+        pe)"'
+      rev: '1'
+      sid: '2032797'
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

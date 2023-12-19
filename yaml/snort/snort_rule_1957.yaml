@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: protocol-command-decode
+      contents:
+      - value: '"|00 01 87 88|",depth 4,offset 12'
+      - value: '"|00 00 00 00|",within 4,distance 4'
+      - value: '"|00 00 00 00|",depth 4,offset 4'
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"PROTOCOL-RPC sadmind UDP PING"'
+      reference: nessus,10229
+      rev: '16'
+      sid: '1957'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

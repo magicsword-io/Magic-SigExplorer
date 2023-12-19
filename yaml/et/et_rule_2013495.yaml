@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|04|jifr|04|info"'
+      distance: '1'
+      metadata: created_at 2011_08_30, updated_at 2020_09_01
+      msg: '"ET TROJAN DNS query for Morto RDP worm related domain jifr.info"'
+      reference: url,contagiodump.blogspot.com/2011/08/aug-28-morto-tsclient-rdp-worm-with.html
+      rev: '3'
+      sid: '2013495'
+      special_options:
+      - fast_pattern
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

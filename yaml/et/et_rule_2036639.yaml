@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|0b|"'
+      - value: '"|06 03 55 04 03|"'
+      - value: '"|0a|*.dcrat.ru"'
+      distance: '1'
+      flow: established,to_client
+      metadata: attack_target Client_Endpoint, created_at 2022_05_20, deployment Perimeter,
+        former_category MALWARE, malware_family DCRat, signature_severity Major, tag
+        SSL_Malicious_Cert, updated_at 2022_05_20
+      msg: '"ET TROJAN Observed Malicious SSL Cert (DCRat)"'
+      reference: url,blogs.blackberry.com/en/2022/05/dirty-deeds-done-dirt-cheap-russian-rat-offers-backdoor-bargains
+      rev: '1'
+      sid: '2036639'
+      special_options:
+      - fast_pattern
+      within: '11'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: '443'

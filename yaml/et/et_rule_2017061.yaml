@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: '[5353,5656,80]'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        value: '"POST "'
+      - value: '"solusvmc-node"'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_06_25, updated_at 2019_10_08
+      msg: '"ET EXPLOIT SolusVM 1.13.03 Access to solusvmc-node setuid bin"'
+      pcre: '"/\bsolusvmc-node\b/"'
+      rev: '3'
+      sid: '2017061'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

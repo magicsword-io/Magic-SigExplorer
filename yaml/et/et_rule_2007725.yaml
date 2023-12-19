@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '11'
+        offset: '0'
+        value: '"220 WinFtpd"'
+      dsize: <18
+      flow: established,from_server
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET ATTACK_RESPONSE Unusual FTP Server Banner on High Port (WinFtpd)"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2007725
+      rev: '6'
+      sid: '2007725'
+      special_options:
+      - nocase
+    protocol: tcp
+    source:
+      network: any
+      port: '1024:'

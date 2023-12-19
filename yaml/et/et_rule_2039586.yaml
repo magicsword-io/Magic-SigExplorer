@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|01|s|09|adslinkup|03|com|00|"'
+      distance: '1'
+      metadata: affected_product Android, attack_target Mobile_Client, created_at
+        2022_10_28, deployment Perimeter, signature_severity Major, updated_at 2022_10_28
+      msg: '"ET MOBILE_MALWARE Trojan-Dropper.AndroidOS.Guerrilla.h CnC Domain in
+        DNS Lookup"'
+      reference: md5,cfdbc8d6614d94d2bdbb9e676ac1008a
+      rev: '1'
+      sid: '2039586'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '17'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

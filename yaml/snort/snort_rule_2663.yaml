@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/_maincfgret.cgi",fast_pattern,nocase'
+      - value: '"instancename=",nocase'
+      flow: to_server,established
+      isdataat: 513,relative
+      metadata: ruleset community
+      msg: '"SERVER-WEBAPP Ipswitch WhatsUpGold instancename overflow attempt"'
+      pcre: '"/instancename=[^&\x3b\r\n]{513}/ims"'
+      reference: cve,2004-0798
+      rev: '16'
+      service: http
+      sid: '2663'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: 1:1023
+    details:
+      byte_test: 2,>,10,2,relative
+      classtype: bad-unknown
+      contents:
+      - depth: '6'
+        offset: '2'
+        value: '"|81 00 00 01 00 00|"'
+      - value: '"|0c|root-servers|03|net|00|"'
+      - value: '"|0c|root-servers|03|net|00|"'
+      distance: '0'
+      metadata: attack_target Server, created_at 2016_08_12, deployment Datacenter,
+        performance_impact Low, updated_at 2016_08_12
+      msg: '"ET DOS DNS Amplification Attack Possible Outbound Windows Non-Recursive
+        Root Hint Reserved Port"'
+      reference: url,pastebin.com/LzubgtVb
+      rev: '2'
+      sid: '2023054'
+      threshold: type both, track by_dst, seconds 60, count 5
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: '53'

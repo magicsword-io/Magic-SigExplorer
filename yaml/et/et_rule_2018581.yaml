@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '".exe"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2014_06_18, updated_at 2020_08_17
+      msg: '"ET TROJAN Single char EXE direct download likely trojan (multiple families)"'
+      pcre: '"/\/[a-z0-9A-Z]\.exe$/Ui"'
+      rev: '1'
+      sid: '2018581'
+      special_options:
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

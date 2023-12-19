@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"silence_screenshot|0D 0A|",depth 20,offset 4'
+      flow: to_client
+      isdataat: '!24'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Backdoor.Houdini variant screenshot inbound silence command
+        attempt"'
+      rev: '3'
+      sid: '40834'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

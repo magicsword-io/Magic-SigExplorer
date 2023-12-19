@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '5'
+        offset: '36'
+        value: '"|00|LMR-"'
+      dsize: '1079'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_08_07, deployment Perimeter, former_category
+        MALWARE, malware_family PovertyStealer, confidence High, signature_severity
+        Critical, updated_at 2023_08_12, reviewed_at 2023_10_16
+      msg: '"ET TROJAN [ANY.RUN] PovertyStealer Check-In via TCP"'
+      pcre: '"/^(?:\d{3})\x2d(?:\d{3})/R"'
+      reference: url,community.emergingthreats.net/t/poverty-stealer/839/4
+      rev: '2'
+      sid: '2047066'
+      special_options:
+      - fast_pattern
+      stream_size: server, =, 1
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

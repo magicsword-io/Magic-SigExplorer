@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<script"'
+      - value: '"=i?php.war/moc.nibetsap"'
+      - value: '".reverse("'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2015_11_02, updated_at 2019_10_08
+      msg: '"ET WEB_SPECIFIC_APPS Reversed Pastebin Injection in Magento DB"'
+      reference: url,labs.sucuri.net/?note=2015-11-02
+      rev: '1'
+      sid: '2022014'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: bad-unknown
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|09|fromsmash|03|com"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2022_05_24, deployment Perimeter,
+        former_category INFO, signature_severity Informational, updated_at 2022_05_24
+      msg: '"ET INFO Anonymous File Sharing Domain in DNS Lookup (fromsmash .com)"'
+      rev: '1'
+      sid: '2036666'
+      special_options:
+      - nocase
+      within: '7'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

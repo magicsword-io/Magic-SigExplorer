@@ -1,0 +1,34 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"POST"'
+      - value: '".cfc?"'
+      - value: '"method|3d|"'
+      - value: '"_cfclient|3d|true"'
+      - depth: '12'
+        value: '"_variables|3d 7b|"'
+      flow: established,to_server
+      metadata: affected_product Adobe_Coldfusion, attack_target Web_Server, created_at
+        2023_12_06, cve CVE_2023_26360_CVE_2023_26359, deployment Perimeter, deployment
+        Internal, deployment SSLDecrypt, former_category WEB_SPECIFIC_APPS, performance_impact
+        Low, confidence High, signature_severity Major, updated_at 2023_12_07
+      msg: '"ET WEB_SPECIFIC_APPS Adobe Coldfusion Local File Inclusion Attempt (CVE-2023-26360,
+        CVE-2023-26359) M1"'
+      reference: url,realalphaman.medium.com/adobe-coldfusion-lfi-lead-to-rce-cve-2023-26359-cve-2023-26360-bd1c4b0e24bc
+      rev: '2'
+      sid: '2049530'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - fast_pattern
+      - http_client_body
+    protocol: tcp
+    source:
+      network: any
+      port: any

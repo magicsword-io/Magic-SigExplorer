@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: '53'
+    details:
+      classtype: trojan-activity
+      contents:
+      - depth: '1'
+        offset: '2'
+        value: '"|01|"'
+      - value: '"|00 01 00 00 00 00 00|"'
+      - value: '"|05|share|0b|devprocloud|03|com|00|"'
+      distance: '1'
+      metadata: attack_target Client_Endpoint, created_at 2021_10_06, deployment Perimeter,
+        former_category MALWARE, signature_severity Major, updated_at 2021_10_06
+      msg: '"ET TROJAN Lazarus APT Related CnC Domain in DNS Lookup (share .devprocloud
+        .com)"'
+      reference: url,ti.qianxin.com/blog/articles/Lazarus'-Recent-Attack-Campaign-Targeting-Blockchain-Finance-and-Energy-Sectors/
+      rev: '2'
+      sid: '2034137'
+      special_options:
+      - nocase
+      - fast_pattern
+      within: '23'
+    protocol: udp
+    source:
+      network: $HOME_NET
+      port: any

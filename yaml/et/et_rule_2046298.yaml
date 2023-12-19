@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api-v1"'
+      - value: '"User-Agent|3a 20|LegionClient"'
+      - value: '!"Referer|3a 20|"'
+      - value: '"pauthx|3a 20|"'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_16, deployment Perimeter, deployment SSLDecrypt,
+        former_category MALWARE, malware_family LegionLoader, performance_impact Low,
+        confidence High, signature_severity Major, updated_at 2023_06_16
+      msg: '"ET TROJAN LegionLoader Activity Observed (LegionClient)"'
+      rev: '1'
+      sid: '2046298'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - fast_pattern
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

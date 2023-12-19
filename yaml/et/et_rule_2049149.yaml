@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      byte_jump: 2,0,relative, post_offset -15
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00|"'
+      - value: '"|00|"'
+      - value: '"seetrol.co.kr"'
+      distance: '4'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_11_10, deployment Perimeter,
+        malware_family PUP, signature_severity Informational, updated_at 2023_11_10
+      msg: '"ET MALWARE Observed Seetrol RAT Domain (seetrol .co .kr in TLS SNI)"'
+      pcre: '"/^(?:\x00\x0d|.\x2e)seetrol\.co\.kr/R"'
+      rev: '1'
+      sid: '2049149'
+      within: '1'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

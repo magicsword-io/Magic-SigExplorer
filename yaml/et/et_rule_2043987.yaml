@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"User-Agent|3a 20|Mozilla|20|105|2e|01|2e|05|0d 0a|"'
+      fast_pattern: 11,20
+      flow: to_server,established
+      metadata: attack_target Client_Endpoint, created_at 2023_01_24, deployment Perimeter,
+        deployment SSLDecrypt, former_category MALWARE, signature_severity Major,
+        updated_at 2023_01_24
+      msg: '"ET TROJAN Win32/DoNot Observed UA (Mozilla 105.01.05)"'
+      reference: url,twitter.com/jaydinbas/status/1617853748063383552
+      rev: '1'
+      sid: '2043987'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

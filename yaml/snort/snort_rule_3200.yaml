@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '42'
+    details:
+      byte_test: 1,&,64,2
+      classtype: attempted-admin
+      contents:
+      - value: '" ",offset 12'
+      flow: to_server
+      isdataat: 56,relative
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"OS-WINDOWS Microsoft Windows WINS name query overflow attempt UDP"'
+      reference: url,technet.microsoft.com/en-us/security/bulletin/MS04-006
+      rev: '13'
+      sid: '3200'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

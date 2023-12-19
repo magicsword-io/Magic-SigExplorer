@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '80'
+    details:
+      classtype: policy-violation
+      contents:
+      - value: '"POST"'
+      - value: '"|0A|Host|3A 20|rl.ammyy.com|0D 0A|",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: policy max-detect-ips drop,ruleset community
+      msg: '"APP-DETECT Ammyy remote access tool"'
+      reference: url,www.ammyy.com
+      rev: '3'
+      service: http
+      sid: '25947'
+      special_options:
+      - http_method
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

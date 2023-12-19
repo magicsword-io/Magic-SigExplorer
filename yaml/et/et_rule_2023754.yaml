@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"GET"'
+      - value: '".php?f="'
+      - value: '!"Referer"'
+      - value: '"User-Agent|3a 20|Mozilla/4.0 (compatible|3b 20|MSIE 7.0|3b|"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_11_28, deployment Perimeter, former_category
+        CURRENT_EVENTS, performance_impact Low, signature_severity Major, updated_at
+        2020_10_08
+      msg: '"ET CURRENT_EVENTS Malicious JS.Nemucod to PS Dropping PE Nov 14 M2"'
+      pcre: '"/^\/\w+\.php\?f=[a-z]?\d{1,3}(?:\.(?:dat|gif))?$/U"'
+      reference: md5,551c440d76be5ab9932d8f3e8f65726e
+      rev: '5'
+      sid: '2023754'
+      special_options:
+      - http_method
+      - http_uri
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

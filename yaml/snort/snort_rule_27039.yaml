@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/get.asp?mac="'
+      - value: '"&os=",within 36'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.OnlineGameHack variant outbound connection"'
+      reference: url,image.ahnlab.com/global/upload/download/asecreport/ASEC_Report_Vol.39_Eng.pdf
+      rev: '2'
+      service: http
+      sid: '27039'
+      special_options:
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

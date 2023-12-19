@@ -1,0 +1,25 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: misc-activity
+      contents:
+      - value: '"/boaform/admin/formLogin"'
+      - value: '"username="'
+      - value: '"psd="'
+      flow: established,to_server
+      metadata: created_at 2021_01_08, former_category INFO, signature_severity Informational,
+        updated_at 2021_01_08
+      msg: '"ET INFO Netlink GPON Login Attempt (GET)"'
+      rev: '4'
+      sid: '2031501'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: any
+      port: any

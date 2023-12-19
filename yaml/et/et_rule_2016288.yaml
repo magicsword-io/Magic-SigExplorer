@@ -1,0 +1,29 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/index.php?"'
+      - value: '"option=com_collector"'
+      - value: '"view="'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: created_at 2013_01_25, updated_at 2020_09_18
+      msg: '"ET WEB_SPECIFIC_APPS Joomla com_collector Component Arbitrary File Upload
+        Vulnerability"'
+      reference: url,exploit-db.com/exploits/24228/
+      rev: '2'
+      sid: '2016288'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

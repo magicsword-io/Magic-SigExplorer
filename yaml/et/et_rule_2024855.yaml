@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"sqlmapff.com"'
+      flow: established,to_server
+      metadata: created_at 2017_10_18, updated_at 2020_08_13
+      msg: '"ET TROJAN Possible Winnti-related Destination"'
+      reference: url,401trg.pw/an-update-on-winnti/
+      rev: '2'
+      sid: '2024855'
+      special_options:
+      - http_header
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

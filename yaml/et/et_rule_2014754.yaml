@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/PostView.nhn?blogId="'
+      - value: '"&logNo="'
+      - value: '"&parentCategoryNo="'
+      - value: '"&userTopListOpen="'
+      - value: '"&userTopListManageOpen="'
+      - value: '"User-Agent|3A 20|Mozilla/4.0 (compatible|3B| Win32|3B| WinHttp.WinHttpRequest.5)|0d
+          0a|"'
+      flow: established,to_server
+      metadata: created_at 2012_05_17, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN W32/Mepaow.Backdoor Initial Checkin to Intermediary Pre-CnC"'
+      reference: md5,8af17164500aac1c0965b842aca3fed7
+      rev: '5'
+      sid: '2014754'
+      special_options:
+      - fast_pattern
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

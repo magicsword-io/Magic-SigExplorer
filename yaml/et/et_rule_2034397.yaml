@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"<title>Citibank Online</title>"'
+      - value: '"form|20|name|3d 22|undefined|22|"'
+      - value: '"|2e|php|3f|sessionid"'
+      - value: '"|26|sslchannel|3d|true|22 20|method|3d 22|POST|22|"'
+      distance: '0'
+      flow: established,to_client
+      flowbits: isset,ET.genericphish
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2021_11_08, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2021_11_09
+      msg: '"ET CURRENT_EVENTS Successful Citibank Phish Landing Page"'
+      reference: md5,52f9a1141716b47fba9fdbb94f7ddb31
+      rev: '2'
+      sid: '2034397'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

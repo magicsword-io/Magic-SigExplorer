@@ -1,0 +1,33 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"200"'
+      - value: '"Content|2d|Type|3a 20|application|2f|javascript|0d 0a|"'
+      - depth: '27'
+        value: '"|28 28 29 3d 3e 7b 28|function|20 28 29 7b|function"'
+      - value: '"|27 5d 3d 3d 3d|undefined|29 7b|var"'
+      - value: '"i|3d 27|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789|2b
+          2f 3d 27 3b|let|20 5f|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2022_10_04, deployment Perimeter, former_category
+        ATTACK_RESPONSE, signature_severity Major, updated_at 2023_04_03, reviewed_at
+        2023_10_04
+      msg: '"ET TROJAN JS/Comm100 Trojan CnC Payload Inbound"'
+      reference: url,crowdstrike.com/blog/new-supply-chain-attack-leverages-comm100-chat-installer
+      rev: '3'
+      sid: '2039090'
+      special_options:
+      - http_stat_code
+      - http_header
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

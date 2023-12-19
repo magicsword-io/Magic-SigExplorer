@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"Content-Disposition|3a| attachment|3b| filename=|22 25 32 65|/files/"'
+      fast_pattern: 33,20
+      flow: established,to_client
+      flowbits: isset,et.citadel
+      metadata: created_at 2014_06_24, former_category MALWARE, updated_at 2020_04_30
+      msg: '"ET TROJAN W32/Citadel Download From CnC Server /files/ attachment"'
+      reference: url,arbornetworks.com/asert/2014/06/the-citadel-and-gameover-campaigns-of-5cb682c10440b2ebaf9f28c1fe438468/
+      rev: '6'
+      sid: '2018599'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

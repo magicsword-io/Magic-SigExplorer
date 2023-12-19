@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '!"nvidia.com|0d 0a|"'
+      - value: '!"dc.services.visualstudio.com|0d 0a|"'
+      - value: '"C|3A 5C 5C|WINDOWS|5C|"'
+      - value: '!".avg.com|0d 0a|"'
+      - value: '!"bitdefender.net|0d 0a|"'
+      - value: '!"svc.iolo.com|0d 0a|"'
+      - value: '!".lavasoft.com"'
+      - value: '!"canonicalizer.ucsuri.tcs|0d 0a|"'
+      flow: established,to_server
+      metadata: created_at 2010_09_28, former_category MALWARE, updated_at 2020_09_16
+      msg: '"ET TROJAN Suspicious POST With Reference to WINDOWS Folder Possible Malware
+        Infection"'
+      rev: '13'
+      sid: '2011341'
+      special_options:
+      - nocase
+      - http_method
+      - http_header
+      - http_header
+      - fast_pattern
+      - nocase
+      - http_client_body
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

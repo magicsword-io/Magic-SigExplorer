@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '5060'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"interesting-Method"'
+      - value: '"sip|3a|1_unusual.URI"'
+      - depth: '60'
+        offset: '20'
+        value: '"to-be!sure"'
+      fast_pattern: only
+      metadata: created_at 2010_07_30, updated_at 2010_07_30
+      msg: '"ET SCAN Voiper Toolkit Torturer Scan"'
+      reference: url,doc.emergingthreats.net/2008568
+      rev: '4'
+      sid: '2008568'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

@@ -1,0 +1,40 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '3'
+        value: '"/q/"'
+      - value: '"Connection|3a| Close|0d 0a|"'
+      - value: '"Content-Type|3a 20|application/x-www-form-urlencoded|0d 0a|"'
+      - value: '!"Accept"'
+      - value: '!"Referer|3a|"'
+      - depth: '2'
+        value: '"q="'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2017_12_01, deployment Internet, former_category
+        ADWARE_PUP, malware_family Adposhel, performance_impact Moderate, signature_severity
+        Major, tag Adware, updated_at 2020_09_17
+      msg: '"ET MALWARE Win32/Adware.Adposhel.A Checkin 5"'
+      pcre: '"/^q=[a-zA-Z0-9_-]+$/P"'
+      reference: md5,f0e02ba660cfcb122b89bc780a6555ac
+      rev: '2'
+      sid: '2025094'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - nocase
+      - http_header
+      - http_header
+      - nocase
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

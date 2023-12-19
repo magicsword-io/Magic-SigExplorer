@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"/api/agents"'
+      - value: '"zload/0.1"'
+      - value: '"identity_public_key"'
+      - value: '"public_prekey_signature"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2022_08_19, former_category MALWARE, updated_at 2022_08_22
+      msg: '"ET TROJAN Successful CargoBay Exfil"'
+      rev: '1'
+      sid: '2038578'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - http_client_body
+      - http_client_body
+      urilen: '11'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

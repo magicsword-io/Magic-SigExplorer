@@ -1,0 +1,26 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"GET"'
+      - value: '"/se/"'
+      flow: established,to_server
+      metadata: affected_product Any, attack_target Client_Endpoint, created_at 2011_07_26,
+        deployment Perimeter, signature_severity Major, tag DriveBy, updated_at 2020_04_21
+      msg: '"ET TROJAN Possible Ponmocup Driveby Download"'
+      pcre: '"/\/se\/[a-f0-9]{100,200}\/[a-f0-9]{6,9}\/[A-Z0-9_]{4,200}\.com/Ui"'
+      reference: url,www9.dyndns-server.com%3a8080/pub/botnet/r-cgi_malware_analyse.txt
+      rev: '2'
+      sid: '2013312'
+      special_options:
+      - nocase
+      - http_method
+      - nocase
+      - http_uri
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

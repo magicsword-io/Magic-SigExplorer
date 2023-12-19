@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/W3SVC",fast_pattern,nocase'
+      - value: '"cadata="'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Neuron variant inbound service request detected"'
+      reference: url,www.ncsc.gov.uk/alerts/turla-group-malware
+      rev: '3'
+      service: http
+      sid: '45065'
+      special_options:
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

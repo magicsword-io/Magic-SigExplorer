@@ -1,0 +1,17 @@
+- rule:
+    destination:
+      network: any
+      port: '1433'
+    details:
+      classtype: misc-activity
+      flags: S,12
+      metadata: created_at 2010_07_30, former_category SCAN, updated_at 2023_10_10
+      msg: '"ET SCAN Behavioral Unusual Port 1433 traffic Potential Scan or Infection"'
+      reference: url,doc.emergingthreats.net/2001583
+      rev: '15'
+      sid: '2001583'
+      threshold: type both, track by_src, count 40 , seconds 60
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

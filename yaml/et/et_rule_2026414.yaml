@@ -1,0 +1,31 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"200"'
+      - depth: '25'
+        value: '"On|20|Error|20|Resume|20|Next|0d 0a|"'
+      - value: '"SELECT|20 2a 20|FROM|20|AntiSpywareProduct"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,from_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_and_Server, created_at 2018_09_26, deployment Perimeter, deployment
+        alert_only, former_category INFO, performance_impact Low, confidence Low,
+        signature_severity Major, tag VBS, tag Enumeration, updated_at 2020_08_25
+      msg: '"ET ATTACK_RESPONSE Possible System Enumeration via WMI Queries (AntiSpywareProduct)"'
+      reference: md5,11f792cc617cf5c08603d4da829a1fa9
+      rev: '3'
+      sid: '2026414'
+      special_options:
+      - http_stat_code
+      - file_data
+      - nocase
+      threshold: type limit, count 1, seconds 60, track by_src
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

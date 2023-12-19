@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $SQL_SERVERS
+      port: '1433'
+    details:
+      classtype: attempted-user
+      contents:
+      - value: '"''|00|"'
+      - value: '"-|00|-|00|"'
+      flow: to_server,established
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2010_07_30, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2016_07_01
+      msg: '"ET EXPLOIT MS-SQL SQL Injection closing string plus line comment"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2000488
+      rev: '8'
+      sid: '2000488'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

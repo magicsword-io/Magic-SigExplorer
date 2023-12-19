@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '"http|3a|//prime.webhancer.com"'
+      - value: '"AgentTag|3a|"'
+      flow: to_server,established
+      metadata: created_at 2010_07_30, former_category ADWARE_PUP, updated_at 2020_02_20
+      msg: '"ET MALWARE Webhancer Data Post"'
+      reference: url,doc.emergingthreats.net/bin/view/Main/2001677
+      rev: '17'
+      sid: '2001677'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - nocase
+      - http_header
+      - nocase
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

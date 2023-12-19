@@ -1,0 +1,18 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '27444'
+    details:
+      classtype: attempted-dos
+      contents:
+      - value: '"l44adsl"'
+      flow: to_server
+      metadata: ruleset community
+      msg: '"MALWARE-OTHER Trin00 Master to Daemon default password attempt"'
+      reference: url,attack.mitre.org/techniques/T1078
+      rev: '11'
+      sid: '237'
+    protocol: udp
+    source:
+      network: $EXTERNAL_NET
+      port: any

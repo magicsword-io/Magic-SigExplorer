@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"User-Agent|3a| libwww-perl/"'
+      flow: established,to_server
+      metadata: created_at 2011_06_14, updated_at 2020_08_20
+      msg: '"ET POLICY libwww-perl User-Agent"'
+      reference: url,www.useragentstring.com/pages/useragentstring.php
+      rev: '2'
+      sid: '2013030'
+      special_options:
+      - nocase
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: any
+      port: any
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"<html><head><meta http-equiv=|27|Content-Type|27 20|content=|27|text/html"'
+      - value: '"charset="'
+      - value: '"><title>"'
+      - value: '"|20|-|20|WSO|20|"'
+      distance: '0'
+      flow: established,to_client
+      metadata: attack_target Web_Server, created_at 2023_10_27, deployment Perimeter,
+        former_category WEB_SERVER, performance_impact Low, confidence Medium, signature_severity
+        Critical, updated_at 2023_10_27, reviewed_at 2023_10_27
+      msg: '"ET WEB_SERVER Generic Webshell Activity (POST)"'
+      reference: md5,eda02ae6dd7d0fe841653f5e6a69d17e
+      rev: '1'
+      sid: '2048923'
+      special_options:
+      - file_data
+      - fast_pattern
+      within: '50'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: $HTTP_PORTS

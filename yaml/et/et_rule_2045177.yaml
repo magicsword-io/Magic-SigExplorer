@@ -1,0 +1,36 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - depth: '24'
+        value: '"/sfnotice/GlobalSources/"'
+      - value: '".php"'
+      - depth: '7'
+        value: '"passwd="'
+      - value: '"&login="'
+      - value: '".php?email|0d 0a|"'
+      distance: '0'
+      flow: established,to_server
+      metadata: attack_target Client_Endpoint, created_at 2023_04_24, deployment Perimeter,
+        former_category PHISHING, performance_impact Low, confidence High, signature_severity
+        Major, updated_at 2023_04_24
+      msg: '"ET CURRENT_EVENTS Successful DHL Credential Phish 2023-04-24"'
+      pcre: '"/^Referer\x3a\x20[^\r\n]+\.php\?email/Hmi"'
+      rev: '1'
+      sid: '2045177'
+      special_options:
+      - http_method
+      - http_uri
+      - fast_pattern
+      - http_uri
+      - http_client_body
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

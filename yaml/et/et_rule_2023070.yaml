@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: any
+      port: '161'
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"|bf a5 a5 a5 a5 b8 d8 a5 a5 a5 31 f8 bb a5|"'
+      - value: '"|ac 31 fb b9 a5 b5 a5 a5 31 f9 ba a2 a5 a5 a5 31 fa cd 80 eb 14 bf|"'
+      - value: '"|31 c9 b1 04 fc f3 a4 e9 0c 00 00 00 5e eb ec e8 f8 ff ff ff 31 c0
+          40 c3|"'
+      distance: '4'
+      metadata: affected_product Cisco_ASA, attack_target Server, created_at 2016_08_17,
+        deployment Datacenter, performance_impact Low, signature_severity Critical,
+        updated_at 2016_08_17
+      msg: '"ET EXPLOIT Equation Group ExtraBacon Cisco ASA PMCHECK Disable"'
+      reference: url,xorcatt.wordpress.com/2016/08/16/equationgroup-tool-leak-extrabacon-demo/
+      rev: '1'
+      sid: '2023070'
+      within: '24'
+    protocol: udp
+    source:
+      network: any
+      port: any

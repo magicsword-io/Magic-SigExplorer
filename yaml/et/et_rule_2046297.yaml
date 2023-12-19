@@ -1,0 +1,27 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: '443'
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|16|"'
+      - value: '"|01|"'
+      - value: '"|00 00 0b|legions.win"'
+      distance: '0'
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_06_16, deployment Perimeter, former_category
+        MALWARE, malware_family LegionLoader, performance_impact Low, confidence High,
+        signature_severity Major, tag SSL_Malicious_Cert, updated_at 2023_06_16, reviewed_at
+        2023_10_06
+      msg: '"ET TROJAN Observed LegionLoader Domain in TLS SNI (legions .win)"'
+      rev: '1'
+      sid: '2046297'
+      special_options:
+      - fast_pattern
+      within: '8'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

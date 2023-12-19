@@ -1,0 +1,28 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"GET"'
+      - value: '"/index"'
+      - value: '"/invokefunction&function=call_user_func_array"'
+      distance: '0'
+      fast_pattern: 0,20
+      flow: established,to_server
+      metadata: affected_product PHP, attack_target Web_Server, created_at 2018_12_14,
+        deployment Perimeter, deployment Datacenter, former_category WEB_SERVER, performance_impact
+        Low, signature_severity Major, tag ThinkPHP, updated_at 2020_08_31
+      msg: '"ET WEB_SERVER ThinkPHP RCE Exploitation Attempt"'
+      reference: url,www.exploit-db.com/exploits/45978
+      rev: '3'
+      sid: '2026731'
+      special_options:
+      - http_method
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

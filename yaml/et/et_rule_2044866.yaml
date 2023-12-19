@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"We detected unusual activity in your account today <strong>"'
+      - value: '"document.write("'
+      - value: '"</strong>"'
+      - value: '"please verify your account"'
+      - value: '"|2e|php|22 20|method|3d 22|post|22|"'
+      - value: '"About Case: Violating Community Standards and Posting something inappropriate."'
+      - value: '"the wrong data your account will be permanently closed"'
+      distance: '0'
+      flow: established,to_client
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2023_04_03, deployment Perimeter, former_category
+        PHISHING, signature_severity Major, updated_at 2023_04_03
+      msg: '"ET CURRENT_EVENTS Generic Credential Phish Landing Page 2023-04-03"'
+      reference: md5,0bf87551c648c66828428d03d8151e0a
+      rev: '1'
+      sid: '2044866'
+      special_options:
+      - file_data
+      - fast_pattern
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

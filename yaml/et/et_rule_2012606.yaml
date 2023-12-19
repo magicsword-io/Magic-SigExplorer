@@ -1,0 +1,22 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"|29| Havij|0d 0a|Connection|3a| "'
+      flow: established,to_server
+      metadata: affected_product Web_Server_Applications, attack_target Web_Server,
+        created_at 2011_03_31, deployment Datacenter, signature_severity Major, tag
+        SQL_Injection, updated_at 2020_04_19
+      msg: '"ET SCAN Havij SQL Injection Tool User-Agent Inbound"'
+      reference: url,itsecteam.com/en/projects/project1.htm
+      rev: '2'
+      sid: '2012606'
+      special_options:
+      - http_header
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

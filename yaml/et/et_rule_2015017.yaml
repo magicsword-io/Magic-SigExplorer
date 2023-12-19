@@ -1,0 +1,24 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/game"'
+      - value: '"/diary/item/"'
+      - value: '"User-Agent|3A| getURLDown|0D 0A|"'
+      flow: established,to_server
+      metadata: created_at 2012_07_04, former_category ADWARE_PUP, updated_at 2020_08_31
+      msg: '"ET MALWARE W32/OnlineGames Checkin"'
+      reference: md5,60763078b8860fd59a1d8bea2bf8900b
+      rev: '4'
+      sid: '2015017'
+      special_options:
+      - http_uri
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

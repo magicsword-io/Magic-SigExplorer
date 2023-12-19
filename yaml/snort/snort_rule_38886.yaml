@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|4C 48 42 80 71 C2 A5 DF|",depth 8'
+      flow: to_server,established
+      isdataat: '!8'
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Bayrob variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/6b6b91cd104f4a6d32b5187131d9053911607672076e6ed26ed51369e5329cad/analysis/1462889491/
+      rev: '4'
+      sid: '38886'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

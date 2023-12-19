@@ -1,0 +1,39 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?HWInfo="'
+      - value: '"}&Time="'
+      - value: '"User-Agent|3a 20|My Session"'
+      - value: '"|2e 00 70 00 68 00 70 00 3f 00 48 00 57 00 49 00 6e 00 66 00 6f 00
+          3d|"'
+      - value: '!"Referer|3a|"'
+      distance: '0'
+      fast_pattern: 2,20
+      flow: established,to_server
+      metadata: affected_product Windows_XP_Vista_7_8_10_Server_32_64_Bit, attack_target
+        Client_Endpoint, created_at 2016_10_27, deployment Perimeter, former_category
+        MALWARE, malware_family Ransomware, malware_family Jackpot, signature_severity
+        Major, tag Ransomware, updated_at 2020_08_03, mitre_tactic_id TA0040, mitre_tactic_name
+        Impact, mitre_technique_id T1486, mitre_technique_name Data_Encrypted_for_Impact
+      msg: '"ET TROJAN Win32/Jackpot Ransomware CnC Checkin"'
+      reference: md5,5624c920b1fd3da3a451d564bb7488d3
+      rev: '1'
+      sid: '2023465'
+      special_options:
+      - http_method
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_header
+      - http_client_body
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

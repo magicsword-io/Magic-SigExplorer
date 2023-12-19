@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '21'
+    details:
+      classtype: suspicious-login
+      contents:
+      - value: '"pass -satan"'
+      fast_pattern: only
+      flow: to_server,established
+      metadata: created_at 2010_09_23, updated_at 2019_10_08
+      msg: '"GPL FTP satan scan"'
+      reference: arachnids,329
+      rev: '7'
+      sid: '2100359'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

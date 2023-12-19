@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"/prok/"'
+      - value: '"Content-Type: multipart/form-data, boundary=7DF051D",fast_pattern,nocase'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Prok variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/ada4a63abae42266f9d472f1d4ebd0bd22702270f8b38ad7a824a16ce449ea2b/analysis/
+      rev: '2'
+      service: http
+      sid: '34950'
+      special_options:
+      - http_uri
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

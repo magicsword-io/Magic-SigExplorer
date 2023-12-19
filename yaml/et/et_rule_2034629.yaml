@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: '[$HOME_NET,$HTTP_SERVERS]'
+      port: any
+    details:
+      classtype: attempted-admin
+      contents:
+      - value: '"/public/plugins/"'
+      - value: '"GET"'
+      - value: '"/public/plugins/"'
+      - value: '"|2f 2e 2e 2f|"'
+      distance: '0'
+      fast_pattern: only
+      flow: established,to_server
+      metadata: attack_target Server, created_at 2021_12_07, cve CVE_2021_43798, deployment
+        Perimeter, deployment Internal, former_category EXPLOIT, signature_severity
+        Major, tag Exploit, updated_at 2022_04_14
+      msg: '"ET EXPLOIT Grafana 8.x Path Traversal (CVE-2021-43798)"'
+      reference: url,github.com/grafana/grafana/security/advisories/GHSA-8pjx-jj86-j47p
+      rev: '2'
+      sid: '2034629'
+      special_options:
+      - http_method
+      - http_raw_uri
+      - http_raw_uri
+      within: '40'
+    protocol: tcp
+    source:
+      network: any
+      port: any

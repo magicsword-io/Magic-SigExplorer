@@ -1,0 +1,20 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"|00 01 00 01|"'
+      - value: '"|00 04 c6 3d e3 06|"'
+      distance: '4'
+      metadata: created_at 2013_02_16, former_category DNS, updated_at 2022_07_13
+      msg: '"ET DNS Reply Sinkhole - Georgia Tech (1)"'
+      reference: url,virustracker.info
+      rev: '6'
+      sid: '2016422'
+      within: '6'
+    protocol: udp
+    source:
+      network: any
+      port: '53'

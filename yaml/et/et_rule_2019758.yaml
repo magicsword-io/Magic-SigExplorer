@@ -1,0 +1,21 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: any
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"$$$$"'
+      fast_pattern: only
+      flow: established,from_server
+      metadata: created_at 2014_11_20, former_category MALWARE, updated_at 2019_10_08
+      msg: '"ET TROJAN Bamital Checkin Response 2"'
+      pcre: '"/^<(?P<var1>[a-z])>[a-z0-9/]+<\/(?P=var1)><(?P<var2>[a-z])>[a-z0-9/]+<\/(?P=var2)>$$$$/i"'
+      rev: '1'
+      sid: '2019758'
+      special_options:
+      - file_data
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS

@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: bad-unknown
+      contents:
+      - value: '"POST"'
+      - value: '".stats"'
+      - value: '"pageURL="'
+      flow: established,to_server
+      metadata: created_at 2012_12_13, updated_at 2020_04_22
+      msg: '"ET WEB_CLIENT Possible Malvertising FlashPost - POST to *.stats"'
+      rev: '2'
+      sid: '2016023'
+      special_options:
+      - http_method
+      - http_uri
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

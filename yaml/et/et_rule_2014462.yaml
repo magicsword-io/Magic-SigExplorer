@@ -1,0 +1,32 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      classtype: trojan-activity
+      contents:
+      - value: '"POST"'
+      - value: '".php?m="'
+      - value: '"&n="'
+      - value: '"_"'
+      - value: '"@"'
+      distance: '0'
+      flow: established,to_server
+      metadata: created_at 2012_04_04, former_category MALWARE, updated_at 2020_04_21
+      msg: '"ET TROJAN LuckyCat/TROJ_WIMMIE Checkin"'
+      pcre: '"/\.php\?m=\w&n=\w+_\w+(@|@.c|@.t)$/U"'
+      reference: url,trendmicro.com/cloud-content/us/pdfs/security-intelligence/white-papers/wp_luckycat_redux.pdf
+      rev: '2'
+      sid: '2014462'
+      special_options:
+      - nocase
+      - http_method
+      - http_uri
+      - http_uri
+      - http_uri
+      - http_uri
+      within: '4'
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

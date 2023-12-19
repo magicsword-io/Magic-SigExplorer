@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $EXTERNAL_NET
+      port: $HTTP_PORTS
+    details:
+      bufferlen: 30<=>35
+      classtype: trojan-activity
+      contents:
+      - value: '"btst="'
+      - value: '"snkz="'
+      - value: '"Accept|3A 20|application/x-shockwave-flash, image/gif, image/jpeg,
+          image/pjpeg, */*|0D 0A|",fast_pattern,nocase'
+      - value: '"Cache-Control|3A 20|no-cache|0D 0A|"'
+      - value: '!"Connection"'
+      - value: '!"Referer"'
+      flow: to_server,established
+      metadata: impact_flag red,ruleset community
+      msg: '"MALWARE-CNC Win.Trojan.Qakbot variant outbound connection"'
+      reference: url,www.virustotal.com/en/file/1826dba769dad9898acd95d6bd026a0b55d0a093a267b481695494f3ab547088/analysis/1461598351/
+      rev: '3'
+      service: http
+      sid: '38607'
+      special_options:
+      - http_uri
+      - http_cookie
+      - http_header
+    protocol: tcp
+    source:
+      network: $HOME_NET
+      port: any

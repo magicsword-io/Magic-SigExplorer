@@ -1,0 +1,30 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/HtmlAdaptor"'
+      - value: '"action=inspect"'
+      - value: '"bean"'
+      - value: '"name="'
+      flow: established,to_server
+      metadata: created_at 2010_07_30, cve CVE_2010_0738, updated_at 2020_09_11
+      msg: '"ET WEB_SPECIFIC_APPS Possible JBoss JMX Console Beanshell Deployer WAR
+        Upload and Deployment Exploit Attempt"'
+      reference: url,doc.emergingthreats.net/2011696
+      rev: '3'
+      sid: '2011696'
+      special_options:
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - nocase
+      - http_uri
+      - http_uri
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any

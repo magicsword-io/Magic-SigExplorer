@@ -1,0 +1,19 @@
+- rule:
+    destination:
+      network: $HOME_NET
+      port: '79'
+    details:
+      classtype: attempted-recon
+      contents:
+      - value: '"/"'
+      flow: to_server,established
+      metadata: ruleset community
+      msg: '"PROTOCOL-FINGER / execution attempt"'
+      pcre: '"/^\x2f/ims"'
+      reference: cve,2000-0915
+      rev: '8'
+      sid: '3151'
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any
