@@ -1,9 +1,8 @@
 [tool.poetry]
-name = "Magic-SigExplorer"
+name = "magic-sigexplorer"
 version = "0.1.0"
 description = ""
-authors = ["The Haag <5632822+MHaggis@users.noreply.github.com>"]
-license = "Apache 2.0"
+authors = ["magicsword <info@magicsword.io>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

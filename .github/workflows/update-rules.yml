@@ -1,0 +1,38 @@
+name: Update Rules
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-rules:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        curl -sSL https://install.python-poetry.org | python -
+        poetry install --no-root
+
+    - name: Check if rules have changed and update
+      run: python bin/updaterules.py
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "github-actions@github.com"
+
+    - name: Commit and push changes
+      run: |
+        git add rule_files/*
+        git commit -m "Update rule files" || exit 0
+        git push
