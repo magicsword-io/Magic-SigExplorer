@@ -53,6 +53,8 @@ def main():
 
                 if not file_exists or old_hash != new_hash:
                     print(f"File {rule['file_path']} downloaded and updated.")
+                    print(f"Old hash: {old_hash}")
+                    print(f"New hash: {new_hash}")
                     if rule.get('is_tar', False):
                         try:
                             with tarfile.open(rule['file_path'], 'r:gz') as tar:
