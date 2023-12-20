@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "magic-sigexplorer"
+name = "Magic-SigExplorer"
 version = "0.1.0"
 description = ""
 authors = ["The Haag <5632822+MHaggis@users.noreply.github.com>"]
