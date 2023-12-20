@@ -29,9 +29,10 @@ jobs:
       run: |
         git config user.name "GitHub Actions"
         git config user.email "github-actions@github.com"
+        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
     - name: Commit and push changes
       run: |
         git add rule_files/*
         git commit -m "Update rule files" || exit 0
-        git push
+        git push origin HEAD:${{ github.ref }}
