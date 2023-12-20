@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -sSL https://install.python-poetry.org | python -
-        poetry install
+        poetry install --no-root
 
     - name: Check if rules have changed
       run: python bin/updaterules.py
