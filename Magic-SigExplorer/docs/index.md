@@ -20,5 +20,3 @@ Reference Sources:
 - [Snort Community Rules](https://www.snort.org/faq/what-are-community-rules)
 
 - [Proofpoint Emerging Open Threats Rules](https://rules.emergingthreats.net/open/snort-2.9.0/)
-
-Rules are updated every Friday.
