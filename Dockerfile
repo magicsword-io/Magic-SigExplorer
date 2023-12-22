@@ -25,8 +25,6 @@ RUN poetry install --no-root
 # Copy the flask app to the working directory
 COPY . /app
 
-# Run the scripts
-RUN poetry run python bin/updaterules.py
 RUN poetry run python runner.py --convert snort
 RUN poetry run python runner.py --convert et
 RUN poetry run python runner.py --convert custom
