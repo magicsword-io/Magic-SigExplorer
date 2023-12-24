@@ -1,5 +1,12 @@
-# Use the specified Python version
-FROM python:3.11.4-slim-buster as builder
+# Start with the latest Node.js base image
+FROM node:21.5-bookworm-slim as builder
+
+# Install Python and any necessary dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
 
 # Configure Poetry
 ENV POETRY_VERSION=1.6.1
@@ -18,7 +25,7 @@ ENV PATH="${PATH}:${POETRY_VENV}/bin"
 # Set the working directory
 WORKDIR /app
 
-# Install dependencies
+# Install dependencies including MkDocs
 COPY poetry.lock pyproject.toml ./
 RUN poetry install --no-root
 
@@ -32,7 +39,7 @@ RUN poetry run python runner.py --convert custom
 # RUN poetry run python runner.py --convert suricata
 RUN poetry run python bin/cvereport.py
 
-# Build the site
+# Build the site with MkDocs
 WORKDIR /app/Magic-SigExplorer
 RUN poetry run mkdocs build
 
