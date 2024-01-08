@@ -1,0 +1,23 @@
+- rule:
+    destination:
+      network: $HTTP_SERVERS
+      port: $HTTP_PORTS
+    details:
+      classtype: web-application-attack
+      contents:
+      - value: '"/CFIDE/adminapi/base.cfc?method"'
+      - value: '"application/x-www-form-urlencoded"'
+      - value: '"<wddxPacket version=''1.0''>"'
+      flow: to_server,established
+      msg: '"Adobe Coldfusion CVE-2023-38203 Exploit Attempt"'
+      reference: url,https://github.com/MeowwBox/pxplan/blob/main/goby_pocs/10-13-crack/redteam_20230724094235/CVD-2023-2664.go
+      rev: '1'
+      sid: '1000001'
+      special_options:
+      - http_uri
+      - http_header
+      - http_client_body
+    protocol: tcp
+    source:
+      network: $EXTERNAL_NET
+      port: any
