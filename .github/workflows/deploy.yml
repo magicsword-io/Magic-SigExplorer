@@ -27,7 +27,7 @@ jobs:
       run: gcloud auth configure-docker
 
     - name: Build Docker image
-      run: docker build --target final -t ${{ env.IMAGE_NAME }} .
+      run: docker build -t ${{ env.IMAGE_NAME }} .
 
     - name: Push Docker image to Google Container Registry
       run: gcloud builds submit --tag gcr.io/${{ secrets.PROJECT_ID }}/${{ env.IMAGE_NAME }}
