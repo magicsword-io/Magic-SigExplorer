@@ -32,7 +32,7 @@ RUN poetry install --no-root
 # Copy the flask app to the working directory
 COPY . /app
 
-RUN poetry run python runner.py --convert snort
+#RUN poetry run python runner.py --convert snort
 RUN poetry run python runner.py --convert et
 RUN poetry run python runner.py --convert custom
 # Uncomment the following line if you want to run conversion for suricata

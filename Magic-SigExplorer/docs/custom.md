@@ -14,3 +14,5 @@
 
 - ["Access to SharePoint Current User API"](/rules/custom/custom_rule_1000011)
 
+- ["Adobe Coldfusion CVE-2023-38203 Exploit Attempt"](/rules/custom/custom_rule_1000001)
+
